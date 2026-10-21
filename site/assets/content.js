@@ -186,6 +186,22 @@ window.EXAM_SOURCES = [
     note: "證券期貨專業測驗、培訓與考試資訊。"
   },
   {
+    id: "sfi-past-exams",
+    name: "證基會歷屆試題下載",
+    url: "https://www.sfi.org.tw/Node?id=217",
+    domain: "sfi.org.tw",
+    group: "考試與教育資源",
+    note: "證券投資分析人員歷屆試題與選擇題解答；115 年第 1、2 次考古題練習庫連結官方檔案。"
+  },
+  {
+    id: "past-exam-mirror",
+    name: "歷屆試題公開鏡像（宸浩）",
+    url: "https://lidapon.azurewebsites.net/files/E1/109Q1.pdf",
+    domain: "lidapon.azurewebsites.net",
+    group: "考試與教育資源",
+    note: "較早年度試題 PDF 的公開鏡像；本站以證基會公告的選擇題解答為準，並保留原始試題連結供對照。"
+  },
+  {
     id: "naer",
     name: "國家教育研究院樂詞網",
     url: "https://terms.naer.edu.tw/",
@@ -231,8 +247,8 @@ window.EXAM_CONTENT = {
       "documents/accounting_contents.md",
       "documents/securities_law_contents.md"
     ],
-    updated: "2026-10-20",
-    description: "總體經濟學依《證券投資分析人員考試概要》第 1–2 篇的章節整理；投資學依《投資學》目錄的第 1–5 篇整理；會計學依《會計學》目錄的 23 章整理；證券交易法規與實務依 documents/test.md 的測驗範圍整理。四個科目各自成篇，不混用章節。內容以臺灣官方與繁體中文公開資料為主。",
+    updated: "2026-10-21",
+    description: "總體經濟學依《證券投資分析人員考試概要》第 1–2 篇的章節整理；投資學依《投資學》目錄的第 1–5 篇整理；會計學依《會計學》目錄的 23 章整理；證券交易法規與實務依 documents/test.md 的測驗範圍整理。四個科目各自成篇，不混用章節。另收錄 109–115 年共 21 次、2,702 題歷屆選擇題，依年度與科目練習。內容以臺灣官方與繁體中文公開資料為主。",
     formulaNote: "公式以 KaTeX 排版，並以繁體中文教材常見定義整理，優先對照臺灣官方統計與金融監理資料。使用前仍應以原始教材確認符號定義與適用條件，也可用 ChatGPT、Gemini 或 Claude 做獨立比較。",
     disclaimer: "本站為考試複習整理，不構成投資建議。考試範圍、法規與統計數據請以主管機關與考試主辦單位最新公告為準。"
   },
@@ -276,6 +292,10 @@ window.EXAM_CONTENT = {
     {
       title: "用公式與比較表複習",
       text: "把公式寫下來，確認符號與適用條件；再用相鄰章節做比較，避免只背單點。"
+    },
+    {
+      title: "用考古題驗收",
+      text: "依年度與科目挑選歷屆選擇題，先作答再看答案；把錯題回到對應章節補強，再回來重做。"
     }
   ]
 };

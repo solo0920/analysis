@@ -36,7 +36,7 @@ const nobelDiagramFiles = ["diagrams-nobel.js"];
 function loadContent() {
   const context = { window: {} };
   vm.createContext(context);
-  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-formula-tex.js", "content.js", "content-nobel.js"].forEach(function (file) {
+  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-past-exams.js"].forEach(function (file) {
     const fullPath = path.join(siteDir, "assets", file);
     vm.runInContext(fs.readFileSync(fullPath, "utf8"), context, { filename: file });
   });
@@ -53,7 +53,8 @@ function loadContent() {
     ratioFormulas: context.window.INVESTMENT_RATIO_FORMULAS || [],
     optionPriorities: context.window.INVESTMENT_OPTION_PRIORITIES || [],
     lawArticles: context.window.LAW_ARTICLES || {},
-    formulaTex: context.window.FORMULA_TEX || {}
+    formulaTex: context.window.FORMULA_TEX || {},
+    pastExams: context.window.PAST_EXAMS || { meta: {}, subjects: [], sessions: [], questions: [] }
   };
 }
 
@@ -191,6 +192,7 @@ const ratioFormulas = loaded.ratioFormulas;
 const optionPriorities = loaded.optionPriorities;
 const lawArticles = loaded.lawArticles;
 const formulaTex = loaded.formulaTex;
+const pastExams = loaded.pastExams;
 const macro = content.subjects.find(function (subject) { return subject.id === "macro"; });
 const investment = content.subjects.find(function (subject) { return subject.id === "investment"; });
 const accounting = content.subjects.find(function (subject) { return subject.id === "accounting"; });
@@ -799,6 +801,192 @@ check(evolutionModelLinkCount === 19, "學派演進圖應有 19 個模型連結�
 check(evolutionNobelYears.size === 15, "學派演進圖應包含 15 個不同的諾貝爾里程碑（目前 " + evolutionNobelYears.size + " 個）");
 check(evolutionNodes.every(function (node) { return Array.isArray(node.modelAnchors) && node.modelAnchors.length > 0; }), "學派演進圖的每個節點都應綁定至少一個模型");
 
+
+/* 歷屆考古題練習庫：確認 109–115 年四個科目、21 次考試與 2,702 題的結構與答案。 */
+const pastExamMeta = pastExams.meta || {};
+const pastExamSubjects = Array.isArray(pastExams.subjects) ? pastExams.subjects : [];
+const pastExamSessions = Array.isArray(pastExams.sessions) ? pastExams.sessions : [];
+const pastExamQuestions = Array.isArray(pastExams.questions) ? pastExams.questions : [];
+const pastExamSubjectIds = ["law", "investment", "accounting", "macro"];
+const pastExamExpectedSubjectTotals = { law: 658, investment: 679, accounting: 644, macro: 721 };
+const pastExamExpectedYearTotals = { 109: 525, 110: 385, 111: 378, 112: 385, 113: 392, 114: 385, 115: 252 };
+const pastExamSessionMap = {};
+const pastExamQuestionIds = new Set();
+const pastExamQuestionKeys = new Set();
+const pastExamSubjectTotals = { law: 0, investment: 0, accounting: 0, macro: 0 };
+const pastExamYearTotals = {};
+const pastExamSessionSubjectCounts = {};
+const pastExamSessionQuestionCounts = {};
+const pastExamTextIssues = [];
+const pastExamOptionContextIssues = [];
+
+check(pastExamSessions.length === 21, "考古題練習庫應有 21 次考試（目前 " + pastExamSessions.length + " 次）");
+check(pastExamQuestions.length === 2702, "考古題練習庫應有 2,702 題（目前 " + pastExamQuestions.length + " 題）");
+check(pastExamSubjects.length === 4, "考古題練習庫應有四個專業科目");
+check(pastExamSubjects.map(function (subject) { return subject.id; }).join(",") === pastExamSubjectIds.join(","), "考古題科目順序應為 law、investment、accounting、macro");
+check(pastExamMeta.sessionCount === 21, "考古題 meta.sessionCount 應為 21");
+check(pastExamMeta.questionCount === 2702, "考古題 meta.questionCount 應為 2,702");
+check(pastExamMeta.subjectCount === 4, "考古題 meta.subjectCount 應為 4");
+check(JSON.stringify(pastExamMeta.years) === JSON.stringify([109, 110, 111, 112, 113, 114, 115]), "考古題年度應為 109–115");
+
+const pastExamExpectedSessionIds = [
+  "109Q1", "109Q2", "109Q3", "109Q4",
+  "110Q1", "110Q2", "110Q3",
+  "111Q1", "111Q2", "111Q3",
+  "112Q1", "112Q2", "112Q3",
+  "113Q1", "113Q2", "113Q3",
+  "114Q1", "114Q2", "114Q3",
+  "115Q1", "115Q2"
+];
+check(pastExamSessions.map(function (session) { return session.id; }).sort().join(",") === pastExamExpectedSessionIds.slice().sort().join(","), "考古題考試次別應為 109Q1–115Q2 共 21 次");
+
+pastExamSessions.forEach(function (session) {
+  check(typeof session.id === "string" && /^\d{3}Q\d$/.test(session.id), "考古題考試次別 ID 格式錯誤：" + session.id);
+  check(!pastExamSessionMap[session.id], "考古題考試次別 ID 重複：" + session.id);
+  pastExamSessionMap[session.id] = session;
+  check(pastExamMeta.years.indexOf(session.year) !== -1, "考古題考試年度不在範圍內：" + session.id);
+  check(Number.isInteger(session.session) && session.session >= 1 && session.session <= 4, "考古題考試次別編號錯誤：" + session.id);
+  check(typeof session.label === "string" && session.label.length > 0, "考古題考試次別缺少標籤：" + session.id);
+  check(typeof session.shortLabel === "string" && session.shortLabel.length > 0, "考古題考試次別缺少短標籤：" + session.id);
+  check(typeof session.questionUrl === "string" && session.questionUrl.indexOf("https://") === 0, "考古題試題連結應為 https：" + session.id);
+  check(typeof session.answerUrl === "string" && session.answerUrl.indexOf("https://") === 0, "考古題解答連結應為 https：" + session.id);
+  check(typeof session.sourceName === "string" && session.sourceName.length > 0, "考古題考試次別缺少來源名稱：" + session.id);
+  check(Number.isInteger(session.questionCount) && session.questionCount > 0, "考古題考試次別題數錯誤：" + session.id);
+  pastExamSessionSubjectCounts[session.id] = { law: 0, investment: 0, accounting: 0, macro: 0 };
+  pastExamSessionQuestionCounts[session.id] = 0;
+});
+
+pastExamQuestions.forEach(function (question) {
+  check(Boolean(question) && typeof question === "object", "考古題題目資料格式錯誤");
+  if (!question) {
+    return;
+  }
+  check(typeof question.id === "string" && question.id.length > 0, "考古題題目缺少 ID");
+  check(!pastExamQuestionIds.has(question.id), "考古題題目 ID 重複：" + question.id);
+  pastExamQuestionIds.add(question.id);
+  const questionKey = question.sessionId + "|" + question.subject + "|" + question.number;
+  check(!pastExamQuestionKeys.has(questionKey), "考古題題目重複：" + questionKey);
+  pastExamQuestionKeys.add(questionKey);
+  const session = pastExamSessionMap[question.sessionId];
+  check(Boolean(session), "考古題題目參照不存在的考試次別：" + question.sessionId);
+  check(pastExamSubjectIds.indexOf(question.subject) !== -1, "考古題題目科目錯誤：" + question.id);
+  check(Number.isInteger(question.number) && question.number >= 1, "考古題題號錯誤：" + question.id);
+  if (session) {
+    check(question.year === session.year && question.session === session.session, "考古題題目的年度／次別與考試次別不一致：" + question.id);
+  }
+  check(typeof question.stem === "string" && question.stem.trim().length > 0, "考古題題幹為空：" + question.id);
+  check(Array.isArray(question.options) && question.options.length === 4, "考古題選項應為四個：" + question.id);
+  check(Array.isArray(question.answer) && question.answer.length >= 1 && question.answer.length <= 4, "考古題答案數量錯誤：" + question.id);
+  if (Array.isArray(question.answer)) {
+    check(new Set(question.answer).size === question.answer.length, "考古題答案不得重複：" + question.id);
+    check(question.answer.every(function (letter) { return /^[A-D]$/.test(letter); }), "考古題答案字母錯誤：" + question.id);
+  }
+  if (Array.isArray(question.options)) {
+    check(question.options.every(function (option) { return typeof option === "string" && option.trim().length > 0; }), "考古題選項不得為空：" + question.id);
+    const optionText = question.options.join(" ");
+    if (/依下列(?:資訊|資料)|(?:試|請)回答第\s*\d+|如下表所示|題組：|題為題組|請續背面作答/.test(optionText)) {
+      pastExamOptionContextIssues.push(question.id);
+    }
+  }
+  const text = String(question.stem || "") + " " + (Array.isArray(question.options) ? question.options.join(" ") : "");
+  if (/請填應試號碼|專業科目|測驗試題|※\s*注意|請翻頁|請續背面作答|題組：|題為題組/.test(text)) {
+    pastExamTextIssues.push(question.id);
+  }
+  if (session && pastExamSessionSubjectCounts[question.sessionId]) {
+    pastExamSessionSubjectCounts[question.sessionId][question.subject] += 1;
+    pastExamSessionQuestionCounts[question.sessionId] += 1;
+  }
+  if (pastExamSubjectIds.indexOf(question.subject) !== -1) {
+    pastExamSubjectTotals[question.subject] += 1;
+  }
+  pastExamYearTotals[question.year] = (pastExamYearTotals[question.year] || 0) + 1;
+});
+
+check(pastExamTextIssues.length === 0, "考古題題幹或選項殘留頁首頁尾：" + pastExamTextIssues.join("、"));
+check(pastExamOptionContextIssues.length === 0, "考古題選項不應包含共享題組說明：" + pastExamOptionContextIssues.join("、"));
+
+pastExamSessions.forEach(function (session) {
+  check(session.questionCount === pastExamSessionQuestionCounts[session.id], "考古題考試次別題數與題目數不一致：" + session.id);
+  pastExamSubjectIds.forEach(function (subjectId) {
+    check(session.counts && session.counts[subjectId] === pastExamSessionSubjectCounts[session.id][subjectId], "考古題科目題數不一致：" + session.id + " / " + subjectId);
+    const numbers = pastExamQuestions.filter(function (question) {
+      return question.sessionId === session.id && question.subject === subjectId;
+    }).map(function (question) {
+      return question.number;
+    }).sort(function (a, b) { return a - b; });
+    check(numbers.length === pastExamSessionSubjectCounts[session.id][subjectId], "考古題科目題目數量錯誤：" + session.id + " / " + subjectId);
+    check(numbers.every(function (number, index) { return number === index + 1; }), "考古題題號應從 1 連續編號：" + session.id + " / " + subjectId);
+  });
+});
+
+pastExamSubjectIds.forEach(function (subjectId) {
+  check(pastExamSubjectTotals[subjectId] === pastExamExpectedSubjectTotals[subjectId], "考古題科目總題數錯誤：" + subjectId + "（" + pastExamSubjectTotals[subjectId] + "）");
+});
+Object.keys(pastExamExpectedYearTotals).forEach(function (year) {
+  check(pastExamYearTotals[year] === pastExamExpectedYearTotals[year], "考古題年度總題數錯誤：" + year + "（" + pastExamYearTotals[year] + "）");
+});
+
+[
+  ["109Q1-law-30", ["B", "D"]],
+  ["112Q3-investment-16", ["A", "B", "C", "D"]],
+  ["112Q3-accounting-15", ["A", "B", "C", "D"]],
+  ["114Q1-macro-14", ["B", "C"]]
+].forEach(function (entry) {
+  const question = pastExamQuestions.find(function (item) { return item.id === entry[0]; });
+  check(Boolean(question), "考古題特殊答案題目不存在：" + entry[0]);
+  if (question) {
+    check(JSON.stringify(question.answer) === JSON.stringify(entry[1]), "考古題特殊答案錯誤：" + entry[0] + "（" + question.answer.join(",") + "）");
+  }
+});
+
+[
+  {
+    source: "109Q4-investment-11",
+    sourceNeedles: ["依下列資訊"],
+    targets: ["109Q4-investment-12", "109Q4-investment-13"],
+    targetNeedles: ["如下表所示", "繁榮", "蕭條"]
+  },
+  {
+    source: "114Q1-investment-04",
+    sourceNeedles: ["依據下列"],
+    targets: ["114Q1-investment-05", "114Q1-investment-06", "114Q1-investment-07"],
+    targetNeedles: ["經濟情境", "繁榮", "蕭條"]
+  },
+  {
+    source: "115Q2-investment-11",
+    sourceNeedles: ["依據下列"],
+    targets: ["115Q2-investment-12", "115Q2-investment-13", "115Q2-investment-14", "115Q2-investment-15"],
+    targetNeedles: ["完美的債券市場", "甲債券", "乙債券"]
+  }
+].forEach(function (group) {
+  const source = pastExamQuestions.find(function (item) { return item.id === group.source; });
+  check(Boolean(source), "考古題共享題組來源題目不存在：" + group.source);
+  if (source) {
+    check(group.sourceNeedles.every(function (needle) {
+      return source.options.every(function (option) { return option.indexOf(needle) === -1; });
+    }), "考古題共享題組說明不應留在前一個選項：" + group.source);
+  }
+  group.targets.forEach(function (questionId) {
+    const question = pastExamQuestions.find(function (item) { return item.id === questionId; });
+    check(Boolean(question), "考古題共享題組題目不存在：" + questionId);
+    if (question) {
+      check(group.targetNeedles.every(function (needle) { return question.stem.indexOf(needle) !== -1; }), "考古題共享題組資料未附在題幹：" + questionId);
+    }
+  });
+});
+
+["115Q1", "115Q2"].forEach(function (sessionId) {
+  const session = pastExamSessionMap[sessionId];
+  check(Boolean(session), "考古題缺少 115 年官方試題次別：" + sessionId);
+  if (session) {
+    check(session.questionUrl.indexOf("https://examweb.sfi.org.tw/Download/") === 0, "115 年試題應連到證基會官方檔案：" + sessionId);
+    check(session.answerUrl.indexOf("https://examweb.sfi.org.tw/Download/") === 0, "115 年解答應連到證基會官方檔案：" + sessionId);
+  }
+});
+pastExamSessions.filter(function (session) { return session.year < 115; }).forEach(function (session) {
+  check(session.questionUrl.indexOf("https://lidapon.azurewebsites.net/files/E1/") === 0, "109–114 年試題應連到公開鏡像：" + session.id);
+});
+
 // 繁體中文守門：只列出不易與臺灣繁體用字混淆的簡體字。
 // 英文仍可保留得主姓名、專有名詞、公式符號與國際通用縮寫。
 const simplifiedGuard = /[国经济与为这说时间发现实体关风险资产负债银货币财税价额总结构变动边际弹预竞争垄断规报劳厂产业销费储贷汇数据统计图关键词页导设题复习资会计学务项响丰验检测试评类并对认确监审称损换据数权条来极样档检楼历残毕气汉济温湾满热爱状独狭获环齐长门问间闻队阳阴际随隐难顶顺须飞饭饮马鱼鸟鸡鸭鹰麦黄龙车转轮软轻载较辅辆输边达过运进远违连迟选递遗逻]/g;
@@ -811,6 +999,8 @@ const languageSurface = [
   read("site/assets/content-macro-evolution.js"),
   read("site/index.html"),
   read("site/assets/app.js"),
+  read("site/assets/content-past-exams.js"),
+  JSON.stringify(pastExams),
   read("site/README.md"),
   read("site/SOURCES.md"),
   read("documents/content_review_checklist.md")
@@ -828,6 +1018,7 @@ console.log("學派演進圖：" + evolutionStages.length + " 個階段、 " + e
 console.log("資料來源：" + content.sources.length);
 console.log("法規條文：" + lawOfficialArticleCount + "（官方 " + lawOfficialSources + " 部；" + lawOfficialPages + " 頁全文、" + lawExternalPages + " 頁連結摘要）");
 console.log("KaTeX 公式：" + formulaSections.length + " 個學習單元（" + formulaTexKeys.length + " 筆資料）");
+console.log("考古題：" + pastExamSessions.length + " 次、 " + pastExamQuestions.length + " 題（109–115 年）");
 console.log("檢查項目：" + checks.length + "，失敗：" + failures.length);
 
 if (failures.length > 0) {
@@ -838,4 +1029,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log("驗證通過：總體經濟學第 1–2 篇（13 章、50 節）、投資學第 1–5 篇（16 章、52 個重點）、會計學（23 章、41 個具名節次與 23 個補充學習重點）、證券法規（21 章、21 節、1,507 條官方全文）、118 個 KaTeX 公式與諾貝爾年表（1969–2026）結構一致。");
+console.log("驗證通過：總體經濟學第 1–2 篇（13 章、50 節）、投資學第 1–5 篇（16 章、52 個重點）、會計學（23 章、41 個具名節次與 23 個補充學習重點）、證券法規（21 章、21 節、1,507 條官方全文）、118 個 KaTeX 公式、諾貝爾年表（1969–2026）與 109–115 年 2,702 題考古題練習庫結構一致。");

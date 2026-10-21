@@ -11,6 +11,18 @@
   const nobelData = window.NOBEL_DATA || { meta: {}, groups: [], rows: [] };
   const nobelDiagrams = window.NOBEL_DIAGRAMS || {};
   const macroEvolution = window.MACRO_EVOLUTION || { meta: {}, stages: [] };
+  const practiceData = window.PAST_EXAMS || { meta: {}, subjects: [], sessions: [], questions: [] };
+  const practiceSubjects = Array.isArray(practiceData.subjects) ? practiceData.subjects : [];
+  const practiceSessions = Array.isArray(practiceData.sessions) ? practiceData.sessions : [];
+  const practiceQuestions = Array.isArray(practiceData.questions) ? practiceData.questions : [];
+  const practiceSessionMap = new Map();
+  const practiceSubjectMap = new Map();
+  practiceSessions.forEach(function (session) {
+    practiceSessionMap.set(session.id, session);
+  });
+  practiceSubjects.forEach(function (subject) {
+    practiceSubjectMap.set(subject.id, subject);
+  });
   const main = document.getElementById("main");
   const header = document.querySelector(".site-header");
   const readingProgress = document.getElementById("reading-progress");
@@ -56,6 +68,7 @@
 
   const PROGRESS_KEY = "analyst-prep-progress-v2";
   const THEME_KEY = "analyst-theme";
+  const PRACTICE_PROGRESS_KEY = "analyst-past-exam-progress-v1";
 
   let progress = loadProgress();
   try {
@@ -66,6 +79,7 @@
   }
   let sectionObserver = null;
   let toastTimer = null;
+  let practiceState = null;
 
   const searchOverlay = document.getElementById("search-overlay");
   const searchOpenButton = document.getElementById("search-open");
@@ -1083,6 +1097,787 @@
     ].join("");
   }
 
+  /* ----------------------------- past exam practice ----------------------------- */
+
+  function comparePracticeSessions(a, b) {
+    return (a.year - b.year) || (a.session - b.session);
+  }
+
+  function comparePracticeSessionsDesc(a, b) {
+    return (b.year - a.year) || (b.session - a.session);
+  }
+
+  function loadPracticeAnswers() {
+    const answers = new Map();
+    try {
+      const raw = window.localStorage.getItem(PRACTICE_PROGRESS_KEY);
+      if (!raw) {
+        return answers;
+      }
+      const saved = JSON.parse(raw);
+      Object.keys(saved).forEach(function (id) {
+        if (typeof saved[id] === "string" && /^[A-D]$/.test(saved[id])) {
+          answers.set(id, saved[id]);
+        }
+      });
+    } catch (error) {
+      /* localStorage 可能被停用；不影響本次瀏覽。 */
+    }
+    return answers;
+  }
+
+  function savePracticeAnswers() {
+    if (!practiceState) {
+      return;
+    }
+    try {
+      const saved = {};
+      practiceState.answers.forEach(function (value, key) {
+        saved[key] = value;
+      });
+      window.localStorage.setItem(PRACTICE_PROGRESS_KEY, JSON.stringify(saved));
+    } catch (error) {
+      /* localStorage 可能被停用；不影響本次瀏覽。 */
+    }
+  }
+
+  function ensurePracticeState() {
+    if (practiceState) {
+      return;
+    }
+    const latest = practiceSessions.slice().sort(comparePracticeSessions).pop();
+    practiceState = {
+      year: latest ? latest.year : "all",
+      session: latest ? latest.id : "all",
+      subject: "all",
+      keyword: "",
+      mode: "practice",
+      index: 0,
+      selected: null,
+      revealed: false,
+      answers: loadPracticeAnswers(),
+      browsePage: 0,
+      browseRevealed: new Set(),
+      browseAll: false
+    };
+    practiceLoadCurrent(practiceFilteredQuestions());
+  }
+
+  function practiceSessionsForYear() {
+    if (!practiceState) {
+      return [];
+    }
+    return practiceSessions.filter(function (session) {
+      return practiceState.year === "all" || session.year === practiceState.year;
+    }).sort(comparePracticeSessionsDesc);
+  }
+
+  function practiceSyncSession() {
+    if (!practiceState) {
+      return;
+    }
+    const sessions = practiceSessionsForYear();
+    const exists = sessions.some(function (session) {
+      return session.id === practiceState.session;
+    });
+    if (practiceState.session !== "all" && !exists) {
+      practiceState.session = "all";
+    }
+  }
+
+  function practiceFilteredQuestions() {
+    if (!practiceState) {
+      return [];
+    }
+    const keyword = String(practiceState.keyword || "").replace(/\s+/g, "").toLowerCase();
+    return practiceQuestions.filter(function (question) {
+      if (practiceState.year !== "all" && question.year !== practiceState.year) {
+        return false;
+      }
+      if (practiceState.subject !== "all" && question.subject !== practiceState.subject) {
+        return false;
+      }
+      if (practiceState.session !== "all" && question.sessionId !== practiceState.session) {
+        return false;
+      }
+      if (keyword) {
+        const haystack = (question.stem + " " + question.options.join(" ")).replace(/\s+/g, "").toLowerCase();
+        if (haystack.indexOf(keyword) === -1) {
+          return false;
+        }
+      }
+      return true;
+    });
+  }
+
+  function practiceLoadCurrent(questions) {
+    if (!practiceState) {
+      return;
+    }
+    if (!questions.length) {
+      practiceState.index = 0;
+      practiceState.selected = null;
+      practiceState.revealed = false;
+      return;
+    }
+    if (practiceState.index < 0) {
+      practiceState.index = 0;
+    }
+    if (practiceState.index >= questions.length) {
+      practiceState.index = questions.length - 1;
+    }
+    const question = questions[practiceState.index];
+    practiceState.selected = practiceState.answers.get(question.id) || null;
+    practiceState.revealed = practiceState.answers.has(question.id);
+  }
+
+  function practiceResetCursor(questions) {
+    if (!practiceState) {
+      return;
+    }
+    practiceState.index = 0;
+    practiceState.browsePage = 0;
+    practiceLoadCurrent(questions);
+  }
+
+  function practiceIsCorrect(question, selected) {
+    return Boolean(question && selected && question.answer.indexOf(selected) !== -1);
+  }
+
+  function practiceAnswerText(answer) {
+    const letters = Array.isArray(answer) ? answer : [];
+    if (letters.length >= 4) {
+      return "官方公告：A–D 均給分";
+    }
+    if (letters.length > 1) {
+      return "官方接受：" + letters.join("、");
+    }
+    return "官方答案：" + (letters[0] || "—");
+  }
+
+  function practiceScore(questions) {
+    let answered = 0;
+    let correct = 0;
+    questions.forEach(function (question) {
+      if (practiceState.answers.has(question.id)) {
+        answered += 1;
+        if (practiceIsCorrect(question, practiceState.answers.get(question.id))) {
+          correct += 1;
+        }
+      }
+    });
+    return { answered: answered, correct: correct };
+  }
+
+  function practiceSubjectBadge(subject) {
+    const label = subject && (subject.short || subject.name) ? (subject.short || subject.name) : "題目";
+    const colorClass = subject && subject.colorClass ? subject.colorClass : "";
+    return '<span class="past-exam-badge ' + escapeHtml(colorClass) + '">' + escapeHtml(label) + "</span>";
+  }
+
+  function practiceSummaryText() {
+    const questions = practiceFilteredQuestions();
+    const sessionCount = new Set(questions.map(function (question) {
+      return question.sessionId;
+    })).size;
+    const yearLabel = practiceState.year === "all" ? "全部年度" : practiceState.year + " 年";
+    const subject = practiceState.subject === "all" ? null : practiceSubjectMap.get(practiceState.subject);
+    const subjectLabel = subject ? (subject.short || subject.name) : "全部科目";
+    const session = practiceState.session === "all" ? null : practiceSessionMap.get(practiceState.session);
+    const sessionLabel = session ? session.label : "全部次別";
+    const keywordLabel = practiceState.keyword ? " · 關鍵字「" + escapeHtml(practiceState.keyword) + "」" : "";
+    return "<strong>" + questions.length + "</strong> 題 · " + sessionCount + " 次考試 · " +
+      escapeHtml(yearLabel) + " · " + escapeHtml(subjectLabel) + " · " + escapeHtml(sessionLabel) + keywordLabel;
+  }
+
+  function practiceRefreshFilters() {
+    const target = document.getElementById("past-exam-filters");
+    if (target) {
+      target.innerHTML = renderPracticeFilters();
+    }
+  }
+
+  function practiceRefreshSummary() {
+    const target = document.getElementById("past-exam-filter-summary");
+    if (target) {
+      target.innerHTML = practiceSummaryText();
+    }
+  }
+
+  function practiceRefreshPanel(preserveScroll) {
+    const target = document.getElementById("past-exam-panel");
+    if (!target) {
+      return;
+    }
+    const scrollY = window.scrollY;
+    target.innerHTML = renderPracticePanel();
+    if (preserveScroll) {
+      window.scrollTo({ top: scrollY, behavior: "auto" });
+    }
+  }
+
+  function practiceScrollToPanel() {
+    const target = document.getElementById("past-exam-panel");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  function renderPracticeModeToggle() {
+    return [
+      '<div class="past-exam-mode-toggle" role="group" aria-label="顯示模式">',
+      '  <button class="past-exam-chip' + (practiceState.mode === "practice" ? " is-active" : "") + '" type="button" data-practice-mode="practice" aria-pressed="' + (practiceState.mode === "practice") + '">練習模式</button>',
+      '  <button class="past-exam-chip' + (practiceState.mode === "browse" ? " is-active" : "") + '" type="button" data-practice-mode="browse" aria-pressed="' + (practiceState.mode === "browse") + '">題目瀏覽</button>',
+      "</div>"
+    ].join("");
+  }
+
+  function renderPracticeFilters() {
+    ensurePracticeState();
+    practiceSyncSession();
+    const years = Array.from(new Set(practiceSessions.map(function (session) {
+      return session.year;
+    }))).sort(function (a, b) { return b - a; });
+    const sessions = practiceSessionsForYear();
+    const yearButtons = [
+      '<button class="past-exam-chip' + (practiceState.year === "all" ? " is-active" : "") + '" type="button" data-practice-year="all" aria-pressed="' + (practiceState.year === "all") + '">全部年度</button>'
+    ].concat(years.map(function (year) {
+      return '<button class="past-exam-chip' + (practiceState.year === year ? " is-active" : "") + '" type="button" data-practice-year="' + year + '" aria-pressed="' + (practiceState.year === year) + '">' + year + " 年</button>";
+    })).join("");
+    const subjectButtons = [
+      '<button class="past-exam-chip' + (practiceState.subject === "all" ? " is-active" : "") + '" type="button" data-practice-subject="all" aria-pressed="' + (practiceState.subject === "all") + '">全部科目</button>'
+    ].concat(practiceSubjects.map(function (subject) {
+      return '<button class="past-exam-chip' + (practiceState.subject === subject.id ? " is-active" : "") + '" type="button" data-practice-subject="' + escapeHtml(subject.id) + '" aria-pressed="' + (practiceState.subject === subject.id) + '">' + escapeHtml(subject.short || subject.name) + "</button>";
+    })).join("");
+    const sessionOptions = [
+      '<option value="all"' + (practiceState.session === "all" ? " selected" : "") + ">全部次別</option>"
+    ].concat(sessions.map(function (session) {
+      return '<option value="' + escapeHtml(session.id) + '"' + (practiceState.session === session.id ? " selected" : "") + ">" + escapeHtml(session.label) + "</option>";
+    })).join("");
+
+    return [
+      '<div class="past-exam-filter-row">',
+      '  <span class="past-exam-filter-label">年度</span>',
+      '  <div class="past-exam-chips">' + yearButtons + "</div>",
+      "</div>",
+      '<div class="past-exam-filter-row">',
+      '  <span class="past-exam-filter-label">科目</span>',
+      '  <div class="past-exam-chips">' + subjectButtons + "</div>",
+      "</div>",
+      '<div class="past-exam-filter-row past-exam-filter-row-session">',
+      '  <span class="past-exam-filter-label">次別</span>',
+      '  <div class="past-exam-session-tools">',
+      '    <select class="past-exam-select" data-practice-session aria-label="選擇考試次別">' + sessionOptions + "</select>",
+      '    <label class="past-exam-search-wrap">',
+      '      <span class="sr-only">搜尋題幹或選項</span>',
+      '      <input class="past-exam-search" type="search" data-practice-search value="' + escapeHtml(practiceState.keyword) + '" placeholder="搜尋題幹或選項…" autocomplete="off">',
+      "    </label>",
+      "  </div>",
+      "</div>",
+      '<div class="past-exam-filter-summary" id="past-exam-filter-summary">' + practiceSummaryText() + "</div>"
+    ].join("");
+  }
+
+  function renderPracticeSourceLinks(session, compact) {
+    if (!session || !session.questionUrl) {
+      return "";
+    }
+    const links = [
+      '<a href="' + escapeHtml(session.questionUrl) + '" target="_blank" rel="noopener noreferrer">原始試題 PDF</a>'
+    ];
+    if (!compact && session.answerUrl) {
+      links.push('<a href="' + escapeHtml(session.answerUrl) + '" target="_blank" rel="noopener noreferrer">選擇題解答 PDF</a>');
+    }
+    return '<div class="past-exam-source-links"><span>' + escapeHtml(session.sourceName || "歷屆試題") + "</span>" + links.join("") + "</div>";
+  }
+
+  function renderPracticeOption(question, letter, text, selected, revealed) {
+    const isCorrect = question.answer.indexOf(letter) !== -1;
+    const classes = ["past-exam-option"];
+    if (!revealed && selected === letter) {
+      classes.push("is-selected");
+    }
+    if (revealed && isCorrect) {
+      classes.push("is-correct");
+    }
+    if (revealed && selected === letter && !isCorrect) {
+      classes.push("is-wrong");
+    }
+    return [
+      '<button class="' + classes.join(" ") + '" type="button" data-practice-option="' + letter + '" aria-pressed="' + (selected === letter) + '">',
+      '  <span class="past-exam-option-letter">' + letter + "</span>",
+      '  <span class="past-exam-option-text">' + escapeHtml(text) + "</span>",
+      "</button>"
+    ].join("");
+  }
+
+  function renderPracticeMode(questions) {
+    const question = questions[practiceState.index];
+    const session = practiceSessionMap.get(question.sessionId) || {};
+    const subject = practiceSubjectMap.get(question.subject) || { short: question.subject, colorClass: "" };
+    const selected = practiceState.selected;
+    const revealed = practiceState.revealed;
+    const correct = practiceIsCorrect(question, selected);
+    const score = practiceScore(questions);
+    const nextDisabled = practiceState.index >= questions.length - 1;
+    const progressPercent = Math.round(((practiceState.index + 1) / questions.length) * 100);
+    const feedback = revealed ? [
+      '<div class="past-exam-feedback ' + (correct ? "is-correct" : "is-wrong") + '">',
+      "  <strong>" + (selected ? (correct ? "答對了。" : "答錯了。") : "已顯示答案。") + "</strong>",
+      "  <span>" + escapeHtml(practiceAnswerText(question.answer)) + "</span>",
+      question.answer.length > 1 ? '  <span class="past-exam-feedback-note">' + (question.answer.length >= 4 ? "本題官方公告 A–D 均給分。" : "本題官方接受多個答案；選到任一個都算答對。") + "</span>" : "",
+      "</div>"
+    ].join("") : "";
+    const primaryAction = revealed
+      ? '<button class="btn btn-primary" type="button" data-practice-next ' + (nextDisabled ? "disabled" : "") + ">" + (nextDisabled ? "已完成" : "下一題") + "</button>"
+      : '<button class="btn btn-primary" type="button" data-practice-submit ' + (selected ? "" : "disabled") + ">看答案</button>";
+    const actions = [
+      primaryAction,
+      '<button class="btn" type="button" data-practice-prev ' + (practiceState.index === 0 ? "disabled" : "") + ">上一題</button>",
+      revealed ? '<button class="btn btn-small" type="button" data-practice-retry>重新作答</button>' : "",
+      revealed && nextDisabled ? '<button class="btn btn-small" type="button" data-practice-restart>回到第一題</button>' : "",
+      '<button class="btn btn-small" type="button" data-practice-reset-range>清除本範圍紀錄</button>'
+    ].join("");
+
+    return [
+      '<div class="past-exam-toolbar">',
+      renderPracticeModeToggle(),
+      '<div class="past-exam-score">已答 <strong>' + score.answered + "</strong> / " + questions.length + " · 答對 <strong>" + score.correct + "</strong></div>",
+      "</div>",
+      '<article class="past-exam-card">',
+      '  <div class="past-exam-card-head">',
+      practiceSubjectBadge(subject),
+      "    <span>" + escapeHtml(session.label || "歷屆試題") + " · 第 " + question.number + " 題</span>",
+      '    <span class="past-exam-progress-text">' + (practiceState.index + 1) + " / " + questions.length + "</span>",
+      "  </div>",
+      '  <div class="past-exam-progress" role="progressbar" aria-label="本範圍作答進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + progressPercent + '">',
+      '    <div class="past-exam-progress-fill" style="width:' + progressPercent + '%"></div>',
+      "  </div>",
+      '  <h2 class="past-exam-stem">' + escapeHtml(question.stem) + "</h2>",
+      '  <div class="past-exam-options" role="group" aria-label="選擇題選項">',
+      question.options.map(function (text, index) {
+        return renderPracticeOption(question, "ABCD"[index], text, selected, revealed);
+      }).join(""),
+      "  </div>",
+      feedback,
+      '  <div class="past-exam-actions">' + actions + "</div>",
+      renderPracticeSourceLinks(session, false),
+      "</article>"
+    ].join("");
+  }
+
+  function renderPracticeBrowseCard(question) {
+    const session = practiceSessionMap.get(question.sessionId) || {};
+    const subject = practiceSubjectMap.get(question.subject) || { short: question.subject, colorClass: "" };
+    const revealed = practiceState.browseAll || practiceState.browseRevealed.has(question.id);
+    const options = question.options.map(function (text, index) {
+      const letter = "ABCD"[index];
+      const correct = revealed && question.answer.indexOf(letter) !== -1;
+      return '<li' + (correct ? ' class="is-correct"' : "") + '><span class="past-exam-option-letter">' + letter + "</span><span>" + escapeHtml(text) + "</span></li>";
+    }).join("");
+    const answer = revealed
+      ? '<div class="past-exam-browse-answer"><strong>' + escapeHtml(practiceAnswerText(question.answer)) + "</strong>" +
+        (question.answer.length > 1 ? '<span>' + (question.answer.length >= 4 ? "官方公告 A–D 均給分。" : "官方接受多個答案。") + "</span>" : "") + "</div>"
+      : "";
+    return [
+      '<article class="past-exam-browse-card" id="past-exam-' + escapeHtml(question.id) + '">',
+      '  <div class="past-exam-card-head">',
+      practiceSubjectBadge(subject),
+      "    <span>" + escapeHtml(session.label || "歷屆試題") + " · 第 " + question.number + " 題</span>",
+      "  </div>",
+      '  <h3 class="past-exam-browse-stem">' + escapeHtml(question.stem) + "</h3>",
+      '  <ol class="past-exam-browse-options">' + options + "</ol>",
+      answer,
+      '  <div class="past-exam-browse-actions">',
+      '    <button class="btn btn-small" type="button" data-practice-reveal="' + escapeHtml(question.id) + '">' + (revealed ? "收起答案" : "顯示答案") + "</button>",
+      renderPracticeSourceLinks(session, true),
+      "  </div>",
+      "</article>"
+    ].join("");
+  }
+
+  function renderPracticeBrowse(questions) {
+    const pageSize = 20;
+    const pageCount = Math.max(1, Math.ceil(questions.length / pageSize));
+    if (practiceState.browsePage >= pageCount) {
+      practiceState.browsePage = pageCount - 1;
+    }
+    if (practiceState.browsePage < 0) {
+      practiceState.browsePage = 0;
+    }
+    const start = practiceState.browsePage * pageSize;
+    const pageQuestions = questions.slice(start, start + pageSize);
+    const score = practiceScore(questions);
+    const pagination = pageCount > 1 ? [
+      '<div class="past-exam-pagination">',
+      '  <button class="btn btn-small" type="button" data-practice-page="prev" ' + (practiceState.browsePage === 0 ? "disabled" : "") + ">上一頁</button>",
+      "  <span>第 " + (practiceState.browsePage + 1) + " / " + pageCount + " 頁</span>",
+      '  <button class="btn btn-small" type="button" data-practice-page="next" ' + (practiceState.browsePage >= pageCount - 1 ? "disabled" : "") + ">下一頁</button>",
+      "</div>"
+    ].join("") : "";
+
+    return [
+      '<div class="past-exam-toolbar">',
+      renderPracticeModeToggle(),
+      '<div class="past-exam-toolbar-actions">',
+      '  <button class="btn btn-small" type="button" data-practice-browse-all>' + (practiceState.browseAll ? "收起全部答案" : "展開全部答案") + "</button>",
+      '  <span class="past-exam-score">已答 <strong>' + score.answered + "</strong> / " + questions.length + " · 答對 <strong>" + score.correct + "</strong></span>",
+      "</div>",
+      "</div>",
+      '<div class="past-exam-browse-list">' + pageQuestions.map(renderPracticeBrowseCard).join("") + "</div>",
+      pagination,
+      '<div class="past-exam-browse-foot"><button class="btn btn-small" type="button" data-practice-reset-range>清除本範圍紀錄</button></div>'
+    ].join("");
+  }
+
+  function renderPracticeEmpty() {
+    return [
+      '<div class="past-exam-empty">',
+      "  <h2>目前篩選沒有題目</h2>",
+      "  <p>換一個年度、科目或次別，或清除搜尋關鍵字再試一次。</p>",
+      '  <button class="btn btn-primary" type="button" data-practice-clear>清除篩選</button>',
+      "</div>"
+    ].join("");
+  }
+
+  function renderPracticePanel() {
+    ensurePracticeState();
+    const questions = practiceFilteredQuestions();
+    if (!questions.length) {
+      return renderPracticeEmpty();
+    }
+    if (practiceState.index >= questions.length) {
+      practiceState.index = 0;
+      practiceLoadCurrent(questions);
+    }
+    return practiceState.mode === "browse" ? renderPracticeBrowse(questions) : renderPracticeMode(questions);
+  }
+
+  function renderPastExamYearOverview() {
+    const years = Array.from(new Set(practiceSessions.map(function (session) {
+      return session.year;
+    }))).sort(function (a, b) { return b - a; });
+    return '<div class="past-exam-year-grid">' + years.map(function (year) {
+      const sessions = practiceSessions.filter(function (session) {
+        return session.year === year;
+      }).sort(comparePracticeSessionsDesc);
+      const questions = practiceQuestions.filter(function (question) {
+        return question.year === year;
+      });
+      const counts = practiceSubjects.map(function (subject) {
+        const count = questions.filter(function (question) {
+          return question.subject === subject.id;
+        }).length;
+        return (subject.short || subject.name) + " " + count;
+      }).join(" · ");
+      return [
+        '<button class="past-exam-year-card" type="button" data-practice-year-jump="' + year + '">',
+        '  <span class="past-exam-year-label">' + year + " 年</span>",
+        "  <strong>" + questions.length + " 題</strong>",
+        "  <span>" + sessions.length + " 次考試 · " + sessions.map(function (session) { return escapeHtml(session.shortLabel || session.label); }).join("、") + "</span>",
+        '  <span class="past-exam-year-counts">' + escapeHtml(counts) + "</span>",
+        "</button>"
+      ].join("");
+    }).join("") + "</div>";
+  }
+
+  function renderPastExams() {
+    ensurePracticeState();
+    if (!practiceQuestions.length) {
+      return [
+        '<div class="page past-exam-page">',
+        renderPageHead("歷屆試題", "考古題練習庫", "練習題資料尚未載入。"),
+        '<div class="notice">請確認 <code>assets/content-past-exams.js</code> 已正確載入。</div>',
+        "</div>"
+      ].join("");
+    }
+    const meta = practiceData.meta || {};
+    const years = Array.from(new Set(practiceSessions.map(function (session) {
+      return session.year;
+    }))).sort(function (a, b) { return a - b; });
+    const yearRange = years.length > 1 ? years[0] + "–" + years[years.length - 1] : String(years[0] || "");
+    const officialUrl = meta.officialPageUrl || "https://www.sfi.org.tw/Node?id=217";
+    const stat = function (value, label) {
+      return '<div class="past-exam-stat"><strong>' + value + "</strong><span>" + label + "</span></div>";
+    };
+
+    return [
+      '<div class="page past-exam-page">',
+      '  <section class="past-exam-hero">',
+      '    <div class="past-exam-hero-copy">',
+      '      <p class="eyebrow">歷屆試題 · 依年度練習</p>',
+      "      <h1>考古題練習庫</h1>",
+      '      <p class="lede">' + escapeHtml(meta.scopeNote || "依考試年度與科目整理歷屆選擇題，先作答再看答案。") + "</p>",
+      '      <div class="past-exam-hero-actions">',
+      '        <button class="btn btn-primary" type="button" data-practice-start>開始練習</button>',
+      '        <a class="btn" href="' + escapeHtml(officialUrl) + '" target="_blank" rel="noopener noreferrer">證基會考題下載</a>',
+      "      </div>",
+      "    </div>",
+      '    <aside class="past-exam-stats" aria-label="練習庫規模">',
+      stat(practiceQuestions.length, "選擇題"),
+      stat(practiceSessions.length, "考試次別"),
+      stat(practiceSubjects.length, "專業科目"),
+      stat(yearRange, "收錄年度"),
+      "    </aside>",
+      "  </section>",
+      '  <section class="past-exam-filter-shell" id="past-exam-filters">' + renderPracticeFilters() + "</section>",
+      '  <section class="past-exam-panel" id="past-exam-panel">' + renderPracticePanel() + "</section>",
+      '  <section class="past-exam-overview">',
+      '    <div class="section-heading">',
+      "      <div>",
+      '        <p class="eyebrow">年度一覽</p>',
+      "        <h2>依考試年份挑選</h2>",
+      "        <p>先選年度，再縮小到科目或單一次別；練習紀錄只存在你的瀏覽器。</p>",
+      "      </div>",
+      "    </div>",
+      renderPastExamYearOverview(),
+      "  </section>",
+      '  <div class="notice past-exam-notice"><strong>範圍與來源：</strong>' + escapeHtml(meta.sourceNote || "") + ' <a href="#/sources">資料來源</a></div>',
+      '  <div class="notice"><strong>作答說明：</strong>' + escapeHtml(meta.disclaimer || "") + "</div>",
+      "</div>"
+    ].join("");
+  }
+
+  function handlePracticeClick(event) {
+    if (!practiceState) {
+      return false;
+    }
+    const yearJump = event.target.closest("[data-practice-year-jump]");
+    if (yearJump) {
+      event.preventDefault();
+      practiceState.year = Number(yearJump.dataset.practiceYearJump);
+      practiceState.session = "all";
+      practiceState.subject = "all";
+      practiceState.keyword = "";
+      practiceResetCursor(practiceFilteredQuestions());
+      practiceRefreshFilters();
+      practiceRefreshPanel();
+      practiceScrollToPanel();
+      return true;
+    }
+
+    const yearButton = event.target.closest("[data-practice-year]");
+    if (yearButton) {
+      event.preventDefault();
+      practiceState.year = yearButton.dataset.practiceYear === "all" ? "all" : Number(yearButton.dataset.practiceYear);
+      practiceState.session = "all";
+      practiceResetCursor(practiceFilteredQuestions());
+      practiceRefreshFilters();
+      practiceRefreshPanel();
+      return true;
+    }
+
+    const subjectButton = event.target.closest("[data-practice-subject]");
+    if (subjectButton) {
+      event.preventDefault();
+      practiceState.subject = subjectButton.dataset.practiceSubject;
+      practiceResetCursor(practiceFilteredQuestions());
+      practiceRefreshFilters();
+      practiceRefreshPanel();
+      return true;
+    }
+
+    const modeButton = event.target.closest("[data-practice-mode]");
+    if (modeButton) {
+      event.preventDefault();
+      practiceState.mode = modeButton.dataset.practiceMode;
+      if (practiceState.mode === "practice") {
+        practiceLoadCurrent(practiceFilteredQuestions());
+      }
+      practiceRefreshPanel();
+      return true;
+    }
+
+    const optionButton = event.target.closest("[data-practice-option]");
+    if (optionButton) {
+      event.preventDefault();
+      if (!practiceState.revealed) {
+        practiceState.selected = optionButton.dataset.practiceOption;
+        practiceRefreshPanel();
+      }
+      return true;
+    }
+
+    const submitButton = event.target.closest("[data-practice-submit]");
+    if (submitButton) {
+      event.preventDefault();
+      if (!practiceState.selected) {
+        return true;
+      }
+      const questions = practiceFilteredQuestions();
+      const question = questions[practiceState.index];
+      if (question) {
+        practiceState.answers.set(question.id, practiceState.selected);
+        practiceState.revealed = true;
+        savePracticeAnswers();
+        practiceRefreshPanel();
+      }
+      return true;
+    }
+
+    const nextButton = event.target.closest("[data-practice-next]");
+    if (nextButton) {
+      event.preventDefault();
+      const questions = practiceFilteredQuestions();
+      if (practiceState.index < questions.length - 1) {
+        practiceState.index += 1;
+        practiceLoadCurrent(questions);
+        practiceRefreshPanel();
+      }
+      return true;
+    }
+
+    const prevButton = event.target.closest("[data-practice-prev]");
+    if (prevButton) {
+      event.preventDefault();
+      if (practiceState.index > 0) {
+        practiceState.index -= 1;
+        practiceLoadCurrent(practiceFilteredQuestions());
+        practiceRefreshPanel();
+      }
+      return true;
+    }
+
+    const retryButton = event.target.closest("[data-practice-retry]");
+    if (retryButton) {
+      event.preventDefault();
+      const question = practiceFilteredQuestions()[practiceState.index];
+      if (question) {
+        practiceState.answers.delete(question.id);
+        savePracticeAnswers();
+        practiceState.selected = null;
+        practiceState.revealed = false;
+        practiceRefreshPanel();
+      }
+      return true;
+    }
+
+    const restartButton = event.target.closest("[data-practice-restart]");
+    if (restartButton) {
+      event.preventDefault();
+      practiceState.index = 0;
+      practiceLoadCurrent(practiceFilteredQuestions());
+      practiceRefreshPanel();
+      return true;
+    }
+
+    const resetRangeButton = event.target.closest("[data-practice-reset-range]");
+    if (resetRangeButton) {
+      event.preventDefault();
+      if (!window.confirm("確定要清除目前篩選範圍的作答紀錄嗎？")) {
+        return true;
+      }
+      practiceFilteredQuestions().forEach(function (question) {
+        practiceState.answers.delete(question.id);
+      });
+      savePracticeAnswers();
+      practiceResetCursor(practiceFilteredQuestions());
+      practiceRefreshPanel();
+      return true;
+    }
+
+    const revealButton = event.target.closest("[data-practice-reveal]");
+    if (revealButton) {
+      event.preventDefault();
+      const id = revealButton.dataset.practiceReveal;
+      if (practiceState.browseRevealed.has(id)) {
+        practiceState.browseRevealed.delete(id);
+      } else {
+        practiceState.browseRevealed.add(id);
+      }
+      practiceRefreshPanel(true);
+      return true;
+    }
+
+    const browseAllButton = event.target.closest("[data-practice-browse-all]");
+    if (browseAllButton) {
+      event.preventDefault();
+      practiceState.browseAll = !practiceState.browseAll;
+      practiceRefreshPanel(true);
+      return true;
+    }
+
+    const pageButton = event.target.closest("[data-practice-page]");
+    if (pageButton) {
+      event.preventDefault();
+      const questions = practiceFilteredQuestions();
+      const pageCount = Math.max(1, Math.ceil(questions.length / 20));
+      if (pageButton.dataset.practicePage === "prev" && practiceState.browsePage > 0) {
+        practiceState.browsePage -= 1;
+      } else if (pageButton.dataset.practicePage === "next" && practiceState.browsePage < pageCount - 1) {
+        practiceState.browsePage += 1;
+      }
+      practiceRefreshPanel();
+      practiceScrollToPanel();
+      return true;
+    }
+
+    const startButton = event.target.closest("[data-practice-start]");
+    if (startButton) {
+      event.preventDefault();
+      const questions = practiceFilteredQuestions();
+      if (!questions.length) {
+        return true;
+      }
+      practiceState.mode = "practice";
+      const firstUnanswered = questions.findIndex(function (question) {
+        return !practiceState.answers.has(question.id);
+      });
+      practiceState.index = firstUnanswered >= 0 ? firstUnanswered : 0;
+      practiceLoadCurrent(questions);
+      practiceRefreshPanel();
+      practiceScrollToPanel();
+      return true;
+    }
+
+    const clearButton = event.target.closest("[data-practice-clear]");
+    if (clearButton) {
+      event.preventDefault();
+      practiceState.year = "all";
+      practiceState.subject = "all";
+      practiceState.session = "all";
+      practiceState.keyword = "";
+      practiceResetCursor(practiceFilteredQuestions());
+      practiceRefreshFilters();
+      practiceRefreshPanel();
+      return true;
+    }
+
+    return false;
+  }
+
+  function handlePracticeChange(event) {
+    if (!practiceState) {
+      return false;
+    }
+    const select = event.target.closest("[data-practice-session]");
+    if (!select) {
+      return false;
+    }
+    practiceState.session = select.value;
+    practiceResetCursor(practiceFilteredQuestions());
+    practiceRefreshPanel();
+    practiceRefreshSummary();
+    return true;
+  }
+
+  function handlePracticeInput(event) {
+    if (!practiceState) {
+      return false;
+    }
+    const input = event.target.closest("[data-practice-search]");
+    if (!input) {
+      return false;
+    }
+    practiceState.keyword = input.value;
+    practiceState.index = 0;
+    practiceState.browsePage = 0;
+    practiceLoadCurrent(practiceFilteredQuestions());
+    practiceRefreshSummary();
+    practiceRefreshPanel();
+    return true;
+  }
+
   function renderHome() {
     return [
       '<div class="page">',
@@ -1129,6 +1924,19 @@
       "      </div>",
       "    </div>",
       '    <div class="subject-grid">' + content.subjects.map(renderSubjectCard).join("") + "</div>",
+      "  </section>",
+      '  <section class="home-section">',
+      '    <div class="past-exam-home-cta">',
+      '      <div>',
+      '        <p class="eyebrow">歷屆試題</p>',
+      "        <h2>用考古題練習庫檢查吸收程度</h2>",
+      "        <p>收錄 109–115 年共 21 次、2,702 題選擇題；可依年度、科目與考試次別篩選，先作答再看答案，練習紀錄只存在你的瀏覽器。</p>",
+      "      </div>",
+      '      <div class="past-exam-home-actions">',
+      '        <a class="btn btn-primary" href="#/past-exams">開始練考古題</a>',
+      '        <span class="past-exam-home-note">4 科 · 7 個年度 · 21 次考試</span>',
+      "      </div>",
+      "    </div>",
       "  </section>",
       '  <section class="home-section">',
       '    <div class="section-heading">',
@@ -1651,7 +2459,7 @@
       renderPageHead("操作指南", "使用說明", "這是一個純靜態的考試複習網站：沒有帳號、沒有廣告，完成進度只存在你的瀏覽器。"),
       '  <div class="prose">',
       "    <h2>這個網站是什麼</h2>",
-      "    <p>總體經濟學依《證券投資分析人員考試概要》第 1–2 篇的目錄整理；投資學依《投資學》目錄的第 1–5 篇整理；會計學依《會計學》目錄的 23 章整理；證券交易相關法規與實務依測驗範圍整理為 6 章、22 節。四個科目各自成篇，不互相混用章節。全站共 " + content.subjects.length + " 個科目、" + allChapters.length + " 章、" + totalSections + " 個學習單元。每個章節包含核心概念、名詞速查、考試重點、記憶句與關鍵公式。</p>",
+      "    <p>總體經濟學依《證券投資分析人員考試概要》第 1–2 篇的目錄整理；投資學依《投資學》目錄的第 1–5 篇整理；會計學依《會計學》目錄的 23 章整理；證券交易相關法規與實務依測驗範圍整理為 21 章、21 節。四個科目各自成篇，不互相混用章節。全站共 " + content.subjects.length + " 個科目、" + allChapters.length + " 章、" + totalSections + " 個學習單元。每個章節包含核心概念、名詞速查、考試重點、記憶句與關鍵公式。</p>",
       "    <h2>怎麼使用</h2>",
       "    <ol>",
       "      <li>先從科目頁看章節地圖，確認各篇與章節的順序。</li>",
@@ -1669,14 +2477,15 @@
       "      <li>四個科目的來源目錄不同：總體經濟學使用 <code>gross_economics_contents.md</code>（含第 2 篇金融市場）；投資學使用 <code>investment_contents.md</code>；會計學使用 <code>accounting_contents.md</code>；證券法規使用 <code>securities_law_contents.md</code>；不以其中一科的章節補另一科。</li>",
       "      <li>依投資學來源目錄，章號由第十一章直接跳到第十三章；本站保留原始編號，不自行補章。</li>",
       "      <li>總體經濟學另設「模型總覽」（#/models/macro），依 13 章集中 21 張章節模型圖，並加入諾貝爾經濟學獎的 17 組模型圖；另有「歷年諾貝爾經濟學獎」（#/nobel）逐年雙欄年表，左側為該屆資料、右側為對應模型圖。三個視圖共用同一份模型資料，修改後重新載入即可看到同步結果。</li>",
+      "      <li>「考古題練習庫」（#/past-exams）收錄 109–115 年共 21 次、2,702 題選擇題；可依年度、科目與次別篩選，先作答再看答案。練習紀錄只存在瀏覽器，換裝置不會同步；申論題與計算題請點原始試題連結。</li>",
       "      <li>名詞與公式以臺灣官方網站（主計總處、中央銀行、金管會、證交所、期交所等）與繁體中文公開資料交叉核對。</li>",
       "      <li>同一公式若在不同來源有不同符號定義，應先確認假設與適用條件，再以官方或正式教材為準。</li>",
       "      <li>可將同一節內容交給 ChatGPT、Gemini 或 Claude 做獨立比較，特別檢查定義、公式符號、適用條件與數值例子；跨模型一致不代表一定正確，仍要回到原始來源。</li>",
       "      <li>若發現錯誤，請以主管機關公告與正式教材為最終依據。</li>",
       "    </ul>",
       "    <h2>進度與隱私</h2>",
-      "    <p>章節完成進度只儲存在瀏覽器的 localStorage，不會傳送到任何伺服器。清除瀏覽器資料，或按下方按鈕，即可重置。</p>",
-      '    <p><button class="btn btn-small" type="button" data-action="reset-progress">清除學習進度</button></p>',
+      "    <p>章節完成進度與考古題作答紀錄只儲存在瀏覽器的 localStorage，不會傳送到任何伺服器。清除瀏覽器資料，或按下方按鈕，即可重置。</p>",
+      '    <p><button class="btn btn-small" type="button" data-action="reset-progress">清除章節進度</button> <button class="btn btn-small" type="button" data-action="reset-practice-progress">清除考古題紀錄</button></p>',
       "    <h2>免責聲明</h2>",
       "    <p>" + escapeHtml(content.meta.disclaimer) + "</p>",
       "  </div>",
@@ -1702,6 +2511,7 @@
       investment: false,
       accounting: false,
       law: false,
+      "past-exams": route.parts[0] === "past-exams",
       sources: route.parts[0] === "sources",
       about: route.parts[0] === "about"
     };
@@ -1803,6 +2613,9 @@
       const chapter = getChapter(route.parts[1]);
       html = renderChapter(chapter);
       title = chapterLabel(chapter) + " " + chapter.title + "｜" + chapter.subjectName + "｜" + content.meta.title;
+    } else if (route.parts[0] === "past-exams") {
+      html = renderPastExams();
+      title = "考古題練習庫｜" + content.meta.title;
     } else if (route.parts[0] === "sources") {
       html = renderSources();
       title = "資料來源｜" + content.meta.title;
@@ -2157,7 +2970,31 @@
     progress = new Set();
     saveProgress();
     updateProgressDisplays();
-    toast("已清除學習進度");
+    toast("已清除章節進度");
+  }
+
+  function resetPracticeProgress() {
+    if (!window.confirm("確定要清除所有考古題作答紀錄嗎？此動作無法復原。")) {
+      return;
+    }
+    if (practiceState) {
+      practiceState.answers.clear();
+      practiceState.selected = null;
+      practiceState.revealed = false;
+      practiceState.browseRevealed.clear();
+      practiceState.browseAll = false;
+      savePracticeAnswers();
+      if (document.getElementById("past-exam-panel")) {
+        practiceRefreshPanel();
+      }
+    } else {
+      try {
+        window.localStorage.removeItem(PRACTICE_PROGRESS_KEY);
+      } catch (error) {
+        /* localStorage 可能被停用。 */
+      }
+    }
+    toast("已清除考古題紀錄");
   }
 
   function bindEvents() {
@@ -2260,6 +3097,10 @@
     });
 
     main.addEventListener("click", function (event) {
+      if (handlePracticeClick(event)) {
+        return;
+      }
+
       const completeButton = event.target.closest("[data-complete-btn]");
       if (completeButton) {
         event.preventDefault();
@@ -2298,7 +3139,18 @@
       } else if (action.dataset.action === "reset-progress") {
         event.preventDefault();
         resetProgress();
+      } else if (action.dataset.action === "reset-practice-progress") {
+        event.preventDefault();
+        resetPracticeProgress();
       }
+    });
+
+    main.addEventListener("change", function (event) {
+      handlePracticeChange(event);
+    });
+
+    main.addEventListener("input", function (event) {
+      handlePracticeInput(event);
     });
   }
 
