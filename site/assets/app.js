@@ -23,6 +23,22 @@
   practiceSubjects.forEach(function (subject) {
     practiceSubjectMap.set(subject.id, subject);
   });
+  const practiceChapterStats = new Map();
+  const practiceSubjectQuestionTotals = new Map();
+  practiceQuestions.forEach(function (question) {
+    const subjectId = question.subject;
+    practiceSubjectQuestionTotals.set(subjectId, (practiceSubjectQuestionTotals.get(subjectId) || 0) + 1);
+    if (!question.sourceId) {
+      return;
+    }
+    let stats = practiceChapterStats.get(question.sourceId);
+    if (!stats) {
+      stats = { count: 0, sessions: new Map() };
+      practiceChapterStats.set(question.sourceId, stats);
+    }
+    stats.count += 1;
+    stats.sessions.set(question.sessionId, (stats.sessions.get(question.sessionId) || 0) + 1);
+  });
   const main = document.getElementById("main");
   const header = document.querySelector(".site-header");
   const readingProgress = document.getElementById("reading-progress");
@@ -903,6 +919,7 @@
       "    <p>" + escapeHtml(chapter.summary) + "</p>",
       "  </div>",
       '  <div class="chapter-row-side">',
+      renderChapterExamStats(chapter, subject),
       '    <span class="section-count">' + chapter.sections.length + unitLabel + "</span>",
       '    <span class="done-pill" data-done-pill="' + escapeHtml(chapter.id) + '"' + (done ? "" : " hidden") + ">✓ 已完成</span>",
       "  </div>",
@@ -1275,6 +1292,88 @@
     return '<span class="past-exam-badge ' + escapeHtml(colorClass) + '">' + escapeHtml(label) + "</span>";
   }
 
+  function practiceChapterStatsFor(chapterId) {
+    return practiceChapterStats.get(chapterId) || { count: 0, sessions: new Map() };
+  }
+
+  function practiceSubjectQuestionCount(subjectId) {
+    return practiceSubjectQuestionTotals.get(subjectId) || 0;
+  }
+
+  function practicePercentText(count, total) {
+    if (!total) {
+      return "0.0%";
+    }
+    return (Math.round((count / total) * 1000) / 10).toFixed(1) + "%";
+  }
+
+  function practiceChapterSessionEntries(chapterId) {
+    const stats = practiceChapterStatsFor(chapterId);
+    return Array.from(stats.sessions.entries()).map(function (entry) {
+      return {
+        session: practiceSessionMap.get(entry[0]) || { id: entry[0], label: entry[0] },
+        count: entry[1]
+      };
+    }).sort(function (a, b) {
+      return comparePracticeSessionsDesc(a.session, b.session);
+    });
+  }
+
+  function renderPracticeQuestionOrigin(question, session) {
+    const chapter = question && question.sourceId ? getChapter(question.sourceId) : null;
+    const sessionLabel = session && session.label ? session.label : (question.year + " 年第 " + question.session + " 次");
+    if (!chapter) {
+      return '<div class="past-exam-origin is-unclassified"><span class="past-exam-origin-label">出處</span><span>未分類</span><span class="past-exam-origin-meta">' + escapeHtml(sessionLabel) + "</span></div>";
+    }
+    return [
+      '<div class="past-exam-origin">',
+      '  <span class="past-exam-origin-label">出處</span>',
+      '  <a href="#/chapter/' + escapeHtml(chapter.id) + '">' + escapeHtml(chapterLabel(chapter)) + " " + escapeHtml(chapter.title) + "</a>",
+      '  <span class="past-exam-origin-meta">' + escapeHtml(sessionLabel) + "</span>",
+      "</div>"
+    ].join("");
+  }
+
+  function renderChapterExamStats(chapter, subject) {
+    const stats = practiceChapterStatsFor(chapter.id);
+    const total = practiceSubjectQuestionCount(subject.id);
+    const rate = practicePercentText(stats.count, total);
+    const title = "107–115 年共 " + stats.count + " 題，占本科 " + total + " 題的 " + rate + "；出現在 " + stats.sessions.size + " 次考試。";
+    return [
+      '<div class="chapter-exam-stats" title="' + escapeHtml(title) + '">',
+      '  <span class="chapter-exam-count">出題 <strong>' + stats.count + "</strong> 題</span>",
+      '  <span class="chapter-exam-rate">頻率 <strong>' + rate + "</strong></span>",
+      "</div>"
+    ].join("");
+  }
+
+  function renderChapterExamSourceBlock(chapter) {
+    const stats = practiceChapterStatsFor(chapter.id);
+    const total = practiceSubjectQuestionCount(chapter.subjectId);
+    const rate = practicePercentText(stats.count, total);
+    const sessions = practiceChapterSessionEntries(chapter.id);
+    return [
+      '<section class="chapter-exam-sources" id="chapter-exam-sources" aria-labelledby="chapter-exam-sources-heading">',
+      '  <div class="chapter-exam-sources-head">',
+      "    <div>",
+      '      <p class="eyebrow">考古題出處</p>',
+      '      <h2 id="chapter-exam-sources-heading">本章出題紀錄</h2>',
+      "    </div>",
+      '    <div class="chapter-exam-total"><strong>' + stats.count + "</strong><span>題 · " + rate + "</span></div>",
+      "  </div>",
+      '  <p class="chapter-exam-note">以 107–115 年選擇題的章節出處統計；頻率為本章題數占該科 ' + total + " 題的比例。" +
+        (sessions.length ? " 出現在 " + sessions.length + " 次考試。" : " 目前沒有對應的練習題。") +
+        " 出處由題幹、選項與章節內容比對後建立，作為複習導覽，不代表官方命題分類。</p>",
+      sessions.length
+        ? '  <div class="chapter-exam-session-list">' + sessions.map(function (entry) {
+          return '<span class="chapter-exam-session-chip"><strong>' + escapeHtml(entry.session.label || entry.session.id) + "</strong><span>" + entry.count + " 題</span></span>";
+        }).join("") + "</div>"
+        : "",
+      '  <a class="text-link" href="#/past-exams">前往考古題練習庫 →</a>',
+      "</section>"
+    ].join("");
+  }
+
   function practiceSummaryText() {
     const questions = practiceFilteredQuestions();
     const sessionCount = new Set(questions.map(function (question) {
@@ -1454,6 +1553,7 @@
       '    <div class="past-exam-progress-fill" style="width:' + progressPercent + '%"></div>',
       "  </div>",
       '  <h2 class="past-exam-stem">' + escapeHtml(question.stem) + "</h2>",
+      renderPracticeQuestionOrigin(question, session),
       '  <div class="past-exam-options" role="group" aria-label="選擇題選項">',
       question.options.map(function (text, index) {
         return renderPracticeOption(question, "ABCD"[index], text, selected, revealed);
@@ -1486,6 +1586,7 @@
       "    <span>" + escapeHtml(session.label || "歷屆試題") + " · 第 " + question.number + " 題</span>",
       "  </div>",
       '  <h3 class="past-exam-browse-stem">' + escapeHtml(question.stem) + "</h3>",
+      renderPracticeQuestionOrigin(question, session),
       '  <ol class="past-exam-browse-options">' + options + "</ol>",
       answer,
       '  <div class="past-exam-browse-actions">',
@@ -2020,7 +2121,7 @@
       "    <div>",
       '      <p class="eyebrow">章節地圖</p>',
       "      <h2>章節地圖</h2>",
-      "      <p>依原始目錄的篇章與章節順序排列，點選章節即可進入該章的名詞與考試重點。</p>",
+      "      <p>依原始目錄的篇章與章節順序排列，點選章節即可進入該章的名詞與考試重點；右側出題次數與頻率依 107–115 年考古題的章節出處統計，頻率為該章題數占本科題數的比例。</p>",
       "    </div>",
       '    <span class="progress-text">目前完成 <span data-progress-text="' + escapeHtml(subject.id) + '">' + progressState.done + " / " + progressState.total + " 章</span></span>",
       "  </div>",
@@ -2393,6 +2494,7 @@
       "    </aside>",
       '    <article class="chapter-content">',
       '      <div class="chapter-summary"><strong>本章摘要：</strong>' + escapeHtml(chapter.summary) + "</div>",
+      renderChapterExamSourceBlock(chapter),
       chapter.note
         ? '      <div class="notice chapter-note"><strong>單元說明：</strong>' + escapeHtml(chapter.note) + "</div>"
         : "",

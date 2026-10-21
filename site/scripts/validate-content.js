@@ -810,6 +810,33 @@ const pastExamQuestions = Array.isArray(pastExams.questions) ? pastExams.questio
 const pastExamSubjectIds = ["law", "investment", "accounting", "macro"];
 const pastExamExpectedSubjectTotals = { law: 910, investment: 924, accounting: 882, macro: 994 };
 const pastExamExpectedYearTotals = { 107: 497, 108: 511, 109: 525, 110: 385, 111: 378, 112: 385, 113: 392, 114: 385, 115: 252 };
+const pastExamChapterMap = {};
+content.subjects.forEach(function (subject) {
+  subject.chapters.forEach(function (chapter) {
+    pastExamChapterMap[chapter.id] = { chapter: chapter, subjectId: subject.id };
+  });
+});
+const pastExamExpectedChapterTotals = {
+  // law
+  "law-01": 197, "law-02": 205, "law-03": 154, "law-04": 34, "law-05": 21, "law-06": 6,
+  "law-07": 19, "law-08": 15, "law-09": 9, "law-10": 12, "law-11": 48, "law-12": 31,
+  "law-13": 83, "law-14": 1, "law-15": 6, "law-16": 14, "law-17": 11, "law-18": 12,
+  "law-19": 21, "law-20": 8, "law-21": 3,
+  // investment
+  "investment-01": 4, "investment-02": 12, "investment-03": 78, "investment-04": 105, "investment-05": 94, "investment-06": 21,
+  "investment-07": 163, "investment-08": 90, "investment-09": 77, "investment-10": 107, "investment-11": 56, "investment-13": 14,
+  "investment-14": 6, "investment-15": 41, "investment-16": 28, "investment-17": 28,
+  // accounting
+  "accounting-01": 82, "accounting-02": 75, "accounting-03": 102, "accounting-04": 30, "accounting-05": 48, "accounting-06": 73,
+  "accounting-07": 45, "accounting-08": 19, "accounting-09": 19, "accounting-10": 53, "accounting-11": 12, "accounting-12": 10,
+  "accounting-13": 73, "accounting-14": 10, "accounting-15": 96, "accounting-16": 16, "accounting-17": 32, "accounting-18": 1,
+  "accounting-19": 13, "accounting-20": 26, "accounting-21": 7, "accounting-22": 3, "accounting-23": 37,
+  // macro
+  "macro-01": 51, "macro-02": 69, "macro-03": 39, "macro-04": 65, "macro-05": 116, "macro-06": 28,
+  "macro-07": 51, "macro-08": 49, "macro-09": 94, "macro-10": 160, "macro-11": 23, "macro-12": 141,
+  "macro-13": 108,
+};
+const pastExamChapterTotals = {};
 const pastExamSessionMap = {};
 const pastExamQuestionIds = new Set();
 const pastExamQuestionKeys = new Set();
@@ -872,6 +899,11 @@ pastExamQuestions.forEach(function (question) {
   const session = pastExamSessionMap[question.sessionId];
   check(Boolean(session), "考古題題目參照不存在的考試次別：" + question.sessionId);
   check(pastExamSubjectIds.indexOf(question.subject) !== -1, "考古題題目科目錯誤：" + question.id);
+  const sourceInfo = pastExamChapterMap[question.sourceId];
+  check(typeof question.sourceId === "string" && Boolean(sourceInfo) && sourceInfo.subjectId === question.subject, "考古題題目出處錯誤：" + question.id);
+  if (sourceInfo) {
+    pastExamChapterTotals[question.sourceId] = (pastExamChapterTotals[question.sourceId] || 0) + 1;
+  }
   check(Number.isInteger(question.number) && question.number >= 1, "考古題題號錯誤：" + question.id);
   if (session) {
     check(question.year === session.year && question.session === session.session, "考古題題目的年度／次別與考試次別不一致：" + question.id);
@@ -926,6 +958,9 @@ pastExamSubjectIds.forEach(function (subjectId) {
 });
 Object.keys(pastExamExpectedYearTotals).forEach(function (year) {
   check(pastExamYearTotals[year] === pastExamExpectedYearTotals[year], "考古題年度總題數錯誤：" + year + "（" + pastExamYearTotals[year] + "）");
+});
+Object.keys(pastExamExpectedChapterTotals).forEach(function (chapterId) {
+  check(pastExamChapterTotals[chapterId] === pastExamExpectedChapterTotals[chapterId], "考古題章節出處題數錯誤：" + chapterId + "（" + (pastExamChapterTotals[chapterId] || 0) + "）");
 });
 
 [

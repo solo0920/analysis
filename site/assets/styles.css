@@ -1464,12 +1464,114 @@ p {
   flex-direction: column;
   align-items: flex-end;
   gap: 7px;
-  min-width: 118px;
+  min-width: 165px;
 }
 
 .chapter-row-side .section-count {
   color: var(--muted);
   font-size: 0.75rem;
+}
+
+.chapter-exam-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  width: 100%;
+}
+
+.chapter-exam-count,
+.chapter-exam-rate {
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  white-space: nowrap;
+}
+
+.chapter-exam-count strong,
+.chapter-exam-rate strong {
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+}
+
+.chapter-exam-rate strong {
+  color: var(--subject-color, var(--accent));
+}
+
+.chapter-exam-sources {
+  margin: 18px 0 24px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.chapter-exam-sources-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.chapter-exam-sources-head h2 {
+  margin: 3px 0 0;
+  font-size: 1.15rem;
+}
+
+.chapter-exam-total {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+  line-height: 1.1;
+}
+
+.chapter-exam-total strong {
+  color: var(--subject-color, var(--accent));
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+}
+
+.chapter-exam-total span {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.chapter-exam-note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.chapter-exam-session-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 14px 0;
+}
+
+.chapter-exam-session-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.chapter-exam-session-chip strong {
+  font-weight: 700;
+}
+
+.chapter-exam-session-chip span {
+  color: var(--muted);
 }
 
 .done-pill {
@@ -3480,12 +3582,20 @@ p {
 
   .chapter-row-side {
     grid-column: 2;
+    flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    gap: 12px;
+    gap: 10px 12px;
     min-width: 0;
     margin-top: 2px;
+  }
+
+  .chapter-exam-stats {
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+    gap: 10px;
   }
 
   .chapter-num {
@@ -4783,6 +4893,50 @@ p {
   color: var(--ink);
 }
 
+.past-exam-origin {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px 10px;
+  margin: 12px 0 16px;
+  padding: 9px 12px;
+  border-left: 3px solid var(--subject-color, var(--accent));
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.past-exam-origin-label {
+  color: var(--muted);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.past-exam-origin a {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.past-exam-origin a:hover {
+  text-decoration: underline;
+}
+
+.past-exam-origin-meta {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+.past-exam-origin.is-unclassified {
+  border-left-color: var(--danger);
+}
+
 .past-exam-card {
   padding: 28px;
   border: 1px solid var(--line);
@@ -5313,6 +5467,36 @@ p {
   .past-exam-card {
     padding: 16px;
     border-radius: var(--radius);
+  }
+
+  .past-exam-origin {
+    margin: 10px 0 14px;
+    padding: 8px 10px;
+  }
+
+  .past-exam-origin-meta {
+    width: 100%;
+    margin-left: 0;
+    white-space: normal;
+  }
+
+  .chapter-exam-sources {
+    padding: 16px;
+  }
+
+  .chapter-exam-sources-head {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .chapter-exam-total {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .chapter-exam-total span {
+    margin-top: 0;
   }
 
   .past-exam-stem {
