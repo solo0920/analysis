@@ -213,7 +213,7 @@ flowchart LR
 ```
 
 - `site/` 是唯一的發佈目錄；`documents/`、`specs/`、`.specify/` 與驗證腳本不會進入 Pages artifact。
-- `site/.nojekyll` 停用 Jekyll 處理。
+- `site/.nojekyll` 停用 Jekyll 處理；workflow 以 `include-hidden-files: true` 將它納入 artifact。
 - `site/404.html` 將未知路徑導回站點根目錄。
 - 所有 CSS、JavaScript、SVG 與 KaTeX 字型都使用相對路徑，因此可在 `/analysis/` 子路徑下運作。
 - 推送 `main` 或手動執行 workflow 都會重新部署；`site/**` 與 workflow 檔變更才會觸發自動部署。

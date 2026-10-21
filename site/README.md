@@ -81,7 +81,7 @@ python3 -m http.server 8765 --directory site
 
 `.github/workflows/pages.yml` 會在推送 `main` 時將 `site/` 上傳為 Pages artifact，再以 `actions/deploy-pages` 發佈。`site/.nojekyll` 停用 Jekyll 處理，`site/404.html` 會將未知路徑導回站點根目錄；所有資產使用相對路徑，可直接在 `/analysis/` 子路徑下運作。
 
-若 Pages 尚未啟用，workflow 的 `configure-pages` 會嘗試啟用；也可在 Repository Settings → Pages 將 Source 設為 **GitHub Actions**。
+Repository 的 Pages Source 已設為 **GitHub Actions**；若之後重新建立 Pages，請在 Repository Settings → Pages 將 Source 設為 **GitHub Actions**。
 
 ## 路由
 

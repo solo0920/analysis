@@ -39,7 +39,7 @@ python3 -m http.server 8765 --directory site
 
 `site/.nojekyll` 停用 Jekyll 處理；`site/404.html` 會將未知路徑導回站點根目錄。所有資產皆使用相對路徑，因此可直接在 `https://solo0920.github.io/analysis/` 子路徑下運作。
 
-若 Pages 尚未啟用，workflow 的 `configure-pages` 會嘗試啟用；也可以在 Repository Settings → Pages 將 Source 設為 **GitHub Actions**。
+Repository 的 Pages Source 已設為 **GitHub Actions**；若之後重新建立 Pages，請在 Repository Settings → Pages 將 Source 設為 **GitHub Actions**。
 
 ## 驗證
 
