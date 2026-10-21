@@ -1900,7 +1900,7 @@
       '    <div class="past-exam-hero-copy">',
       '      <p class="eyebrow">考古題 · 計算與申論</p>',
       '      <h1>計算題與申論題</h1>',
-      '      <p class="lede">收錄 107–115 年四個專業科目的計算題與申論題。目前 111–113 年九次（108 題）已改為完整參考解答，其餘年度分批補齊；未完成完整解題的題目先標示答題指引。官方解答 PDF 只有選擇題答案，並非官方公告。</p>',
+      '      <p class="lede">收錄 107–115 年四個專業科目的計算題與申論題。目前 110–113 年十二次（144 題）已改為完整參考解答，其餘年度分批補齊；未完成完整解題的題目先標示答題指引。官方解答 PDF 只有選擇題答案，並非官方公告。</p>',
       '      <div class="past-exam-hero-actions">',
       '        <a class="btn btn-primary" href="#/past-exams">回選擇題練習</a>',
       '      </div>',
@@ -1914,7 +1914,7 @@
       '  </section>',
       renderWrittenFilters(),
       '<div class="written-list" id="written-list">' + (questions.length ? questions.map(renderWrittenCard).join("") : '<div class="past-exam-empty"><h2>目前沒有符合的題目</h2><p>換一個年度或科目再試。</p></div>') + '</div>',
-      '  <div class="notice"><strong>解答說明：</strong>申論與計算題沒有官方公告解答；題卡會標示「答題指引」或「參考解答」，111–113 年九次（108 題）已提供完整參考解答，其餘年度依批次補齊。若與補習班、教材或官方答案不同，請以官方與正式教材為準。</div>',
+      '  <div class="notice"><strong>解答說明：</strong>申論與計算題沒有官方公告解答；題卡會標示「答題指引」或「參考解答」，110–113 年十二次（144 題）已提供完整參考解答，其餘年度依批次補齊。若與補習班、教材或官方答案不同，請以官方與正式教材為準。</div>',
       '</div>'
     ].join("");
   }
