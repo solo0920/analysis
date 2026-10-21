@@ -1079,10 +1079,10 @@ const writtenMeta = pastWritten.meta || {};
 const writtenSessionMap = {};
 const writtenIds = new Set();
 const writtenGroupCounts = {};
-check(writtenQuestions.length === 60, "計算／申論題應有 60 題（目前 " + writtenQuestions.length + " 題）");
-check(writtenMeta.sessionCount === 5, "計算／申論題 meta.sessionCount 應為 5");
-check(writtenMeta.questionCount === 60, "計算／申論題 meta.questionCount 應為 60");
-check(JSON.stringify(writtenMeta.years) === JSON.stringify([114, 115]), "計算／申論題年度應為 114–115");
+check(writtenQuestions.length === 348, "計算／申論題應有 348 題（目前 " + writtenQuestions.length + " 題）");
+check(writtenMeta.sessionCount === 29, "計算／申論題 meta.sessionCount 應為 29");
+check(writtenMeta.questionCount === 348, "計算／申論題 meta.questionCount 應為 348");
+check(JSON.stringify(writtenMeta.years) === JSON.stringify([107, 108, 109, 110, 111, 112, 113, 114, 115]), "計算／申論題年度應為 107–115");
 writtenQuestions.forEach(function (question) {
   check(Boolean(question) && typeof question === "object", "計算／申論題資料格式錯誤");
   if (!question) {
@@ -1110,7 +1110,8 @@ writtenQuestions.forEach(function (question) {
   const groupKey = question.sessionId + "|" + question.subject;
   writtenGroupCounts[groupKey] = (writtenGroupCounts[groupKey] || 0) + 1;
 });
-["114Q1", "114Q2", "114Q3", "115Q1", "115Q2"].forEach(function (sessionId) {
+pastExamSessions.forEach(function (session) {
+  const sessionId = session.id;
   pastExamSubjectIds.forEach(function (subjectId) {
     check(writtenGroupCounts[sessionId + "|" + subjectId] === 3, "計算／申論題每科每次應有 3 題：" + sessionId + " / " + subjectId);
   });
@@ -1160,7 +1161,7 @@ console.log("資料來源：" + content.sources.length);
 console.log("法規條文：" + lawOfficialArticleCount + "（官方 " + lawOfficialSources + " 部；" + lawOfficialPages + " 頁全文、" + lawExternalPages + " 頁連結摘要）");
 console.log("KaTeX 公式：" + formulaSections.length + " 個學習單元（" + formulaTexKeys.length + " 筆資料）");
 console.log("考古題：" + pastExamSessions.length + " 次、 " + pastExamQuestions.length + " 題（107–115 年）");
-console.log("計算／申論題：" + writtenQuestions.length + " 題（114–115 年）");
+console.log("計算／申論題：" + writtenQuestions.length + " 題（107–115 年）");
 console.log("總經時事：" + currentEvents.length + " 個主題");
 console.log("檢查項目：" + checks.length + "，失敗：" + failures.length);
 
