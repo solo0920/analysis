@@ -32,6 +32,7 @@
     practiceSubjectMap.set(subject.id, subject);
   });
   const practiceChapterStats = new Map();
+  const practiceSectionQuestions = new Map();
   const practiceSubjectQuestionTotals = new Map();
   practiceQuestions.forEach(function (question) {
     const subjectId = question.subject;
@@ -39,14 +40,22 @@
     const sourceIds = Array.isArray(question.sourceIds) && question.sourceIds.length
       ? Array.from(new Set(question.sourceIds))
       : (question.sourceId ? [question.sourceId] : []);
-    sourceIds.forEach(function (sourceId) {
-      let stats = practiceChapterStats.get(sourceId);
+    const sourceRefs = Array.isArray(question.sourceRefs) && question.sourceRefs.length
+      ? question.sourceRefs
+      : sourceIds.map(function (sourceId) { return { chapterId: sourceId, sectionIndex: 1 }; });
+    sourceRefs.forEach(function (ref) {
+      let stats = practiceChapterStats.get(ref.chapterId);
       if (!stats) {
         stats = { count: 0, sessions: new Map() };
-        practiceChapterStats.set(sourceId, stats);
+        practiceChapterStats.set(ref.chapterId, stats);
       }
       stats.count += 1;
       stats.sessions.set(question.sessionId, (stats.sessions.get(question.sessionId) || 0) + 1);
+      const sectionKey = ref.chapterId + "#" + ref.sectionIndex;
+      if (!practiceSectionQuestions.has(sectionKey)) {
+        practiceSectionQuestions.set(sectionKey, []);
+      }
+      practiceSectionQuestions.get(sectionKey).push(question);
     });
   });
   const main = document.getElementById("main");
@@ -608,6 +617,38 @@
     return chapter ? formulas[chapter.id + "::" + section.title] || null : null;
   }
 
+  function renderSectionExamSources(chapter, sectionIndex) {
+    if (!chapter) {
+      return "";
+    }
+    const key = chapter.id + "#" + sectionIndex;
+    const list = (practiceSectionQuestions.get(key) || []).slice().sort(function (a, b) {
+      return (a.year - b.year) || (a.session - b.session) || (a.number - b.number);
+    });
+    if (!list.length) {
+      return "";
+    }
+    const seen = new Set();
+    const links = list.filter(function (question) {
+      if (seen.has(question.id)) {
+        return false;
+      }
+      seen.add(question.id);
+      return true;
+    }).map(function (question) {
+      const session = practiceSessionMap.get(question.sessionId) || {};
+      return '<a class="section-exam-link" href="#/past-exams?question=' + encodeURIComponent(question.id) + '">' +
+        '<span>' + escapeHtml(session.label || question.sessionId) + '</span>' +
+        '<strong>第 ' + question.number + ' 題</strong></a>';
+    }).join("");
+    return [
+      '<div class="section-exam-sources">',
+      '  <div class="section-exam-head"><strong>本節出處題目</strong><span>' + list.length + ' 題</span></div>',
+      '  <div class="section-exam-links">' + links + '</div>',
+      "</div>"
+    ].join("");
+  }
+
   function renderSection(section, index, subject, chapter) {
     const sectionId = "section-" + (index + 1);
     const focus = isFocusSection(subject, section);
@@ -652,6 +693,7 @@
       }).join("") + "</ul>",
       "  </div>",
       section.memory ? '  <div class="memory-card"><span class="memory-label">記憶</span><p>' + escapeHtml(section.memory) + "</p></div>" : "",
+      renderSectionExamSources(chapter, index + 1),
       "</section>"
     ].join("");
   }
@@ -1191,6 +1233,26 @@
     practiceLoadCurrent(practiceFilteredQuestions());
   }
 
+  function practiceFocusQuestion(questionId) {
+    if (!practiceState || !questionId) {
+      return;
+    }
+    const question = practiceQuestions.find(function (item) { return item.id === questionId; });
+    if (!question) {
+      return;
+    }
+    practiceState.year = question.year;
+    practiceState.session = question.sessionId;
+    practiceState.subject = question.subject;
+    practiceState.keyword = "";
+    practiceState.mode = "practice";
+    practiceState.browsePage = 0;
+    const questions = practiceFilteredQuestions();
+    const index = questions.findIndex(function (item) { return item.id === question.id; });
+    practiceState.index = index >= 0 ? index : 0;
+    practiceLoadCurrent(questions);
+  }
+
   function practiceSessionsForYear() {
     if (!practiceState) {
       return [];
@@ -1369,7 +1431,6 @@
     const stats = practiceChapterStatsFor(chapter.id);
     const total = practiceSubjectQuestionCount(chapter.subjectId);
     const rate = practicePercentText(stats.count, total);
-    const sessions = practiceChapterSessionEntries(chapter.id);
     return [
       '<section class="chapter-exam-sources" id="chapter-exam-sources" aria-labelledby="chapter-exam-sources-heading">',
       '  <div class="chapter-exam-sources-head">',
@@ -1379,14 +1440,7 @@
       "    </div>",
       '    <div class="chapter-exam-total"><strong>' + stats.count + "</strong><span>題 · " + rate + "</span></div>",
       "  </div>",
-      "  <p class=\"chapter-exam-note\">以 107–115 年選擇題的章節出處統計；頻率為本章出處標記數占該科題數的比例；跨章節題目會重複計入各章。" +
-        (sessions.length ? " 出現在 " + sessions.length + " 次考試。" : " 目前沒有對應的練習題。") +
-        " 出處由題幹、選項與章節內容比對後建立，作為複習導覽，不代表官方命題分類。</p>",
-      sessions.length
-        ? '  <div class="chapter-exam-session-list">' + sessions.map(function (entry) {
-          return '<span class="chapter-exam-session-chip"><strong>' + escapeHtml(entry.session.label || entry.session.id) + "</strong><span>" + entry.count + " 題</span></span>";
-        }).join("") + "</div>"
-        : "",
+      "  <p class=\"chapter-exam-note\">以 107–115 年選擇題的章節出處統計；頻率為本章出處標記數占該科題數的比例；跨章節題目會重複計入各章。題目已依節次列在本章各節的「本節出處題目」，可直接點選進入該題。</p>",
       '  <a class="text-link" href="#/past-exams">前往考古題練習庫 →</a>',
       "</section>"
     ].join("");
@@ -1810,8 +1864,13 @@
     ].join("");
   }
 
-  function renderWrittenExams() {
+  function renderWrittenExams(questionId) {
     ensureWrittenState();
+    if (questionId) {
+      writtenState.year = "all";
+      writtenState.subject = "all";
+      writtenState.open.add(questionId);
+    }
     const questions = writtenFilteredQuestions();
     const years = Array.from(new Set(writtenQuestions.map(function (q) { return q.year; }))).sort(function (a, b) { return a - b; });
     return [
@@ -1884,8 +1943,11 @@
     }).join("") + "</div>";
   }
 
-  function renderPastExams() {
+  function renderPastExams(questionId) {
     ensurePracticeState();
+    if (questionId) {
+      practiceFocusQuestion(questionId);
+    }
     if (!practiceQuestions.length) {
       return [
         '<div class="page past-exam-page">',
@@ -2961,10 +3023,10 @@
       html = renderChapter(chapter);
       title = chapterLabel(chapter) + " " + chapter.title + "｜" + chapter.subjectName + "｜" + content.meta.title;
     } else if (route.parts[0] === "past-exams" && route.parts[1] === "written") {
-      html = renderWrittenExams();
+      html = renderWrittenExams(route.query.get("question"));
       title = "計算題與申論題｜" + content.meta.title;
     } else if (route.parts[0] === "past-exams") {
-      html = renderPastExams();
+      html = renderPastExams(route.query.get("question"));
       title = "考古題練習庫｜" + content.meta.title;
     } else if (route.parts[0] === "macro-current") {
       html = renderMacroCurrentEvents();
@@ -3044,6 +3106,21 @@
       const targetId = route.query.get("table") ? "nobel-table" : "nobel-models";
       window.requestAnimationFrame(function () {
         const target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    } else if (route.parts[0] === "past-exams" && route.parts[1] === "written" && route.query.get("question")) {
+      const writtenId = route.query.get("question");
+      window.requestAnimationFrame(function () {
+        const target = document.getElementById("written-" + writtenId);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    } else if (route.parts[0] === "past-exams" && route.query.get("question")) {
+      window.requestAnimationFrame(function () {
+        const target = document.getElementById("past-exam-panel");
         if (target) {
           target.scrollIntoView({ behavior: "smooth", block: "start" });
         }

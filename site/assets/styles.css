@@ -5804,3 +5804,69 @@ p {
     align-self: flex-end;
   }
 }
+
+/* ----------------------------- section-level exam sources ----------------------------- */
+.section-exam-sources {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.section-exam-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 9px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.section-exam-head strong {
+  color: var(--ink);
+  font-size: 0.82rem;
+}
+
+.section-exam-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.section-exam-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  text-decoration: none;
+  transition: border-color 150ms ease, color 150ms ease;
+}
+
+.section-exam-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.section-exam-link strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+@media (max-width: 520px) {
+  .section-exam-sources {
+    padding: 12px;
+  }
+
+  .section-exam-link {
+    max-width: 100%;
+  }
+}

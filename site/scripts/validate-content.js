@@ -914,6 +914,13 @@ pastExamQuestions.forEach(function (question) {
       pastExamChapterTotals[sourceId] = (pastExamChapterTotals[sourceId] || 0) + 1;
     }
   });
+  const sourceRefs = Array.isArray(question.sourceRefs) ? question.sourceRefs : [];
+  check(sourceRefs.length === sourceIds.length, "考古題題目節次出處數量錯誤：" + question.id);
+  check(JSON.stringify(sourceRefs.map(function (ref) { return ref.chapterId; }).sort()) === JSON.stringify(sourceIds.slice().sort()), "考古題題目章節與節次出處不一致：" + question.id);
+  sourceRefs.forEach(function (ref) {
+    const refInfo = pastExamChapterMap[ref.chapterId];
+    check(Boolean(refInfo) && refInfo.subjectId === question.subject && Number.isInteger(ref.sectionIndex) && ref.sectionIndex >= 1 && ref.sectionIndex <= refInfo.chapter.sections.length, "考古題題目節次出處錯誤：" + question.id + " / " + ref.chapterId + "#" + ref.sectionIndex);
+  });
   check(Number.isInteger(question.number) && question.number >= 1, "考古題題號錯誤：" + question.id);
   if (session) {
     check(question.year === session.year && question.session === session.session, "考古題題目的年度／次別與考試次別不一致：" + question.id);
