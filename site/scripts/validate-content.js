@@ -818,23 +818,23 @@ content.subjects.forEach(function (subject) {
 });
 const pastExamExpectedChapterTotals = {
   // law
-  "law-01": 197, "law-02": 205, "law-03": 154, "law-04": 34, "law-05": 21, "law-06": 6,
+  "law-01": 198, "law-02": 207, "law-03": 151, "law-04": 34, "law-05": 21, "law-06": 6,
   "law-07": 19, "law-08": 15, "law-09": 9, "law-10": 12, "law-11": 48, "law-12": 31,
   "law-13": 83, "law-14": 1, "law-15": 6, "law-16": 14, "law-17": 11, "law-18": 12,
   "law-19": 21, "law-20": 8, "law-21": 3,
   // investment
   "investment-01": 4, "investment-02": 12, "investment-03": 78, "investment-04": 105, "investment-05": 94, "investment-06": 21,
-  "investment-07": 163, "investment-08": 90, "investment-09": 77, "investment-10": 107, "investment-11": 56, "investment-13": 14,
-  "investment-14": 6, "investment-15": 41, "investment-16": 28, "investment-17": 28,
+  "investment-07": 163, "investment-08": 88, "investment-09": 77, "investment-10": 107, "investment-11": 57, "investment-13": 14,
+  "investment-14": 6, "investment-15": 41, "investment-16": 29, "investment-17": 28,
   // accounting
   "accounting-01": 82, "accounting-02": 75, "accounting-03": 102, "accounting-04": 30, "accounting-05": 48, "accounting-06": 73,
   "accounting-07": 45, "accounting-08": 19, "accounting-09": 19, "accounting-10": 53, "accounting-11": 12, "accounting-12": 10,
-  "accounting-13": 73, "accounting-14": 10, "accounting-15": 96, "accounting-16": 16, "accounting-17": 32, "accounting-18": 1,
+  "accounting-13": 73, "accounting-14": 8, "accounting-15": 96, "accounting-16": 16, "accounting-17": 32, "accounting-18": 3,
   "accounting-19": 13, "accounting-20": 26, "accounting-21": 7, "accounting-22": 3, "accounting-23": 37,
   // macro
-  "macro-01": 51, "macro-02": 69, "macro-03": 39, "macro-04": 65, "macro-05": 116, "macro-06": 28,
-  "macro-07": 51, "macro-08": 49, "macro-09": 94, "macro-10": 160, "macro-11": 23, "macro-12": 141,
-  "macro-13": 108,
+  "macro-01": 50, "macro-02": 70, "macro-03": 38, "macro-04": 67, "macro-05": 116, "macro-06": 28,
+  "macro-07": 51, "macro-08": 50, "macro-09": 94, "macro-10": 161, "macro-11": 23, "macro-12": 140,
+  "macro-13": 106,
 };
 const pastExamChapterTotals = {};
 const pastExamSessionMap = {};
