@@ -1996,7 +1996,7 @@
       '      <p class="lede">' + escapeHtml(meta.scopeNote || "依考試年度與科目整理歷屆選擇題，先作答再看答案。") + "</p>",
       '      <div class="past-exam-hero-actions">',
       '        <button class="btn btn-primary" type="button" data-practice-start>開始練習</button>',
-      '        <a class="btn" href="#/past-exams/written">計算／申論題（114–115）</a>',
+      '        <a class="btn" href="#/past-exams/written">計算／申論題</a>',
       '        <a class="btn" href="' + escapeHtml(officialUrl) + '" target="_blank" rel="noopener noreferrer">證基會考題下載</a>',
       "      </div>",
       "    </div>",
