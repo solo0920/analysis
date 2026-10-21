@@ -1833,7 +1833,7 @@
         return '<button class="past-exam-chip' + (writtenState.subject === subject.id ? " is-active" : "") + '" type="button" data-written-subject="' + escapeHtml(subject.id) + '">' + escapeHtml(subject.short || subject.name) + '</button>';
       }).join(""),
       '  </div>',
-      '  <div class="written-filter-summary"><strong>' + writtenFilteredQuestions().length + '</strong> 題 · 107–115 年 · 依題目顯示答題指引或參考解答</div>',
+      '  <div class="written-filter-summary"><strong>' + writtenFilteredQuestions().length + '</strong> 題 · 107–115 年 · 完整參考解答</div>',
       '</div>'
     ].join("");
   }
@@ -1870,12 +1870,12 @@
       practiceSubjectBadge(subject),
       '    <span>' + escapeHtml(session.label || "") + ' · 第 ' + question.number + ' 題</span>',
       '    <span class="written-kind">' + escapeHtml(question.kind || "計算／申論") + '</span>',
-      '    <span class="written-reference">' + (question.answerType === "guide" ? "答題指引" : "參考解答") + '</span>',
+      '    <span class="written-reference">參考解答</span>',
       '  </div>',
       '  <h3 class="written-stem">' + escapeHtml(question.stem) + '</h3>',
       renderPracticeQuestionOrigin(question, session),
       '  <div class="written-actions">',
-      '    <button class="btn btn-small" type="button" data-written-toggle="' + escapeHtml(question.id) + '">' + (open ? "收起解答" : (question.answerType === "guide" ? "顯示答題指引" : "顯示參考解答")) + '</button>',
+      '    <button class="btn btn-small" type="button" data-written-toggle="' + escapeHtml(question.id) + '">' + (open ? "收起解答" : "顯示參考解答") + '</button>',
       session.questionUrl ? '    <a class="text-link" href="' + escapeHtml(session.questionUrl) + '" target="_blank" rel="noopener noreferrer">原始試題 PDF →</a>' : "",
       '  </div>',
       open ? '  <div class="written-answer">' + answers.map(function (text) {
@@ -1900,7 +1900,7 @@
       '    <div class="past-exam-hero-copy">',
       '      <p class="eyebrow">考古題 · 計算與申論</p>',
       '      <h1>計算題與申論題</h1>',
-      '      <p class="lede">收錄 107–115 年四個專業科目的計算題與申論題。目前 108–113 年二十次（240 題）已改為完整參考解答，其餘年度分批補齊；未完成完整解題的題目先標示答題指引。官方解答 PDF 只有選擇題答案，並非官方公告。</p>',
+      '      <p class="lede">收錄 107–115 年四個專業科目的計算題與申論題。107–115 年 348 題計算與申論題均已提供完整參考解答；官方解答 PDF 只有選擇題答案，並非官方公告。</p>',
       '      <div class="past-exam-hero-actions">',
       '        <a class="btn btn-primary" href="#/past-exams">回選擇題練習</a>',
       '      </div>',
@@ -1914,7 +1914,7 @@
       '  </section>',
       renderWrittenFilters(),
       '<div class="written-list" id="written-list">' + (questions.length ? questions.map(renderWrittenCard).join("") : '<div class="past-exam-empty"><h2>目前沒有符合的題目</h2><p>換一個年度或科目再試。</p></div>') + '</div>',
-      '  <div class="notice"><strong>解答說明：</strong>申論與計算題沒有官方公告解答；題卡會標示「答題指引」或「參考解答」，108–113 年二十次（240 題）已提供完整參考解答，其餘年度依批次補齊。若與補習班、教材或官方答案不同，請以官方與正式教材為準。</div>',
+      '  <div class="notice"><strong>解答說明：</strong>申論與計算題沒有官方公告解答；題卡均標示「參考解答」，107–115 年 348 題均已提供完整參考解答；若與補習班、教材或官方答案不同，請以官方與正式教材為準。</div>',
       '</div>'
     ].join("");
   }
@@ -1929,7 +1929,7 @@
       '  <div>',
       '    <p class="eyebrow">107–115 計算與申論</p>',
       '    <strong>' + count + ' 題計算／申論</strong>',
-      '    <span>依題目顯示答題指引或參考解答，點此查看。</span>',
+      '    <span>均已提供完整參考解答，點此查看。</span>',
       '  </div>',
       '  <span class="subject-written-cta-arrow">查看 →</span>',
       '</a>'
