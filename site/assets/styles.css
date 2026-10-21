@@ -5903,3 +5903,14 @@ p {
 .written-stem {
   overflow-wrap: anywhere;
 }
+
+.written-answer-math:not(.is-display) {
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  vertical-align: middle;
+}
+
+.written-answer p {
+  overflow-wrap: anywhere;
+}
