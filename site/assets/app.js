@@ -880,7 +880,7 @@
       '<a class="chapter-row ' + escapeHtml(subject.colorClass) + '" href="#/chapter/' + escapeHtml(chapter.id) + '">',
       '  <div class="chapter-num"><strong>' + chapterNumber(chapter) + "</strong></div>",
       "  <div>",
-      "    <h2>" + escapeHtml(chapterLabel(chapter)) + "　" + escapeHtml(chapter.title) + "</h2>",
+      "    <h2>" + escapeHtml(chapter.title) + "</h2>",
       "    <p>" + escapeHtml(chapter.summary) + "</p>",
       "  </div>",
       '  <div class="chapter-row-side">',
