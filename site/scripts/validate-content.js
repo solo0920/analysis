@@ -36,7 +36,7 @@ const nobelDiagramFiles = ["diagrams-nobel.js"];
 function loadContent() {
   const context = { window: {} };
   vm.createContext(context);
-  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-past-exams.js"].forEach(function (file) {
+  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-macro-current.js", "content-past-exams-written.js", "content-past-exams.js"].forEach(function (file) {
     const fullPath = path.join(siteDir, "assets", file);
     vm.runInContext(fs.readFileSync(fullPath, "utf8"), context, { filename: file });
   });
@@ -54,7 +54,9 @@ function loadContent() {
     optionPriorities: context.window.INVESTMENT_OPTION_PRIORITIES || [],
     lawArticles: context.window.LAW_ARTICLES || {},
     formulaTex: context.window.FORMULA_TEX || {},
-    pastExams: context.window.PAST_EXAMS || { meta: {}, subjects: [], sessions: [], questions: [] }
+    pastExams: context.window.PAST_EXAMS || { meta: {}, subjects: [], sessions: [], questions: [] },
+    pastWritten: context.window.PAST_EXAMS_WRITTEN || { meta: {}, questions: [] },
+    macroCurrent: context.window.MACRO_CURRENT_EVENTS || { meta: {}, events: [] }
   };
 }
 
@@ -193,6 +195,8 @@ const optionPriorities = loaded.optionPriorities;
 const lawArticles = loaded.lawArticles;
 const formulaTex = loaded.formulaTex;
 const pastExams = loaded.pastExams;
+const pastWritten = loaded.pastWritten || { meta: {}, questions: [] };
+const macroCurrent = loaded.macroCurrent || { meta: {}, events: [] };
 const macro = content.subjects.find(function (subject) { return subject.id === "macro"; });
 const investment = content.subjects.find(function (subject) { return subject.id === "investment"; });
 const accounting = content.subjects.find(function (subject) { return subject.id === "accounting"; });
@@ -818,23 +822,23 @@ content.subjects.forEach(function (subject) {
 });
 const pastExamExpectedChapterTotals = {
   // law
-  "law-01": 198, "law-02": 207, "law-03": 151, "law-04": 34, "law-05": 21, "law-06": 6,
-  "law-07": 19, "law-08": 15, "law-09": 9, "law-10": 12, "law-11": 48, "law-12": 31,
-  "law-13": 83, "law-14": 1, "law-15": 6, "law-16": 14, "law-17": 11, "law-18": 12,
-  "law-19": 21, "law-20": 8, "law-21": 3,
+  "law-01": 199, "law-02": 226, "law-03": 164, "law-04": 46, "law-05": 29, "law-06": 7,
+  "law-07": 20, "law-08": 21, "law-09": 12, "law-10": 15, "law-11": 53, "law-12": 31,
+  "law-13": 85, "law-14": 4, "law-15": 9, "law-16": 14, "law-17": 14, "law-18": 15,
+  "law-19": 21, "law-20": 9, "law-21": 3,
   // investment
-  "investment-01": 4, "investment-02": 12, "investment-03": 78, "investment-04": 105, "investment-05": 94, "investment-06": 21,
-  "investment-07": 163, "investment-08": 88, "investment-09": 77, "investment-10": 107, "investment-11": 57, "investment-13": 14,
-  "investment-14": 6, "investment-15": 41, "investment-16": 29, "investment-17": 28,
+  "investment-01": 4, "investment-02": 14, "investment-03": 92, "investment-04": 107, "investment-05": 98, "investment-06": 21,
+  "investment-07": 169, "investment-08": 102, "investment-09": 78, "investment-10": 107, "investment-11": 65, "investment-13": 14,
+  "investment-14": 6, "investment-15": 44, "investment-16": 40, "investment-17": 28,
   // accounting
-  "accounting-01": 82, "accounting-02": 75, "accounting-03": 102, "accounting-04": 30, "accounting-05": 48, "accounting-06": 73,
-  "accounting-07": 45, "accounting-08": 19, "accounting-09": 19, "accounting-10": 53, "accounting-11": 12, "accounting-12": 10,
-  "accounting-13": 73, "accounting-14": 8, "accounting-15": 96, "accounting-16": 16, "accounting-17": 32, "accounting-18": 3,
-  "accounting-19": 13, "accounting-20": 26, "accounting-21": 7, "accounting-22": 3, "accounting-23": 37,
+  "accounting-01": 89, "accounting-02": 79, "accounting-03": 108, "accounting-04": 33, "accounting-05": 55, "accounting-06": 83,
+  "accounting-07": 50, "accounting-08": 24, "accounting-09": 19, "accounting-10": 56, "accounting-11": 15, "accounting-12": 10,
+  "accounting-13": 75, "accounting-14": 8, "accounting-15": 98, "accounting-16": 20, "accounting-17": 33, "accounting-18": 3,
+  "accounting-19": 21, "accounting-20": 30, "accounting-21": 11, "accounting-22": 3, "accounting-23": 41,
   // macro
-  "macro-01": 50, "macro-02": 70, "macro-03": 38, "macro-04": 67, "macro-05": 116, "macro-06": 28,
-  "macro-07": 51, "macro-08": 50, "macro-09": 94, "macro-10": 161, "macro-11": 23, "macro-12": 140,
-  "macro-13": 106,
+  "macro-01": 52, "macro-02": 78, "macro-03": 43, "macro-04": 70, "macro-05": 128, "macro-06": 30,
+  "macro-07": 53, "macro-08": 54, "macro-09": 97, "macro-10": 173, "macro-11": 28, "macro-12": 153,
+  "macro-13": 108,
 };
 const pastExamChapterTotals = {};
 const pastExamSessionMap = {};
@@ -899,11 +903,17 @@ pastExamQuestions.forEach(function (question) {
   const session = pastExamSessionMap[question.sessionId];
   check(Boolean(session), "考古題題目參照不存在的考試次別：" + question.sessionId);
   check(pastExamSubjectIds.indexOf(question.subject) !== -1, "考古題題目科目錯誤：" + question.id);
-  const sourceInfo = pastExamChapterMap[question.sourceId];
-  check(typeof question.sourceId === "string" && Boolean(sourceInfo) && sourceInfo.subjectId === question.subject, "考古題題目出處錯誤：" + question.id);
-  if (sourceInfo) {
-    pastExamChapterTotals[question.sourceId] = (pastExamChapterTotals[question.sourceId] || 0) + 1;
-  }
+  const sourceIds = Array.isArray(question.sourceIds) && question.sourceIds.length
+    ? Array.from(new Set(question.sourceIds))
+    : (question.sourceId ? [question.sourceId] : []);
+  check(typeof question.sourceId === "string" && sourceIds.indexOf(question.sourceId) !== -1, "考古題題目主要出處錯誤：" + question.id);
+  sourceIds.forEach(function (sourceId) {
+    const sourceInfo = pastExamChapterMap[sourceId];
+    check(Boolean(sourceInfo) && sourceInfo.subjectId === question.subject, "考古題題目出處錯誤：" + question.id + " / " + sourceId);
+    if (sourceInfo) {
+      pastExamChapterTotals[sourceId] = (pastExamChapterTotals[sourceId] || 0) + 1;
+    }
+  });
   check(Number.isInteger(question.number) && question.number >= 1, "考古題題號錯誤：" + question.id);
   if (session) {
     check(question.year === session.year && question.session === session.session, "考古題題目的年度／次別與考試次別不一致：" + question.id);
@@ -1051,13 +1061,93 @@ const languageSurface = [
   read("site/index.html"),
   read("site/assets/app.js"),
   read("site/assets/content-past-exams.js"),
+  read("site/assets/content-past-exams-written.js"),
+  read("site/assets/content-macro-current.js"),
   JSON.stringify(pastExams),
+  JSON.stringify(pastWritten),
+  JSON.stringify(macroCurrent),
   read("site/README.md"),
   read("site/SOURCES.md"),
   read("documents/content_review_checklist.md")
 ].join("\n");
 const simplifiedMatches = Array.from(new Set(languageSurface.match(simplifiedGuard) || []));
 check(simplifiedMatches.length === 0, "全站中文不得含簡體字，發現：" + simplifiedMatches.join("、"));
+
+/* 計算／申論題與近二年總經時事 */
+const writtenQuestions = Array.isArray(pastWritten.questions) ? pastWritten.questions : [];
+const writtenMeta = pastWritten.meta || {};
+const writtenSessionMap = {};
+const writtenIds = new Set();
+const writtenGroupCounts = {};
+check(writtenQuestions.length === 60, "計算／申論題應有 60 題（目前 " + writtenQuestions.length + " 題）");
+check(writtenMeta.sessionCount === 5, "計算／申論題 meta.sessionCount 應為 5");
+check(writtenMeta.questionCount === 60, "計算／申論題 meta.questionCount 應為 60");
+check(JSON.stringify(writtenMeta.years) === JSON.stringify([114, 115]), "計算／申論題年度應為 114–115");
+writtenQuestions.forEach(function (question) {
+  check(Boolean(question) && typeof question === "object", "計算／申論題資料格式錯誤");
+  if (!question) {
+    return;
+  }
+  check(typeof question.id === "string" && question.id.length > 0, "計算／申論題缺少 ID");
+  check(!writtenIds.has(question.id), "計算／申論題 ID 重複：" + question.id);
+  writtenIds.add(question.id);
+  const session = pastExamSessionMap[question.sessionId];
+  check(Boolean(session), "計算／申論題參照不存在的考試次別：" + question.sessionId);
+  check(pastExamSubjectIds.indexOf(question.subject) !== -1, "計算／申論題科目錯誤：" + question.id);
+  check(Number.isInteger(question.number) && question.number >= 1 && question.number <= 3, "計算／申論題題號錯誤：" + question.id);
+  check(typeof question.stem === "string" && question.stem.trim().length > 0, "計算／申論題題幹為空：" + question.id);
+  check(Array.isArray(question.answer) && question.answer.length > 0 && question.answer.every(function (text) { return typeof text === "string" && text.trim().length > 0; }), "計算／申論題缺少參考解答：" + question.id);
+  check(Array.isArray(question.sourceIds) && question.sourceIds.length > 0, "計算／申論題缺少出處：" + question.id);
+  if (Array.isArray(question.sourceIds)) {
+    question.sourceIds.forEach(function (chapterId) {
+      const sourceInfo = pastExamChapterMap[chapterId];
+      check(Boolean(sourceInfo) && sourceInfo.subjectId === question.subject, "計算／申論題出處錯誤：" + question.id + " / " + chapterId);
+    });
+  }
+  if (session) {
+    check(question.year === session.year && question.session === session.session, "計算／申論題年度／次別不一致：" + question.id);
+  }
+  const groupKey = question.sessionId + "|" + question.subject;
+  writtenGroupCounts[groupKey] = (writtenGroupCounts[groupKey] || 0) + 1;
+});
+["114Q1", "114Q2", "114Q3", "115Q1", "115Q2"].forEach(function (sessionId) {
+  pastExamSubjectIds.forEach(function (subjectId) {
+    check(writtenGroupCounts[sessionId + "|" + subjectId] === 3, "計算／申論題每科每次應有 3 題：" + sessionId + " / " + subjectId);
+  });
+});
+
+const currentEvents = Array.isArray(macroCurrent.events) ? macroCurrent.events : [];
+const currentEventIds = new Set();
+check(currentEvents.length >= 8, "總經時事應至少有 8 個主題（目前 " + currentEvents.length + " 個）");
+currentEvents.forEach(function (event) {
+  check(Boolean(event) && typeof event === "object", "總經時事資料格式錯誤");
+  if (!event) {
+    return;
+  }
+  check(typeof event.id === "string" && event.id.length > 0, "總經時事缺少 ID");
+  check(!currentEventIds.has(event.id), "總經時事 ID 重複：" + event.id);
+  currentEventIds.add(event.id);
+  check(typeof event.title === "string" && event.title.trim().length > 0, "總經時事缺少標題：" + event.id);
+  check(Array.isArray(event.summary) && event.summary.length > 0, "總經時事缺少摘要：" + event.id);
+  check(Array.isArray(event.points) && event.points.length > 0, "總經時事缺少考試重點：" + event.id);
+  check(Array.isArray(event.sourceIds) && event.sourceIds.length > 0, "總經時事缺少出處：" + event.id);
+  if (Array.isArray(event.sourceIds)) {
+    event.sourceIds.forEach(function (chapterId) {
+      const sourceInfo = pastExamChapterMap[chapterId];
+      check(Boolean(sourceInfo) && sourceInfo.subjectId === "macro", "總經時事出處錯誤：" + event.id + " / " + chapterId);
+    });
+  }
+});
+pastExamQuestions.forEach(function (question) {
+  if (question.eventId) {
+    check(currentEventIds.has(question.eventId), "考古題時事出處不存在：" + question.id + " / " + question.eventId);
+  }
+});
+writtenQuestions.forEach(function (question) {
+  if (question.eventId) {
+    check(currentEventIds.has(question.eventId), "計算／申論題時事出處不存在：" + question.id + " / " + question.eventId);
+  }
+});
 
 console.log("科目：" + content.subjects.length);
 console.log("章節：" + allChapters.length + "（總體經濟學 " + macro.chapters.length + "、投資學 " + investment.chapters.length + "、會計學 " + accounting.chapters.length + "、證券法規 " + law.chapters.length + "）");
@@ -1070,6 +1160,8 @@ console.log("資料來源：" + content.sources.length);
 console.log("法規條文：" + lawOfficialArticleCount + "（官方 " + lawOfficialSources + " 部；" + lawOfficialPages + " 頁全文、" + lawExternalPages + " 頁連結摘要）");
 console.log("KaTeX 公式：" + formulaSections.length + " 個學習單元（" + formulaTexKeys.length + " 筆資料）");
 console.log("考古題：" + pastExamSessions.length + " 次、 " + pastExamQuestions.length + " 題（107–115 年）");
+console.log("計算／申論題：" + writtenQuestions.length + " 題（114–115 年）");
+console.log("總經時事：" + currentEvents.length + " 個主題");
 console.log("檢查項目：" + checks.length + "，失敗：" + failures.length);
 
 if (failures.length > 0) {

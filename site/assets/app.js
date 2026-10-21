@@ -12,9 +12,17 @@
   const nobelDiagrams = window.NOBEL_DIAGRAMS || {};
   const macroEvolution = window.MACRO_EVOLUTION || { meta: {}, stages: [] };
   const practiceData = window.PAST_EXAMS || { meta: {}, subjects: [], sessions: [], questions: [] };
+  const writtenData = window.PAST_EXAMS_WRITTEN || { meta: {}, questions: [] };
+  const macroCurrentData = window.MACRO_CURRENT_EVENTS || { meta: {}, events: [] };
   const practiceSubjects = Array.isArray(practiceData.subjects) ? practiceData.subjects : [];
   const practiceSessions = Array.isArray(practiceData.sessions) ? practiceData.sessions : [];
   const practiceQuestions = Array.isArray(practiceData.questions) ? practiceData.questions : [];
+  const writtenQuestions = Array.isArray(writtenData.questions) ? writtenData.questions : [];
+  const macroCurrentEvents = Array.isArray(macroCurrentData.events) ? macroCurrentData.events : [];
+  const macroCurrentEventMap = new Map();
+  macroCurrentEvents.forEach(function (event) {
+    macroCurrentEventMap.set(event.id, event);
+  });
   const practiceSessionMap = new Map();
   const practiceSubjectMap = new Map();
   practiceSessions.forEach(function (session) {
@@ -28,16 +36,18 @@
   practiceQuestions.forEach(function (question) {
     const subjectId = question.subject;
     practiceSubjectQuestionTotals.set(subjectId, (practiceSubjectQuestionTotals.get(subjectId) || 0) + 1);
-    if (!question.sourceId) {
-      return;
-    }
-    let stats = practiceChapterStats.get(question.sourceId);
-    if (!stats) {
-      stats = { count: 0, sessions: new Map() };
-      practiceChapterStats.set(question.sourceId, stats);
-    }
-    stats.count += 1;
-    stats.sessions.set(question.sessionId, (stats.sessions.get(question.sessionId) || 0) + 1);
+    const sourceIds = Array.isArray(question.sourceIds) && question.sourceIds.length
+      ? Array.from(new Set(question.sourceIds))
+      : (question.sourceId ? [question.sourceId] : []);
+    sourceIds.forEach(function (sourceId) {
+      let stats = practiceChapterStats.get(sourceId);
+      if (!stats) {
+        stats = { count: 0, sessions: new Map() };
+        practiceChapterStats.set(sourceId, stats);
+      }
+      stats.count += 1;
+      stats.sessions.set(question.sessionId, (stats.sessions.get(question.sessionId) || 0) + 1);
+    });
   });
   const main = document.getElementById("main");
   const header = document.querySelector(".site-header");
@@ -96,6 +106,7 @@
   let sectionObserver = null;
   let toastTimer = null;
   let practiceState = null;
+  let writtenState = null;
 
   const searchOverlay = document.getElementById("search-overlay");
   const searchOpenButton = document.getElementById("search-open");
@@ -1320,15 +1331,22 @@
   }
 
   function renderPracticeQuestionOrigin(question, session) {
-    const chapter = question && question.sourceId ? getChapter(question.sourceId) : null;
+    const sourceIds = question && Array.isArray(question.sourceIds) && question.sourceIds.length
+      ? Array.from(new Set(question.sourceIds))
+      : (question && question.sourceId ? [question.sourceId] : []);
+    const chapters = sourceIds.map(getChapter).filter(Boolean);
     const sessionLabel = session && session.label ? session.label : (question.year + " 年第 " + question.session + " 次");
-    if (!chapter) {
+    if (!chapters.length) {
       return '<div class="past-exam-origin is-unclassified"><span class="past-exam-origin-label">出處</span><span>未分類</span><span class="past-exam-origin-meta">' + escapeHtml(sessionLabel) + "</span></div>";
     }
+    const event = question && question.eventId ? macroCurrentEventMap.get(question.eventId) : null;
     return [
       '<div class="past-exam-origin">',
       '  <span class="past-exam-origin-label">出處</span>',
-      '  <a href="#/chapter/' + escapeHtml(chapter.id) + '">' + escapeHtml(chapterLabel(chapter)) + " " + escapeHtml(chapter.title) + "</a>",
+      chapters.map(function (chapter) {
+        return '<a href="#/chapter/' + escapeHtml(chapter.id) + '">' + escapeHtml(chapterLabel(chapter)) + " " + escapeHtml(chapter.title) + "</a>";
+      }).join('<span class="past-exam-origin-sep">、</span>'),
+      event ? '  <a class="past-exam-origin-current" href="#/macro-current?event=' + escapeHtml(event.id) + '">時事：' + escapeHtml(event.title) + "</a>" : "",
       '  <span class="past-exam-origin-meta">' + escapeHtml(sessionLabel) + "</span>",
       "</div>"
     ].join("");
@@ -1361,7 +1379,7 @@
       "    </div>",
       '    <div class="chapter-exam-total"><strong>' + stats.count + "</strong><span>題 · " + rate + "</span></div>",
       "  </div>",
-      '  <p class="chapter-exam-note">以 107–115 年選擇題的章節出處統計；頻率為本章題數占該科 ' + total + " 題的比例。" +
+      "  <p class=\"chapter-exam-note\">以 107–115 年選擇題的章節出處統計；頻率為本章出處標記數占該科題數的比例；跨章節題目會重複計入各章。" +
         (sessions.length ? " 出現在 " + sessions.length + " 次考試。" : " 目前沒有對應的練習題。") +
         " 出處由題幹、選項與章節內容比對後建立，作為複習導覽，不代表官方命題分類。</p>",
       sessions.length
@@ -1654,6 +1672,190 @@
     return practiceState.mode === "browse" ? renderPracticeBrowse(questions) : renderPracticeMode(questions);
   }
 
+  function renderEventSourceLinks(event) {
+    const chapters = (event.sourceIds || []).map(getChapter).filter(Boolean);
+    return chapters.map(function (chapter) {
+      return '<a href="#/chapter/' + escapeHtml(chapter.id) + '">' + escapeHtml(chapterLabel(chapter)) + " " + escapeHtml(chapter.title) + "</a>";
+    }).join('<span class="past-exam-origin-sep">、</span>');
+  }
+
+  function renderMacroCurrentEvents() {
+    const meta = macroCurrentData.meta || {};
+    return [
+      '<div class="page macro-current-page">',
+      '  <nav class="breadcrumb" aria-label="麵包屑">',
+      '    <a href="#/">首頁</a><span>/</span>',
+      '    <a href="#/subject/macro">總體經濟學</a><span>/</span>',
+      '    <span>重要時事與總經政策</span>',
+      '  </nav>',
+      '  <section class="macro-current-hero">',
+      '    <p class="eyebrow">總體經濟學 · 近二年時事</p>',
+      '    <h1>' + escapeHtml(meta.title || "近二年重要國際金融時事與總經政策") + '</h1>',
+      '    <p class="lede">' + escapeHtml(meta.note || "") + '</p>',
+      '    <div class="macro-current-actions">',
+      '      <a class="btn btn-primary" href="#/past-exams">回考古題練習庫</a>',
+      '      <a class="btn" href="#/subject/macro">回總體經濟學</a>',
+      '    </div>',
+      '  </section>',
+      '  <div class="macro-current-list">' + macroCurrentEvents.map(function (event) {
+        return [
+          '<article class="macro-current-card" id="macro-event-' + escapeHtml(event.id) + '">',
+          '  <div class="macro-current-card-head">',
+          '    <span class="macro-current-period">' + escapeHtml(event.period || "") + '</span>',
+          '    <h2>' + escapeHtml(event.title) + '</h2>',
+          '  </div>',
+          '  <div class="macro-current-summary">' + event.summary.map(function (text) {
+            return '<p>' + escapeHtml(text) + '</p>';
+          }).join("") + '</div>',
+          '  <div class="macro-current-points"><h3>考試重點</h3><ul>' + event.points.map(function (point) {
+            return '<li>' + escapeHtml(point) + '</li>';
+          }).join("") + '</ul></div>',
+          '  <div class="macro-current-sources"><span>對應章節</span>' + renderEventSourceLinks(event) + '</div>',
+          '</article>'
+        ].join("");
+      }).join("") + '</div>',
+      '</div>'
+    ].join("");
+  }
+
+  function renderMacroCurrentEventsCard() {
+    return [
+      '<a class="macro-current-cta" href="#/macro-current">',
+      '  <div>',
+      '    <p class="eyebrow">近二年時事 · 總經政策</p>',
+      '    <h2>重要國際金融時事與臺灣政策</h2>',
+      '    <p>美國對等關稅、聯準會、國債與黃金、穩定幣、AI 生產力、歐債與臺灣貨幣政策，整理成可答題的總經框架。</p>',
+      '  </div>',
+      '  <span class="macro-current-cta-arrow">查看時事整理 →</span>',
+      '</a>'
+    ].join("");
+  }
+
+  function ensureWrittenState() {
+    if (writtenState) {
+      return;
+    }
+    writtenState = {
+      year: "all",
+      subject: "all",
+      open: new Set()
+    };
+  }
+
+  function writtenFilteredQuestions() {
+    ensureWrittenState();
+    return writtenQuestions.filter(function (question) {
+      if (writtenState.year !== "all" && question.year !== writtenState.year) {
+        return false;
+      }
+      if (writtenState.subject !== "all" && question.subject !== writtenState.subject) {
+        return false;
+      }
+      return true;
+    });
+  }
+
+  function writtenCountForSubject(subjectId) {
+    return writtenQuestions.filter(function (question) {
+      return question.subject === subjectId;
+    }).length;
+  }
+
+  function renderWrittenFilters() {
+    ensureWrittenState();
+    const years = Array.from(new Set(writtenQuestions.map(function (question) { return question.year; }))).sort(function (a, b) { return b - a; });
+    const subjects = practiceSubjects.length ? practiceSubjects : [];
+    return [
+      '<div class="written-filter-shell" id="written-filters">',
+      '  <div class="past-exam-filter-row"><span class="past-exam-filter-label">年度</span>',
+      '    <button class="past-exam-chip' + (writtenState.year === "all" ? " is-active" : "") + '" type="button" data-written-year="all">全部年度</button>',
+      years.map(function (year) {
+        return '<button class="past-exam-chip' + (writtenState.year === year ? " is-active" : "") + '" type="button" data-written-year="' + year + '">' + year + ' 年</button>';
+      }).join(""),
+      '  </div>',
+      '  <div class="past-exam-filter-row"><span class="past-exam-filter-label">科目</span>',
+      '    <button class="past-exam-chip' + (writtenState.subject === "all" ? " is-active" : "") + '" type="button" data-written-subject="all">全部科目</button>',
+      subjects.map(function (subject) {
+        return '<button class="past-exam-chip' + (writtenState.subject === subject.id ? " is-active" : "") + '" type="button" data-written-subject="' + escapeHtml(subject.id) + '">' + escapeHtml(subject.short || subject.name) + '</button>';
+      }).join(""),
+      '  </div>',
+      '  <div class="written-filter-summary"><strong>' + writtenFilteredQuestions().length + '</strong> 題 · 114–115 年 · 解答為本站參考解答</div>',
+      '</div>'
+    ].join("");
+  }
+
+  function renderWrittenCard(question) {
+    const session = practiceSessionMap.get(question.sessionId) || { label: question.sessionId };
+    const subject = practiceSubjectMap.get(question.subject) || { short: question.subject, colorClass: "" };
+    const open = writtenState.open.has(question.id);
+    const answers = Array.isArray(question.answer) ? question.answer : [String(question.answer || "")];
+    return [
+      '<article class="written-card" id="written-' + escapeHtml(question.id) + '">',
+      '  <div class="past-exam-card-head">',
+      practiceSubjectBadge(subject),
+      '    <span>' + escapeHtml(session.label || "") + ' · 第 ' + question.number + ' 題</span>',
+      '    <span class="written-kind">' + escapeHtml(question.kind || "計算／申論") + '</span>',
+      '    <span class="written-reference">參考解答</span>',
+      '  </div>',
+      '  <h3 class="written-stem">' + escapeHtml(question.stem) + '</h3>',
+      renderPracticeQuestionOrigin(question, session),
+      '  <div class="written-actions">',
+      '    <button class="btn btn-small" type="button" data-written-toggle="' + escapeHtml(question.id) + '">' + (open ? "收起參考解答" : "顯示參考解答") + '</button>',
+      session.questionUrl ? '    <a class="text-link" href="' + escapeHtml(session.questionUrl) + '" target="_blank" rel="noopener noreferrer">原始試題 PDF →</a>' : "",
+      '  </div>',
+      open ? '  <div class="written-answer">' + answers.map(function (text) {
+        return '<p>' + escapeHtml(text) + '</p>';
+      }).join("") + '<p class="written-answer-note">' + escapeHtml(question.note || "本站參考解答（非官方）") + '</p></div>' : "",
+      '</article>'
+    ].join("");
+  }
+
+  function renderWrittenExams() {
+    ensureWrittenState();
+    const questions = writtenFilteredQuestions();
+    const years = Array.from(new Set(writtenQuestions.map(function (q) { return q.year; }))).sort(function (a, b) { return a - b; });
+    return [
+      '<div class="page written-page">',
+      '  <section class="past-exam-hero written-hero">',
+      '    <div class="past-exam-hero-copy">',
+      '      <p class="eyebrow">考古題 · 計算與申論</p>',
+      '      <h1>計算題與申論題</h1>',
+      '      <p class="lede">收錄 114–115 年四個專業科目的計算題與申論題。官方解答 PDF 只有選擇題答案，本區解答為本站依題意整理的參考解答，並非官方公告。</p>',
+      '      <div class="past-exam-hero-actions">',
+      '        <a class="btn btn-primary" href="#/past-exams">回選擇題練習</a>',
+      '      </div>',
+      '    </div>',
+      '    <aside class="past-exam-stats" aria-label="計算與申論題規模">',
+      '      <div class="past-exam-stat"><strong>' + writtenQuestions.length + '</strong><span>題</span></div>',
+      '      <div class="past-exam-stat"><strong>5</strong><span>考試次別</span></div>',
+      '      <div class="past-exam-stat"><strong>4</strong><span>專業科目</span></div>',
+      '      <div class="past-exam-stat"><strong>' + (years.length ? years[0] + "–" + years[years.length - 1] : "") + '</strong><span>年度</span></div>',
+      '    </aside>',
+      '  </section>',
+      renderWrittenFilters(),
+      '<div class="written-list" id="written-list">' + (questions.length ? questions.map(renderWrittenCard).join("") : '<div class="past-exam-empty"><h2>目前沒有符合的題目</h2><p>換一個年度或科目再試。</p></div>') + '</div>',
+      '  <div class="notice"><strong>解答說明：</strong>申論與計算題沒有官方公告解答；本站參考解答用於複習與自我檢查，若與補習班、教材或官方答案不同，請以官方與正式教材為準。</div>',
+      '</div>'
+    ].join("");
+  }
+
+  function renderSubjectWrittenCta(subject) {
+    const count = writtenCountForSubject(subject.id);
+    if (!count) {
+      return "";
+    }
+    return [
+      '<a class="subject-written-cta" href="#/past-exams/written">',
+      '  <div>',
+      '    <p class="eyebrow">114–115 計算與申論</p>',
+      '    <strong>' + count + ' 題參考解答</strong>',
+      '    <span>含計算過程與答題要點，點此查看。</span>',
+      '  </div>',
+      '  <span class="subject-written-cta-arrow">查看 →</span>',
+      '</a>'
+    ].join("");
+  }
+
   function renderPastExamYearOverview() {
     const years = Array.from(new Set(practiceSessions.map(function (session) {
       return session.year;
@@ -1711,6 +1913,7 @@
       '      <p class="lede">' + escapeHtml(meta.scopeNote || "依考試年度與科目整理歷屆選擇題，先作答再看答案。") + "</p>",
       '      <div class="past-exam-hero-actions">',
       '        <button class="btn btn-primary" type="button" data-practice-start>開始練習</button>',
+      '        <a class="btn" href="#/past-exams/written">計算／申論題（114–115）</a>',
       '        <a class="btn" href="' + escapeHtml(officialUrl) + '" target="_blank" rel="noopener noreferrer">證基會考題下載</a>',
       "      </div>",
       "    </div>",
@@ -1737,6 +1940,46 @@
       '  <div class="notice"><strong>作答說明：</strong>' + escapeHtml(meta.disclaimer || "") + "</div>",
       "</div>"
     ].join("");
+  }
+
+  function handleWrittenClick(event) {
+    if (!document.getElementById("written-list")) {
+      return false;
+    }
+    const year = event.target.closest("[data-written-year]");
+    if (year) {
+      event.preventDefault();
+      ensureWrittenState();
+      writtenState.year = year.dataset.writtenYear === "all" ? "all" : Number(year.dataset.writtenYear);
+      render();
+      return true;
+    }
+    const subject = event.target.closest("[data-written-subject]");
+    if (subject) {
+      event.preventDefault();
+      ensureWrittenState();
+      writtenState.subject = subject.dataset.writtenSubject;
+      render();
+      return true;
+    }
+    const toggle = event.target.closest("[data-written-toggle]");
+    if (toggle) {
+      event.preventDefault();
+      ensureWrittenState();
+      const id = toggle.dataset.writtenToggle;
+      if (writtenState.open.has(id)) {
+        writtenState.open.delete(id);
+      } else {
+        writtenState.open.add(id);
+      }
+      const card = document.getElementById("written-" + id);
+      const question = writtenQuestions.find(function (item) { return item.id === id; });
+      if (card && question) {
+        card.outerHTML = renderWrittenCard(question);
+      }
+      return true;
+    }
+    return false;
   }
 
   function handlePracticeClick(event) {
@@ -2114,14 +2357,16 @@
       "    </aside>",
       "  </section>",
       subject.id === "macro" ? renderModelAtlasCard(subject) : "",
+      subject.id === "macro" ? renderMacroCurrentEventsCard() : "",
       subject.id === "macro" ? renderMacroEvolution() : "",
+      renderSubjectWrittenCta(subject),
       subject.id === "investment" ? renderInvestmentRatioOverview() : "",
       subject.id === "investment" ? renderOptionPrioritySection() : "",
       '  <div class="section-heading subject-chapters-head">',
       "    <div>",
       '      <p class="eyebrow">章節地圖</p>',
       "      <h2>章節地圖</h2>",
-      "      <p>依原始目錄的篇章與章節順序排列，點選章節即可進入該章的名詞與考試重點；右側出題次數與頻率依 107–115 年考古題的章節出處統計，頻率為該章題數占本科題數的比例。</p>",
+      "      <p>依原始目錄的篇章與章節順序排列，點選章節即可進入該章的名詞與考試重點；右側出題次數與頻率依 107–115 年考古題的章節出處統計，頻率為該章出處標記數占本科題數的比例；跨章節題目會重複計入各章，因此各章頻率合計可能超過 100%。</p>",
       "    </div>",
       '    <span class="progress-text">目前完成 <span data-progress-text="' + escapeHtml(subject.id) + '">' + progressState.done + " / " + progressState.total + " 章</span></span>",
       "  </div>",
@@ -2715,9 +2960,15 @@
       const chapter = getChapter(route.parts[1]);
       html = renderChapter(chapter);
       title = chapterLabel(chapter) + " " + chapter.title + "｜" + chapter.subjectName + "｜" + content.meta.title;
+    } else if (route.parts[0] === "past-exams" && route.parts[1] === "written") {
+      html = renderWrittenExams();
+      title = "計算題與申論題｜" + content.meta.title;
     } else if (route.parts[0] === "past-exams") {
       html = renderPastExams();
       title = "考古題練習庫｜" + content.meta.title;
+    } else if (route.parts[0] === "macro-current") {
+      html = renderMacroCurrentEvents();
+      title = "近二年重要國際金融時事與總經政策｜總體經濟學｜" + content.meta.title;
     } else if (route.parts[0] === "sources") {
       html = renderSources();
       title = "資料來源｜" + content.meta.title;
@@ -2795,6 +3046,16 @@
         const target = document.getElementById(targetId);
         if (target) {
           target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    } else if (route.parts[0] === "macro-current" && route.query.get("event")) {
+      const eventId = route.query.get("event") || "";
+      window.requestAnimationFrame(function () {
+        const target = document.getElementById("macro-event-" + eventId);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          window.scrollTo({ top: 0, behavior: "auto" });
         }
       });
     } else if (route.parts[0] === "chapter" && route.query.get("section")) {
@@ -3199,6 +3460,9 @@
     });
 
     main.addEventListener("click", function (event) {
+      if (handleWrittenClick(event)) {
+        return;
+      }
       if (handlePracticeClick(event)) {
         return;
       }

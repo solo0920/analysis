@@ -4926,6 +4926,10 @@ p {
   text-decoration: underline;
 }
 
+.past-exam-origin-sep {
+  color: var(--muted);
+}
+
 .past-exam-origin-meta {
   margin-left: auto;
   color: var(--muted);
@@ -5530,5 +5534,273 @@ p {
 
   .past-exam-home-note {
     white-space: normal;
+  }
+}
+
+/* ----------------------------- current events / written exams ----------------------------- */
+.macro-current-page,
+.written-page {
+  padding-top: 34px;
+}
+
+.macro-current-hero,
+.written-hero {
+  padding: 32px 34px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--surface), var(--surface-2));
+  box-shadow: var(--shadow-sm);
+}
+
+.macro-current-hero h1,
+.written-hero h1 {
+  margin: 4px 0 10px;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+}
+
+.macro-current-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.macro-current-list {
+  display: grid;
+  gap: 18px;
+  margin-top: 26px;
+}
+
+.macro-current-card {
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.macro-current-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 14px;
+}
+
+.macro-current-card-head h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.macro-current-period {
+  color: var(--gold);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.macro-current-summary {
+  margin-top: 12px;
+  color: var(--ink-soft);
+  line-height: 1.85;
+}
+
+.macro-current-summary p {
+  margin: 0 0 10px;
+}
+
+.macro-current-points {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.macro-current-points h3 {
+  margin: 0 0 6px;
+  font-size: 0.9rem;
+}
+
+.macro-current-points ul {
+  margin: 0;
+  padding-left: 1.2em;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+.macro-current-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.macro-current-sources a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.macro-current-sources a:hover {
+  text-decoration: underline;
+}
+
+.macro-current-cta,
+.subject-written-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 18px 0;
+  padding: 20px 24px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.macro-current-cta:hover,
+.subject-written-cta:hover {
+  border-color: var(--gold);
+  transform: translateY(-1px);
+  color: var(--ink);
+}
+
+.macro-current-cta h2,
+.subject-written-cta strong {
+  display: block;
+  margin: 2px 0 4px;
+  font-size: 1.2rem;
+}
+
+.macro-current-cta p,
+.subject-written-cta span {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.7;
+}
+
+.macro-current-cta-arrow,
+.subject-written-cta-arrow {
+  flex-shrink: 0;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.86rem;
+}
+
+.written-filter-shell {
+  margin-top: 24px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.written-filter-shell .past-exam-filter-row {
+  margin-bottom: 10px;
+}
+
+.written-filter-summary {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.written-list {
+  display: grid;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.written-card {
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.written-kind,
+.written-reference {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.written-kind {
+  background: var(--surface-2);
+  color: var(--muted);
+}
+
+.written-reference {
+  background: var(--gold-soft);
+  color: var(--gold);
+}
+
+.written-stem {
+  margin: 14px 0 0;
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+.written-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  margin-top: 14px;
+}
+
+.written-answer {
+  margin-top: 16px;
+  padding: 16px 18px;
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--ink-soft);
+  line-height: 1.85;
+}
+
+.written-answer p {
+  margin: 0 0 10px;
+}
+
+.written-answer-note {
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+.past-exam-origin-current {
+  color: var(--gold) !important;
+}
+
+@media (max-width: 680px) {
+  .macro-current-hero,
+  .written-hero {
+    padding: 22px;
+  }
+
+  .macro-current-card,
+  .written-card {
+    padding: 18px;
+  }
+
+  .macro-current-cta,
+  .subject-written-cta {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 18px;
+  }
+
+  .macro-current-cta-arrow,
+  .subject-written-cta-arrow {
+    align-self: flex-end;
   }
 }
