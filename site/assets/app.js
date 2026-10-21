@@ -878,13 +878,12 @@
     const unitLabel = " " + subjectUnitLabel(subject);
     return [
       '<a class="chapter-row ' + escapeHtml(subject.colorClass) + '" href="#/chapter/' + escapeHtml(chapter.id) + '">',
-      '  <div class="chapter-num"><small>章節</small><strong>' + chapterNumber(chapter) + "</strong></div>",
+      '  <div class="chapter-num"><strong>' + chapterNumber(chapter) + "</strong></div>",
       "  <div>",
       "    <h2>" + escapeHtml(chapterLabel(chapter)) + "　" + escapeHtml(chapter.title) + "</h2>",
       "    <p>" + escapeHtml(chapter.summary) + "</p>",
       "  </div>",
       '  <div class="chapter-row-side">',
-      '    <span class="page-ref">' + escapeHtml(chapter.page) + "</span>",
       '    <span class="section-count">' + chapter.sections.length + unitLabel + "</span>",
       '    <span class="done-pill" data-done-pill="' + escapeHtml(chapter.id) + '"' + (done ? "" : " hidden") + ">✓ 已完成</span>",
       "  </div>",
@@ -1570,7 +1569,6 @@
       '      <p class="lede">' + escapeHtml(chapter.summary) + "</p>",
       "    </div>",
       '    <div class="chapter-head-side">',
-      '      <span class="chapter-page-ref">' + escapeHtml(chapter.page) + "</span>",
       '      <button class="btn btn-small' + (done ? " is-done" : "") + '" type="button" data-complete-btn="' + escapeHtml(chapter.id) + '" aria-pressed="' + (done ? "true" : "false") + '">' + (done ? "✓ 已完成" : "標記本章完成") + "</button>",
       "    </div>",
       "  </header>",
