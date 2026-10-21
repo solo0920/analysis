@@ -802,14 +802,14 @@ check(evolutionNobelYears.size === 15, "學派演進圖應包含 15 個不同的
 check(evolutionNodes.every(function (node) { return Array.isArray(node.modelAnchors) && node.modelAnchors.length > 0; }), "學派演進圖的每個節點都應綁定至少一個模型");
 
 
-/* 歷屆考古題練習庫：確認 109–115 年四個科目、21 次考試與 2,702 題的結構與答案。 */
+/* 歷屆考古題練習庫：確認 107–115 年四個科目、29 次考試與 3,710 題的結構與答案。 */
 const pastExamMeta = pastExams.meta || {};
 const pastExamSubjects = Array.isArray(pastExams.subjects) ? pastExams.subjects : [];
 const pastExamSessions = Array.isArray(pastExams.sessions) ? pastExams.sessions : [];
 const pastExamQuestions = Array.isArray(pastExams.questions) ? pastExams.questions : [];
 const pastExamSubjectIds = ["law", "investment", "accounting", "macro"];
-const pastExamExpectedSubjectTotals = { law: 658, investment: 679, accounting: 644, macro: 721 };
-const pastExamExpectedYearTotals = { 109: 525, 110: 385, 111: 378, 112: 385, 113: 392, 114: 385, 115: 252 };
+const pastExamExpectedSubjectTotals = { law: 910, investment: 924, accounting: 882, macro: 994 };
+const pastExamExpectedYearTotals = { 107: 497, 108: 511, 109: 525, 110: 385, 111: 378, 112: 385, 113: 392, 114: 385, 115: 252 };
 const pastExamSessionMap = {};
 const pastExamQuestionIds = new Set();
 const pastExamQuestionKeys = new Set();
@@ -820,16 +820,18 @@ const pastExamSessionQuestionCounts = {};
 const pastExamTextIssues = [];
 const pastExamOptionContextIssues = [];
 
-check(pastExamSessions.length === 21, "考古題練習庫應有 21 次考試（目前 " + pastExamSessions.length + " 次）");
-check(pastExamQuestions.length === 2702, "考古題練習庫應有 2,702 題（目前 " + pastExamQuestions.length + " 題）");
+check(pastExamSessions.length === 29, "考古題練習庫應有 29 次考試（目前 " + pastExamSessions.length + " 次）");
+check(pastExamQuestions.length === 3710, "考古題練習庫應有 3,710 題（目前 " + pastExamQuestions.length + " 題）");
 check(pastExamSubjects.length === 4, "考古題練習庫應有四個專業科目");
 check(pastExamSubjects.map(function (subject) { return subject.id; }).join(",") === pastExamSubjectIds.join(","), "考古題科目順序應為 law、investment、accounting、macro");
-check(pastExamMeta.sessionCount === 21, "考古題 meta.sessionCount 應為 21");
-check(pastExamMeta.questionCount === 2702, "考古題 meta.questionCount 應為 2,702");
+check(pastExamMeta.sessionCount === 29, "考古題 meta.sessionCount 應為 29");
+check(pastExamMeta.questionCount === 3710, "考古題 meta.questionCount 應為 3,710");
 check(pastExamMeta.subjectCount === 4, "考古題 meta.subjectCount 應為 4");
-check(JSON.stringify(pastExamMeta.years) === JSON.stringify([109, 110, 111, 112, 113, 114, 115]), "考古題年度應為 109–115");
+check(JSON.stringify(pastExamMeta.years) === JSON.stringify([107, 108, 109, 110, 111, 112, 113, 114, 115]), "考古題年度應為 107–115");
 
 const pastExamExpectedSessionIds = [
+  "107Q1", "107Q2", "107Q3", "107Q4",
+  "108Q1", "108Q2", "108Q3", "108Q4",
   "109Q1", "109Q2", "109Q3", "109Q4",
   "110Q1", "110Q2", "110Q3",
   "111Q1", "111Q2", "111Q3",
@@ -838,7 +840,7 @@ const pastExamExpectedSessionIds = [
   "114Q1", "114Q2", "114Q3",
   "115Q1", "115Q2"
 ];
-check(pastExamSessions.map(function (session) { return session.id; }).sort().join(",") === pastExamExpectedSessionIds.slice().sort().join(","), "考古題考試次別應為 109Q1–115Q2 共 21 次");
+check(pastExamSessions.map(function (session) { return session.id; }).sort().join(",") === pastExamExpectedSessionIds.slice().sort().join(","), "考古題考試次別應為 107Q1–115Q2 共 29 次");
 
 pastExamSessions.forEach(function (session) {
   check(typeof session.id === "string" && /^\d{3}Q\d$/.test(session.id), "考古題考試次別 ID 格式錯誤：" + session.id);
@@ -927,6 +929,8 @@ Object.keys(pastExamExpectedYearTotals).forEach(function (year) {
 });
 
 [
+  ["108Q3-law-28", ["C", "D"]],
+  ["108Q3-accounting-28", ["B", "D"]],
   ["109Q1-law-30", ["B", "D"]],
   ["112Q3-investment-16", ["A", "B", "C", "D"]],
   ["112Q3-accounting-15", ["A", "B", "C", "D"]],
@@ -940,6 +944,15 @@ Object.keys(pastExamExpectedYearTotals).forEach(function (year) {
 });
 
 [
+  {
+    source: "107Q4-investment-11",
+    sourceNeedles: ["依下列資訊"],
+    targets: [
+      "107Q4-investment-12", "107Q4-investment-13", "107Q4-investment-14", "107Q4-investment-15",
+      "107Q4-investment-16", "107Q4-investment-17", "107Q4-investment-18", "107Q4-investment-19"
+    ],
+    targetNeedles: ["張先生", "Corr(X, Y) = 0.6", "資本市場線(CML)"]
+  },
   {
     source: "109Q4-investment-11",
     sourceNeedles: ["依下列資訊"],
@@ -984,7 +997,10 @@ Object.keys(pastExamExpectedYearTotals).forEach(function (year) {
   }
 });
 pastExamSessions.filter(function (session) { return session.year < 115; }).forEach(function (session) {
-  check(session.questionUrl.indexOf("https://lidapon.azurewebsites.net/files/E1/") === 0, "109–114 年試題應連到公開鏡像：" + session.id);
+  check(session.questionUrl.indexOf("https://lidapon.azurewebsites.net/files/E1/") === 0, "107–114 年試題應連到公開鏡像：" + session.id);
+});
+pastExamSessions.filter(function (session) { return session.year === 107 || session.year === 108; }).forEach(function (session) {
+  check(session.answerUrl.indexOf("https://www.gocharter.com.tw/csia/image/CSIA_") === 0, "107–108 年解答應連到公開文字版 PDF：" + session.id);
 });
 
 // 繁體中文守門：只列出不易與臺灣繁體用字混淆的簡體字。
@@ -1018,7 +1034,7 @@ console.log("學派演進圖：" + evolutionStages.length + " 個階段、 " + e
 console.log("資料來源：" + content.sources.length);
 console.log("法規條文：" + lawOfficialArticleCount + "（官方 " + lawOfficialSources + " 部；" + lawOfficialPages + " 頁全文、" + lawExternalPages + " 頁連結摘要）");
 console.log("KaTeX 公式：" + formulaSections.length + " 個學習單元（" + formulaTexKeys.length + " 筆資料）");
-console.log("考古題：" + pastExamSessions.length + " 次、 " + pastExamQuestions.length + " 題（109–115 年）");
+console.log("考古題：" + pastExamSessions.length + " 次、 " + pastExamQuestions.length + " 題（107–115 年）");
 console.log("檢查項目：" + checks.length + "，失敗：" + failures.length);
 
 if (failures.length > 0) {
@@ -1029,4 +1045,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log("驗證通過：總體經濟學第 1–2 篇（13 章、50 節）、投資學第 1–5 篇（16 章、52 個重點）、會計學（23 章、41 個具名節次與 23 個補充學習重點）、證券法規（21 章、21 節、1,507 條官方全文）、118 個 KaTeX 公式、諾貝爾年表（1969–2026）與 109–115 年 2,702 題考古題練習庫結構一致。");
+console.log("驗證通過：總體經濟學第 1–2 篇（13 章、50 節）、投資學第 1–5 篇（16 章、52 個重點）、會計學（23 章、41 個具名節次與 23 個補充學習重點）、證券法規（21 章、21 節、1,507 條官方全文）、118 個 KaTeX 公式、諾貝爾年表（1969–2026）與 107–115 年 3,710 題考古題練習庫結構一致。");
