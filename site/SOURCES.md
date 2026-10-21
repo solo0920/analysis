@@ -9,7 +9,7 @@
 | 總體經濟學 | `documents/gross_economics_contents.md` | Parts 1–2，第 1–13 章、49 個來源節次（另加 1 個補充單元，共 50 節） | 章名、節名、順序、頁碼依來源；Part 起始頁來源未提供，故留空 |
 | 投資學 | `documents/investment_contents.md` | Parts 1–5，16 章（第 1–11、13–17 章） | 只提供 Part、章名與 Part 起始頁；沒有節名，也沒有各章頁碼 |
 | 會計學 | `documents/accounting_contents.md` | 第 1–23 章，其中第 1–7、12–15、20 章共 41 個具名節次 | 章名、順序與頁碼依來源；未列節名的章節以「學習重點」標示 |
-| 證券交易相關法規與實務 | `documents/test.md`、`documents/securities_law_contents.md`、全國法規資料庫 Open API | 21 章、21 節；14 頁官方全文、7 頁連結摘要 | 官方 15 部法規、1,507 條逐條呈現；公會自律規範與「其他主管機關法令」以官方連結與摘要呈現 |
+| 證券交易相關法規與實務 | `documents/ExamScope.md`、`documents/securities_law_contents.md`、全國法規資料庫 Open API | 21 章、21 節；14 頁官方全文、7 頁連結摘要 | 官方 15 部法規、1,507 條逐條呈現；公會自律規範與「其他主管機關法令」以官方連結與摘要呈現 |
 
 總體經濟學來源的第 2 篇「金融市場」（第 11–13 章）屬總體經濟學科目，由總體經濟學內容使用；投資學仍只依 `investment_contents.md` 的第 1–5 篇，兩份目錄不互相補洞。投資學來源沒有第十二章，網站保留原始編號跳號，不自行補章；章內的「學習重點」是本站編寫的複習單元，不是原書節名。會計學依 `accounting_contents.md` 建構，未列節名的章節同樣以「學習重點」標示；第 23 章來源註明原書章號印刷為 22，網站依順序列為第 23 章並保留註記。
 
