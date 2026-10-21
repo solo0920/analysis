@@ -4012,3 +4012,587 @@ p {
     background: transparent;
   }
 }
+
+/* ----------------------------- Macro school evolution ----------------------------- */
+
+.macro-evolution {
+  position: relative;
+  margin: 30px 0 10px;
+  padding: 26px 26px 22px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, var(--surface-2), var(--surface) 38%);
+  box-shadow: var(--shadow-sm);
+}
+
+.macro-evolution::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent));
+  content: "";
+  opacity: 0.8;
+}
+
+.macro-evolution-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.macro-evolution-intro {
+  min-width: 0;
+}
+
+.macro-evolution .eyebrow {
+  margin: 0 0 5px;
+  color: var(--accent);
+}
+
+.macro-evolution h2 {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.6vw, 1.9rem);
+}
+
+.macro-evolution-intro > p:last-child {
+  max-width: 75ch;
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.evolution-meta {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+  max-width: 290px;
+}
+
+.evolution-meta span {
+  padding: 4px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.evolution-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 16px 0 20px;
+  padding: 8px 0;
+  border-top: 1px dashed var(--line);
+  border-bottom: 1px dashed var(--line);
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+
+.evolution-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.legend-school {
+  background: var(--accent);
+}
+
+.legend-model {
+  border-radius: 2px;
+  background: var(--accent-ink);
+}
+
+.legend-nobel {
+  background: var(--gold);
+  box-shadow: 0 0 0 2px var(--gold-soft);
+}
+
+.evolution-track {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.evolution-track::before {
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 110px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent), var(--gold));
+  content: "";
+  opacity: 0.35;
+}
+
+.evolution-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  column-gap: 28px;
+  padding-bottom: 26px;
+}
+
+.evolution-stage:last-child {
+  padding-bottom: 0;
+}
+
+.evolution-stage::before {
+  position: absolute;
+  top: 8px;
+  left: 110px;
+  z-index: 1;
+  width: 12px;
+  height: 12px;
+  border: 3px solid var(--accent);
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+  content: "";
+  transform: translateX(-50%);
+}
+
+.evolution-marker {
+  padding-top: 1px;
+  padding-right: 15px;
+  text-align: right;
+}
+
+.evolution-year {
+  display: block;
+  color: var(--accent);
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.evolution-period {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.68rem;
+  line-height: 1.4;
+}
+
+.evolution-stage-body {
+  min-width: 0;
+}
+
+.evolution-stage-head {
+  margin-bottom: 12px;
+}
+
+.evolution-stage-index {
+  display: inline-block;
+  margin-bottom: 2px;
+  color: var(--accent);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.evolution-stage-head h3 {
+  margin: 0;
+  font-size: clamp(1.05rem, 2vw, 1.22rem);
+}
+
+.evolution-stage-head p {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.evolution-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+.evolution-card {
+  position: relative;
+  min-width: 0;
+  padding: 17px 17px 14px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.evolution-card::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+  content: "";
+  opacity: 0.65;
+}
+
+.evolution-card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+}
+
+.evolution-card-index {
+  display: grid;
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  font-family: var(--font-serif);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.evolution-card-title {
+  min-width: 0;
+}
+
+.evolution-card-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px 8px;
+  margin-bottom: 1px;
+}
+
+.evolution-kind {
+  padding: 1px 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.evolution-card-period {
+  color: var(--muted);
+  font-size: 0.66rem;
+}
+
+.evolution-card-title h3 {
+  margin: 0;
+  font-size: 1.08rem;
+  line-height: 1.35;
+}
+
+.evolution-card-en {
+  margin: 1px 0 0;
+  color: var(--muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.evolution-founders {
+  margin: 11px 0 8px;
+  padding: 7px 9px;
+  border-left: 3px solid var(--gold);
+  border-radius: 0 7px 7px 0;
+  background: var(--surface-2);
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.evolution-founders span {
+  display: inline-block;
+  margin-right: 6px;
+  color: var(--gold);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.evolution-summary {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+  line-height: 1.7;
+}
+
+.evolution-models,
+.evolution-nobels {
+  margin-top: 12px;
+}
+
+.evolution-label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--muted);
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.evolution-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.evolution-model-chip {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 1px;
+  max-width: 100%;
+  padding: 6px 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  line-height: 1.35;
+  text-decoration: none;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+.evolution-model-chip:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.evolution-model-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.evolution-model-ref {
+  color: var(--muted);
+  font-size: 0.62rem;
+}
+
+.evolution-nobel-list {
+  display: grid;
+  gap: 6px;
+}
+
+.evolution-nobel-chip {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 7px;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  background: var(--gold-soft);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+.evolution-nobel-chip:hover {
+  border-color: var(--gold);
+  transform: translateY(-1px);
+}
+
+.evolution-nobel-year {
+  color: var(--gold);
+  font-family: var(--font-serif);
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.evolution-nobel-body {
+  min-width: 0;
+}
+
+.evolution-nobel-name {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.evolution-nobel-field {
+  display: block;
+  color: var(--muted);
+  font-size: 0.67rem;
+  line-height: 1.4;
+}
+
+.evolution-card-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin-top: 13px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+}
+
+.evolution-card-foot a {
+  color: var(--accent);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.evolution-card-foot a:hover {
+  text-decoration: underline;
+}
+
+.evolution-note {
+  margin: 18px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.65;
+}
+
+.evolution-note strong {
+  color: var(--ink-soft);
+}
+
+.evolution-note a {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.models-entry {
+  position: relative;
+}
+
+.models-entry.is-targeted::before {
+  position: absolute;
+  inset: -10px -8px;
+  z-index: 2;
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+  content: "";
+  pointer-events: none;
+  animation: model-target-fade 2.6s ease-out forwards;
+}
+
+@keyframes model-target-fade {
+  0%,
+  65% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 980px) {
+  .macro-evolution-head {
+    display: block;
+  }
+
+  .evolution-meta {
+    justify-content: flex-start;
+    max-width: none;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 780px) {
+  .macro-evolution {
+    padding: 20px 18px 18px;
+  }
+
+  .evolution-track::before {
+    top: 8px;
+    bottom: 8px;
+    left: 7px;
+  }
+
+  .evolution-stage {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    padding-bottom: 22px;
+    padding-left: 26px;
+  }
+
+  .evolution-stage::before {
+    top: 7px;
+    left: 7px;
+  }
+
+  .evolution-marker {
+    margin-bottom: 8px;
+    text-align: left;
+  }
+
+  .evolution-year {
+    font-size: 1.15rem;
+  }
+
+  .evolution-period {
+    display: inline-block;
+    margin-top: 0;
+    margin-left: 7px;
+  }
+
+  .evolution-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .macro-evolution {
+    margin-top: 22px;
+    padding: 17px 13px 15px;
+    border-radius: var(--radius);
+  }
+
+  .macro-evolution h2 {
+    font-size: 1.35rem;
+  }
+
+  .evolution-legend {
+    gap: 7px 12px;
+    padding: 7px 0;
+  }
+
+  .evolution-card {
+    padding: 14px 13px 12px;
+  }
+
+  .evolution-card-head {
+    gap: 9px;
+  }
+
+  .evolution-card-index {
+    width: 28px;
+    height: 28px;
+  }
+
+  .evolution-nobel-chip {
+    grid-template-columns: 38px minmax(0, 1fr);
+  }
+}

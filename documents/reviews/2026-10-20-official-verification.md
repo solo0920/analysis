@@ -286,9 +286,9 @@ for f in site/assets/*.js; do node --check "$f"; done
 node site/scripts/verify-nobel-api.js
 ```
 
-### 7.1 2026-10-20 執行結果
+### 7.1 2026-10-20／21 執行結果
 
-- `validate-content.js`：5,014 項檢查、0 失敗（2026-10-21 加入法規全文與 KaTeX 公式檢查）。
+- `validate-content.js`：5,245 項檢查、0 失敗（2026-10-21 加入法規全文、KaTeX 公式與學派演進圖檢查）。
 - `node --check site/assets/*.js`：全部通過。
 - `verify-nobel-api.js`：58 屆、0 筆不一致（需網路）。
 - 諾貝爾 2019–2026 代表原始論文書目：8 屆逐筆核對作者、篇名、期刊、卷期與頁碼；2021 官方 PDF 誤植為 61:467–476，已依期刊書目更正為 62(2):467–475。另抽查 2019–2026 每年至少一篇代表論文全文（Banerjee 2015、Milgrom & Weber 1982、Imbens & Angrist 1994、Diamond & Dybvig 1983、Goldin 2006／2014、Acemoglu et al. 2001、Aghion & Howitt 1992、Hall 1978），網站已補 Hall 趨勢項、Aghion 創新到達率與 Goldin 後續用語；其餘全文仍未逐條核對。

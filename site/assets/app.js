@@ -10,6 +10,7 @@
   const diagrams = window.MACRO_DIAGRAMS || {};
   const nobelData = window.NOBEL_DATA || { meta: {}, groups: [], rows: [] };
   const nobelDiagrams = window.NOBEL_DIAGRAMS || {};
+  const macroEvolution = window.MACRO_EVOLUTION || { meta: {}, stages: [] };
   const main = document.getElementById("main");
   const header = document.querySelector(".site-header");
   const readingProgress = document.getElementById("reading-progress");
@@ -677,13 +678,176 @@
       "  <div>",
       '    <p class="eyebrow">模型索引</p>',
       '    <h2 id="model-atlas-heading">總體經濟模型總覽</h2>',
-      "    <p>涵蓋 " + subject.chapters.length + " 章、共 " + total + " 張章節模型圖（" + withModels + " 章含模型）；另收錄 " + nobelYears + " 屆諾貝爾經濟學獎年表與 " + nobelTotal + " 組模型圖。兩邊共用同一份模型資料，不另存副本。</p>",
+      "    <p>涵蓋 " + subject.chapters.length + " 章、共 " + total + " 張章節模型圖（" + withModels + " 章含模型）；另收錄 " + nobelYears + " 屆諾貝爾經濟學獎年表與 " + nobelTotal + " 組模型圖。章節頁、模型總覽與學派演進圖共用同一份模型資料，不另存副本。</p>",
       "  </div>",
       '  <div class="model-atlas-actions">',
       '    <a class="btn btn-primary" href="#/models/macro">查看模型總覽 →</a>',
+      '    <a class="btn" href="#/subject/macro?evolution=1">學派演進圖 →</a>',
       '    <a class="btn" href="#/nobel">諾貝爾獎年表 →</a>',
       "  </div>",
       "</aside>"
+    ].join("");
+  }
+
+  function macroEvolutionModelIndex() {
+    const index = new Map();
+    macroModelGroups().forEach(function (group) {
+      group.entries.forEach(function (entry) {
+        index.set(entry.anchor, {
+          group: group,
+          entry: entry
+        });
+      });
+    });
+    return index;
+  }
+
+  function shortMacroModelTitle(title) {
+    return String(title || "").split("：")[0].trim();
+  }
+
+  function macroEvolutionNobelRow(year) {
+    const rows = Array.isArray(nobelData.rows) ? nobelData.rows : [];
+    return rows.find(function (row) {
+      return Number(row.year) === Number(year);
+    }) || null;
+  }
+
+  function renderMacroEvolution() {
+    const meta = macroEvolution.meta || {};
+    const stages = Array.isArray(macroEvolution.stages) ? macroEvolution.stages : [];
+    if (!stages.length) {
+      return "";
+    }
+
+    const modelIndex = macroEvolutionModelIndex();
+    const nobelYears = new Set();
+    let nodeCount = 0;
+    let nodeNumber = 0;
+
+    stages.forEach(function (stage) {
+      (Array.isArray(stage.nodes) ? stage.nodes : []).forEach(function (node) {
+        nodeCount += 1;
+        (Array.isArray(node.nobelYears) ? node.nobelYears : []).forEach(function (year) {
+          nobelYears.add(Number(year));
+        });
+      });
+    });
+
+    const stageMarkup = stages.map(function (stage, stageIndex) {
+      const nodes = Array.isArray(stage.nodes) ? stage.nodes : [];
+      const cards = nodes.map(function (node) {
+        nodeNumber += 1;
+        const number = padNumber(nodeNumber);
+        const modelLinks = (Array.isArray(node.modelAnchors) ? node.modelAnchors : []).map(function (anchor) {
+          const match = modelIndex.get(anchor);
+          if (!match) {
+            return "";
+          }
+          const chapter = match.group.chapter;
+          const entry = match.entry;
+          const fullTitle = entry.diagram && entry.diagram.title ? entry.diagram.title : anchor;
+          const shortTitle = shortMacroModelTitle(fullTitle);
+          const label = fullTitle + "（第 " + chapter.number + " 章第 " + (entry.sectionIndex + 1) + " 節）";
+          return [
+            '<a class="evolution-model-chip" href="#/models/macro?model=' + encodeURIComponent(anchor) + '"',
+            ' title="' + escapeHtml(fullTitle) + '"',
+            ' aria-label="在模型總覽查看：' + escapeHtml(label) + '">',
+            '<span class="evolution-model-name">' + escapeHtml(shortTitle) + "</span>",
+            '<span class="evolution-model-ref">第 ' + chapter.number + " 章 · 第 " + (entry.sectionIndex + 1) + " 節</span>",
+            "</a>"
+          ].join("");
+        }).join("");
+
+        const nobelLinks = (Array.isArray(node.nobelYears) ? node.nobelYears : []).map(function (year) {
+          const row = macroEvolutionNobelRow(year);
+          if (!row) {
+            return "";
+          }
+          return [
+            '<a class="evolution-nobel-chip" href="#/nobel?year=' + encodeURIComponent(row.year) + '"',
+            ' aria-label="' + escapeHtml(row.year + " 諾貝爾經濟學獎：" + row.laureates + "；" + row.field) + '">',
+            '<span class="evolution-nobel-year">' + escapeHtml(row.year) + "</span>",
+            '<span class="evolution-nobel-body">',
+            '<span class="evolution-nobel-name">' + escapeHtml(row.laureates) + "</span>",
+            '<span class="evolution-nobel-field">' + escapeHtml(row.field) + "</span>",
+            "</span>",
+            "</a>"
+          ].join("");
+        }).join("");
+
+        const chapterLinks = (Array.isArray(node.chapterRefs) ? node.chapterRefs : []).map(function (ref) {
+          const chapter = chapterMap.get(ref.chapterId);
+          if (!chapter) {
+            return "";
+          }
+          const sectionIndex = Number.isInteger(ref.sectionIndex) ? ref.sectionIndex : null;
+          const href = "#/chapter/" + encodeURIComponent(chapter.id) + (sectionIndex === null ? "" : "?section=" + (sectionIndex + 1));
+          const labelText = ref.label || chapterLabel(chapter) + " " + chapter.title;
+          return '<a href="' + href + '">' + escapeHtml(labelText) + " →</a>";
+        }).join("");
+
+        return [
+          '<article class="evolution-card" id="evolution-' + escapeHtml(node.id) + '">',
+          '  <div class="evolution-card-head">',
+          '    <span class="evolution-card-index">' + number + "</span>",
+          '    <div class="evolution-card-title">',
+          '      <div class="evolution-card-kicker">',
+          '        <span class="evolution-kind">' + escapeHtml(node.kind || "學派") + "</span>",
+          '        <span class="evolution-card-period">' + escapeHtml(node.period || "") + "</span>",
+          "      </div>",
+          "      <h3>" + escapeHtml(node.school) + "</h3>",
+          node.english ? '      <p class="evolution-card-en">' + escapeHtml(node.english) + "</p>" : "",
+          "    </div>",
+          "  </div>",
+          '  <p class="evolution-founders"><span>提出者</span>' + escapeHtml(node.founders) + "</p>",
+          '  <p class="evolution-summary">' + escapeHtml(node.summary) + "</p>",
+          modelLinks ? '  <div class="evolution-models"><span class="evolution-label">代表模型</span><div class="evolution-chip-list">' + modelLinks + "</div></div>" : "",
+          nobelLinks ? '  <div class="evolution-nobels"><span class="evolution-label">諾貝爾里程碑</span><div class="evolution-nobel-list">' + nobelLinks + "</div></div>" : "",
+          chapterLinks ? '  <footer class="evolution-card-foot">' + chapterLinks + "</footer>" : "",
+          "</article>"
+        ].join("");
+      }).join("");
+
+      return [
+        '<li class="evolution-stage">',
+        '  <div class="evolution-marker">',
+        '    <span class="evolution-year">' + escapeHtml(stage.year) + "</span>",
+        '    <span class="evolution-period">' + escapeHtml(stage.period || "") + "</span>",
+        "  </div>",
+        '  <div class="evolution-stage-body">',
+        '    <div class="evolution-stage-head">',
+        '      <span class="evolution-stage-index">階段 ' + padNumber(stageIndex + 1) + "</span>",
+        "      <h3>" + escapeHtml(stage.era) + "</h3>",
+        "      <p>" + escapeHtml(stage.transition || "") + "</p>",
+        "    </div>",
+        '    <div class="evolution-cards">' + cards + "</div>",
+        "  </div>",
+        "</li>"
+      ].join("");
+    }).join("");
+
+    return [
+      '<section class="macro-evolution" id="macro-evolution" aria-labelledby="macro-evolution-heading">',
+      '  <div class="macro-evolution-head">',
+      '    <div class="macro-evolution-intro">',
+      '      <p class="eyebrow">' + escapeHtml(meta.eyebrow || "思想演進") + "</p>",
+      '      <h2 id="macro-evolution-heading">' + escapeHtml(meta.title || "總體經濟學學派演進圖") + "</h2>",
+      "      <p>" + escapeHtml(meta.description || "") + "</p>",
+      "    </div>",
+      '    <div class="evolution-meta" role="group" aria-label="圖表規模">',
+      "      <span>" + nodeCount + " 個節點</span>",
+      "      <span>" + nobelYears.size + " 個諾貝爾里程碑</span>",
+      "    </div>",
+      "  </div>",
+      '  <div class="evolution-legend" role="group" aria-label="圖例">',
+      '    <span><i class="legend-dot legend-school" aria-hidden="true"></i>學派／理論節點</span>',
+      '    <span><i class="legend-dot legend-model" aria-hidden="true"></i>模型連結</span>',
+      '    <span><i class="legend-dot legend-nobel" aria-hidden="true"></i>諾貝爾里程碑</span>',
+      "  </div>",
+      '  <ol class="evolution-track">' + stageMarkup + "</ol>",
+      '  <p class="evolution-note"><strong>閱讀說明：</strong>' + escapeHtml(meta.note || "") + ' <a href="#/sources">資料來源 →</a></p>',
+      "</section>"
     ].join("");
   }
 
@@ -1037,6 +1201,7 @@
       "    </aside>",
       "  </section>",
       subject.id === "macro" ? renderModelAtlasCard(subject) : "",
+      subject.id === "macro" ? renderMacroEvolution() : "",
       subject.id === "investment" ? renderInvestmentRatioOverview() : "",
       subject.id === "investment" ? renderOptionPrioritySection() : "",
       '  <div class="section-heading subject-chapters-head">',
@@ -1653,7 +1818,30 @@
     setupSectionObserver();
     closeMobileMenu();
 
-    if (route.parts[0] === "models" && route.parts[1] === "macro" && route.query.get("chapter")) {
+    if (route.parts[0] === "subject" && route.parts[1] === "macro" && route.query.get("evolution")) {
+      window.requestAnimationFrame(function () {
+        const target = document.getElementById("macro-evolution");
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    } else if (route.parts[0] === "models" && route.parts[1] === "macro" && route.query.get("model")) {
+      const modelAnchor = route.query.get("model") || "";
+      window.requestAnimationFrame(function () {
+        const target = /^model-macro-\d+-\d+$/.test(modelAnchor) ? document.getElementById(modelAnchor) : null;
+        if (target) {
+          target.classList.remove("is-targeted");
+          void target.offsetWidth;
+          target.classList.add("is-targeted");
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+          window.setTimeout(function () {
+            target.classList.remove("is-targeted");
+          }, 2600);
+        } else {
+          window.scrollTo({ top: 0, behavior: "auto" });
+        }
+      });
+    } else if (route.parts[0] === "models" && route.parts[1] === "macro" && route.query.get("chapter")) {
       const modelChapterId = route.query.get("chapter");
       window.requestAnimationFrame(function () {
         const target = document.getElementById("models-" + modelChapterId);
@@ -1801,6 +1989,7 @@
       searchResults.innerHTML = [
         '<div class="search-group-label">快速前往</div>',
         '<a class="search-result" href="#/subject/macro"><span class="result-type">科目</span><span><strong>總體經濟學</strong><small>國民所得、貨幣、政策、成長與開放經濟</small></span><span class="result-arrow">→</span></a>',
+        '<a class="search-result" href="#/subject/macro?evolution=1"><span class="result-type">圖解</span><span><strong>總體經濟學派演進圖</strong><small>古典、凱因斯、貨幣、新古典、新凱因斯與現代研究前沿</small></span><span class="result-arrow">→</span></a>',
         '<a class="search-result" href="#/subject/investment"><span class="result-type">科目</span><span><strong>投資學</strong><small>金融體系、利率與各類金融工具</small></span><span class="result-arrow">→</span></a>',
         '<a class="search-result" href="#/subject/accounting"><span class="result-type">科目</span><span><strong>會計學</strong><small>現金與存貨、金融資產、報表分析與資本預算</small></span><span class="result-arrow">→</span></a>',
         '<a class="search-result" href="#/models/macro"><span class="result-type">模型</span><span><strong>總體經濟模型總覽</strong><small>' + (macroModelTotal + nobelTotal) + ' 張模型圖（' + macroModelTotal + ' 章節＋' + nobelTotal + ' 諾貝爾），依 ' + (macroSubject ? macroSubject.chapters.length : 13) + ' 章與 ' + nobelYears + ' 屆年表整理</small></span><span class="result-arrow">→</span></a>',

@@ -36,7 +36,7 @@ const nobelDiagramFiles = ["diagrams-nobel.js"];
 function loadContent() {
   const context = { window: {} };
   vm.createContext(context);
-  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-investment.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-formula-tex.js", "content.js", "content-nobel.js"].forEach(function (file) {
+  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-formula-tex.js", "content.js", "content-nobel.js"].forEach(function (file) {
     const fullPath = path.join(siteDir, "assets", file);
     vm.runInContext(fs.readFileSync(fullPath, "utf8"), context, { filename: file });
   });
@@ -49,6 +49,7 @@ function loadContent() {
     diagrams: context.window.MACRO_DIAGRAMS || {},
     nobelData: context.window.NOBEL_DATA || { rows: [], groups: [], meta: {} },
     nobelDiagrams: context.window.NOBEL_DIAGRAMS || {},
+    macroEvolution: context.window.MACRO_EVOLUTION || { meta: {}, stages: [] },
     ratioFormulas: context.window.INVESTMENT_RATIO_FORMULAS || [],
     optionPriorities: context.window.INVESTMENT_OPTION_PRIORITIES || [],
     lawArticles: context.window.LAW_ARTICLES || {},
@@ -185,6 +186,7 @@ const content = loaded.content;
 const diagrams = loaded.diagrams;
 const nobelData = loaded.nobelData;
 const nobelDiagrams = loaded.nobelDiagrams;
+const macroEvolution = loaded.macroEvolution;
 const ratioFormulas = loaded.ratioFormulas;
 const optionPriorities = loaded.optionPriorities;
 const lawArticles = loaded.lawArticles;
@@ -725,6 +727,78 @@ nobelGroups.forEach(function (group) {
   check(Boolean(nobelDiagrams[group.id]), "諾貝爾圖組缺少模型圖：" + group.id);
 });
 
+/* 總體經濟學學派演進圖：節點、模型錨點與諾貝爾年份都必須回指既有資料。 */
+const macroModelAnchorSet = new Set(diagramKeys.map(function (key) {
+  return "model-" + key.replace("#", "-");
+}));
+const evolutionStages = Array.isArray(macroEvolution.stages) ? macroEvolution.stages : [];
+const evolutionNodes = [];
+const evolutionStageIds = new Set();
+const evolutionNodeIds = new Set();
+const evolutionNobelYears = new Set();
+
+check(Boolean(macroEvolution.meta && macroEvolution.meta.title && macroEvolution.meta.description && macroEvolution.meta.note), "學派演進圖缺少標題、說明或閱讀說明");
+check(evolutionStages.length === 6, "學派演進圖應有 6 個階段（目前 " + evolutionStages.length + " 個）");
+
+evolutionStages.forEach(function (stage, stageIndex) {
+  const stageLabel = "學派演進圖第 " + (stageIndex + 1) + " 階段";
+  check(typeof stage.id === "string" && stage.id.length > 0, stageLabel + "缺少 ID");
+  check(!evolutionStageIds.has(stage.id), stageLabel + "的 ID 重複：" + stage.id);
+  evolutionStageIds.add(stage.id);
+  check(typeof stage.year === "string" && stage.year.length > 0, stageLabel + "缺少年份");
+  check(typeof stage.period === "string" && stage.period.length > 0, stageLabel + "缺少期間");
+  check(typeof stage.era === "string" && stage.era.length > 0, stageLabel + "缺少時代標題");
+  check(typeof stage.transition === "string" && stage.transition.length > 0, stageLabel + "缺少演進說明");
+
+  const nodes = Array.isArray(stage.nodes) ? stage.nodes : [];
+  check(nodes.length > 0, stageLabel + "沒有學派節點");
+  nodes.forEach(function (node) {
+    evolutionNodes.push(node);
+    const nodeLabel = stageLabel + "的節點";
+    check(typeof node.id === "string" && node.id.length > 0, nodeLabel + "缺少 ID");
+    check(!evolutionNodeIds.has(node.id), nodeLabel + " ID 重複：" + node.id);
+    evolutionNodeIds.add(node.id);
+    check(typeof node.kind === "string" && node.kind.length > 0, nodeLabel + "缺少節點類型");
+    check(typeof node.school === "string" && node.school.length > 0, nodeLabel + "缺少學派名稱");
+    check(typeof node.english === "string" && node.english.length > 0, nodeLabel + "缺少英文名稱");
+    check(typeof node.period === "string" && node.period.length > 0, nodeLabel + "缺少期間");
+    check(typeof node.founders === "string" && node.founders.length > 0, nodeLabel + "缺少提出者");
+    check(typeof node.summary === "string" && node.summary.length > 0, nodeLabel + "缺少摘要");
+
+    const anchors = Array.isArray(node.modelAnchors) ? node.modelAnchors : [];
+    check(anchors.length > 0, nodeLabel + "沒有綁定模型");
+    check(new Set(anchors).size === anchors.length, nodeLabel + "的模型錨點重複");
+    anchors.forEach(function (anchor) {
+      check(macroModelAnchorSet.has(anchor), nodeLabel + "引用不存在的模型錨點：" + anchor);
+    });
+
+    const years = Array.isArray(node.nobelYears) ? node.nobelYears : [];
+    years.forEach(function (year) {
+      check(nobelRowYears.indexOf(Number(year)) !== -1, nodeLabel + "引用不存在的諾貝爾年份：" + year);
+      evolutionNobelYears.add(Number(year));
+    });
+
+    const refs = Array.isArray(node.chapterRefs) ? node.chapterRefs : [];
+    check(refs.length > 0, nodeLabel + "沒有延伸閱讀章節");
+    refs.forEach(function (ref) {
+      const chapter = macroChapterMap[ref.chapterId];
+      check(Boolean(chapter), nodeLabel + "引用不存在的章節：" + ref.chapterId);
+      if (chapter) {
+        check(Number.isInteger(ref.sectionIndex) && ref.sectionIndex >= 0 && ref.sectionIndex < chapter.sections.length, nodeLabel + "的章節節次超出範圍：" + ref.chapterId + " / " + ref.sectionIndex);
+      }
+      check(typeof ref.label === "string" && ref.label.length > 0, nodeLabel + "的延伸閱讀缺少標籤");
+    });
+  });
+});
+
+const evolutionModelLinkCount = evolutionNodes.reduce(function (sum, node) {
+  return sum + (Array.isArray(node.modelAnchors) ? node.modelAnchors.length : 0);
+}, 0);
+check(evolutionNodes.length === 10, "學派演進圖應有 10 個學派／理論節點（目前 " + evolutionNodes.length + " 個）");
+check(evolutionModelLinkCount === 19, "學派演進圖應有 19 個模型連結（目前 " + evolutionModelLinkCount + " 個）");
+check(evolutionNobelYears.size === 15, "學派演進圖應包含 15 個不同的諾貝爾里程碑（目前 " + evolutionNobelYears.size + " 個）");
+check(evolutionNodes.every(function (node) { return Array.isArray(node.modelAnchors) && node.modelAnchors.length > 0; }), "學派演進圖的每個節點都應綁定至少一個模型");
+
 // 繁體中文守門：只列出不易與臺灣繁體用字混淆的簡體字。
 // 英文仍可保留得主姓名、專有名詞、公式符號與國際通用縮寫。
 const simplifiedGuard = /[国经济与为这说时间发现实体关风险资产负债银货币财税价额总结构变动边际弹预竞争垄断规报劳厂产业销费储贷汇数据统计图关键词页导设题复习资会计学务项响丰验检测试评类并对认确监审称损换据数权条来极样档检楼历残毕气汉济温湾满热爱状独狭获环齐长门问间闻队阳阴际随隐难顶顺须飞饭饮马鱼鸟鸡鸭鹰麦黄龙车转轮软轻载较辅辆输边达过运进远违连迟选递遗逻]/g;
@@ -733,6 +807,8 @@ const languageSurface = [
   JSON.stringify(diagrams),
   JSON.stringify(nobelData),
   JSON.stringify(nobelDiagrams),
+  JSON.stringify(macroEvolution),
+  read("site/assets/content-macro-evolution.js"),
   read("site/index.html"),
   read("site/assets/app.js"),
   read("site/README.md"),
@@ -748,6 +824,7 @@ console.log("學習單元：" + totalSections + "（總體經濟學 " + macroSec
 console.log("名詞卡：" + totalTerms);
 console.log("模型圖：" + diagramKeys.length + "（總體經濟學）");
 console.log("諾貝爾年表：" + nobelRows.length + " 屆、 " + nobelDiagramKeys.length + " 組模型圖");
+console.log("學派演進圖：" + evolutionStages.length + " 個階段、 " + evolutionNodes.length + " 個節點、 " + evolutionModelLinkCount + " 個模型連結、 " + evolutionNobelYears.size + " 個諾貝爾里程碑");
 console.log("資料來源：" + content.sources.length);
 console.log("法規條文：" + lawOfficialArticleCount + "（官方 " + lawOfficialSources + " 部；" + lawOfficialPages + " 頁全文、" + lawExternalPages + " 頁連結摘要）");
 console.log("KaTeX 公式：" + formulaSections.length + " 個學習單元（" + formulaTexKeys.length + " 筆資料）");

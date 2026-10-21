@@ -1294,14 +1294,16 @@ window.INVESTMENT_SUBJECT = {
 /* 投資學 — 財務比率公式單一來源
    投資學頁面的「比例分析公式列表」與第 14 章〈財務分析〉第 2 個學習重點
    都讀取這份陣列；修改 name、formula、note 或綁定的 chapterId／sectionTitle，
-   兩處會同步更新。sectionTitle 必須與章節內的標題完全一致。 */
+   兩處會同步更新。sectionTitle 必須與章節內的標題完全一致。
+   分數一律使用 \dfrac，避免 KaTeX 行內模式把分子、分母縮成 0.7 倍，
+   讓公式文字與表格其他欄位同級。 */
 window.INVESTMENT_RATIO_FORMULAS = [
   {
     id: "current-ratio",
     category: "流動性",
     name: "流動比率",
     formula: "流動資產 ÷ 流動負債",
-    latex: "\\frac{\\text{流動資產}}{\\text{流動負債}}",
+    latex: "\\dfrac{\\text{流動資產}}{\\text{流動負債}}",
     note: "衡量短期償債能力；分子與分母取同一時點。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1311,7 +1313,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "流動性",
     name: "速動比率",
     formula: "（流動資產 − 存貨 − 預付費用）÷ 流動負債",
-    latex: "\\frac{\\text{流動資產} - \\text{存貨} - \\text{預付費用}}{\\text{流動負債}}",
+    latex: "\\dfrac{\\text{流動資產} - \\text{存貨} - \\text{預付費用}}{\\text{流動負債}}",
     note: "速動資產通常排除存貨與預付費用，比流動比率嚴格。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1321,7 +1323,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "流動性",
     name: "現金比率",
     formula: "現金及約當現金 ÷ 流動負債",
-    latex: "\\frac{\\text{現金及約當現金}}{\\text{流動負債}}",
+    latex: "\\dfrac{\\text{現金及約當現金}}{\\text{流動負債}}",
     note: "最嚴格的短期償債指標，只看現金與約當現金。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1331,7 +1333,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "流動性",
     name: "營業現金流比率",
     formula: "營業活動現金流量 ÷ 流動負債",
-    latex: "\\frac{\\text{營業活動現金流量}}{\\text{流動負債}}",
+    latex: "\\dfrac{\\text{營業活動現金流量}}{\\text{流動負債}}",
     note: "以本業現金流衡量短期償債能力，補足靜態比率的不足。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1341,7 +1343,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "償債能力與槓桿",
     name: "負債比率",
     formula: "總負債 ÷ 總資產",
-    latex: "\\frac{\\text{總負債}}{\\text{總資產}}",
+    latex: "\\dfrac{\\text{總負債}}{\\text{總資產}}",
     note: "衡量資產由負債支應的比例；越高代表財務槓桿越大。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1351,7 +1353,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "償債能力與槓桿",
     name: "負債對權益比",
     formula: "總負債 ÷ 股東權益",
-    latex: "\\frac{\\text{總負債}}{\\text{股東權益}}",
+    latex: "\\dfrac{\\text{總負債}}{\\text{股東權益}}",
     note: "直接比較債權人與股東出資的相對規模。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1361,7 +1363,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "償債能力與槓桿",
     name: "權益乘數",
     formula: "總資產 ÷ 股東權益",
-    latex: "\\frac{\\text{總資產}}{\\text{股東權益}}",
+    latex: "\\dfrac{\\text{總資產}}{\\text{股東權益}}",
     note: "杜邦分析的槓桿構面；等於 1 + 負債對權益比。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1371,7 +1373,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "償債能力與槓桿",
     name: "利息保障倍數",
     formula: "EBIT ÷ 利息費用",
-    latex: "\\frac{\\text{EBIT}}{\\text{利息費用}}",
+    latex: "\\dfrac{\\text{EBIT}}{\\text{利息費用}}",
     note: "衡量息前稅前利潤支付利息的能力；倍數越高越安全。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1381,7 +1383,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "經營效率",
     name: "存貨週轉率",
     formula: "銷貨成本 ÷ 平均存貨",
-    latex: "\\frac{\\text{銷貨成本}}{\\text{平均存貨}}",
+    latex: "\\dfrac{\\text{銷貨成本}}{\\text{平均存貨}}",
     note: "平均存貨＝（期初存貨＋期末存貨）÷ 2；衡量存貨去化速度。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1391,7 +1393,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "經營效率",
     name: "存貨週轉天數",
     formula: "365 ÷ 存貨週轉率",
-    latex: "\\frac{365}{\\text{存貨週轉率}}",
+    latex: "\\dfrac{365}{\\text{存貨週轉率}}",
     note: "平均存貨停留天數；天數越長通常代表資金占用越久。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1401,7 +1403,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "經營效率",
     name: "應收帳款週轉率",
     formula: "銷貨淨額 ÷ 平均應收帳款",
-    latex: "\\frac{\\text{銷貨淨額}}{\\text{平均應收帳款}}",
+    latex: "\\dfrac{\\text{銷貨淨額}}{\\text{平均應收帳款}}",
     note: "若現銷比重重大，宜改用賒銷淨額；平均應收帳款取期初期末平均。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1411,7 +1413,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "經營效率",
     name: "應收帳款收現天數",
     formula: "365 ÷ 應收帳款週轉率",
-    latex: "\\frac{365}{\\text{應收帳款週轉率}}",
+    latex: "\\dfrac{365}{\\text{應收帳款週轉率}}",
     note: "平均收現天數；越長代表收款速度越慢、信用風險越高。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1421,7 +1423,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "經營效率",
     name: "總資產週轉率",
     formula: "銷貨淨額 ÷ 平均總資產",
-    latex: "\\frac{\\text{銷貨淨額}}{\\text{平均總資產}}",
+    latex: "\\dfrac{\\text{銷貨淨額}}{\\text{平均總資產}}",
     note: "每單位資產創造的銷貨收入；與利潤率共同決定 ROA。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1431,7 +1433,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "經營效率",
     name: "應付帳款週轉率",
     formula: "銷貨成本 ÷ 平均應付帳款",
-    latex: "\\frac{\\text{銷貨成本}}{\\text{平均應付帳款}}",
+    latex: "\\dfrac{\\text{銷貨成本}}{\\text{平均應付帳款}}",
     note: "衡量付款速度；過低可能代表付款拖延，過高可能喪失現金折扣。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1441,7 +1443,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "獲利能力",
     name: "毛利率",
     formula: "毛利 ÷ 營業收入",
-    latex: "\\frac{\\text{毛利}}{\\text{營業收入}}",
+    latex: "\\dfrac{\\text{毛利}}{\\text{營業收入}}",
     note: "毛利＝營業收入−銷貨成本；反映產品定價與成本控制。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1451,7 +1453,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "獲利能力",
     name: "營業利益率",
     formula: "營業利益 ÷ 營業收入",
-    latex: "\\frac{\\text{營業利益}}{\\text{營業收入}}",
+    latex: "\\dfrac{\\text{營業利益}}{\\text{營業收入}}",
     note: "衡量本業獲利能力，排除營業外損益與所得稅。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1461,7 +1463,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "獲利能力",
     name: "淨利率",
     formula: "稅後淨利 ÷ 營業收入",
-    latex: "\\frac{\\text{稅後淨利}}{\\text{營業收入}}",
+    latex: "\\dfrac{\\text{稅後淨利}}{\\text{營業收入}}",
     note: "每一元收入最終轉化為淨利的速度。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1471,7 +1473,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "獲利能力",
     name: "資產報酬率（ROA）",
     formula: "稅後淨利 ÷ 平均總資產",
-    latex: "\\frac{\\text{稅後淨利}}{\\text{平均總資產}}",
+    latex: "\\dfrac{\\text{稅後淨利}}{\\text{平均總資產}}",
     note: "衡量全部資產的獲利效率；分子可加回利息費用（稅後）以比較不同資本結構。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1481,7 +1483,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "獲利能力",
     name: "股東權益報酬率（ROE）",
     formula: "稅後淨利 ÷ 平均股東權益",
-    latex: "\\frac{\\text{稅後淨利}}{\\text{平均股東權益}}",
+    latex: "\\dfrac{\\text{稅後淨利}}{\\text{平均股東權益}}",
     note: "衡量普通股股東的報酬；若有特別股，分子先扣特別股股利。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1491,7 +1493,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "市場價值",
     name: "基本每股盈餘（EPS）",
     formula: "（淨利 − 特別股股利）÷ 加權平均流通在外普通股股數",
-    latex: "\\frac{\\text{淨利} - \\text{特別股股利}}{\\text{加權平均流通在外普通股股數}}",
+    latex: "\\dfrac{\\text{淨利} - \\text{特別股股利}}{\\text{加權平均流通在外普通股股數}}",
     note: "股票股利與股票分割要追溯調整股數；稀釋 EPS 另考慮潛在普通股。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1501,7 +1503,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "市場價值",
     name: "本益比（P/E）",
     formula: "每股市價 ÷ 每股盈餘",
-    latex: "\\frac{\\text{每股市價}}{\\text{每股盈餘}}",
+    latex: "\\dfrac{\\text{每股市價}}{\\text{每股盈餘}}",
     note: "常用於相對估值；EPS 為負或接近零時不宜解讀。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1511,7 +1513,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "市場價值",
     name: "股價淨值比（P/B）",
     formula: "每股市價 ÷ 每股淨值",
-    latex: "\\frac{\\text{每股市價}}{\\text{每股淨值}}",
+    latex: "\\dfrac{\\text{每股市價}}{\\text{每股淨值}}",
     note: "每股淨值＝普通股股東權益÷流通在外普通股股數。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1521,7 +1523,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "市場價值",
     name: "股利殖利率",
     formula: "每股股利 ÷ 每股市價",
-    latex: "\\frac{\\text{每股股利}}{\\text{每股市價}}",
+    latex: "\\dfrac{\\text{每股股利}}{\\text{每股市價}}",
     note: "衡量現金股利相對股價的報酬；不包含資本利得。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1531,7 +1533,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "市場價值",
     name: "股利支付率",
     formula: "每股股利 ÷ 每股盈餘",
-    latex: "\\frac{\\text{每股股利}}{\\text{每股盈餘}}",
+    latex: "\\dfrac{\\text{每股股利}}{\\text{每股盈餘}}",
     note: "也可用現金股利÷淨利計算；與保留率合計為 1。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1541,7 +1543,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "盈餘品質",
     name: "營業現金流對淨利比",
     formula: "營業活動現金流量 ÷ 稅後淨利",
-    latex: "\\frac{\\text{營業活動現金流量}}{\\text{稅後淨利}}",
+    latex: "\\dfrac{\\text{營業活動現金流量}}{\\text{稅後淨利}}",
     note: "大於 1 通常代表盈餘有現金流支持；仍需搭配應計項目與產業特性解讀。",
     chapterId: "investment-14",
     sectionTitle: "學習重點 2：財務比率分析"
@@ -1561,7 +1563,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "風險調整績效",
     name: "夏普比率（Sharpe Ratio）",
     formula: "（Rₚ − R_f）÷ σₚ",
-    latex: "\\frac{R_p - R_f}{\\sigma_p}",
+    latex: "\\dfrac{R_p - R_f}{\\sigma_p}",
     note: "衡量每單位總風險的超額報酬；σₚ 為投資組合總風險。",
     chapterId: "investment-17",
     sectionTitle: "學習重點 2：風險調整績效指標"
@@ -1571,7 +1573,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "風險調整績效",
     name: "索提諾比率（Sortino Ratio）",
     formula: "（Rₚ − R_f）÷ σ_d",
-    latex: "\\frac{R_p - R_f}{\\sigma_d}",
+    latex: "\\dfrac{R_p - R_f}{\\sigma_d}",
     note: "σ_d 為下行風險（低於目標報酬的標準差）；只懲罰下行波動。",
     chapterId: "investment-17",
     sectionTitle: "學習重點 2：風險調整績效指標"
@@ -1581,7 +1583,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "風險調整績效",
     name: "崔納比率（Treynor Ratio）",
     formula: "（Rₚ − R_f）÷ βₚ",
-    latex: "\\frac{R_p - R_f}{\\beta_p}",
+    latex: "\\dfrac{R_p - R_f}{\\beta_p}",
     note: "衡量每單位系統風險的超額報酬；βₚ 為投資組合系統風險。",
     chapterId: "investment-17",
     sectionTitle: "學習重點 2：風險調整績效指標"
@@ -1601,7 +1603,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
     category: "風險調整績效",
     name: "資訊比率（Information Ratio）",
     formula: "（Rₚ − R_b）÷ 追蹤誤差",
-    latex: "\\frac{R_p - R_b}{\\sigma(R_p - R_b)}",
+    latex: "\\dfrac{R_p - R_b}{\\sigma(R_p - R_b)}",
     note: "分子為主動報酬，分母為主動報酬標準差（追蹤誤差）。",
     chapterId: "investment-17",
     sectionTitle: "學習重點 2：風險調整績效指標"

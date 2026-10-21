@@ -22,7 +22,7 @@
 - 會計學第 23 章來源註明原書章號印刷為 22，本站依順序列為第 23 章，並在章節與使用說明保留註記。
 - 證券交易相關法規與實務依 `test.md` 的 21 項測驗範圍整理為 21 頁；官方 15 部法規逐條呈現（1,507 條），公會自律規範與「其他主管機關法令」以官方連結與摘要呈現；法規適用仍以全國法規資料庫與主管機關最新公告為準。
 
-目前規模：4 個科目、73 章、183 個學習單元、1,094 張名詞卡、115 組學習單元 KaTeX 公式（另含比例 32 條、選擇權 13 條、諾貝爾 58 屆）、1,507 條官方法規條文列（含刪除條文）、21 張總體經濟章節模型圖、32 條投資學比例分析公式、5 項選擇權評價優先順序、58 屆諾貝爾經濟學獎年表、17 組諾貝爾模型圖、26 個資料來源，並有 1 個總體經濟模型總覽頁與 1 個諾貝爾獎年表頁。21 張模型圖與 29 條投資／總體公式已完成公開教材核對，狀態為「通過（教材）」；這不是官方認證整站。
+目前規模：4 個科目、73 章、183 個學習單元、1,094 張名詞卡、115 組學習單元 KaTeX 公式（另含比例 32 條、選擇權 13 條、諾貝爾 58 屆）、1,507 條官方法規條文列（含刪除條文）、21 張總體經濟章節模型圖、32 條投資學比例分析公式、5 項選擇權評價優先順序、58 屆諾貝爾經濟學獎年表、17 組諾貝爾模型圖、1 個總體經濟學派演進圖（6 階段、10 個節點、19 個模型連結、15 個諾貝爾里程碑）、26 個資料來源，並有 1 個總體經濟模型總覽頁、1 個學派演進圖區塊與 1 個諾貝爾獎年表頁。21 張模型圖與 29 條投資／總體公式已完成公開教材核對，狀態為「通過（教材）」；這不是官方認證整站。
 
 ## 檔案結構
 
@@ -42,6 +42,7 @@ site/
     ├── content-macro.js        # 總體經濟學第 1–5 章（第 1 篇）
     ├── content-macro-2.js      # 總體經濟學第 6–10 章（第 1 篇）
     ├── content-macro-3.js      # 總體經濟學第 11–13 章（第 2 篇）
+    ├── content-macro-evolution.js # 總體經濟學派演進圖（6 階段、10 節點、15 個諾貝爾里程碑）
     ├── content-investment.js   # 投資學第 1–5 篇、16 章
     ├── content-accounting.js   # 會計學第 1–12 章
     ├── content-accounting-2.js # 會計學第 13–23 章
@@ -58,6 +59,8 @@ site/
     └── katex/                  # KaTeX 0.19.0 的 JS、CSS、字型與授權
 ```
 
+系統分層、載入順序與資料流圖見 [`documents/architecture.md`](../documents/architecture.md)。
+
 ## 本機預覽
 
 建議用靜態伺服器：
@@ -73,9 +76,11 @@ python3 -m http.server 8765 --directory site
 ## 路由
 
 - `#/`：首頁
-- `#/subject/macro`：總體經濟學章節地圖
+- `#/subject/macro`：總體經濟學章節地圖（含學派演進圖）
+- `#/subject/macro?evolution=1`：直接跳到總體經濟學頁的學派演進圖
 - `#/subject/law`：證券交易相關法規與實務章節地圖
 - `#/models/macro`：總體經濟模型總覽（13 章分組、21 張章節模型＋17 組諾貝爾模型）
+- `#/models/macro?model=model-macro-06-0`：直接跳到模型總覽的指定模型卡，並短暫標示
 - `#/models/macro?chapter=nobel`：直接跳到模型總覽的諾貝爾區
 - `#/nobel`：歷年諾貝爾經濟學獎逐年雙欄年表（左側屆別資料、右側對應模型圖）
 - `#/nobel?group=nobel-01`：跳到指定諾貝爾圖組的首屆列
@@ -135,12 +140,13 @@ InvestmentOptionPriority[] {
 - `terms` 是 `[名詞, 定義]` 陣列。
 - `formula` 可為空字串；非空時由 `content-formula-tex.js` 的 KaTeX 公式資料渲染。
 - **公式一律用 KaTeX**：115 個學習單元的公式集中於 `window.FORMULA_TEX`，以 `章節 ID::節名` 綁定；比例分析 32 條、選擇權 13 條與諾貝爾 58 屆的公式也由 KaTeX 渲染。KaTeX 0.19.0 已放在 `site/assets/katex/`，不依賴 CDN，`file://` 可離線顯示。
-- **投資學比例公式只有一份**：`window.INVESTMENT_RATIO_FORMULAS` 同時供 `#/subject/investment` 的「比例分析公式列表」與對應章節使用：`investment-14` 顯示 26 條財務比率，`investment-17` 顯示 6 條風險調整績效與市場時機指標，`investment-04` 的 Sharpe 公式則以 `ratioFormulaId` 引用同一筆資料。每條公式以 `chapterId` 與 `sectionTitle` 綁定章節；修改名稱、公式、LaTeX、說明或綁定位置，投資學頁與章節頁會同步更新。驗證器會檢查章節／節次是否存在、公式是否重複，以及綁定節次不得另有 `formula` 字串，避免雙來源。
+- **投資學比例公式只有一份**：`window.INVESTMENT_RATIO_FORMULAS` 同時供 `#/subject/investment` 的「比例分析公式列表」與對應章節使用：`investment-14` 顯示 26 條財務比率，`investment-17` 顯示 6 條風險調整績效與市場時機指標，`investment-04` 的 Sharpe 公式則以 `ratioFormulaId` 引用同一筆資料。每條公式以 `chapterId` 與 `sectionTitle` 綁定章節；修改名稱、公式、LaTeX、說明或綁定位置，投資學頁與章節頁會同步更新。驗證器會檢查章節／節次是否存在、公式是否重複，以及綁定節次不得另有 `formula` 字串，避免雙來源。比例公式的分數以 `\dfrac` 排版，避免 KaTeX 行內模式把分子、分母縮成 0.7 倍，讓公式文字與表格其他欄位同級。
 - **選擇權評價優先順序只有一份**：`window.INVESTMENT_OPTION_PRIORITIES` 提供投資學頁面的 5 項準備順序、13 條 KaTeX 公式、36 項變數定義與說明；二項式（含 Put）、Black-Scholes、買賣權平價的公式與變數都從這份資料渲染。
 - `variables` 與 `parameters` 都是 `[符號, 名稱, 說明]` 陣列；`svg` 為內嵌的 SVG 字串。
 - 模型圖放在 `diagrams-macro*.js`，以「章節 ID#節次索引」對應。`sectionTitle` 由驗證器比對，避免節次搬動後把圖掛錯位置；模型圖只掛在總體經濟學章節。
 - 模型圖是概念示意，不是原始教材的掃圖；SVG 直接內嵌，`file://` 也能顯示，不會發出外部圖片請求。
 - **模型資料只有一份**：章節頁的 `renderSection()` 與 `#/models/macro` 的 `renderMacroModels()` 都透過 `getDiagram()`／`renderDiagram()` 讀取同一個 `window.MACRO_DIAGRAMS`，總覽頁不複製第二份內容。修改 `diagrams-macro*.js` 中的 SVG、標題、圖說、變數、參數或提醒後，重新載入章節頁與總覽頁都會同步；新增或移除模型圖也會自動反映在總覽頁。
+- **學派演進圖只有一份**：`window.MACRO_EVOLUTION`（`content-macro-evolution.js`）只保存階段、學派名稱、提出者、摘要、模型錨點與諾貝爾年份；模型名稱由 `macroModelGroups()` 反查 `MACRO_DIAGRAMS`，諾貝爾年份、得主與領域由 `NOBEL_DATA` 反查，不另存副本。每個模型名稱連到 `#/models/macro?model=<anchor>`，路由會捲動到該模型卡並加上短暫高亮；每個諾貝爾里程碑連到 `#/nobel?year=YYYY`。修改模型圖或諾貝爾資料後，演進圖會同步更新；驗證器會檢查每個錨點與年份都存在。
 - **諾貝爾資料只有一份**：年表頁的 `renderNobelPage()` 與模型總覽的諾貝爾區都讀取 `window.NOBEL_DATA` 與 `window.NOBEL_DIAGRAMS`；年表保留原始 58 列，每一列左側是該屆得主、領域、公式與結論，右側直接顯示對應模型圖，17 個圖組以 `nobel-XX` 對應。同一圖組重複出現在多列時，`renderNobelTable()` 會為每份 inline SVG 的內部 ID 加上年度後綴，避免重複 ID。修改任一圖組的 SVG、標題、圖說、變數或參數後，重新載入 `#/nobel` 與 `#/models/macro` 都會同步。
 - 模型總覽頁依 13 章分組；沒有模型圖的章節仍會列出並顯示說明。每張模型圖都連回所屬章節與節次，方便交叉閱讀。
 - 諾貝爾年表頁保留 1969–2026 的 58 屆與每屆公式，並整合為逐年雙欄：左欄保留屆別、得主、領域、公式與結論，右欄顯示該屆對應的 SVG 模型圖。2025 屆公式已依官方科學背景修正為 g = λ(γ−1) ≈ λ ln(γ)；2026 屆別已納入，年份、得主與官方獎項說明已對照諾貝爾獎官方 API，公式與學說已對照官方 popular information 與 2026 年科學背景；2019–2026 代表原始論文書目已核對；2019–2026 每年至少一篇代表論文完成全文抽查（2026 為 Hall；Woodford 2003 專書未逐條），其餘全文仍待逐條核對。年份可跳到對應圖組首屆，模型圖下方的屆別晶片可跳到同組其他年份；重複圖組只在首次出現時展開完整變數與參數。
@@ -168,6 +174,8 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 - 21 張總體模型圖都掛在存在的章節與節次，且 `sectionTitle` 與內容一致。
 - 每張模型圖都有標題、圖說、變數表、參數表與示意提醒；SVG 有 `viewBox`、`role="img"`、`aria-labelledby` 與 `<title>`，且不含外部圖片、腳本或外部連結。
 - 模型圖鍵值不得重複；圖數量與檔案內定義的數量必須一致。
+- 學派演進圖恰好 6 個階段、10 個學派／理論節點、19 個模型連結與 15 個不同的諾貝爾里程碑；每個節點都有學派名稱、提出者、摘要、模型錨點與延伸章節。
+- 演進圖的模型錨點必須存在於 21 張總體模型圖，諾貝爾年份必須存在於 58 屆年表；節點 ID、階段 ID、模型錨點與章節節次都必須有效。
 - 諾貝爾年表恰好 58 屆、1969–2026 連續年份，五個欄位齊全，且 2026 屆存在並對應 `nobel-17`。
 - 17 組諾貝爾模型與 `NOBEL_DATA.groups` 一一對應，沒有缺圖或孤兒圖；每組都有標題、圖說、變數、參數與提醒。
 - 年表每列都有有效的 `group`，且該組存在；每列都有對應模型圖、同組屆別晶片與首屆圖組錨點，年份與圖組可互相跳轉。
@@ -175,7 +183,7 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 - 全站中文以臺灣繁體中文為準；英文只保留得主姓名、專有名詞、公式符號、縮寫與技術名稱。內容異動後以 `s2t` 字元掃描或人工複查確認沒有新增簡體字。
 - 跨模型初審結果記錄在 `documents/content_review_checklist.md` 與 `documents/reviews/`；模型只作輔助，官方公告與正式教材仍是最終依據。
 
-目前 `validate-content.js` 執行 5,014 項檢查，失敗數為 0（含四個科目章節界線、投資學比例公式綁定、115 個 KaTeX 公式綁定、法規全文資料綁定與繁體中文守門檢查）。
+目前 `validate-content.js` 執行 5,245 項檢查，失敗數為 0（含四個科目章節界線、投資學比例公式綁定、115 個 KaTeX 公式綁定、學派演進圖的模型／諾貝爾綁定、法規全文資料綁定與繁體中文守門檢查）。
 
 諾貝爾年表的年份與得主另以 `site/scripts/verify-nobel-api.js` 對照官方 API；2026-10-20 執行結果為 58 屆、0 筆不一致。此檢查需要網路，不列入離線驗證；2025、2026 屆公式已對照官方科學背景，2019–2020 屆公式與學說方向、2021 LATE 公式與 2022–2024 學說方向亦已核對（2019、2020 網站公式為概念式），2019–2026 代表原始論文書目已核對；2019–2026 每年至少一篇代表論文完成全文抽查（2026 為 Hall；Woodford 2003 專書未逐條）；其餘屆公式、全文、學說摘述與模型圖仍待原始文獻逐條核對。
 
@@ -185,12 +193,16 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 
 2026-10-20 另以 Chrome CDP 在 1280px 與 390px 檢查 macro-05／06／07／12、`#/sources`、`#/models/macro` 與 `#/nobel`：B5、B8、B16、B17 的修正文字已顯示；B9 的 `SRAS₀`／`SRAS₁` 在章節頁與模型總覽均可見，390px 需在圖表區水平滑動，滑動後兩個標籤可讀；來源頁 26 項且核對進度含 21 張模型圖；模型總覽 38 張 SVG（21 張章節圖＋17 組諾貝爾圖），諾貝爾頁 58 列／58 張 SVG；390px 無水平溢出、0 console errors；`file://` 的 macro-07 可讀且 B9 標籤正常。另以 9 個 `file://` 會計頁面狀態檢查 accounting-02／06／07／13／20／23 與 `#/sources`：修正文字皆顯示，0 缺失、0 水平溢出、0 console errors。諾貝爾頁的 2026「無趨勢簡化」、2025「創新到達率」、2023「後續綜合用語」、2022「Bernanke 的實證研究」與 2019「效果不如原先預期」文字亦已在 1280px／390px 確認，58 張 SVG、0 水平溢出、0 console errors。投資學比例公式列表另在 1280px／390px 檢查 `#/subject/investment`、`#/chapter/investment-14`、`#/chapter/investment-17` 與 `#/chapter/investment-04`：32 條、9 類、0 水平溢出、0 console errors；390px 改為卡片堆疊；32 條公式全部以 KaTeX 排版（29 條為分數）；風險調整績效順序為夏普→索提諾→崔納→詹森→資訊；在記憶體修改 Sharpe 公式後，投資學頁、第 17 章與第 4 章同步顯示。另檢查選擇權評價優先順序：5 列、5 張卡片、13 條 KaTeX 公式（4 條分數）與 36 項變數定義，1280px／390px 均 0 水平溢出、0 console errors。最後以 Chrome CDP 檢查首頁與證券法規：首頁 4 張科目卡、證券法規 21 頁（21 章／21 節）；21 頁的法規全文區塊全部存在，官方全文頁共 1,507 條，law-01 有 244 條（證交法 229＋施行細則 15）、law-02 有 534 條；law-14–18、law-20 與 law-21 的官方連結與摘要正常；條文直接顯示、無需點擊；macro-08 景氣訊號燈、investment-07 利率期限結構、investment-08 交易制度、investment-16 客戶風險態度與稅負、accounting-19 外匯風險等補充單元均顯示；1280px／390px 無水平溢出、0 console errors。KaTeX QA：47 個含公式章節在 1280px／390px 共 94 次頁面檢查，115 個公式區塊全部渲染、0 個 `.katex-error`、0 個 fallback、0 水平溢出；比例公式 32 條、選擇權 13 條、諾貝爾 58 屆公式均正常；`file://` 字型載入成功。
 
+比例公式的 29 條分數另於 2026-10-21 改以 `\dfrac` 排版，避免 KaTeX 行內模式把分子、分母縮成 0.7 倍；實測分子／分母由 9.41px 提升至 13.44px，與表格其他欄位同級。1280px／390px 與 `file://` 檢查 32 條公式（investment-14 26 條、investment-17 6 條、investment-04 Sharpe）均正常，0 水平溢出、0 console errors；加入學派演進圖檢查後，`validate-content.js` 5,245 項、失敗 0。
+
+2026-10-21 另以 Chrome CDP 在 1280px／390px／`file://` 檢查 `#/subject/macro` 的學派演進圖：6 階段、10 個節點、19 個模型連結、15 個諾貝爾里程碑；每個節點都有學派／理論名稱、提出者、摘要與延伸章節。模型名稱可跳到 `#/models/macro?model=<anchor>` 的指定模型卡並短暫高亮（實測 `model-macro-12-1` 目標頂端 90px）；諾貝爾里程碑可跳到 `#/nobel?year=YYYY`；`#/subject/macro?evolution=1` 可捲動到演進圖。明暗主題均正常，頁面無水平溢出，0 console errors。
+
 ## 更新流程
 
 1. 先更新 `documents/` 下的來源目錄。
-2. 修改對應的 `site/assets/content-*.js`；不要用另一個科目的章節補洞。模型圖變更則修改 `site/assets/diagrams-macro*.js`，確認 `sectionTitle` 仍與節次相符。諾貝爾年表修改 `content-nobel.js`，圖組修改 `diagrams-nobel.js`，維持 58 列與 17 組的對應。
+2. 修改對應的 `site/assets/content-*.js`；不要用另一個科目的章節補洞。模型圖變更則修改 `site/assets/diagrams-macro*.js`，確認 `sectionTitle` 仍與節次相符。學派演進圖修改 `content-macro-evolution.js`；模型名稱與諾貝爾資料仍分別以 `diagrams-macro*.js`、`content-nobel.js` 為單一來源。諾貝爾年表修改 `content-nobel.js`，圖組修改 `diagrams-nobel.js`，維持 58 列與 17 組的對應。
 3. 執行 `node site/scripts/validate-content.js`，確認差異都已被處理；再用 `node --check` 檢查所有 JavaScript。
-4. 用瀏覽器檢查首頁、四個科目頁（總體含第 2 篇的第 11–13 章）、至少一個含模型圖的總體章、`#/models/macro`、`#/nobel`、`?group=`／`?year=`／`?table=`／`?models=` 跳轉、搜尋入口（含會計名詞）、`#/sources`、`#/subject/investment` 的比例公式列表、`#/chapter/investment-14` 的綁定公式，一個會計章，以及證券法規章節。
+4. 用瀏覽器檢查首頁、四個科目頁（總體含第 2 篇的第 11–13 章與學派演進圖）、至少一個含模型圖的總體章、`#/models/macro`、`#/models/macro?model=<anchor>` 的模型卡跳轉與高亮、`#/subject/macro?evolution=1`、`#/nobel`、`?group=`／`?year=`／`?table=`／`?models=` 跳轉、搜尋入口（含會計名詞）、`#/sources`、`#/subject/investment` 的比例公式列表、`#/chapter/investment-14` 的綁定公式，一個會計章，以及證券法規章節。
 5. 若修改模型圖，確認總覽頁與原章節顯示相同內容；可暫時修改記憶體中的 `MACRO_DIAGRAMS` 或 `NOBEL_DIAGRAMS`，切換路由檢查資料綁定。諾貝爾頁與模型總覽的諾貝爾區必須同步。
 6. 在桌機與 390px 寬度檢查頁面沒有水平溢出；諾貝爾年表在窄螢幕改為上下堆疊，模型圖可在圖表區內滑動；並以 `file://` 開啟確認可閱讀。
 7. 若修改公式或模型圖，依 `SOURCES.md` 與 `documents/content_review_checklist.md` 記錄校對結果；29 條投資／總體公式與 21 張總體模型圖已完成公開教材核對，其他屆諾貝爾原始文獻與會計各章例題未逐題重算前保持「待查」。
