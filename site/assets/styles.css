@@ -4366,11 +4366,6 @@ p {
   overflow-wrap: anywhere;
 }
 
-.evolution-model-ref {
-  color: var(--muted);
-  font-size: 0.62rem;
-}
-
 .evolution-nobel-list {
   display: grid;
   gap: 6px;

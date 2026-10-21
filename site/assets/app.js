@@ -132,6 +132,12 @@
     return chapter.label || "第 " + chapter.number + " 章";
   }
 
+  function sectionDisplayTitle(section) {
+    return String(section && section.title ? section.title : "")
+      .replace(/^第\s*[0-9０-９一二三四五六七八九十百]+\s*節\s*[：:、.．\-—]?\s*/, "")
+      .trim();
+  }
+
   function chapterPartLabel(chapter) {
     if (!chapter.partTitle) {
       return "";
@@ -564,7 +570,7 @@
   function renderSection(section, index, subject, chapter) {
     const sectionId = "section-" + (index + 1);
     const focus = isFocusSection(subject, section);
-    const kicker = focus ? "學習重點 " : "第 ";
+    const kicker = focus ? "學習重點 " : "";
     const diagram = chapter ? getDiagram(chapter.id, index) : null;
     const formulaEntry = chapter ? formulaTexFor(chapter, section) : null;
     const formulaTex = typeof formulaEntry === "string" ? formulaEntry : (formulaEntry && formulaEntry.tex ? formulaEntry.tex : "");
@@ -580,8 +586,8 @@
       : null;
     return [
       '<section class="section-block" id="' + sectionId + '" data-section-index="' + index + '">',
-      '  <div class="section-kicker">' + kicker + padNumber(index + 1) + (focus ? "" : " 節") + "</div>",
-      "  <h2>" + escapeHtml(section.title) + "</h2>",
+      '  <div class="section-kicker">' + kicker + padNumber(index + 1) + "</div>",
+      "  <h2>" + escapeHtml(sectionDisplayTitle(section)) + "</h2>",
       '  <div class="section-body">' + section.body.map(function (paragraph) {
         return "<p>" + escapeHtml(paragraph) + "</p>";
       }).join("") + "</div>",
@@ -748,13 +754,12 @@
           const entry = match.entry;
           const fullTitle = entry.diagram && entry.diagram.title ? entry.diagram.title : anchor;
           const shortTitle = shortMacroModelTitle(fullTitle);
-          const label = fullTitle + "（第 " + chapter.number + " 章第 " + (entry.sectionIndex + 1) + " 節）";
+          const label = fullTitle + "（" + chapter.title + " · " + sectionDisplayTitle(entry.section) + "）";
           return [
             '<a class="evolution-model-chip" href="#/models/macro?model=' + encodeURIComponent(anchor) + '"',
             ' title="' + escapeHtml(fullTitle) + '"',
             ' aria-label="在模型總覽查看：' + escapeHtml(label) + '">',
             '<span class="evolution-model-name">' + escapeHtml(shortTitle) + "</span>",
-            '<span class="evolution-model-ref">第 ' + chapter.number + " 章 · 第 " + (entry.sectionIndex + 1) + " 節</span>",
             "</a>"
           ].join("");
         }).join("");
@@ -1264,8 +1269,8 @@
         return [
           '<article class="models-entry" id="' + escapeHtml(entry.anchor) + '">',
           '  <div class="models-entry-ref">',
-          '    <span class="eyebrow">第 ' + padNumber(entry.sectionIndex + 1) + " 節</span>",
-          '    <a href="#/chapter/' + escapeHtml(chapter.id) + "?section=" + (entry.sectionIndex + 1) + '">' + escapeHtml(entry.section.title) + "</a>",
+          '    <span class="eyebrow">' + padNumber(entry.sectionIndex + 1) + "</span>",
+          '    <a href="#/chapter/' + escapeHtml(chapter.id) + "?section=" + (entry.sectionIndex + 1) + '">' + escapeHtml(sectionDisplayTitle(entry.section)) + "</a>",
           "  </div>",
           renderDiagram(entry.diagram),
           "</article>"
@@ -1542,7 +1547,7 @@
         ' data-scroll-to="section-' + (index + 1) + '"',
         ' data-chapter-id="' + escapeHtml(chapter.id) + '"',
         ' data-section="' + (index + 1) + '">',
-        escapeHtml(section.title),
+        escapeHtml(sectionDisplayTitle(section)),
         "</a>",
         "</li>"
       ].join("");
@@ -1912,9 +1917,9 @@
         index.push({
           type: isFocusSection({ id: chapter.subjectId }, section) ? "重點" : "節",
           typeClass: "",
-          title: section.title,
+          title: sectionDisplayTitle(section),
           sub: chapter.subjectName + " · " + chapterLabel(chapter) + " " + chapter.title,
-          text: section.title + " " + section.body.join(" "),
+          text: sectionDisplayTitle(section) + " " + section.body.join(" "),
           chapterId: chapter.id,
           sectionIndex: sectionIndex + 1
         });
@@ -1924,7 +1929,7 @@
             type: "名詞",
             typeClass: "term",
             title: term[0],
-            sub: chapter.title + " · " + section.title,
+            sub: chapter.title + " · " + sectionDisplayTitle(section),
             text: term[1],
             chapterId: chapter.id,
             sectionIndex: sectionIndex + 1
