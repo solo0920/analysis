@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>分析師備考站｜總體經濟學 × 投資學 × 會計學 × 證券法規</title>
+  <meta name="description" content="為證券投資分析人員考試打造的靜態學習網站：總體經濟學、投資學、會計學與證券交易相關法規與實務各自依測驗範圍建構章節，整理核心名詞、考試重點、1,507 條官方法規全文、115 個 KaTeX 公式、21 張總體模型圖、32 條投資學比例分析公式、5 項選擇權評價優先順序、58 屆諾貝爾經濟學獎年表、17 組模型圖解與資料來源。">
+  <link rel="stylesheet" href="assets/katex/katex.min.css">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("analyst-theme");
+        var dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme = saved || (dark ? "dark" : "light");
+      } catch (e) {
+        document.documentElement.dataset.theme = "light";
+      }
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#/" aria-label="分析師備考站，回到首頁">
+        <span class="brand-mark" aria-hidden="true">析</span>
+        <span class="brand-text">
+          <strong>分析師備考站</strong>
+          <small>證券投資分析人員備考</small>
+        </span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="主要導覽">
+        <a href="#/" data-nav="home">首頁</a>
+        <a href="#/subject/macro" data-nav="macro">總體經濟學</a>
+        <a href="#/subject/investment" data-nav="investment">投資學</a>
+        <a href="#/subject/accounting" data-nav="accounting">會計學</a>
+        <a href="#/subject/law" data-nav="law">證券法規</a>
+        <a href="#/sources" data-nav="sources">資料來源</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="search-open" type="button" aria-label="搜尋章節與名詞" title="搜尋（按 /）">
+          <span aria-hidden="true">⌕</span>
+        </button>
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="切換深色模式" title="切換深色模式">
+          <span aria-hidden="true">◐</span>
+        </button>
+        <button class="icon-btn menu-btn" id="menu-toggle" type="button" aria-label="開啟選單" aria-expanded="false" aria-controls="main-nav">
+          <span aria-hidden="true">☰</span>
+        </button>
+      </div>
+    </div>
+    <div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
+  </header>
+
+  <div class="search-overlay" id="search-overlay" hidden>
+    <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="search-title">
+      <div class="search-head">
+        <div>
+          <p class="eyebrow">快速搜尋</p>
+          <h2 id="search-title">搜尋章節與名詞</h2>
+        </div>
+        <button class="icon-btn" id="search-close" type="button" aria-label="關閉搜尋">✕</button>
+      </div>
+      <label class="sr-only" for="search-input">輸入章節或名詞</label>
+      <input type="search" id="search-input" placeholder="例如：GDP、菲利浦曲線、存續期間、存貨、每股盈餘、CAPM、內線交易…" autocomplete="off">
+      <p class="search-hint">輸入關鍵字，按 Enter 開啟第一筆結果；按 Esc 關閉。</p>
+      <div class="search-results" id="search-results" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <main id="main" tabindex="-1"></main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand"><strong>分析師備考站</strong> — 總體經濟學、投資學、會計學與證券法規各自依測驗範圍建構章節的靜態學習筆記。</p>
+        <p class="footer-note">內容整理自臺灣官方與繁體中文公開資料，僅供考試複習；實際考試範圍、法規與資料請以主管機關最新公告為準。</p>
+      </div>
+      <div class="footer-links">
+        <a href="#/sources">資料來源</a>
+        <a href="#/about">使用說明</a>
+        <a href="#/subject/macro">總體經濟學</a>
+        <a href="#/subject/investment">投資學</a>
+        <a href="#/subject/accounting">會計學</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 分析師備考站 · 靜態網站，無追蹤、無廣告。</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/content-macro.js"></script>
+  <script src="assets/content-macro-2.js"></script>
+  <script src="assets/content-macro-3.js"></script>
+  <script src="assets/content-investment.js"></script>
+  <script src="assets/content-accounting.js"></script>
+  <script src="assets/content-accounting-2.js"></script>
+  <script src="assets/content-law.js"></script>
+  <script src="assets/content-law-articles.js"></script>
+  <script src="assets/content-formula-tex.js"></script>
+  <script src="assets/content.js"></script>
+  <script src="assets/diagrams-macro.js"></script>
+  <script src="assets/diagrams-macro-2.js"></script>
+  <script src="assets/diagrams-macro-3.js"></script>
+  <script src="assets/diagrams-macro-4.js"></script>
+  <script src="assets/diagrams-macro-5.js"></script>
+  <script src="assets/content-nobel.js"></script>
+  <script src="assets/diagrams-nobel.js"></script>
+  <script src="assets/katex/katex.min.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
