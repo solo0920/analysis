@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>找不到頁面｜分析師備考站</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("analyst-theme");
+        var dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme = saved || (dark ? "dark" : "light");
+      } catch (error) {
+        document.documentElement.dataset.theme = "light";
+      }
+
+      var parts = location.pathname.split("/").filter(Boolean);
+      var root = parts.length > 1 ? "/" + parts[0] + "/" : "/";
+      if (/^https?:$/.test(location.protocol) && location.pathname !== root) {
+        location.replace(root + location.hash);
+      }
+    })();
+  </script>
+  <noscript><meta http-equiv="refresh" content="0; url=./"></noscript>
+</head>
+<body>
+  <main id="main" class="page">
+    <section class="chapter-head">
+      <div>
+        <p class="eyebrow">404</p>
+        <h1>找不到這個頁面</h1>
+        <p class="lede">網址可能已經改變。本站使用 hash 路由，請回首頁重新選擇科目或章節。</p>
+        <p><a class="btn btn-primary" href="./">回到首頁</a></p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

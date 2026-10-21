@@ -200,7 +200,25 @@ flowchart LR
 - `verify-nobel-api.js`：需要網路，只比對諾貝爾年表的年份與得主，不檢查公式或模型圖。
 - 這兩個腳本只在開發／驗證時執行，不會被 `index.html` 載入，也不會增加瀏覽器執行時負擔。
 
-## 7. 倉庫目錄分層
+## 7. GitHub Pages 部署
+
+```mermaid
+flowchart LR
+  Dev["推送 main"] --> Actions["GitHub Actions<br/>pages.yml"]
+  Actions --> Checkout["checkout"]
+  Checkout --> Configure["configure-pages"]
+  Configure --> Upload["upload-pages-artifact<br/>path: site"]
+  Upload --> Deploy["deploy-pages"]
+  Deploy --> Live["GitHub Pages<br/>solo0920.github.io/analysis/"]
+```
+
+- `site/` 是唯一的發佈目錄；`documents/`、`specs/`、`.specify/` 與驗證腳本不會進入 Pages artifact。
+- `site/.nojekyll` 停用 Jekyll 處理。
+- `site/404.html` 將未知路徑導回站點根目錄。
+- 所有 CSS、JavaScript、SVG 與 KaTeX 字型都使用相對路徑，因此可在 `/analysis/` 子路徑下運作。
+- 推送 `main` 或手動執行 workflow 都會重新部署；`site/**` 與 workflow 檔變更才會觸發自動部署。
+
+## 8. 倉庫目錄分層
 
 | 目錄 | 角色 | 瀏覽器執行時載入 |
 | --- | --- | --- |
@@ -210,7 +228,7 @@ flowchart LR
 | `.specify/` | Spec Kit 工作流程、範本與整合設定 | 否 |
 | `research/` | 研究資料與摘要 | 否 |
 
-## 8. 設計限制
+## 9. 設計限制
 
 - 無建置步驟、無框架、無後端；`file://` 可直接開啟。
 - 所有內容與 SVG 都內嵌在 JavaScript，執行時不 `fetch` 本地資料。

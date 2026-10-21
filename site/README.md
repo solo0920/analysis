@@ -29,6 +29,8 @@
 ```text
 site/
 ├── index.html                  # 靜態外殼、導覽、搜尋與腳本載入順序
+├── 404.html                    # GitHub Pages 未知路徑導回站點根目錄
+├── .nojekyll                   # 停用 GitHub Pages 的 Jekyll 處理
 ├── README.md
 ├── SOURCES.md                  # 來源清單與校對原則
 ├── scripts/
@@ -72,6 +74,14 @@ python3 -m http.server 8765 --directory site
 開啟 <http://localhost:8765/>。
 
 也可以直接開啟 `site/index.html`。內容全部內嵌，不需要 `fetch`，所以 `file://` 可正常顯示；只有外部資料來源連結需要網路。
+
+## GitHub Pages
+
+線上網站：<https://solo0920.github.io/analysis/>
+
+`.github/workflows/pages.yml` 會在推送 `main` 時將 `site/` 上傳為 Pages artifact，再以 `actions/deploy-pages` 發佈。`site/.nojekyll` 停用 Jekyll 處理，`site/404.html` 會將未知路徑導回站點根目錄；所有資產使用相對路徑，可直接在 `/analysis/` 子路徑下運作。
+
+若 Pages 尚未啟用，workflow 的 `configure-pages` 會嘗試啟用；也可在 Repository Settings → Pages 將 Source 設為 **GitHub Actions**。
 
 ## 路由
 
