@@ -5870,3 +5870,36 @@ p {
     max-width: 100%;
   }
 }
+
+.written-answer-math {
+  font-size: 1em;
+}
+
+.written-answer-math .katex {
+  font-size: 1em;
+}
+
+.written-answer-math.is-display {
+  display: block;
+  margin: 0.65em 0;
+}
+
+.written-answer-math.is-display .katex-display {
+  margin: 0;
+}
+
+.written-card,
+.written-answer,
+.written-answer-math.is-display {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.written-answer-math.is-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.written-stem {
+  overflow-wrap: anywhere;
+}

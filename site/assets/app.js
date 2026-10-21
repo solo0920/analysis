@@ -1833,9 +1833,30 @@
         return '<button class="past-exam-chip' + (writtenState.subject === subject.id ? " is-active" : "") + '" type="button" data-written-subject="' + escapeHtml(subject.id) + '">' + escapeHtml(subject.short || subject.name) + '</button>';
       }).join(""),
       '  </div>',
-      '  <div class="written-filter-summary"><strong>' + writtenFilteredQuestions().length + '</strong> 題 · 107–115 年 · 107–113 答題指引、114–115 參考解答</div>',
+      '  <div class="written-filter-summary"><strong>' + writtenFilteredQuestions().length + '</strong> 題 · 107–115 年 · 依題目顯示答題指引或參考解答</div>',
       '</div>'
     ].join("");
+  }
+
+  function renderWrittenAnswer(text) {
+    const source = String(text == null ? "" : text);
+    const parts = [];
+    const pattern = /\\\[([\s\S]+?)\\\]|\\\(([\s\S]+?)\\\)/g;
+    let last = 0;
+    let match;
+    while ((match = pattern.exec(source))) {
+      if (match.index > last) {
+        parts.push(escapeHtml(source.slice(last, match.index)));
+      }
+      const display = match[1] !== undefined;
+      const tex = display ? match[1] : match[2];
+      parts.push('<span class="written-answer-math' + (display ? " is-display" : "") + '">' + renderKatex(tex, display) + "</span>");
+      last = pattern.lastIndex;
+    }
+    if (last < source.length) {
+      parts.push(escapeHtml(source.slice(last)));
+    }
+    return parts.join("");
   }
 
   function renderWrittenCard(question) {
@@ -1858,7 +1879,7 @@
       session.questionUrl ? '    <a class="text-link" href="' + escapeHtml(session.questionUrl) + '" target="_blank" rel="noopener noreferrer">原始試題 PDF →</a>' : "",
       '  </div>',
       open ? '  <div class="written-answer">' + answers.map(function (text) {
-        return '<p>' + escapeHtml(text) + '</p>';
+        return '<p>' + renderWrittenAnswer(text) + '</p>';
       }).join("") + '<p class="written-answer-note">' + escapeHtml(question.note || "本站參考解答（非官方）") + '</p></div>' : "",
       '</article>'
     ].join("");
@@ -1879,7 +1900,7 @@
       '    <div class="past-exam-hero-copy">',
       '      <p class="eyebrow">考古題 · 計算與申論</p>',
       '      <h1>計算題與申論題</h1>',
-      '      <p class="lede">收錄 107–115 年四個專業科目的計算題與申論題。107–113 年提供依章節整理的答題指引，114–115 年提供本站參考解答；官方解答 PDF 只有選擇題答案，並非官方公告。</p>',
+      '      <p class="lede">收錄 107–115 年四個專業科目的計算題與申論題。目前 113 年第 1 次已改為完整參考解答，其餘年度分批補齊；未完成完整解題的題目先標示答題指引。官方解答 PDF 只有選擇題答案，並非官方公告。</p>',
       '      <div class="past-exam-hero-actions">',
       '        <a class="btn btn-primary" href="#/past-exams">回選擇題練習</a>',
       '      </div>',
@@ -1893,7 +1914,7 @@
       '  </section>',
       renderWrittenFilters(),
       '<div class="written-list" id="written-list">' + (questions.length ? questions.map(renderWrittenCard).join("") : '<div class="past-exam-empty"><h2>目前沒有符合的題目</h2><p>換一個年度或科目再試。</p></div>') + '</div>',
-      '  <div class="notice"><strong>解答說明：</strong>申論與計算題沒有官方公告解答；107–113 為依章節整理的答題指引，114–115 為本站參考解答，若與補習班、教材或官方答案不同，請以官方與正式教材為準。</div>',
+      '  <div class="notice"><strong>解答說明：</strong>申論與計算題沒有官方公告解答；題卡會標示「答題指引」或「參考解答」，113 年第 1 次已提供完整參考解答，其餘年度依批次補齊。若與補習班、教材或官方答案不同，請以官方與正式教材為準。</div>',
       '</div>'
     ].join("");
   }
@@ -1908,7 +1929,7 @@
       '  <div>',
       '    <p class="eyebrow">107–115 計算與申論</p>',
       '    <strong>' + count + ' 題計算／申論</strong>',
-      '    <span>107–113 答題指引、114–115 參考解答，點此查看。</span>',
+      '    <span>依題目顯示答題指引或參考解答，點此查看。</span>',
       '  </div>',
       '  <span class="subject-written-cta-arrow">查看 →</span>',
       '</a>'
