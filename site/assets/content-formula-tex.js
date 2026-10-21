@@ -14,7 +14,7 @@ window.FORMULA_TEX = {
   "macro-03::第2節 貨幣供給定義與貨幣數量": { tex: String.raw`M2 = M1B + \text{準貨幣}`, note: "" },
   "macro-04::第2節 銀行業之業務與經營": { tex: String.raw`\text{利差} \approx \text{放款利率} - \text{存款利率}`, note: "" },
   "macro-05::第1節 存款貨幣的創造與貨幣供給": { tex: String.raw`M = m \times B,\qquad m = \frac{1}{rr}`, note: "無超額準備、無現金流失；B 為準備貨幣。" },
-  "macro-05::第2節 貨幣需求理論": { tex: String.raw`MV = PY`, note: "" },
+  "macro-05::第2節 貨幣需求理論": { tex: String.raw`\begin{gathered}MV=PY\\V=\frac{PY}{M}=\frac{\text{名目GDP}}{\text{貨幣供給}}\end{gathered}`, note: "V 為貨幣流通速度；數量方程式為恆等式。" },
 
   "macro-06::第1節 IS曲線與LM曲線": { tex: String.raw`\begin{gathered}IS:\quad Y = C(Y-T)+I(i)+G\\LM:\quad \frac{M}{P}=L(Y,i)\end{gathered}`, note: "封閉經濟、物價固定；i 為利率。" },
   "macro-06::第2節 總體經濟政策與IS-LM曲線": { tex: String.raw`\begin{gathered}\text{擴張財政：}IS \to \text{右}\\\text{擴張貨幣：}LM \to \text{右}\end{gathered}`, note: "" },
@@ -55,11 +55,14 @@ window.FORMULA_TEX = {
 
   "investment-05::學習重點 1：CAPM 的假設與市場投資組合": { tex: String.raw`E(R_i)=R_f+\beta_i[E(R_m)-R_f]`, note: "" },
   "investment-05::學習重點 2：證券市場線與必要報酬率": { tex: String.raw`\begin{gathered}\beta_i=\frac{\operatorname{Cov}(R_i,R_m)}{\operatorname{Var}(R_m)}\\\alpha=\text{實際報酬}-\text{CAPM 必要報酬}\end{gathered}`, note: "" },
+  "investment-05::學習重點 4：套利定價理論與股價變動因素": { tex: String.raw`E(R_i)=R_f+\beta_{i1}\lambda_1+\beta_{i2}\lambda_2+\cdots+\beta_{ik}\lambda_k`, note: "β 為因子敏感度、λ 為因子風險溢酬；k 為因子數。" },
 
   "investment-07::學習重點 1：債券價格與現金流": { tex: String.raw`P = \sum_{t=1}^{n}\frac{C}{(1+y)^t}+\frac{F}{(1+y)^n}`, note: "C 為每期票息、F 為面額、y 為每期殖利率、n 為期數。" },
   "investment-07::學習重點 2：債券收益率衡量": { tex: String.raw`\text{當期收益率}=\frac{\text{每年票面利息}}{\text{目前價格}}`, note: "" },
   "investment-07::學習重點 3：存續期間與利率風險": { tex: String.raw`\begin{gathered}\text{價格變動率}\approx -D^*\Delta y+\frac{1}{2}\times\text{凸性}\times(\Delta y)^2\\D^*=\frac{D}{1+y/k}\end{gathered}`, note: "D 為 Macaulay 存續期間（年）、y 為年化殖利率、k 為每年付息次數；Δy 與凸性採相同週期，Δy 用小數，1 個百分點 = 0.01。" },
   "investment-07::學習重點 4：利率期限結構": { tex: String.raw`(1+y_n)^n=(1+y_1)(1+f_2)\cdots(1+f_n)`, note: "y_n 為 n 期即期利率、f_t 為隱含遠期利率；無套利、相同複利單位。" },
+  "investment-07::學習重點 5：利率水準的決定": { tex: String.raw`i\approx r+\pi^e`, note: "費雪方程式；i 為名目利率、r 為實質利率、πᵉ 為預期通膨率。" },
+  "investment-07::學習重點 6：債券投資組合管理": { tex: String.raw`\begin{gathered}BPV=\text{修正存續期間}\times\text{市場價值}\times0.0001\\\text{免疫條件：資產 }BPV\approx\text{負債 }BPV\end{gathered}`, note: "BPV 為基準點價值；多個負債另需資產現值不低於負債及凸性條件。" },
 
   "investment-08::學習重點 2：股票評價": { tex: String.raw`P_0 = \frac{D_1}{r-g}`, note: "D₁ 為下一期股利；r > g；股利固定成長。" },
   "investment-08::學習重點 3：股票報酬與風險": { tex: String.raw`\text{股票報酬率}=\text{股利收益率}+\text{資本利得率}`, note: "" },
@@ -137,7 +140,7 @@ window.FORMULA_TEX = {
 
   "accounting-19::學習重點 1：財務管理目標與代理問題": { tex: String.raw`\text{公司價值}=\text{未來自由現金流量現值}`, note: "" },
   "accounting-19::學習重點 2：貨幣時間價值與風險報酬": { tex: String.raw`\begin{gathered}PV=\frac{FV}{(1+r)^n}\\\text{永續年金 }PV=\frac{C}{r}\end{gathered}`, note: "" },
-  "accounting-20::第1節 資本結構": { tex: String.raw`EPS=\frac{(\text{EBIT}-\text{利息})\times(1-\text{稅率})}{\text{流通在外股數}}`, note: "簡化式：無特別股、股數不變。" },
+  "accounting-20::第1節 資本結構": { tex: String.raw`\begin{gathered}EPS=\frac{(\text{EBIT}-\text{利息})\times(1-\text{稅率})}{\text{流通在外股數}}\\DFL=\frac{\text{EBIT}}{\text{EBIT}-\text{利息}}\\DTL=DOL\times DFL\end{gathered}`, note: "簡化式：無特別股、股數不變；DFL 為財務槓桿程度，DTL 為總槓桿程度。" },
   "accounting-20::第2節 資金成本": { tex: String.raw`WACC=W_d r_d(1-T)+W_e r_e`, note: "無特別股版本。" },
   "accounting-21::學習重點 1：投資方案評估方法": { tex: String.raw`NPV=-CF_0+\sum_{t=1}^{n}\frac{CF_t}{(1+r)^t}`, note: "" },
   "accounting-21::學習重點 2：現金流估計與風險": { tex: String.raw`\text{營業現金流}=(\text{收入}-\text{現金費用})(1-T)+\text{折舊}\times T`, note: "" },

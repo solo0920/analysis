@@ -202,6 +202,14 @@ window.EXAM_SOURCES = [
     note: "經濟學、投資學與財務相關公開課程資源。"
   },
   {
+    id: "cfainstitute",
+    name: "CFA Institute",
+    url: "https://www.cfainstitute.org/",
+    domain: "cfainstitute.org",
+    group: "考試與教育資源",
+    note: "投資組合理論、多因子模型、債券投資組合管理與風險管理的專業教育資源。"
+  },
+  {
     id: "wiki",
     name: "維基百科（繁體中文）",
     url: "https://zh.wikipedia.org/zh-tw/",

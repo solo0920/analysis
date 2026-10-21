@@ -1663,7 +1663,7 @@
       "    </ol>",
       "    <h2>內容製作與校對</h2>",
       "    <ul>",
-      "      <li>總體經濟學的章節、節名與頁碼以 <code>documents/gross_economics_contents.md</code> 為依據，涵蓋第 1 篇「總體經濟學」與第 2 篇「金融市場」，共 13 章、49 節。</li>",
+      "      <li>總體經濟學的章節、節名與頁碼以 <code>documents/gross_economics_contents.md</code> 為依據，涵蓋第 1 篇「總體經濟學」與第 2 篇「金融市場」，共 13 章、49 個來源節次（另加 1 個補充單元，共 50 節）。</li>",
       "      <li>投資學的篇章、章名與順序以 <code>documents/investment_contents.md</code> 為依據；該目錄只提供章名，頁面上的「學習重點」是本站編寫的複習單元，不冒充原書節名。</li>",
       "      <li>會計學的章名、順序與頁碼以 <code>documents/accounting_contents.md</code> 為依據；有列節名的章節照原節名呈現，未列節名的章節以「學習重點」標示，不冒充原書節名。第 23 章來源註明原書章號印為 22，本站依順序列為第 23 章。</li>",
       "      <li>四個科目的來源目錄不同：總體經濟學使用 <code>gross_economics_contents.md</code>（含第 2 篇金融市場）；投資學使用 <code>investment_contents.md</code>；會計學使用 <code>accounting_contents.md</code>；證券法規使用 <code>securities_law_contents.md</code>；不以其中一科的章節補另一科。</li>",

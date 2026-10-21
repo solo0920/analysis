@@ -466,8 +466,8 @@ content.subjects.forEach(function (subject) {
 const formulaTexKeys = Object.keys(formulaTex);
 const formulaTexKeySet = new Set(formulaTexKeys);
 const formulaSectionKeySet = new Set(formulaSections.map(function (entry) { return entry.key; }));
-check(formulaSections.length === 115, "全站應有 115 個含公式的學習單元（目前 " + formulaSections.length + " 個）");
-check(formulaTexKeys.length === 115, "KaTeX 公式資料應有 115 筆（目前 " + formulaTexKeys.length + " 筆）");
+check(formulaSections.length === 118, "全站應有 118 個含公式的學習單元（目前 " + formulaSections.length + " 個）");
+check(formulaTexKeys.length === 118, "KaTeX 公式資料應有 118 筆（目前 " + formulaTexKeys.length + " 筆）");
 check(formulaSections.every(function (entry) { return formulaTexKeySet.has(entry.key); }), "每個含公式的學習單元都應有 KaTeX 公式");
 check(formulaTexKeys.every(function (key) { return formulaSectionKeySet.has(key); }), "KaTeX 公式資料不得有對應不到學習單元的項目");
 check(formulaTexKeys.every(function (key) {
@@ -838,4 +838,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log("驗證通過：總體經濟學第 1–2 篇（13 章、50 節）、投資學第 1–5 篇（16 章、48 個重點）、會計學（23 章、41 個具名節次與 23 個補充學習重點）、證券法規（21 章、21 節、1,507 條官方全文）、115 個 KaTeX 公式與諾貝爾年表（1969–2026）結構一致。");
+console.log("驗證通過：總體經濟學第 1–2 篇（13 章、50 節）、投資學第 1–5 篇（16 章、52 個重點）、會計學（23 章、41 個具名節次與 23 個補充學習重點）、證券法規（21 章、21 節、1,507 條官方全文）、118 個 KaTeX 公式與諾貝爾年表（1969–2026）結構一致。");
