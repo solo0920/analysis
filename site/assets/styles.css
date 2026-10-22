@@ -2804,10 +2804,27 @@ p {
   stroke: var(--line);
 }
 
+.model-diagram svg .dg-box-accent {
+  fill: var(--accent-soft);
+  stroke: var(--accent);
+  stroke-width: 1.8;
+}
+
+.model-diagram svg .dg-box-outcome {
+  fill: var(--gold-soft);
+  stroke: var(--gold);
+  stroke-width: 1.8;
+}
+
 .model-diagram svg .dg-label {
   fill: var(--ink-soft);
   font-family: var(--font-sans);
   font-size: 15px;
+}
+
+.model-diagram svg .dg-label-strong {
+  fill: var(--ink);
+  font-weight: 700;
 }
 
 .model-diagram svg .dg-label-sm {
@@ -2816,8 +2833,24 @@ p {
   font-size: 13px;
 }
 
-[data-theme="light"] .model-diagram svg .dg-label-sm {
+.model-diagram svg .dg-label-xs {
+  fill: var(--muted);
+  font-family: var(--font-sans);
+  font-size: 12px;
+}
+
+.model-diagram svg .dg-label-adjust {
+  fill: var(--gold);
+  font-weight: 700;
+}
+
+[data-theme="light"] .model-diagram svg .dg-label-sm,
+[data-theme="light"] .model-diagram svg .dg-label-xs {
   fill: #55666a;
+}
+
+[data-theme="light"] .model-diagram svg .dg-label-adjust {
+  fill: var(--gold);
 }
 
 .law-fulltext {

@@ -547,7 +547,7 @@ const totalTerms = allChapters.reduce(function (sum, chapter) {
 }, 0);
 
 const diagramKeys = Object.keys(diagrams);
-check(diagramKeys.length >= 21, "總體經濟學模型圖應至少 21 張（目前 " + diagramKeys.length + " 張）");
+check(diagramKeys.length >= 22, "總體經濟學章節圖應至少 22 張（目前 " + diagramKeys.length + " 張）");
 
 const rawDiagramKeys = [];
 diagramFiles.forEach(function (file) {
@@ -1345,7 +1345,7 @@ console.log("科目：" + content.subjects.length);
 console.log("章節：" + allChapters.length + "（總體經濟學 " + macro.chapters.length + "、投資學 " + investment.chapters.length + "、會計學 " + accounting.chapters.length + "、證券法規 " + law.chapters.length + "）");
 console.log("學習單元：" + totalSections + "（總體經濟學 " + macroSections + " 節、投資學 " + investmentSections + " 個重點、會計學 " + accountingSections + " 個單元、證券法規 " + lawSections + " 節）");
 console.log("名詞卡：" + totalTerms);
-console.log("模型圖：" + diagramKeys.length + "（總體經濟學）");
+console.log("章節圖：" + diagramKeys.length + "（總體經濟學；含 1 張教學流程圖）");
 console.log("教學圖：" + investmentDiagramKeys.length + "（投資學）");
 console.log("諾貝爾年表：" + nobelRows.length + " 屆、 " + nobelDiagramKeys.length + " 組模型圖");
 console.log("學派演進圖：" + evolutionStages.length + " 個階段、 " + evolutionNodes.length + " 個節點、 " + evolutionModelLinkCount + " 個模型連結、 " + evolutionNobelYears.size + " 個諾貝爾里程碑");
