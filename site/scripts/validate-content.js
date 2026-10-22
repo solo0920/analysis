@@ -36,7 +36,7 @@ const nobelDiagramFiles = ["diagrams-nobel.js"];
 function loadContent() {
   const context = { window: {} };
   vm.createContext(context);
-  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-macro-current.js", "content-past-exams-written.js", "content-past-exams.js", "content-exam-solutions-115.js"].forEach(function (file) {
+  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-macro-current.js", "content-past-exams-written.js", "content-past-exams.js", "content-exam-solutions-115.js", "content-exam-solutions-114.js"].forEach(function (file) {
     const fullPath = path.join(siteDir, "assets", file);
     vm.runInContext(fs.readFileSync(fullPath, "utf8"), context, { filename: file });
   });
@@ -1138,7 +1138,8 @@ writtenQuestions.forEach(function (question) {
 const solutionBatches = Array.isArray(examSolutions) ? examSolutions : [];
 const solutionSectionKeys = new Set();
 const solutionQuestionIds = new Set();
-let solutionExampleCount = 0;
+const solutionBatchStats = {};
+const solutionYears = new Set();
 check(solutionBatches.length >= 1, "考古題解題資料應至少有一個年度批次");
 solutionBatches.forEach(function (batch) {
   check(Boolean(batch) && typeof batch === "object", "考古題解題批次格式錯誤");
@@ -1147,7 +1148,11 @@ solutionBatches.forEach(function (batch) {
   }
   check(Number.isInteger(batch.year) && batch.year >= 107 && batch.year <= 115, "考古題解題批次年度錯誤：" + batch.year);
   check(typeof batch.label === "string" && batch.label.length > 0, "考古題解題批次缺少年度標籤：" + batch.year);
+  check(!solutionYears.has(batch.year), "考古題解題年度批次重複：" + batch.year);
+  solutionYears.add(batch.year);
   check(Boolean(batch.sections) && typeof batch.sections === "object" && !Array.isArray(batch.sections), "考古題解題批次缺少章節資料：" + batch.year);
+  const batchStats = { sections: 0, examples: 0 };
+  solutionBatchStats[batch.year] = batchStats;
   Object.keys(batch.sections || {}).forEach(function (sectionKey) {
     const match = sectionKey.match(/^([a-z]+-\d+)::(\d+)$/);
     check(Boolean(match), "考古題解題章節鍵格式錯誤：" + sectionKey);
@@ -1163,6 +1168,7 @@ solutionBatches.forEach(function (batch) {
     }
     check(!solutionSectionKeys.has(batch.year + "|" + sectionKey), "考古題解題章節重複：" + batch.year + " / " + sectionKey);
     solutionSectionKeys.add(batch.year + "|" + sectionKey);
+    batchStats.sections += 1;
     const solution = batch.sections[sectionKey];
     check(Boolean(solution) && typeof solution === "object", "考古題解題章節內容格式錯誤：" + sectionKey);
     if (!solution) {
@@ -1184,7 +1190,7 @@ solutionBatches.forEach(function (batch) {
       check(Boolean(question), "考古題例題參照不存在的題目：" + example.questionId);
       check(!solutionQuestionIds.has(example.questionId), "考古題例題重複引用：" + example.questionId);
       solutionQuestionIds.add(example.questionId);
-      solutionExampleCount += 1;
+      batchStats.examples += 1;
       check(Array.isArray(example.steps) && example.steps.length >= 2 && example.steps.length <= 6 && example.steps.every(function (text) {
         return typeof text === "string" && text.trim().length > 0;
       }), "考古題例題解題步驟應為 2–6 條：" + example.questionId);
@@ -1204,10 +1210,20 @@ solutionBatches.forEach(function (batch) {
     });
   });
 });
-check(solutionSectionKeys.size === 81, "115 年解題資料應有 81 個章節／節次（目前 " + solutionSectionKeys.size + " 個）");
-check(solutionExampleCount === 142, "115 年解題資料應有 142 個例題（目前 " + solutionExampleCount + " 個）");
-writtenQuestions.filter(function (question) { return question.year === 115; }).forEach(function (question) {
-  check(solutionQuestionIds.has(question.id), "115 年計算／申論題未收錄解題：" + question.id);
+const solutionExpectedByYear = {
+  115: { sections: 81, examples: 142, written: 24 },
+  114: { sections: 47, examples: 83, written: 36 }
+};
+Object.keys(solutionExpectedByYear).forEach(function (year) {
+  const expected = solutionExpectedByYear[year];
+  const stats = solutionBatchStats[year] || { sections: 0, examples: 0 };
+  check(stats.sections === expected.sections, year + " 年解題資料應有 " + expected.sections + " 個章節／節次（目前 " + stats.sections + " 個）");
+  check(stats.examples === expected.examples, year + " 年解題資料應有 " + expected.examples + " 個例題（目前 " + stats.examples + " 個）");
+  const yearWritten = writtenQuestions.filter(function (question) { return question.year === Number(year); });
+  check(yearWritten.length === expected.written, year + " 年計算／申論題應有 " + expected.written + " 題（目前 " + yearWritten.length + " 題）");
+  yearWritten.forEach(function (question) {
+    check(solutionQuestionIds.has(question.id), year + " 年計算／申論題未收錄解題：" + question.id);
+  });
 });
 
 const currentEvents = Array.isArray(macroCurrent.events) ? macroCurrent.events : [];

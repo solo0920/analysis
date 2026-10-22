@@ -80,7 +80,11 @@
         entry.focus = source.focus;
       }
       if (Array.isArray(source.strategies)) {
-        entry.strategies = entry.strategies.concat(source.strategies);
+        source.strategies.forEach(function (strategy) {
+          if (entry.strategies.indexOf(strategy) === -1) {
+            entry.strategies.push(strategy);
+          }
+        });
       }
       if (Array.isArray(source.examples)) {
         source.examples.forEach(function (example) {
