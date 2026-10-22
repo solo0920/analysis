@@ -791,6 +791,37 @@
     ].join("");
   }
 
+  function renderSectionTable(table) {
+    if (!table || !Array.isArray(table.columns) || !Array.isArray(table.rows)) {
+      return "";
+    }
+    if (!table.columns.length || !table.rows.length) {
+      return "";
+    }
+    const title = table.title || "比較表";
+    return [
+      '<div class="section-table">',
+      '  <h3 class="section-table-title">' + escapeHtml(title) + "</h3>",
+      '  <div class="ratio-table-wrap comparison-table-wrap">',
+      '    <table class="ratio-table comparison-table" aria-label="' + escapeHtml(title) + '">',
+      '      <thead><tr>' + table.columns.map(function (column) {
+        return '<th scope="col">' + escapeHtml(column) + "</th>";
+      }).join("") + "</tr></thead>",
+      "      <tbody>" + table.rows.map(function (row) {
+        return "<tr>" + row.map(function (cell, cellIndex) {
+          if (cellIndex === 0) {
+            return '<th scope="row">' + renderInlineMath(cell) + "</th>";
+          }
+          return '<td data-label="' + escapeHtml(table.columns[cellIndex] || "") + '">' + renderInlineMath(cell) + "</td>";
+        }).join("") + "</tr>";
+      }).join("") + "</tbody>",
+      "    </table>",
+      "  </div>",
+      table.note ? '  <p class="section-table-note">' + renderInlineMath(table.note) + "</p>" : "",
+      "</div>"
+    ].join("");
+  }
+
   function renderSection(section, index, subject, chapter) {
     const sectionId = "section-" + (index + 1);
     const focus = isFocusSection(subject, section);
@@ -815,6 +846,7 @@
       '  <div class="section-body">' + section.body.map(function (paragraph) {
         return "<p>" + renderInlineMath(paragraph) + "</p>";
       }).join("") + "</div>",
+      renderSectionTable(section.table),
       sectionDiagrams.map(renderDiagram).join(""),
       '  <div class="subheading">名詞速查</div>',
       renderTerms(section.terms),
@@ -3340,7 +3372,7 @@
           typeClass: "",
           title: sectionDisplayTitle(section),
           sub: chapter.subjectName + " · " + chapterLabel(chapter) + " " + chapter.title,
-          text: sectionDisplayTitle(section) + " " + section.body.join(" "),
+          text: sectionDisplayTitle(section) + " " + section.body.join(" ") + (section.table ? " " + section.table.title + " " + section.table.columns.join(" ") + " " + section.table.rows.map(function (row) { return row.join(" "); }).join(" ") : ""),
           chapterId: chapter.id,
           sectionIndex: sectionIndex + 1
         });

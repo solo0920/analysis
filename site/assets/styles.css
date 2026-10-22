@@ -1073,6 +1073,42 @@ p {
   white-space: nowrap;
 }
 
+.section-table {
+  min-width: 0;
+  margin: 18px 0 4px;
+}
+
+.section-table-title {
+  margin: 0 0 8px;
+  color: var(--accent-ink);
+  font-size: 0.94rem;
+}
+
+.comparison-table {
+  min-width: 760px;
+}
+
+.comparison-table thead th {
+  vertical-align: bottom;
+  white-space: normal;
+}
+
+.comparison-table tbody th {
+  color: var(--accent-ink);
+  white-space: normal;
+}
+
+.comparison-table tbody td {
+  min-width: 110px;
+}
+
+.section-table-note {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
 .ratio-math {
   display: inline-block;
   color: var(--accent-ink);
@@ -6241,7 +6277,12 @@ p {
   display: inline-block;
   max-width: 100%;
   overflow-x: auto;
+  scrollbar-width: none;
   vertical-align: middle;
+}
+
+.written-answer-math:not(.is-display)::-webkit-scrollbar {
+  display: none;
 }
 
 .written-answer p {

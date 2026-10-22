@@ -19,7 +19,7 @@ PDI &= PI - T_p = C + S
   "macro-02::第1節 均衡所得之決定": { tex: String.raw`Y = \frac{1}{1-MPC} \times A_0`, note: "A₀ 為自發性支出；封閉、無稅、無進口、物價固定的簡單模型。" },
   "macro-02::第2節 政府收支與反景氣循環之財政政策": { tex: String.raw`\begin{gathered}\text{政府支出乘數} = \frac{1}{1-MPC}\\\text{定額稅租稅乘數} = -\frac{MPC}{1-MPC}\end{gathered}`, note: "" },
 
-  "macro-03::第2節 貨幣供給定義與貨幣數量": { tex: String.raw`M2 = M1B + \text{準貨幣}`, note: "" },
+  "macro-03::第2節 貨幣供給定義與貨幣數量": { tex: String.raw`M_2=M_{1B}+\text{準貨幣}`, note: "" },
   "macro-04::第2節 銀行業之業務與經營": { tex: String.raw`\text{利差} \approx \text{放款利率} - \text{存款利率}`, note: "" },
   "macro-05::第1節 存款貨幣的創造與貨幣供給": { tex: String.raw`M = m \times B,\qquad m = \frac{1}{rr}`, note: "無超額準備、無現金流失；B 為準備貨幣。" },
   "macro-05::第2節 貨幣需求理論": { tex: String.raw`\begin{gathered}MV=PY\\V=\frac{PY}{M}=\frac{\text{名目GDP}}{\text{貨幣供給}}\end{gathered}`, note: "V 為貨幣流通速度；數量方程式為恆等式。" },

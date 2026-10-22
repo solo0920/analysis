@@ -13,6 +13,13 @@ const siteDir = path.join(root, "site");
 const failures = [];
 const checks = [];
 
+let katex = null;
+try {
+  katex = require(path.join(siteDir, "assets", "katex", "katex.min.js"));
+} catch (error) {
+  katex = null;
+}
+
 function check(condition, message) {
   checks.push({ ok: Boolean(condition), message: message });
   if (!condition) {
@@ -22,6 +29,60 @@ function check(condition, message) {
 
 function read(relativePath) {
   return fs.readFileSync(path.join(root, relativePath), "utf8");
+}
+
+const unicodeMathPattern = /[\u2070-\u2079\u2080-\u2089\u00b2\u00b3\u00b9\u2090-\u209c]/;
+const rawMathOperatorPattern = /(?<!operatorname\{)(?<![A-Za-z])(?:Cov|Var)(?![A-Za-z])/;
+const rawVariableDigitPattern = /(?<![_^\\A-Za-z{])(?:[A-Za-zσβρλμπΔΣ][0-9]+|(?:Cov|Var)[0-9]+)(?![0-9])/;
+const overEscapedOperatorPattern = /(?<!\\)\\\\operatorname/;
+const repeatedEscapeOperatorPattern = /(?<!\\)\\\\\\\\operatorname/;
+let inlineMathCount = 0;
+let displayMathCount = 0;
+
+function stripMathSegments(text) {
+  return String(text == null ? "" : text)
+    .replace(/\\\[[\s\S]*?\\\]/g, "")
+    .replace(/\\\([\s\S]*?\\\)/g, "");
+}
+
+function extractMathSegments(text) {
+  const source = String(text == null ? "" : text);
+  const segments = [];
+  const pattern = /\\\(([\s\S]+?)\\\)|\\\[([\s\S]+?)\\\]/g;
+  let match;
+  while ((match = pattern.exec(source)) !== null) {
+    segments.push({ display: Boolean(match[2]), tex: match[1] || match[2] });
+  }
+  return segments;
+}
+
+function checkRenderedMath(text, label) {
+  const source = String(text == null ? "" : text);
+  const plain = stripMathSegments(source);
+  check(!unicodeMathPattern.test(plain), label + " 的純文字數學不應使用 Unicode 上下標，請改用 KaTeX");
+  extractMathSegments(source).forEach(function (segment) {
+    if (segment.display) {
+      displayMathCount += 1;
+    } else {
+      inlineMathCount += 1;
+    }
+    check(!unicodeMathPattern.test(segment.tex), label + " 的 TeX 不應含 Unicode 上下標");
+    check(!rawMathOperatorPattern.test(segment.tex), label + " 的 TeX 應使用 \\operatorname{Cov}／\\operatorname{Var}");
+    check(!rawVariableDigitPattern.test(segment.tex), label + " 的變數數字下標應使用 _，例如 P_0、D_1");
+    check(!overEscapedOperatorPattern.test(segment.tex) && !repeatedEscapeOperatorPattern.test(segment.tex), label + " 的 TeX 含重複跳脫的反斜線");
+    if (katex) {
+      try {
+        katex.renderToString(segment.tex, {
+          displayMode: segment.display,
+          throwOnError: true,
+          strict: "ignore",
+          trust: false
+        });
+      } catch (error) {
+        check(false, label + " 的 KaTeX 無法編譯：" + error.message);
+      }
+    }
+  });
 }
 
 const diagramFiles = [
@@ -493,10 +554,74 @@ check(formulaTexKeys.every(function (key) {
   const tex = typeof entry === "string" ? entry : entry && entry.tex;
   return typeof tex === "string" && tex.trim().length > 0 && !/\$/.test(tex);
 }), "KaTeX 公式應為非空 LaTeX，且不得使用美元符號");
+check(Boolean(katex), "KaTeX 驗證器應能載入 site/assets/katex/katex.min.js");
+let formulaTexCompiled = 0;
+formulaTexKeys.forEach(function (key) {
+  const entry = formulaTex[key];
+  const tex = typeof entry === "string" ? entry : entry && entry.tex;
+  if (typeof tex !== "string") {
+    return;
+  }
+  check(!unicodeMathPattern.test(tex), "KaTeX 公式不應含 Unicode 上下標：" + key);
+  check(!rawMathOperatorPattern.test(tex), "KaTeX 公式應使用 \\operatorname{Cov}／\\operatorname{Var}：" + key);
+  check(!rawVariableDigitPattern.test(tex), "KaTeX 公式的變數數字下標應使用 _：" + key);
+  check(!overEscapedOperatorPattern.test(tex) && !repeatedEscapeOperatorPattern.test(tex), "KaTeX 公式含重複跳脫的反斜線：" + key);
+  if (katex) {
+    try {
+      katex.renderToString(tex, {
+        displayMode: true,
+        throwOnError: true,
+        strict: "ignore",
+        trust: false
+      });
+      formulaTexCompiled += 1;
+    } catch (error) {
+      check(false, "KaTeX 公式無法編譯：" + key + "（" + error.message + "）");
+    }
+  }
+});
+check(!katex || formulaTexCompiled === formulaTexKeys.length, "KaTeX 公式應全部可編譯（目前 " + formulaTexCompiled + "/" + formulaTexKeys.length + "）");
+const portfolioFormulaKey = "investment-04::學習重點 1：分散投資與投資組合報酬";
+const portfolioFormulaEntry = formulaTex[portfolioFormulaKey];
+const portfolioFormulaTex = typeof portfolioFormulaEntry === "string" ? portfolioFormulaEntry : portfolioFormulaEntry && portfolioFormulaEntry.tex;
+check(/\\sigma_p\^2=w_1\^2\\sigma_1\^2\+w_2\^2\\sigma_2\^2/.test(portfolioFormulaTex || ""), "投資組合變異數公式應使用 \\sigma_p^2、w_1^2、\\sigma_1^2 等正確上下標");
 check(ratioFormulas.every(function (entry) { return entry.latex && !/\$/.test(entry.latex); }), "比例公式應全部使用 KaTeX/LaTeX 語法");
 check(optionPriorities.every(function (item) {
   return (item.formulas || []).every(function (formula) { return formula.latex && !/\$/.test(formula.latex); });
 }), "選擇權公式應全部使用 KaTeX/LaTeX 語法");
+ratioFormulas.forEach(function (entry) {
+  if (!entry || typeof entry.latex !== "string") {
+    return;
+  }
+  check(!unicodeMathPattern.test(entry.latex), "比例公式不應含 Unicode 上下標：" + (entry.name || entry.id));
+  check(!rawMathOperatorPattern.test(entry.latex), "比例公式應使用 \\operatorname{Cov}／\\operatorname{Var}：" + (entry.name || entry.id));
+  check(!rawVariableDigitPattern.test(entry.latex), "比例公式的變數數字下標應使用 _：" + (entry.name || entry.id));
+  if (katex) {
+    try {
+      katex.renderToString(entry.latex, { displayMode: true, throwOnError: true, strict: "ignore", trust: false });
+    } catch (error) {
+      check(false, "比例公式無法編譯：" + (entry.name || entry.id) + "（" + error.message + "）");
+    }
+  }
+});
+optionPriorities.forEach(function (item) {
+  (item.formulas || []).forEach(function (formula) {
+    if (!formula || typeof formula.latex !== "string") {
+      return;
+    }
+    const label = (item.topic || "選擇權") + "／" + (formula.label || "公式");
+    check(!unicodeMathPattern.test(formula.latex), "選擇權公式不應含 Unicode 上下標：" + label);
+    check(!rawMathOperatorPattern.test(formula.latex), "選擇權公式應使用 \\operatorname{Cov}／\\operatorname{Var}：" + label);
+    check(!rawVariableDigitPattern.test(formula.latex), "選擇權公式的變數數字下標應使用 _：" + label);
+    if (katex) {
+      try {
+        katex.renderToString(formula.latex, { displayMode: true, throwOnError: true, strict: "ignore", trust: false });
+      } catch (error) {
+        check(false, "選擇權公式無法編譯：" + label + "（" + error.message + "）");
+      }
+    }
+  });
+});
 check(!macro.chapters.some(function (chapter) { return chapter.id.indexOf("law-") === 0; }), "總體經濟學不得混入證券法規章節");
 check(!investment.chapters.some(function (chapter) { return chapter.id.indexOf("law-") === 0; }), "投資學不得混入證券法規章節");
 check(!accounting.chapters.some(function (chapter) { return chapter.id.indexOf("law-") === 0; }), "會計學不得混入證券法規章節");
@@ -534,7 +659,39 @@ allChapters.forEach(function (chapter) {
     check(Array.isArray(section.points) && section.points.length > 0, chapter.id + " 第 " + (index + 1) + " 單元缺少考試重點");
     (section.terms || []).forEach(function (term) {
       check(Array.isArray(term) && term.length === 2 && term[0] && term[1], chapter.id + " 有格式錯誤的名詞卡");
+      if (Array.isArray(term) && term.length === 2) {
+        checkRenderedMath(term[0], chapter.id + " 第 " + (index + 1) + " 單元名詞");
+        checkRenderedMath(term[1], chapter.id + " 第 " + (index + 1) + " 單元名詞解釋");
+      }
     });
+    (section.body || []).forEach(function (text, paragraphIndex) {
+      checkRenderedMath(text, chapter.id + " 第 " + (index + 1) + " 單元正文 " + (paragraphIndex + 1));
+    });
+    if (section.table) {
+      const table = section.table;
+      check(Array.isArray(table.columns) && table.columns.length >= 2, chapter.id + " 第 " + (index + 1) + " 單元比較表缺少欄位");
+      check(Array.isArray(table.rows) && table.rows.length > 0, chapter.id + " 第 " + (index + 1) + " 單元比較表缺少資料列");
+      const columnCount = Array.isArray(table.columns) ? table.columns.length : 0;
+      (table.columns || []).forEach(function (column, columnIndex) {
+        check(typeof column === "string" && column.trim().length > 0, chapter.id + " 第 " + (index + 1) + " 單元比較表第 " + (columnIndex + 1) + " 欄缺少標題");
+      });
+      (table.rows || []).forEach(function (row, rowIndex) {
+        check(Array.isArray(row) && row.length === columnCount, chapter.id + " 第 " + (index + 1) + " 單元比較表第 " + (rowIndex + 1) + " 列欄位數不一致");
+        (row || []).forEach(function (cell, cellIndex) {
+          check(typeof cell === "string" && cell.trim().length > 0, chapter.id + " 第 " + (index + 1) + " 單元比較表第 " + (rowIndex + 1) + " 列第 " + (cellIndex + 1) + " 格為空");
+          checkRenderedMath(cell, chapter.id + " 第 " + (index + 1) + " 單元比較表第 " + (rowIndex + 1) + " 列第 " + (cellIndex + 1) + " 格");
+        });
+      });
+      if (table.note) {
+        checkRenderedMath(table.note, chapter.id + " 第 " + (index + 1) + " 單元比較表註記");
+      }
+    }
+    (section.points || []).forEach(function (text, pointIndex) {
+      checkRenderedMath(text, chapter.id + " 第 " + (index + 1) + " 單元考試重點 " + (pointIndex + 1));
+    });
+    if (section.memory) {
+      checkRenderedMath(section.memory, chapter.id + " 第 " + (index + 1) + " 單元記憶卡");
+    }
     if (section.formula) {
       check(!/undefined|NaN/.test(section.formula), chapter.id + " 的公式含 undefined 或 NaN");
     }
@@ -1389,6 +1546,33 @@ Object.keys(solutionExpectedByYear).forEach(function (year) {
   });
 });
 
+solutionBatches.forEach(function (batch) {
+  Object.keys(batch.sections || {}).forEach(function (sectionKey) {
+    const solution = batch.sections[sectionKey];
+    if (!solution) {
+      return;
+    }
+    checkRenderedMath(solution.focus, batch.year + " " + sectionKey + " 章節重點");
+    (solution.strategies || []).forEach(function (text, index) {
+      checkRenderedMath(text, batch.year + " " + sectionKey + " 解題策略 " + (index + 1));
+    });
+    (solution.examples || []).forEach(function (example) {
+      (example.steps || []).forEach(function (text, index) {
+        checkRenderedMath(text, example.questionId + " 解題步驟 " + (index + 1));
+      });
+      checkRenderedMath(example.takeaway, example.questionId + " 帶走一句");
+      if (example.trap) {
+        checkRenderedMath(example.trap, example.questionId + " 易錯點");
+      }
+    });
+  });
+});
+writtenQuestions.forEach(function (question) {
+  (question.answer || []).forEach(function (text, index) {
+    checkRenderedMath(text, question.id + " 參考解答 " + (index + 1));
+  });
+});
+
 const currentEvents = Array.isArray(macroCurrent.events) ? macroCurrent.events : [];
 const currentEventIds = new Set();
 check(currentEvents.length >= 8, "總經時事應至少有 8 個主題（目前 " + currentEvents.length + " 個）");
@@ -1433,6 +1617,7 @@ console.log("學派演進圖：" + evolutionStages.length + " 個階段、 " + e
 console.log("資料來源：" + content.sources.length);
 console.log("法規條文：" + lawOfficialArticleCount + "（官方 " + lawOfficialSources + " 部；" + lawOfficialPages + " 頁全文、" + lawExternalPages + " 頁連結摘要）");
 console.log("KaTeX 公式：" + formulaSections.length + " 個學習單元（" + formulaTexKeys.length + " 筆資料）");
+console.log("KaTeX 編譯：" + formulaTexCompiled + "/" + formulaTexKeys.length + " 筆公式、" + inlineMathCount + " 個行內公式、" + displayMathCount + " 個區塊公式");
 console.log("考古題：" + pastExamSessions.length + " 次、 " + pastExamQuestions.length + " 題（107–115 年）");
 console.log("計算／申論題：" + writtenQuestions.length + " 題（107–115 年）");
 console.log("總經時事：" + currentEvents.length + " 個主題");
