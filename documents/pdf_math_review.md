@@ -4,6 +4,47 @@
 
 用途：PDF 轉文字時，數學式、上下標、表格與變數常被壓平或錯置。以下依「公式結構明顯異常」、「表格／圖形被壓成文字」、「已依上下文重建」分組，列出最值得優先對照原始 PDF 的計算／申論題。這些項目多數尚未逐題改寫，請以原始試題為準。
 
+## 2026-10-23 批次處理結果（115 → 107）
+
+已完成 29 次考試、3,710 題選擇題與 348 題計算／申論題的批次比對。方法是先用 PDF 文字層做全量文字與數字比對，再將公式密集、表格型、低相似度與答案異常的頁面轉成 300 dpi 影像逐題目視核對。
+
+### 已修正
+
+| 題目 | 修正內容 |
+| --- | --- |
+| `107Q4-law-20` | 官方答案為 A（2 日），原網站誤記為 C，已更正。 |
+| `107Q4-macro-written-2` | 原 PDF 資本存量為 `K_0=100`，原網站誤記為 `1,000`；題幹與參考解答已同步修正。 |
+| `109Q1-macro-written-2` | `Md P` 改為 `\(M^d/P\)`，`πe` 改為 `\(\pi^e\)`。 |
+| `110Q1-macro-written-3` | Unicode 數學斜體改為 KaTeX，`πe` 改為 `\(\pi^e\)`，`y*` 改為 `\(y^*\)`。 |
+| `111Q1-macro-written-2` | `dY` 改為 `\(Y_d\)`，`Ms`／`Md` 改為 `\(M^s\)`／`\(M^d\)`。 |
+| `111Q3-macro-written-1` | 重建 `SRAS: Y=\bar Y+P-P^e`、Okun's Law 與 `\bar Y=750`、`\bar u=0.05`、`P^e=40`。 |
+| `112Q1-investment-26` | 選項 A、C 的 `√12` 在 PDF 轉文字時遺失，已依原題補回。 |
+| `112Q3-macro-written-1` | `Y=AK0.5N0.5` 改為 `\(Y=A K^{0.5}N^{0.5}\)`。 |
+| `113Q2-macro-written-2` | `dY` 改為 `\(Y_d\)`，`Md`／`Ms` 改為 `\(M^d\)`／`\(M^s\)`。 |
+| `113Q3-investment-written-2`、`-3` | `E(RA)`、`V(RA)`、`COV(RA RB)` 改為 `\(E(R_A)\)`、`\(V(R_A)\)`、`\(\operatorname{Cov}(R_A,R_B)\)` 等。 |
+| `114Q1-macro-written-2` | `Y = Α𝐾0.3𝑁0.7` 改為 `\(Y=A K^{0.3}N^{0.7}\)`。 |
+| `114Q2-investment-written-1` | `E(rS)`、`σS`、`E(rB)`、`σB` 改為下標，共變數矩陣補上 `%`。 |
+| `111Q2-accounting-28`、`113Q1-accounting-12`、`113Q1-accounting-27` | 私人使用字元（Wingdings 圓圈數字）改為 ①–⑤。 |
+
+### 已確認原題正確、無需修改
+
+- `107Q2-macro-written-1` 的 `M^d=600+0.5Y-150r+P` 確實有 `+P`，不是漏字。
+- `108Q1-macro-written-2` 的 `\bar M/P_0=l(r)+k(y)` 與原題一致。
+- `108Q1-investment-written-2`、`108Q4-investment-written-2`、`109Q3-investment-written-2`、`109Q4-investment-written-2`、`115Q1-investment-written-1` 的表格數值與原題一致，僅版面被壓平。
+- `115Q2-macro-written-3` 的梭羅生產函數確認為 `\(Y=A L^{\alpha}K^{1-\alpha}\)`。
+
+### 答案核對
+
+- 3,710 題選擇題逐題比對證基會公告答案；單一答案題全部一致。
+- 多答案題保留原本官方可接受答案：`108Q3-law-28` C、D；`108Q3-accounting-28` B、D；`109Q1-law-30` B、D；`112Q3-investment-16` 與 `112Q3-accounting-15` A–D 均給分；`114Q1-macro-14` B、C。
+- 唯一答案錯誤為 `107Q4-law-20`，已更正為 A。
+
+### 驗證
+
+- `validate-content.js`：114,357 項、失敗 0。
+- 靜態 KaTeX 稽核：4,770 個可轉換子句、0 編譯失敗。
+- Chrome CDP：33 個全域頁面狀態＋8 個修正題目 390px 狀態，0 頁面水平溢出、0 console errors、0 `.katex-error`。
+
 ## 一、公式結構明顯異常（優先看）
 
 | 題目 ID | 目前文字（節錄） | 可能問題 |
