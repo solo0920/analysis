@@ -1523,6 +1523,7 @@ p {
 .subject-parts {
   display: grid;
   gap: 34px;
+  margin-top: 34px;
 }
 
 .part-block {
@@ -1643,22 +1644,24 @@ p {
   width: 100%;
 }
 
-.chapter-exam-count,
-.chapter-exam-rate {
+.chapter-exam-stat {
   color: var(--muted);
   font-size: 0.72rem;
   line-height: 1.45;
   white-space: nowrap;
 }
 
-.chapter-exam-count strong,
-.chapter-exam-rate strong {
-  color: var(--ink);
+.chapter-exam-stat .exam-count,
+.chapter-exam-stat .exam-rate {
   font-family: var(--font-mono);
   font-size: 0.86rem;
 }
 
-.chapter-exam-rate strong {
+.chapter-exam-stat .exam-count {
+  color: var(--ink);
+}
+
+.chapter-exam-stat .exam-rate {
   color: var(--subject-color, var(--accent));
 }
 
@@ -1680,6 +1683,12 @@ p {
 .chapter-exam-sources-head h2 {
   margin: 3px 0 0;
   font-size: 1.15rem;
+}
+
+.chapter-exam-totals {
+  display: flex;
+  flex-shrink: 0;
+  gap: 18px;
 }
 
 .chapter-exam-total {
@@ -3807,10 +3816,14 @@ p {
   }
 
   .chapter-exam-stats {
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     width: auto;
-    gap: 10px;
+    gap: 2px;
+  }
+
+  .chapter-exam-stat {
+    white-space: normal;
   }
 
   .chapter-num {
@@ -5725,6 +5738,11 @@ p {
     gap: 8px;
   }
 
+  .chapter-exam-totals {
+    flex-wrap: wrap;
+    gap: 10px 18px;
+  }
+
   .chapter-exam-total {
     flex-direction: row;
     align-items: baseline;
@@ -6362,6 +6380,30 @@ p {
   font-size: 0.82rem;
 }
 
+.section-exam-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 12px;
+  color: var(--muted);
+  font-size: 0.74rem;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.section-exam-stats strong {
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.section-exam-link.is-written {
+  border-style: dashed;
+}
+
+.section-exam-link.is-written strong {
+  color: var(--gold);
+}
+
 .section-exam-links {
   display: flex;
   flex-wrap: wrap;
@@ -6396,6 +6438,15 @@ p {
 @media (max-width: 520px) {
   .section-exam-sources {
     padding: 12px;
+  }
+
+  .section-exam-head {
+    flex-wrap: wrap;
+  }
+
+  .section-exam-stats {
+    width: 100%;
+    text-align: left;
   }
 
   .section-exam-link {

@@ -42,6 +42,10 @@
   const practiceChapterStats = new Map();
   const practiceSectionQuestions = new Map();
   const practiceSubjectQuestionTotals = new Map();
+  const writtenQuestionMap = new Map();
+  const writtenChapterStats = new Map();
+  const writtenSectionQuestions = new Map();
+  const writtenSubjectQuestionTotals = new Map();
   practiceQuestions.forEach(function (question) {
     const subjectId = question.subject;
     practiceSubjectQuestionTotals.set(subjectId, (practiceSubjectQuestionTotals.get(subjectId) || 0) + 1);
@@ -68,6 +72,20 @@
   });
   writtenQuestions.forEach(function (question) {
     examQuestionMap.set(question.id, question);
+    writtenQuestionMap.set(question.id, question);
+    writtenSubjectQuestionTotals.set(question.subject, (writtenSubjectQuestionTotals.get(question.subject) || 0) + 1);
+    const sourceIds = Array.isArray(question.sourceIds) && question.sourceIds.length
+      ? Array.from(new Set(question.sourceIds))
+      : (question.sourceId ? [question.sourceId] : []);
+    sourceIds.forEach(function (chapterId) {
+      let stats = writtenChapterStats.get(chapterId);
+      if (!stats) {
+        stats = { count: 0, sessions: new Map() };
+        writtenChapterStats.set(chapterId, stats);
+      }
+      stats.count += 1;
+      stats.sessions.set(question.sessionId, (stats.sessions.get(question.sessionId) || 0) + 1);
+    });
   });
   practiceQuestions.forEach(function (question) {
     examQuestionMap.set(question.id, question);
@@ -98,6 +116,21 @@
           }));
         });
       }
+    });
+  });
+  examSolutionSectionMap.forEach(function (entry, sectionKey) {
+    const normalizedKey = sectionKey.replace("::", "#");
+    entry.examples.forEach(function (example) {
+      const question = writtenQuestionMap.get(example.questionId);
+      if (!question) {
+        return;
+      }
+      const list = writtenSectionQuestions.get(normalizedKey) || [];
+      if (list.some(function (item) { return item.id === question.id; })) {
+        return;
+      }
+      list.push(question);
+      writtenSectionQuestions.set(normalizedKey, list);
     });
   });
   const main = document.getElementById("main");
@@ -670,18 +703,20 @@
       return "";
     }
     const key = chapter.id + "#" + sectionIndex;
-    const list = (practiceSectionQuestions.get(key) || []).slice().sort(function (a, b) {
+    const sortQuestions = function (a, b) {
       return (a.year - b.year) || (a.session - b.session) || (a.number - b.number);
-    });
-    if (!list.length) {
+    };
+    const choiceList = (practiceSectionQuestions.get(key) || []).slice().sort(sortQuestions);
+    const writtenList = (writtenSectionQuestions.get(key) || []).slice().sort(sortQuestions);
+    if (!choiceList.length && !writtenList.length) {
       return "";
     }
-    const seen = new Set();
-    const links = list.filter(function (question) {
-      if (seen.has(question.id)) {
+    const choiceSeen = new Set();
+    const choiceLinks = choiceList.filter(function (question) {
+      if (choiceSeen.has(question.id)) {
         return false;
       }
-      seen.add(question.id);
+      choiceSeen.add(question.id);
       return true;
     }).map(function (question) {
       const session = practiceSessionMap.get(question.sessionId) || {};
@@ -689,10 +724,32 @@
         '<span>' + escapeHtml(session.label || question.sessionId) + '</span>' +
         '<strong>第 ' + question.number + ' 題</strong></a>';
     }).join("");
+    const writtenSeen = new Set();
+    const writtenLinks = writtenList.filter(function (question) {
+      if (writtenSeen.has(question.id)) {
+        return false;
+      }
+      writtenSeen.add(question.id);
+      return true;
+    }).map(function (question) {
+      const session = practiceSessionMap.get(question.sessionId) || {};
+      return '<a class="section-exam-link is-written" href="#/past-exams/written?question=' + encodeURIComponent(question.id) + '">' +
+        '<span>' + escapeHtml(session.label || question.sessionId) + '</span>' +
+        '<strong>第 ' + question.number + ' 題 · 申論</strong></a>';
+    }).join("");
+    const subjectId = chapter.subjectId;
+    const choiceRate = practicePercentText(choiceList.length, practiceSubjectQuestionCount(subjectId));
+    const writtenRate = practicePercentText(writtenList.length, writtenSubjectQuestionCount(subjectId));
     return [
       '<div class="section-exam-sources">',
-      '  <div class="section-exam-head"><strong>本節出處題目</strong><span>' + list.length + ' 題</span></div>',
-      '  <div class="section-exam-links">' + links + '</div>',
+      '  <div class="section-exam-head">',
+      "    <strong>本節出處題目</strong>",
+      '    <div class="section-exam-stats">',
+      "      <span>選擇題 <strong>" + choiceList.length + "</strong> 題 頻率 <strong>" + choiceRate + "</strong></span>",
+      "      <span>申論題 <strong>" + writtenList.length + "</strong> 題 頻率 <strong>" + writtenRate + "</strong></span>",
+      "    </div>",
+      "  </div>",
+      '  <div class="section-exam-links">' + choiceLinks + writtenLinks + "</div>",
       "</div>"
     ].join("");
   }
@@ -1201,7 +1258,6 @@
 
   function renderChapterRow(chapter, subject) {
     const done = progress.has(chapter.id);
-    const unitLabel = " " + subjectUnitLabel(subject);
     return [
       '<a class="chapter-row ' + escapeHtml(subject.colorClass) + '" href="#/chapter/' + escapeHtml(chapter.id) + '">',
       '  <div class="chapter-num"><strong>' + chapterNumber(chapter) + "</strong></div>",
@@ -1211,7 +1267,6 @@
       "  </div>",
       '  <div class="chapter-row-side">',
       renderChapterExamStats(chapter, subject),
-      '    <span class="section-count">' + chapter.sections.length + unitLabel + "</span>",
       '    <span class="done-pill" data-done-pill="' + escapeHtml(chapter.id) + '"' + (done ? "" : " hidden") + ">✓ 已完成</span>",
       "  </div>",
       "</a>"
@@ -1750,6 +1805,14 @@
     return practiceSubjectQuestionTotals.get(subjectId) || 0;
   }
 
+  function writtenChapterStatsFor(chapterId) {
+    return writtenChapterStats.get(chapterId) || { count: 0, sessions: new Map() };
+  }
+
+  function writtenSubjectQuestionCount(subjectId) {
+    return writtenSubjectQuestionTotals.get(subjectId) || 0;
+  }
+
   function practicePercentText(count, total) {
     if (!total) {
       return "0.0%";
@@ -1792,22 +1855,26 @@
   }
 
   function renderChapterExamStats(chapter, subject) {
-    const stats = practiceChapterStatsFor(chapter.id);
-    const total = practiceSubjectQuestionCount(subject.id);
-    const rate = practicePercentText(stats.count, total);
-    const title = "107–115 年共 " + stats.count + " 題，占本科 " + total + " 題的 " + rate + "；出現在 " + stats.sessions.size + " 次考試。";
+    const choiceStats = practiceChapterStatsFor(chapter.id);
+    const writtenStats = writtenChapterStatsFor(chapter.id);
+    const choiceTotal = practiceSubjectQuestionCount(subject.id);
+    const writtenTotal = writtenSubjectQuestionCount(subject.id);
+    const choiceRate = practicePercentText(choiceStats.count, choiceTotal);
+    const writtenRate = practicePercentText(writtenStats.count, writtenTotal);
+    const title = "107–115 年：選擇題 " + choiceStats.count + " 題（" + choiceRate + "）、申論題 " + writtenStats.count + " 題（" + writtenRate + "）；跨章節題目會重複計入各章。";
     return [
       '<div class="chapter-exam-stats" title="' + escapeHtml(title) + '">',
-      '  <span class="chapter-exam-count">出題 <strong>' + stats.count + "</strong> 題</span>",
-      '  <span class="chapter-exam-rate">頻率 <strong>' + rate + "</strong></span>",
+      '  <span class="chapter-exam-stat">選擇題 <strong class="exam-count">' + choiceStats.count + '</strong> 題 頻率 <strong class="exam-rate">' + choiceRate + "</strong></span>",
+      '  <span class="chapter-exam-stat">申論題 <strong class="exam-count">' + writtenStats.count + '</strong> 題 頻率 <strong class="exam-rate">' + writtenRate + "</strong></span>",
       "</div>"
     ].join("");
   }
 
   function renderChapterExamSourceBlock(chapter) {
-    const stats = practiceChapterStatsFor(chapter.id);
-    const total = practiceSubjectQuestionCount(chapter.subjectId);
-    const rate = practicePercentText(stats.count, total);
+    const choiceStats = practiceChapterStatsFor(chapter.id);
+    const writtenStats = writtenChapterStatsFor(chapter.id);
+    const choiceRate = practicePercentText(choiceStats.count, practiceSubjectQuestionCount(chapter.subjectId));
+    const writtenRate = practicePercentText(writtenStats.count, writtenSubjectQuestionCount(chapter.subjectId));
     return [
       '<section class="chapter-exam-sources" id="chapter-exam-sources" aria-labelledby="chapter-exam-sources-heading">',
       '  <div class="chapter-exam-sources-head">',
@@ -1815,9 +1882,12 @@
       '      <p class="eyebrow">考古題出處</p>',
       '      <h2 id="chapter-exam-sources-heading">本章出題紀錄</h2>',
       "    </div>",
-      '    <div class="chapter-exam-total"><strong>' + stats.count + "</strong><span>題 · " + rate + "</span></div>",
+      '    <div class="chapter-exam-totals">',
+      '      <div class="chapter-exam-total"><strong>' + choiceStats.count + "</strong><span>選擇題 · " + choiceRate + "</span></div>",
+      '      <div class="chapter-exam-total"><strong>' + writtenStats.count + "</strong><span>申論題 · " + writtenRate + "</span></div>",
+      "    </div>",
       "  </div>",
-      "  <p class=\"chapter-exam-note\">以 107–115 年選擇題的章節出處統計；頻率為本章出處標記數占該科題數的比例；跨章節題目會重複計入各章。題目已依節次列在本章各節的「本節出處題目」，可直接點選進入該題。</p>",
+      "  <p class=\"chapter-exam-note\">以 107–115 年選擇題與計算／申論題的章節出處統計；頻率分別以該科選擇題數與申論題數為分母；跨章節題目會重複計入各章。題目已依節次列在本章各節的「本節出處題目」，可直接點選進入該題。</p>",
       '  <a class="text-link" href="#/past-exams">前往考古題練習庫 →</a>',
       "</section>"
     ].join("");
@@ -2749,7 +2819,6 @@
   }
 
   function renderSubject(subject) {
-    const progressState = subjectProgress(subject);
     const unitLabel = subjectUnitLabel(subject, true);
     const partGroups = subject.parts
       ? subject.parts.map(function (part) {
@@ -2800,14 +2869,6 @@
       subject.id === "macro" ? renderMacroEvolutionCta() : "",
       subject.id === "macro" ? renderNobelCta() : "",
       subject.id === "investment" ? renderInvestmentFormulasCard() : "",
-      '  <div class="section-heading subject-chapters-head">',
-      "    <div>",
-      '      <p class="eyebrow">章節地圖</p>',
-      "      <h2>章節地圖</h2>",
-      "      <p>依原始目錄的章節順序排列，點選章節即可進入該章的名詞與考試重點；右側出題次數與頻率依 107–115 年考古題的章節出處統計，頻率為該章出處標記數占本科題數的比例；跨章節題目會重複計入各章，因此各章頻率合計可能超過 100%。</p>",
-      "    </div>",
-      '    <span class="progress-text">目前完成 <span data-progress-text="' + escapeHtml(subject.id) + '">' + progressState.done + " / " + progressState.total + " 章</span></span>",
-      "  </div>",
       '  <div class="subject-parts">' + partMarkup + "</div>",
       subject.note
         ? '  <div class="notice"><strong>目錄說明：</strong>' + escapeHtml(subject.note) + "</div>"
