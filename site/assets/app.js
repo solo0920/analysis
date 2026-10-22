@@ -18,6 +18,9 @@
   const practiceSessions = Array.isArray(practiceData.sessions) ? practiceData.sessions : [];
   const practiceQuestions = Array.isArray(practiceData.questions) ? practiceData.questions : [];
   const writtenQuestions = Array.isArray(writtenData.questions) ? writtenData.questions : [];
+  const examSolutionBatches = Array.isArray(window.EXAM_SOLUTIONS) ? window.EXAM_SOLUTIONS : [];
+  const examSolutionSectionMap = new Map();
+  const examQuestionMap = new Map();
   const macroCurrentEvents = Array.isArray(macroCurrentData.events) ? macroCurrentData.events : [];
   const macroCurrentEventMap = new Map();
   macroCurrentEvents.forEach(function (event) {
@@ -56,6 +59,36 @@
         practiceSectionQuestions.set(sectionKey, []);
       }
       practiceSectionQuestions.get(sectionKey).push(question);
+    });
+  });
+  writtenQuestions.forEach(function (question) {
+    examQuestionMap.set(question.id, question);
+  });
+  practiceQuestions.forEach(function (question) {
+    examQuestionMap.set(question.id, question);
+  });
+  examSolutionBatches.forEach(function (batch) {
+    const sections = batch && batch.sections ? batch.sections : {};
+    Object.keys(sections).forEach(function (sectionKey) {
+      const source = sections[sectionKey] || {};
+      let entry = examSolutionSectionMap.get(sectionKey);
+      if (!entry) {
+        entry = { focus: "", strategies: [], examples: [] };
+        examSolutionSectionMap.set(sectionKey, entry);
+      }
+      if (!entry.focus && source.focus) {
+        entry.focus = source.focus;
+      }
+      if (Array.isArray(source.strategies)) {
+        entry.strategies = entry.strategies.concat(source.strategies);
+      }
+      if (Array.isArray(source.examples)) {
+        source.examples.forEach(function (example) {
+          entry.examples.push(Object.assign({}, example, {
+            year: example.year || batch.year
+          }));
+        });
+      }
     });
   });
   const main = document.getElementById("main");
@@ -649,6 +682,97 @@
     ].join("");
   }
 
+  function examSolutionFor(chapter, sectionIndex) {
+    if (!chapter) {
+      return null;
+    }
+    return examSolutionSectionMap.get(chapter.id + "::" + sectionIndex) || null;
+  }
+
+  function renderSolutionExample(example, index) {
+    const question = examQuestionMap.get(example.questionId);
+    if (!question) {
+      return "";
+    }
+    const isChoice = Array.isArray(question.options) && question.options.length > 0;
+    const session = practiceSessionMap.get(question.sessionId) || {};
+    const sessionLabel = session.label || (question.year + " 年第 " + question.session + " 次");
+    const kind = question.kind || (isChoice ? "選擇題" : "計算／申論");
+    const steps = Array.isArray(example.steps) ? example.steps : [];
+    const correctOptions = isChoice
+      ? question.answer.map(function (letter) {
+          const optionIndex = "ABCD".indexOf(letter);
+          return optionIndex >= 0 && question.options[optionIndex] ? letter + "：" + question.options[optionIndex] : letter;
+        }).join("；")
+      : "";
+    const options = isChoice
+      ? '<ol class="worked-example-options">' + question.options.map(function (text, optionIndex) {
+          const letter = "ABCD"[optionIndex];
+          const correct = question.answer.indexOf(letter) !== -1;
+          return '<li' + (correct ? ' class="is-correct"' : "") + '><span class="worked-example-letter">' + letter + '</span><span>' + escapeHtml(text) + '</span></li>';
+        }).join("") + "</ol>"
+      : "";
+    const referenceAnswer = !isChoice && Array.isArray(question.answer) && question.answer.length
+      ? '<details class="worked-example-reference"><summary>完整參考解答（本站）</summary><div class="worked-example-reference-body">' + question.answer.map(function (text) {
+          return "<p>" + renderWrittenAnswer(text) + "</p>";
+        }).join("") + "</div></details>"
+      : "";
+    const questionLink = isChoice
+      ? "#/past-exams?question=" + encodeURIComponent(question.id)
+      : "#/past-exams/written?question=" + encodeURIComponent(question.id);
+    return [
+      '<details class="worked-example"' + (index === 0 ? " open" : "") + ">",
+      '  <summary class="worked-example-summary">',
+      '    <span class="worked-example-number">例 ' + (index + 1) + "</span>",
+      '    <span class="worked-example-title">' + escapeHtml(sessionLabel) + " · 第 " + question.number + " 題</span>",
+      '    <span class="worked-example-kind">' + escapeHtml(kind) + "</span>",
+      "  </summary>",
+      '  <div class="worked-example-body">',
+      '    <p class="worked-example-stem">' + escapeHtml(question.stem) + "</p>",
+      options,
+      isChoice ? '    <p class="worked-example-answer"><strong>答案</strong> ' + escapeHtml(correctOptions) + "</p>" : "",
+      steps.length
+        ? '    <div class="worked-example-steps"><h4>解題步驟</h4><ol>' + steps.map(function (step) {
+            return "<li>" + renderWrittenAnswer(step) + "</li>";
+          }).join("") + "</ol></div>"
+        : "",
+      example.takeaway ? '    <div class="worked-example-note"><strong>帶走這一句</strong><p>' + renderWrittenAnswer(example.takeaway) + "</p></div>" : "",
+      example.trap ? '    <div class="worked-example-trap"><strong>易錯點</strong><p>' + renderWrittenAnswer(example.trap) + "</p></div>" : "",
+      referenceAnswer,
+      '    <div class="worked-example-footer"><a class="text-link" href="' + questionLink + '">在題庫中開啟題目 →</a><span>' + escapeHtml(question.note || "本站參考解答（非官方）") + "</span></div>",
+      "  </div>",
+      "</details>"
+    ].join("");
+  }
+
+  function renderSectionSolutions(chapter, sectionIndex) {
+    const solution = examSolutionFor(chapter, sectionIndex);
+    if (!solution) {
+      return "";
+    }
+    const strategies = Array.isArray(solution.strategies) ? solution.strategies : [];
+    const examples = (Array.isArray(solution.examples) ? solution.examples : []).filter(function (example) {
+      return examQuestionMap.has(example.questionId);
+    });
+    if (!solution.focus && !strategies.length && !examples.length) {
+      return "";
+    }
+    return [
+      '<div class="section-solutions">',
+      '  <div class="subheading">解題方法</div>',
+      solution.focus ? '  <p class="solution-focus">' + renderWrittenAnswer(solution.focus) + "</p>" : "",
+      strategies.length
+        ? '  <ol class="solution-strategy">' + strategies.map(function (step) {
+            return "<li>" + renderWrittenAnswer(step) + "</li>";
+          }).join("") + "</ol>"
+        : "",
+      examples.length
+        ? '  <div class="subheading">考古題解題</div><div class="worked-examples">' + examples.map(renderSolutionExample).join("") + "</div>"
+        : "",
+      "</div>"
+    ].join("");
+  }
+
   function renderSection(section, index, subject, chapter) {
     const sectionId = "section-" + (index + 1);
     const focus = isFocusSection(subject, section);
@@ -686,6 +810,7 @@
       ratioFormulas.length
         ? '  <div class="ratio-inline"><div class="subheading">比率公式總表</div><p class="ratio-inline-note">以下公式與投資學頁面的比率列表共用同一份資料。</p>' + renderRatioFormulaTables(ratioFormulas, { showChapter: false }) + "</div>"
         : "",
+      renderSectionSolutions(chapter, index + 1),
       '  <div class="exam-box">',
       "    <h3>考試重點</h3>",
       "    <ul>" + section.points.map(function (point) {
