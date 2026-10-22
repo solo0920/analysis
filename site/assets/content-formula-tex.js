@@ -5,7 +5,15 @@
 window.FORMULA_TEX = {
   "macro-01::第1節 國民所得與GDP": { tex: String.raw`GDP = C + I + G + (X - M)`, note: "" },
   "macro-01::第2節 GDP之計算": { tex: String.raw`GDP = C + I + G + X - M`, note: "" },
-  "macro-01::第3節 其他國民所得衡量工具": { tex: String.raw`DI = PI - \text{個人直接稅}`, note: "" },
+  "macro-01::第3節 其他國民所得衡量工具": { tex: String.raw`\begin{aligned}
+GDP &= C + I + G + (X - M)\\
+GNI &= GDP + NFIA\\
+NNP &= GNI - D\\
+NI &= NNP - NIT,\quad NIT = T_i - S_u\\
+PI &= NI - CIT - URE - SSC\\
+   &\quad + TR + INT\\
+PDI &= PI - T_p = C + S
+\end{aligned}`, note: "NFIA＝國外要素所得淨額；D＝折舊（固定資本消耗）；NIT＝間接稅淨額（T_i 間接稅 − S_u 補貼）；CIT＝營利事業所得稅；URE＝未分配盈餘；SSC＝社會安全捐；TR＝移轉支付；INT＝淨利息；T_p＝個人直接稅。GNP 與 GNI 在多數教材同義。" },
   "macro-01::第4節 物價指數與經濟成長率": { tex: String.raw`\text{實質 GDP} = \frac{\text{名目 GDP}}{\text{GDP 平減指數}/100}`, note: "" },
 
   "macro-02::第1節 均衡所得之決定": { tex: String.raw`Y = \frac{1}{1-MPC} \times A_0`, note: "A₀ 為自發性支出；封閉、無稅、無進口、物價固定的簡單模型。" },

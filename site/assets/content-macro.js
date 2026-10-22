@@ -62,23 +62,40 @@ window.MACRO_SUBJECT = {
         {
           title: "第3節 其他國民所得衡量工具",
           body: [
-            "從 GDP 可以一路推導出 GNP、NNP、NI、PI 與 DI。每一個指標都扣掉或加上不同項目，目的是從「生產」逐漸轉為「個人可支配」的概念。",
-            "考試最常考的是各指標之間的加減關係。例如 NNP 是 GNP 減折舊；NI 是 NNP 減間接稅淨額；PI 還要調整公司保留盈餘、社會安全捐與移轉支付；DI 則再扣個人直接稅。"
+            "完整的國民所得會計帳可以從 GNI 一路推到個人可支配所得（PDI）。先由支出面的 \\(GDP = C + I + G + (X - M)\\) 出發，加上國外要素所得淨額 NFIA，得到 \\(GNI = GDP + NFIA\\)；再扣固定資本消耗（折舊）D，得到 \\(NNP = GNI - D\\)；最後扣間接稅淨額 NIT，得到 \\(NI = NNP - NIT\\)。",
+            "NI 還不是家計單位實際收到的錢。從 NI 扣掉營利事業所得稅 CIT、未分配盈餘 URE 與社會安全捐 SSC，再加上移轉支付 TR 與淨利息 INT，才得到個人所得 \\(PI = NI - CIT - URE - SSC + TR + INT\\)。PI 再扣個人直接稅 \\(T_p\\)，就是個人可支配所得 \\(PDI = PI - T_p\\)。",
+            "PDI 只有兩個用途：消費 C 與儲蓄 S，因此 \\(PDI = C + S\\)，或 \\(S = PDI - C\\)。注意 PI 是稅前、PDI 是稅後；考試常把「個人所得」與「可支配所得」混在一起，或把移轉支付誤算進 GDP。",
+            "簡化例：假設 GDP = 1,000、NFIA = 20，則 GNI = 1,020；折舊 = 100，NNP = 920；間接稅淨額 = 70，NI = 850。若 CIT = 50、URE = 30、SSC = 40、TR = 80、INT = 10，則 PI = 820；個人直接稅 = 60，PDI = 760。若消費 = 600，則儲蓄 = 160，且 \\(600 + 160 = 760\\)。"
           ],
           terms: [
-            ["國民生產毛額（GNP）", "GDP 加國外要素所得淨額，代表本國居民生產所得。"],
-            ["國民生產淨額（NNP）", "GNP 減固定資本消耗（折舊），反映資本存量折耗後的生產淨額。"],
-            ["國民所得（NI）", "NNP 減間接稅淨額，為生產要素報酬的總和。"],
-            ["個人所得（PI）", "NI 減公司保留盈餘與社會安全捐，加移轉支付後，成為個人收到的所得。"],
-            ["可支配所得（DI）", "PI 減個人直接稅，是個人可以自由支配的所得，也是消費函數的主要變數。"]
+            ["國民生產毛額（Gross National Product, GNP）／國民總收入（Gross National Income, GNI）", "以本國居民為原則的生產所得；\\(GNI = GDP + NFIA\\)。多數教材將 GNP 與 GNI 視為同義，臺灣官方近年多用 GNI。"],
+            ["國外要素所得淨額（Net Factor Income from Abroad, NFIA）", "本國居民在國外生產所得減外國居民在本國生產所得；可正可負，是 GDP 與 GNI 的橋樑。"],
+            ["國民生產淨額（Net National Product, NNP）", "GNI 減固定資本消耗（折舊）：\\(NNP = GNI - D\\)，反映資本折耗後的生產淨額。"],
+            ["固定資本消耗／折舊（Consumption of Fixed Capital, CFC／Depreciation, D）", "生產過程中資本設備的耗損；是 GNI 推導 NNP 的扣項，不是要素報酬。"],
+            ["國民所得（National Income, NI）", "NNP 減間接稅淨額：\\(NI = NNP - NIT\\)；衡量生產要素報酬的總和，又稱按要素成本計算的國民所得。"],
+            ["間接稅淨額（Net Indirect Taxes, NIT）", "間接稅減補貼：\\(NIT = T_i - S_u\\)；從市場價格的 NNP 轉為要素成本的 NI 時扣除。"],
+            ["個人所得（Personal Income, PI）", "家計單位在收到個人直接稅前的所得：\\(PI = NI - CIT - URE - SSC + TR + INT\\)。"],
+            ["營利事業所得稅（Corporate Income Tax, CIT）", "公司利潤先繳給政府的稅；計算 PI 時從 NI 扣除，因為它不是家計單位可收到的所得。"],
+            ["未分配盈餘（Undistributed Corporate Profits／Retained Earnings, URE）", "公司保留下來、未發給股東的利潤；計算 PI 時扣除。"],
+            ["社會安全捐（Social Security Contributions, SSC）", "受僱者與雇主繳交的社會安全制度費用；計算 PI 時扣除。"],
+            ["移轉支付（Transfer Payments, TR）", "政府或企業無對價給付給個人的款項，如社會福利、失業救濟；不計入 GDP／NI，但計入 PI。"],
+            ["淨利息（Net Interest, INT）", "家計單位收到的利息與支付的利息淨額（含政府公債利息等）；計算 PI 時加回。"],
+            ["個人直接稅（Personal Direct Taxes, T_p）", "個人所得稅、財產稅等直接由個人負擔的稅；從 PI 扣除後得到 PDI。"],
+            ["個人可支配所得（Personal Disposable Income, PDI）", "個人真正可以自由支配的所得：\\(PDI = PI - T_p = C + S\\)；英文亦常作 Disposable Personal Income（DPI）。"],
+            ["消費（Consumption, C）", "家計單位對最終財貨與勞務的支出；是 PDI 的主要用途。"],
+            ["儲蓄（Saving, S）", "PDI 中未用於消費的部分：\\(S = PDI - C\\)。"]
           ],
           points: [
-            "折舊、間接稅是「扣項」；移轉支付是「加項」。",
-            "DI 是家計部門消費決策的核心變數。",
-            "人均所得是把總量除以人口，常用於跨國生活水準比較。"
+            "GNI 與 GNP 多數教材同義；GDP 採屬地、GNI 採屬人，兩者以 NFIA 連接。",
+            "GNI→NNP 扣折舊 D；NNP→NI 扣間接稅淨額 NIT（間接稅減補貼）。",
+            "NI→PI 的扣項是 CIT、URE、SSC；加項是 TR、INT，方向不要顛倒。",
+            "移轉支付不是當期生產，不計入 GDP 與 NI，但它是 PI 的加項。",
+            "PI 是個人稅前所得；PDI 是個人稅後可支配所得，兩者不同。",
+            "PDI = C + S；消費函數以 PDI 為主要解釋變數，儲蓄是 PDI 減消費。",
+            "人均所得＝國民所得 ÷ 人口，常用於跨國生活水準比較；它仍是平均數，不能反映所得分配。"
           ],
-          memory: "GDP→GNP→NNP→NI→PI→DI，一路扣掉不是個人可用的錢。",
-          formula: "DI = PI − 個人直接稅"
+          memory: "GDP 加 NFIA 變 GNI，減折舊變 NNP，減間接稅淨額變 NI；NI 扣公司稅、保留盈餘、社保，加移轉與利息變 PI；PI 再減個人稅變 PDI，最後 PDI = C + S。",
+          formula: "GNI = GDP + NFIA；NNP = GNI − D；NI = NNP − NIT；PI = NI − CIT − URE − SSC + TR + INT；PDI = PI − T_p = C + S"
         },
         {
           title: "第4節 物價指數與經濟成長率",
