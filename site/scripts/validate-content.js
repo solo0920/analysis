@@ -32,6 +32,7 @@ const diagramFiles = [
   "diagrams-macro-5.js"
 ];
 const investmentDiagramFiles = ["diagrams-investment.js"];
+const accountingDiagramFiles = ["diagrams-accounting.js"];
 const nobelDiagramFiles = ["diagrams-nobel.js"];
 
 function loadContent() {
@@ -41,7 +42,7 @@ function loadContent() {
     const fullPath = path.join(siteDir, "assets", file);
     vm.runInContext(fs.readFileSync(fullPath, "utf8"), context, { filename: file });
   });
-  diagramFiles.concat(investmentDiagramFiles, nobelDiagramFiles).forEach(function (file) {
+  diagramFiles.concat(investmentDiagramFiles, accountingDiagramFiles, nobelDiagramFiles).forEach(function (file) {
     const fullPath = path.join(siteDir, "assets", file);
     vm.runInContext(fs.readFileSync(fullPath, "utf8"), context, { filename: file });
   });
@@ -49,6 +50,7 @@ function loadContent() {
     content: context.window.EXAM_CONTENT,
     diagrams: context.window.MACRO_DIAGRAMS || {},
     investmentDiagrams: context.window.INVESTMENT_DIAGRAMS || {},
+    accountingDiagrams: context.window.ACCOUNTING_DIAGRAMS || {},
     nobelData: context.window.NOBEL_DATA || { rows: [], groups: [], meta: {} },
     nobelDiagrams: context.window.NOBEL_DIAGRAMS || {},
     macroEvolution: context.window.MACRO_EVOLUTION || { meta: {}, stages: [] },
@@ -191,6 +193,7 @@ const loaded = loadContent();
 const content = loaded.content;
 const diagrams = loaded.diagrams;
 const investmentDiagrams = loaded.investmentDiagrams || {};
+const accountingDiagrams = loaded.accountingDiagrams || {};
 const nobelData = loaded.nobelData;
 const nobelDiagrams = loaded.nobelDiagrams;
 const macroEvolution = loaded.macroEvolution;
@@ -288,6 +291,10 @@ const ratioNames = new Set();
 const investmentChapterMap = {};
 investment.chapters.forEach(function (chapter) {
   investmentChapterMap[chapter.id] = chapter;
+});
+const accountingChapterMap = {};
+accounting.chapters.forEach(function (chapter) {
+  accountingChapterMap[chapter.id] = chapter;
 });
 ratioFormulas.forEach(function (entry) {
   check(Boolean(entry && typeof entry === "object"), "投資學比例公式資料格式錯誤");
@@ -692,10 +699,83 @@ investmentDiagramKeys.forEach(function (key) {
   check(typeof diagram.note === "string" && diagram.note.length > 0, "投資學教學圖缺少示意提醒：" + key);
 });
 
+/* 會計學教學流程圖：與總體模型圖、投資學教學圖共用相同的 SVG 結構與無障礙檢查。 */
+const accountingDiagramKeys = Object.keys(accountingDiagrams);
+check(accountingDiagramKeys.length >= 1, "會計學教學流程圖應至少 1 張（目前 " + accountingDiagramKeys.length + " 張）");
+
+const rawAccountingKeys = [];
+accountingDiagramFiles.forEach(function (file) {
+  const text = fs.readFileSync(path.join(siteDir, "assets", file), "utf8");
+  const matches = text.match(/^\s{2}"(accounting-\d+#\d+)":\s*\{/gm) || [];
+  matches.forEach(function (match) {
+    rawAccountingKeys.push(match.trim().split('"')[1]);
+  });
+});
+check(new Set(rawAccountingKeys).size === rawAccountingKeys.length, "會計學教學流程圖鍵值不得重複");
+check(rawAccountingKeys.length === accountingDiagramKeys.length, "會計學教學流程圖載入數量與檔案定義數量不一致（檔案 " + rawAccountingKeys.length + "、載入 " + accountingDiagramKeys.length + "）");
+check(read("site/index.html").indexOf("assets/diagrams-accounting.js") !== -1, "index.html 未載入會計學教學流程圖資料檔");
+
+accountingDiagramKeys.forEach(function (key) {
+  const keyParts = key.split("#");
+  check(keyParts.length === 2 && keyParts[0].indexOf("accounting-") === 0, "會計學教學流程圖只能掛在會計學章節，鍵值格式：" + key);
+  const chapter = accountingChapterMap[keyParts[0]];
+  check(Boolean(chapter), "會計學教學流程圖指向不存在的章節：" + key);
+  if (!chapter) {
+    return;
+  }
+  const sectionIndex = Number(keyParts[1]);
+  check(Number.isInteger(sectionIndex) && sectionIndex >= 0 && sectionIndex < chapter.sections.length, "會計學教學流程圖節次超出範圍：" + key);
+  const section = chapter.sections[sectionIndex];
+  if (!section) {
+    return;
+  }
+  const diagram = accountingDiagrams[key];
+  check(diagram.sectionTitle === section.title, "會計學教學流程圖節次標題不符：" + key + "（" + diagram.sectionTitle + "）");
+  check(diagram.kicker === "教學流程圖", "會計學教學流程圖應標示為教學流程圖：" + key);
+  check(typeof diagram.title === "string" && diagram.title.length > 0, "會計學教學流程圖缺少標題：" + key);
+  check(typeof diagram.caption === "string" && diagram.caption.length > 0, "會計學教學流程圖缺少圖說：" + key);
+  const svg = String(diagram.svg || "").trim();
+  check(svg.indexOf("<svg") === 0, "會計學教學流程圖缺少 SVG 開頭：" + key);
+  check(svg.slice(-6) === "</svg>", "會計學教學流程圖 SVG 未正確結束：" + key);
+  check(/viewBox="/.test(svg), "會計學教學流程圖 SVG 缺少 viewBox：" + key);
+  check(/role="img"/.test(svg), "會計學教學流程圖 SVG 缺少 role=\"img\"：" + key);
+  check(/aria-labelledby="/.test(svg), "會計學教學流程圖 SVG 缺少 aria-labelledby：" + key);
+  check(/<title /.test(svg), "會計學教學流程圖 SVG 缺少 title：" + key);
+  check(/<desc /.test(svg), "會計學教學流程圖 SVG 缺少 desc：" + key);
+  const labelledBy = svg.match(/aria-labelledby="([^"]+)"/);
+  if (labelledBy) {
+    labelledBy[1].split(/\s+/).forEach(function (id) {
+      const escapedId = id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      check(new RegExp('id="' + escapedId + '"').test(svg), "會計學教學流程圖 aria-labelledby 指向不存在的 ID：" + key + "（" + id + "）");
+    });
+  }
+  const idMatches = svg.match(/\bid="[^"]+"/g) || [];
+  idMatches.forEach(function (match) {
+    const id = match.slice(4, -1);
+    check(svgIds.indexOf(id) === -1, "會計學教學流程圖 SVG ID 重複：" + key + "（" + id + "）");
+    svgIds.push(id);
+  });
+  check(!/<script|javascript:|xlink:href|<image|<use /i.test(svg), "會計學教學流程圖 SVG 含不安全的標籤或外部參照：" + key);
+  check(!/https?:\/\/(?!www\.w3\.org)/.test(svg), "會計學教學流程圖 SVG 含外部資源連結：" + key);
+  ["variables", "parameters"].forEach(function (field) {
+    const label = field === "variables" ? "流程節點" : "會計基礎";
+    const rows = diagram[field];
+    check(Array.isArray(rows) && rows.length > 0, "會計學教學流程圖缺少" + label + "表：" + key);
+    (rows || []).forEach(function (row) {
+      check(Array.isArray(row) && row.length === 3 && row[0] && row[1] && row[2], "會計學教學流程圖" + label + "格式錯誤：" + key);
+    });
+  });
+  const variableSymbols = (diagram.variables || []).map(function (row) { return row[0]; });
+  (diagram.parameters || []).forEach(function (row) {
+    check(variableSymbols.indexOf(row[0]) === -1, "會計學教學流程圖變數與參數符號重複：" + key + "（" + row[0] + "）");
+  });
+  check(typeof diagram.note === "string" && diagram.note.length > 0, "會計學教學流程圖缺少示意提醒：" + key);
+});
+
 const allSvgIds = new Map();
 const duplicateSvgIds = [];
-diagramKeys.concat(investmentDiagramKeys).forEach(function (key) {
-  const source = diagrams[key] || investmentDiagrams[key] || {};
+diagramKeys.concat(investmentDiagramKeys, accountingDiagramKeys).forEach(function (key) {
+  const source = diagrams[key] || investmentDiagrams[key] || accountingDiagrams[key] || {};
   const idMatches = String(source.svg || "").match(/\bid="[^"]+"/g) || [];
   idMatches.forEach(function (match) {
     const id = match.slice(4, -1);
@@ -1138,6 +1218,7 @@ const languageSurface = [
   JSON.stringify(content),
   JSON.stringify(diagrams),
   JSON.stringify(investmentDiagrams),
+  JSON.stringify(accountingDiagrams),
   JSON.stringify(nobelData),
   JSON.stringify(nobelDiagrams),
   JSON.stringify(macroEvolution),
@@ -1346,7 +1427,7 @@ console.log("章節：" + allChapters.length + "（總體經濟學 " + macro.cha
 console.log("學習單元：" + totalSections + "（總體經濟學 " + macroSections + " 節、投資學 " + investmentSections + " 個重點、會計學 " + accountingSections + " 個單元、證券法規 " + lawSections + " 節）");
 console.log("名詞卡：" + totalTerms);
 console.log("章節圖：" + diagramKeys.length + "（總體經濟學；含 1 張教學流程圖）");
-console.log("教學圖：" + investmentDiagramKeys.length + "（投資學）");
+console.log("教學圖：" + (investmentDiagramKeys.length + accountingDiagramKeys.length) + "（投資學 " + investmentDiagramKeys.length + "、會計學 " + accountingDiagramKeys.length + "）");
 console.log("諾貝爾年表：" + nobelRows.length + " 屆、 " + nobelDiagramKeys.length + " 組模型圖");
 console.log("學派演進圖：" + evolutionStages.length + " 個階段、 " + evolutionNodes.length + " 個節點、 " + evolutionModelLinkCount + " 個模型連結、 " + evolutionNobelYears.size + " 個諾貝爾里程碑");
 console.log("資料來源：" + content.sources.length);
@@ -1365,4 +1446,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log("驗證通過：總體經濟學第 1–2 篇（13 章、50 節）、投資學第 1–5 篇（16 章、52 個重點）、會計學（23 章、41 個具名節次與 23 個補充學習重點）、證券法規（21 章、21 節、1,507 條官方全文）、118 個 KaTeX 公式、諾貝爾年表（1969–2026）與 107–115 年 3,710 題考古題練習庫結構一致。");
+console.log("驗證通過：總體經濟學第 1–2 篇（13 章、50 節）、投資學第 1–5 篇（16 章、52 個重點）、會計學（23 章、41 個具名節次與 23 個補充學習重點）、證券法規（21 章、21 節、1,507 條官方全文）、" + (diagramKeys.length + investmentDiagramKeys.length + accountingDiagramKeys.length) + " 張章節教學圖（總體 " + diagramKeys.length + "、投資 " + investmentDiagramKeys.length + "、會計 " + accountingDiagramKeys.length + "）、118 個 KaTeX 公式、諾貝爾年表（1969–2026）與 107–115 年 3,710 題考古題練習庫結構一致。");
