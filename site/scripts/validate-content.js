@@ -36,7 +36,7 @@ const nobelDiagramFiles = ["diagrams-nobel.js"];
 function loadContent() {
   const context = { window: {} };
   vm.createContext(context);
-  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-macro-current.js", "content-past-exams-written.js", "content-past-exams.js", "content-exam-solutions-115.js", "content-exam-solutions-114.js", "content-exam-solutions-113.js", "content-exam-solutions-112.js", "content-exam-solutions-111.js"].forEach(function (file) {
+  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-macro-current.js", "content-past-exams-written.js", "content-past-exams.js", "content-exam-solutions-115.js", "content-exam-solutions-114.js", "content-exam-solutions-113.js", "content-exam-solutions-112.js", "content-exam-solutions-111.js", "content-exam-solutions-110.js"].forEach(function (file) {
     const fullPath = path.join(siteDir, "assets", file);
     vm.runInContext(fs.readFileSync(fullPath, "utf8"), context, { filename: file });
   });
@@ -1215,7 +1215,8 @@ const solutionExpectedByYear = {
   114: { sections: 47, examples: 83, written: 36 },
   113: { sections: 32, examples: 52, written: 36 },
   112: { sections: 35, examples: 48, written: 36 },
-  111: { sections: 27, examples: 48, written: 36 }
+  111: { sections: 27, examples: 48, written: 36 },
+  110: { sections: 29, examples: 48, written: 36 }
 };
 Object.keys(solutionExpectedByYear).forEach(function (year) {
   const expected = solutionExpectedByYear[year];
