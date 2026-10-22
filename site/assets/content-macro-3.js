@@ -1,5 +1,5 @@
 /* 總體經濟學 — 章節內容（第 11–13 章）
-   依 documents/gross_economics_contents.md 的第 2 篇「金融市場」。
+   依 documents/gross_economics_contents.md 的後段章節（第 11–13 章）。
    接續 content-macro-2.js，保持相同資料結構；載入順序必須在 content.js 之前。 */
 
 window.MACRO_SUBJECT.parts = [

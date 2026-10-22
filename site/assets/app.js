@@ -231,10 +231,7 @@
   }
 
   function chapterPartLabel(chapter) {
-    if (!chapter.partTitle) {
-      return "";
-    }
-    return "第 " + chapter.part + " 篇 " + chapter.partTitle;
+    return chapter.partTitle || "";
   }
 
   function getSubject(subjectId) {
@@ -1350,6 +1347,45 @@
       "  </div>",
       '  <div class="option-cards">' + items.map(renderOptionPriorityCard).join("") + "</div>",
       "</section>"
+    ].join("");
+  }
+
+  function renderInvestmentFormulasCard() {
+    const ratioCount = investmentRatioFormulas().length;
+    const optionCount = investmentOptionPriorities().length;
+    return [
+      '<section class="ratio-overview ratio-overview-cta" aria-labelledby="investment-formulas-cta-heading">',
+      '  <div class="ratio-overview-head">',
+      "    <div>",
+      '      <p class="eyebrow">公式與比率</p>',
+      '      <h2 id="investment-formulas-cta-heading">投資學公式總表</h2>',
+      "      <p>比例分析 " + ratioCount + " 條與選擇權評價優先順序 " + optionCount + " 項已整理成獨立頁面，方便一次複習與列印。</p>",
+      "    </div>",
+      '    <div class="ratio-overview-actions">',
+      '      <a class="btn btn-primary" href="#/investment/formulas">查看公式總表 →</a>',
+      "    </div>",
+      "  </div>",
+      "</section>"
+    ].join("");
+  }
+
+  function renderInvestmentFormulasPage() {
+    const ratioCount = investmentRatioFormulas().length;
+    const optionCount = investmentOptionPriorities().length;
+    return [
+      '<div class="page subject-investment">',
+      '  <nav class="breadcrumb" aria-label="麵包屑">',
+      '    <a href="#/">首頁</a><span>/</span>',
+      '    <a href="#/subject/investment">投資學</a><span>/</span>',
+      "    <span>公式總表</span>",
+      "  </nav>",
+      renderPageHead("投資學 · 公式與比率", "投資學公式總表", "把比例分析 " + ratioCount + " 條公式與選擇權評價優先順序 " + optionCount + " 項集中在一頁；公式與對應章節共用同一份資料，修改一處即可同步更新。"),
+      ratioCount ? renderInvestmentRatioOverview() : "",
+      optionCount ? renderOptionPrioritySection() : "",
+      '  <div class="chapter-actions">',
+      '    <a class="btn" href="#/subject/investment">← 回投資學</a>',
+      "  </div>",
+      "</div>"
     ].join("");
   }
 
@@ -2602,7 +2638,7 @@
       return [
         '<section class="part-block">',
         group.title
-          ? '<div class="part-heading"><div><p class="eyebrow">第 ' + group.number + " 篇</p><h2>" + escapeHtml(group.title) + "</h2></div>" + (group.page ? '<span class="part-page">' + escapeHtml(group.page) + "</span>" : "") + "</div>"
+          ? '<div class="part-heading"><div><h2>' + escapeHtml(group.title) + "</h2></div>" + (group.page ? '<span class="part-page">' + escapeHtml(group.page) + "</span>" : "") + "</div>"
           : "",
         '  <div class="chapter-list">' + group.chapters.map(function (chapter) {
           return renderChapterRow(chapter, subject);
@@ -2633,13 +2669,12 @@
       subject.id === "macro" ? renderMacroCurrentEventsCard() : "",
       subject.id === "macro" ? renderMacroEvolution() : "",
       renderSubjectWrittenCta(subject),
-      subject.id === "investment" ? renderInvestmentRatioOverview() : "",
-      subject.id === "investment" ? renderOptionPrioritySection() : "",
+      subject.id === "investment" ? renderInvestmentFormulasCard() : "",
       '  <div class="section-heading subject-chapters-head">',
       "    <div>",
       '      <p class="eyebrow">章節地圖</p>',
       "      <h2>章節地圖</h2>",
-      "      <p>依原始目錄的篇章與章節順序排列，點選章節即可進入該章的名詞與考試重點；右側出題次數與頻率依 107–115 年考古題的章節出處統計，頻率為該章出處標記數占本科題數的比例；跨章節題目會重複計入各章，因此各章頻率合計可能超過 100%。</p>",
+      "      <p>依原始目錄的章節順序排列，點選章節即可進入該章的名詞與考試重點；右側出題次數與頻率依 107–115 年考古題的章節出處統計，頻率為該章出處標記數占本科題數的比例；跨章節題目會重複計入各章，因此各章頻率合計可能超過 100%。</p>",
       "    </div>",
       '    <span class="progress-text">目前完成 <span data-progress-text="' + escapeHtml(subject.id) + '">' + progressState.done + " / " + progressState.total + " 章</span></span>",
       "  </div>",
@@ -2762,7 +2797,7 @@
       "    <div>",
       '      <p class="eyebrow">總體模型總覽</p>',
       "      <h1>總體經濟模型總覽</h1>",
-      '      <p class="lede">把第 1–2 篇、' + subject.chapters.length + " 章用到的 " + total + " 張章節模型圖，以及 " + nobelYears + " 屆諾貝爾經濟學獎整理出的 " + nobelTotal + " 組模型圖集中在同一頁；每張圖的標題、圖說、變數、參數與 SVG 都和來源頁共用同一份資料。</p>",
+      '      <p class="lede">把 ' + subject.chapters.length + " 章用到的 " + total + " 張章節模型圖，以及 " + nobelYears + " 屆諾貝爾經濟學獎整理出的 " + nobelTotal + " 組模型圖集中在同一頁；每張圖的標題、圖說、變數、參數與 SVG 都和來源頁共用同一份資料。</p>",
       '      <div class="models-summary">',
       "        <span><strong>" + total + "</strong> 章節模型</span>",
       "        <span><strong>" + nobelTotal + "</strong> 諾貝爾模型</span>",
@@ -3079,10 +3114,10 @@
       renderPageHead("操作指南", "使用說明", "這是一個純靜態的考試複習網站：沒有帳號、沒有廣告，完成進度只存在你的瀏覽器。"),
       '  <div class="prose">',
       "    <h2>這個網站是什麼</h2>",
-      "    <p>總體經濟學依《證券投資分析人員考試概要》第 1–2 篇的目錄整理；投資學依《投資學》目錄的第 1–5 篇整理；會計學依《會計學》目錄的 23 章整理；證券交易相關法規與實務依測驗範圍整理為 21 章、21 節。四個科目各自成篇，不互相混用章節。全站共 " + content.subjects.length + " 個科目、" + allChapters.length + " 章、" + totalSections + " 個學習單元。每個章節包含核心概念、名詞速查、考試重點、記憶句與關鍵公式。</p>",
+      "    <p>總體經濟學依《證券投資分析人員考試概要》的目錄整理；投資學依《投資學》目錄的 16 章整理；會計學依《會計學》目錄的 23 章整理；證券交易相關法規與實務依測驗範圍整理為 21 章、21 節。四個科目各自獨立，不互相混用章節。全站共 " + content.subjects.length + " 個科目、" + allChapters.length + " 章、" + totalSections + " 個學習單元。每個章節包含核心概念、名詞速查、考試重點、記憶句與關鍵公式。</p>",
       "    <h2>怎麼使用</h2>",
       "    <ol>",
-      "      <li>先從科目頁看章節地圖，確認各篇與章節的順序。</li>",
+      "      <li>先從科目頁看章節地圖，確認章節的順序。</li>",
       "      <li>進入章節後，先讀「核心概念」，再用名詞卡補足定義。</li>",
       "      <li>讀完一個單元，只看「考試重點」與「一句話記憶」，測試自己能否回想。</li>",
       "      <li>把公式抄一次，確認每個符號的意義與適用條件。</li>",
@@ -3091,10 +3126,10 @@
       "    </ol>",
       "    <h2>內容製作與校對</h2>",
       "    <ul>",
-      "      <li>總體經濟學的章節、節名與頁碼以 <code>documents/gross_economics_contents.md</code> 為依據，涵蓋第 1 篇「總體經濟學」與第 2 篇「金融市場」，共 13 章、49 個來源節次（另加 1 個補充單元，共 50 節）。</li>",
-      "      <li>投資學的篇章、章名與順序以 <code>documents/investment_contents.md</code> 為依據；該目錄只提供章名，頁面上的「學習重點」是本站編寫的複習單元，不冒充原書節名。</li>",
+      "      <li>總體經濟學的章節、節名與頁碼以 <code>documents/gross_economics_contents.md</code> 為依據，共 13 章、49 個來源節次（另加 1 個補充單元，共 50 節）。</li>",
+      "      <li>投資學的章名與順序以 <code>documents/investment_contents.md</code> 為依據；該目錄只提供章名，頁面上的「學習重點」是本站編寫的複習單元，不冒充原書節名。</li>",
       "      <li>會計學的章名、順序與頁碼以 <code>documents/accounting_toc.md</code> 為依據；有列節名的章節照原節名呈現，未列節名的章節以「學習重點」標示，不冒充原書節名。第 23 章來源註明原書章號印為 22，本站依順序列為第 23 章。財務分析總架構、杜邦分析與四表連結的圖表內容另參考 <code>documents/accounting_contents.md</code>。</li>",
-      "      <li>四個科目的來源目錄不同：總體經濟學使用 <code>gross_economics_contents.md</code>（含第 2 篇金融市場）；投資學使用 <code>investment_contents.md</code>；會計學章節使用 <code>accounting_toc.md</code>、財務分析圖表使用 <code>accounting_contents.md</code>；證券法規使用 <code>securities_law_contents.md</code>；不以其中一科的章節補另一科。</li>",
+      "      <li>四個科目的來源目錄不同：總體經濟學使用 <code>gross_economics_contents.md</code>（第 11–13 章為金融市場）；投資學使用 <code>investment_contents.md</code>；會計學章節使用 <code>accounting_toc.md</code>、財務分析圖表使用 <code>accounting_contents.md</code>；證券法規使用 <code>securities_law_contents.md</code>；不以其中一科的章節補另一科。</li>",
       "      <li>依投資學來源目錄，章號由第十一章直接跳到第十三章；本站保留原始編號，不自行補章。</li>",
       "      <li>總體經濟學另設「模型總覽」（#/models/macro），依 13 章集中 22 張章節圖（含 1 張教學流程圖），並加入諾貝爾經濟學獎的 17 組模型圖；另有「歷年諾貝爾經濟學獎」（#/nobel）逐年雙欄年表，左側為該屆資料、右側為對應模型圖。三個視圖共用同一份模型資料，修改後重新載入即可看到同步結果。</li>",
       "      <li>「考古題練習庫」（#/past-exams）收錄 107–115 年共 29 次、3,710 題選擇題；可依年度、科目與次別篩選，先作答再看答案。練習紀錄只存在瀏覽器，換裝置不會同步；申論題與計算題請點原始試題連結。</li>",
@@ -3128,7 +3163,7 @@
     const active = {
       home: route.parts.length === 0,
       macro: (route.parts[0] === "models" && route.parts[1] === "macro") || route.parts[0] === "nobel",
-      investment: false,
+      investment: route.parts[0] === "investment" && route.parts[1] === "formulas",
       accounting: false,
       law: false,
       "past-exams": route.parts[0] === "past-exams",
@@ -3223,6 +3258,9 @@
       const subject = getSubject(route.parts[1]);
       html = renderSubject(subject);
       title = subject.name + "｜" + content.meta.title;
+    } else if (route.parts[0] === "investment" && route.parts[1] === "formulas") {
+      html = renderInvestmentFormulasPage();
+      title = "投資學公式總表｜投資學｜" + content.meta.title;
     } else if (route.parts[0] === "models" && route.parts[1] === "macro") {
       html = renderMacroModels();
       title = "總體經濟模型總覽｜總體經濟學｜" + content.meta.title;
@@ -3371,7 +3409,7 @@
         type: "章",
         typeClass: "",
         title: chapterLabel(chapter) + " " + chapter.title,
-        sub: chapter.subjectName + (chapter.partTitle ? " · 第 " + chapter.part + " 篇 " + chapter.partTitle : "") + " · " + chapter.sections.length + " " + subjectUnitLabel({ id: chapter.subjectId }),
+        sub: chapter.subjectName + (chapter.partTitle ? " · " + chapter.partTitle : "") + " · " + chapter.sections.length + " " + subjectUnitLabel({ id: chapter.subjectId }),
         text: chapter.title + " " + chapter.summary,
         chapterId: chapter.id,
         sectionIndex: null

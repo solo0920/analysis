@@ -1,5 +1,5 @@
 /* 投資學 — 章節內容
-   章節名稱、篇章與順序依 documents/investment_contents.md。
+   章節名稱與順序依 documents/investment_contents.md。
    該目錄只提供章名，未提供節名；下列「學習重點」為本站編寫的複習單元，
    不冒充原書節名。資料以臺灣官方與繁體中文公開資料為主。 */
 
@@ -9,8 +9,8 @@ window.INVESTMENT_SUBJECT = {
   english: "Investment Studies",
   colorClass: "subject-investment",
   tagline: "從金融體系、投資組合到證券分析與交易策略，建立完整的投資學框架。",
-  description: "依《投資學》目錄的第 1–5 篇，涵蓋金融體系與工具、報酬與風險、投資組合與 CAPM、效率市場、債券、股票、選擇權、期貨、其他衍生性商品、總體與產業分析、財務分析、技術分析、投資策略與績效評估。",
-  note: "依來源目錄，章號由第十一章直接跳到第十三章；本站保留原始編號，不自行補上第十二章。目錄只提供章名，頁碼為各篇的起始頁；章內「學習重點」是本站整理的複習單元，不是原書節名。",
+  description: "依《投資學》目錄的 16 章，涵蓋金融體系與工具、報酬與風險、投資組合與 CAPM、效率市場、債券、股票、選擇權、期貨、其他衍生性商品、總體與產業分析、財務分析、技術分析、投資策略與績效評估。",
+  note: "依來源目錄，章號由第十一章直接跳到第十三章；本站保留原始編號，不自行補上第十二章。目錄只提供章名，頁碼為目錄標示的起始頁；章內「學習重點」是本站整理的複習單元，不是原書節名。",
   parts: [
     { number: 1, title: "金融體系與金融工具", page: "P. 1" },
     { number: 2, title: "投資組合理論與市場效率性", page: "P. 27" },
@@ -26,7 +26,7 @@ window.INVESTMENT_SUBJECT = {
       part: 1,
       partTitle: "金融體系與金融工具",
       title: "金融市場與金融中介機構",
-      page: "第 1 篇 · P. 1",
+      page: "P. 1",
       summary: "認識金融體系如何把資金從剩餘單位導向不足單位，並區分直接金融、間接金融、金融市場與金融中介的角色。",
       sourceIds: ["fsc", "sfb", "twse", "tpex", "naer"],
       sections: [
@@ -105,7 +105,7 @@ window.INVESTMENT_SUBJECT = {
       part: 1,
       partTitle: "金融體系與金融工具",
       title: "金融工具",
-      page: "第 1 篇 · P. 1",
+      page: "P. 1",
       summary: "掌握債務、權益與衍生性金融工具的分類，並比較貨幣市場與資本市場工具的特性、風險與用途。",
       sourceIds: ["twse", "tpex", "sfb", "cbc", "naer"],
       sections: [
@@ -186,7 +186,7 @@ window.INVESTMENT_SUBJECT = {
       part: 2,
       partTitle: "投資組合理論與市場效率性",
       title: "報酬與風險",
-      page: "第 2 篇 · P. 27",
+      page: "P. 27",
       summary: "建立報酬率與風險的衡量方式，理解預期報酬、變異數、標準差、系統風險與風險溢酬。",
       sourceIds: ["twse-edu", "sfi", "naer", "ntu-ocw", "wiki"],
       sections: [
@@ -266,7 +266,7 @@ window.INVESTMENT_SUBJECT = {
       part: 2,
       partTitle: "投資組合理論與市場效率性",
       title: "投資組合理論",
-      page: "第 2 篇 · P. 27",
+      page: "P. 27",
       summary: "以 Markowitz 投資組合理論理解分散投資、共變異數、效率前緣與最適投資組合。",
       sourceIds: ["twse-edu", "sfi", "naer", "ntu-ocw", "wiki"],
       sections: [
@@ -343,7 +343,7 @@ window.INVESTMENT_SUBJECT = {
       part: 2,
       partTitle: "投資組合理論與市場效率性",
       title: "CAPM模型",
-      page: "第 2 篇 · P. 27",
+      page: "P. 27",
       summary: "理解 CAPM 的假設、市場投資組合、β 與證券市場線，並能用 CAPM 判斷資產是否被低估或高估。",
       sourceIds: ["twse-edu", "sfi", "naer", "ntu-ocw", "cfainstitute", "wiki"],
       sections: [
@@ -446,7 +446,7 @@ window.INVESTMENT_SUBJECT = {
       part: 2,
       partTitle: "投資組合理論與市場效率性",
       title: "效率市場假說",
-      page: "第 2 篇 · P. 27",
+      page: "P. 27",
       summary: "了解效率市場的三種形式、資訊與價格的關係，以及市場異象與行為財務對效率市場的挑戰。",
       sourceIds: ["twse-edu", "sfi", "naer", "wiki"],
       sections: [
@@ -513,7 +513,7 @@ window.INVESTMENT_SUBJECT = {
       part: 3,
       partTitle: "金融投資商品",
       title: "債券價格與收益率",
-      page: "第 3 篇 · P. 75",
+      page: "P. 75",
       summary: "掌握債券現金流折現、到期殖利率、當期收益率，以及存續期間、凸性與利率風險管理。",
       sourceIds: ["twse", "tpex", "cbc", "twse-edu", "cfainstitute", "naer"],
       sections: [
@@ -666,7 +666,7 @@ window.INVESTMENT_SUBJECT = {
       part: 3,
       partTitle: "金融投資商品",
       title: "股票市場",
-      page: "第 3 篇 · P. 75",
+      page: "P. 75",
       summary: "認識股票種類、交易市場與評價方法，並理解股利折現、本益比、股利成長與股票報酬風險。",
       sourceIds: ["twse", "twse-edu", "sfi", "naer"],
       sections: [
@@ -772,7 +772,7 @@ window.INVESTMENT_SUBJECT = {
       part: 3,
       partTitle: "金融投資商品",
       title: "選擇權",
-      page: "第 3 篇 · P. 75",
+      page: "P. 75",
       summary: "理解買權、賣權、履約價格、權利金與到期損益，並掌握賣權買權平價與基本選擇權策略。",
       sourceIds: ["taifex", "sfb", "twse-edu", "naer"],
       sections: [
@@ -853,7 +853,7 @@ window.INVESTMENT_SUBJECT = {
       part: 3,
       partTitle: "金融投資商品",
       title: "遠期契約與期貨",
-      page: "第 3 篇 · P. 75",
+      page: "P. 75",
       summary: "比較遠期契約與期貨的制度差異，理解期貨價格、基差、避險比率與基差風險。",
       sourceIds: ["taifex", "sfb", "naer"],
       sections: [
@@ -932,7 +932,7 @@ window.INVESTMENT_SUBJECT = {
       part: 3,
       partTitle: "金融投資商品",
       title: "其他衍生性商品",
-      page: "第 3 篇 · P. 75",
+      page: "P. 75",
       summary: "認識交換契約、認購權證、可轉換公司債與結構型商品，並理解衍生性商品的各類風險。",
       sourceIds: ["taifex", "sfb", "fsc", "naer"],
       sections: [
@@ -1037,7 +1037,7 @@ window.INVESTMENT_SUBJECT = {
       part: 4,
       partTitle: "證券投資分析",
       title: "總體分析與產業分析",
-      page: "第 4 篇 · P. 157",
+      page: "P. 157",
       summary: "以由上而下的觀點連結總體經濟、產業結構與企業分析，並運用景氣指標與產業資訊。",
       sourceIds: ["dgbas", "ndc", "cbc", "moea", "twse-edu"],
       sections: [
@@ -1115,7 +1115,7 @@ window.INVESTMENT_SUBJECT = {
       part: 4,
       partTitle: "證券投資分析",
       title: "財務分析",
-      page: "第 4 篇 · P. 157",
+      page: "P. 157",
       summary: "從財務報表與比率分析評估企業的獲利、效率、流動性、償債能力與盈餘品質。",
       sourceIds: ["mops", "twse", "sfi", "naer"],
       sections: [
@@ -1145,7 +1145,7 @@ window.INVESTMENT_SUBJECT = {
           body: [
             "流動性比率衡量短期償債能力，如流動比率與速動比率；負債比率與利息保障倍數衡量長期償債能力；存貨與應收帳款週轉率衡量經營效率。",
             "獲利能力比率包括毛利率、營業利益率、淨利率、ROA 與 ROE。週轉率與利潤率要一起看，才能判斷企業是靠效率還是靠高毛利賺錢。",
-            "本節所有比率公式整理於下方總表；總表與投資學頁面的公式列表共用同一份資料，修改一處即可同步更新。"
+            "本節所有比率公式整理於下方總表；總表與投資學公式總表頁面的比率列表共用同一份資料，修改一處即可同步更新。"
           ],
           terms: [
             ["流動比率", "流動資產除以流動負債，衡量短期償債能力。"],
@@ -1196,7 +1196,7 @@ window.INVESTMENT_SUBJECT = {
       part: 4,
       partTitle: "證券投資分析",
       title: "技術分析",
-      page: "第 4 篇 · P. 157",
+      page: "P. 157",
       summary: "理解技術分析的基本假設、趨勢與型態，以及移動平均、MACD、RSI、KD 等常用指標。",
       sourceIds: ["twse", "twse-edu", "sfi", "naer"],
       sections: [
@@ -1276,7 +1276,7 @@ window.INVESTMENT_SUBJECT = {
       part: 5,
       partTitle: "交易策略",
       title: "投資策略",
-      page: "第 5 篇 · P. 201",
+      page: "P. 201",
       summary: "比較資產配置、主動與被動投資、定期定額、價值與成長等策略，並理解再平衡與風險管理。",
       sourceIds: ["sitca", "twse-edu", "sfi", "naer"],
       sections: [
@@ -1360,7 +1360,7 @@ window.INVESTMENT_SUBJECT = {
       part: 5,
       partTitle: "交易策略",
       title: "投資績效評估",
-      page: "第 5 篇 · P. 201",
+      page: "P. 201",
       summary: "以時間加權與金額加權報酬衡量績效，並用 Sharpe、Treynor、Jensen α、資訊比率等指標進行風險調整。",
       sourceIds: ["sitca", "twse-edu", "sfi", "naer"],
       sections: [
@@ -1392,7 +1392,7 @@ window.INVESTMENT_SUBJECT = {
             "Sharpe 比率以總風險（標準差）調整超額報酬，適合評估整體投資組合；Sortino 比率只懲罰下行風險；Treynor 比率以系統風險（β）調整，適合評估已充分分散的組合。",
             "Jensen α 是實際報酬減去 CAPM 必要報酬，衡量經理人是否創造超額報酬；資訊比率以追蹤誤差調整主動報酬；最大回撤衡量從高點到低點的最大損失。",
             "Treynor–Mazuy 以二次回歸檢定市場時機，γ > 0 表示經理人能在市場上漲時提高 β、下跌時降低 β。",
-            "上述績效指標的 KaTeX 公式整理於下方；與投資學頁面的比例分析列表共用同一份資料。"
+            "上述績效指標的 KaTeX 公式整理於下方；與投資學公式總表頁面的比例分析列表共用同一份資料。"
           ],
           terms: [
             ["夏普比率（Sharpe Ratio）", "超額報酬除以標準差，衡量每單位總風險的超額報酬。"],
@@ -1418,7 +1418,7 @@ window.INVESTMENT_SUBJECT = {
 };
 
 /* 投資學 — 財務比率公式單一來源
-   投資學頁面的「比例分析公式列表」與第 14 章〈財務分析〉第 2 個學習重點
+   投資學公式總表頁面的「比例分析公式列表」與第 14 章〈財務分析〉第 2 個學習重點
    都讀取這份陣列；修改 name、formula、note 或綁定的 chapterId／sectionTitle，
    兩處會同步更新。sectionTitle 必須與章節內的標題完全一致。
    分數一律使用 \dfrac，避免 KaTeX 行內模式把分子、分母縮成 0.7 倍，
@@ -1747,7 +1747,7 @@ window.INVESTMENT_RATIO_FORMULAS = [
 ];
 
 /* 投資學 — 選擇權評價準備優先順序
-   投資學頁面的「選擇權評價優先順序」區塊使用這份資料。
+   投資學公式總表頁面的「選擇權評價優先順序」區塊使用這份資料。
    每筆 formulas 的 latex 由 app.js 的 formatLatexFormula() 排版。 */
 window.INVESTMENT_OPTION_PRIORITIES = [
   {

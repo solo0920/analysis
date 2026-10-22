@@ -31,6 +31,12 @@ function read(relativePath) {
   return fs.readFileSync(path.join(root, relativePath), "utf8");
 }
 
+const partLabelPattern = /第\s*[0-9０-９一二三四五六七八九十百]+\s*篇/;
+const partLabelFiles = fs.readdirSync(path.join(siteDir, "assets"))
+  .filter(function (file) { return /^content.*\.js$/.test(file) || file === "app.js"; })
+  .map(function (file) { return "site/assets/" + file; });
+check(!partLabelPattern.test(partLabelFiles.map(read).join("\n")), "網站內容不得再出現「第 X 篇」");
+
 const unicodeMathPattern = /[\u2070-\u2079\u2080-\u2089\u00b2\u00b3\u00b9\u2090-\u209c]/;
 const rawMathOperatorPattern = /(?<!operatorname\{)(?<![A-Za-z])(?:Cov|Var)(?![A-Za-z])/;
 const rawVariableDigitPattern = /(?<![_^\\A-Za-z{])(?:[A-Za-zσβρλμπΔΣ][0-9]+|(?:Cov|Var)[0-9]+)(?![0-9])/;
@@ -343,7 +349,7 @@ investmentSource.chapters.forEach(function (expected, index) {
   check(actual.title === expected.title, "投資學章名不符：" + actual.title);
   check(actual.part === expected.part, "投資學 " + expected.label + " 的 Part 歸屬不符");
   check(actual.partTitle === expected.partTitle, "投資學 " + expected.label + " 的 Part 名稱不符");
-  check(actual.page === "第 " + expected.part + " 篇 · " + expected.partPage, "投資學 " + expected.label + " 的篇頁碼標示不符");
+  check(actual.page === expected.partPage, "投資學 " + expected.label + " 的頁碼標示不符");
 });
 
 check(Array.isArray(ratioFormulas) && ratioFormulas.length >= 20, "投資學比例分析公式應至少 20 條（目前 " + ratioFormulas.length + " 條）");
@@ -1631,4 +1637,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log("驗證通過：總體經濟學第 1–2 篇（13 章、50 節）、投資學第 1–5 篇（16 章、52 個重點）、會計學（23 章、41 個具名節次與 23 個補充學習重點）、證券法規（21 章、21 節、1,507 條官方全文）、" + (diagramKeys.length + investmentDiagramKeys.length + accountingDiagramKeys.length) + " 張章節教學圖（總體 " + diagramKeys.length + "、投資 " + investmentDiagramKeys.length + "、會計 " + accountingDiagramKeys.length + "）、118 個 KaTeX 公式、諾貝爾年表（1969–2026）與 107–115 年 3,710 題考古題練習庫結構一致。");
+console.log("驗證通過：總體經濟學（13 章、50 節）、投資學（16 章、52 個重點）、會計學（23 章、41 個具名節次與 23 個補充學習重點）、證券法規（21 章、21 節、1,507 條官方全文）、" + (diagramKeys.length + investmentDiagramKeys.length + accountingDiagramKeys.length) + " 張章節教學圖（總體 " + diagramKeys.length + "、投資 " + investmentDiagramKeys.length + "、會計 " + accountingDiagramKeys.length + "）、118 個 KaTeX 公式、諾貝爾年表（1969–2026）與 107–115 年 3,710 題考古題練習庫結構一致。");
