@@ -946,18 +946,18 @@
     const nobelYears = Array.isArray(nobelData.rows) ? nobelData.rows.length : 0;
 
     return [
-      '<aside class="model-atlas" aria-labelledby="model-atlas-heading">',
-      "  <div>",
+      '<a class="subject-written-cta" href="#/models/macro">',
+      '  <div>',
       '    <p class="eyebrow">模型索引</p>',
-      '    <h2 id="model-atlas-heading">總體經濟模型總覽</h2>',
-      "    <p>涵蓋 " + subject.chapters.length + " 章、共 " + total + " 張章節模型圖（" + withModels + " 章含模型）；另收錄 " + nobelYears + " 屆諾貝爾經濟學獎年表與 " + nobelTotal + " 組模型圖。章節頁、模型總覽與學派演進圖共用同一份模型資料，不另存副本。</p>",
+      '    <strong>總體經濟模型總覽</strong>',
+      "    <span>涵蓋 " + subject.chapters.length + " 章、共 " + total + " 張章節模型圖（" + withModels + " 章含模型）；另收錄 " + nobelYears + " 屆諾貝爾經濟學獎年表與 " + nobelTotal + " 組模型圖。</span>",
       "  </div>",
-      '  <div class="model-atlas-actions">',
-      '    <a class="btn btn-primary" href="#/models/macro">查看模型總覽 →</a>',
-      '    <a class="btn" href="#/subject/macro?evolution=1">學派演進圖 →</a>',
-      '    <a class="btn" href="#/nobel">諾貝爾獎年表 →</a>',
-      "  </div>",
-      "</aside>"
+      '  <span class="subject-written-cta-arrow">查看模型總覽 →</span>',
+      "</a>",
+      '<div class="model-atlas-links">',
+      '  <a class="text-link" href="#/subject/macro?evolution=1">學派演進圖 →</a>',
+      '  <a class="text-link" href="#/nobel">諾貝爾獎年表 →</a>',
+      "</div>"
     ].join("");
   }
 
@@ -1129,7 +1129,7 @@
     }).join("");
 
     return [
-      '<article class="subject-card ' + escapeHtml(subject.colorClass) + '">',
+      '<a class="subject-card ' + escapeHtml(subject.colorClass) + '" href="#/subject/' + escapeHtml(subject.id) + '">',
       '  <div class="subject-card-top">',
       '    <span class="subject-badge">考試科目</span>',
       "  </div>",
@@ -1138,9 +1138,9 @@
       '  <ul class="subject-card-list">' + preview + "<li>…共 " + subject.chapters.length + " 章</li></ul>",
       '  <div class="subject-card-foot">',
       renderProgress(subject),
-      '    <a class="text-link" href="#/subject/' + escapeHtml(subject.id) + '">查看章節 →</a>',
+      '    <span class="subject-card-arrow">查看章節 →</span>',
       "  </div>",
-      "</article>"
+      "</a>"
     ].join("");
   }
 
@@ -2679,17 +2679,15 @@
       '    <div class="subject-grid">' + content.subjects.map(renderSubjectCard).join("") + "</div>",
       "  </section>",
       '  <section class="home-section">',
-      '    <div class="past-exam-home-cta">',
+      '    <a class="subject-written-cta" href="#/past-exams">',
       '      <div>',
       '        <p class="eyebrow">歷屆試題</p>',
-      "        <h2>用考古題練習庫檢查吸收程度</h2>",
-      "        <p>收錄 107–115 年共 29 次、3,710 題選擇題；可依年度、科目與考試次別篩選，先作答再看答案，練習紀錄只存在你的瀏覽器。</p>",
+      '        <strong>用考古題練習庫檢查吸收程度</strong>',
+      "        <span>收錄 107–115 年共 29 次、3,710 題選擇題；可依年度、科目與考試次別篩選，先作答再看答案，練習紀錄只存在你的瀏覽器。</span>",
+      '        <span class="subject-written-cta-note">4 科 · 9 個年度 · 29 次考試</span>',
       "      </div>",
-      '      <div class="past-exam-home-actions">',
-      '        <a class="btn btn-primary" href="#/past-exams">開始練考古題</a>',
-      '        <span class="past-exam-home-note">4 科 · 9 個年度 · 29 次考試</span>',
-      "      </div>",
-      "    </div>",
+      '      <span class="subject-written-cta-arrow">開始練考古題 →</span>',
+      "    </a>",
       "  </section>",
       '  <section class="home-section">',
       '    <div class="section-heading">',

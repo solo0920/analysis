@@ -750,8 +750,10 @@ p {
   border-top: 4px solid var(--subject-color);
   border-radius: var(--radius);
   background: var(--surface);
+  color: var(--ink);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
+  text-decoration: none;
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
 
@@ -828,8 +830,10 @@ p {
   font-size: 0.8rem;
 }
 
-.subject-card .text-link {
+.subject-card-arrow {
   color: var(--subject-color);
+  font-weight: 700;
+  font-size: 0.86rem;
 }
 
 /* ----------------------------- Progress ----------------------------- */
@@ -5919,6 +5923,25 @@ p {
   color: var(--accent);
   font-weight: 700;
   font-size: 0.86rem;
+}
+
+.subject-written-cta-note {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.74rem;
+}
+
+.model-atlas-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 10px 0 4px;
+}
+
+.model-atlas-links .text-link {
+  color: var(--accent);
+  font-size: 0.84rem;
 }
 
 .written-filter-shell {
