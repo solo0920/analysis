@@ -105,7 +105,7 @@ const nobelDiagramFiles = ["diagrams-nobel.js"];
 function loadContent() {
   const context = { window: {} };
   vm.createContext(context);
-  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-macro-current.js", "content-past-exams-written.js", "content-past-exams.js", "content-exam-solutions-115.js", "content-exam-solutions-114.js", "content-exam-solutions-113.js", "content-exam-solutions-112.js", "content-exam-solutions-111.js", "content-exam-solutions-110.js", "content-exam-solutions-109.js", "content-exam-solutions-108.js", "content-exam-solutions-107.js"].forEach(function (file) {
+  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-investment-formulas.js", "content-investment-technical.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-macro-current.js", "content-past-exams-written.js", "content-past-exams.js", "content-exam-solutions-115.js", "content-exam-solutions-114.js", "content-exam-solutions-113.js", "content-exam-solutions-112.js", "content-exam-solutions-111.js", "content-exam-solutions-110.js", "content-exam-solutions-109.js", "content-exam-solutions-108.js", "content-exam-solutions-107.js"].forEach(function (file) {
     const fullPath = path.join(siteDir, "assets", file);
     vm.runInContext(fs.readFileSync(fullPath, "utf8"), context, { filename: file });
   });
@@ -123,6 +123,8 @@ function loadContent() {
     macroEvolution: context.window.MACRO_EVOLUTION || { meta: {}, stages: [] },
     ratioFormulas: context.window.INVESTMENT_RATIO_FORMULAS || [],
     optionPriorities: context.window.INVESTMENT_OPTION_PRIORITIES || [],
+    formulaLibrary: context.window.INVESTMENT_FORMULA_LIBRARY || { meta: {}, categories: [] },
+    technicalIndicators: context.window.INVESTMENT_TECHNICAL_INDICATORS || { meta: {}, categories: [] },
     lawArticles: context.window.LAW_ARTICLES || {},
     formulaTex: context.window.FORMULA_TEX || {},
     pastExams: context.window.PAST_EXAMS || { meta: {}, subjects: [], sessions: [], questions: [] },
@@ -266,6 +268,8 @@ const nobelDiagrams = loaded.nobelDiagrams;
 const macroEvolution = loaded.macroEvolution;
 const ratioFormulas = loaded.ratioFormulas;
 const optionPriorities = loaded.optionPriorities;
+const formulaLibrary = loaded.formulaLibrary || { meta: {}, categories: [] };
+const technicalIndicators = loaded.technicalIndicators || { meta: {}, categories: [] };
 const lawArticles = loaded.lawArticles;
 const formulaTex = loaded.formulaTex;
 const pastExams = loaded.pastExams;
@@ -424,6 +428,64 @@ optionPriorities.forEach(function (item) {
     check(typeof variable.definition === "string" && variable.definition.trim().length > 0, "投資學選擇權變數缺少 definition：" + item.topic);
   });
 });
+
+function validateFormulaLibrary(library, label, expectedCategories, expectedEntries) {
+  check(Boolean(library && typeof library === "object"), label + " 資料格式錯誤");
+  const categories = library && Array.isArray(library.categories) ? library.categories : [];
+  check(categories.length === expectedCategories, label + " 應有 " + expectedCategories + " 類（目前 " + categories.length + " 類）");
+  const categoryIds = new Set();
+  const entryIds = new Set();
+  let entryCount = 0;
+  categories.forEach(function (category) {
+    check(Boolean(category && typeof category === "object"), label + " 分類格式錯誤");
+    if (!category || typeof category !== "object") {
+      return;
+    }
+    check(typeof category.id === "string" && category.id.trim().length > 0, label + " 分類缺少 id");
+    check(!categoryIds.has(category.id), label + " 分類 id 重複：" + category.id);
+    categoryIds.add(category.id);
+    check(typeof category.title === "string" && category.title.trim().length > 0, label + " 分類缺少標題：" + category.id);
+    check(Array.isArray(category.entries) && category.entries.length > 0, label + " 分類缺少公式：" + category.id);
+    (category.entries || []).forEach(function (entry) {
+      entryCount += 1;
+      check(Boolean(entry && typeof entry === "object"), label + " 公式格式錯誤：" + category.id);
+      if (!entry || typeof entry !== "object") {
+        return;
+      }
+      ["id", "name", "latex", "note", "examSkill"].forEach(function (field) {
+        check(typeof entry[field] === "string" && entry[field].trim().length > 0, label + " 公式缺少 " + field + "：" + (entry.name || entry.id || category.id));
+      });
+      check(!entryIds.has(entry.id), label + " 公式 id 重複：" + entry.id);
+      entryIds.add(entry.id);
+      check(["A", "B", "C"].indexOf(entry.priority) >= 0, label + " 公式優先級錯誤：" + (entry.name || entry.id));
+      if (entry.chapterId) {
+        check(Boolean(investmentChapterMap[entry.chapterId]), label + " 公式指向不存在的投資學章節：" + (entry.name || entry.id) + "（" + entry.chapterId + "）");
+      }
+      if (Array.isArray(entry.variables)) {
+        entry.variables.forEach(function (variable) {
+          check(Array.isArray(variable) && variable.length === 2 && typeof variable[0] === "string" && typeof variable[1] === "string" && variable[0].trim().length > 0 && variable[1].trim().length > 0, label + " 公式變數格式錯誤：" + (entry.name || entry.id));
+        });
+      }
+      check(!/\$/.test(entry.latex || ""), label + " 公式 LaTeX 不應含美元符號：" + (entry.name || entry.id));
+      check(!unicodeMathPattern.test(entry.latex || ""), label + " 公式不應含 Unicode 上下標：" + (entry.name || entry.id));
+      check(!rawMathOperatorPattern.test(entry.latex || ""), label + " 公式應使用 \\operatorname{Cov}／\\operatorname{Var}：" + (entry.name || entry.id));
+      check(!rawVariableDigitPattern.test(entry.latex || ""), label + " 公式的變數數字下標應使用 _：" + (entry.name || entry.id));
+      check(!overEscapedOperatorPattern.test(entry.latex || "") && !repeatedEscapeOperatorPattern.test(entry.latex || ""), label + " 公式含重複跳脫的反斜線：" + (entry.name || entry.id));
+      if (katex && typeof entry.latex === "string") {
+        try {
+          katex.renderToString(entry.latex, { displayMode: true, throwOnError: true, strict: "ignore", trust: false });
+        } catch (error) {
+          check(false, label + " 公式無法編譯：" + (entry.name || entry.id) + "（" + error.message + "）");
+        }
+      }
+    });
+  });
+  check(entryCount === expectedEntries, label + " 應有 " + expectedEntries + " 條公式（目前 " + entryCount + " 條）");
+  return { categories: categories.length, entries: entryCount };
+}
+
+const formulaLibraryStats = validateFormulaLibrary(formulaLibrary, "投資學公式庫", 10, 66);
+const technicalIndicatorStats = validateFormulaLibrary(technicalIndicators, "技術分析指標", 5, 50);
 
 check(accounting.chapters.length === accountingSource.chapters.length, "會計學章數應與來源一致（" + accountingSource.chapters.length + "）");
 check(accounting.chapters.length === 23, "會計學應為來源列出的 23 章");
@@ -1624,6 +1686,7 @@ console.log("資料來源：" + content.sources.length);
 console.log("法規條文：" + lawOfficialArticleCount + "（官方 " + lawOfficialSources + " 部；" + lawOfficialPages + " 頁全文、" + lawExternalPages + " 頁連結摘要）");
 console.log("KaTeX 公式：" + formulaSections.length + " 個學習單元（" + formulaTexKeys.length + " 筆資料）");
 console.log("KaTeX 編譯：" + formulaTexCompiled + "/" + formulaTexKeys.length + " 筆公式、" + inlineMathCount + " 個行內公式、" + displayMathCount + " 個區塊公式");
+console.log("投資學公式庫：" + formulaLibraryStats.entries + " 條（" + formulaLibraryStats.categories + " 類）；技術分析指標：" + technicalIndicatorStats.entries + " 條（" + technicalIndicatorStats.categories + " 類）");
 console.log("考古題：" + pastExamSessions.length + " 次、 " + pastExamQuestions.length + " 題（107–115 年）");
 console.log("計算／申論題：" + writtenQuestions.length + " 題（107–115 年）");
 console.log("總經時事：" + currentEvents.length + " 個主題");

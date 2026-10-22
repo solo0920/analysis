@@ -1350,16 +1350,98 @@
     ].join("");
   }
 
+  function investmentFormulaLibrary() {
+    const library = window.INVESTMENT_FORMULA_LIBRARY;
+    return library && Array.isArray(library.categories) ? library : { meta: {}, categories: [] };
+  }
+
+  function investmentTechnicalIndicators() {
+    const library = window.INVESTMENT_TECHNICAL_INDICATORS;
+    return library && Array.isArray(library.categories) ? library : { meta: {}, categories: [] };
+  }
+
+  function formulaLibraryEntryCount(library) {
+    return (library && Array.isArray(library.categories) ? library.categories : []).reduce(function (sum, category) {
+      return sum + (Array.isArray(category.entries) ? category.entries.length : 0);
+    }, 0);
+  }
+
+  function formulaLibraryPriorityBadge(priority) {
+    const value = String(priority || "").toUpperCase();
+    const className = value === "A" ? "is-a" : value === "B" ? "is-b" : "is-c";
+    return '<span class="priority-badge ' + className + '">' + escapeHtml(value || "—") + "</span>";
+  }
+
+  function formulaLibraryChapterLink(entry) {
+    const chapter = entry && entry.chapterId ? getChapter(entry.chapterId) : null;
+    if (!chapter) {
+      return "—";
+    }
+    return '<a class="text-link" href="#/chapter/' + escapeHtml(chapter.id) + '">' + escapeHtml(chapterLabel(chapter) + " " + chapter.title) + "</a>";
+  }
+
+  function renderFormulaVariableSymbol(symbol) {
+    const text = String(symbol || "");
+    if (/[\\_^]/.test(text) || /^[A-Za-z]+$/.test(text)) {
+      return renderKatex(text, false);
+    }
+    return escapeHtml(text);
+  }
+
+  function renderFormulaLibrary(library) {
+    const categories = (library && Array.isArray(library.categories) ? library.categories : []).slice().sort(function (a, b) {
+      return (a.order || 0) - (b.order || 0);
+    });
+    return categories.map(function (category) {
+      const entries = Array.isArray(category.entries) ? category.entries : [];
+      return [
+        '<section class="formula-library-group" id="formula-category-' + escapeHtml(category.id) + '">',
+        '  <div class="formula-library-head">',
+        "    <div>",
+        "      <h3>" + escapeHtml(category.title) + "</h3>",
+        category.description ? "      <p>" + escapeHtml(category.description) + "</p>" : "",
+        "    </div>",
+        '    <span class="formula-library-count">' + entries.length + " 條</span>",
+        "  </div>",
+        '  <div class="ratio-table-wrap">',
+        '    <table class="ratio-table formula-library-table">',
+        '      <thead><tr><th scope="col">指標</th><th scope="col">公式</th><th scope="col">說明</th><th scope="col">優先級</th><th scope="col">對應章節</th></tr></thead>',
+        "      <tbody>" + entries.map(function (entry) {
+          const variables = Array.isArray(entry.variables) && entry.variables.length
+            ? '<span class="formula-vars">' + entry.variables.map(function (variable) {
+                return renderFormulaVariableSymbol(variable[0]) + "：" + escapeHtml(variable[1]);
+              }).join("、") + "</span>"
+            : "";
+          const limitations = entry.limitations ? '<span class="formula-limit">限制：' + escapeHtml(entry.limitations) + "</span>" : "";
+          const parameters = entry.parameters ? '<span class="formula-param">參數：' + escapeHtml(entry.parameters) + "</span>" : "";
+          return [
+            "<tr>",
+            '<th scope="row"><span class="formula-name">' + escapeHtml(entry.name) + "</span>" + parameters + "</th>",
+            '<td class="ratio-formula" data-label="公式">' + ratioFormulaMarkup(entry) + variables + "</td>",
+            '<td data-label="說明">' + escapeHtml(entry.note || "") + limitations + "</td>",
+            '<td data-label="優先級">' + formulaLibraryPriorityBadge(entry.priority) + "</td>",
+            '<td data-label="對應章節">' + formulaLibraryChapterLink(entry) + "</td>",
+            "</tr>"
+          ].join("");
+        }).join("") + "</tbody>",
+        "    </table>",
+        "  </div>",
+        "</section>"
+      ].join("");
+    }).join("");
+  }
+
   function renderInvestmentFormulasCard() {
     const ratioCount = investmentRatioFormulas().length;
     const optionCount = investmentOptionPriorities().length;
+    const libraryCount = formulaLibraryEntryCount(investmentFormulaLibrary()) + formulaLibraryEntryCount(investmentTechnicalIndicators());
     return [
       '<section class="ratio-overview ratio-overview-cta" aria-labelledby="investment-formulas-cta-heading">',
       '  <div class="ratio-overview-head">',
       "    <div>",
       '      <p class="eyebrow">公式與比率</p>',
       '      <h2 id="investment-formulas-cta-heading">投資學公式總表</h2>',
-      "      <p>比例分析 " + ratioCount + " 條與選擇權評價優先順序 " + optionCount + " 項已整理成獨立頁面，方便一次複習與列印。</p>",
+      "      <p>比例分析 " + ratioCount + " 條、核心與技術指標公式 " + libraryCount + " 條，以及選擇權評價 " + optionCount + " 項，已整理成獨立頁面。</p>",
       "    </div>",
       '    <div class="ratio-overview-actions">',
       '      <a class="btn btn-primary" href="#/investment/formulas">查看公式總表 →</a>',
@@ -1372,6 +1454,8 @@
   function renderInvestmentFormulasPage() {
     const ratioCount = investmentRatioFormulas().length;
     const optionCount = investmentOptionPriorities().length;
+    const coreLibraryCount = formulaLibraryEntryCount(investmentFormulaLibrary());
+    const technicalCount = formulaLibraryEntryCount(investmentTechnicalIndicators());
     return [
       '<div class="page subject-investment">',
       '  <nav class="breadcrumb" aria-label="麵包屑">',
@@ -1379,9 +1463,29 @@
       '    <a href="#/subject/investment">投資學</a><span>/</span>',
       "    <span>公式總表</span>",
       "  </nav>",
-      renderPageHead("投資學 · 公式與比率", "投資學公式總表", "把比例分析 " + ratioCount + " 條公式與選擇權評價優先順序 " + optionCount + " 項集中在一頁；公式與對應章節共用同一份資料，修改一處即可同步更新。"),
+      renderPageHead("投資學 · 公式與比率", "投資學公式總表", "比例分析 " + ratioCount + " 條、核心公式 " + coreLibraryCount + " 條、技術分析指標 " + technicalCount + " 條與選擇權評價 " + optionCount + " 項集中在一頁；公式與對應章節共用同一份資料。"),
       ratioCount ? renderInvestmentRatioOverview() : "",
+      '<section class="formula-library-block" id="formula-library">',
+      '  <div class="section-heading">',
+      "    <div>",
+      '      <p class="eyebrow">核心公式</p>',
+      "      <h2>投資學核心公式庫</h2>",
+      "      <p>依貨幣時間價值、投資報酬與風險、投資組合、資產定價、股票評價、債券分析、衍生性商品、風險管理、績效評估與資本結構分類；優先級 A 為基礎常考，B 為第二階段補強。</p>",
+      "    </div>",
+      "  </div>",
+      coreLibraryCount ? renderFormulaLibrary(investmentFormulaLibrary()) : "",
+      "</section>",
       optionCount ? renderOptionPrioritySection() : "",
+      '<section class="formula-library-block" id="technical-indicators">',
+      '  <div class="section-heading">',
+      "    <div>",
+      '      <p class="eyebrow">技術分析</p>',
+      "      <h2>技術分析 50 指標</h2>",
+      "      <p>依趨勢、動能、波動率與通道、成交量與資金流、支撐壓力與複合指標分類；公式以一般股票日線資料為基礎，參數與平滑方式可能因軟體而異。</p>",
+      "    </div>",
+      "  </div>",
+      technicalCount ? renderFormulaLibrary(investmentTechnicalIndicators()) : "",
+      "</section>",
       '  <div class="chapter-actions">',
       '    <a class="btn" href="#/subject/investment">← 回投資學</a>',
       "  </div>",
@@ -3062,6 +3166,7 @@
       '        <button class="btn btn-small" type="button" data-action="copy-link">複製本章連結</button>',
       '        <button class="btn btn-small" type="button" data-action="print">列印 / 存 PDF</button>',
       subject.id === "macro" ? '        <a class="btn btn-small" href="#/models/macro?chapter=' + escapeHtml(chapter.id) + '">模型總覽</a>' : "",
+      subject.id === "investment" && chapter.id === "investment-15" ? '        <a class="btn btn-small" href="#/investment/formulas">技術指標公式 →</a>' : "",
       "      </div>",
       "    </article>",
       "  </div>",

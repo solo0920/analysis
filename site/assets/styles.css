@@ -1129,6 +1129,109 @@ p {
   line-height: 1.6;
 }
 
+.formula-library-block {
+  margin-top: 34px;
+  min-width: 0;
+}
+
+.formula-library-group {
+  min-width: 0;
+  margin-top: 22px;
+  scroll-margin-top: calc(var(--header-h) + 20px);
+}
+
+.formula-library-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 9px;
+}
+
+.formula-library-head h3 {
+  margin: 0 0 4px;
+  color: var(--accent-ink);
+  font-size: 1.02rem;
+}
+
+.formula-library-head p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+
+.formula-library-count {
+  flex: 0 0 auto;
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.formula-library-table {
+  min-width: 820px;
+}
+
+.formula-library-table tbody th {
+  white-space: normal;
+}
+
+.formula-name {
+  display: block;
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.formula-param,
+.formula-vars,
+.formula-limit {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.formula-limit {
+  color: var(--danger);
+}
+
+.formula-library-table .ratio-formula {
+  white-space: normal;
+}
+
+.formula-library-table .ratio-math {
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.formula-library-table .ratio-math::-webkit-scrollbar {
+  display: none;
+}
+
+.priority-badge.is-a {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+
+.priority-badge.is-b {
+  background: var(--gold-soft);
+  color: var(--gold);
+}
+
+.priority-badge.is-c {
+  background: var(--surface-2);
+  color: var(--muted);
+}
+
 .ratio-math {
   display: inline-block;
   color: var(--accent-ink);
@@ -4022,6 +4125,23 @@ p {
     overflow: visible;
     border: 0;
     background: transparent;
+  }
+
+  .formula-library-head {
+    display: block;
+  }
+
+  .formula-library-count {
+    display: inline-block;
+    margin-top: 8px;
+  }
+
+  .formula-library-table {
+    min-width: 0;
+  }
+
+  .formula-library-table .ratio-math {
+    white-space: normal;
   }
 
   .option-priority {
