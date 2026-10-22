@@ -1436,18 +1436,14 @@
     const optionCount = investmentOptionPriorities().length;
     const libraryCount = formulaLibraryEntryCount(investmentFormulaLibrary()) + formulaLibraryEntryCount(investmentTechnicalIndicators());
     return [
-      '<section class="ratio-overview ratio-overview-cta" aria-labelledby="investment-formulas-cta-heading">',
-      '  <div class="ratio-overview-head">',
-      "    <div>",
-      '      <p class="eyebrow">公式與比率</p>',
-      '      <h2 id="investment-formulas-cta-heading">投資學公式總表</h2>',
-      "      <p>比例分析 " + ratioCount + " 條、核心與技術指標公式 " + libraryCount + " 條，以及選擇權評價 " + optionCount + " 項，已整理成獨立頁面。</p>",
-      "    </div>",
-      '    <div class="ratio-overview-actions">',
-      '      <a class="btn btn-primary" href="#/investment/formulas">查看公式總表 →</a>',
-      "    </div>",
-      "  </div>",
-      "</section>"
+      '<a class="subject-written-cta" href="#/investment/formulas">',
+      '  <div>',
+      '    <p class="eyebrow">投資學 · 公式與比率</p>',
+      '    <strong>投資學公式總表</strong>',
+      '    <span>比例分析 ' + ratioCount + " 條、核心與技術指標公式 " + libraryCount + " 條，以及選擇權評價 " + optionCount + " 項，均已整理成獨立頁面。</span>",
+      '  </div>',
+      '  <span class="subject-written-cta-arrow">查看 →</span>',
+      '</a>'
     ].join("");
   }
 
