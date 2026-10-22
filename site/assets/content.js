@@ -240,7 +240,7 @@ window.EXAM_CONTENT = {
     title: "分析師備考站",
     subtitle: "把總體經濟學、投資學、會計學與證券法規，讀成一張可以考試的地圖。",
     examName: "證券投資分析人員考試",
-    subjectsLabel: "總體經濟學 × 投資學 × 會計學 × 證券法規",
+    subjectsLabel: "總體經濟學、投資學、會計學與證券法規",
     sourceDocuments: [
       "documents/gross_economics_contents.md",
       "documents/investment_contents.md",

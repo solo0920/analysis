@@ -2104,6 +2104,18 @@ p {
   font-size: 1em;
 }
 
+.inline-math:not(.is-display) {
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  vertical-align: middle;
+}
+
+.inline-math:not(.is-display)::-webkit-scrollbar {
+  display: none;
+}
+
 .inline-math.is-display {
   display: block;
   margin: 0.5em 0;

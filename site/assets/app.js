@@ -584,7 +584,7 @@
       '<details class="nobel-model-details">',
       "  <summary>變數與參數</summary>",
       '  <div class="diagram-tables">' + tables + "</div>",
-      diagram.note ? '  <p class="diagram-note">' + escapeHtml(diagram.note) + "</p>" : "",
+      diagram.note ? '  <p class="diagram-note">' + renderInlineMath(diagram.note) + "</p>" : "",
       "</details>"
     ].join("");
   }
@@ -667,7 +667,7 @@
       "    <caption>" + escapeHtml(title) + "</caption>",
       "    <thead><tr><th>符號</th><th>名稱</th><th>說明</th></tr></thead>",
       "    <tbody>" + rows.map(function (row) {
-        return '<tr><td class="diagram-symbol">' + escapeHtml(row[0]) + "</td><td>" + escapeHtml(row[1]) + "</td><td>" + escapeHtml(row[2]) + "</td></tr>";
+        return '<tr><td class="diagram-symbol">' + renderInlineMath(row[0]) + "</td><td>" + renderInlineMath(row[1]) + "</td><td>" + renderInlineMath(row[2]) + "</td></tr>";
       }).join("") + "</tbody>",
       "  </table>",
       "</div>"
@@ -683,12 +683,12 @@
       "  </div>",
       '  <div class="diagram-canvas">' + diagram.svg + "</div>",
       '  <p class="diagram-scroll-hint">圖表較寬，可左右滑動查看。</p>',
-      "  <figcaption>" + escapeHtml(diagram.caption) + "</figcaption>",
+      "  <figcaption>" + renderInlineMath(diagram.caption) + "</figcaption>",
       '  <div class="diagram-tables">',
       renderDiagramTable("變數說明", diagram.variables),
       renderDiagramTable("參數說明", diagram.parameters),
       "  </div>",
-      diagram.note ? '  <p class="diagram-note">' + escapeHtml(diagram.note) + "</p>" : "",
+      diagram.note ? '  <p class="diagram-note">' + renderInlineMath(diagram.note) + "</p>" : "",
       "</figure>"
     ].join("");
   }
@@ -781,7 +781,7 @@
       ? '<ol class="worked-example-options">' + question.options.map(function (text, optionIndex) {
           const letter = "ABCD"[optionIndex];
           const correct = question.answer.indexOf(letter) !== -1;
-          return '<li' + (correct ? ' class="is-correct"' : "") + '><span class="worked-example-letter">' + letter + '</span><span>' + escapeHtml(text) + '</span></li>';
+          return '<li' + (correct ? ' class="is-correct"' : "") + '><span class="worked-example-letter">' + letter + '</span><span>' + renderInlineMath(text) + '</span></li>';
         }).join("") + "</ol>"
       : "";
     const referenceAnswer = !isChoice && Array.isArray(question.answer) && question.answer.length
@@ -800,7 +800,7 @@
       '    <span class="worked-example-kind">' + escapeHtml(kind) + "</span>",
       "  </summary>",
       '  <div class="worked-example-body">',
-      '    <p class="worked-example-stem">' + escapeHtml(question.stem) + "</p>",
+      '    <p class="worked-example-stem">' + renderInlineMath(question.stem) + "</p>",
       options,
       isChoice ? '    <p class="worked-example-answer"><strong>答案</strong> ' + escapeHtml(correctOptions) + "</p>" : "",
       steps.length
@@ -1246,7 +1246,7 @@
       '    <span class="subject-badge">考試科目</span>',
       "  </div>",
       "  <h2>" + escapeHtml(subject.name) + "</h2>",
-      "  <p>" + escapeHtml(subject.tagline) + "</p>",
+      "  <p>" + renderInlineMath(subject.tagline) + "</p>",
       '  <ul class="subject-card-list">' + preview + "<li>…共 " + subject.chapters.length + " 章</li></ul>",
       '  <div class="subject-card-foot">',
       renderProgress(subject),
@@ -1263,7 +1263,7 @@
       '  <div class="chapter-num"><strong>' + chapterNumber(chapter) + "</strong></div>",
       "  <div>",
       "    <h2>" + escapeHtml(chapter.title) + "</h2>",
-      "    <p>" + escapeHtml(chapter.summary) + "</p>",
+      "    <p>" + renderInlineMath(chapter.summary) + "</p>",
       "  </div>",
       '  <div class="chapter-row-side">',
       renderChapterExamStats(chapter, subject),
@@ -1337,7 +1337,7 @@
             "<tr>",
             '<th scope="row">' + escapeHtml(entry.name) + "</th>",
             '<td class="ratio-formula" data-label="公式">' + ratioFormulaMarkup(entry) + "</td>",
-            '<td data-label="說明">' + escapeHtml(entry.note) + "</td>",
+            '<td data-label="說明">' + renderInlineMath(entry.note) + "</td>",
             showChapter ? '<td data-label="對應章節">' + ratioFormulaLink(entry) + "</td>" : "",
             "</tr>"
           ].join("");
@@ -1406,7 +1406,7 @@
       '  <p class="option-variables-title">變數定義</p>',
       '  <dl class="option-variable-list">',
       variables.map(function (variable) {
-        return "<dt>" + renderKatex(variable.symbol, false) + "</dt><dd>" + escapeHtml(variable.definition) + "</dd>";
+        return "<dt>" + renderKatex(variable.symbol, false) + "</dt><dd>" + renderInlineMath(variable.definition) + "</dd>";
       }).join(""),
       "  </dl>",
       "</div>"
@@ -1421,13 +1421,13 @@
       '    <span class="priority-badge">' + escapeHtml(item.priority) + "</span>",
       "    <div>",
       "      <h3>" + escapeHtml(item.topic) + "</h3>",
-      '      <p class="option-card-goal">' + escapeHtml(item.goal) + "</p>",
+      '      <p class="option-card-goal">' + renderInlineMath(item.goal) + "</p>",
       "    </div>",
       "  </div>",
-      '  <p class="option-card-summary">' + escapeHtml(item.summary || "") + "</p>",
+      '  <p class="option-card-summary">' + renderInlineMath(item.summary || "") + "</p>",
       renderOptionFormulaList(item),
       renderOptionVariables(item),
-      item.note ? '  <p class="option-note">' + escapeHtml(item.note) + "</p>" : "",
+      item.note ? '  <p class="option-note">' + renderInlineMath(item.note) + "</p>" : "",
       "</article>"
     ].join("");
   }
@@ -1509,7 +1509,7 @@
         '  <div class="formula-library-head">',
         "    <div>",
         "      <h3>" + escapeHtml(category.title) + "</h3>",
-        category.description ? "      <p>" + escapeHtml(category.description) + "</p>" : "",
+        category.description ? "      <p>" + renderInlineMath(category.description) + "</p>" : "",
         "    </div>",
         '    <span class="formula-library-count">' + entries.length + " 條</span>",
         "  </div>",
@@ -1522,8 +1522,8 @@
                 return renderFormulaVariableSymbol(variable[0]) + "：" + escapeHtml(variable[1]);
               }).join("、") + "</span>"
             : "";
-          const limitations = entry.limitations ? '<span class="formula-limit">限制：' + escapeHtml(entry.limitations) + "</span>" : "";
-          const parameters = entry.parameters ? '<span class="formula-param">參數：' + escapeHtml(entry.parameters) + "</span>" : "";
+          const limitations = entry.limitations ? '<span class="formula-limit">限制：' + renderInlineMath(entry.limitations) + "</span>" : "";
+          const parameters = entry.parameters ? '<span class="formula-param">參數：' + renderInlineMath(entry.parameters) + "</span>" : "";
           return [
             "<tr>",
             '<th scope="row"><span class="formula-name">' + escapeHtml(entry.name) + "</span>" + parameters + "</th>",
@@ -2024,7 +2024,7 @@
     return [
       '<button class="' + classes.join(" ") + '" type="button" data-practice-option="' + letter + '" aria-pressed="' + (selected === letter) + '">',
       '  <span class="past-exam-option-letter">' + letter + "</span>",
-      '  <span class="past-exam-option-text">' + escapeHtml(text) + "</span>",
+      '  <span class="past-exam-option-text">' + renderInlineMath(text) + "</span>",
       "</button>"
     ].join("");
   }
@@ -2071,7 +2071,7 @@
       '  <div class="past-exam-progress" role="progressbar" aria-label="本範圍作答進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + progressPercent + '">',
       '    <div class="past-exam-progress-fill" style="width:' + progressPercent + '%"></div>',
       "  </div>",
-      '  <h2 class="past-exam-stem">' + escapeHtml(question.stem) + "</h2>",
+      '  <h2 class="past-exam-stem">' + renderInlineMath(question.stem) + "</h2>",
       renderPracticeQuestionOrigin(question, session),
       '  <div class="past-exam-options" role="group" aria-label="選擇題選項">',
       question.options.map(function (text, index) {
@@ -2092,7 +2092,7 @@
     const options = question.options.map(function (text, index) {
       const letter = "ABCD"[index];
       const correct = revealed && question.answer.indexOf(letter) !== -1;
-      return '<li' + (correct ? ' class="is-correct"' : "") + '><span class="past-exam-option-letter">' + letter + "</span><span>" + escapeHtml(text) + "</span></li>";
+      return '<li' + (correct ? ' class="is-correct"' : "") + '><span class="past-exam-option-letter">' + letter + "</span><span>" + renderInlineMath(text) + "</span></li>";
     }).join("");
     const answer = revealed
       ? '<div class="past-exam-browse-answer"><strong>' + escapeHtml(practiceAnswerText(question.answer)) + "</strong>" +
@@ -2104,7 +2104,7 @@
       practiceSubjectBadge(subject),
       "    <span>" + escapeHtml(session.label || "歷屆試題") + " · 第 " + question.number + " 題</span>",
       "  </div>",
-      '  <h3 class="past-exam-browse-stem">' + escapeHtml(question.stem) + "</h3>",
+      '  <h3 class="past-exam-browse-stem">' + renderInlineMath(question.stem) + "</h3>",
       renderPracticeQuestionOrigin(question, session),
       '  <ol class="past-exam-browse-options">' + options + "</ol>",
       answer,
@@ -2206,10 +2206,10 @@
           '    <h2>' + escapeHtml(event.title) + '</h2>',
           '  </div>',
           '  <div class="macro-current-summary">' + event.summary.map(function (text) {
-            return '<p>' + escapeHtml(text) + '</p>';
+            return '<p>' + renderInlineMath(text) + '</p>';
           }).join("") + '</div>',
           '  <div class="macro-current-points"><h3>考試重點</h3><ul>' + event.points.map(function (point) {
-            return '<li>' + escapeHtml(point) + '</li>';
+            return '<li>' + renderInlineMath(point) + '</li>';
           }).join("") + '</ul></div>',
           '  <div class="macro-current-sources"><span>對應章節</span>' + renderEventSourceLinks(event) + '</div>',
           '</article>'
@@ -2279,6 +2279,76 @@
     ].join("");
   }
 
+  function escapeTexText(text) {
+    return String(text).replace(/\\/g, "\\textbackslash{}").replace(/([{}%#&_~^])/g, "\\$1");
+  }
+
+  function clauseToTex(clause) {
+    let tex = String(clause);
+    [
+      ["gY", "g_Y"], ["gA", "g_A"], ["gK", "g_K"], ["gN", "g_N"], ["gL", "g_L"],
+      ["βU", "\\beta_U"], ["βL", "\\beta_L"], ["βp", "\\beta_p"], ["βi", "\\beta_i"], ["βm", "\\beta_m"],
+      ["rf", "r_f"], ["RY", "R_Y"], ["Rm", "R_m"], ["Rp", "R_p"], ["Ri", "R_i"], ["Rj", "R_j"],
+      ["Yd", "Y_d"], ["Tp", "T_p"], ["Ms", "M_s"], ["Md", "M_d"],
+      ["M1B", "M_{1B}"], ["M1A", "M_{1A}"], ["M2", "M_2"]
+    ].forEach(function (pair) {
+      tex = tex.split(pair[0]).join(pair[1]);
+    });
+    [
+      "TFP", "CAPM", "SML", "CML", "APT", "EPS", "ROE", "ROA", "EBIT", "EBITDA", "WACC",
+      "NPV", "IRR", "DOL", "DFL", "DTL", "FCFE", "FCFF", "YTM", "VaR", "CVaR", "ETF",
+      "GDP", "GNP", "NNP", "MPC", "MPS", "PDI", "LGD", "ECL", "OCI", "NWC", "CapEx", "DPS", "BVPS"
+    ].forEach(function (word) {
+      tex = tex.replace(new RegExp("\\b" + word + "\\b", "g"), "\\text{" + word + "}");
+    });
+    const greek = {
+      "α": "\\alpha ", "β": "\\beta ", "γ": "\\gamma ", "δ": "\\delta ", "ε": "\\varepsilon ",
+      "θ": "\\theta ", "λ": "\\lambda ", "μ": "\\mu ", "π": "\\pi ", "ρ": "\\rho ",
+      "σ": "\\sigma ", "τ": "\\tau ", "φ": "\\phi ", "ω": "\\omega ",
+      "Δ": "\\Delta ", "Σ": "\\sum ", "Π": "\\Pi ", "Ω": "\\Omega "
+    };
+    Object.keys(greek).forEach(function (key) {
+      tex = tex.split(key).join(greek[key]);
+    });
+    tex = tex
+      .replace(/＝/g, "=")
+      .replace(/＋/g, "+")
+      .replace(/−/g, "-")
+      .replace(/×/g, "\\times ")
+      .replace(/÷/g, "\\div ")
+      .replace(/≈/g, "\\approx ")
+      .replace(/≤/g, "\\le ")
+      .replace(/≥/g, "\\ge ")
+      .replace(/≠/g, "\\ne ")
+      .replace(/∞/g, "\\infty ")
+      .replace(/∈/g, "\\in ");
+    tex = tex.replace(/√\(([^()]*)\)/g, "\\sqrt{$1}").replace(/√([A-Za-z0-9.]+)/g, "\\sqrt{$1}");
+    tex = tex.replace(/\^\(([^()]*)\)/g, "^{$1}").replace(/\^(\\(?:[A-Za-z]+)|[A-Za-z0-9.]+)/g, "^{$1}");
+    tex = tex.replace(/_\(([^()]*)\)/g, "_{$1}");
+    tex = tex.replace(/%/g, "\\%").replace(/\$/g, "\\$").replace(/&/g, "\\&").replace(/#/g, "\\#");
+    tex = tex.replace(/([\u3400-\u9fff\u3000-\u303f\uff00-\uffef]+)/g, function (chunk) {
+      return "\\text{" + escapeTexText(chunk) + "}";
+    });
+    return tex;
+  }
+
+  function autoMathProseToHtml(text) {
+    const source = String(text == null ? "" : text);
+    const mathIndicator = /[＝＋−×÷≈≤≥≠√^_]|[αβγδεθλμπρστφωΔΣΠΩ]|\d+\s*%|[A-Za-z0-9)]\s*[=+\-*/]\s*[0-9A-Za-z(]|[A-Za-z]\s*[+\-*/]\s*[A-Za-z0-9(]/;
+    return source.split(/([；。！？，])/).map(function (part) {
+      if (!part) {
+        return "";
+      }
+      if (/^[；。！？，]$/.test(part)) {
+        return escapeHtml(part);
+      }
+      if (part.length > 240 || !mathIndicator.test(part) || /[\uE000-\uF8FF\u0300-\u036F]/.test(part)) {
+        return escapeHtml(part);
+      }
+      return '<span class="written-answer-math">' + renderKatex(clauseToTex(part), false) + "</span>";
+    }).join("");
+  }
+
   function renderWrittenAnswer(text) {
     const source = String(text == null ? "" : text);
     const parts = [];
@@ -2287,7 +2357,7 @@
     let match;
     while ((match = pattern.exec(source))) {
       if (match.index > last) {
-        parts.push(escapeHtml(source.slice(last, match.index)));
+        parts.push(autoMathProseToHtml(source.slice(last, match.index)));
       }
       const display = match[1] !== undefined;
       const tex = display ? match[1] : match[2];
@@ -2295,7 +2365,7 @@
       last = pattern.lastIndex;
     }
     if (last < source.length) {
-      parts.push(escapeHtml(source.slice(last)));
+      parts.push(autoMathProseToHtml(source.slice(last)));
     }
     return parts.join("");
   }
@@ -2317,7 +2387,7 @@
       '    <span class="written-kind">' + escapeHtml(question.kind || "計算／申論") + '</span>',
       '    <span class="written-reference">參考解答</span>',
       '  </div>',
-      '  <h3 class="written-stem">' + escapeHtml(question.stem) + '</h3>',
+      '  <h3 class="written-stem">' + renderInlineMath(question.stem) + '</h3>',
       renderPracticeQuestionOrigin(question, session),
       '  <div class="written-actions">',
       '    <button class="btn btn-small" type="button" data-written-toggle="' + escapeHtml(question.id) + '">' + (open ? "收起解答" : "顯示參考解答") + '</button>',
@@ -2852,7 +2922,7 @@
       "    <div>",
       '      <p class="eyebrow">' + escapeHtml(subject.name) + " · " + subject.chapters.length + " 章</p>",
       "      <h1>" + escapeHtml(subject.name) + "</h1>",
-      '      <p class="lede">' + escapeHtml(subject.description) + "</p>",
+      '      <p class="lede">' + renderInlineMath(subject.description) + "</p>",
       "    </div>",
       '    <aside class="subject-hero-panel">',
       renderProgress(subject),
@@ -3077,7 +3147,7 @@
       '  <section class="nobel-table-section" aria-labelledby="nobel-table-heading">',
       '    <div class="section-heading nobel-section-heading">',
       "      <div>",
-      '        <p class="eyebrow">歷屆得主 × 代表模型 · ' + escapeHtml(period) + "</p>",
+      '        <p class="eyebrow">歷屆得主與代表模型 · ' + escapeHtml(period) + "</p>",
       '        <h2 id="nobel-table-heading">完整年表與模型圖</h2>',
       "      </div>",
       '      <span class="nobel-table-hint">每一列左側是該屆得主、領域、公式與結論，右側是對應模型圖；點右側屆別可跳到同組其他年份。</span>',
@@ -3224,7 +3294,7 @@
       "    <div>",
       '      <p class="eyebrow">' + escapeHtml(subject.name) + (chapterPartLabel(chapter) ? " · " + escapeHtml(chapterPartLabel(chapter)) : "") + " · " + escapeHtml(chapterLabel(chapter)) + "</p>",
       "      <h1>" + escapeHtml(chapter.title) + "</h1>",
-      '      <p class="lede">' + escapeHtml(chapter.summary) + "</p>",
+      '      <p class="lede">' + renderInlineMath(chapter.summary) + "</p>",
       "    </div>",
       '    <div class="chapter-head-side">',
       '      <button class="btn btn-small' + (done ? " is-done" : "") + '" type="button" data-complete-btn="' + escapeHtml(chapter.id) + '" aria-pressed="' + (done ? "true" : "false") + '">' + (done ? "✓ 已完成" : "標記本章完成") + "</button>",
@@ -3237,7 +3307,7 @@
       '      <div class="toc-progress">' + renderProgress(subject) + "</div>",
       "    </aside>",
       '    <article class="chapter-content">',
-      '      <div class="chapter-summary"><strong>本章摘要：</strong>' + escapeHtml(chapter.summary) + "</div>",
+      '      <div class="chapter-summary"><strong>本章摘要：</strong>' + renderInlineMath(chapter.summary) + "</div>",
       renderChapterExamSourceBlock(chapter),
       chapter.note
         ? '      <div class="notice chapter-note"><strong>單元說明：</strong>' + escapeHtml(chapter.note) + "</div>"
@@ -3445,7 +3515,7 @@
 
     if (route.parts.length === 0) {
       html = renderHome();
-      title = "總體經濟學 × 投資學 × 會計學 × 證券法規｜" + content.meta.title;
+      title = "總體經濟學、投資學、會計學與證券法規｜" + content.meta.title;
     } else if ((route.parts[0] === "macro" && route.parts[1] === "evolution") || (route.parts[0] === "subject" && route.parts[1] === "macro" && route.query.get("evolution"))) {
       html = renderMacroEvolutionPage();
       title = "總體經濟學學派演進圖｜總體經濟學｜" + content.meta.title;

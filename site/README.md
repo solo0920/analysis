@@ -183,6 +183,7 @@ ExamSolutionData[] {
 - `table` 可省略；有值時為 `{ title, columns, rows, note }`，在正文後渲染為比較表。桌面版保留表格，390px 改為卡片堆疊；`columns` 與每一列的長度必須一致，表格標題與內容也會併入搜尋索引。
 - `formula` 可為空字串；非空時由 `content-formula-tex.js` 的 KaTeX 公式資料渲染。
 - **公式一律用 KaTeX**：118 個學習單元的公式集中於 `window.FORMULA_TEX`，以 `章節 ID::節名` 綁定；比例分析 32 條、選擇權 13 條與諾貝爾 58 屆的公式也由 KaTeX 渲染。KaTeX 0.19.0 已放在 `site/assets/katex/`，不依賴 CDN，`file://` 可離線顯示。變數的數字下標寫成 `P_0`、`D_1`、`E_2`，上標寫在整個變數後，例如 `\sigma_p^2`、`w_1^2`；共變異數與變異數使用 `\operatorname{Cov}`、`\operatorname{Var}`。
+- **未標記的數學子句自動 KaTeX 化**：`renderWrittenAnswer()` 內建 `autoMathProseToHtml()`／`clauseToTex()`，會把正文、名詞、考試重點、記憶卡、解題策略、參考解答、章節摘要、科目說明、圖表說明與考古題題幹／選項中的全形運算子、上下標、希臘字母與常見變數轉成 TeX；超過 240 字元的表格型題幹維持原樣，避免手機版溢出。因此資料檔可保留原始文字，顯示時仍統一為 KaTeX。
 - **投資學比例公式只有一份**：`window.INVESTMENT_RATIO_FORMULAS` 同時供 `#/investment/formulas` 的「比例分析公式列表」與對應章節使用：`investment-14` 顯示 26 條財務比率，`investment-17` 顯示 6 條風險調整績效與市場時機指標，`investment-04` 的 Sharpe 公式則以 `ratioFormulaId` 引用同一筆資料。每條公式以 `chapterId` 與 `sectionTitle` 綁定章節；修改名稱、公式、LaTeX、說明或綁定位置，公式總表頁與章節頁會同步更新。驗證器會檢查章節／節次是否存在、公式是否重複，以及綁定節次不得另有 `formula` 字串，避免雙來源。比例公式的分數以 `\dfrac` 排版，避免 KaTeX 行內模式把分子、分母縮成 0.7 倍，讓公式文字與表格其他欄位同級。
 - **選擇權評價優先順序只有一份**：`window.INVESTMENT_OPTION_PRIORITIES` 提供 `#/investment/formulas` 的 5 項準備順序、13 條 KaTeX 公式、36 項變數定義與說明；二項式（含 Put）、Black-Scholes、買賣權平價的公式與變數都從這份資料渲染。
 - **投資學核心公式庫只有一份**：`window.INVESTMENT_FORMULA_LIBRARY` 以 10 類、66 條公式整理貨幣時間價值、投資報酬與風險、投資組合、資產定價、股票評價、債券分析、衍生性商品與 Greeks、風險管理、績效評估與資本結構；每筆有 `latex`、`note`、`priority`、`examSkill`、`variables` 與選填 `chapterId`，公式總表頁與技術分析章節可共用。
@@ -283,6 +284,8 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 2026-10-22 各科目首頁移除「87 題計算／申論」CTA：計算／申論題仍保留在 `#/past-exams/written` 與考古題練習庫，科目首頁只留科目相關 CTA（總體模型總覽、近二年時事、學派演進圖、諾貝爾獎年表、投資學公式總表）。Chrome CDP 在 1280px／390px、深淺主題與 `file://` 實測：總體經濟學首頁 4 張 CTA、投資學首頁 1 張 CTA、會計與證券法規首頁 0 張計算／申論 CTA，0 水平溢出、0 console errors、0 `.katex-error`；驗證器 114,253 項、失敗 0。
 
 2026-10-22 各節與各章出題統計區分選擇題與申論題：章節列右側改為兩個 span，分別顯示「選擇題 N 題 頻率 X%」與「申論題 N 題 頻率 X%」；本節出處題目區塊同步顯示兩種統計，並列出申論題連結；章節頁本章出題紀錄改為選擇題／申論題兩個總計。章節列下方的「N 個重點」數量列已移除。Chrome CDP 在 1280px／390px、深淺主題與 `file://` 實測 33 個頁面狀態，0 水平溢出、0 console errors、0 `.katex-error`；驗證器 114,253 項、失敗 0。
+
+2026-10-22 全站數學式自動 KaTeX 化：`renderWrittenAnswer()` 新增 `autoMathProseToHtml()`／`clauseToTex()`，會把正文、名詞、考試重點、記憶卡、解題策略、參考解答、章節摘要、科目說明、圖表說明與考古題題幹／選項中未標記的數學子句自動轉成 KaTeX；共變數、希臘字母、上下標、百分比、`√`、全形運算子與常見變數（如 `g_Y`、`P_0`、`M_2`）會轉成 TeX，長度超過 240 字元的表格型題幹維持原樣，避免手機版溢出。靜態稽核 4,810 個可轉換子句，KaTeX 編譯 0 失敗；Chrome CDP 在 1280px／390px、深淺主題與 `file://` 實測 33 個頁面狀態，0 水平溢出、0 console errors、0 `.katex-error`；驗證器 114,253 項、失敗 0。
 
 ## 更新流程
 
