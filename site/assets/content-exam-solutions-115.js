@@ -2158,7 +2158,7 @@
     "macro-08::1": {
       "focus": "經濟成長題，先分 Solow 模型、成長會計與景氣循環。Solow 穩定狀態下，人均資本與人均產出不變，長期成長由技術進步決定。",
       "strategies": [
-        "Solow 模型：Y＝A F(K,N)；穩定狀態下 sf(k)＝(n＋δ)k。",
+        "Solow 模型：\\(Y=A F(K,L)\\)；穩定狀態下 \\(sf(k)=(n+\\delta)k\\)。",
         "長期人均產出成長率等於技術進步率 gA；資本累積只能帶來過渡期成長。",
         "成長會計：gY＝gA＋αgK＋(1−α)gN；Solow residual＝gA。",
         "72 法則：倍增年數≈72/年成長率（%）。"
@@ -2167,8 +2167,8 @@
         {
           "questionId": "115Q2-macro-written-3",
           "steps": [
-            "Solow 模型：Y＝A F(K,N)，A 為技術水準，K 為資本，N 為勞動。",
-            "Cobb-Douglas：Y＝A K^α N^(1−α)；穩定狀態下人均資本與人均產出不變，長期成長由 gA 決定。",
+            "Solow 模型：\\(Y=A F(K,L)\\)，A 為技術水準，K 為資本，L 為勞動。",
+            "Cobb-Douglas：\\(Y=A L^{\\alpha}K^{1-\\alpha}\\)；穩定狀態下人均資本與人均產出不變，長期成長由 \\(g_A\\) 決定。",
             "成長會計：gY＝gA＋αgK＋(1−α)gN。",
             "Solow residual：gA＝gY−αgK−(1−α)gN，即無法由資本與勞動解釋的生產力進步（TFP 成長）。"
           ],
