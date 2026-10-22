@@ -955,7 +955,6 @@
       '  <span class="subject-written-cta-arrow">查看模型總覽 →</span>',
       "</a>",
       '<div class="model-atlas-links">',
-      '  <a class="text-link" href="#/subject/macro?evolution=1">學派演進圖 →</a>',
       '  <a class="text-link" href="#/nobel">諾貝爾獎年表 →</a>',
       "</div>"
     ].join("");
@@ -985,7 +984,9 @@
     }) || null;
   }
 
-  function renderMacroEvolution() {
+  function renderMacroEvolution(options) {
+    const opts = options || {};
+    const headingTag = opts.headingTag === "h1" ? "h1" : "h2";
     const meta = macroEvolution.meta || {};
     const stages = Array.isArray(macroEvolution.stages) ? macroEvolution.stages : [];
     if (!stages.length) {
@@ -1103,7 +1104,7 @@
       '  <div class="macro-evolution-head">',
       '    <div class="macro-evolution-intro">',
       '      <p class="eyebrow">' + escapeHtml(meta.eyebrow || "思想演進") + "</p>",
-      '      <h2 id="macro-evolution-heading">' + escapeHtml(meta.title || "總體經濟學學派演進圖") + "</h2>",
+      "      <" + headingTag + ' id="macro-evolution-heading">' + escapeHtml(meta.title || "總體經濟學學派演進圖") + "</" + headingTag + ">",
       "      <p>" + escapeHtml(meta.description || "") + "</p>",
       "    </div>",
       '    <div class="evolution-meta" role="group" aria-label="圖表規模">',
@@ -1119,6 +1120,48 @@
       '  <ol class="evolution-track">' + stageMarkup + "</ol>",
       '  <p class="evolution-note"><strong>閱讀說明：</strong>' + escapeHtml(meta.note || "") + ' <a href="#/sources">資料來源 →</a></p>',
       "</section>"
+    ].join("");
+  }
+
+  function renderMacroEvolutionCta() {
+    const meta = macroEvolution.meta || {};
+    const stages = Array.isArray(macroEvolution.stages) ? macroEvolution.stages : [];
+    let nodeCount = 0;
+    const nobelYears = new Set();
+    stages.forEach(function (stage) {
+      (Array.isArray(stage.nodes) ? stage.nodes : []).forEach(function (node) {
+        nodeCount += 1;
+        (Array.isArray(node.nobelYears) ? node.nobelYears : []).forEach(function (year) {
+          nobelYears.add(Number(year));
+        });
+      });
+    });
+    return [
+      '<a class="subject-written-cta" href="#/macro/evolution">',
+      '  <div>',
+      '    <p class="eyebrow">' + escapeHtml(meta.eyebrow || "思想演進") + "</p>",
+      '    <strong>' + escapeHtml(meta.title || "總體經濟學學派演進圖") + "</strong>",
+      "    <span>" + escapeHtml(meta.description || "") + "</span>",
+      '    <span class="subject-written-cta-note">' + nodeCount + " 個節點 · " + nobelYears.size + " 個諾貝爾里程碑</span>",
+      "  </div>",
+      '  <span class="subject-written-cta-arrow">查看演進圖 →</span>',
+      "</a>"
+    ].join("");
+  }
+
+  function renderMacroEvolutionPage() {
+    return [
+      '<div class="page subject-macro">',
+      '  <nav class="breadcrumb" aria-label="麵包屑">',
+      '    <a href="#/">首頁</a><span>/</span>',
+      '    <a href="#/subject/macro">總體經濟學</a><span>/</span>',
+      "    <span>學派演進圖</span>",
+      "  </nav>",
+      renderMacroEvolution({ headingTag: "h1" }),
+      '  <div class="chapter-actions">',
+      '    <a class="btn" href="#/subject/macro">← 回總體經濟學</a>',
+      "  </div>",
+      "</div>"
     ].join("");
   }
 
@@ -2765,7 +2808,7 @@
       "  </section>",
       subject.id === "macro" ? renderModelAtlasCard(subject) : "",
       subject.id === "macro" ? renderMacroCurrentEventsCard() : "",
-      subject.id === "macro" ? renderMacroEvolution() : "",
+      subject.id === "macro" ? renderMacroEvolutionCta() : "",
       renderSubjectWrittenCta(subject),
       subject.id === "investment" ? renderInvestmentFormulasCard() : "",
       '  <div class="section-heading subject-chapters-head">',
@@ -3261,7 +3304,7 @@
   function updateNav(route) {
     const active = {
       home: route.parts.length === 0,
-      macro: (route.parts[0] === "models" && route.parts[1] === "macro") || route.parts[0] === "nobel",
+      macro: (route.parts[0] === "models" && route.parts[1] === "macro") || route.parts[0] === "nobel" || (route.parts[0] === "macro" && route.parts[1] === "evolution"),
       investment: route.parts[0] === "investment" && route.parts[1] === "formulas",
       accounting: false,
       law: false,
@@ -3353,6 +3396,9 @@
     if (route.parts.length === 0) {
       html = renderHome();
       title = "總體經濟學 × 投資學 × 會計學 × 證券法規｜" + content.meta.title;
+    } else if ((route.parts[0] === "macro" && route.parts[1] === "evolution") || (route.parts[0] === "subject" && route.parts[1] === "macro" && route.query.get("evolution"))) {
+      html = renderMacroEvolutionPage();
+      title = "總體經濟學學派演進圖｜總體經濟學｜" + content.meta.title;
     } else if (route.parts[0] === "subject" && getSubject(route.parts[1])) {
       const subject = getSubject(route.parts[1]);
       html = renderSubject(subject);
@@ -3397,14 +3443,7 @@
     setupSectionObserver();
     closeMobileMenu();
 
-    if (route.parts[0] === "subject" && route.parts[1] === "macro" && route.query.get("evolution")) {
-      window.requestAnimationFrame(function () {
-        const target = document.getElementById("macro-evolution");
-        if (target) {
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      });
-    } else if (route.parts[0] === "models" && route.parts[1] === "macro" && route.query.get("model")) {
+    if (route.parts[0] === "models" && route.parts[1] === "macro" && route.query.get("model")) {
       const modelAnchor = route.query.get("model") || "";
       window.requestAnimationFrame(function () {
         const target = /^model-macro-\d+-\d+$/.test(modelAnchor) ? document.getElementById(modelAnchor) : null;
@@ -3593,7 +3632,7 @@
       searchResults.innerHTML = [
         '<div class="search-group-label">快速前往</div>',
         '<a class="search-result" href="#/subject/macro"><span class="result-type">科目</span><span><strong>總體經濟學</strong><small>國民所得、貨幣、政策、成長與開放經濟</small></span><span class="result-arrow">→</span></a>',
-        '<a class="search-result" href="#/subject/macro?evolution=1"><span class="result-type">圖解</span><span><strong>總體經濟學派演進圖</strong><small>古典、凱因斯、貨幣、新古典、新凱因斯與現代研究前沿</small></span><span class="result-arrow">→</span></a>',
+        '<a class="search-result" href="#/macro/evolution"><span class="result-type">圖解</span><span><strong>總體經濟學學派演進圖</strong><small>古典、凱因斯、貨幣、新古典、新凱因斯與現代研究前沿</small></span><span class="result-arrow">→</span></a>',
         '<a class="search-result" href="#/subject/investment"><span class="result-type">科目</span><span><strong>投資學</strong><small>金融體系、利率與各類金融工具</small></span><span class="result-arrow">→</span></a>',
         '<a class="search-result" href="#/subject/accounting"><span class="result-type">科目</span><span><strong>會計學</strong><small>現金與存貨、金融資產、報表分析與資本預算</small></span><span class="result-arrow">→</span></a>',
         '<a class="search-result" href="#/models/macro"><span class="result-type">模型</span><span><strong>總體經濟模型總覽</strong><small>' + (macroModelTotal + nobelTotal) + ' 張模型圖（' + macroModelTotal + ' 章節＋' + nobelTotal + ' 諾貝爾），依 ' + (macroSubject ? macroSubject.chapters.length : 13) + ' 章與 ' + nobelYears + ' 屆年表整理</small></span><span class="result-arrow">→</span></a>',
