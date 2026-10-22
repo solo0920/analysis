@@ -1243,7 +1243,7 @@ p {
 }
 
 .ratio-math .katex {
-  font-size: 1em;
+  font-size: 1.04em;
 }
 
 .ratio-math .katex-display {
@@ -2101,7 +2101,7 @@ p {
 }
 
 .inline-math .katex {
-  font-size: 1em;
+  font-size: 1.06em;
 }
 
 .inline-math:not(.is-display) {
@@ -2127,7 +2127,7 @@ p {
 }
 
 .formula-katex .katex {
-  font-size: 1em;
+  font-size: 1.04em;
 }
 
 .formula-note {
@@ -2811,7 +2811,7 @@ p {
 .nobel-inline-math {
   color: var(--accent-ink);
   font-family: var(--font-mono);
-  font-size: 0.94em;
+  font-size: 1em;
   white-space: nowrap;
 }
 
@@ -6471,7 +6471,7 @@ p {
 }
 
 .written-answer-math .katex {
-  font-size: 1em;
+  font-size: 1.08em;
 }
 
 .written-answer-math.is-display {

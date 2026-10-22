@@ -2289,11 +2289,17 @@
       ["gY", "g_Y"], ["gA", "g_A"], ["gK", "g_K"], ["gN", "g_N"], ["gL", "g_L"],
       ["βU", "\\beta_U"], ["βL", "\\beta_L"], ["βp", "\\beta_p"], ["βi", "\\beta_i"], ["βm", "\\beta_m"],
       ["rf", "r_f"], ["RY", "R_Y"], ["Rm", "R_m"], ["Rp", "R_p"], ["Ri", "R_i"], ["Rj", "R_j"],
-      ["Yd", "Y_d"], ["Tp", "T_p"], ["Ms", "M_s"], ["Md", "M_d"],
-      ["M1B", "M_{1B}"], ["M1A", "M_{1A}"], ["M2", "M_2"]
+      ["Yd", "Y_d"], ["Tp", "T_p"], ["Ms", "M_s"], ["Md", "M_d"]
     ].forEach(function (pair) {
       tex = tex.split(pair[0]).join(pair[1]);
     });
+    const monetaryContext = /(貨幣|M1A|M1B|通貨|存款|儲蓄|準貨幣|準備|乘數|流動性|央行|中間目標|防衛貨幣)/.test(tex);
+    const performanceContext = /(Sharpe|Jensen|績效|衡量|α)/.test(tex);
+    if (/M2/.test(tex) && performanceContext && !monetaryContext) {
+      tex = tex.split("M2").join("M^2");
+    } else if (/M1A|M1B|M2/.test(tex) && monetaryContext) {
+      tex = tex.split("M1A").join("M_{1A}").split("M1B").join("M_{1B}").split("M2").join("M_2").split("M1").join("M_1");
+    }
     [
       "TFP", "CAPM", "SML", "CML", "APT", "EPS", "ROE", "ROA", "EBIT", "EBITDA", "WACC",
       "NPV", "IRR", "DOL", "DFL", "DTL", "FCFE", "FCFF", "YTM", "VaR", "CVaR", "ETF",
