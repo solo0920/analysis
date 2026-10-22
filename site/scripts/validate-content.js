@@ -148,7 +148,7 @@ function parseInvestmentSource() {
 }
 
 function parseAccountingSource() {
-  const lines = read("documents/accounting_contents.md").split(/\r?\n/);
+  const lines = read("documents/accounting_toc.md").split(/\r?\n/);
   const chapters = [];
   let currentChapter = null;
 

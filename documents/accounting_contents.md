@@ -1,158 +1,86 @@
-# 目錄
+# 財務分析總架構圖
+```text
+營業收入 Revenue / Sales
+        │
+        ├──► 營收成長率 = 本期營業收入/去年營業收入-1
+        ├─ 減：銷貨成本 (Cost of Goods Sold, COGS)
+        ▼
+毛利 Gross Profit
+        │
+        ├──► 毛利率 (Gross Margin) = 毛利 ÷ 營業收入
+        │
+        ├─ 減：營業費用 (Operating Expenses)
+        │      ├─ 銷售費用 (Selling Expenses)
+        │      ├─ 管理費用 (General & Administrative Expenses)
+        │      └─ 研發費用 (Research & Development Expenses)
+        ▼
+營業利益 EBIT (Operating Income)
+        │
+        ├──► 營業利益率 (Operating Margin) = EBIT ÷ 營業收入
+        ├──► 利息保障倍數 (Interest Coverage) = EBIT ÷ Interest Expense
+        │
+        ├─ ＋ 利息收入 (Interest Income)
+        ├─ － 利息費用 (Interest Expense)
+        ├─ ± 其他收益及損失 (Other Gains/Losses)
+        ▼
+稅前淨利 EBT (Earnings Before Tax)
+        │
+        ├──► 有效稅率 Effective Tax Rate = Income Tax ÷ EBT
+        ├─ － 所得稅費用 (Income Tax Expense)
+        ▼
+本期淨利 Net Income (NI)
+        │
+        ├──► 淨利率 (Net Profit Margin) = NI ÷ Revenue
+        │
+        ├──► EPS (Earnings Per Share) = (NI − Preferred Dividend) ÷ Weighted Average Common Shares
+        ├──► P/E Ratio = Market Price Per Share ÷ EPS
+        ├──► Book Value Per Share = Shareholders' Equity ÷ Common Shares Outstanding
+        ├──► P/B Ratio = Market Price Per Share ÷ Book Value Per Share
+        │
+        ├──► ROA (Return on Assets) = NI ÷ Average Total Assets
+        ├──► ROE (Return on Equity) = NI ÷ Average Shareholders' Equity
+        │
+        ├──► 保留盈餘增加 = NI − 現金股利
+        ├──► 保留盈餘率 Retention Ratio = (NI − Dividend) ÷ NI
+        ├──► 股利支付率 Dividend Payout Ratio = Dividend ÷ NI
+        ├──► 股東權益增加(若未全部配息)
+        └──► 自由現金流分析、企業價值評價、杜邦分析的起點
+```
 
----
 
-## CHAPTER 1 現金及應收款項（p. 01）
-* **01** 現金與約當現金（p. 02）
-* **02** 零用金制度（p. 07）
-* **03** 銀行往來調節表（銀行存款調節表）（p. 11）
-* **04** 應收帳款之取得與持有（p. 19）
-* **05** 應收帳款之處分（p. 26）
-* **06** 應收票據（p. 28）
-* 本單元精選試題（線上題庫）
+# DuPont Analysis
 
----
+```text
+三階段:
+ROE = Net Profit Margin × Asset Turnover × Equity Multiplier
+ROE = (NI/Revenue) × (Revenue/Average Assets) × (Average Assets/Average Equity)
+五階段:
+ROE = Tax Burden × Interest Burden × EBIT Margin × Asset Turnover × Financial Leverage
+ROE = (NI/EBT) × (EBT/EBIT) × (EBIT/Revenue) × (Revenue/Assets) × (Assets/Equity)
 
-## CHAPTER 2 存貨（p. 35）
-* **01** 存貨之定義與存貨盤存制度（p. 36）
-* **02** 存貨成本認定及數量認定（p. 43）
-* **03** 存貨成本評價（p. 48）
-* **04** 存貨成本估計方法（p. 52）
-* **05** 存貨錯誤的影響（p. 55）
-* 本單元精選試題（線上題庫）
+| NI / EBT         | 稅務效率     |
+| EBT / EBIT       | 利息負擔     |
+| EBIT / Revenue   | 本業獲利能力 |
+| Revenue / Assets | 資產使用效率 |
+| Assets / Equity  | 財務槓桿     |
+```
 
----
+# 四大財務報表連結
+##
+```text
+Income Statement
+Revenue → Gross Profit → EBIT → EBT → NI
+                     │
+                     ▼
+              保留盈餘增加
+                     │
+                     ▼
+Balance Sheet
+Assets / Liabilities / Equity
 
-## CHAPTER 3 營業用資產、投資性不動產、生物資產、無形資產（p. 59）
-* **01** 不動產、廠房及設備之取得（p. 60）
-* **02** 不動產、廠房及設備之持有（p. 68）
-* **03** 不動產、廠房及設備之處分（p. 79）
-* **04** 投資性不動產（p. 83）
-* **05** 生物資產（p. 94）
-* **06** 無形資產（p. 99）
-* 本單元精選試題（線上題庫）
+                     │
+                     ▼
 
----
-
-## CHAPTER 4 金融資產（p. 109）
-* **01** 投資之分類（p. 110）
-* **02** 透過損益按公允價值衡量金融資產 (FVTPL)（p. 113）
-* **03** 透過其他綜合損益按公允價值衡量金融資產 (FVOCI)（p. 119）
-* **04** 按攤銷後成本衡量之債券投資（p. 130）
-* **05** 金融資產之減損及重分類（p. 140）
-* 本單元精選試題（線上題庫）
-
----
-
-## CHAPTER 5 流動負債、負債準備、或有事項（p. 145）
-* **01** 確定之流動負債（p. 146）
-* **02** 負債準備與或有負債（p. 151）
-* 本單元精選試題（線上題庫）
-
----
-
-## CHAPTER 6 金融負債（p. 159）
-* **01** 公司債之發行與持有（p. 160）
-* **02** 公司債債務之解除（p. 168）
-* **03** 其他長期負債之會計處理（p. 171）
-* 本單元精選試題（線上題庫）
-
----
-
-## CHAPTER 7 權益（p. 177）
-* **01** 股東權益組成（p. 178）
-* **02** 股份發行程序及會計處理（p. 183）
-* **03** 庫藏股票之會計處理（p. 188）
-* **04** 保留盈餘與股利發放（p. 194）
-* 本單元精選試題（線上題庫）
-
----
-
-## CHAPTER 8 客戶合約之收入 (IFRS 15)（p. 209）
-* 本單元精選試題（線上題庫）
-
----
-
-## CHAPTER 9 租賃 (IFRS 16)（p. 219）
-* 本單元精選試題（線上題庫）
-
----
-
-## CHAPTER 10 所得稅（p. 227）
-* 本單元精選試題（線上題庫）
-
----
-
-## CHAPTER 11 員工福利與股份基礎給付（p. 233）
-* 本單元精選試題（線上題庫）
-
----
-
-## CHAPTER 12 會計政策／估計變動與錯誤更正（p. 239）
-* **01** 會計政策變動與會計估計變動（p. 240）
-* **02** 會計錯誤更正（p. 245）
-* 本單元精選試題（線上題庫）
-
----
-
-## CHAPTER 13 現金流量（p. 255）
-* **01** 現金流量表基本概念及組成（p. 256）
-* **02** 現金流量表之編製（p. 262）
-* 本單元精選試題（線上題庫）
-
----
-
-## CHAPTER 14 財務報表的基本觀念（p. 275）
-* **01** 財務報表與一般公認會計原則（p. 276）
-* **02** 財務報表品質特性（p. 280）
-* 本單元精選試題（線上題庫）
-
----
-
-## CHAPTER 15 財務報表分析（p. 283）
-* **01** 財務報表分析之基本觀念及方法（p. 284）
-* **02** 比率分析（p. 286）
-* 本單元精選試題（線上題庫）
-
----
-
-## CHAPTER 16 財務預測（p. 299）
-* 本單元精選試題（線上題庫）
-
----
-
-## CHAPTER 17 合併財務報表 (IFRS 10)（p. 305）
-* 本單元精選試題（線上題庫）
-
----
-
-## CHAPTER 18 財務報表舞弊（p. 311）
-* 本單元精選試題（線上題庫）
-
----
-
-## CHAPTER 19 財務管理的基本觀念（p. 315）
-* 本單元精選試題（線上題庫）
-
----
-
-## CHAPTER 20 資本結構及資金成本（p. 319）
-* **01** 資本結構（p. 320）
-* **02** 資金成本（p. 324）
-* 本單元精選試題（線上題庫）
-
----
-
-## CHAPTER 21 資本預算決策（p. 329）
-* 本單元精選試題（線上題庫）
-
----
-
-## CHAPTER 22 公司治理（p. 333）
-* 本單元精選試題（線上題庫）
-
----
-
-## CHAPTER 23 其他（p. 339）
-> *(註：原書此處章節編號印為 22，依順序應為 Chapter 23)*
-* 本單元精選試題（線上題庫）
+Cash Flow Statement
+NI → CFO (營業活動現金流)
+```
