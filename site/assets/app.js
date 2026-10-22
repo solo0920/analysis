@@ -791,6 +791,17 @@
     ].join("");
   }
 
+  function renderTableCell(cell) {
+    const text = String(cell == null ? "" : cell);
+    if (text.indexOf("難以取得超額報酬") === 0) {
+      return '<span class="table-mark is-negative" aria-hidden="true">✕</span>' + renderInlineMath(text);
+    }
+    if (text.indexOf("仍可能取得超額報酬") === 0) {
+      return '<span class="table-mark is-positive" aria-hidden="true">○</span>' + renderInlineMath(text);
+    }
+    return renderInlineMath(text);
+  }
+
   function renderSectionTable(table) {
     if (!table || !Array.isArray(table.columns) || !Array.isArray(table.rows)) {
       return "";
@@ -812,7 +823,7 @@
           if (cellIndex === 0) {
             return '<th scope="row">' + renderInlineMath(cell) + "</th>";
           }
-          return '<td data-label="' + escapeHtml(table.columns[cellIndex] || "") + '">' + renderInlineMath(cell) + "</td>";
+          return '<td data-label="' + escapeHtml(table.columns[cellIndex] || "") + '">' + renderTableCell(cell) + "</td>";
         }).join("") + "</tr>";
       }).join("") + "</tbody>",
       "    </table>",

@@ -20,6 +20,7 @@
   --gold: #a86d27;
   --gold-soft: #f5ead8;
   --danger: #9a3f35;
+  --success: #2f7d4f;
   --shadow-sm: 0 1px 2px rgba(24, 36, 38, 0.05);
   --shadow-md: 0 14px 40px rgba(24, 36, 38, 0.09);
   --shadow-lg: 0 28px 70px rgba(24, 36, 38, 0.16);
@@ -50,6 +51,7 @@
   --gold: #e1b06a;
   --gold-soft: #33261a;
   --danger: #e28b7f;
+  --success: #7ed69b;
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
   --shadow-md: 0 18px 48px rgba(0, 0, 0, 0.35);
   --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.5);
@@ -1100,6 +1102,24 @@ p {
 
 .comparison-table tbody td {
   min-width: 110px;
+}
+
+.table-mark {
+  display: inline-block;
+  width: 1.05em;
+  margin-right: 5px;
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+  vertical-align: 0.08em;
+}
+
+.table-mark.is-negative {
+  color: var(--danger);
+}
+
+.table-mark.is-positive {
+  color: var(--success);
 }
 
 .section-table-note {
