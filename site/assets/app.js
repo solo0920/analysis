@@ -953,10 +953,7 @@
       "    <span>涵蓋 " + subject.chapters.length + " 章、共 " + total + " 張章節模型圖（" + withModels + " 章含模型）；另收錄 " + nobelYears + " 屆諾貝爾經濟學獎年表與 " + nobelTotal + " 組模型圖。</span>",
       "  </div>",
       '  <span class="subject-written-cta-arrow">查看模型總覽 →</span>',
-      "</a>",
-      '<div class="model-atlas-links">',
-      '  <a class="text-link" href="#/nobel">諾貝爾獎年表 →</a>',
-      "</div>"
+      "</a>"
     ].join("");
   }
 
@@ -1145,6 +1142,21 @@
       '    <span class="subject-written-cta-note">' + nodeCount + " 個節點 · " + nobelYears.size + " 個諾貝爾里程碑</span>",
       "  </div>",
       '  <span class="subject-written-cta-arrow">查看演進圖 →</span>',
+      "</a>"
+    ].join("");
+  }
+
+  function renderNobelCta() {
+    const nobelGroups = nobelGroupsWithDiagrams();
+    const nobelYears = Array.isArray(nobelData.rows) ? nobelData.rows.length : 0;
+    return [
+      '<a class="subject-written-cta" href="#/nobel">',
+      '  <div>',
+      '    <p class="eyebrow">諾貝爾經濟學獎</p>',
+      '    <strong>歷年諾貝爾經濟學獎年表</strong>',
+      "    <span>收錄 " + nobelYears + " 屆年份與得主，以及 " + nobelGroups.length + " 組模型圖；可依屆別與圖組跳轉。</span>",
+      "  </div>",
+      '  <span class="subject-written-cta-arrow">查看年表 →</span>',
       "</a>"
     ].join("");
   }
@@ -2139,13 +2151,13 @@
 
   function renderMacroCurrentEventsCard() {
     return [
-      '<a class="macro-current-cta" href="#/macro-current">',
+      '<a class="subject-written-cta" href="#/macro-current">',
       '  <div>',
       '    <p class="eyebrow">近二年時事 · 總經政策</p>',
-      '    <h2>重要國際金融時事與臺灣政策</h2>',
-      '    <p>美國對等關稅、聯準會、國債與黃金、穩定幣、AI 生產力、歐債與臺灣貨幣政策，整理成可答題的總經框架。</p>',
+      '    <strong>重要國際金融時事與臺灣政策</strong>',
+      '    <span>美國對等關稅、聯準會、國債與黃金、穩定幣、AI 生產力、歐債與臺灣貨幣政策，整理成可答題的總經框架。</span>',
       '  </div>',
-      '  <span class="macro-current-cta-arrow">查看時事整理 →</span>',
+      '  <span class="subject-written-cta-arrow">查看時事整理 →</span>',
       '</a>'
     ].join("");
   }
@@ -2172,12 +2184,6 @@
       }
       return true;
     });
-  }
-
-  function writtenCountForSubject(subjectId) {
-    return writtenQuestions.filter(function (question) {
-      return question.subject === subjectId;
-    }).length;
   }
 
   function renderWrittenFilters() {
@@ -2285,23 +2291,6 @@
       '<div class="written-list" id="written-list">' + (questions.length ? questions.map(renderWrittenCard).join("") : '<div class="past-exam-empty"><h2>目前沒有符合的題目</h2><p>換一個年度或科目再試。</p></div>') + '</div>',
       '  <div class="notice"><strong>解答說明：</strong>申論與計算題沒有官方公告解答；題卡均標示「參考解答」，107–115 年 348 題均已提供完整參考解答；若與補習班、教材或官方答案不同，請以官方與正式教材為準。</div>',
       '</div>'
-    ].join("");
-  }
-
-  function renderSubjectWrittenCta(subject) {
-    const count = writtenCountForSubject(subject.id);
-    if (!count) {
-      return "";
-    }
-    return [
-      '<a class="subject-written-cta" href="#/past-exams/written">',
-      '  <div>',
-      '    <p class="eyebrow">107–115 計算與申論</p>',
-      '    <strong>' + count + ' 題計算／申論</strong>',
-      '    <span>均已提供完整參考解答，點此查看。</span>',
-      '  </div>',
-      '  <span class="subject-written-cta-arrow">查看 →</span>',
-      '</a>'
     ].join("");
   }
 
@@ -2809,7 +2798,7 @@
       subject.id === "macro" ? renderModelAtlasCard(subject) : "",
       subject.id === "macro" ? renderMacroCurrentEventsCard() : "",
       subject.id === "macro" ? renderMacroEvolutionCta() : "",
-      renderSubjectWrittenCta(subject),
+      subject.id === "macro" ? renderNobelCta() : "",
       subject.id === "investment" ? renderInvestmentFormulasCard() : "",
       '  <div class="section-heading subject-chapters-head">',
       "    <div>",
