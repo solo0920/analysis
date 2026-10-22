@@ -399,6 +399,15 @@
     }).join("") + "</dl>";
   }
 
+  function getDiagrams(chapterId, sectionIndex) {
+    const baseKey = chapterId + "#" + sectionIndex;
+    return Object.keys(diagrams).filter(function (key) {
+      return key === baseKey || key.indexOf(baseKey + "-") === 0;
+    }).map(function (key) {
+      return diagrams[key];
+    });
+  }
+
   function getDiagram(chapterId, sectionIndex) {
     return diagrams[chapterId + "#" + sectionIndex] || null;
   }
@@ -786,7 +795,7 @@
     const sectionId = "section-" + (index + 1);
     const focus = isFocusSection(subject, section);
     const kicker = focus ? "學習重點 " : "";
-    const diagram = chapter ? getDiagram(chapter.id, index) : null;
+    const sectionDiagrams = chapter ? getDiagrams(chapter.id, index) : [];
     const formulaEntry = chapter ? formulaTexFor(chapter, section) : null;
     const formulaTex = typeof formulaEntry === "string" ? formulaEntry : (formulaEntry && formulaEntry.tex ? formulaEntry.tex : "");
     const ratioFormulas = chapter && subject.id === "investment"
@@ -806,7 +815,7 @@
       '  <div class="section-body">' + section.body.map(function (paragraph) {
         return "<p>" + renderInlineMath(paragraph) + "</p>";
       }).join("") + "</div>",
-      diagram ? renderDiagram(diagram) : "",
+      sectionDiagrams.map(renderDiagram).join(""),
       '  <div class="subheading">名詞速查</div>',
       renderTerms(section.terms),
       formulaTex
@@ -3011,7 +3020,7 @@
       "    <strong>公式校對：</strong>" + escapeHtml(content.meta.formulaNote),
       "  </div>",
       '  <div class="notice">',
-      "    <strong>核對進度：</strong>截至 2026-10-22，諾貝爾年表 58 屆的年份與得主已對照官方 API（0 筆不一致），2026 屆學說概念已對照官方 popular information，2019–2020 屆公式與學說方向亦已對照官方科學背景（概念式）；投資學與總體經濟學 29 條公式已完成公開教材逐條核對（#27 BIS CIP、#28 SEC NAV 另經官方交叉核對）；21 張既有總體模型圖已完成公開教材逐條核對，全部為「通過（教材）」，B15 另經 CBC 官方外匯頁輔助，B12 的臺灣景氣指標以國發會頁面輔助；另有 1 張新增國民所得會計帳流程圖與會計學 4 張教學流程圖（會計循環、財務分析總架構、杜邦分析、四表連結）為教學示意，已通過結構與章節綁定驗證，尚未逐條教材核對；投資學另有 32 條比例分析公式，集中於單一來源並與對應章節綁定，另有 5 項選擇權評價優先順序；會計公式 A1–A12 已完成核對（A1、A3、A4、A8、A12 依 IFRS 官方摘要，A5、A7 依 IFRS 9／16 準則本文，A2、A6、A9–A11 依公開教材）；會計代表性分錄與報表勾稽已檢查，各章例題逐題重算與諾貝爾其他屆公式仍待官方或教材逐條核對。",
+      "    <strong>核對進度：</strong>截至 2026-10-22，諾貝爾年表 58 屆的年份與得主已對照官方 API（0 筆不一致），2026 屆學說概念已對照官方 popular information，2019–2020 屆公式與學說方向亦已對照官方科學背景（概念式）；投資學與總體經濟學 29 條公式已完成公開教材逐條核對（#27 BIS CIP、#28 SEC NAV 另經官方交叉核對）；21 張既有總體模型圖已完成公開教材逐條核對，全部為「通過（教材）」，B15 另經 CBC 官方外匯頁輔助，B12 的臺灣景氣指標以國發會頁面輔助；另有 1 張新增國民所得會計帳流程圖與會計學 7 張教學流程圖（會計循環、主要財務報表架構、借記／貸記常用項目、交易到報表流程、財務分析總架構、杜邦分析、四表連結）為教學示意，已通過結構與章節綁定驗證，尚未逐條教材核對；投資學另有 32 條比例分析公式，集中於單一來源並與對應章節綁定，另有 5 項選擇權評價優先順序；會計公式 A1–A12 已完成核對（A1、A3、A4、A8、A12 依 IFRS 官方摘要，A5、A7 依 IFRS 9／16 準則本文，A2、A6、A9–A11 依公開教材）；會計代表性分錄與報表勾稽已檢查，各章例題逐題重算與諾貝爾其他屆公式仍待官方或教材逐條核對。",
       "  </div>",
       groups,
       '  <div class="notice">',

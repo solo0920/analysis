@@ -706,7 +706,7 @@ check(accountingDiagramKeys.length >= 1, "會計學教學流程圖應至少 1 �
 const rawAccountingKeys = [];
 accountingDiagramFiles.forEach(function (file) {
   const text = fs.readFileSync(path.join(siteDir, "assets", file), "utf8");
-  const matches = text.match(/^\s{2}"(accounting-\d+#\d+)":\s*\{/gm) || [];
+  const matches = text.match(/^\s{2}"(accounting-\d+#\d+(?:-\d+)?)":\s*\{/gm) || [];
   matches.forEach(function (match) {
     rawAccountingKeys.push(match.trim().split('"')[1]);
   });
@@ -717,13 +717,13 @@ check(read("site/index.html").indexOf("assets/diagrams-accounting.js") !== -1, "
 
 accountingDiagramKeys.forEach(function (key) {
   const keyParts = key.split("#");
-  check(keyParts.length === 2 && keyParts[0].indexOf("accounting-") === 0, "會計學教學流程圖只能掛在會計學章節，鍵值格式：" + key);
+  check(keyParts.length === 2 && keyParts[0].indexOf("accounting-") === 0 && /^accounting-\d+#\d+(?:-\d+)?$/.test(key), "會計學教學流程圖只能掛在會計學章節，鍵值格式：" + key);
   const chapter = accountingChapterMap[keyParts[0]];
   check(Boolean(chapter), "會計學教學流程圖指向不存在的章節：" + key);
   if (!chapter) {
     return;
   }
-  const sectionIndex = Number(keyParts[1]);
+  const sectionIndex = parseInt(keyParts[1], 10);
   check(Number.isInteger(sectionIndex) && sectionIndex >= 0 && sectionIndex < chapter.sections.length, "會計學教學流程圖節次超出範圍：" + key);
   const section = chapter.sections[sectionIndex];
   if (!section) {

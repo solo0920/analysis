@@ -459,5 +459,424 @@ Object.assign(window.ACCOUNTING_DIAGRAMS, {
       ["Disclosure", "附註揭露 Notes to financial statements", "會計政策、股利、庫藏股與其他權益變動的補充說明。"]
     ],
     note: "本圖為教學示意，採簡化式。實際報表還有其他綜合損益、前期損益調整、股票股利、庫藏股交易與非控制權益等，會讓保留盈餘與權益變動更複雜；跨報表檢查仍以期末現金、權益與淨利的勾稽為核心。"
+  },
+  "accounting-14#0-2": {
+    sectionTitle: "第1節 財務報表與一般公認會計原則",
+    kicker: "教學流程圖",
+    title: "主要財務報表架構圖：四表一附註",
+    caption: "財務報表是一組報表，不是只有損益表。資產負債表呈現特定期末的資產、負債與權益；綜合損益表呈現特定期間的收益、費損、本期淨利與其他綜合損益；權益變動表說明權益組成的變動；現金流量表說明營業、投資與籌資活動的現金流。附註則揭露會計政策、重大估計、科目明細與風險。圖中箭頭標出淨利、期末權益與期末現金三個主要勾稽點。",
+    svg: `
+<svg viewBox="0 0 920 800" role="img" aria-labelledby="dg-acc-fs-title dg-acc-fs-desc" style="max-width:920px;min-width:760px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-acc-fs-title">主要財務報表架構圖：四表一附註</title>
+  <desc id="dg-acc-fs-desc">左上為資產負債表，列示資產、負債與權益；右上為綜合損益表，從收入、費用走到本期淨利與其他綜合損益；左下為權益變動表，從期初權益走到期末權益；右下為現金流量表，列示營業、投資、籌資活動現金流與期末現金；底部為附註。箭頭標示本期淨利進入權益、期末權益與期末現金回到資產負債表。</desc>
+  <defs>
+    <marker id="dg-acc-fs-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="dg-arrow-head" d="M0,0 L10,5 L0,10 z"></path>
+    </marker>
+  </defs>
+
+  <text class="dg-label dg-label-strong" x="460" y="24" text-anchor="middle" font-size="17">主要財務報表架構 Financial Statement Architecture</text>
+  <text class="dg-label-xs" x="460" y="46" text-anchor="middle">四表一附註：時點報表、期間報表與現金流報表互相勾稽</text>
+
+  <rect class="dg-box" x="30" y="70" width="420" height="250" rx="12"></rect>
+  <text class="dg-label dg-label-strong" x="50" y="94" font-size="14">資產負債表 Balance Sheet</text>
+  <text class="dg-label-xs" x="50" y="112">特定期末的財務狀況（時點）</text>
+
+  <text class="dg-label dg-label-strong" x="50" y="138" font-size="11.5">資產 Assets</text>
+  <text class="dg-label-xs" x="50" y="158" font-size="10.5">流動資產：現金、應收帳款、存貨</text>
+  <text class="dg-label-xs" x="50" y="176" font-size="10.5">預付費用、其他流動資產</text>
+  <text class="dg-label-xs" x="50" y="196" font-size="10.5">非流動資產：不動產、廠房及設備</text>
+  <text class="dg-label-xs" x="50" y="214" font-size="10.5">無形資產、投資性不動產</text>
+  <text class="dg-label dg-label-strong" x="50" y="240" font-size="11.5">資產總額 A</text>
+
+  <text class="dg-label dg-label-strong" x="250" y="138" font-size="11.5">負債 Liabilities</text>
+  <text class="dg-label-xs" x="250" y="158" font-size="10.5">流動負債：應付帳款、短期借款</text>
+  <text class="dg-label-xs" x="250" y="176" font-size="10.5">應付薪資、應付稅款</text>
+  <text class="dg-label-xs" x="250" y="196" font-size="10.5">非流動負債：長期借款、公司債</text>
+  <text class="dg-label dg-label-strong" x="250" y="220" font-size="11.5">權益 Equity</text>
+  <text class="dg-label-xs" x="250" y="240" font-size="10.5">股本、資本公積、保留盈餘</text>
+  <text class="dg-label-xs" x="250" y="258" font-size="10.5">其他權益、非控制權益</text>
+  <text class="dg-label dg-label-strong" x="250" y="282" font-size="11.5">負債＋權益 L + E</text>
+  <text class="dg-label dg-label-adjust" x="240" y="306" text-anchor="middle" font-size="11.5">A = L + E</text>
+
+  <rect class="dg-box" x="470" y="70" width="420" height="250" rx="12"></rect>
+  <text class="dg-label dg-label-strong" x="490" y="94" font-size="14">綜合損益表 Statement of Comprehensive Income</text>
+  <text class="dg-label-xs" x="490" y="112">特定期間的財務績效（期間）</text>
+  <text class="dg-label-xs" x="490" y="140" font-size="11">營業收入 Revenue</text>
+  <text class="dg-label-xs" x="490" y="160" font-size="11">− 銷貨成本 COGS</text>
+  <text class="dg-label-xs" x="490" y="180" font-size="11">＝ 毛利 Gross Profit</text>
+  <text class="dg-label-xs" x="490" y="200" font-size="11">− 營業費用 Operating Expenses</text>
+  <text class="dg-label-xs" x="490" y="220" font-size="11">＝ 營業利益 EBIT</text>
+  <text class="dg-label-xs" x="490" y="240" font-size="11">± 營業外收支、− 所得稅費用</text>
+  <text class="dg-label dg-label-strong" x="490" y="260" font-size="11">＝ 本期淨利 Net Income</text>
+  <text class="dg-label-xs" x="490" y="280" font-size="11">± 其他綜合損益 OCI</text>
+  <text class="dg-label dg-label-strong" x="490" y="300" font-size="11">＝ 本期綜合損益 Total Comprehensive Income</text>
+
+  <rect class="dg-box" x="30" y="390" width="420" height="230" rx="12"></rect>
+  <text class="dg-label dg-label-strong" x="50" y="414" font-size="14">權益變動表 Statement of Changes in Equity</text>
+  <text class="dg-label-xs" x="50" y="432">特定期間權益組成的變動（期間）</text>
+  <text class="dg-label-xs" x="50" y="462" font-size="11">期初權益 Beginning equity</text>
+  <text class="dg-label-xs" x="50" y="484" font-size="11">＋ 本期綜合損益 Total comprehensive income</text>
+  <text class="dg-label-xs" x="50" y="506" font-size="11">＋ 增資／發行新股 Issuance of shares</text>
+  <text class="dg-label-xs" x="50" y="528" font-size="11">− 股利發放 Dividends</text>
+  <text class="dg-label-xs" x="50" y="550" font-size="11">± 庫藏股、其他權益變動 Treasury / other</text>
+  <text class="dg-label dg-label-strong" x="50" y="572" font-size="11">＝ 期末權益 Ending equity</text>
+  <text class="dg-label-xs" x="50" y="600" font-size="10.5">與資產負債表權益總額勾稽</text>
+
+  <rect class="dg-box" x="470" y="390" width="420" height="230" rx="12"></rect>
+  <text class="dg-label dg-label-strong" x="490" y="414" font-size="14">現金流量表 Statement of Cash Flows</text>
+  <text class="dg-label-xs" x="490" y="432">特定期間現金及約當現金的變動（期間）</text>
+  <text class="dg-label-xs" x="490" y="462" font-size="11">營業活動現金流量 CFO</text>
+  <text class="dg-label-xs" x="490" y="484" font-size="11">± 投資活動現金流量 CFI</text>
+  <text class="dg-label-xs" x="490" y="506" font-size="11">± 籌資活動現金流量 CFF</text>
+  <text class="dg-label dg-label-strong" x="490" y="528" font-size="11">＝ 本期現金淨變動 Net change in cash</text>
+  <text class="dg-label-xs" x="490" y="550" font-size="11">＋ 期初現金餘額 Beginning cash</text>
+  <text class="dg-label dg-label-strong" x="490" y="572" font-size="11">＝ 期末現金餘額 Ending cash</text>
+  <text class="dg-label-xs" x="490" y="600" font-size="10.5">與資產負債表「現金及約當現金」勾稽</text>
+
+  <path class="dg-arrow" d="M500 320 V350 H240 V390" marker-end="url(#dg-acc-fs-arrow)"></path>
+  <text class="dg-label dg-label-adjust" x="360" y="342" text-anchor="middle" font-size="10.5">本期淨利 NI</text>
+
+  <path class="dg-arrow" d="M120 390 V320" marker-end="url(#dg-acc-fs-arrow)"></path>
+  <text class="dg-label dg-label-adjust" x="132" y="360" font-size="10.5">期末權益</text>
+
+  <path class="dg-arrow" d="M680 390 V320" marker-end="url(#dg-acc-fs-arrow)"></path>
+  <text class="dg-label dg-label-adjust" x="692" y="360" font-size="10.5">期末現金</text>
+
+  <line class="dg-guide" x1="460" y1="620" x2="460" y2="650"></line>
+  <rect class="dg-panel" x="30" y="650" width="860" height="86" rx="12" stroke-dasharray="6 4"></rect>
+  <text class="dg-label dg-label-strong" x="50" y="674" font-size="13">附註 Notes</text>
+  <text class="dg-label-xs" x="50" y="696" font-size="10.5">會計政策、重大會計估計、科目明細、金融工具風險、關係人交易、或有事項。</text>
+  <text class="dg-label-xs" x="50" y="716" font-size="10.5">四表一附註：附註是財務報表不可分割的一部分，四張表都應交叉索引附註。</text>
+
+  <text class="dg-label-xs" x="460" y="766" text-anchor="middle" font-size="10.5">編表順序：調整後試算表 → 綜合損益表 → 權益變動表／資產負債表 → 現金流量表。</text>
+  <text class="dg-label-xs" x="460" y="786" text-anchor="middle" font-size="10.5">每個箭頭都是一個勾稽點：NI → 權益；期末權益 → BS；期末現金 → BS。</text>
+</svg>`,
+    variables: [
+      ["BS", "資產負債表 Balance Sheet", "列示特定期末的資產、負債與權益；資產總額等於負債加權益。"],
+      ["IS", "綜合損益表 Statement of Comprehensive Income", "列示特定期間的收益、費損、本期淨利與其他綜合損益。"],
+      ["SCE", "權益變動表 Statement of Changes in Equity", "列示期初權益、本期綜合損益、增資、股利與其他權益變動。"],
+      ["CF", "現金流量表 Statement of Cash Flows", "列示營業、投資與籌資活動的現金流量及期末現金餘額。"],
+      ["Notes", "附註 Notes", "揭露會計政策、重大估計、科目明細、風險與關係人交易等資訊。"],
+      ["A", "資產 Assets", "企業控制的資源，預期帶來未來經濟效益。"],
+      ["L", "負債 Liabilities", "企業因過去事件產生的現時義務，清償時將流出資源。"],
+      ["E", "權益 Equity", "資產扣除負債後的剩餘權益，包括股本、資本公積與保留盈餘。"],
+      ["NI", "本期淨利 Net Income", "收入減費用後的期間損益，進入保留盈餘與權益變動表。"],
+      ["OCI", "其他綜合損益 Other Comprehensive Income", "不列入本期淨利但列入綜合損益的項目，如部分重評價利益。"]
+    ],
+    parameters: [
+      ["A = L + E", "會計恆等式 Accounting equation", "資產 = 負債 + 權益；資產負債表每一期期末都須成立。"],
+      ["NI → E", "淨利結轉 Closing to equity", "本期淨利進入保留盈餘，再進入權益變動表與資產負債表。"],
+      ["Cash", "現金勾稽 Cash reconciliation", "現金流量表期末現金 = 資產負債表現金及約當現金。"],
+      ["CFO / CFI / CFF", "三大活動現金流 Cash flow categories", "營業、投資、籌資活動現金流合計為本期現金淨變動。"],
+      ["Period", "期間與時點 Period vs point in time", "資產負債表是時點；損益表、權益變動表與現金流量表是期間。"],
+      ["Disclosure", "附註揭露 Notes disclosure", "附註補充四張表的政策、明細、估計與風險資訊。"]
+    ],
+    note: "本圖為教學示意，採常見格式。實際報表科目、分類與揭露會依企業、產業及 IFRS 要求調整；資產負債表是期末時點，綜合損益表、權益變動表與現金流量表則涵蓋特定期間。"
+  },
+  "accounting-14#0-3": {
+    sectionTitle: "第1節 財務報表與一般公認會計原則",
+    kicker: "教學流程圖",
+    title: "借記／貸記常用項目速查圖",
+    caption: "借記在左、貸記在右。資產、費用、股利增加通常記借方；負債、權益、收入增加通常記貸方。累計折舊與備抵損失是資產減項，正常餘額在貸方；庫藏股是權益減項，正常餘額在借方。下方用現金銷貨、賒購存貨、支付租金、銀行借款、提列折舊與宣告股利六個例子，示範每一筆分錄都必須維持借方總額等於貸方總額。",
+    svg: `
+<svg viewBox="0 0 920 880" role="img" aria-labelledby="dg-acc-dr-title dg-acc-dr-desc" style="max-width:920px;min-width:760px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-acc-dr-title">借記／貸記常用項目速查圖</title>
+  <desc id="dg-acc-dr-desc">左側 T 字帳列出借方與貸方的常用科目：借方包括資產增加、費用增加、損失增加、股利與庫藏股；貸方包括負債增加、權益增加、收入增加、利益增加與資產減項。右側列出判斷步驟，下方以六個交易示範借貸分錄與進入的財務報表。</desc>
+  <defs>
+    <marker id="dg-acc-dr-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="dg-arrow-head" d="M0,0 L10,5 L0,10 z"></path>
+    </marker>
+  </defs>
+
+  <text class="dg-label dg-label-strong" x="460" y="24" text-anchor="middle" font-size="17">借記／貸記常用項目 Debit and Credit</text>
+  <text class="dg-label-xs" x="460" y="46" text-anchor="middle">先判斷科目類別，再判斷增加或減少；每筆分錄 Dr = Cr</text>
+
+  <rect class="dg-box" x="30" y="70" width="560" height="430" rx="12"></rect>
+  <text class="dg-label dg-label-strong" x="50" y="94" font-size="14">T 字帳：借方 Debit（左）／貸方 Credit（右）</text>
+  <text class="dg-label-xs" x="50" y="114" font-size="10.5">正常餘額側就是「增加」記入的一側；減少記相反側。</text>
+  <line class="dg-guide" x1="310" y1="126" x2="310" y2="480"></line>
+
+  <text class="dg-label dg-label-strong" x="50" y="146" font-size="12.5">借方 Debit</text>
+  <text class="dg-label-xs" x="50" y="164" font-size="10">正常餘額側：資產、費用、股利</text>
+  <text class="dg-label dg-label-strong" x="50" y="192" font-size="11.5">資產增加</text>
+  <text class="dg-label-xs" x="50" y="212" font-size="10.5">現金、應收帳款、存貨</text>
+  <text class="dg-label-xs" x="50" y="230" font-size="10.5">預付費用、設備、無形資產</text>
+  <text class="dg-label dg-label-strong" x="50" y="258" font-size="11.5">費用增加</text>
+  <text class="dg-label-xs" x="50" y="278" font-size="10.5">銷貨成本、薪資、租金</text>
+  <text class="dg-label-xs" x="50" y="296" font-size="10.5">折舊、利息、所得稅</text>
+  <text class="dg-label dg-label-strong" x="50" y="324" font-size="11.5">損失增加</text>
+  <text class="dg-label-xs" x="50" y="344" font-size="10.5">處分資產損失、火災損失</text>
+  <text class="dg-label dg-label-strong" x="50" y="372" font-size="11.5">股利／提款</text>
+  <text class="dg-label-xs" x="50" y="392" font-size="10.5">現金股利、業主提款</text>
+  <text class="dg-label dg-label-strong" x="50" y="420" font-size="11.5">權益減項：庫藏股</text>
+  <text class="dg-label-xs" x="50" y="440" font-size="10.5">買回庫藏股記借方</text>
+
+  <text class="dg-label dg-label-strong" x="330" y="146" font-size="12.5">貸方 Credit</text>
+  <text class="dg-label-xs" x="330" y="164" font-size="10">正常餘額側：負債、權益、收入</text>
+  <text class="dg-label dg-label-strong" x="330" y="192" font-size="11.5">負債增加</text>
+  <text class="dg-label-xs" x="330" y="212" font-size="10.5">應付帳款、應付薪資</text>
+  <text class="dg-label-xs" x="330" y="230" font-size="10.5">短期借款、公司債</text>
+  <text class="dg-label dg-label-strong" x="330" y="258" font-size="11.5">權益增加</text>
+  <text class="dg-label-xs" x="330" y="278" font-size="10.5">股本、資本公積</text>
+  <text class="dg-label-xs" x="330" y="296" font-size="10.5">保留盈餘（本期淨利）</text>
+  <text class="dg-label dg-label-strong" x="330" y="324" font-size="11.5">收入增加</text>
+  <text class="dg-label-xs" x="330" y="344" font-size="10.5">銷貨收入、利息收入</text>
+  <text class="dg-label-xs" x="330" y="362" font-size="10.5">租金收入</text>
+  <text class="dg-label dg-label-strong" x="330" y="390" font-size="11.5">利益增加</text>
+  <text class="dg-label-xs" x="330" y="410" font-size="10.5">處分資產利益</text>
+  <text class="dg-label dg-label-strong" x="330" y="438" font-size="11.5">資產減項</text>
+  <text class="dg-label-xs" x="330" y="458" font-size="10.5">累計折舊、備抵損失</text>
+
+  <text class="dg-label dg-label-adjust" x="310" y="486" text-anchor="middle" font-size="10">口訣：資產費用股利，增加記借方；負債權益收入，增加記貸方。</text>
+
+  <rect class="dg-panel" x="610" y="70" width="280" height="430" rx="12"></rect>
+  <text class="dg-label dg-label-strong" x="630" y="94" font-size="14">快速判斷</text>
+  <text class="dg-label dg-label-strong" x="630" y="126" font-size="11.5">① 看科目類別</text>
+  <text class="dg-label-xs" x="630" y="146" font-size="10.5">資產／費用／股利</text>
+  <text class="dg-label-xs" x="630" y="164" font-size="10.5">→ 增加記借方</text>
+  <text class="dg-label dg-label-strong" x="630" y="194" font-size="11.5">② 看增加或減少</text>
+  <text class="dg-label-xs" x="630" y="214" font-size="10.5">增加記正常餘額側</text>
+  <text class="dg-label-xs" x="630" y="232" font-size="10.5">減少記相反側</text>
+  <text class="dg-label dg-label-strong" x="630" y="262" font-size="11.5">③ 檢查平衡</text>
+  <text class="dg-label-xs" x="630" y="282" font-size="10.5">借方總額 = 貸方總額</text>
+  <text class="dg-label-xs" x="630" y="300" font-size="10.5">A = L + E 仍成立</text>
+  <text class="dg-label dg-label-strong" x="630" y="330" font-size="11.5">④ 期末調整</text>
+  <text class="dg-label-xs" x="630" y="350" font-size="10.5">應計、遞延、折舊、減損</text>
+  <text class="dg-label-xs" x="630" y="368" font-size="10.5">讓收入費用歸屬期間</text>
+  <text class="dg-label dg-label-strong" x="630" y="398" font-size="11.5">⑤ 寫成完整分錄</text>
+  <text class="dg-label-xs" x="630" y="418" font-size="10.5">Dr 科目 金額</text>
+  <text class="dg-label-xs" x="630" y="436" font-size="10.5">　Cr 科目 金額</text>
+
+  <rect class="dg-box dg-box-outcome" x="30" y="530" width="860" height="320" rx="12"></rect>
+  <text class="dg-label dg-label-strong" x="50" y="556" font-size="14">常用分錄例示：每一列都必須 Dr = Cr</text>
+  <text class="dg-label-xs" x="50" y="586" font-size="10.5">交易</text>
+  <text class="dg-label-xs" x="300" y="586" font-size="10.5">借方 Dr</text>
+  <text class="dg-label-xs" x="570" y="586" font-size="10.5">貸方 Cr</text>
+  <text class="dg-label-xs" x="800" y="586" font-size="10.5">進入報表</text>
+  <line class="dg-guide" x1="50" y1="596" x2="870" y2="596"></line>
+  <line class="dg-guide" x1="290" y1="586" x2="290" y2="820"></line>
+  <line class="dg-guide" x1="560" y1="586" x2="560" y2="820"></line>
+  <line class="dg-guide" x1="790" y1="586" x2="790" y2="820"></line>
+
+  <text class="dg-label dg-label-sm" x="50" y="620">現金銷貨 $10,000</text>
+  <text class="dg-label-xs" x="50" y="638" font-size="9.5">收現並賺得收入</text>
+  <text class="dg-label-xs" x="300" y="620" font-size="10.5">現金 10,000</text>
+  <text class="dg-label-xs" x="570" y="620" font-size="10.5">銷貨收入 10,000</text>
+  <text class="dg-label-xs" x="800" y="620" font-size="10.5">IS／BS</text>
+
+  <text class="dg-label dg-label-sm" x="50" y="656">賒購存貨 $5,000</text>
+  <text class="dg-label-xs" x="50" y="674" font-size="9.5">先取得存貨，之後付款</text>
+  <text class="dg-label-xs" x="300" y="656" font-size="10.5">存貨 5,000</text>
+  <text class="dg-label-xs" x="570" y="656" font-size="10.5">應付帳款 5,000</text>
+  <text class="dg-label-xs" x="800" y="656" font-size="10.5">BS</text>
+
+  <text class="dg-label dg-label-sm" x="50" y="692">支付租金 $2,000</text>
+  <text class="dg-label-xs" x="50" y="710" font-size="9.5">本期已使用辦公空間</text>
+  <text class="dg-label-xs" x="300" y="692" font-size="10.5">租金費用 2,000</text>
+  <text class="dg-label-xs" x="570" y="692" font-size="10.5">現金 2,000</text>
+  <text class="dg-label-xs" x="800" y="692" font-size="10.5">IS／BS</text>
+
+  <text class="dg-label dg-label-sm" x="50" y="728">向銀行借款 $50,000</text>
+  <text class="dg-label-xs" x="50" y="746" font-size="9.5">取得現金並承擔負債</text>
+  <text class="dg-label-xs" x="300" y="728" font-size="10.5">現金 50,000</text>
+  <text class="dg-label-xs" x="570" y="728" font-size="10.5">銀行借款 50,000</text>
+  <text class="dg-label-xs" x="800" y="728" font-size="10.5">BS／CF</text>
+
+  <text class="dg-label dg-label-sm" x="50" y="764">提列折舊 $3,000</text>
+  <text class="dg-label-xs" x="50" y="782" font-size="9.5">期末調整，非現金費用</text>
+  <text class="dg-label-xs" x="300" y="764" font-size="10.5">折舊費用 3,000</text>
+  <text class="dg-label-xs" x="570" y="764" font-size="10.5">累計折舊 3,000</text>
+  <text class="dg-label-xs" x="800" y="764" font-size="10.5">IS／BS</text>
+
+  <text class="dg-label dg-label-sm" x="50" y="800">宣告現金股利 $8,000</text>
+  <text class="dg-label-xs" x="50" y="818" font-size="9.5">董事會宣告，尚未支付</text>
+  <text class="dg-label-xs" x="300" y="800" font-size="10.5">保留盈餘 8,000</text>
+  <text class="dg-label-xs" x="570" y="800" font-size="10.5">應付股利 8,000</text>
+  <text class="dg-label-xs" x="800" y="800" font-size="10.5">SCE／BS</text>
+
+  <text class="dg-label-xs" x="460" y="868" text-anchor="middle" font-size="10.5">檢查：借方合計 = 貸方合計；分錄→過帳→報表，科目名稱要一致。</text>
+</svg>`,
+    variables: [
+      ["Dr", "借方 Debit", "T 字帳左側；資產、費用、股利增加通常記借方。"],
+      ["Cr", "貸方 Credit", "T 字帳右側；負債、權益、收入增加通常記貸方。"],
+      ["A", "資產 Assets", "現金、應收帳款、存貨、設備等企業控制的資源。"],
+      ["L", "負債 Liabilities", "應付帳款、借款、公司債等現時義務。"],
+      ["E", "權益 Equity", "股本、資本公積、保留盈餘與其他權益。"],
+      ["R", "收入 Revenue", "銷貨、利息、租金等本期賺得的收入。"],
+      ["Ex", "費用 Expenses", "銷貨成本、薪資、租金、折舊、利息與所得稅等。"],
+      ["Div", "股利 Dividends", "分配給股東的盈餘，減少保留盈餘。"],
+      ["Contra", "減項 Contra account", "累計折舊、備抵損失與庫藏股等，正常餘額與主科目相反。"],
+      ["TB", "試算表 Trial balance", "列出各科目餘額，檢查借方總額是否等於貸方總額。"]
+    ],
+    parameters: [
+      ["Dr = Cr", "借貸平衡 Double-entry rule", "每筆分錄的借方總額必須等於貸方總額。"],
+      ["Normal", "正常餘額 Normal balance", "資產、費用、股利在借方；負債、權益、收入在貸方。"],
+      ["A = L + E", "會計恆等式 Accounting equation", "每筆交易後資產仍等於負債加權益。"],
+      ["Accrual", "權責發生基礎 Accrual basis", "收入於賺得、費用於發生時認列，不以現金收付為準。"],
+      ["Adjust", "調整分錄 Adjusting entries", "期末調整應計、遞延、折舊與減損，讓損益歸屬正確期間。"],
+      ["Map", "報表對應 Statement mapping", "分錄科目會進入資產負債表、損益表、權益變動表或現金流量表。"]
+    ],
+    note: "本圖採一般公認會計原則下的常見分類。實際科目名稱與分類會依企業營運性質調整；判斷時先看科目性質與正常餘額，不要只背科目名稱。累計折舊與備抵損失是資產減項，庫藏股是權益減項，都是常見的例外考點。"
+  },
+  "accounting-14#0-4": {
+    sectionTitle: "第1節 財務報表與一般公認會計原則",
+    kicker: "教學流程圖",
+    title: "從交易到財務報表：分錄、過帳、試算與編表流程",
+    caption: "平時先辨認交易與事項、取得原始憑證，依借貸法則寫日記帳分錄，再過帳到分類帳並編製試算表。期末作調整分錄、編製調整後試算表，據以編製綜合損益表、權益變動表、資產負債表與現金流量表；最後結清收入與費用等虛帳戶，編製結帳後試算表。下方用現金銷貨、賒購設備、提列折舊與應計薪資四個例子，示範同一筆交易如何從分錄走到報表。",
+    svg: `
+<svg viewBox="0 0 920 900" role="img" aria-labelledby="dg-acc-flow-title dg-acc-flow-desc" style="max-width:920px;min-width:760px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-acc-flow-title">從交易到財務報表流程圖</title>
+  <desc id="dg-acc-flow-desc">上半部為兩列流程：平時從交易、原始憑證、日記帳分錄、過帳分類帳到試算表；期末從調整分錄、調整後試算表、財務報表、結帳分錄到結帳後試算表。下半部以現金銷貨、賒購設備、提列折舊與應計薪資四個交易，示範分錄、過帳調整與進入的財務報表。</desc>
+  <defs>
+    <marker id="dg-acc-flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="dg-arrow-head" d="M0,0 L10,5 L0,10 z"></path>
+    </marker>
+  </defs>
+
+  <text class="dg-label dg-label-strong" x="460" y="24" text-anchor="middle" font-size="17">從交易到財務報表 Transaction to Financial Statements</text>
+  <text class="dg-label-xs" x="460" y="46" text-anchor="middle">交易 → 分錄 → 過帳 → 試算 → 調整 → 報表 → 結帳</text>
+
+  <text class="dg-label dg-label-strong" x="30" y="82" font-size="12.5">① 平時帳務：從交易到試算表</text>
+
+  <rect class="dg-box dg-box-accent" x="30" y="100" width="150" height="64" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="105" y="126" text-anchor="middle" font-size="12.5">交易與事項</text>
+  <text class="dg-label-xs" x="105" y="146" text-anchor="middle" font-size="10">Transaction</text>
+
+  <line class="dg-arrow" x1="180" y1="132" x2="200" y2="132" marker-end="url(#dg-acc-flow-arrow)"></line>
+
+  <rect class="dg-box" x="200" y="100" width="150" height="64" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="275" y="126" text-anchor="middle" font-size="12.5">原始憑證</text>
+  <text class="dg-label-xs" x="275" y="146" text-anchor="middle" font-size="10">Source documents</text>
+
+  <line class="dg-arrow" x1="350" y1="132" x2="370" y2="132" marker-end="url(#dg-acc-flow-arrow)"></line>
+
+  <rect class="dg-box" x="370" y="100" width="150" height="64" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="445" y="126" text-anchor="middle" font-size="12.5">日記帳分錄</text>
+  <text class="dg-label-xs" x="445" y="146" text-anchor="middle" font-size="10">Journal entries</text>
+
+  <line class="dg-arrow" x1="520" y1="132" x2="540" y2="132" marker-end="url(#dg-acc-flow-arrow)"></line>
+
+  <rect class="dg-box" x="540" y="100" width="150" height="64" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="615" y="126" text-anchor="middle" font-size="12.5">過帳分類帳</text>
+  <text class="dg-label-xs" x="615" y="146" text-anchor="middle" font-size="10">Posting / Ledger</text>
+
+  <line class="dg-arrow" x1="690" y1="132" x2="710" y2="132" marker-end="url(#dg-acc-flow-arrow)"></line>
+
+  <rect class="dg-box" x="710" y="100" width="150" height="64" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="785" y="126" text-anchor="middle" font-size="12.5">試算表</text>
+  <text class="dg-label-xs" x="785" y="146" text-anchor="middle" font-size="10">Trial balance</text>
+
+  <path class="dg-arrow" d="M785 164 V200 H105 V240" marker-end="url(#dg-acc-flow-arrow)"></path>
+  <text class="dg-label dg-label-adjust" x="460" y="192" text-anchor="middle" font-size="10.5">期末調整</text>
+
+  <text class="dg-label dg-label-strong" x="30" y="222" font-size="12.5">② 期末：調整、編表與結帳</text>
+
+  <rect class="dg-box" x="30" y="240" width="150" height="64" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="105" y="266" text-anchor="middle" font-size="12.5">調整分錄</text>
+  <text class="dg-label-xs" x="105" y="286" text-anchor="middle" font-size="10">Adjusting entries</text>
+
+  <line class="dg-arrow" x1="180" y1="272" x2="200" y2="272" marker-end="url(#dg-acc-flow-arrow)"></line>
+
+  <rect class="dg-box" x="200" y="240" width="150" height="64" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="275" y="266" text-anchor="middle" font-size="12">調整後試算表</text>
+  <text class="dg-label-xs" x="275" y="286" text-anchor="middle" font-size="9.5">Adjusted trial balance</text>
+
+  <line class="dg-arrow" x1="350" y1="272" x2="370" y2="272" marker-end="url(#dg-acc-flow-arrow)"></line>
+
+  <rect class="dg-box dg-box-outcome" x="370" y="240" width="150" height="64" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="445" y="266" text-anchor="middle" font-size="12.5">財務報表</text>
+  <text class="dg-label-xs" x="445" y="286" text-anchor="middle" font-size="10">Financial statements</text>
+
+  <line class="dg-arrow" x1="520" y1="272" x2="540" y2="272" marker-end="url(#dg-acc-flow-arrow)"></line>
+
+  <rect class="dg-box" x="540" y="240" width="150" height="64" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="615" y="266" text-anchor="middle" font-size="12.5">結帳分錄</text>
+  <text class="dg-label-xs" x="615" y="286" text-anchor="middle" font-size="10">Closing entries</text>
+
+  <line class="dg-arrow" x1="690" y1="272" x2="710" y2="272" marker-end="url(#dg-acc-flow-arrow)"></line>
+
+  <rect class="dg-box" x="710" y="240" width="150" height="64" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="785" y="266" text-anchor="middle" font-size="12">結帳後試算表</text>
+  <text class="dg-label-xs" x="785" y="286" text-anchor="middle" font-size="9.5">Post-closing trial balance</text>
+
+  <rect class="dg-box" x="30" y="350" width="860" height="500" rx="12"></rect>
+  <text class="dg-label dg-label-strong" x="50" y="376" font-size="14">③ 例示：交易 → 分錄 → 過帳／調整 → 報表</text>
+  <text class="dg-label-xs" x="50" y="398" font-size="10.5">每筆交易先寫分錄，再過帳；期末調整後，把科目餘額放進對應報表。</text>
+
+  <text class="dg-label-xs" x="50" y="428" font-size="10.5">交易例示</text>
+  <text class="dg-label-xs" x="280" y="428" font-size="10.5">日記帳分錄</text>
+  <text class="dg-label-xs" x="620" y="428" font-size="10.5">過帳／調整</text>
+  <text class="dg-label-xs" x="770" y="428" font-size="10.5">進入報表</text>
+  <line class="dg-guide" x1="50" y1="438" x2="870" y2="438"></line>
+
+  <text class="dg-label dg-label-sm" x="50" y="468">現金銷貨 $10,000</text>
+  <text class="dg-label-xs" x="50" y="486" font-size="9.5">收現並賺得收入</text>
+  <text class="dg-label-xs" x="280" y="468" font-size="10.5">Dr 現金 10,000</text>
+  <text class="dg-label-xs" x="280" y="488" font-size="10.5">　Cr 銷貨收入 10,000</text>
+  <text class="dg-label-xs" x="620" y="468" font-size="10.5">現金↑、收入↑</text>
+  <text class="dg-label-xs" x="620" y="488" font-size="10.5">借貸平衡</text>
+  <text class="dg-label-xs" x="770" y="468" font-size="10.5">BS 現金</text>
+  <text class="dg-label-xs" x="770" y="488" font-size="10.5">IS 收入</text>
+
+  <line class="dg-guide" x1="50" y1="520" x2="870" y2="520"></line>
+
+  <text class="dg-label dg-label-sm" x="50" y="548">賒購設備 $60,000</text>
+  <text class="dg-label-xs" x="50" y="566" font-size="9.5">現金 $20,000，餘款簽票</text>
+  <text class="dg-label-xs" x="280" y="548" font-size="10.5">Dr 設備 60,000</text>
+  <text class="dg-label-xs" x="280" y="568" font-size="10.5">　Cr 現金 20,000</text>
+  <text class="dg-label-xs" x="280" y="588" font-size="10.5">　Cr 應付票據 40,000</text>
+  <text class="dg-label-xs" x="620" y="548" font-size="10.5">資產↑、負債↑</text>
+  <text class="dg-label-xs" x="620" y="568" font-size="10.5">現金減少</text>
+  <text class="dg-label-xs" x="770" y="548" font-size="10.5">BS 設備</text>
+  <text class="dg-label-xs" x="770" y="568" font-size="10.5">BS 現金</text>
+  <text class="dg-label-xs" x="770" y="588" font-size="10.5">BS 應付票據</text>
+
+  <line class="dg-guide" x1="50" y1="620" x2="870" y2="620"></line>
+
+  <text class="dg-label dg-label-sm" x="50" y="648">期末提列折舊 $3,000</text>
+  <text class="dg-label-xs" x="50" y="666" font-size="9.5">估計設備耗用</text>
+  <text class="dg-label-xs" x="280" y="648" font-size="10.5">Dr 折舊費用 3,000</text>
+  <text class="dg-label-xs" x="280" y="668" font-size="10.5">　Cr 累計折舊 3,000</text>
+  <text class="dg-label-xs" x="620" y="648" font-size="10.5">費用↑、資產減項↑</text>
+  <text class="dg-label-xs" x="620" y="668" font-size="10.5">期末調整</text>
+  <text class="dg-label-xs" x="770" y="648" font-size="10.5">IS 折舊費用</text>
+  <text class="dg-label-xs" x="770" y="668" font-size="10.5">BS 累計折舊</text>
+
+  <line class="dg-guide" x1="50" y1="700" x2="870" y2="700"></line>
+
+  <text class="dg-label dg-label-sm" x="50" y="728">期末應計薪資 $8,000</text>
+  <text class="dg-label-xs" x="50" y="746" font-size="9.5">已發生尚未支付</text>
+  <text class="dg-label-xs" x="280" y="728" font-size="10.5">Dr 薪資費用 8,000</text>
+  <text class="dg-label-xs" x="280" y="748" font-size="10.5">　Cr 應付薪資 8,000</text>
+  <text class="dg-label-xs" x="620" y="728" font-size="10.5">費用↑、負債↑</text>
+  <text class="dg-label-xs" x="620" y="748" font-size="10.5">期末調整</text>
+  <text class="dg-label-xs" x="770" y="728" font-size="10.5">IS 薪資費用</text>
+  <text class="dg-label-xs" x="770" y="748" font-size="10.5">BS 應付薪資</text>
+
+  <text class="dg-label-xs" x="460" y="800" text-anchor="middle" font-size="10.5">期末調整後，損益表科目結轉保留盈餘；資產負債表科目結轉下期。</text>
+  <text class="dg-label-xs" x="460" y="828" text-anchor="middle" font-size="10.5">分錄 → 過帳 → 試算 → 調整 → 報表：每一步都保留借貸平衡與科目軌跡。</text>
+</svg>`,
+    variables: [
+      ["T", "交易與事項 Transaction", "企業發生、會影響財務狀況或績效且應入帳的事件。"],
+      ["SD", "原始憑證 Source documents", "發票、收據、合約、銀行對帳單等支持交易存在的文件。"],
+      ["J", "日記帳 Journal", "依日期與借貸法則記錄分錄的帳簿。"],
+      ["GL", "分類帳 Ledger", "將日記帳分錄過帳後，按科目彙總的帳戶集合。"],
+      ["TB", "試算表 Trial balance", "列出各科目餘額，檢查借方總額是否等於貸方總額。"],
+      ["AJ", "調整分錄 Adjusting entries", "期末調整應計、遞延、折舊、減損等項目。"],
+      ["ATB", "調整後試算表 Adjusted trial balance", "調整後彙總餘額，作為編製財務報表的基礎。"],
+      ["FS", "財務報表 Financial statements", "綜合損益表、權益變動表、資產負債表、現金流量表與附註。"],
+      ["CE", "結帳分錄 Closing entries", "將收入、費用等虛帳戶結轉本期損益，再結轉保留盈餘。"],
+      ["PCTB", "結帳後試算表 Post-closing trial balance", "結帳後僅列實帳戶，確認借貸平衡並結轉下期。"]
+    ],
+    parameters: [
+      ["Dr = Cr", "借貸平衡 Double-entry rule", "每筆分錄的借方總額必須等於貸方總額。"],
+      ["A = L + E", "會計恆等式 Accounting equation", "每筆交易後資產仍等於負債加權益。"],
+      ["Accrual", "權責發生基礎 Accrual basis", "收入於賺得、費用於發生時認列，不以現金收付時點為準。"],
+      ["Adjust", "期末調整 Adjusting entries", "讓收入與費用歸屬正確期間，並更新資產負債餘額。"],
+      ["Close", "結帳 Closing", "只結收入、費用等虛帳戶；資產、負債、權益等實帳戶結轉下期。"],
+      ["Map", "報表對應 Statement mapping", "分錄科目會進入損益表、權益變動表、資產負債表或現金流量表。"]
+    ],
+    note: "本圖為教學示意，交易例示採簡化數字。實務上分錄還需記錄日期、摘要、憑證編號與稅務處理；折舊與應計薪資屬期末調整分錄，不是平時交易。不同企業的會計資訊系統可能合併部分步驟，但借貸平衡、過帳與報表勾稽的基本邏輯不變。"
   }
 });
