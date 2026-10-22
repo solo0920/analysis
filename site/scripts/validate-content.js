@@ -36,7 +36,7 @@ const nobelDiagramFiles = ["diagrams-nobel.js"];
 function loadContent() {
   const context = { window: {} };
   vm.createContext(context);
-  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-macro-current.js", "content-past-exams-written.js", "content-past-exams.js", "content-exam-solutions-115.js", "content-exam-solutions-114.js"].forEach(function (file) {
+  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-macro-current.js", "content-past-exams-written.js", "content-past-exams.js", "content-exam-solutions-115.js", "content-exam-solutions-114.js", "content-exam-solutions-113.js"].forEach(function (file) {
     const fullPath = path.join(siteDir, "assets", file);
     vm.runInContext(fs.readFileSync(fullPath, "utf8"), context, { filename: file });
   });
@@ -1212,7 +1212,8 @@ solutionBatches.forEach(function (batch) {
 });
 const solutionExpectedByYear = {
   115: { sections: 81, examples: 142, written: 24 },
-  114: { sections: 47, examples: 83, written: 36 }
+  114: { sections: 47, examples: 83, written: 36 },
+  113: { sections: 32, examples: 52, written: 36 }
 };
 Object.keys(solutionExpectedByYear).forEach(function (year) {
   const expected = solutionExpectedByYear[year];
