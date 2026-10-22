@@ -1922,13 +1922,28 @@ p {
   white-space: normal;
 }
 
+/* KaTeX 全站基準：未包裝的公式也使用與正文一致的字級，
+   避免部分區塊吃到 KaTeX 預設 1.21em 而讓下標相對變大。 */
+.katex {
+  font-size: 1em;
+}
+
+.inline-math .katex {
+  font-size: 1em;
+}
+
+.inline-math.is-display {
+  display: block;
+  margin: 0.5em 0;
+}
+
 .formula-katex .katex-display {
   margin: 0;
   padding: 2px 0;
 }
 
 .formula-katex .katex {
-  font-size: 1.05em;
+  font-size: 1em;
 }
 
 .formula-note {
@@ -2799,6 +2814,10 @@ p {
   fill: var(--muted);
   font-family: var(--font-sans);
   font-size: 13px;
+}
+
+[data-theme="light"] .model-diagram svg .dg-label-sm {
+  fill: #55666a;
 }
 
 .law-fulltext {

@@ -7,7 +7,12 @@
   "use strict";
 
   const content = window.EXAM_CONTENT;
-  const diagrams = window.MACRO_DIAGRAMS || {};
+  const diagrams = Object.assign(
+    {},
+    window.MACRO_DIAGRAMS || {},
+    window.INVESTMENT_DIAGRAMS || {},
+    window.ACCOUNTING_DIAGRAMS || {}
+  );
   const nobelData = window.NOBEL_DATA || { meta: {}, groups: [], rows: [] };
   const nobelDiagrams = window.NOBEL_DIAGRAMS || {};
   const macroEvolution = window.MACRO_EVOLUTION || { meta: {}, stages: [] };
@@ -387,8 +392,8 @@
     return '<dl class="term-grid">' + terms.map(function (term) {
       return [
         '<div class="term-card">',
-        "  <dt>" + escapeHtml(term[0]) + "</dt>",
-        "  <dd>" + escapeHtml(term[1]) + "</dd>",
+        "  <dt>" + renderInlineMath(term[0]) + "</dt>",
+        "  <dd>" + renderInlineMath(term[1]) + "</dd>",
         "</div>"
       ].join("");
     }).join("") + "</dl>";
@@ -799,7 +804,7 @@
       '  <div class="section-kicker">' + kicker + padNumber(index + 1) + "</div>",
       "  <h2>" + escapeHtml(sectionDisplayTitle(section)) + "</h2>",
       '  <div class="section-body">' + section.body.map(function (paragraph) {
-        return "<p>" + escapeHtml(paragraph) + "</p>";
+        return "<p>" + renderInlineMath(paragraph) + "</p>";
       }).join("") + "</div>",
       diagram ? renderDiagram(diagram) : "",
       '  <div class="subheading">名詞速查</div>',
@@ -818,10 +823,10 @@
       '  <div class="exam-box">',
       "    <h3>考試重點</h3>",
       "    <ul>" + section.points.map(function (point) {
-        return "<li>" + escapeHtml(point) + "</li>";
+        return "<li>" + renderInlineMath(point) + "</li>";
       }).join("") + "</ul>",
       "  </div>",
-      section.memory ? '  <div class="memory-card"><span class="memory-label">記憶</span><p>' + escapeHtml(section.memory) + "</p></div>" : "",
+      section.memory ? '  <div class="memory-card"><span class="memory-label">記憶</span><p>' + renderInlineMath(section.memory) + "</p></div>" : "",
       renderSectionExamSources(chapter, index + 1),
       "</section>"
     ].join("");
@@ -1986,6 +1991,10 @@
       parts.push(escapeHtml(source.slice(last)));
     }
     return parts.join("");
+  }
+
+  function renderInlineMath(text) {
+    return renderWrittenAnswer(text).replace(/class="written-answer-math/g, 'class="inline-math');
   }
 
   function renderWrittenCard(question) {

@@ -31,6 +31,7 @@ const diagramFiles = [
   "diagrams-macro-4.js",
   "diagrams-macro-5.js"
 ];
+const investmentDiagramFiles = ["diagrams-investment.js"];
 const nobelDiagramFiles = ["diagrams-nobel.js"];
 
 function loadContent() {
@@ -40,13 +41,14 @@ function loadContent() {
     const fullPath = path.join(siteDir, "assets", file);
     vm.runInContext(fs.readFileSync(fullPath, "utf8"), context, { filename: file });
   });
-  diagramFiles.concat(nobelDiagramFiles).forEach(function (file) {
+  diagramFiles.concat(investmentDiagramFiles, nobelDiagramFiles).forEach(function (file) {
     const fullPath = path.join(siteDir, "assets", file);
     vm.runInContext(fs.readFileSync(fullPath, "utf8"), context, { filename: file });
   });
   return {
     content: context.window.EXAM_CONTENT,
     diagrams: context.window.MACRO_DIAGRAMS || {},
+    investmentDiagrams: context.window.INVESTMENT_DIAGRAMS || {},
     nobelData: context.window.NOBEL_DATA || { rows: [], groups: [], meta: {} },
     nobelDiagrams: context.window.NOBEL_DIAGRAMS || {},
     macroEvolution: context.window.MACRO_EVOLUTION || { meta: {}, stages: [] },
@@ -188,6 +190,7 @@ function normalizeAccountingTitle(value) {
 const loaded = loadContent();
 const content = loaded.content;
 const diagrams = loaded.diagrams;
+const investmentDiagrams = loaded.investmentDiagrams || {};
 const nobelData = loaded.nobelData;
 const nobelDiagrams = loaded.nobelDiagrams;
 const macroEvolution = loaded.macroEvolution;
@@ -619,10 +622,81 @@ diagramKeys.forEach(function (key) {
   check(typeof diagram.note === "string" && diagram.note.length > 0, "模型圖缺少示意提醒：" + key);
 });
 
+/* 投資學教學圖表：與總體模型圖共用相同的 SVG 結構與無障礙檢查。 */
+const investmentDiagramKeys = Object.keys(investmentDiagrams);
+check(investmentDiagramKeys.length >= 9, "投資學教學圖應至少 9 張（目前 " + investmentDiagramKeys.length + " 張）");
+
+const rawInvestmentKeys = [];
+investmentDiagramFiles.forEach(function (file) {
+  const text = fs.readFileSync(path.join(siteDir, "assets", file), "utf8");
+  const matches = text.match(/^\s{2}"(investment-\d+#\d+)":\s*\{/gm) || [];
+  matches.forEach(function (match) {
+    rawInvestmentKeys.push(match.trim().split('"')[1]);
+  });
+});
+check(new Set(rawInvestmentKeys).size === rawInvestmentKeys.length, "投資學教學圖鍵值不得重複");
+check(rawInvestmentKeys.length === investmentDiagramKeys.length, "投資學教學圖載入數量與檔案定義數量不一致（檔案 " + rawInvestmentKeys.length + "、載入 " + investmentDiagramKeys.length + "）");
+
+investmentDiagramKeys.forEach(function (key) {
+  const keyParts = key.split("#");
+  check(keyParts.length === 2 && keyParts[0].indexOf("investment-") === 0, "投資學教學圖只能掛在投資學章節，鍵值格式：" + key);
+  const chapter = investmentChapterMap[keyParts[0]];
+  check(Boolean(chapter), "投資學教學圖指向不存在的章節：" + key);
+  if (!chapter) {
+    return;
+  }
+  const sectionIndex = Number(keyParts[1]);
+  check(Number.isInteger(sectionIndex) && sectionIndex >= 0 && sectionIndex < chapter.sections.length, "投資學教學圖節次超出範圍：" + key);
+  const section = chapter.sections[sectionIndex];
+  if (!section) {
+    return;
+  }
+  const diagram = investmentDiagrams[key];
+  check(diagram.sectionTitle === section.title, "投資學教學圖節次標題不符：" + key + "（" + diagram.sectionTitle + "）");
+  check(typeof diagram.title === "string" && diagram.title.length > 0, "投資學教學圖缺少標題：" + key);
+  check(typeof diagram.caption === "string" && diagram.caption.length > 0, "投資學教學圖缺少圖說：" + key);
+  const svg = String(diagram.svg || "").trim();
+  check(svg.indexOf("<svg") === 0, "投資學教學圖缺少 SVG 開頭：" + key);
+  check(svg.slice(-6) === "</svg>", "投資學教學圖 SVG 未正確結束：" + key);
+  check(/viewBox="/.test(svg), "投資學教學圖 SVG 缺少 viewBox：" + key);
+  check(/role="img"/.test(svg), "投資學教學圖 SVG 缺少 role=\"img\"：" + key);
+  check(/aria-labelledby="/.test(svg), "投資學教學圖 SVG 缺少 aria-labelledby：" + key);
+  check(/<title /.test(svg), "投資學教學圖 SVG 缺少 title：" + key);
+  const labelledBy = svg.match(/aria-labelledby="([^"]+)"/);
+  if (labelledBy) {
+    labelledBy[1].split(/\s+/).forEach(function (id) {
+      const escapedId = id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      check(new RegExp('id="' + escapedId + '"').test(svg), "投資學教學圖 aria-labelledby 指向不存在的 ID：" + key + "（" + id + "）");
+    });
+  }
+  const idMatches = svg.match(/\bid="[^"]+"/g) || [];
+  idMatches.forEach(function (match) {
+    const id = match.slice(4, -1);
+    check(svgIds.indexOf(id) === -1, "投資學教學圖 SVG ID 重複：" + key + "（" + id + "）");
+    svgIds.push(id);
+  });
+  check(!/<script|javascript:|xlink:href|<image|<use /i.test(svg), "投資學教學圖 SVG 含不安全的標籤或外部參照：" + key);
+  check(!/https?:\/\/(?!www\.w3\.org)/.test(svg), "投資學教學圖 SVG 含外部資源連結：" + key);
+  ["variables", "parameters"].forEach(function (field) {
+    const label = field === "variables" ? "變數" : "參數";
+    const rows = diagram[field];
+    check(Array.isArray(rows) && rows.length > 0, "投資學教學圖缺少" + label + "表：" + key);
+    (rows || []).forEach(function (row) {
+      check(Array.isArray(row) && row.length === 3 && row[0] && row[1] && row[2], "投資學教學圖" + label + "格式錯誤：" + key);
+    });
+  });
+  const variableSymbols = (diagram.variables || []).map(function (row) { return row[0]; });
+  (diagram.parameters || []).forEach(function (row) {
+    check(variableSymbols.indexOf(row[0]) === -1, "投資學教學圖變數與參數符號重複：" + key + "（" + row[0] + "）");
+  });
+  check(typeof diagram.note === "string" && diagram.note.length > 0, "投資學教學圖缺少示意提醒：" + key);
+});
+
 const allSvgIds = new Map();
 const duplicateSvgIds = [];
-diagramKeys.forEach(function (key) {
-  const idMatches = String(diagrams[key].svg || "").match(/\bid="[^"]+"/g) || [];
+diagramKeys.concat(investmentDiagramKeys).forEach(function (key) {
+  const source = diagrams[key] || investmentDiagrams[key] || {};
+  const idMatches = String(source.svg || "").match(/\bid="[^"]+"/g) || [];
   idMatches.forEach(function (match) {
     const id = match.slice(4, -1);
     if (allSvgIds.has(id)) {
@@ -1063,6 +1137,7 @@ const simplifiedGuard = /[国经济与为这说时间发现实体关风险资产
 const languageSurface = [
   JSON.stringify(content),
   JSON.stringify(diagrams),
+  JSON.stringify(investmentDiagrams),
   JSON.stringify(nobelData),
   JSON.stringify(nobelDiagrams),
   JSON.stringify(macroEvolution),
@@ -1271,6 +1346,7 @@ console.log("章節：" + allChapters.length + "（總體經濟學 " + macro.cha
 console.log("學習單元：" + totalSections + "（總體經濟學 " + macroSections + " 節、投資學 " + investmentSections + " 個重點、會計學 " + accountingSections + " 個單元、證券法規 " + lawSections + " 節）");
 console.log("名詞卡：" + totalTerms);
 console.log("模型圖：" + diagramKeys.length + "（總體經濟學）");
+console.log("教學圖：" + investmentDiagramKeys.length + "（投資學）");
 console.log("諾貝爾年表：" + nobelRows.length + " 屆、 " + nobelDiagramKeys.length + " 組模型圖");
 console.log("學派演進圖：" + evolutionStages.length + " 個階段、 " + evolutionNodes.length + " 個節點、 " + evolutionModelLinkCount + " 個模型連結、 " + evolutionNobelYears.size + " 個諾貝爾里程碑");
 console.log("資料來源：" + content.sources.length);
