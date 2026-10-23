@@ -7790,3 +7790,76 @@ html.is-routing body {
 .past-exam-analysis-notice .btn {
   flex: 0 0 auto;
 }
+
+.forecast-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 8px 12px;
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-2);
+}
+
+.forecast-filter-bar label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.forecast-filter-bar input,
+.forecast-filter-bar select {
+  min-height: 34px;
+  padding: 6px 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.78rem;
+}
+
+.forecast-filter-search {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.forecast-filter-search input {
+  width: 100%;
+}
+
+.forecast-filter-count {
+  margin-left: auto;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.forecast-question[hidden] {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .forecast-filter-bar {
+    align-items: stretch;
+  }
+
+  .forecast-filter-bar label {
+    flex: 1 1 calc(50% - 6px);
+  }
+
+  .forecast-filter-search {
+    flex-basis: 100%;
+  }
+
+  .forecast-filter-count {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
+}

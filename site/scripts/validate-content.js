@@ -1792,36 +1792,25 @@ check(Object.keys(lazyPastStats.written.chapters || {}).length === 58, "延遲�
   check(lazyPastStats.written.subjects[subject] === 87, "延遲載入用申論題統計科目數錯誤：" + subject);
 });
 
-const subjectPartialExpected = { macro: 994, investment: 924, accounting: 882, law: 910 };
-["macro", "investment", "accounting", "law"].forEach(function (subject) {
-  const partialContext = { window: {} };
-  vm.createContext(partialContext);
-  vm.runInContext(read("site/assets/content-past-exams-" + subject + ".js"), partialContext, { filename: "content-past-exams-" + subject + ".js" });
-  const partialPast = partialContext.window.PAST_EXAMS || { subjects: [], sessions: [], questions: [] };
-  check(partialPast.questions.length === subjectPartialExpected[subject], "科目考古題分包題數錯誤：" + subject);
-  check(partialPast.questions.every(function (question) { return question.subject === subject; }), "科目考古題分包混入其他科目：" + subject);
-  check(partialPast.subjects.length === 1 && partialPast.subjects[0].id === subject, "科目考古題分包科目資料錯誤：" + subject);
-  check(partialPast.sessions.length === 29, "科目考古題分包考試次別數錯誤：" + subject);
-
-  const partialWrittenContext = { window: {} };
-  vm.createContext(partialWrittenContext);
-  vm.runInContext(read("site/assets/content-past-exams-written-" + subject + ".js"), partialWrittenContext, { filename: "content-past-exams-written-" + subject + ".js" });
-  const partialWritten = partialWrittenContext.window.PAST_EXAMS_WRITTEN || { questions: [] };
-  check(partialWritten.questions.length === 87, "科目申論題分包題數錯誤：" + subject);
-  check(partialWritten.questions.every(function (question) { return question.subject === subject; }), "科目申論題分包混入其他科目：" + subject);
-
-  const partialSolutionContext = { window: {} };
-  vm.createContext(partialSolutionContext);
-  vm.runInContext(read("site/assets/content-exam-solutions-" + subject + ".js"), partialSolutionContext, { filename: "content-exam-solutions-" + subject + ".js" });
-  const partialSolutions = partialSolutionContext.window.EXAM_SOLUTIONS || [];
-  const partialSectionCount = partialSolutions.reduce(function (sum, batch) {
-    return sum + Object.keys(batch.sections || {}).length;
-  }, 0);
-  const fullSectionCount = solutionBatches.reduce(function (sum, batch) {
-    return sum + Object.keys(batch.sections || {}).filter(function (key) { return key.indexOf(subject + "-") === 0; }).length;
-  }, 0);
-  check(partialSolutions.length === 9, "科目章節解題分包批次數錯誤：" + subject);
-  check(partialSectionCount === fullSectionCount, "科目章節解題分包節次數與完整資料不一致：" + subject);
+allChapters.forEach(function (chapter) {
+  const chapterContext = { window: {} };
+  vm.createContext(chapterContext);
+  const chapterFile = "content-chapter-data-" + chapter.id + ".js";
+  vm.runInContext(read("site/assets/" + chapterFile), chapterContext, { filename: chapterFile });
+  const chapterPast = chapterContext.window.PAST_EXAMS || { questions: [] };
+  const chapterWritten = chapterContext.window.PAST_EXAMS_WRITTEN || { questions: [] };
+  const chapterSolutions = chapterContext.window.EXAM_SOLUTIONS || [];
+  check(chapterPast.questions.every(function (question) {
+    const ids = Array.isArray(question.sourceIds) ? question.sourceIds : [];
+    const refs = Array.isArray(question.sourceRefs) ? question.sourceRefs : [];
+    return ids.indexOf(chapter.id) !== -1 || refs.some(function (ref) { return ref.chapterId === chapter.id; });
+  }), "章節考古題分包混入其他章節：" + chapter.id);
+  check(chapterWritten.questions.every(function (question) {
+    return (question.sourceIds || []).indexOf(chapter.id) !== -1;
+  }), "章節申論題分包混入其他章節：" + chapter.id);
+  check(chapterSolutions.every(function (batch) {
+    return Object.keys(batch.sections || {}).every(function (key) { return key.indexOf(chapter.id + "::") === 0; });
+  }), "章節解題分包混入其他章節：" + chapter.id);
 });
 
 const forecast = loaded.examForecast || { meta: {}, directions: [], questions: [], integrated: [], formulas: { macro: [], investment: [], accounting: [], law: [] }, sensitivity: null, indicators: [], strategy: [] };

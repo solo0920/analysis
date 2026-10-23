@@ -26,24 +26,8 @@
       "content-past-exam-stats.js"
     ],
     app: ["katex/katex.min.js", "app.js"],
-    past: [
-      "content-past-exams.js",
-      "content-past-exams-written.js",
-      "content-written-layouts.js",
-      "content-exam-solutions-115.js",
-      "content-exam-solutions-114.js",
-      "content-exam-solutions-113.js",
-      "content-exam-solutions-112.js",
-      "content-exam-solutions-111.js",
-      "content-exam-solutions-110.js",
-      "content-exam-solutions-109.js",
-      "content-exam-solutions-108.js",
-      "content-exam-solutions-107.js"
-    ],
-    pastMacro: ["content-past-exams-macro.js", "content-past-exams-written-macro.js", "content-written-layouts.js", "content-exam-solutions-macro.js"],
-    pastInvestment: ["content-past-exams-investment.js", "content-past-exams-written-investment.js", "content-written-layouts.js", "content-exam-solutions-investment.js"],
-    pastAccounting: ["content-past-exams-accounting.js", "content-past-exams-written-accounting.js", "content-written-layouts.js", "content-exam-solutions-accounting.js"],
-    pastLaw: ["content-past-exams-law.js", "content-past-exams-written-law.js", "content-written-layouts.js", "content-exam-solutions-law.js"],
+    pastPractice: ["content-past-exams.js"],
+    pastWritten: ["content-past-exams-written.js", "content-written-layouts.js"],
     explanations: ["content-past-exams-explanations.js"],
     diagrams: [
       "diagrams-macro.js",
@@ -66,8 +50,7 @@
     nobel: ["content-nobel.js", "diagrams-nobel.js"],
     evolution: ["content-macro-evolution.js"],
     macroSubject: ["content-macro-evolution.js", "content-nobel.js", "diagrams-nobel.js", "diagrams-macro.js", "diagrams-macro-2.js", "diagrams-macro-3.js", "diagrams-macro-4.js", "diagrams-macro-5.js"],
-    macroCurrent: ["content-macro-current.js"],
-    lawArticles: ["content-law-articles.js"]
+    macroCurrent: ["content-macro-current.js"]
   };
 
   const loaded = new Set();
@@ -86,15 +69,16 @@
     const top = parts[0] || "";
     const list = ["core"];
     if (top === "past-exams") {
-      list.push("past");
+      list.push(parts[1] === "written" ? "pastWritten" : "pastPractice");
     } else if (top === "chapter") {
       const chapterId = parts[1] || "";
       const subjectId = chapterId.split("-")[0];
-      if (subjectId === "macro") list.push("pastMacro", "macroDiagrams");
-      else if (subjectId === "investment") list.push("pastInvestment", "diagramsInvestment");
-      else if (subjectId === "accounting") list.push("pastAccounting", "diagramsAccounting");
-      else if (subjectId === "law") list.push("pastLaw", "lawArticles");
-      else list.push("past", "diagrams");
+      list.push("chapter:" + chapterId);
+      if (subjectId === "macro") list.push("macroDiagrams");
+      else if (subjectId === "investment") list.push("diagramsInvestment");
+      else if (subjectId === "accounting") list.push("diagramsAccounting");
+      else if (subjectId === "law") list.push("lawArticle:" + chapterId);
+      else list.push("diagrams");
     } else if (top === "subject" && parts[1] === "macro") {
       list.push("macroSubject");
     } else if (top === "models" && parts[1] === "macro") {
@@ -107,6 +91,16 @@
       list.push("macroCurrent");
     }
     return list;
+  }
+
+  function filesForBundle(name) {
+    if (name.indexOf("chapter:") === 0) {
+      return ["content-chapter-data-" + name.slice("chapter:".length) + ".js"];
+    }
+    if (name.indexOf("lawArticle:") === 0) {
+      return ["content-law-articles-" + name.slice("lawArticle:".length) + ".js"];
+    }
+    return bundles[name] || [];
   }
 
   function loadFiles(files) {
@@ -142,7 +136,7 @@
 
   async function loadBundle(name) {
     if (loaded.has(name)) return;
-    const files = bundles[name] || [];
+    const files = filesForBundle(name);
     await loadFiles(files);
     loaded.add(name);
     window.__LAZY_LOADED_BUNDLES = Array.from(loaded);
@@ -177,7 +171,7 @@
       const files = [];
       const seen = new Set();
       loadedNames.forEach(function (name) {
-        (bundles[name] || []).forEach(function (file) {
+        filesForBundle(name).forEach(function (file) {
           if (!seen.has(file)) {
             seen.add(file);
             files.push(file);

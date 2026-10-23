@@ -100,29 +100,33 @@
     examQuestionMap.set(question.id, question);
   });
   const pastExamStats = window.PAST_EXAM_STATS || null;
-  if (!practiceQuestions.length && pastExamStats && pastExamStats.practice) {
+  if (pastExamStats && pastExamStats.practice) {
     Object.keys(pastExamStats.practice.subjects || {}).forEach(function (subjectId) {
       practiceSubjectQuestionTotals.set(subjectId, pastExamStats.practice.subjects[subjectId]);
     });
-    Object.keys(pastExamStats.practice.chapters || {}).forEach(function (chapterId) {
-      const stats = pastExamStats.practice.chapters[chapterId];
-      practiceChapterStats.set(chapterId, {
-        count: stats.count || 0,
-        sessions: new Map(Object.keys(stats.sessions || {}).map(function (sessionId) { return [sessionId, stats.sessions[sessionId]]; }))
+    if (!practiceQuestions.length) {
+      Object.keys(pastExamStats.practice.chapters || {}).forEach(function (chapterId) {
+        const stats = pastExamStats.practice.chapters[chapterId];
+        practiceChapterStats.set(chapterId, {
+          count: stats.count || 0,
+          sessions: new Map(Object.keys(stats.sessions || {}).map(function (sessionId) { return [sessionId, stats.sessions[sessionId]]; }))
+        });
       });
-    });
+    }
   }
-  if (!writtenQuestions.length && pastExamStats && pastExamStats.written) {
+  if (pastExamStats && pastExamStats.written) {
     Object.keys(pastExamStats.written.subjects || {}).forEach(function (subjectId) {
       writtenSubjectQuestionTotals.set(subjectId, pastExamStats.written.subjects[subjectId]);
     });
-    Object.keys(pastExamStats.written.chapters || {}).forEach(function (chapterId) {
-      const stats = pastExamStats.written.chapters[chapterId];
-      writtenChapterStats.set(chapterId, {
-        count: stats.count || 0,
-        sessions: new Map(Object.keys(stats.sessions || {}).map(function (sessionId) { return [sessionId, stats.sessions[sessionId]]; }))
+    if (!writtenQuestions.length) {
+      Object.keys(pastExamStats.written.chapters || {}).forEach(function (chapterId) {
+        const stats = pastExamStats.written.chapters[chapterId];
+        writtenChapterStats.set(chapterId, {
+          count: stats.count || 0,
+          sessions: new Map(Object.keys(stats.sessions || {}).map(function (sessionId) { return [sessionId, stats.sessions[sessionId]]; }))
+        });
       });
-    });
+    }
   }
   examSolutionBatches.forEach(function (batch) {
     const sections = batch && batch.sections ? batch.sections : {};
@@ -2368,7 +2372,7 @@
       meta.push('<span><strong>相關時事</strong> <a href="#/macro-current?event=' + encodeURIComponent(event.id) + '">' + escapeHtml(event.title) + "</a></span>");
     }
     return [
-      '<details class="forecast-question forecast-series" id="forecast-' + escapeHtml(question.id) + '">',
+      '<details class="forecast-question forecast-series" id="forecast-' + escapeHtml(question.id) + '" data-level="多層" data-levels="' + escapeHtml((question.levels || []).join(" ")) + '" data-topic="' + escapeHtml(question.topic || "") + '" data-type="' + escapeHtml(question.type) + '">',
       '  <summary>',
       '    <span class="forecast-question-num">' + String(question.number).padStart(2, "0") + "</span>",
       '    <span class="forecast-question-title">' + escapeHtml(question.title) + "</span>",
@@ -2418,7 +2422,7 @@
     }).filter(Boolean).join("");
     const event = question.eventId ? macroCurrentEventMap.get(question.eventId) : null;
     return [
-      '<details class="forecast-question" id="forecast-' + escapeHtml(question.id) + '">',
+      '<details class="forecast-question" id="forecast-' + escapeHtml(question.id) + '" data-level="' + escapeHtml(level) + '" data-levels="' + escapeHtml(level) + '" data-topic="' + escapeHtml(question.topic || "") + '" data-type="' + escapeHtml(question.type) + '">',
       '  <summary>',
       '    <span class="forecast-question-num">' + String(question.number).padStart(2, "0") + "</span>",
       '    <span class="forecast-question-title">' + escapeHtml(question.title) + "</span>",
@@ -2562,6 +2566,9 @@
       return sum + (Array.isArray(formulas[subject.id]) ? formulas[subject.id].length : 0);
     }, 0);
     const visibleFormulaCount = showAll ? formulaCount : (Array.isArray(formulas[subjectFilter]) ? formulas[subjectFilter].length : 0);
+    const filterQuestions = showAll ? questions : questions.filter(function (question) { return question.subject === subjectFilter; });
+    const filterTypes = Array.from(new Set(filterQuestions.map(function (question) { return question.type; }).filter(Boolean))).sort(function (a, b) { return a.localeCompare(b, "zh-Hant"); });
+    const filterTopics = Array.from(new Set(filterQuestions.map(function (question) { return question.topic; }).filter(Boolean))).sort(function (a, b) { return a.localeCompare(b, "zh-Hant"); });
     const allParts = [];
     questions.forEach(function (question) {
       if (Array.isArray(question.parts) && question.parts.length) {
@@ -2619,6 +2626,14 @@
         return '    <a class="forecast-tab' + (subjectFilter === subject.id ? " is-active" : "") + '" href="#/exam-forecast?subject=' + subject.id + '"' + (subjectFilter === subject.id ? ' aria-current="page"' : "") + '>' + escapeHtml(subject.name) + " " + subjectCounts[subject.id] + " 題組</a>";
       }).join("\n"),
       "  </nav>",
+      '  <section class="forecast-filter-bar" data-forecast-filter-bar aria-label="考前猜題篩選">',
+      '    <label class="forecast-filter-search"><span>搜尋</span><input type="search" data-forecast-search placeholder="主題、題型或關鍵字…" autocomplete="off"></label>',
+      '    <label><span>程度</span><select data-forecast-level><option value="all">全部</option><option value="基礎">基礎</option><option value="進階">進階</option></select></label>',
+      '    <label><span>題型</span><select data-forecast-type><option value="all">全部</option>' + filterTypes.map(function (type) { return '<option value="' + escapeHtml(type) + '">' + escapeHtml(type) + "</option>"; }).join("") + "</select></label>",
+      '    <label><span>主題</span><select data-forecast-topic><option value="all">全部</option>' + filterTopics.map(function (topic) { return '<option value="' + escapeHtml(topic) + '">' + escapeHtml(topic) + "</option>"; }).join("") + "</select></label>",
+      '    <button class="btn btn-small" type="button" data-forecast-clear>清除</button>',
+      '    <span class="forecast-filter-count" data-forecast-filter-count>顯示 ' + filterQuestions.length + ' / ' + filterQuestions.length + ' 題組</span>',
+      "  </section>",
       '  <section class="forecast-directions">' + (forecastData.directions || []).map(function (item) {
         return [
           '<article class="forecast-direction">',
@@ -4728,6 +4743,29 @@
     toast("已清除考古題紀錄");
   }
 
+  function applyForecastFilters() {
+    const bar = document.querySelector("[data-forecast-filter-bar]");
+    if (!bar) return;
+    const keyword = (bar.querySelector("[data-forecast-search]")?.value || "").trim().toLowerCase();
+    const level = bar.querySelector("[data-forecast-level]")?.value || "all";
+    const type = bar.querySelector("[data-forecast-type]")?.value || "all";
+    const topic = bar.querySelector("[data-forecast-topic]")?.value || "all";
+    let visible = 0;
+    const cards = Array.from(document.querySelectorAll(".forecast-question"));
+    cards.forEach(function (card) {
+      const levels = (card.dataset.levels || card.dataset.level || "").split(" ");
+      const haystack = (card.textContent || "").toLowerCase();
+      const ok = (!keyword || haystack.indexOf(keyword) !== -1) &&
+        (level === "all" || levels.indexOf(level) !== -1) &&
+        (type === "all" || card.dataset.type === type) &&
+        (topic === "all" || card.dataset.topic === topic);
+      card.hidden = !ok;
+      if (ok) visible += 1;
+    });
+    const count = bar.querySelector("[data-forecast-filter-count]");
+    if (count) count.textContent = "顯示 " + visible + " / " + cards.length + " 題組";
+  }
+
   function bindEvents() {
     window.addEventListener("hashchange", function () {
       closeSearch();
@@ -4859,6 +4897,18 @@
         return;
       }
 
+      const clearForecast = event.target.closest("[data-forecast-clear]");
+      if (clearForecast) {
+        const bar = clearForecast.closest("[data-forecast-filter-bar]");
+        if (bar) {
+          bar.querySelectorAll("input, select").forEach(function (field) {
+            field.value = field.tagName === "SELECT" ? "all" : "";
+          });
+          applyForecastFilters();
+        }
+        return;
+      }
+
       const action = event.target.closest("[data-action]");
       if (!action) {
         return;
@@ -4885,6 +4935,11 @@
 
     main.addEventListener("input", function (event) {
       handlePracticeInput(event);
+      if (event.target.closest("[data-forecast-filter-bar]")) applyForecastFilters();
+    });
+
+    main.addEventListener("change", function (event) {
+      if (event.target.closest("[data-forecast-filter-bar]")) applyForecastFilters();
     });
   }
 
