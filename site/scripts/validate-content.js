@@ -1782,7 +1782,7 @@ pastExamQuestions.forEach(function (question) {
 const forecast = loaded.examForecast || { meta: {}, directions: [], questions: [], integrated: [], formulas: { macro: [], investment: [], accounting: [], law: [] }, sensitivity: null, indicators: [], strategy: [] };
 const forecastQuestions = Array.isArray(forecast.questions) ? forecast.questions : [];
 const forecastSubjectIds = ["macro", "investment", "accounting", "law"];
-const expectedForecastCounts = { macro: 34, investment: 33, accounting: 10, law: 10 };
+const expectedForecastCounts = { macro: 34, investment: 33, accounting: 15, law: 15 };
 const forecastSubjectCounts = { macro: 0, investment: 0, accounting: 0, law: 0 };
 const forecastSeriesLevelCounts = { "基礎": 0, "進階": 0, "多層": 0 };
 const forecastPartLevelCounts = { "基礎": 0, "進階": 0 };
@@ -1791,9 +1791,9 @@ const forecastLegacyIds = new Set();
 const forecastPartAnswerIds = new Set();
 const forecastChapterIds = new Set(allChapters.map(function (chapter) { return chapter.id; }));
 const forecastSubjectNumbers = { macro: 0, investment: 0, accounting: 0, law: 0 };
-check(forecastQuestions.length === 87, "考前猜題單一題庫應有 87 題組（目前 " + forecastQuestions.length + " 題組）");
-check(forecast.meta && forecast.meta.counts && forecast.meta.counts.macro === 34 && forecast.meta.counts.investment === 33 && forecast.meta.counts.accounting === 10 && forecast.meta.counts.law === 10, "考前猜題 meta 題組數應為總體 34、投資 33、會計 10、法規 10");
-check(forecast.meta && forecast.meta.counts && forecast.meta.counts.series === 87 && forecast.meta.counts.parts === 108, "考前猜題 meta 應記錄 87 題組、108 個部分");
+check(forecastQuestions.length === 97, "考前猜題單一題庫應有 97 題組（目前 " + forecastQuestions.length + " 題組）");
+check(forecast.meta && forecast.meta.counts && forecast.meta.counts.macro === 34 && forecast.meta.counts.investment === 33 && forecast.meta.counts.accounting === 15 && forecast.meta.counts.law === 15, "考前猜題 meta 題組數應為總體 34、投資 33、會計 15、法規 15");
+check(forecast.meta && forecast.meta.counts && forecast.meta.counts.series === 97 && forecast.meta.counts.parts === 118, "考前猜題 meta 應記錄 97 題組、118 個部分");
 forecastQuestions.forEach(function (question) {
   check(Boolean(question) && typeof question === "object", "考前猜題題組格式錯誤");
   if (!question) {
@@ -1867,14 +1867,14 @@ forecastQuestions.forEach(function (question) {
 forecastSubjectIds.forEach(function (subject) {
   check(forecastSubjectCounts[subject] === expectedForecastCounts[subject], "考前猜題 " + subject + " 題組數應為 " + expectedForecastCounts[subject] + "（目前 " + forecastSubjectCounts[subject] + " 題組）");
 });
-check(forecastSeriesLevelCounts["基礎"] === 46 && forecastSeriesLevelCounts["進階"] === 20 && forecastSeriesLevelCounts["多層"] === 21, "考前猜題題組 level 數應為基礎 46、進階 20、多層 21");
-check(forecastPartLevelCounts["基礎"] === 68 && forecastPartLevelCounts["進階"] === 40, "考前猜題部分 level 數應為基礎 68、進階 40");
-check(forecastIds.size === 87, "考前猜題應有 87 個不重複題組");
-check(forecastPartAnswerIds.size === 108, "考前猜題應有 108 個不重複部分");
+check(forecastSeriesLevelCounts["基礎"] === 56 && forecastSeriesLevelCounts["進階"] === 20 && forecastSeriesLevelCounts["多層"] === 21, "考前猜題題組 level 數應為基礎 56、進階 20、多層 21");
+check(forecastPartLevelCounts["基礎"] === 78 && forecastPartLevelCounts["進階"] === 40, "考前猜題部分 level 數應為基礎 78、進階 40");
+check(forecastIds.size === 97, "考前猜題應有 97 個不重複題組");
+check(forecastPartAnswerIds.size === 118, "考前猜題應有 118 個不重複部分");
 const allForecastIds = forecastPartAnswerIds;
 const forecastAnswers = loaded.examForecastAnswers || {};
 const forecastAnswerIds = Object.keys(forecastAnswers);
-check(forecastAnswerIds.length === 108, "考前猜題完整解答應涵蓋 108 個部分（目前 " + forecastAnswerIds.length + " 個）");
+check(forecastAnswerIds.length === 118, "考前猜題完整解答應涵蓋 118 個部分（目前 " + forecastAnswerIds.length + " 個）");
 allForecastIds.forEach(function (id) {
   check(Array.isArray(forecastAnswers[id]) && forecastAnswers[id].length >= 2, "考前猜題完整解答不足：" + id);
   (forecastAnswers[id] || []).forEach(function (paragraph, index) {
