@@ -22,6 +22,12 @@
   const macroCurrentData = window.MACRO_CURRENT_EVENTS || { meta: {}, events: [] };
   const forecastData = window.EXAM_FORECAST || { meta: {}, directions: [], questions: [], integrated: [], formulas: { macro: [], investment: [], accounting: [], law: [] }, sensitivity: null, indicators: [], strategy: [] };
   const forecastAnswers = window.EXAM_FORECAST_ANSWERS || {};
+  const forecastLegacyQuestionMap = new Map();
+  (forecastData.questions || []).forEach(function (question) {
+    (question.legacyIds || [question.id]).forEach(function (legacyId) {
+      forecastLegacyQuestionMap.set(legacyId, question.id);
+    });
+  });
   const practiceSubjects = Array.isArray(practiceData.subjects) ? practiceData.subjects : [];
   const practiceSessions = Array.isArray(practiceData.sessions) ? practiceData.sessions : [];
   const practiceQuestions = Array.isArray(practiceData.questions) ? practiceData.questions : [];
@@ -2288,10 +2294,81 @@
     return "is-mid";
   }
 
+  function forecastLevelLabel(question) {
+    if (question.level === "多層" && Array.isArray(question.levels) && question.levels.length) {
+      return question.levels.length > 1 ? question.levels.join("＋") : question.levels[0];
+    }
+    return question.level || "基礎";
+  }
+
+  function renderForecastAnswerBlock(answerId) {
+    const paragraphs = forecastAnswers[answerId];
+    if (!Array.isArray(paragraphs) || !paragraphs.length) {
+      return "";
+    }
+    return '<details class="forecast-answer"><summary>完整參考解答</summary><div class="forecast-answer-body">' + paragraphs.map(function (paragraph) {
+      return "<p>" + renderInlineMath(paragraph) + "</p>";
+    }).join("") + "</div></details>";
+  }
+
+  function renderForecastSeries(question) {
+    const parts = Array.isArray(question.parts) ? question.parts : [];
+    const meta = [];
+    if (question.topic) {
+      meta.push('<span><strong>主題</strong> ' + escapeHtml(question.topic) + "</span>");
+    }
+    const chapters = Array.isArray(question.chapters) ? question.chapters : [];
+    const chapterLinks = chapters.map(function (chapterId) {
+      const chapter = getChapter(chapterId);
+      return chapter ? '<a href="#/chapter/' + encodeURIComponent(chapter.id) + '">' + escapeHtml(chapter.title) + "</a>" : "";
+    }).filter(Boolean).join("");
+    if (chapterLinks) {
+      meta.push('<span class="forecast-related-chapters"><strong>相關章節</strong> ' + chapterLinks + "</span>");
+    }
+    const event = question.eventId ? macroCurrentEventMap.get(question.eventId) : null;
+    if (event) {
+      meta.push('<span><strong>相關時事</strong> <a href="#/macro-current?event=' + encodeURIComponent(event.id) + '">' + escapeHtml(event.title) + "</a></span>");
+    }
+    return [
+      '<details class="forecast-question forecast-series" id="forecast-' + escapeHtml(question.id) + '">',
+      '  <summary>',
+      '    <span class="forecast-question-num">' + String(question.number).padStart(2, "0") + "</span>",
+      '    <span class="forecast-question-title">' + escapeHtml(question.title) + "</span>",
+      '    <span class="forecast-level is-series">' + escapeHtml(forecastLevelLabel(question)) + '</span>',
+      '    <span class="forecast-chip">多部分題組</span>',
+      '    <span class="forecast-priority ' + forecastPriorityClass(question.priority) + '">' + escapeHtml(question.priority) + "</span>",
+      "  </summary>",
+      '  <div class="forecast-question-body">',
+      '    <p class="forecast-scenario">' + renderInlineMath(question.scenario) + "</p>",
+      '    <div class="forecast-question-meta">' + meta.join("") + "</div>",
+      (question.scoring || question.trap) ? '    <div class="forecast-exam-tip"><div><strong>得分關鍵</strong><p>' + renderInlineMath(question.scoring || "") + '</p></div><div><strong>易錯點</strong><p>' + renderInlineMath(question.trap || "") + "</p></div></div>" : "",
+      '    <div class="forecast-series-parts">',
+      parts.map(function (part, index) {
+        return [
+          '      <article class="forecast-series-part">',
+          '        <div class="forecast-part-head"><span class="forecast-part-label">Part ' + String.fromCharCode(65 + index) + '</span><span class="forecast-level ' + (part.level === "進階" ? "is-advanced" : "") + '">' + escapeHtml(part.level) + '</span><h4>' + escapeHtml(part.title) + "</h4></div>",
+          '        <p class="forecast-scenario">' + renderInlineMath(part.scenario) + "</p>",
+          '        <div class="forecast-ask"><h4>可能問法</h4><ul>' + (part.ask || []).map(function (item) {
+            return "<li>" + renderInlineMath(item) + "</li>";
+          }).join("") + "</ul></div>",
+          '        <div class="forecast-focus"><strong>作答方向</strong><p>' + renderInlineMath(part.focus || "") + "</p></div>",
+          renderForecastAnswerBlock(part.answerId || part.id),
+          "      </article>"
+        ].join("");
+      }).join(""),
+      "    </div>",
+      "  </div>",
+      "</details>"
+    ].join("");
+  }
+
   function renderForecastQuestion(question) {
+    if (Array.isArray(question.parts) && question.parts.length > 1) {
+      return renderForecastSeries(question);
+    }
     const priorityClass = forecastPriorityClass(question.priority);
     const asks = Array.isArray(question.ask) ? question.ask : [];
-    const level = question.level || "基礎";
+    const level = forecastLevelLabel(question);
     const levelClass = level === "進階" ? " is-advanced" : "";
     const chapters = Array.isArray(question.chapters) ? question.chapters : [];
     const chapterLinks = chapters.map(function (chapterId) {
@@ -2323,11 +2400,7 @@
       }).join("") + "</ul></div>",
       '    <div class="forecast-focus"><strong>作答方向</strong><p>' + renderInlineMath(question.focus) + "</p></div>",
       (question.scoring || question.trap) ? '    <div class="forecast-exam-tip"><div><strong>得分關鍵</strong><p>' + renderInlineMath(question.scoring || "") + '</p></div><div><strong>易錯點</strong><p>' + renderInlineMath(question.trap || "") + "</p></div></div>" : "",
-      Array.isArray(forecastAnswers[question.id]) && forecastAnswers[question.id].length
-        ? '    <details class="forecast-answer"><summary>完整參考解答</summary><div class="forecast-answer-body">' + forecastAnswers[question.id].map(function (paragraph) {
-            return "<p>" + renderInlineMath(paragraph) + "</p>";
-          }).join("") + "</div></details>"
-        : "",
+      renderForecastAnswerBlock(question.answerId || question.id),
       "  </div>",
       "</details>"
     ].join("");
@@ -2451,8 +2524,18 @@
       return sum + (Array.isArray(formulas[subject.id]) ? formulas[subject.id].length : 0);
     }, 0);
     const visibleFormulaCount = showAll ? formulaCount : (Array.isArray(formulas[subjectFilter]) ? formulas[subjectFilter].length : 0);
-    const basicCount = questions.filter(function (question) { return question.level === "基礎"; }).length;
-    const advancedCount = questions.filter(function (question) { return question.level === "進階"; }).length;
+    const allParts = [];
+    questions.forEach(function (question) {
+      if (Array.isArray(question.parts) && question.parts.length) {
+        question.parts.forEach(function (part) { allParts.push(part); });
+      } else {
+        allParts.push({ level: question.level });
+      }
+    });
+    const totalParts = allParts.length;
+    const basicCount = allParts.filter(function (part) { return part.level === "基礎"; }).length;
+    const advancedCount = allParts.filter(function (part) { return part.level === "進階"; }).length;
+    const multiCount = questions.filter(function (question) { return question.level === "多層"; }).length;
     const totalQuestions = questions.length;
     const coverageRows = subjectDefs.map(function (subject) {
       const info = getSubject(subject.id);
@@ -2480,12 +2563,12 @@
       "    <h1>" + escapeHtml(meta.title || "考前猜題") + "</h1>",
       '    <p class="lede">' + escapeHtml(meta.subtitle || "") + "</p>",
       '    <div class="forecast-stats">',
-      '      <div><strong>' + totalQuestions + '</strong><span>總題數</span></div>',
+      '      <div><strong>' + totalQuestions + '</strong><span>總題組</span></div>',
       '      <div><strong>4</strong><span>科目</span></div>',
       '      <div><strong>' + (meta.counts && meta.counts.integrated || integrated.length) + '</strong><span>跨章節整合</span></div>',
       '      <div><strong>' + formulaCount + '</strong><span>整合公式</span></div>',
       "    </div>",
-      '    <p class="forecast-count-note">基礎 ' + basicCount + ' 題＋進階 ' + advancedCount + ' 題；公式 ' + formulaCount + ' 條。</p>',
+      '    <p class="forecast-count-note">' + totalQuestions + ' 題組（基礎 ' + basicCount + '、進階 ' + advancedCount + ' 個部分；' + multiCount + ' 組多部分題組）；公式 ' + formulaCount + ' 條。</p>',
       '    <div class="forecast-actions">',
       '      <a class="btn btn-primary" href="#/past-exams/written">練計算／申論題</a>',
       '      <a class="btn" href="#/macro-current">看總經時事</a>',
@@ -2493,9 +2576,9 @@
       '    <p class="forecast-disclaimer">' + escapeHtml(meta.note || "") + "</p>",
       "  </section>",
       '  <nav class="forecast-tabs" aria-label="考前猜題科目">',
-      '    <a class="forecast-tab' + (showAll ? " is-active" : "") + '" href="#/exam-forecast"' + (showAll ? ' aria-current="page"' : "") + '>全部 ' + totalQuestions + ' 題</a>',
+      '    <a class="forecast-tab' + (showAll ? " is-active" : "") + '" href="#/exam-forecast"' + (showAll ? ' aria-current="page"' : "") + '>全部 ' + totalQuestions + ' 題組</a>',
       subjectDefs.map(function (subject) {
-        return '    <a class="forecast-tab' + (subjectFilter === subject.id ? " is-active" : "") + '" href="#/exam-forecast?subject=' + subject.id + '"' + (subjectFilter === subject.id ? ' aria-current="page"' : "") + '>' + escapeHtml(subject.name) + " " + subjectCounts[subject.id] + " 題</a>";
+        return '    <a class="forecast-tab' + (subjectFilter === subject.id ? " is-active" : "") + '" href="#/exam-forecast?subject=' + subject.id + '"' + (subjectFilter === subject.id ? ' aria-current="page"' : "") + '>' + escapeHtml(subject.name) + " " + subjectCounts[subject.id] + " 題組</a>";
       }).join("\n"),
       "  </nav>",
       '  <section class="forecast-directions">' + (forecastData.directions || []).map(function (item) {
@@ -2509,27 +2592,32 @@
       showAll ? [
         '  <section class="forecast-section" id="forecast-coverage">',
         '    <div class="forecast-section-head"><div><p class="eyebrow">覆蓋檢查</p><h2>四科章節、考古題與解答覆蓋</h2><p>確認每個科目都有章節重點、考古題解析與考前猜題。</p></div><span>4 科</span></div>',
-        '    <div class="forecast-table-wrap"><table class="forecast-table"><thead><tr><th>科目</th><th>章節</th><th>選擇題</th><th>計算／申論</th><th>考前猜題</th></tr></thead><tbody>',
+        '    <div class="forecast-table-wrap"><table class="forecast-table"><thead><tr><th>科目</th><th>章節</th><th>選擇題</th><th>計算／申論</th><th>考前猜題（題組）</th></tr></thead><tbody>',
         coverageRows.map(function (row) {
           return "<tr><td>" + escapeHtml(row.name) + "</td><td>" + row.chapters + "</td><td>" + row.mcq + "</td><td>" + row.written + "</td><td>" + row.forecast + "</td></tr>";
         }).join(""),
         "</tbody></table></div>",
-        '    <p class="forecast-count-note">3,710 題選擇題均有逐選項解析；348 題計算／申論均有參考解答；73 個章節均有名詞、重點與考古題出處。四科考前猜題合計 ' + totalQuestions + ' 題。</p>',
+        '    <p class="forecast-count-note">3,710 題選擇題均有逐選項解析；348 題計算／申論均有參考解答；73 個章節均有名詞、重點與考古題出處。四科考前猜題合計 ' + totalQuestions + ' 題組、' + totalParts + ' 個部分。</p>',
         "  </section>"
       ].join("") : "",
       visibleSubjects.map(function (subject) {
         const subjectQuestions = questions.filter(function (question) { return question.subject === subject.id; });
-        const levels = ["基礎", "進階"].filter(function (level) {
-          return subjectQuestions.some(function (question) { return (question.level || "基礎") === level; });
+        const levelDefs = [
+          { id: "基礎", label: "基礎題" },
+          { id: "進階", label: "進階題" },
+          { id: "多層", label: "多部分題組" }
+        ];
+        const levels = levelDefs.filter(function (level) {
+          return subjectQuestions.some(function (question) { return (question.level || "基礎") === level.id; });
         });
         return [
           '  <section class="forecast-section forecast-subject" id="forecast-subject-' + subject.id + '">',
-          '    <div class="forecast-section-head"><div><p class="eyebrow">科目題庫</p><h2>' + escapeHtml(subject.name) + "：" + subjectQuestions.length + ' 題</h2><p>' + ((subject.id === "accounting" || subject.id === "law") ? "此為重點 " + subjectQuestions.length + " 題，未涵蓋全部章節；請搭配章節與考古題複習。" : "依主題與 level 分組；進階題數字為教學假設，實際考試以題目給定為準。") + '</p></div><span>' + subjectQuestions.length + " 題</span></div>",
+          '    <div class="forecast-section-head"><div><p class="eyebrow">科目題庫</p><h2>' + escapeHtml(subject.name) + "：" + subjectQuestions.length + ' 題組</h2><p>' + ((subject.id === "accounting" || subject.id === "law") ? "此為重點 " + subjectQuestions.length + " 題組，未涵蓋全部章節；請搭配章節與考古題複習。" : "依主題與 level 分組；多部分題組包含基礎與進階兩個部分，數字為教學假設。") + '</p></div><span>' + subjectQuestions.length + " 題組</span></div>",
           levels.map(function (level) {
-            const levelQuestions = subjectQuestions.filter(function (question) { return (question.level || "基礎") === level; });
+            const levelQuestions = subjectQuestions.filter(function (question) { return (question.level || "基礎") === level.id; });
             return [
               '    <div class="forecast-level-block">',
-              '      <div class="forecast-level-head"><h3>' + escapeHtml(level) + '題</h3><span>' + levelQuestions.length + ' 題</span></div>',
+              '      <div class="forecast-level-head"><h3>' + escapeHtml(level.label) + '</h3><span>' + levelQuestions.length + ' 題組</span></div>',
               '      <div class="forecast-question-list">' + levelQuestions.map(renderForecastQuestion).join("") + "</div>",
               "    </div>"
             ].join("");
@@ -4156,7 +4244,8 @@
     if (route.parts[0] === "exam-forecast" && route.query.get("question")) {
       const questionId = route.query.get("question");
       window.requestAnimationFrame(function () {
-        const target = document.getElementById("forecast-" + questionId);
+        const targetId = forecastLegacyQuestionMap.get(questionId) || questionId;
+        const target = document.getElementById("forecast-" + targetId);
         if (target) {
           target.open = true;
           target.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -4306,7 +4395,9 @@
         typeClass: "",
         title: question.title,
         sub: (subject ? subject.name : question.subject) + " · " + question.topic + " · " + question.level,
-        text: [question.scenario].concat(question.ask || []).join(" "),
+        text: Array.isArray(question.parts)
+          ? question.parts.map(function (part) { return [part.title, part.scenario].concat(part.ask || []).join(" "); }).join(" ")
+          : [question.scenario].concat(question.ask || []).join(" "),
         href: "#/exam-forecast?subject=" + question.subject + "&question=" + encodeURIComponent(question.id)
       });
     });

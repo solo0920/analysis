@@ -1779,30 +1779,39 @@ pastExamQuestions.forEach(function (question) {
 const forecast = loaded.examForecast || { meta: {}, directions: [], questions: [], integrated: [], formulas: { macro: [], investment: [], accounting: [], law: [] }, sensitivity: null, indicators: [], strategy: [] };
 const forecastQuestions = Array.isArray(forecast.questions) ? forecast.questions : [];
 const forecastSubjectIds = ["macro", "investment", "accounting", "law"];
-const expectedForecastCounts = { macro: 44, investment: 44, accounting: 10, law: 10 };
+const expectedForecastCounts = { macro: 34, investment: 33, accounting: 10, law: 10 };
 const forecastSubjectCounts = { macro: 0, investment: 0, accounting: 0, law: 0 };
-const forecastLevelCounts = { "基礎": 0, "進階": 0 };
+const forecastSeriesLevelCounts = { "基礎": 0, "進階": 0, "多層": 0 };
+const forecastPartLevelCounts = { "基礎": 0, "進階": 0 };
 const forecastIds = new Set();
+const forecastLegacyIds = new Set();
+const forecastPartAnswerIds = new Set();
 const forecastChapterIds = new Set(allChapters.map(function (chapter) { return chapter.id; }));
 const forecastSubjectNumbers = { macro: 0, investment: 0, accounting: 0, law: 0 };
-check(forecastQuestions.length === 108, "考前猜題單一題庫應有 108 題（目前 " + forecastQuestions.length + " 題）");
-check(forecast.meta && forecast.meta.counts && forecast.meta.counts.macro === 44 && forecast.meta.counts.investment === 44 && forecast.meta.counts.accounting === 10 && forecast.meta.counts.law === 10, "考前猜題 meta 題數應為總體 44、投資 44、會計 10、法規 10");
+check(forecastQuestions.length === 87, "考前猜題單一題庫應有 87 題組（目前 " + forecastQuestions.length + " 題組）");
+check(forecast.meta && forecast.meta.counts && forecast.meta.counts.macro === 34 && forecast.meta.counts.investment === 33 && forecast.meta.counts.accounting === 10 && forecast.meta.counts.law === 10, "考前猜題 meta 題組數應為總體 34、投資 33、會計 10、法規 10");
+check(forecast.meta && forecast.meta.counts && forecast.meta.counts.series === 87 && forecast.meta.counts.parts === 108, "考前猜題 meta 應記錄 87 題組、108 個部分");
 forecastQuestions.forEach(function (question) {
-  check(Boolean(question) && typeof question === "object", "考前猜題題目格式錯誤");
+  check(Boolean(question) && typeof question === "object", "考前猜題題組格式錯誤");
   if (!question) {
     return;
   }
-  check(typeof question.id === "string" && question.id.length > 0, "考前猜題缺少題目 ID");
-  check(!forecastIds.has(question.id), "考前猜題題目 ID 重複：" + question.id);
+  check(typeof question.id === "string" && question.id.length > 0, "考前猜題缺少題組 ID");
+  check(!forecastIds.has(question.id), "考前猜題題組 ID 重複：" + question.id);
   forecastIds.add(question.id);
+  check(Array.isArray(question.legacyIds) && question.legacyIds.length >= 1 && question.legacyIds.indexOf(question.id) !== -1, "考前猜題 legacyIds 錯誤：" + question.id);
+  (question.legacyIds || []).forEach(function (legacyId) {
+    check(typeof legacyId === "string" && legacyId.length > 0, "考前猜題 legacy ID 格式錯誤：" + question.id);
+    check(!forecastLegacyIds.has(legacyId), "考前猜題 legacy ID 重複：" + question.id + " / " + legacyId);
+    forecastLegacyIds.add(legacyId);
+  });
   check(forecastSubjectIds.indexOf(question.subject) !== -1, "考前猜題科目錯誤：" + question.id);
-  check(question.level === "基礎" || question.level === "進階", "考前猜題 level 錯誤：" + question.id);
+  check(["基礎", "進階", "多層"].indexOf(question.level) !== -1, "考前猜題 level 錯誤：" + question.id);
   check(typeof question.topic === "string" && question.topic.trim().length > 0, "考前猜題缺少 topic：" + question.id);
   check(typeof question.type === "string" && question.type.trim().length > 0, "考前猜題缺少題型：" + question.id);
   check(["最高", "高", "中"].indexOf(question.priority) !== -1, "考前猜題優先級錯誤：" + question.id);
   check(typeof question.title === "string" && question.title.trim().length > 0, "考前猜題缺少標題：" + question.id);
   check(typeof question.scenario === "string" && question.scenario.trim().length > 0, "考前猜題缺少情境：" + question.id);
-  check(Array.isArray(question.ask) && question.ask.length >= 2, "考前猜題缺少可能問法：" + question.id);
   check(typeof question.focus === "string" && question.focus.trim().length > 0, "考前猜題缺少作答方向：" + question.id);
   check(typeof question.scoring === "string" && question.scoring.trim().length > 0, "考前猜題缺少得分關鍵：" + question.id);
   check(typeof question.trap === "string" && question.trap.trim().length > 0, "考前猜題缺少易錯點：" + question.id);
@@ -1815,23 +1824,54 @@ forecastQuestions.forEach(function (question) {
   if (question.eventId) {
     check(currentEventIds.has(question.eventId), "考前猜題時事連結不存在：" + question.id + " / " + question.eventId);
   }
+  checkRenderedMath(question.scenario, "考前猜題 " + question.id + " 情境");
+  checkRenderedMath(question.focus, "考前猜題 " + question.id + " 作答方向");
+
+  if (question.level === "多層") {
+    check(Array.isArray(question.parts) && question.parts.length >= 2, "考前猜題多部分題組缺少 parts：" + question.id);
+    check(Array.isArray(question.levels) && question.levels.length >= 1, "考前猜題多部分題組缺少 levels：" + question.id);
+    check(question.ask === undefined || Array.isArray(question.ask), "考前猜題題組 ask 格式錯誤：" + question.id);
+    (question.parts || []).forEach(function (part, index) {
+      check(Boolean(part) && typeof part === "object", "考前猜題部分格式錯誤：" + question.id + " / " + (index + 1));
+      if (!part) {
+        return;
+      }
+      check(part.level === "基礎" || part.level === "進階", "考前猜題部分 level 錯誤：" + question.id + " / " + (index + 1));
+      check(typeof part.title === "string" && part.title.trim().length > 0, "考前猜題部分缺少標題：" + question.id + " / " + (index + 1));
+      check(typeof part.scenario === "string" && part.scenario.trim().length > 0, "考前猜題部分缺少情境：" + question.id + " / " + (index + 1));
+      check(Array.isArray(part.ask) && part.ask.length >= 2, "考前猜題部分缺少問法：" + question.id + " / " + (index + 1));
+      check(typeof part.focus === "string" && part.focus.trim().length > 0, "考前猜題部分缺少作答方向：" + question.id + " / " + (index + 1));
+      check(typeof part.answerId === "string" && part.answerId.length > 0, "考前猜題部分缺少 answerId：" + question.id + " / " + (index + 1));
+      check(!forecastPartAnswerIds.has(part.answerId), "考前猜題部分 answerId 重複：" + part.answerId);
+      forecastPartAnswerIds.add(part.answerId);
+      forecastPartLevelCounts[part.level] += 1;
+      checkRenderedMath(part.scenario, "考前猜題部分 " + part.answerId + " 情境");
+      (part.ask || []).forEach(function (item, i) { checkRenderedMath(item, "考前猜題部分 " + part.answerId + " 問法 " + (i + 1)); });
+      checkRenderedMath(part.focus, "考前猜題部分 " + part.answerId + " 作答方向");
+    });
+  } else {
+    check(Array.isArray(question.ask) && question.ask.length >= 2, "考前猜題缺少可能問法：" + question.id);
+    (question.ask || []).forEach(function (item, i) { checkRenderedMath(item, "考前猜題 " + question.id + " 問法 " + (i + 1)); });
+    forecastPartAnswerIds.add(question.id);
+    forecastPartLevelCounts[question.level] += 1;
+  }
+
   forecastSubjectCounts[question.subject] += 1;
-  forecastLevelCounts[question.level] += 1;
+  forecastSeriesLevelCounts[question.level] += 1;
   forecastSubjectNumbers[question.subject] += 1;
   check(Number.isInteger(question.number) && question.number === forecastSubjectNumbers[question.subject], "考前猜題科目內題號錯誤：" + question.id);
-  checkRenderedMath(question.scenario, "考前猜題 " + question.id + " 情境");
-  (question.ask || []).forEach(function (item, i) { checkRenderedMath(item, "考前猜題 " + question.id + " 問法 " + (i + 1)); });
-  checkRenderedMath(question.focus, "考前猜題 " + question.id + " 作答方向");
 });
 forecastSubjectIds.forEach(function (subject) {
-  check(forecastSubjectCounts[subject] === expectedForecastCounts[subject], "考前猜題 " + subject + " 題數應為 " + expectedForecastCounts[subject] + "（目前 " + forecastSubjectCounts[subject] + " 題）");
+  check(forecastSubjectCounts[subject] === expectedForecastCounts[subject], "考前猜題 " + subject + " 題組數應為 " + expectedForecastCounts[subject] + "（目前 " + forecastSubjectCounts[subject] + " 題組）");
 });
-check(forecastLevelCounts["基礎"] === 68 && forecastLevelCounts["進階"] === 40, "考前猜題 level 題數應為基礎 68、進階 40");
-check(forecastIds.size === 108, "考前猜題應有 108 個不重複題目");
-const allForecastIds = forecastIds;
+check(forecastSeriesLevelCounts["基礎"] === 46 && forecastSeriesLevelCounts["進階"] === 20 && forecastSeriesLevelCounts["多層"] === 21, "考前猜題題組 level 數應為基礎 46、進階 20、多層 21");
+check(forecastPartLevelCounts["基礎"] === 68 && forecastPartLevelCounts["進階"] === 40, "考前猜題部分 level 數應為基礎 68、進階 40");
+check(forecastIds.size === 87, "考前猜題應有 87 個不重複題組");
+check(forecastPartAnswerIds.size === 108, "考前猜題應有 108 個不重複部分");
+const allForecastIds = forecastPartAnswerIds;
 const forecastAnswers = loaded.examForecastAnswers || {};
 const forecastAnswerIds = Object.keys(forecastAnswers);
-check(forecastAnswerIds.length === 108, "考前猜題完整解答應涵蓋 108 題（目前 " + forecastAnswerIds.length + " 題）");
+check(forecastAnswerIds.length === 108, "考前猜題完整解答應涵蓋 108 個部分（目前 " + forecastAnswerIds.length + " 個）");
 allForecastIds.forEach(function (id) {
   check(Array.isArray(forecastAnswers[id]) && forecastAnswers[id].length >= 2, "考前猜題完整解答不足：" + id);
   (forecastAnswers[id] || []).forEach(function (paragraph, index) {
@@ -1840,7 +1880,7 @@ allForecastIds.forEach(function (id) {
   });
 });
 forecastAnswerIds.forEach(function (id) {
-  check(allForecastIds.has(id), "考前猜題解答指向不存在的題目：" + id);
+  check(allForecastIds.has(id), "考前猜題解答指向不存在的部分：" + id);
 });
 const forecastFormulas = forecast.formulas || {};
 const expectedFormulaCounts = { macro: 12, investment: 21, accounting: 5, law: 0 };
@@ -1896,8 +1936,8 @@ console.log("考古題：" + pastExamSessions.length + " 次、 " + pastExamQues
 console.log("選擇題逐選項解析：" + pastExamExplanationIds.length + " 題");
 console.log("計算／申論題：" + writtenQuestions.length + " 題（107–115 年）");
 console.log("總經時事：" + currentEvents.length + " 個主題");
-console.log("考前猜題：" + forecastIds.size + " 題（總體 " + forecastSubjectCounts.macro + "、投資 " + forecastSubjectCounts.investment + "、會計 " + forecastSubjectCounts.accounting + "、法規 " + forecastSubjectCounts.law + "）；基礎 " + forecastLevelCounts["基礎"] + "、進階 " + forecastLevelCounts["進階"]);
-console.log("考前猜題完整解答：" + forecastAnswerIds.length + " 題；整合公式 " + forecastFormulaCount + " 條");
+console.log("考前猜題：" + forecastIds.size + " 題組（總體 " + forecastSubjectCounts.macro + "、投資 " + forecastSubjectCounts.investment + "、會計 " + forecastSubjectCounts.accounting + "、法規 " + forecastSubjectCounts.law + "）；" + forecastPartAnswerIds.size + " 部分（基礎 " + forecastPartLevelCounts["基礎"] + "、進階 " + forecastPartLevelCounts["進階"] + "；多部分 " + forecastSeriesLevelCounts["多層"] + " 組）");
+console.log("考前猜題完整解答：" + forecastAnswerIds.length + " 個部分；整合公式 " + forecastFormulaCount + " 條");
 console.log("檢查項目：" + checks.length + "，失敗：" + failures.length);
 
 if (failures.length > 0) {

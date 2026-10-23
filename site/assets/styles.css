@@ -7676,3 +7676,62 @@ p {
   overflow-x: auto;
   border-collapse: collapse;
 }
+
+/* 多部分題組 */
+.forecast-level.is-series {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--line));
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+  color: var(--accent-ink);
+}
+
+.forecast-series-parts {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.forecast-series-part {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-2);
+}
+
+.forecast-part-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.forecast-part-head h4 {
+  flex: 1 1 220px;
+  min-width: 0;
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.94rem;
+  overflow-wrap: anywhere;
+}
+
+.forecast-part-label {
+  color: var(--gold);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.forecast-series-part .forecast-scenario {
+  margin-top: 0;
+}
+
+.forecast-series-part .forecast-ask,
+.forecast-series-part .forecast-focus {
+  margin-top: 10px;
+}
+
+.forecast-series-part .forecast-answer {
+  margin-top: 10px;
+}
