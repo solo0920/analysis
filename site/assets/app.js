@@ -2281,7 +2281,7 @@
       '  <div>',
       '    <p class="eyebrow">近二年時事 · 總經政策</p>',
       '    <strong>重要國際金融時事與臺灣政策</strong>',
-      '    <span>安倍三箭、Fed FOMC 與利率、全球物價、黃金、加密貨幣與美元穩定幣、AI 生產力、歐債與臺灣政策，整理成可答題的總經框架。</span>',
+      '    <span>安倍三箭、Fed FOMC 與利率、全球物價、公債市場、黃金、加密貨幣與穩定幣、AI 生產力、歐債與臺灣政策，整理成可答題的總經框架。</span>',
       '  </div>',
       '  <span class="subject-written-cta-arrow">查看時事整理 →</span>',
       '</a>'
