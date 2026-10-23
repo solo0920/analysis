@@ -4,7 +4,7 @@
 window.EXAM_FORECAST = {
   meta: {
     title: "2026 年 12 月考前猜題",
-    subtitle: "總體經濟學 × 投資學：各 20 題、40 題完整解答、6 組跨章節整合",
+    subtitle: "總體經濟學 × 投資學：各 20 題、第二輪 8 題、共 48 題完整解答、6 組跨章節整合",
     updated: "2026-10-23",
     examPeriod: "2026 年 12 月",
     note: "這是以理論覆蓋率、時事關聯與跨章節命題價值整理的模擬猜題，不是官方題目，也不代表實際命中率。考試範圍、題型與配分請以主辦單位公告為準；時事數字會變動，考前請更新官方資料。",
@@ -370,7 +370,7 @@ window.EXAM_FORECAST = {
       { name: "Solow 成長會計", latex: String.raw`g_A=g_Y-\alpha g_K-(1-\alpha)g_L`, note: "TFP 成長是產出成長中無法由資本與勞動解釋的殘差。" },
       { name: "Fisher 方程式", latex: String.raw`1+i=(1+r)(1+\pi^e)`, note: "近似式 r≈i−π^e；精確式用於通膨較高時。" },
       { name: "未拋補利率平價", latex: String.raw`\frac{E(S_1)-S_0}{S_0}\approx i_{TW}-i_{US}`, note: "S 為每美元的新台幣價格；S 上升代表新台幣貶值。" },
-      { name: "開放經濟乘數", latex: String.raw`\frac{1}{1-MPC+MPM}`, note: "MPM 為邊際進口傾向；模型值不等於現實預測。" },
+      { name: "開放經濟乘數", latex: String.raw`\frac{1}{1-c(1-t)+m}`, note: "c 為邊際消費傾向、t 為稅率、m 為邊際進口傾向；t=0 時化簡為 1/(1-MPC+MPM)。" },
       { name: "菲利浦曲線", latex: String.raw`\pi=\pi^e-\beta(u-u_n)+v`, note: "v 為供給衝擊；長期失業回到自然率。" },
       { name: "債務動態", latex: String.raw`\Delta d\approx(r-g)d-pb`, note: "d 為債務/GDP，pb 為初級財政餘額；r>g 時需要初級盈餘穩定債務。" }
     ],

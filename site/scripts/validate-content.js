@@ -105,7 +105,7 @@ const nobelDiagramFiles = ["diagrams-nobel.js"];
 function loadContent() {
   const context = { window: {} };
   vm.createContext(context);
-  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-investment-formulas.js", "content-investment-technical.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-macro-current.js", "content-exam-forecast.js", "content-exam-forecast-answers.js", "content-past-exams-written.js", "content-written-layouts.js", "content-past-exams.js", "content-past-exams-explanations.js", "content-exam-solutions-115.js", "content-exam-solutions-114.js", "content-exam-solutions-113.js", "content-exam-solutions-112.js", "content-exam-solutions-111.js", "content-exam-solutions-110.js", "content-exam-solutions-109.js", "content-exam-solutions-108.js", "content-exam-solutions-107.js"].forEach(function (file) {
+  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-investment-formulas.js", "content-investment-technical.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-macro-current.js", "content-exam-forecast.js", "content-exam-forecast-answers.js", "content-exam-forecast-extras.js", "content-past-exams-written.js", "content-written-layouts.js", "content-past-exams.js", "content-past-exams-explanations.js", "content-exam-solutions-115.js", "content-exam-solutions-114.js", "content-exam-solutions-113.js", "content-exam-solutions-112.js", "content-exam-solutions-111.js", "content-exam-solutions-110.js", "content-exam-solutions-109.js", "content-exam-solutions-108.js", "content-exam-solutions-107.js"].forEach(function (file) {
     const fullPath = path.join(siteDir, "assets", file);
     vm.runInContext(fs.readFileSync(fullPath, "utf8"), context, { filename: file });
   });
@@ -134,7 +134,8 @@ function loadContent() {
     examSolutions: Array.isArray(context.window.EXAM_SOLUTIONS) ? context.window.EXAM_SOLUTIONS : [],
     macroCurrent: context.window.MACRO_CURRENT_EVENTS || { meta: {}, events: [] },
     examForecast: context.window.EXAM_FORECAST || { meta: {}, sections: [], integrated: [], formulas: { macro: [], investment: [] }, indicators: [], strategy: [] },
-    examForecastAnswers: context.window.EXAM_FORECAST_ANSWERS || {}
+    examForecastAnswers: context.window.EXAM_FORECAST_ANSWERS || {},
+    examForecastExtras: context.window.EXAM_FORECAST_EXTRAS || { macro: [], investment: [], formulas: { macro: [], investment: [] } }
   };
 }
 
@@ -1484,6 +1485,7 @@ const languageSurface = [
   read("site/assets/content-macro-current.js"),
   read("site/assets/content-exam-forecast.js"),
   read("site/assets/content-exam-forecast-answers.js"),
+  read("site/assets/content-exam-forecast-extras.js"),
   JSON.stringify(pastExams),
   JSON.stringify(loaded.pastExamExplanations),
   JSON.stringify(pastWritten),
@@ -1492,6 +1494,7 @@ const languageSurface = [
   JSON.stringify(macroCurrent),
   JSON.stringify(loaded.examForecast),
   JSON.stringify(loaded.examForecastAnswers),
+  JSON.stringify(loaded.examForecastExtras),
   read("site/README.md"),
   read("site/SOURCES.md"),
   read("documents/content_review_checklist.md")
@@ -1800,10 +1803,29 @@ forecastSections.forEach(function (section) {
   });
 });
 check(forecastIds.size === 40, "考前猜題應有 40 個不重複題目");
+const forecastExtras = loaded.examForecastExtras || { macro: [], investment: [], formulas: { macro: [], investment: [] } };
+const extraQuestions = [];
+["macro", "investment"].forEach(function (subject) {
+  const list = Array.isArray(forecastExtras[subject]) ? forecastExtras[subject] : [];
+  check(list.length === 4, "考前猜題第二輪 " + subject + " 應有 4 題");
+  list.forEach(function (question, index) {
+    check(question && question.id === "extra-" + subject + "-" + String(index + 1).padStart(2, "0"), "考前猜題第二輪 ID 錯誤：" + subject + " / " + index);
+    check(!forecastIds.has(question.id), "考前猜題第二輪 ID 重複：" + question.id);
+    check(typeof question.title === "string" && question.title.length > 0, "考前猜題第二輪缺少標題：" + question.id);
+    check(typeof question.scenario === "string" && question.scenario.length > 0, "考前猜題第二輪缺少情境：" + question.id);
+    check(Array.isArray(question.ask) && question.ask.length >= 2, "考前猜題第二輪缺少問法：" + question.id);
+    check(typeof question.focus === "string" && question.focus.length > 0, "考前猜題第二輪缺少作答方向：" + question.id);
+    checkRenderedMath(question.scenario, "考前猜題第二輪 " + question.id + " 情境");
+    (question.ask || []).forEach(function (item, i) { checkRenderedMath(item, "考前猜題第二輪 " + question.id + " 問法 " + (i + 1)); });
+    checkRenderedMath(question.focus, "考前猜題第二輪 " + question.id + " 作答方向");
+    extraQuestions.push(question);
+  });
+});
+const allForecastIds = new Set(Array.from(forecastIds).concat(extraQuestions.map(function (q) { return q.id; })));
 const forecastAnswers = loaded.examForecastAnswers || {};
 const forecastAnswerIds = Object.keys(forecastAnswers);
-check(forecastAnswerIds.length === 40, "考前猜題完整解答應涵蓋 40 題（目前 " + forecastAnswerIds.length + " 題）");
-forecastIds.forEach(function (id) {
+check(forecastAnswerIds.length === 48, "考前猜題完整解答應涵蓋 48 題（目前 " + forecastAnswerIds.length + " 題）");
+allForecastIds.forEach(function (id) {
   check(Array.isArray(forecastAnswers[id]) && forecastAnswers[id].length >= 2, "考前猜題完整解答不足：" + id);
   (forecastAnswers[id] || []).forEach(function (paragraph, index) {
     check(typeof paragraph === "string" && paragraph.trim().length > 20, "考前猜題解答段落不足：" + id + " / " + (index + 1));
@@ -1811,7 +1833,17 @@ forecastIds.forEach(function (id) {
   });
 });
 forecastAnswerIds.forEach(function (id) {
-  check(forecastIds.has(id), "考前猜題解答指向不存在的題目：" + id);
+  check(allForecastIds.has(id), "考前猜題解答指向不存在的題目：" + id);
+});
+const extraFormulas = forecastExtras.formulas || {};
+check(Array.isArray(extraFormulas.macro) && extraFormulas.macro.length === 3, "考前猜題第二輪總體公式應有 3 條");
+check(Array.isArray(extraFormulas.investment) && extraFormulas.investment.length === 4, "考前猜題第二輪投資公式應有 4 條");
+["macro", "investment"].forEach(function (group) {
+  (extraFormulas[group] || []).forEach(function (formula) {
+    check(typeof formula.name === "string" && formula.name.length > 0, "考前猜題第二輪公式缺少名稱");
+    check(typeof formula.latex === "string" && formula.latex.length > 0, "考前猜題第二輪公式缺少 LaTeX：" + formula.name);
+    checkRenderedMath("\\(" + formula.latex + "\\)", "考前猜題第二輪公式 " + formula.name);
+  });
 });
 check(Array.isArray(forecast.integrated) && forecast.integrated.length === 6, "考前猜題應有 6 組跨章節整合");
 forecast.integrated.forEach(function (item) {
@@ -1853,7 +1885,7 @@ console.log("選擇題逐選項解析：" + pastExamExplanationIds.length + " �
 console.log("計算／申論題：" + writtenQuestions.length + " 題（107–115 年）");
 console.log("總經時事：" + currentEvents.length + " 個主題");
 console.log("考前猜題：" + forecastIds.size + " 題（總體 " + forecast.meta.counts.macro + "、投資 " + forecast.meta.counts.investment + "）");
-console.log("考前猜題完整解答：" + forecastAnswerIds.length + " 題");
+console.log("考前猜題完整解答：" + forecastAnswerIds.length + " 題（含第二輪 " + extraQuestions.length + " 題）");
 console.log("檢查項目：" + checks.length + "，失敗：" + failures.length);
 
 if (failures.length > 0) {
