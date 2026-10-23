@@ -3088,7 +3088,7 @@
       "        <h1>把 <em>總體經濟</em>、<em>投資學</em><br>與 <em>會計學</em>、<em>證券法規</em><br>變成考試地圖。</h1>",
       '        <p class="lede">' + escapeHtml(content.meta.description) + "</p>",
       '        <div class="hero-actions">',
-      '          <a class="btn btn-primary" href="#/subject/macro">開始讀總體經濟</a>',
+      '          <a class="btn btn-primary" href="#/subject/macro">前往總體經濟</a>',
       '          <a class="btn" href="#/subject/investment">前往投資學</a>',
       '          <a class="btn" href="#/subject/accounting">前往會計學</a>',
       '          <a class="btn" href="#/subject/law">前往證券法規</a>',
