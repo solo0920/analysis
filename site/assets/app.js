@@ -2064,11 +2064,20 @@
     ].join("");
   }
 
-  const pastExamExplanationMap = new Map(Object.entries(window.PAST_EXAM_EXPLANATIONS || {}));
-
   function pastExamExplanationFor(question) {
-    const explanation = pastExamExplanationMap.get(question.id);
+    const data = window.PAST_EXAM_EXPLANATIONS || {};
+    const explanation = data[question.id];
     return explanation && explanation.options ? explanation : null;
+  }
+
+  function ensurePastExamExplanations() {
+    if (window.PAST_EXAM_EXPLANATIONS) {
+      return Promise.resolve();
+    }
+    if (typeof window.__loadExplanations === "function") {
+      return window.__loadExplanations();
+    }
+    return Promise.resolve();
   }
 
   function fallbackOptionAnalysis(question, letter) {
@@ -2086,6 +2095,9 @@
     const summary = explanation && explanation.summary
       ? explanation.summary
       : "本題官方答案為 " + question.answer.join("、") + "。";
+    const explanationNotice = explanation
+      ? ""
+      : '<div class="past-exam-analysis-notice"><span>完整解析尚未載入；目前先顯示官方答案與基本說明。</span><button class="btn btn-small" type="button" data-practice-load-explanations>載入完整解析</button></div>';
     const items = question.options.map(function (text, index) {
       const letter = "ABCD"[index];
       const correct = question.answer.indexOf(letter) !== -1;
@@ -2105,6 +2117,7 @@
     return [
       '<section class="past-exam-analysis" aria-label="選項分析">',
       '  <div class="past-exam-analysis-head"><h3>選項分析</h3><span>本站參考解析（非官方）</span></div>',
+      explanationNotice,
       '  <p class="past-exam-analysis-summary">' + renderInlineMath(summary) + "</p>",
       '  <ul class="past-exam-analysis-list">' + items + "</ul>",
       "</section>"
@@ -3328,11 +3341,24 @@
       }
       const questions = practiceFilteredQuestions();
       const question = questions[practiceState.index];
-      if (question) {
-        practiceState.answers.set(question.id, practiceState.selected);
-        practiceState.revealed = true;
-        savePracticeAnswers();
-        practiceRefreshPanel();
+      const reveal = function () {
+        if (question) {
+          practiceState.answers.set(question.id, practiceState.selected);
+          practiceState.revealed = true;
+          savePracticeAnswers();
+          practiceRefreshPanel();
+        }
+      };
+      if (question && !window.PAST_EXAM_EXPLANATIONS) {
+        submitButton.disabled = true;
+        toast("解析載入中…");
+        ensurePastExamExplanations().then(reveal).catch(function () {
+          submitButton.disabled = false;
+          toast("解析載入失敗，先顯示基本答案。");
+          reveal();
+        });
+      } else {
+        reveal();
       }
       return true;
     }
@@ -3402,12 +3428,38 @@
     if (revealButton) {
       event.preventDefault();
       const id = revealButton.dataset.practiceReveal;
+      const reveal = function () {
+        practiceState.browseRevealed.add(id);
+        practiceRefreshPanel(true);
+      };
       if (practiceState.browseRevealed.has(id)) {
         practiceState.browseRevealed.delete(id);
+        practiceRefreshPanel(true);
+      } else if (!window.PAST_EXAM_EXPLANATIONS) {
+        revealButton.disabled = true;
+        toast("解析載入中…");
+        ensurePastExamExplanations().then(reveal).catch(function () {
+          revealButton.disabled = false;
+          toast("解析載入失敗，先顯示基本答案。");
+          reveal();
+        });
       } else {
-        practiceState.browseRevealed.add(id);
+        reveal();
       }
-      practiceRefreshPanel(true);
+      return true;
+    }
+
+    const loadExplanationsButton = event.target.closest("[data-practice-load-explanations]");
+    if (loadExplanationsButton) {
+      event.preventDefault();
+      loadExplanationsButton.disabled = true;
+      toast("解析載入中…");
+      ensurePastExamExplanations().then(function () {
+        practiceRefreshPanel(true);
+      }).catch(function () {
+        loadExplanationsButton.disabled = false;
+        toast("解析載入失敗，請稍後再試。");
+      });
       return true;
     }
 

@@ -7770,3 +7770,23 @@ html.is-routing body {
   font-size: 0.8rem;
   font-weight: 700;
 }
+
+.past-exam-analysis-notice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 10px;
+  background: var(--surface-2);
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.past-exam-analysis-notice .btn {
+  flex: 0 0 auto;
+}

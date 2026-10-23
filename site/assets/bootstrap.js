@@ -81,7 +81,6 @@
     const list = ["core"];
     if (top === "past-exams") {
       list.push("past");
-      if (parts[1] !== "written") list.push("explanations");
     } else if (top === "chapter") {
       list.push("past", "diagrams");
       if ((parts[1] || "").indexOf("law-") === 0) list.push("lawArticles");
@@ -208,6 +207,10 @@
       console.error(error);
     }
   }
+
+  window.__loadExplanations = function () {
+    return loadBundle("explanations");
+  };
 
   window.addEventListener("hashchange", function () {
     const required = requiredBundles();
