@@ -40,6 +40,10 @@
       "content-exam-solutions-108.js",
       "content-exam-solutions-107.js"
     ],
+    pastMacro: ["content-past-exams-macro.js", "content-past-exams-written-macro.js", "content-written-layouts.js", "content-exam-solutions-macro.js"],
+    pastInvestment: ["content-past-exams-investment.js", "content-past-exams-written-investment.js", "content-written-layouts.js", "content-exam-solutions-investment.js"],
+    pastAccounting: ["content-past-exams-accounting.js", "content-past-exams-written-accounting.js", "content-written-layouts.js", "content-exam-solutions-accounting.js"],
+    pastLaw: ["content-past-exams-law.js", "content-past-exams-written-law.js", "content-written-layouts.js", "content-exam-solutions-law.js"],
     explanations: ["content-past-exams-explanations.js"],
     diagrams: [
       "diagrams-macro.js",
@@ -50,6 +54,8 @@
       "diagrams-investment.js",
       "diagrams-accounting.js"
     ],
+    diagramsInvestment: ["diagrams-investment.js"],
+    diagramsAccounting: ["diagrams-accounting.js"],
     macroDiagrams: [
       "diagrams-macro.js",
       "diagrams-macro-2.js",
@@ -82,8 +88,13 @@
     if (top === "past-exams") {
       list.push("past");
     } else if (top === "chapter") {
-      list.push("past", "diagrams");
-      if ((parts[1] || "").indexOf("law-") === 0) list.push("lawArticles");
+      const chapterId = parts[1] || "";
+      const subjectId = chapterId.split("-")[0];
+      if (subjectId === "macro") list.push("pastMacro", "macroDiagrams");
+      else if (subjectId === "investment") list.push("pastInvestment", "diagramsInvestment");
+      else if (subjectId === "accounting") list.push("pastAccounting", "diagramsAccounting");
+      else if (subjectId === "law") list.push("pastLaw", "lawArticles");
+      else list.push("past", "diagrams");
     } else if (top === "subject" && parts[1] === "macro") {
       list.push("macroSubject");
     } else if (top === "models" && parts[1] === "macro") {
