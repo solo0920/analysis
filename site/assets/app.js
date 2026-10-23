@@ -1238,7 +1238,7 @@
   function renderSubjectCard(subject) {
     const progressState = subjectProgress(subject);
     const preview = subject.chapters.slice(0, 3).map(function (chapter) {
-      return "<li>" + escapeHtml(chapterLabel(chapter)) + " " + escapeHtml(chapter.title) + "</li>";
+      return "<li>" + escapeHtml(chapter.title) + "</li>";
     }).join("");
 
     return [
