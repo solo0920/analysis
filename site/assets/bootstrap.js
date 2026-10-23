@@ -26,7 +26,7 @@
       "content-past-exam-stats.js"
     ],
     app: ["katex/katex.min.js", "app.js"],
-    pastPractice: ["content-past-exams.js"],
+    pastAll: ["content-past-exams.js"],
     pastWritten: ["content-past-exams-written.js", "content-written-layouts.js"],
     explanations: ["content-past-exams-explanations.js"],
     diagrams: [
@@ -64,12 +64,39 @@
     return (location.hash || "").replace(/^#/, "").split("?")[0].split("/").filter(Boolean);
   }
 
-  function requiredBundles() {
-    const parts = routeParts();
+  function routeQuery() {
+    const raw = (location.hash || "").split("?")[1] || "";
+    return new URLSearchParams(raw);
+  }
+
+  function parseHash(hash) {
+    const raw = String(hash || "").replace(/^#/, "");
+    const pieces = raw.split("?");
+    return {
+      parts: pieces[0].split("/").filter(Boolean),
+      query: new URLSearchParams(pieces[1] || "")
+    };
+  }
+
+  function practiceYearForQuery(query) {
+    const explicit = query.get("year");
+    if (explicit === "all") return "all";
+    if (/^\d{3}$/.test(explicit || "")) return explicit;
+    const question = query.get("question") || "";
+    const match = question.match(/^(\d{3})/);
+    return match ? match[1] : "115";
+  }
+
+  function requiredBundlesFor(parts, query) {
     const top = parts[0] || "";
     const list = ["core"];
     if (top === "past-exams") {
-      list.push(parts[1] === "written" ? "pastWritten" : "pastPractice");
+      if (parts[1] === "written") {
+        list.push("pastWritten");
+      } else {
+        const year = practiceYearForQuery(query);
+        list.push(year === "all" ? "pastAll" : "pastYear:" + year);
+      }
     } else if (top === "chapter") {
       const chapterId = parts[1] || "";
       const subjectId = chapterId.split("-")[0];
@@ -93,9 +120,16 @@
     return list;
   }
 
+  function requiredBundles() {
+    return requiredBundlesFor(routeParts(), routeQuery());
+  }
+
   function filesForBundle(name) {
     if (name.indexOf("chapter:") === 0) {
       return ["content-chapter-data-" + name.slice("chapter:".length) + ".js"];
+    }
+    if (name.indexOf("pastYear:") === 0) {
+      return ["content-past-exams-year-" + name.slice("pastYear:".length) + ".js"];
     }
     if (name.indexOf("lawArticle:") === 0) {
       return ["content-law-articles-" + name.slice("lawArticle:".length) + ".js"];
@@ -216,6 +250,34 @@
   window.__loadExplanations = function () {
     return loadBundle("explanations");
   };
+
+  const prefetched = new Set();
+  function prefetchHref(href) {
+    if (!href || href.indexOf("#/") !== 0) return;
+    if (navigator.connection && (navigator.connection.saveData || /(^|-)2g$/.test(navigator.connection.effectiveType || ""))) return;
+    const route = parseHash(href);
+    const names = requiredBundlesFor(route.parts, route.query);
+    names.forEach(function (name) {
+      if (loaded.has(name)) return;
+      filesForBundle(name).forEach(function (file) {
+        if (prefetched.has(file)) return;
+        prefetched.add(file);
+        const link = document.createElement("link");
+        link.rel = "prefetch";
+        link.href = basePath + file;
+        document.head.appendChild(link);
+      });
+    });
+  }
+
+  document.addEventListener("mouseover", function (event) {
+    const link = event.target.closest('a[href^="#/"]');
+    if (link) prefetchHref(link.getAttribute("href"));
+  });
+  document.addEventListener("focusin", function (event) {
+    const link = event.target.closest('a[href^="#/"]');
+    if (link) prefetchHref(link.getAttribute("href"));
+  });
 
   window.addEventListener("hashchange", function () {
     const required = requiredBundles();

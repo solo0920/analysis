@@ -1785,6 +1785,17 @@ pastExamQuestions.forEach(function (question) {
 const lazyPastStats = loaded.pastExamStats || { practice: { total: 0, subjects: {}, chapters: {} }, written: { total: 0, subjects: {}, chapters: {} } };
 check(lazyPastStats.practice.total === 3710, "延遲載入用考古題統計的選擇題總數應為 3710");
 check(lazyPastStats.written.total === 348, "延遲載入用考古題統計的計算／申論總數應為 348");
+check(lazyPastStats.practice.latestYear === 115, "延遲載入用考古題統計最新年度應為 115");
+check(Object.keys(lazyPastStats.practice.years || {}).length === 9, "延遲載入用考古題統計應涵蓋 9 個年度");
+Object.keys(lazyPastStats.practice.years || {}).forEach(function (year) {
+  const yearContext = { window: {} };
+  vm.createContext(yearContext);
+  const yearFile = "content-past-exams-year-" + year + ".js";
+  vm.runInContext(read("site/assets/" + yearFile), yearContext, { filename: yearFile });
+  const yearData = yearContext.window.PAST_EXAMS || { questions: [] };
+  check(yearData.questions.length === lazyPastStats.practice.years[year].count, "考古題年度分包題數與統計不一致：" + year);
+  check(yearData.questions.every(function (question) { return question.year === Number(year); }), "考古題年度分包混入其他年度：" + year);
+});
 check(Object.keys(lazyPastStats.practice.chapters || {}).length === 73, "延遲載入用考古題統計應涵蓋 73 章");
 check(Object.keys(lazyPastStats.written.chapters || {}).length === 58, "延遲載入用考古題統計應涵蓋 58 個申論章節");
 ["macro", "investment", "accounting", "law"].forEach(function (subject) {

@@ -1686,10 +1686,24 @@
     if (practiceState) {
       return;
     }
-    const latest = practiceSessions.slice().sort(comparePracticeSessions).pop();
+    const route = parseRoute();
+    const requestedYear = route.query.get("year");
+    const requestedSession = route.query.get("session");
+    const questionId = route.query.get("question") || "";
+    let targetYear = /^\d{3}$/.test(requestedYear || "") ? Number(requestedYear) : null;
+    if (!targetYear && requestedYear !== "all") {
+      const match = questionId.match(/^(\d{3})/);
+      if (match) targetYear = Number(match[1]);
+    }
+    const allSessions = practiceSessions.slice().sort(comparePracticeSessions);
+    const yearSessions = targetYear
+      ? allSessions.filter(function (session) { return session.year === targetYear; })
+      : allSessions;
+    const latest = yearSessions.length ? yearSessions[yearSessions.length - 1] : allSessions[allSessions.length - 1];
+    const validSession = requestedSession && (requestedSession === "all" || yearSessions.some(function (session) { return session.id === requestedSession; }));
     practiceState = {
-      year: latest ? latest.year : "all",
-      session: latest ? latest.id : "all",
+      year: requestedYear === "all" ? "all" : (targetYear || (latest ? latest.year : "all")),
+      session: requestedYear === "all" ? "all" : (validSession ? requestedSession : (latest ? latest.id : "all")),
       subject: "all",
       keyword: "",
       mode: "practice",
@@ -3170,16 +3184,18 @@
       const questions = practiceQuestions.filter(function (question) {
         return question.year === year;
       });
+      const yearStats = pastExamStats && pastExamStats.practice && pastExamStats.practice.years ? pastExamStats.practice.years[year] : null;
       const counts = practiceSubjects.map(function (subject) {
-        const count = questions.filter(function (question) {
-          return question.subject === subject.id;
-        }).length;
+        const count = yearStats && yearStats.subjects
+          ? (yearStats.subjects[subject.id] || 0)
+          : questions.filter(function (question) { return question.subject === subject.id; }).length;
         return (subject.short || subject.name) + " " + count;
       }).join(" · ");
+      const total = yearStats ? yearStats.count : questions.length;
       return [
         '<button class="past-exam-year-card" type="button" data-practice-year-jump="' + year + '">',
         '  <span class="past-exam-year-label">' + year + " 年</span>",
-        "  <strong>" + questions.length + " 題</strong>",
+        "  <strong>" + total + " 題</strong>",
         "  <span>" + sessions.length + " 次考試 · " + sessions.map(function (session) { return escapeHtml(session.shortLabel || session.label); }).join("、") + "</span>",
         '  <span class="past-exam-year-counts">' + escapeHtml(counts) + "</span>",
         "</button>"
@@ -3224,7 +3240,7 @@
       "      </div>",
       "    </div>",
       '    <aside class="past-exam-stats" aria-label="練習庫規模">',
-      stat(practiceQuestions.length, "選擇題"),
+      stat((pastExamStats && pastExamStats.practice && pastExamStats.practice.total) || practiceQuestions.length, "選擇題"),
       stat(practiceSessions.length, "考試次別"),
       stat(practiceSubjects.length, "專業科目"),
       stat(yearRange, "收錄年度"),
@@ -3295,7 +3311,12 @@
     const yearJump = event.target.closest("[data-practice-year-jump]");
     if (yearJump) {
       event.preventDefault();
-      practiceState.year = Number(yearJump.dataset.practiceYearJump);
+      const targetYear = String(yearJump.dataset.practiceYearJump);
+      if (String(practiceState.year) !== targetYear) {
+        window.location.hash = "#/past-exams?year=" + targetYear;
+        window.location.reload();
+        return true;
+      }
       practiceState.session = "all";
       practiceState.subject = "all";
       practiceState.keyword = "";
@@ -3309,7 +3330,12 @@
     const yearButton = event.target.closest("[data-practice-year]");
     if (yearButton) {
       event.preventDefault();
-      practiceState.year = yearButton.dataset.practiceYear === "all" ? "all" : Number(yearButton.dataset.practiceYear);
+      const targetYear = yearButton.dataset.practiceYear === "all" ? "all" : String(yearButton.dataset.practiceYear);
+      if (String(practiceState.year) !== targetYear) {
+        window.location.hash = "#/past-exams?year=" + targetYear;
+        window.location.reload();
+        return true;
+      }
       practiceState.session = "all";
       practiceResetCursor(practiceFilteredQuestions());
       practiceRefreshFilters();
@@ -4554,6 +4580,7 @@
         '<a class="search-result" href="#/macro/evolution"><span class="result-type">圖解</span><span><strong>總體經濟學學派演進圖</strong><small>古典、凱因斯、貨幣、新古典、新凱因斯與現代研究前沿</small></span><span class="result-arrow">→</span></a>',
         '<a class="search-result" href="#/subject/investment"><span class="result-type">科目</span><span><strong>投資學</strong><small>金融體系、利率與各類金融工具</small></span><span class="result-arrow">→</span></a>',
         '<a class="search-result" href="#/subject/accounting"><span class="result-type">科目</span><span><strong>會計學</strong><small>現金與存貨、金融資產、報表分析與資本預算</small></span><span class="result-arrow">→</span></a>',
+        '<a class="search-result" href="#/past-exams"><span class="result-type">題庫</span><span><strong>考古題練習庫</strong><small>107–115 年選擇題；進入後可用題幹關鍵字搜尋</small></span><span class="result-arrow">→</span></a>',
         '<a class="search-result" href="#/models/macro"><span class="result-type">模型</span><span><strong>總體經濟模型總覽</strong><small>' + (macroModelTotal + nobelTotal) + ' 張模型圖（' + macroModelTotal + ' 章節＋' + nobelTotal + ' 諾貝爾），依 ' + (macroSubject ? macroSubject.chapters.length : 13) + ' 章與 ' + nobelYears + ' 屆年表整理</small></span><span class="result-arrow">→</span></a>',
         '<a class="search-result" href="#/nobel"><span class="result-type">年表</span><span><strong>歷年諾貝爾經濟學獎</strong><small>' + nobelYears + ' 屆得主、代表模型與 ' + nobelTotal + ' 組 SVG 圖解</small></span><span class="result-arrow">→</span></a>',
         '<div class="search-group-label">試試這些名詞</div>',

@@ -3,7 +3,7 @@
 window.PAST_EXAM_STATS = {
   "meta": {
     "generated": "2026-10-23",
-    "note": "輕量統計，供科目頁在完整考古題資料延遲載入時使用。"
+    "note": "輕量統計，供科目頁與練習頁年度概況使用。"
   },
   "practice": {
     "total": 3710,
@@ -1828,7 +1828,138 @@ window.PAST_EXAM_STATS = {
       "114Q3": 133,
       "115Q1": 126,
       "115Q2": 126
-    }
+    },
+    "years": {
+      "107": {
+        "count": 497,
+        "subjects": {
+          "law": 126,
+          "investment": 119,
+          "accounting": 119,
+          "macro": 133
+        },
+        "sessions": {
+          "107Q1": 126,
+          "107Q2": 126,
+          "107Q3": 119,
+          "107Q4": 126
+        }
+      },
+      "108": {
+        "count": 511,
+        "subjects": {
+          "law": 126,
+          "investment": 126,
+          "accounting": 119,
+          "macro": 140
+        },
+        "sessions": {
+          "108Q1": 126,
+          "108Q2": 126,
+          "108Q3": 126,
+          "108Q4": 133
+        }
+      },
+      "109": {
+        "count": 525,
+        "subjects": {
+          "law": 126,
+          "investment": 133,
+          "accounting": 126,
+          "macro": 140
+        },
+        "sessions": {
+          "109Q1": 133,
+          "109Q2": 133,
+          "109Q3": 126,
+          "109Q4": 133
+        }
+      },
+      "110": {
+        "count": 385,
+        "subjects": {
+          "law": 91,
+          "investment": 98,
+          "accounting": 91,
+          "macro": 105
+        },
+        "sessions": {
+          "110Q1": 126,
+          "110Q2": 133,
+          "110Q3": 126
+        }
+      },
+      "111": {
+        "count": 378,
+        "subjects": {
+          "law": 91,
+          "investment": 84,
+          "accounting": 98,
+          "macro": 105
+        },
+        "sessions": {
+          "111Q1": 119,
+          "111Q2": 126,
+          "111Q3": 133
+        }
+      },
+      "112": {
+        "count": 385,
+        "subjects": {
+          "law": 98,
+          "investment": 98,
+          "accounting": 91,
+          "macro": 98
+        },
+        "sessions": {
+          "112Q1": 126,
+          "112Q2": 126,
+          "112Q3": 133
+        }
+      },
+      "113": {
+        "count": 392,
+        "subjects": {
+          "law": 91,
+          "investment": 105,
+          "accounting": 91,
+          "macro": 105
+        },
+        "sessions": {
+          "113Q1": 126,
+          "113Q2": 140,
+          "113Q3": 126
+        }
+      },
+      "114": {
+        "count": 385,
+        "subjects": {
+          "law": 98,
+          "investment": 98,
+          "accounting": 91,
+          "macro": 98
+        },
+        "sessions": {
+          "114Q1": 112,
+          "114Q2": 140,
+          "114Q3": 133
+        }
+      },
+      "115": {
+        "count": 252,
+        "subjects": {
+          "law": 63,
+          "investment": 63,
+          "accounting": 56,
+          "macro": 70
+        },
+        "sessions": {
+          "115Q1": 126,
+          "115Q2": 126
+        }
+      }
+    },
+    "latestYear": 115
   },
   "written": {
     "total": 348,
