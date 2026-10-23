@@ -23,6 +23,7 @@
   const forecastData = window.EXAM_FORECAST || { meta: {}, directions: [], sections: [], integrated: [], formulas: { macro: [], investment: [] }, indicators: [], strategy: [] };
   const forecastAnswers = window.EXAM_FORECAST_ANSWERS || {};
   const forecastExtras = window.EXAM_FORECAST_EXTRAS || { macro: [], investment: [], formulas: { macro: [], investment: [] } };
+  const forecastAdvanced = window.EXAM_FORECAST_ADVANCED || { macro: [], investment: [], formulas: { macro: [], investment: [] }, sensitivity: null };
   const practiceSubjects = Array.isArray(practiceData.subjects) ? practiceData.subjects : [];
   const practiceSessions = Array.isArray(practiceData.sessions) ? practiceData.sessions : [];
   const practiceQuestions = Array.isArray(practiceData.questions) ? practiceData.questions : [];
@@ -2333,8 +2334,84 @@
     ].join("");
   }
 
+  function renderForecastSensitivityNotes(items) {
+    const notes = Array.isArray(items) ? items : [];
+    return notes.length ? '<ul class="forecast-sensitivity-notes">' + notes.map(function (item) {
+      return "<li>" + renderInlineMath(item) + "</li>";
+    }).join("") + "</ul>" : "";
+  }
+
+  function renderDcfSensitivity(dcf) {
+    if (!dcf || !Array.isArray(dcf.rows) || !Array.isArray(dcf.columns)) {
+      return "";
+    }
+    return [
+      '<article class="forecast-sensitivity-card">',
+      '  <h3>' + escapeHtml(dcf.title || "DCF 敏感度") + "</h3>",
+      dcf.note ? '  <p class="forecast-sensitivity-note">' + renderInlineMath(dcf.note) + "</p>" : "",
+      '  <div class="forecast-table-wrap"><table class="forecast-table forecast-sensitivity-table"><thead><tr>',
+      dcf.columns.map(function (column) {
+        return "<th>" + escapeHtml(column) + "</th>";
+      }).join(""),
+      "</tr></thead><tbody>",
+      dcf.rows.map(function (row, rowIndex) {
+        return "<tr><th scope=\"row\">" + escapeHtml(row.label) + "</th>" + (row.values || []).map(function (value, colIndex) {
+          const isBase = rowIndex === dcf.baseRow && colIndex === dcf.baseCol;
+          return "<td" + (isBase ? ' class="is-base"' : "") + ">" + escapeHtml(value) + "</td>";
+        }).join("") + "</tr>";
+      }).join(""),
+      "</tbody></table></div>",
+      renderForecastSensitivityNotes(dcf.highlights),
+      "</article>"
+    ].join("");
+  }
+
+  function renderBondSensitivity(bond) {
+    if (!bond || !Array.isArray(bond.rows) || !Array.isArray(bond.columns)) {
+      return "";
+    }
+    return [
+      '<article class="forecast-sensitivity-card">',
+      '  <h3>' + escapeHtml(bond.title || "債券敏感度") + "</h3>",
+      bond.note ? '  <p class="forecast-sensitivity-note">' + renderInlineMath(bond.note) + "</p>" : "",
+      '  <div class="forecast-table-wrap"><table class="forecast-table forecast-sensitivity-table"><thead><tr>',
+      bond.columns.map(function (column) {
+        return "<th>" + escapeHtml(column) + "</th>";
+      }).join(""),
+      "</tr></thead><tbody>",
+      bond.rows.map(function (row, rowIndex) {
+        return "<tr" + (rowIndex === bond.baseRow ? ' class="is-base-row"' : "") + "><th scope=\"row\">" + escapeHtml(row.label) + "</th>" + (row.values || []).map(function (value) {
+          return "<td>" + escapeHtml(value) + "</td>";
+        }).join("") + "</tr>";
+      }).join(""),
+      "</tbody></table></div>",
+      renderForecastSensitivityNotes(bond.highlights),
+      "</article>"
+    ].join("");
+  }
+
+  function renderForecastSensitivitySection(sensitivity) {
+    if (!sensitivity) {
+      return "";
+    }
+    const hasDcf = sensitivity.dcf && Array.isArray(sensitivity.dcf.rows);
+    const hasBond = sensitivity.bond && Array.isArray(sensitivity.bond.rows);
+    if (!hasDcf && !hasBond) {
+      return "";
+    }
+    return [
+      '<section class="forecast-section forecast-sensitivity" id="forecast-sensitivity">',
+      '  <div class="forecast-section-head"><div><p class="eyebrow">敏感度分析</p><h2>兩個最常考的計算題：DCF 與債券</h2><p>' + renderInlineMath(sensitivity.intro || "") + "</p></div><span>2 組</span></div>",
+      '  <div class="forecast-sensitivity-grid">',
+      hasDcf ? renderDcfSensitivity(sensitivity.dcf) : "",
+      hasBond ? renderBondSensitivity(sensitivity.bond) : "",
+      "  </div>",
+      "  </section>"
+    ].join("");
+  }
+
   function renderExamForecastPage(activeSubject) {
-    const subjectFilter = activeSubject === "macro" || activeSubject === "investment" || activeSubject === "accounting" || activeSubject === "law" ? activeSubject : "all";
+    const subjectFilter = activeSubject === "macro" || activeSubject === "investment" || activeSubject === "accounting" || activeSubject === "law" || activeSubject === "advanced" ? activeSubject : "all";
     const showAll = subjectFilter === "all";
     const meta = forecastData.meta || {};
     const sections = Array.isArray(forecastData.sections) ? forecastData.sections : [];
@@ -2349,23 +2426,35 @@
     const extraMacroFormulas = forecastExtras.formulas && Array.isArray(forecastExtras.formulas.macro) ? forecastExtras.formulas.macro : [];
     const extraInvestmentFormulas = forecastExtras.formulas && Array.isArray(forecastExtras.formulas.investment) ? forecastExtras.formulas.investment : [];
     const accountingFormulas = forecastExtras.formulas && Array.isArray(forecastExtras.formulas.accounting) ? forecastExtras.formulas.accounting : [];
-    const allMacroFormulas = macroFormulas.concat(extraMacroFormulas);
-    const allInvestmentFormulas = investmentFormulas.concat(extraInvestmentFormulas);
+    const advancedMacro = Array.isArray(forecastAdvanced.macro) ? forecastAdvanced.macro : [];
+    const advancedInvestment = Array.isArray(forecastAdvanced.investment) ? forecastAdvanced.investment : [];
+    const advancedMacroFormulas = forecastAdvanced.formulas && Array.isArray(forecastAdvanced.formulas.macro) ? forecastAdvanced.formulas.macro : [];
+    const advancedInvestmentFormulas = forecastAdvanced.formulas && Array.isArray(forecastAdvanced.formulas.investment) ? forecastAdvanced.formulas.investment : [];
+    const sensitivity = forecastAdvanced.sensitivity || null;
+    const allMacroFormulas = macroFormulas.concat(extraMacroFormulas, advancedMacroFormulas);
+    const allInvestmentFormulas = investmentFormulas.concat(extraInvestmentFormulas, advancedInvestmentFormulas);
     const allAccountingFormulas = accountingFormulas;
     const indicators = Array.isArray(forecastData.indicators) ? forecastData.indicators : [];
     const strategy = Array.isArray(forecastData.strategy) ? forecastData.strategy : [];
     const counts = meta.counts || {};
     const formulaCount = allMacroFormulas.length + allInvestmentFormulas.length + allAccountingFormulas.length;
-    const visibleFormulaCount = showAll ? formulaCount : subjectFilter === "macro" ? allMacroFormulas.length : subjectFilter === "investment" ? allInvestmentFormulas.length : subjectFilter === "accounting" ? allAccountingFormulas.length : 0;
+    const advancedFormulaCount = advancedMacroFormulas.length + advancedInvestmentFormulas.length;
+    const visibleFormulaCount = showAll ? formulaCount : subjectFilter === "macro" ? allMacroFormulas.length : subjectFilter === "investment" ? allInvestmentFormulas.length : subjectFilter === "accounting" ? allAccountingFormulas.length : subjectFilter === "advanced" ? advancedFormulaCount : 0;
     const extraTotal = extraMacro.length + extraInvestment.length + extraAccounting.length + extraLaw.length;
-    const totalQuestions = sections.reduce(function (sum, section) { return sum + (section.questions ? section.questions.length : 0); }, 0) + extraTotal;
+    const advancedTotal = advancedMacro.length + advancedInvestment.length;
+    const totalQuestions = sections.reduce(function (sum, section) { return sum + (section.questions ? section.questions.length : 0); }, 0) + extraTotal + advancedTotal;
     const extraGroups = [
       { id: "macro", title: "總體經濟學補充題", desc: "泰勒法則、犧牲比率、損益兩平通膨與債務動態。", questions: extraMacro },
       { id: "investment", title: "投資學補充題", desc: "遠期利率、最小變異數、股權風險溢酬與 VaR。", questions: extraInvestment },
       { id: "accounting", title: "會計學考前重點", desc: "應收、存貨、折舊、租賃、公司債、EPS 與報表分析。", questions: extraAccounting },
       { id: "law", title: "證券法規考前重點", desc: "公司治理、內線交易、公開收購、投信投顧與財報責任。", questions: extraLaw }
     ].filter(function (group) { return group.questions.length && (showAll || subjectFilter === group.id); });
+    const advancedGroups = [
+      { id: "macro", title: "教授命題核心：總體經濟計算與申論", desc: "泰勒法則、QT、AS-AD、UIP、QTM、MMT 與總體審慎。", questions: advancedMacro },
+      { id: "investment", title: "教授命題核心：投資學計算與申論", desc: "DCF、杜邦、久期免疫、Merton、VaR、BSM、期貨避險與風險平價。", questions: advancedInvestment }
+    ].filter(function (group) { return group.questions.length && (showAll || subjectFilter === "advanced" || subjectFilter === group.id); });
     const coverageExtras = { macro: extraMacro, investment: extraInvestment, accounting: extraAccounting, law: extraLaw };
+    const coverageAdvanced = { macro: advancedMacro, investment: advancedInvestment, accounting: [], law: [] };
     const coverageRows = ["macro", "investment", "accounting", "law"].map(function (subjectId) {
       const subject = getSubject(subjectId);
       const mainCount = sections.filter(function (section) { return section.id === subjectId; }).reduce(function (sum, section) { return sum + section.questions.length; }, 0);
@@ -2375,7 +2464,7 @@
         chapters: subject ? subject.chapters.length : 0,
         mcq: practiceQuestions.filter(function (q) { return q.subject === subjectId; }).length,
         written: writtenQuestions.filter(function (q) { return q.subject === subjectId; }).length,
-        forecast: mainCount + (coverageExtras[subjectId] || []).length
+        forecast: mainCount + (coverageExtras[subjectId] || []).length + (coverageAdvanced[subjectId] || []).length
       };
     });
     return [
@@ -2393,7 +2482,7 @@
       '      <div><strong>' + (counts.integrated || integrated.length) + '</strong><span>跨章節整合</span></div>',
       '      <div><strong>' + formulaCount + '</strong><span>必背公式</span></div>',
       "    </div>",
-      '    <p class="forecast-count-note">主預測 40 題＋科目補充 ' + extraTotal + ' 題；公式 ' + formulaCount + ' 條。</p>',
+      '    <p class="forecast-count-note">主預測 40 題＋科目補充 ' + extraTotal + ' 題＋教授核心 ' + advancedTotal + ' 題；公式 ' + formulaCount + ' 條。</p>',
       '    <div class="forecast-actions">',
       '      <a class="btn btn-primary" href="#/past-exams/written">練計算／申論題</a>',
       '      <a class="btn" href="#/macro-current">看總經時事</a>',
@@ -2402,10 +2491,11 @@
       "  </section>",
       '  <nav class="forecast-tabs" aria-label="考前猜題科目">',
       '    <a class="forecast-tab' + (showAll ? " is-active" : "") + '" href="#/exam-forecast"' + (showAll ? ' aria-current="page"' : "") + '>全部 ' + totalQuestions + ' 題</a>',
-      '    <a class="forecast-tab' + (subjectFilter === "macro" ? " is-active" : "") + '" href="#/exam-forecast?subject=macro"' + (subjectFilter === "macro" ? ' aria-current="page"' : "") + '>總體經濟學 ' + (20 + extraMacro.length) + ' 題</a>',
-      '    <a class="forecast-tab' + (subjectFilter === "investment" ? " is-active" : "") + '" href="#/exam-forecast?subject=investment"' + (subjectFilter === "investment" ? ' aria-current="page"' : "") + '>投資學 ' + (20 + extraInvestment.length) + ' 題</a>',
+      '    <a class="forecast-tab' + (subjectFilter === "macro" ? " is-active" : "") + '" href="#/exam-forecast?subject=macro"' + (subjectFilter === "macro" ? ' aria-current="page"' : "") + '>總體經濟學 ' + (20 + extraMacro.length + advancedMacro.length) + ' 題</a>',
+      '    <a class="forecast-tab' + (subjectFilter === "investment" ? " is-active" : "") + '" href="#/exam-forecast?subject=investment"' + (subjectFilter === "investment" ? ' aria-current="page"' : "") + '>投資學 ' + (20 + extraInvestment.length + advancedInvestment.length) + ' 題</a>',
       '    <a class="forecast-tab' + (subjectFilter === "accounting" ? " is-active" : "") + '" href="#/exam-forecast?subject=accounting"' + (subjectFilter === "accounting" ? ' aria-current="page"' : "") + '>會計學 ' + extraAccounting.length + ' 題</a>',
       '    <a class="forecast-tab' + (subjectFilter === "law" ? " is-active" : "") + '" href="#/exam-forecast?subject=law"' + (subjectFilter === "law" ? ' aria-current="page"' : "") + '>證券法規 ' + extraLaw.length + ' 題</a>',
+      '    <a class="forecast-tab' + (subjectFilter === "advanced" ? " is-active" : "") + '" href="#/exam-forecast?subject=advanced"' + (subjectFilter === "advanced" ? ' aria-current="page"' : "") + '>教授核心 ' + advancedTotal + ' 題</a>',
       "  </nav>",
       '  <section class="forecast-directions">' + (forecastData.directions || []).map(function (item) {
         return [
@@ -2443,6 +2533,15 @@
           "  </section>"
         ].join("");
       }).join(""),
+      advancedGroups.map(function (group) {
+        return [
+          '  <section class="forecast-section forecast-advanced" id="forecast-advanced-' + group.id + '">',
+          '    <div class="forecast-section-head"><div><p class="eyebrow">教授命題核心</p><h2>' + escapeHtml(group.title) + '</h2><p>' + escapeHtml(group.desc) + '</p></div><span>' + group.questions.length + " 題</span></div>",
+          '    <div class="forecast-question-list">' + group.questions.map(renderForecastQuestion).join("") + "</div>",
+          "  </section>"
+        ].join("");
+      }).join(""),
+      (showAll || subjectFilter === "advanced" || subjectFilter === "investment") ? renderForecastSensitivitySection(sensitivity) : "",
       showAll ? [
         '  <section class="forecast-section" id="forecast-integrated">',
         '    <div class="forecast-section-head"><div><p class="eyebrow">整合題</p><h2>如果只練 6 題，先練這些</h2><p>把多個章節串成一個完整案例，適合申論與計算混合題。</p></div><span>' + integrated.length + " 組</span></div>",
@@ -2468,6 +2567,8 @@
         (showAll || subjectFilter === "macro") ? renderForecastFormulaGroup("總體經濟學", allMacroFormulas) : "",
         (showAll || subjectFilter === "investment") ? renderForecastFormulaGroup("投資學", allInvestmentFormulas) : "",
         (showAll || subjectFilter === "accounting") ? renderForecastFormulaGroup("會計學", allAccountingFormulas) : "",
+        subjectFilter === "advanced" ? renderForecastFormulaGroup("進階總體經濟學", advancedMacroFormulas) : "",
+        subjectFilter === "advanced" ? renderForecastFormulaGroup("進階投資學", advancedInvestmentFormulas) : "",
         "    </div>",
         "  </section>"
       ].join(""),
@@ -4041,7 +4142,7 @@
       title = "近二年重要國際金融時事與總經政策｜總體經濟學｜" + content.meta.title;
     } else if (route.parts[0] === "exam-forecast") {
       const forecastSubject = route.query.get("subject");
-      const forecastLabel = { macro: "總體經濟學", investment: "投資學", accounting: "會計學", law: "證券法規" }[forecastSubject];
+      const forecastLabel = { macro: "總體經濟學", investment: "投資學", accounting: "會計學", law: "證券法規", advanced: "教授命題核心" }[forecastSubject];
       html = renderExamForecastPage(forecastSubject);
       title = (forecastLabel || "2026 年 12 月") + "考前猜題｜" + content.meta.title;
     } else if (route.parts[0] === "sources") {

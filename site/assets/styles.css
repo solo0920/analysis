@@ -6609,6 +6609,60 @@ p {
   overflow-wrap: anywhere;
 }
 
+.forecast-sensitivity-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+}
+
+.forecast-sensitivity-card {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.forecast-sensitivity-card h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+
+.forecast-sensitivity-note {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.forecast-sensitivity-table {
+  min-width: 620px;
+}
+
+.forecast-sensitivity-table td.is-base {
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+  color: var(--accent-ink);
+  font-weight: 850;
+}
+
+.forecast-sensitivity-table tr.is-base-row th,
+.forecast-sensitivity-table tr.is-base-row td {
+  background: color-mix(in srgb, var(--gold) 10%, var(--surface));
+}
+
+.forecast-sensitivity-notes {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.forecast-sensitivity-notes li + li {
+  margin-top: 6px;
+}
+
 .forecast-strategy-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
