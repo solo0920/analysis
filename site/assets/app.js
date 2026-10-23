@@ -3085,7 +3085,7 @@
       '    <div class="hero-grid">',
       '      <div class="hero-copy">',
       '        <p class="eyebrow">證券投資分析人員 · 考試備考</p>',
-      "        <h1>把 <em>總體經濟</em>、<em>投資學</em><br>與 <em>會計學</em>、<em>證券法規</em><br>讀成一張可以考試的地圖。</h1>",
+      "        <h1>把 <em>總體經濟</em>、<em>投資學</em><br>與 <em>會計學</em>、<em>證券法規</em><br>變成考試地圖。</h1>",
       '        <p class="lede">' + escapeHtml(content.meta.description) + "</p>",
       '        <div class="hero-actions">',
       '          <a class="btn btn-primary" href="#/subject/macro">開始讀總體經濟</a>',
