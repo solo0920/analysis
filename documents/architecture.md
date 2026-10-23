@@ -141,7 +141,8 @@ sequenceDiagram
 | `#/past-exams` | `renderPastExams()` | 年度分包、`PAST_EXAMS_YEAR_BUNDLES`、統計 |
 | `#/past-exams/written` | `renderWrittenExams()` | `PAST_EXAMS_WRITTEN`、版型 |
 | `#/exam-forecast` | `renderExamForecastPage()` | 核心 `EXAM_FORECAST`、`EXAM_FORECAST_ANSWERS` |
-| `#/investment/formulas` | `renderInvestmentFormulasPage()` | 投資學公式庫與技術指標 |
+| `#/investment/formulas` | `renderInvestmentFormulasPage()` | 比例公式、核心公式庫、選擇權評價 |
+| `#/investment/technical` | `renderInvestmentTechnicalPage()` | 技術分析 5 類 50 指標 |
 | `#/macro-current` | `renderMacroCurrentEvents()` | `MACRO_CURRENT_EVENTS` |
 | `#/models/macro` | `renderMacroModels()` | `MACRO_DIAGRAMS`、`NOBEL_DATA`、`NOBEL_DIAGRAMS` |
 | `#/nobel` | `renderNobelPage()` | `NOBEL_DATA`、`NOBEL_DIAGRAMS` |
@@ -172,6 +173,8 @@ sequenceDiagram
 | `window.FORMULA_TEX` | `content-formula-tex.js` | 以「章節 ID::節名」綁定的 KaTeX 公式 |
 | `window.INVESTMENT_RATIO_FORMULAS` | `content-investment.js` | 投資學 32 條比例分析公式的單一來源 |
 | `window.INVESTMENT_OPTION_PRIORITIES` | `content-investment.js` | 7 項選擇權評價優先順序與 30 條公式 |
+| `window.INVESTMENT_FORMULA_LIBRARY` | `content-investment-formulas.js` | 10 類 66 條投資學核心公式 |
+| `window.INVESTMENT_TECHNICAL_INDICATORS` | `content-investment-technical.js` | 5 類 50 種技術分析指標 |
 | `window.MACRO_DIAGRAMS` | `diagrams-macro*.js` | 21 張總體章節模型圖，鍵為 `chapterId#sectionIndex` |
 | `window.MACRO_EVOLUTION` | `content-macro-evolution.js` | 6 階段、10 節點、模型錨點與諾貝爾年份 |
 | `window.NOBEL_DATA` | `content-nobel.js` | 58 屆諾貝爾年表、17 個圖組 |

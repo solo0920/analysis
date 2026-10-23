@@ -1705,13 +1705,27 @@
   function renderInvestmentFormulasCard() {
     const ratioCount = investmentRatioFormulas().length;
     const optionCount = investmentOptionPriorities().length;
-    const libraryCount = formulaLibraryEntryCount(investmentFormulaLibrary()) + formulaLibraryEntryCount(investmentTechnicalIndicators());
+    const libraryCount = formulaLibraryEntryCount(investmentFormulaLibrary());
     return [
       '<a class="subject-written-cta" href="#/investment/formulas">',
       '  <div>',
       '    <p class="eyebrow">投資學 · 公式與比率</p>',
       '    <strong>投資學公式總表</strong>',
-      '    <span>比例分析 ' + ratioCount + " 條、核心與技術指標公式 " + libraryCount + " 條，以及選擇權評價 " + optionCount + " 項，均已整理成獨立頁面。</span>",
+      '    <span>比例分析 ' + ratioCount + " 條、核心公式 " + libraryCount + " 條與選擇權評價 " + optionCount + " 項，集中整理成獨立頁面。</span>",
+      '  </div>',
+      '  <span class="subject-written-cta-arrow">查看 →</span>',
+      '</a>'
+    ].join("");
+  }
+
+  function renderInvestmentTechnicalCard() {
+    const technicalCount = formulaLibraryEntryCount(investmentTechnicalIndicators());
+    return [
+      '<a class="subject-written-cta" href="#/investment/technical">',
+      '  <div>',
+      '    <p class="eyebrow">投資學 · 技術分析</p>',
+      '    <strong>技術分析 50 指標</strong>',
+      '    <span>趨勢、動能、波動率與通道、成交量與資金流、支撐壓力與複合指標，共 ' + technicalCount + " 種，已整理成獨立頁面。</span>",
       '  </div>',
       '  <span class="subject-written-cta-arrow">查看 →</span>',
       '</a>'
@@ -1722,7 +1736,6 @@
     const ratioCount = investmentRatioFormulas().length;
     const optionCount = investmentOptionPriorities().length;
     const coreLibraryCount = formulaLibraryEntryCount(investmentFormulaLibrary());
-    const technicalCount = formulaLibraryEntryCount(investmentTechnicalIndicators());
     return [
       '<div class="page subject-investment">',
       '  <nav class="breadcrumb" aria-label="麵包屑">',
@@ -1730,7 +1743,7 @@
       '    <a href="#/subject/investment">投資學</a><span>/</span>',
       "    <span>公式總表</span>",
       "  </nav>",
-      renderPageHead("投資學 · 公式與比率", "投資學公式總表", "比例分析 " + ratioCount + " 條、核心公式 " + coreLibraryCount + " 條、技術分析指標 " + technicalCount + " 條與選擇權評價 " + optionCount + " 項集中在一頁；公式與對應章節共用同一份資料。"),
+      renderPageHead("投資學 · 公式與比率", "投資學公式總表", "比例分析 " + ratioCount + " 條、核心公式 " + coreLibraryCount + " 條與選擇權評價 " + optionCount + " 項集中在一頁；技術分析 50 指標另設獨立頁面，公式與對應章節共用同一份資料。"),
       ratioCount ? renderInvestmentRatioOverview() : "",
       '<section class="formula-library-block" id="formula-library">',
       '  <div class="section-heading">',
@@ -1743,17 +1756,36 @@
       coreLibraryCount ? renderFormulaLibrary(investmentFormulaLibrary()) : "",
       "</section>",
       optionCount ? renderOptionPrioritySection() : "",
+      '  <div class="chapter-actions">',
+      '    <a class="btn" href="#/investment/technical">技術分析 50 指標 →</a>',
+      '    <a class="btn" href="#/subject/investment">← 回投資學</a>',
+      "  </div>",
+      "</div>"
+    ].join("");
+  }
+
+  function renderInvestmentTechnicalPage() {
+    const technicalCount = formulaLibraryEntryCount(investmentTechnicalIndicators());
+    return [
+      '<div class="page subject-investment">',
+      '  <nav class="breadcrumb" aria-label="麵包屑">',
+      '    <a href="#/">首頁</a><span>/</span>',
+      '    <a href="#/subject/investment">投資學</a><span>/</span>',
+      "    <span>技術分析 50 指標</span>",
+      "  </nav>",
+      renderPageHead("投資學 · 技術分析", "技術分析 50 指標", "依趨勢、動能、波動率與通道、成交量與資金流、支撐壓力與複合指標分類，共 " + technicalCount + " 種；公式以一般股票日線資料為基礎，參數與平滑方式可能因軟體而異。"),
       '<section class="formula-library-block" id="technical-indicators">',
       '  <div class="section-heading">',
       "    <div>",
       '      <p class="eyebrow">技術分析</p>',
       "      <h2>技術分析 50 指標</h2>",
-      "      <p>依趨勢、動能、波動率與通道、成交量與資金流、支撐壓力與複合指標分類；公式以一般股票日線資料為基礎，參數與平滑方式可能因軟體而異。</p>",
+      "      <p>以下指標與對應章節共用同一份資料；技術指標是輔助判斷工具，不宜單獨作為買賣決策依據。</p>",
       "    </div>",
       "  </div>",
       technicalCount ? renderFormulaLibrary(investmentTechnicalIndicators()) : "",
       "</section>",
       '  <div class="chapter-actions">',
+      '    <a class="btn" href="#/investment/formulas">← 回公式總表</a>',
       '    <a class="btn" href="#/subject/investment">← 回投資學</a>',
       "  </div>",
       "</div>"
@@ -3853,6 +3885,7 @@
       subject.id === "macro" ? renderMacroEvolutionCta() : "",
       subject.id === "macro" ? renderNobelCta() : "",
       subject.id === "investment" ? renderInvestmentFormulasCard() : "",
+      subject.id === "investment" ? renderInvestmentTechnicalCard() : "",
       subject.id === "accounting" ? '<div class="notice"><strong>IFRS 版本查核：</strong>2026 年考試仍請以金管會當年度認可之 IFRS 正體中文版為準。IASB 發布之 IFRS 18「財務報表之表達與揭露」自 2027-01-01 起適用；金管會規劃臺灣公開發行公司於 117 會計年度（2028 年）接軌，符合條件者可於認可後提前適用。IFRS 19 自 2027-01-01 起適用，屬符合條件子公司之減少揭露選項。本章節以現行教材與 IFRS 9／15／16／10 等為主，考前請再核對 <a href="https://www.sfb.gov.tw/ch/home.jsp?id=931&amp;parentpath=0%2C2%2C929" target="_blank" rel="noopener noreferrer">金管會 IFRS 推動情形</a>。</div>' : "",
       '  <div class="subject-parts">' + partMarkup + "</div>",
       subject.note
@@ -4238,7 +4271,7 @@
       '        <button class="btn btn-small" type="button" data-action="copy-link">複製本章連結</button>',
       '        <button class="btn btn-small" type="button" data-action="print">列印 / 存 PDF</button>',
       subject.id === "macro" ? '        <a class="btn btn-small" href="#/models/macro?chapter=' + escapeHtml(chapter.id) + '">模型總覽</a>' : "",
-      subject.id === "investment" && chapter.id === "investment-15" ? '        <a class="btn btn-small" href="#/investment/formulas">技術指標公式 →</a>' : "",
+      subject.id === "investment" && chapter.id === "investment-15" ? '        <a class="btn btn-small" href="#/investment/technical">技術分析 50 指標 →</a>' : "",
       "      </div>",
       "    </article>",
       "  </div>",
@@ -4442,6 +4475,9 @@
     } else if (route.parts[0] === "investment" && route.parts[1] === "formulas") {
       html = renderInvestmentFormulasPage();
       title = "投資學公式總表｜投資學｜" + content.meta.title;
+    } else if (route.parts[0] === "investment" && (route.parts[1] === "technical" || route.parts[1] === "technical-indicators")) {
+      html = renderInvestmentTechnicalPage();
+      title = "技術分析 50 指標｜投資學｜" + content.meta.title;
     } else if (route.parts[0] === "models" && route.parts[1] === "macro") {
       html = renderMacroModels();
       title = "總體經濟模型總覽｜總體經濟學｜" + content.meta.title;
