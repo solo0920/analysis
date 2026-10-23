@@ -830,21 +830,34 @@
     ].join("");
   }
 
-  function renderDiagram(diagram) {
+  function renderDiagram(diagram, options) {
+    const opts = options || {};
+    const split = Boolean(opts.split);
+    const variablesTable = renderDiagramTable("變數說明", diagram.variables);
+    const parametersTable = renderDiagramTable("參數說明", diagram.parameters);
+    const visual = [
+      '  <div class="diagram-visual">',
+      '    <div class="diagram-canvas">' + diagram.svg + "</div>",
+      '    <p class="diagram-scroll-hint">圖表較寬，可左右滑動查看。</p>',
+      "  </div>"
+    ].join("");
+    const side = split && variablesTable
+      ? '  <div class="diagram-side">' + variablesTable + "</div>"
+      : "";
+    const belowTables = split ? parametersTable : variablesTable + parametersTable;
     return [
-      '<figure class="model-diagram">',
+      '<figure class="model-diagram' + (split ? " has-split-layout" : "") + '">',
       '  <div class="diagram-head">',
       '    <p class="diagram-kicker">' + escapeHtml(diagram.kicker || "模型圖") + "</p>",
       "    <h3>" + escapeHtml(diagram.title) + "</h3>",
       "  </div>",
-      '  <div class="diagram-canvas">' + diagram.svg + "</div>",
-      '  <p class="diagram-scroll-hint">圖表較寬，可左右滑動查看。</p>',
+      '  <div class="diagram-layout' + (split ? " is-split" : "") + '">',
+      visual,
+      side,
+      "  </div>",
       "  <figcaption>" + renderInlineMath(diagram.caption) + "</figcaption>",
       diagram.formula ? '  <div class="diagram-formula"><span class="diagram-formula-label">模型式</span><span class="ratio-math">' + renderKatex(diagram.formula, true) + "</span></div>" : "",
-      '  <div class="diagram-tables">',
-      renderDiagramTable("變數說明", diagram.variables),
-      renderDiagramTable("參數說明", diagram.parameters),
-      "  </div>",
+      belowTables ? '  <div class="diagram-tables">' + belowTables + "</div>" : "",
       diagram.note ? '  <p class="diagram-note">' + renderInlineMath(diagram.note) + "</p>" : "",
       "</figure>"
     ].join("");
@@ -3954,7 +3967,7 @@
           "  </div>",
           renderDiagram(Object.assign({}, entry.diagram, {
             formula: entry.diagram.formula || modelSectionFormula(chapter, entry.section)
-          })),
+          }), { split: true }),
           "</article>"
         ].join("");
       }).join("");
