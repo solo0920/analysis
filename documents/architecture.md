@@ -1,6 +1,6 @@
 # 分析師備考站 — 系統架構
 
-更新：2026-10-23
+更新：2026-10-24
 
 本專案是**純靜態單頁網站**。`site/index.html` 只提供固定外殼，所有頁面由 `site/assets/app.js` 依 hash route 渲染到 `#main`。內容以 `window.*` 全域物件在瀏覽器載入，沒有後端、資料庫或執行時 API 請求；效能分包檔由 Node 建置腳本事先產生，瀏覽器端不需要建置。
 
@@ -171,7 +171,7 @@ sequenceDiagram
 | `window.LAW_ARTICLES` | `content-law-articles.js` | 15 部官方 1,507 條法規全文與外部法令摘要 |
 | `window.FORMULA_TEX` | `content-formula-tex.js` | 以「章節 ID::節名」綁定的 KaTeX 公式 |
 | `window.INVESTMENT_RATIO_FORMULAS` | `content-investment.js` | 投資學 32 條比例分析公式的單一來源 |
-| `window.INVESTMENT_OPTION_PRIORITIES` | `content-investment.js` | 5 項選擇權評價優先順序與 13 條公式 |
+| `window.INVESTMENT_OPTION_PRIORITIES` | `content-investment.js` | 7 項選擇權評價優先順序與 30 條公式 |
 | `window.MACRO_DIAGRAMS` | `diagrams-macro*.js` | 21 張總體章節模型圖，鍵為 `chapterId#sectionIndex` |
 | `window.MACRO_EVOLUTION` | `content-macro-evolution.js` | 6 階段、10 節點、模型錨點與諾貝爾年份 |
 | `window.NOBEL_DATA` | `content-nobel.js` | 58 屆諾貝爾年表、17 個圖組 |

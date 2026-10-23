@@ -402,14 +402,14 @@ ratioFormulas.forEach(function (entry) {
   }
 });
 
-check(Array.isArray(optionPriorities) && optionPriorities.length === 5, "投資學選擇權評價優先順序應有 5 項");
+check(Array.isArray(optionPriorities) && optionPriorities.length === 7, "投資學選擇權評價優先順序應有 7 項");
 const priorityNumbers = new Set();
 optionPriorities.forEach(function (item) {
   check(Boolean(item && typeof item === "object"), "投資學選擇權優先順序資料格式錯誤");
   if (!item || typeof item !== "object") {
     return;
   }
-  check(Number.isInteger(item.priority) && item.priority >= 1 && item.priority <= 5, "投資學選擇權優先順序編號錯誤：" + item.priority);
+  check(Number.isInteger(item.priority) && item.priority >= 1 && item.priority <= 7, "投資學選擇權優先順序編號錯誤：" + item.priority);
   check(!priorityNumbers.has(item.priority), "投資學選擇權優先順序編號重複：" + item.priority);
   priorityNumbers.add(item.priority);
   ["topic", "goal", "summary"].forEach(function (field) {
@@ -425,6 +425,18 @@ optionPriorities.forEach(function (item) {
     check(typeof formula.latex === "string" && formula.latex.trim().length > 0, "投資學選擇權公式缺少 LaTeX：" + item.topic);
   });
   check(Array.isArray(item.variables) && item.variables.length > 0, "投資學選擇權優先順序缺少變數定義：" + item.topic);
+  if (item.definitions !== undefined) {
+    check(Array.isArray(item.definitions) && item.definitions.length >= 2, "投資學選擇權模型定義應至少 2 段：" + item.topic);
+    (item.definitions || []).forEach(function (paragraph) {
+      check(typeof paragraph === "string" && paragraph.trim().length > 0, "投資學選擇權模型定義格式錯誤：" + item.topic);
+    });
+  }
+  if (item.assumptions !== undefined) {
+    check(Array.isArray(item.assumptions) && item.assumptions.length >= 3, "投資學選擇權假設與限制應至少 3 點：" + item.topic);
+    (item.assumptions || []).forEach(function (paragraph) {
+      check(typeof paragraph === "string" && paragraph.trim().length > 0, "投資學選擇權假設與限制格式錯誤：" + item.topic);
+    });
+  }
   (item.variables || []).forEach(function (variable) {
     check(Boolean(variable && typeof variable === "object"), "投資學選擇權變數格式錯誤：" + item.topic);
     if (!variable || typeof variable !== "object") {

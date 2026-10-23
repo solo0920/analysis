@@ -1835,22 +1835,113 @@ window.INVESTMENT_OPTION_PRIORITIES = [
   },
   {
     priority: 5,
-    topic: "三項式、蒙地卡羅、Heston",
-    goal: "理解用途即可",
-    summary: "知道何時使用與模型限制，不必背實作細節。",
-    formulas: [],
-    variables: [
-      { symbol: "u,\\ d,\\ m", definition: "三項式的上漲／下跌／不動倍數" },
-      { symbol: "p_u,\\ p_m,\\ p_d", definition: "三項式的上漲／不動／下跌風險中立機率" },
-      { symbol: "S_t", definition: "蒙地卡羅模擬的價格路徑" },
-      { symbol: "M", definition: "蒙地卡羅模擬路徑數" },
-      { symbol: "\\Delta t", definition: "模擬時間步長" },
-      { symbol: "\\sigma_t", definition: "Heston 模型的隨機波動率" },
-      { symbol: "\\kappa", definition: "波動率均值回復速度" },
-      { symbol: "\\theta", definition: "長期平均波動率" },
-      { symbol: "\\xi", definition: "波動率的波動" },
-      { symbol: "\\rho", definition: "價格與波動率的相關係數" }
+    topic: "三項式樹（Trinomial Tree）",
+    goal: "用三分支格樹評價選擇權並檢查提前履約",
+    summary: "三項式樹把二項式樹的每個節點擴充為上漲、持平、下跌三個分支，用風險中立機率向後折現；適合美式、障礙與離散股利等需要逐步檢查履約價值的情況。",
+    definitions: [
+      "三項式樹（trinomial tree）是二項式樹的推廣：若目前價格為 S_t，經過一個時間步 Δt 後，價格只能是 uS_t、mS_t 或 dS_t，其中 u、m、d 分別為上漲、持平與下跌倍數。每個節點因此有三個後續狀態，而不是二項式的兩個。",
+      "風險中立機率 p_u、p_m、p_d 不能任意給定，必須使價格過程的期望值與變異數符合模型設定。常見作法是令 m=1、u=e^{σ√(2Δt)}、d=1/u，再以風險中立一階動差與二階動差解出三個機率；不同教科書可能採用不同的 u、m、d 參數化，公式不可混用。",
+      "評價時從到期日往回算：先算每個最終節點的履約價值，再以風險中立機率加權折現。美式選擇權在每個節點比較立即履約價值與繼續持有的價值，取較大者；障礙選擇權則在穿越障礙時終止或啟動給付。三項式通常比二項式收斂快，代價是節點數與計算量增加。"
     ],
-    note: "三項式加入「不動」分支；蒙地卡羅模擬多期價格路徑；Heston 讓波動率隨機變動。"
+    formulas: [
+      { label: "節點價格", latex: String.raw`S_{t+\Delta t}\in\{uS_t,\ mS_t,\ dS_t\}` },
+      { label: "機率總和", latex: String.raw`p_u+p_m+p_d=1` },
+      { label: "風險中立一階動差", latex: String.raw`p_u u+p_m m+p_d d=e^{(r-q)\Delta t}` },
+      { label: "風險中立二階動差", latex: String.raw`p_u u^2+p_m m^2+p_d d^2=e^{(2(r-q)+\sigma^2)\Delta t}` },
+      { label: "向後歸納", latex: String.raw`V_t=e^{-r\Delta t}(p_uV_u+p_mV_m+p_dV_d)` },
+      { label: "美式選擇權", latex: String.raw`V_t^{\text{American}}=\max(IV_t,\ V_t^{\text{continue}})` }
+    ],
+    variables: [
+      { symbol: "S_t", definition: "第 t 步的標的價格" },
+      { symbol: "u,\ m,\ d", definition: "上漲、持平、下跌的價格倍數，通常 m=1" },
+      { symbol: "p_u,\ p_m,\ p_d", definition: "上漲、持平、下跌的風險中立機率" },
+      { symbol: "r,\ q", definition: "無風險利率與連續股利收益率" },
+      { symbol: "\\sigma", definition: "標的報酬波動率" },
+      { symbol: "\\Delta t", definition: "每個時間步的長度" },
+      { symbol: "V_u,\ V_m,\ V_d", definition: "三個後續節點的選擇權價值" },
+      { symbol: "IV_t", definition: "第 t 步立即履約的內含價值" },
+      { symbol: "V_t^{\text{continue}}", definition: "繼續持有至下一步的折現期望價值" }
+    ],
+    assumptions: [
+      "每個時間步只有上漲、持平、下跌三種價格狀態，且 u>m>d。",
+      "市場無套利、無交易成本與稅；標的可在風險中立測度下評價。",
+      "利率、股利收益率與波動率在每一步固定，或依節點設定；若要近似幾何布朗運動，參數與機率需匹配一階與二階動差。",
+      "時間步長越小越接近連續時間模型，但節點數快速增加；美式與障礙選擇權需在每個節點檢查履約或障礙條件。"
+    ],
+    note: "考試先確認題目採用哪一種三項式參數化：若只給 u、d，先檢查是否有 m=1 或 ud=1 的設定，不要直接套二項式公式。三項式的核心是三個分支、風險中立機率與向後歸納。"
+  },
+  {
+    priority: 6,
+    topic: "蒙地卡羅模擬（Monte Carlo Simulation）",
+    goal: "用風險中立路徑估計選擇權價格與抽樣誤差",
+    summary: "蒙地卡羅模擬在風險中立測度下產生大量價格路徑，對每條路徑的 payoff 折現後取平均；適合高維、路徑相依與報酬結構複雜的商品，但收斂速度為 1/√M。",
+    definitions: [
+      "蒙地卡羅模擬（Monte Carlo simulation）不靠解析公式，而是在風險中立測度下，用隨機數產生標的資產的 M 條可能路徑，對每條路徑計算到期 payoff，再取平均並折現。依大數法則，M 越大，估計值通常越接近真實期望值。",
+      "以幾何布朗運動為例，標準離散模擬為 S_{t+Δt}=S_t exp[(r−q−σ²/2)Δt+σ√Δt Z]，其中 Z 為標準常態隨機變數。到期 payoff 的蒙地卡羅估計量為折現後的平均；標準誤為樣本標準差除以 √M，因此若要將誤差減半，路徑數約需增加四倍。",
+      "模擬結果每次不同，實務上應同時報告標準誤或信賴區間，並可用對偶變數、控制變數、分層抽樣等變異數減少法提高效率。美式選擇權因可提前履約，不能只模擬到期 payoff，通常需搭配 Longstaff-Schwartz 最小平方蒙地卡羅（LSM）或樹狀法。"
+    ],
+    formulas: [
+      { label: "幾何布朗運動路徑", latex: String.raw`S_{t+\Delta t}=S_t\exp\left[(r-q-\tfrac12\sigma^2)\Delta t+\sigma\sqrt{\Delta t}Z_{t+\Delta t}\right]` },
+      { label: "到期 payoff 估計量", latex: String.raw`\hat C_0=e^{-rT}\frac{1}{M}\sum_{i=1}^{M}\max(S_T^{(i)}-K,0)` },
+      { label: "標準誤", latex: String.raw`SE(\hat C_0)=\frac{s}{\sqrt{M}}` },
+      { label: "近似信賴區間", latex: String.raw`\hat C_0\pm z_{1-\alpha/2}\,SE(\hat C_0)` },
+      { label: "對偶變數估計量", latex: String.raw`\hat C_0^{\text{anti}}=e^{-rT}\frac{1}{M}\sum_{i=1}^{M/2}\left[f(Z_i)+f(-Z_i)\right]` }
+    ],
+    variables: [
+      { symbol: "M", definition: "模擬路徑數" },
+      { symbol: "Z_i", definition: "第 i 條路徑使用的標準常態隨機變數" },
+      { symbol: "S_T^{(i)}", definition: "第 i 條路徑的到期價格" },
+      { symbol: "r,\ q", definition: "無風險利率與連續股利收益率" },
+      { symbol: "\\sigma", definition: "標的報酬波動率" },
+      { symbol: "\\Delta t", definition: "模擬時間步長" },
+      { symbol: "s", definition: "模擬 payoff 的樣本標準差" },
+      { symbol: "z_{1-\alpha/2}", definition: "標準常態分配的信賴水準分位數" },
+      { symbol: "f(\\cdot)", definition: "折現前的選擇權 payoff 函數" }
+    ],
+    assumptions: [
+      "標的價格動態與參數在模擬期間固定，或依模型逐期更新；隨機數種子應記錄以便重現。",
+      "抽樣誤差與離散化誤差要分開處理；Δt 越小，離散化偏差通常越小，但計算量增加。",
+      "路徑數 M 越大估計越穩定，計算時間大致隨 M 線性增加；標準誤是評估精度的重要指標。",
+      "美式或百慕達選擇權需處理提前履約，不能直接把到期 payoff 平均當成價格。"
+    ],
+    note: "蒙地卡羅擅長高維與路徑相依商品，不擅長需要每個節點提前履約的美式問題。考試要分清「模擬路徑」、「折現平均」與「標準誤」三個層次。"
+  },
+  {
+    priority: 7,
+    topic: "Heston 隨機波動率模型",
+    goal: "理解隨機波動率、波動率微笑與參數意義",
+    summary: "Heston 模型讓瞬時變異數 v_t 隨機變動，並與價格報酬相關；可產生隱含波動率微笑與偏斜，但通常需特徵函數、數值積分或模擬求價。",
+    definitions: [
+      "Heston 模型是隨機波動率模型：標的價格的瞬時變異數 v_t 不再是常數，而是另一條均值回復的隨機過程。價格與變異數各自受一個布朗運動驅動，兩者相關係數為 ρ；ρ<0 通常對應股票市場的槓桿效果，也就是價格下跌時波動率傾向上升。",
+      "模型參數包括：κ 為變異數均值回復速度，θ 為長期平均變異數，ξ 為波動率的波動（vol-of-vol），v_0 為初始變異數。當 2κθ≥ξ²（Feller 條件）時，變異數過程不會擊穿零；若不符合，實作上需用 full truncation 或 QE 等方法避免負變異數。",
+      "Heston 的隨機波動率能產生隱含波動率微笑與偏斜，優於固定波動率的 Black-Scholes；但因模型通常沒有像 BS 那樣簡單的封閉解，實務上常用特徵函數與傅立葉轉換、有限差分或蒙地卡羅求價。參數需以市場選擇權價格校準，且模型仍可能無法完全配適短期 skew，因此有加入跳躍的 Bates 模型等延伸。"
+    ],
+    formulas: [
+      { label: "價格過程", latex: String.raw`dS_t=(r-q)S_t\,dt+\sqrt{v_t}S_t\,dW_t^S` },
+      { label: "變異數過程", latex: String.raw`dv_t=\kappa(\theta-v_t)\,dt+\xi\sqrt{v_t}\,dW_t^v` },
+      { label: "價格與變異數相關", latex: String.raw`\operatorname{Corr}(dW_t^S,dW_t^v)=\rho` },
+      { label: "Feller 條件", latex: String.raw`2\kappa\theta\ge\xi^2` },
+      { label: "變異數期望值", latex: String.raw`\mathbb E^Q[v_t]=\theta+(v_0-\theta)e^{-\kappa t}` },
+      { label: "選擇權價格", latex: String.raw`C_0=e^{-rT}\mathbb E^Q[(S_T-K)^+]` }
+    ],
+    variables: [
+      { symbol: "S_t", definition: "第 t 期的標的價格" },
+      { symbol: "v_t", definition: "第 t 期的瞬時變異數（波動率平方）" },
+      { symbol: "r,\ q", definition: "無風險利率與連續股利收益率" },
+      { symbol: "\\kappa", definition: "變異數均值回復速度" },
+      { symbol: "\\theta", definition: "長期平均變異數" },
+      { symbol: "\\xi", definition: "波動率的波動（vol-of-vol）" },
+      { symbol: "\\rho", definition: "價格與變異數的相關係數" },
+      { symbol: "v_0", definition: "初始瞬時變異數" },
+      { symbol: "W_t^S,\ W_t^v", definition: "價格與變異數的布朗運動" },
+      { symbol: "T", definition: "距到期年數" }
+    ],
+    assumptions: [
+      "價格與變異數為連續擴散過程，沒有跳躍；波動率風險有市場價格，且可在風險中立測度下評價。",
+      "κ、θ、ξ、ρ 與 v_0 在期間內固定；實務上以市場隱含波動率曲面校準。",
+      "Feller 條件成立時變異數嚴格為正；否則需數值修正，避免負變異數造成模擬失敗。",
+      "Heston 能產生微笑與偏斜，但不保證完全配適所有到期日與履約價；短期 skew 常需跳躍或 rough volatility 等擴充。"
+    ],
+    note: "Heston 的關鍵不是把 σ 換成一個常數，而是讓 v_t 隨機且與價格相關：ρ 控制偏斜方向，ξ 控制微笑彎曲程度，κ 與 θ 控制波動率回復。考試要能辨認 SDE、Feller 條件與參數角色。"
   }
 ];

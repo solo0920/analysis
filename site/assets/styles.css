@@ -1400,13 +1400,15 @@ p {
 
 .option-cards {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
   gap: 14px;
   margin-top: 16px;
 }
 
 .option-card {
   width: 100%;
+  min-width: 0;
   padding: 16px;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
@@ -1458,13 +1460,61 @@ p {
   line-height: 1.65;
 }
 
+.option-definition {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.option-section-label {
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.option-definition p {
+  margin: 0 0 8px;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.option-definition p:last-child {
+  margin-bottom: 0;
+}
+
+.option-assumptions {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.option-assumptions ul {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+  padding-left: 1.1em;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.65;
+}
+
+.option-assumptions li::marker {
+  color: var(--gold);
+}
+
 .option-formulas {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
   gap: 8px;
   margin-top: 12px;
 }
 
 .option-formula {
+  min-width: 0;
   overflow-x: auto;
   padding: 9px 10px;
   border: 1px solid var(--line);

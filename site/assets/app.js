@@ -1564,6 +1564,8 @@
 
   function renderOptionPriorityCard(item) {
     const hasFormulas = Array.isArray(item.formulas) && item.formulas.length > 0;
+    const definitions = Array.isArray(item.definitions) ? item.definitions : [];
+    const assumptions = Array.isArray(item.assumptions) ? item.assumptions : [];
     return [
       '<article class="option-card' + (hasFormulas ? "" : " is-lite") + '">',
       '  <div class="option-card-head">',
@@ -1574,8 +1576,18 @@
       "    </div>",
       "  </div>",
       '  <p class="option-card-summary">' + renderInlineMath(item.summary || "") + "</p>",
+      definitions.length
+        ? '<div class="option-definition"><p class="option-section-label">模型定義</p>' + definitions.map(function (paragraph) {
+            return "<p>" + renderInlineMath(paragraph) + "</p>";
+          }).join("") + "</div>"
+        : "",
       renderOptionFormulaList(item),
       renderOptionVariables(item),
+      assumptions.length
+        ? '<div class="option-assumptions"><p class="option-section-label">假設與限制</p><ul>' + assumptions.map(function (paragraph) {
+            return "<li>" + renderInlineMath(paragraph) + "</li>";
+          }).join("") + "</ul></div>"
+        : "",
       item.note ? '  <p class="option-note">' + renderInlineMath(item.note) + "</p>" : "",
       "</article>"
     ].join("");
@@ -1592,7 +1604,7 @@
       "    <div>",
       '      <p class="eyebrow">選擇權評價 · 準備順序</p>',
       '      <h2 id="option-priorities-heading">選擇權評價優先順序</h2>',
-      "      <p>先練到期損益，再算二項式與 Black-Scholes，最後用買賣權平價推價格；三項式、蒙地卡羅與 Heston 先理解用途。</p>",
+      "      <p>先練到期損益，再算二項式與 Black-Scholes，最後用買賣權平價推價格；三項式樹、蒙地卡羅與 Heston 則分別整理公式、模型定義與假設限制。</p>",
       "    </div>",
       '    <a class="btn btn-small" href="#/chapter/investment-09?section=3">選擇權章節 →</a>',
       "  </div>",
@@ -1658,7 +1670,7 @@
         '  <div class="formula-library-head">',
         "    <div>",
         "      <h3>" + escapeHtml(category.title) + "</h3>",
-        category.description ? "      <p>" + renderInlineMath(category.description) + "</p>" : "",
+        category.description ? "      <p>" + escapeHtml(category.description) + "</p>" : "",
         "    </div>",
         '    <span class="formula-library-count">' + entries.length + " 條</span>",
         "  </div>",
@@ -4263,7 +4275,7 @@
       "    <strong>公式校對：</strong>" + escapeHtml(content.meta.formulaNote),
       "  </div>",
       '  <div class="notice">',
-      "    <strong>核對進度：</strong>截至 2026-10-22，諾貝爾年表 58 屆的年份與得主已對照官方 API（0 筆不一致），2026 屆學說概念已對照官方 popular information，2019–2020 屆公式與學說方向亦已對照官方科學背景（概念式）；投資學與總體經濟學 29 條公式已完成公開教材逐條核對（#27 BIS CIP、#28 SEC NAV 另經官方交叉核對）；21 張既有總體模型圖已完成公開教材逐條核對，全部為「通過（教材）」，B15 另經 CBC 官方外匯頁輔助，B12 的臺灣景氣指標以國發會頁面輔助；另有 1 張新增國民所得會計帳流程圖與會計學 7 張教學流程圖（會計循環、主要財務報表架構、借記／貸記常用項目、交易到報表流程、財務分析總架構、杜邦分析、四表連結）為教學示意，已通過結構與章節綁定驗證，尚未逐條教材核對；投資學另有 32 條比例分析公式，集中於單一來源並與對應章節綁定，另有 5 項選擇權評價優先順序；會計公式 A1–A12 已完成核對（A1、A3、A4、A8、A12 依 IFRS 官方摘要，A5、A7 依 IFRS 9／16 準則本文，A2、A6、A9–A11 依公開教材）；會計代表性分錄與報表勾稽已檢查，各章例題逐題重算與諾貝爾其他屆公式仍待官方或教材逐條核對。",
+      "    <strong>核對進度：</strong>截至 2026-10-22，諾貝爾年表 58 屆的年份與得主已對照官方 API（0 筆不一致），2026 屆學說概念已對照官方 popular information，2019–2020 屆公式與學說方向亦已對照官方科學背景（概念式）；投資學與總體經濟學 29 條公式已完成公開教材逐條核對（#27 BIS CIP、#28 SEC NAV 另經官方交叉核對）；21 張既有總體模型圖已完成公開教材逐條核對，全部為「通過（教材）」，B15 另經 CBC 官方外匯頁輔助，B12 的臺灣景氣指標以國發會頁面輔助；另有 1 張新增國民所得會計帳流程圖與會計學 7 張教學流程圖（會計循環、主要財務報表架構、借記／貸記常用項目、交易到報表流程、財務分析總架構、杜邦分析、四表連結）為教學示意，已通過結構與章節綁定驗證，尚未逐條教材核對；投資學另有 32 條比例分析公式，集中於單一來源並與對應章節綁定，另有 7 項選擇權評價優先順序；會計公式 A1–A12 已完成核對（A1、A3、A4、A8、A12 依 IFRS 官方摘要，A5、A7 依 IFRS 9／16 準則本文，A2、A6、A9–A11 依公開教材）；會計代表性分錄與報表勾稽已檢查，各章例題逐題重算與諾貝爾其他屆公式仍待官方或教材逐條核對。",
       "  </div>",
       groups,
       '  <div class="notice">',
