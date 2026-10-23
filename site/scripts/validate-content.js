@@ -105,7 +105,7 @@ const nobelDiagramFiles = ["diagrams-nobel.js"];
 function loadContent() {
   const context = { window: {} };
   vm.createContext(context);
-  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-investment-formulas.js", "content-investment-technical.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-chapter-supplements.js", "content-law-deepdive.js", "content-law-deepdive-2.js", "content-law-quickread.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-macro-current.js", "content-exam-forecast.js", "content-exam-forecast-answers.js", "content-past-exams-written.js", "content-written-layouts.js", "content-past-exams.js", "content-past-exams-explanations.js", "content-exam-solutions-115.js", "content-exam-solutions-114.js", "content-exam-solutions-113.js", "content-exam-solutions-112.js", "content-exam-solutions-111.js", "content-exam-solutions-110.js", "content-exam-solutions-109.js", "content-exam-solutions-108.js", "content-exam-solutions-107.js"].forEach(function (file) {
+  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-investment-formulas.js", "content-investment-technical.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-chapter-supplements.js", "content-law-deepdive.js", "content-law-deepdive-2.js", "content-law-quickread.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-macro-current.js", "content-exam-forecast.js", "content-exam-forecast-answers.js", "content-past-exam-stats.js", "content-past-exams-written.js", "content-written-layouts.js", "content-past-exams.js", "content-past-exams-explanations.js", "content-exam-solutions-115.js", "content-exam-solutions-114.js", "content-exam-solutions-113.js", "content-exam-solutions-112.js", "content-exam-solutions-111.js", "content-exam-solutions-110.js", "content-exam-solutions-109.js", "content-exam-solutions-108.js", "content-exam-solutions-107.js"].forEach(function (file) {
     const fullPath = path.join(siteDir, "assets", file);
     vm.runInContext(fs.readFileSync(fullPath, "utf8"), context, { filename: file });
   });
@@ -134,7 +134,8 @@ function loadContent() {
     examSolutions: Array.isArray(context.window.EXAM_SOLUTIONS) ? context.window.EXAM_SOLUTIONS : [],
     macroCurrent: context.window.MACRO_CURRENT_EVENTS || { meta: {}, events: [] },
     examForecast: context.window.EXAM_FORECAST || { meta: {}, directions: [], questions: [], integrated: [], formulas: { macro: [], investment: [], accounting: [], law: [] }, sensitivity: null, indicators: [], strategy: [] },
-    examForecastAnswers: context.window.EXAM_FORECAST_ANSWERS || {}
+    examForecastAnswers: context.window.EXAM_FORECAST_ANSWERS || {},
+    pastExamStats: context.window.PAST_EXAM_STATS || { practice: { total: 0, subjects: {}, chapters: {} }, written: { total: 0, subjects: {}, chapters: {} } }
   };
 }
 
@@ -943,7 +944,7 @@ accountingDiagramFiles.forEach(function (file) {
 });
 check(new Set(rawAccountingKeys).size === rawAccountingKeys.length, "會計學教學流程圖鍵值不得重複");
 check(rawAccountingKeys.length === accountingDiagramKeys.length, "會計學教學流程圖載入數量與檔案定義數量不一致（檔案 " + rawAccountingKeys.length + "、載入 " + accountingDiagramKeys.length + "）");
-check(read("site/index.html").indexOf("assets/diagrams-accounting.js") !== -1, "index.html 未載入會計學教學流程圖資料檔");
+check(read("site/index.html").indexOf("assets/bootstrap.js") !== -1 && read("site/assets/bootstrap.js").indexOf("diagrams-accounting.js") !== -1, "index.html 或 bootstrap 未載入會計學教學流程圖資料檔");
 
 accountingDiagramKeys.forEach(function (key) {
   const keyParts = key.split("#");
@@ -1484,6 +1485,8 @@ const languageSurface = [
   read("site/assets/content-macro-current.js"),
   read("site/assets/content-exam-forecast.js"),
   read("site/assets/content-exam-forecast-answers.js"),
+  read("site/assets/content-past-exam-stats.js"),
+  read("site/assets/bootstrap.js"),
   read("site/assets/content-chapter-supplements.js"),
   read("site/assets/content-law-deepdive.js"),
   read("site/assets/content-law-deepdive-2.js"),
@@ -1777,6 +1780,16 @@ pastExamQuestions.forEach(function (question) {
   if (question.eventId) {
     check(currentEventIds.has(question.eventId), "考古題時事出處不存在：" + question.id + " / " + question.eventId);
   }
+});
+
+const lazyPastStats = loaded.pastExamStats || { practice: { total: 0, subjects: {}, chapters: {} }, written: { total: 0, subjects: {}, chapters: {} } };
+check(lazyPastStats.practice.total === 3710, "延遲載入用考古題統計的選擇題總數應為 3710");
+check(lazyPastStats.written.total === 348, "延遲載入用考古題統計的計算／申論總數應為 348");
+check(Object.keys(lazyPastStats.practice.chapters || {}).length === 73, "延遲載入用考古題統計應涵蓋 73 章");
+check(Object.keys(lazyPastStats.written.chapters || {}).length === 58, "延遲載入用考古題統計應涵蓋 58 個申論章節");
+["macro", "investment", "accounting", "law"].forEach(function (subject) {
+  check(lazyPastStats.practice.subjects[subject] === { macro: 994, investment: 924, accounting: 882, law: 910 }[subject], "延遲載入用考古題統計科目數錯誤：" + subject);
+  check(lazyPastStats.written.subjects[subject] === 87, "延遲載入用申論題統計科目數錯誤：" + subject);
 });
 
 const forecast = loaded.examForecast || { meta: {}, directions: [], questions: [], integrated: [], formulas: { macro: [], investment: [], accounting: [], law: [] }, sensitivity: null, indicators: [], strategy: [] };

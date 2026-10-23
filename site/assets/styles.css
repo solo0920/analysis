@@ -914,8 +914,23 @@ p {
   grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
   gap: 44px;
   align-items: center;
+  min-width: 0;
+  max-width: 100%;
   padding: 18px 0 40px;
   border-bottom: 1px solid var(--line);
+}
+
+.subject-hero > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.subject-hero .lede {
+  max-width: 100%;
+}
+
+.subject-hero .lede .inline-math {
+  max-width: 100%;
 }
 
 .subject-hero h1 {
@@ -7734,4 +7749,24 @@ p {
 
 .forecast-series-part .forecast-answer {
   margin-top: 10px;
+}
+
+/* 路由分包載入提示 */
+html.is-routing body {
+  cursor: progress;
+}
+
+.route-loader {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1200;
+  padding: 10px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-md);
+  font-size: 0.8rem;
+  font-weight: 700;
 }

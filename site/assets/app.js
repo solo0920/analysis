@@ -99,6 +99,31 @@
   practiceQuestions.forEach(function (question) {
     examQuestionMap.set(question.id, question);
   });
+  const pastExamStats = window.PAST_EXAM_STATS || null;
+  if (!practiceQuestions.length && pastExamStats && pastExamStats.practice) {
+    Object.keys(pastExamStats.practice.subjects || {}).forEach(function (subjectId) {
+      practiceSubjectQuestionTotals.set(subjectId, pastExamStats.practice.subjects[subjectId]);
+    });
+    Object.keys(pastExamStats.practice.chapters || {}).forEach(function (chapterId) {
+      const stats = pastExamStats.practice.chapters[chapterId];
+      practiceChapterStats.set(chapterId, {
+        count: stats.count || 0,
+        sessions: new Map(Object.keys(stats.sessions || {}).map(function (sessionId) { return [sessionId, stats.sessions[sessionId]]; }))
+      });
+    });
+  }
+  if (!writtenQuestions.length && pastExamStats && pastExamStats.written) {
+    Object.keys(pastExamStats.written.subjects || {}).forEach(function (subjectId) {
+      writtenSubjectQuestionTotals.set(subjectId, pastExamStats.written.subjects[subjectId]);
+    });
+    Object.keys(pastExamStats.written.chapters || {}).forEach(function (chapterId) {
+      const stats = pastExamStats.written.chapters[chapterId];
+      writtenChapterStats.set(chapterId, {
+        count: stats.count || 0,
+        sessions: new Map(Object.keys(stats.sessions || {}).map(function (sessionId) { return [sessionId, stats.sessions[sessionId]]; }))
+      });
+    });
+  }
   examSolutionBatches.forEach(function (batch) {
     const sections = batch && batch.sections ? batch.sections : {};
     Object.keys(sections).forEach(function (sectionKey) {
@@ -2543,8 +2568,8 @@
         id: subject.id,
         name: subject.name,
         chapters: info ? info.chapters.length : 0,
-        mcq: practiceQuestions.filter(function (question) { return question.subject === subject.id; }).length,
-        written: writtenQuestions.filter(function (question) { return question.subject === subject.id; }).length,
+        mcq: practiceSubjectQuestionCount(subject.id),
+        written: writtenSubjectQuestionCount(subject.id),
         forecast: subjectCounts[subject.id]
       };
     });
