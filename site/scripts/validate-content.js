@@ -1805,11 +1805,12 @@ forecastSections.forEach(function (section) {
 check(forecastIds.size === 40, "考前猜題應有 40 個不重複題目");
 const forecastExtras = loaded.examForecastExtras || { macro: [], investment: [], formulas: { macro: [], investment: [] } };
 const extraQuestions = [];
-["macro", "investment"].forEach(function (subject) {
+["macro", "investment", "accounting", "law"].forEach(function (subject) {
   const list = Array.isArray(forecastExtras[subject]) ? forecastExtras[subject] : [];
-  check(list.length === 4, "考前猜題第二輪 " + subject + " 應有 4 題");
+  const expected = subject === "accounting" || subject === "law" ? 10 : 4;
+  check(list.length === expected, "考前猜題補充 " + subject + " 應有 " + expected + " 題");
   list.forEach(function (question, index) {
-    check(question && question.id === "extra-" + subject + "-" + String(index + 1).padStart(2, "0"), "考前猜題第二輪 ID 錯誤：" + subject + " / " + index);
+    check(question && question.id === "extra-" + subject + "-" + String(index + 1).padStart(2, "0"), "考前猜題補充 ID 錯誤：" + subject + " / " + index);
     check(!forecastIds.has(question.id), "考前猜題第二輪 ID 重複：" + question.id);
     check(typeof question.title === "string" && question.title.length > 0, "考前猜題第二輪缺少標題：" + question.id);
     check(typeof question.scenario === "string" && question.scenario.length > 0, "考前猜題第二輪缺少情境：" + question.id);
@@ -1824,7 +1825,7 @@ const extraQuestions = [];
 const allForecastIds = new Set(Array.from(forecastIds).concat(extraQuestions.map(function (q) { return q.id; })));
 const forecastAnswers = loaded.examForecastAnswers || {};
 const forecastAnswerIds = Object.keys(forecastAnswers);
-check(forecastAnswerIds.length === 48, "考前猜題完整解答應涵蓋 48 題（目前 " + forecastAnswerIds.length + " 題）");
+check(forecastAnswerIds.length === 68, "考前猜題完整解答應涵蓋 68 題（目前 " + forecastAnswerIds.length + " 題）");
 allForecastIds.forEach(function (id) {
   check(Array.isArray(forecastAnswers[id]) && forecastAnswers[id].length >= 2, "考前猜題完整解答不足：" + id);
   (forecastAnswers[id] || []).forEach(function (paragraph, index) {
@@ -1838,7 +1839,8 @@ forecastAnswerIds.forEach(function (id) {
 const extraFormulas = forecastExtras.formulas || {};
 check(Array.isArray(extraFormulas.macro) && extraFormulas.macro.length === 3, "考前猜題第二輪總體公式應有 3 條");
 check(Array.isArray(extraFormulas.investment) && extraFormulas.investment.length === 4, "考前猜題第二輪投資公式應有 4 條");
-["macro", "investment"].forEach(function (group) {
+check(Array.isArray(extraFormulas.accounting) && extraFormulas.accounting.length === 5, "考前猜題會計公式應有 5 條");
+["macro", "investment", "accounting"].forEach(function (group) {
   (extraFormulas[group] || []).forEach(function (formula) {
     check(typeof formula.name === "string" && formula.name.length > 0, "考前猜題第二輪公式缺少名稱");
     check(typeof formula.latex === "string" && formula.latex.length > 0, "考前猜題第二輪公式缺少 LaTeX：" + formula.name);
@@ -1885,7 +1887,7 @@ console.log("選擇題逐選項解析：" + pastExamExplanationIds.length + " �
 console.log("計算／申論題：" + writtenQuestions.length + " 題（107–115 年）");
 console.log("總經時事：" + currentEvents.length + " 個主題");
 console.log("考前猜題：" + forecastIds.size + " 題（總體 " + forecast.meta.counts.macro + "、投資 " + forecast.meta.counts.investment + "）");
-console.log("考前猜題完整解答：" + forecastAnswerIds.length + " 題（含第二輪 " + extraQuestions.length + " 題）");
+console.log("考前猜題完整解答：" + forecastAnswerIds.length + " 題（含科目補充 " + extraQuestions.length + " 題）");
 console.log("檢查項目：" + checks.length + "，失敗：" + failures.length);
 
 if (failures.length > 0) {
