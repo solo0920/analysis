@@ -3997,7 +3997,7 @@
         '    <a href="#/nobel?group=' + encodeURIComponent(group.id) + '">' + escapeHtml(group.title) + "</a>",
         '    <span class="nobel-entry-years">' + group.rows.length + " 屆</span>",
         "  </div>",
-        renderDiagram(group.diagram),
+        renderDiagram(group.diagram, { split: true }),
         "</article>"
       ].join("");
     }).join("");
