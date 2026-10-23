@@ -2263,6 +2263,11 @@
             return '<li>' + renderInlineMath(point) + '</li>';
           }).join("") + '</ul></div>',
           '  <div class="macro-current-sources"><span>對應章節</span>' + renderEventSourceLinks(event) + '</div>',
+          Array.isArray(event.references) && event.references.length
+            ? '  <div class="macro-current-references"><span>參考資料</span>' + event.references.map(function (ref) {
+                return '<a href="' + escapeHtml(ref.url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(ref.label) + "</a>";
+              }).join("") + "</div>"
+            : "",
           '</article>'
         ].join("");
       }).join("") + '</div>',
@@ -2276,7 +2281,7 @@
       '  <div>',
       '    <p class="eyebrow">近二年時事 · 總經政策</p>',
       '    <strong>重要國際金融時事與臺灣政策</strong>',
-      '    <span>美國對等關稅、聯準會、國債與黃金、穩定幣、AI 生產力、歐債與臺灣貨幣政策，整理成可答題的總經框架。</span>',
+      '    <span>安倍三箭、Fed FOMC 與利率、全球物價、黃金、加密貨幣與美元穩定幣、AI 生產力、歐債與臺灣政策，整理成可答題的總經框架。</span>',
       '  </div>',
       '  <span class="subject-written-cta-arrow">查看時事整理 →</span>',
       '</a>'

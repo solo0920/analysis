@@ -5966,12 +5966,16 @@ p {
 
 .macro-current-list {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 18px;
   margin-top: 26px;
 }
 
 .macro-current-card {
+  min-width: 0;
+  width: 100%;
   padding: 24px;
+  overflow-x: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
@@ -5980,6 +5984,7 @@ p {
 
 .macro-current-card-head {
   display: flex;
+  min-width: 0;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 8px 14px;
@@ -5998,9 +6003,11 @@ p {
 }
 
 .macro-current-summary {
+  min-width: 0;
   margin-top: 12px;
   color: var(--ink-soft);
   line-height: 1.85;
+  overflow-wrap: anywhere;
 }
 
 .macro-current-summary p {
@@ -6008,6 +6015,7 @@ p {
 }
 
 .macro-current-points {
+  min-width: 0;
   margin-top: 14px;
   padding: 14px 16px;
   border-left: 3px solid var(--gold);
@@ -6025,10 +6033,16 @@ p {
   padding-left: 1.2em;
   color: var(--ink-soft);
   line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+.macro-current-points li {
+  overflow-wrap: anywhere;
 }
 
 .macro-current-sources {
   display: flex;
+  min-width: 0;
   flex-wrap: wrap;
   gap: 8px 12px;
   margin-top: 16px;
@@ -6042,6 +6056,29 @@ p {
 }
 
 .macro-current-sources a:hover {
+  text-decoration: underline;
+}
+
+.macro-current-references {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.macro-current-references a {
+  min-width: 0;
+  max-width: 100%;
+  color: var(--accent);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.macro-current-references a:hover {
   text-decoration: underline;
 }
 

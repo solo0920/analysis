@@ -1744,6 +1744,23 @@ currentEvents.forEach(function (event) {
       check(Boolean(sourceInfo) && sourceInfo.subjectId === "macro", "總經時事出處錯誤：" + event.id + " / " + chapterId);
     });
   }
+  if (Array.isArray(event.summary)) {
+    event.summary.forEach(function (text, index) {
+      checkRenderedMath(text, "總經時事 " + event.id + " 摘要 " + (index + 1));
+    });
+  }
+  if (Array.isArray(event.points)) {
+    event.points.forEach(function (text, index) {
+      checkRenderedMath(text, "總經時事 " + event.id + " 重點 " + (index + 1));
+    });
+  }
+  if (event.references !== undefined) {
+    check(Array.isArray(event.references) && event.references.length > 0, "總經時事參考資料格式錯誤：" + event.id);
+    (event.references || []).forEach(function (ref, index) {
+      check(Boolean(ref) && typeof ref.label === "string" && ref.label.trim().length > 0, "總經時事參考資料缺少標籤：" + event.id + " / " + index);
+      check(Boolean(ref) && typeof ref.url === "string" && /^https?:\/\//.test(ref.url), "總經時事參考資料網址錯誤：" + event.id + " / " + index);
+    });
+  }
 });
 pastExamQuestions.forEach(function (question) {
   if (question.eventId) {
