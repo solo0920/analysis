@@ -105,7 +105,7 @@ const nobelDiagramFiles = ["diagrams-nobel.js"];
 function loadContent() {
   const context = { window: {} };
   vm.createContext(context);
-  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-investment-formulas.js", "content-investment-technical.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-chapter-supplements.js", "content-law-deepdive.js", "content-law-deepdive-2.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-macro-current.js", "content-exam-forecast.js", "content-exam-forecast-answers.js", "content-past-exams-written.js", "content-written-layouts.js", "content-past-exams.js", "content-past-exams-explanations.js", "content-exam-solutions-115.js", "content-exam-solutions-114.js", "content-exam-solutions-113.js", "content-exam-solutions-112.js", "content-exam-solutions-111.js", "content-exam-solutions-110.js", "content-exam-solutions-109.js", "content-exam-solutions-108.js", "content-exam-solutions-107.js"].forEach(function (file) {
+  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-investment-formulas.js", "content-investment-technical.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-chapter-supplements.js", "content-law-deepdive.js", "content-law-deepdive-2.js", "content-law-quickread.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-macro-current.js", "content-exam-forecast.js", "content-exam-forecast-answers.js", "content-past-exams-written.js", "content-written-layouts.js", "content-past-exams.js", "content-past-exams-explanations.js", "content-exam-solutions-115.js", "content-exam-solutions-114.js", "content-exam-solutions-113.js", "content-exam-solutions-112.js", "content-exam-solutions-111.js", "content-exam-solutions-110.js", "content-exam-solutions-109.js", "content-exam-solutions-108.js", "content-exam-solutions-107.js"].forEach(function (file) {
     const fullPath = path.join(siteDir, "assets", file);
     vm.runInContext(fs.readFileSync(fullPath, "utf8"), context, { filename: file });
   });
@@ -543,7 +543,7 @@ accountingSource.chapters.forEach(function (expected, index) {
 check(accounting.chapters[22] && /22/.test(accounting.chapters[22].note || "") && /23/.test(accounting.chapters[22].note || ""), "會計學第 23 章應保留來源章號印刷錯誤的註記");
 
 check(law.chapters.length === 21, "證券法規應為 21 章");
-check(lawSections === 37, "證券法規應為 37 節（含 2 個進階補給與 14 個法規深度補給）");
+check(lawSections === 52, "證券法規應為 52 節（含 2 個進階補給、14 個深度補給與 15 張速讀卡）");
 check(law.chapters.every(function (chapter) { return chapter.id.indexOf("law-") === 0; }), "證券法規章節 ID 應以 law- 開頭");
 
 const lawArticleKeys = Object.keys(lawArticles);
@@ -1487,6 +1487,7 @@ const languageSurface = [
   read("site/assets/content-chapter-supplements.js"),
   read("site/assets/content-law-deepdive.js"),
   read("site/assets/content-law-deepdive-2.js"),
+  read("site/assets/content-law-quickread.js"),
   JSON.stringify(pastExams),
   JSON.stringify(loaded.pastExamExplanations),
   JSON.stringify(pastWritten),
@@ -1950,4 +1951,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log("驗證通過：總體經濟學（13 章、56 節）、投資學（16 章、57 個重點）、會計學（23 章、64 個單元）、證券法規（21 章、37 節、1,507 條官方全文）、" + (diagramKeys.length + investmentDiagramKeys.length + accountingDiagramKeys.length) + " 張章節教學圖（總體 " + diagramKeys.length + "、投資 " + investmentDiagramKeys.length + "、會計 " + accountingDiagramKeys.length + "）、118 個 KaTeX 公式、諾貝爾年表（1969–2026）與 107–115 年 3,710 題考古題練習庫結構一致。");
+console.log("驗證通過：總體經濟學（13 章、56 節）、投資學（16 章、57 個重點）、會計學（23 章、64 個單元）、證券法規（21 章、52 節、1,507 條官方全文）、" + (diagramKeys.length + investmentDiagramKeys.length + accountingDiagramKeys.length) + " 張章節教學圖（總體 " + diagramKeys.length + "、投資 " + investmentDiagramKeys.length + "、會計 " + accountingDiagramKeys.length + "）、118 個 KaTeX 公式、諾貝爾年表（1969–2026）與 107–115 年 3,710 題考古題練習庫結構一致。");
