@@ -6,6 +6,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   "macro-05#1": {
     sectionTitle: "第2節 貨幣需求理論",
     title: "流動性偏好：貨幣需求移動與利率",
+    formula: String.raw`M/P=L(Y,i)`,
     caption: "貨幣供給 Ms 由央行決定，在圖上是垂直線；貨幣需求 Md 與利率反向。所得增加使 Md 由 Md₀ 右移到 Md₁，均衡利率由 i₀ 上升到 i₁。若央行增加貨幣供給使 Ms 右移，均衡利率則會下降。",
     svg: `
 <svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-liquidity-title" xmlns="http://www.w3.org/2000/svg">
@@ -54,6 +55,8 @@ Object.assign(window.MACRO_DIAGRAMS, {
   "macro-06#0": {
     sectionTitle: "第1節 IS曲線與LM曲線",
     title: "IS-LM 模型：商品市場與貨幣市場同時均衡",
+    kicker: "學派模型 · 凱因斯／新古典綜合",
+    formula: String.raw`IS:\ Y=C(Y-T)+I(i)+G,\qquad LM:\ M/P=L(Y,i)`,
     caption: "IS 曲線代表商品市場均衡，利率越高、投資越少，均衡所得越低，因此斜率向下；LM 曲線代表貨幣市場均衡，所得越高、貨幣需求越大，利率越高，因此斜率向上。兩線交點 E 決定同時均衡的所得 Y* 與利率 i*。",
     svg: `
 <svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-islm-title" xmlns="http://www.w3.org/2000/svg">
@@ -92,6 +95,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   "macro-06#1": {
     sectionTitle: "第2節 總體經濟政策與IS-LM曲線",
     title: "財政政策與貨幣政策的移動效果",
+    formula: String.raw`G\uparrow:\ IS\rightarrow\text{右},\qquad M\uparrow:\ LM\rightarrow\text{右}`,
     caption: "左圖：政府支出增加使 IS 右移到 IS₁，所得由 Y₀ 增加到 Y₁，但利率上升，可能排擠民間投資。右圖：央行增加貨幣供給使 LM 右移到 LM₁，所得增加且利率下降，對投資有利。",
     svg: `
 <svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-policy-title" xmlns="http://www.w3.org/2000/svg">
@@ -165,6 +169,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   "macro-06#2": {
     sectionTitle: "第3節 IS-LM模型與總體經濟政策有效性",
     title: "LM 斜率與政策有效性：陡峭與平坦的比較",
+    formula: String.raw`LM:\ M/P=L(i,Y)`,
     caption: "左圖 LM 陡峭（h 小）：財政擴張使利率大幅上升、排擠效果大，所得增加有限；貨幣擴張則效果大。右圖 LM 平坦（h 大，接近流動性陷阱）：財政擴張幾乎不推升利率，所得增加大；貨幣擴張效果小。",
     svg: `
 <svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-effective-title" xmlns="http://www.w3.org/2000/svg">

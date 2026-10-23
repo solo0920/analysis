@@ -590,6 +590,12 @@
     return diagrams[chapterId + "#" + sectionIndex] || null;
   }
 
+  function modelSectionFormula(chapter, section) {
+    const entry = formulaTexFor(chapter, section);
+    if (!entry) return "";
+    return typeof entry === "string" ? entry : (entry.tex || "");
+  }
+
   function macroModelGroups() {
     const subject = getSubject("macro");
     if (!subject) {
@@ -597,15 +603,17 @@
     }
 
     return subject.chapters.map(function (chapter) {
-      const entries = chapter.sections.map(function (section, index) {
-        const diagram = getDiagram(chapter.id, index);
-        return diagram ? {
-          anchor: "model-" + chapter.id + "-" + index,
-          section: section,
-          sectionIndex: index,
-          diagram: diagram
-        } : null;
-      }).filter(Boolean);
+      const entries = [];
+      chapter.sections.forEach(function (section, index) {
+        getDiagrams(chapter.id, index).forEach(function (diagram, diagramIndex) {
+          entries.push({
+            anchor: "model-" + chapter.id + "-" + index + (diagramIndex ? "-" + (diagramIndex + 1) : ""),
+            section: section,
+            sectionIndex: index,
+            diagram: diagram
+          });
+        });
+      });
 
       return {
         chapter: chapter,
@@ -832,6 +840,7 @@
       '  <div class="diagram-canvas">' + diagram.svg + "</div>",
       '  <p class="diagram-scroll-hint">圖表較寬，可左右滑動查看。</p>',
       "  <figcaption>" + renderInlineMath(diagram.caption) + "</figcaption>",
+      diagram.formula ? '  <div class="diagram-formula"><span class="diagram-formula-label">模型式</span><span class="ratio-math">' + renderKatex(diagram.formula, true) + "</span></div>" : "",
       '  <div class="diagram-tables">',
       renderDiagramTable("變數說明", diagram.variables),
       renderDiagramTable("參數說明", diagram.parameters),
@@ -3943,7 +3952,9 @@
           '    <span class="eyebrow">' + padNumber(entry.sectionIndex + 1) + "</span>",
           '    <a href="#/chapter/' + escapeHtml(chapter.id) + "?section=" + (entry.sectionIndex + 1) + '">' + escapeHtml(sectionDisplayTitle(entry.section)) + "</a>",
           "  </div>",
-          renderDiagram(entry.diagram),
+          renderDiagram(Object.assign({}, entry.diagram, {
+            formula: entry.diagram.formula || modelSectionFormula(chapter, entry.section)
+          })),
           "</article>"
         ].join("");
       }).join("");
@@ -4341,7 +4352,7 @@
       "      <li>會計學的章名、順序與頁碼以 <code>documents/accounting_toc.md</code> 為依據；有列節名的章節照原節名呈現，未列節名的章節以「學習重點」標示，不冒充原書節名。第 23 章來源註明原書章號印為 22，本站依順序列為第 23 章。財務分析總架構、杜邦分析與四表連結的圖表內容另參考 <code>documents/accounting_contents.md</code>。</li>",
       "      <li>四個科目的來源目錄不同：總體經濟學使用 <code>gross_economics_contents.md</code>（第 11–13 章為金融市場）；投資學使用 <code>investment_contents.md</code>；會計學章節使用 <code>accounting_toc.md</code>、財務分析圖表使用 <code>accounting_contents.md</code>；證券法規使用 <code>securities_law_contents.md</code>；不以其中一科的章節補另一科。</li>",
       "      <li>依投資學來源目錄，章號由第十一章直接跳到第十三章；本站保留原始編號，不自行補章。</li>",
-      "      <li>總體經濟學另設「模型總覽」（#/models/macro），依 13 章集中 22 張章節圖（含 1 張教學流程圖），並加入諾貝爾經濟學獎的 17 組模型圖；另有「歷年諾貝爾經濟學獎」（#/nobel）逐年雙欄年表，左側為該屆資料、右側為對應模型圖。三個視圖共用同一份模型資料，修改後重新載入即可看到同步結果。</li>",
+      "      <li>總體經濟學另設「模型總覽」（#/models/macro），依 13 章集中 27 張章節圖（含 1 張教學流程圖與 5 張學派模型補充），並加入諾貝爾經濟學獎的 17 組模型圖；另有「歷年諾貝爾經濟學獎」（#/nobel）逐年雙欄年表，左側為該屆資料、右側為對應模型圖。三個視圖共用同一份模型資料，修改後重新載入即可看到同步結果。</li>",
       "      <li>「考古題練習庫」（#/past-exams）收錄 107–115 年共 29 次、3,710 題選擇題；可依年度、科目與次別篩選，先作答再看答案。練習紀錄只存在瀏覽器，換裝置不會同步；申論題與計算題請點原始試題連結。</li>",
       "      <li>名詞與公式以臺灣官方網站（主計總處、中央銀行、金管會、證交所、期交所等）與繁體中文公開資料交叉核對。</li>",
       "      <li>同一公式若在不同來源有不同符號定義，應先確認假設與適用條件，再以官方或正式教材為準。</li>",
@@ -4535,7 +4546,7 @@
     if (route.parts[0] === "models" && route.parts[1] === "macro" && route.query.get("model")) {
       const modelAnchor = route.query.get("model") || "";
       window.requestAnimationFrame(function () {
-        const target = /^model-macro-\d+-\d+$/.test(modelAnchor) ? document.getElementById(modelAnchor) : null;
+        const target = /^model-macro-\d+-\d+(?:-\d+)?$/.test(modelAnchor) ? document.getElementById(modelAnchor) : null;
         if (target) {
           target.classList.remove("is-targeted");
           void target.offsetWidth;

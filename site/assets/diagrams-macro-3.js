@@ -6,6 +6,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   "macro-07#0": {
     sectionTitle: "第1節 總供需曲線",
     title: "AD-AS 模型：短期均衡與長期調整",
+    formula: String.raw`AD:\ Y=C+I+G+NX,\qquad LRAS:\ Y=Y^*`,
     caption: "AD 為總需求，SRAS₀ 為初始短期總供給，LRAS 為長期總供給（垂直於自然產出 Yn）。AD 右移後，短期均衡由 E₀ 移到 E₁，物價與產出同時上升；隨著名目工資與價格調整，SRAS 左移到 SRAS₁，產出回到 Yn，物價停在更高的水準（E_LR）。",
     svg: `
 <svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-adas-title" xmlns="http://www.w3.org/2000/svg">
@@ -63,6 +64,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   "macro-07#1": {
     sectionTitle: "第2節 總供需均衡分析",
     title: "需求衝擊與供給衝擊的比較",
+    formula: String.raw`\text{產出缺口}=\frac{Y-Y^*}{Y^*}\times100\%`,
     caption: "左圖：AD 右移的需求拉動，短期物價與產出同升。右圖：SRAS 左移的供給衝擊（如油價上漲），物價上升但產出下降，形成停滯性通膨。兩者的政策含意不同：需求衝擊可用緊縮政策降溫，供給衝擊則面臨通膨與失業的兩難。",
     svg: `
 <svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-shock-title" xmlns="http://www.w3.org/2000/svg">
@@ -130,6 +132,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   "macro-08#0": {
     sectionTitle: "第1節 經濟成長理論",
     title: "Solow 成長模型：儲蓄、資本累積與穩態",
+    formula: String.raw`y=f(k),\qquad sf(k)=(n+\delta+g)k`,
     caption: "f(k) 是每人產出，sf(k) 是每人儲蓄（也等於每人投資），(n + δ)k 是維持資本勞動比不變所需的投資；此圖為不含技術進步的簡化版，有技術進步時損益兩平投資為 (n + δ + g)k。兩者交點決定穩態資本 k*。儲蓄率上升使 sf(k) 上移，穩態資本與每人產出增加，但長期每人產出成長率仍由技術進步決定。",
     svg: `
 <svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-solow-title" xmlns="http://www.w3.org/2000/svg">
@@ -179,6 +182,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   "macro-08#1": {
     sectionTitle: "第2節 景氣循環",
     title: "景氣循環：圍繞長期趨勢的波動",
+    formula: String.raw`y_t=y_t^{\text{trend}}+c_t`,
     caption: "實質 GDP 長期向上成長，短期則圍繞趨勢線波動，依序經過擴張、高峰、衰退、谷底與復甦。波動的期間與幅度不規則，因此實務上以領先、同時與落後指標綜合判斷，而不是只看單一數據。",
     svg: `
 <svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-cycle-title" xmlns="http://www.w3.org/2000/svg">
@@ -210,5 +214,153 @@ Object.assign(window.MACRO_DIAGRAMS, {
       ["指標組合", "領先、同時、落後", "臺灣以國發會景氣對策信號與景氣指標綜合判定。"]
     ],
     note: "景氣循環是總體經濟活動的波動，不是單一產業或單一公司的股價波動；高峰與谷底通常要事後確認。"
+  }
+,
+  "macro-07#2": {
+    sectionTitle: "第3節 總體經濟理論主要學派",
+    kicker: "學派模型 · 供給面",
+    title: "供給面學派：Laffer 曲線與稅收",
+    caption: "Laffer 曲線描述稅率 t 與稅收 R 的關係：R(t)=t×B(t)，B(t) 為稅基。稅率很低時，提高稅率通常增加稅收；稅率過高時，工作、投資與申報誘因下降，稅基縮小，稅收反而減少。曲線最高點對應稅收最大化的稅率 t*。不能把「減稅一定增加稅收」當成通則，只有當目前稅率落在 t* 右側且稅基反應足夠大時，減稅才可能增加稅收。",
+    formula: String.raw`R(t)=t\cdot B(t),\qquad t^*:\ R'(t^*)=0`,
+    svg: `
+<svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-laffer-title" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-laffer-title">Laffer 曲線：稅率與稅收</title>
+  <line class="dg-axis" x1="70" y1="300" x2="608" y2="300"></line>
+  <line class="dg-axis" x1="70" y1="300" x2="70" y2="32"></line>
+  <text class="dg-label" x="310" y="346" text-anchor="middle">稅率 t</text>
+  <text class="dg-label" x="78" y="24">稅收 R</text>
+  <path class="dg-curve" d="M82,290 C150,150 235,70 330,70 C430,70 520,180 590,290"></path>
+  <line class="dg-guide" x1="330" y1="70" x2="330" y2="300"></line>
+  <line class="dg-guide" x1="70" y1="70" x2="330" y2="70"></line>
+  <circle class="dg-point" cx="330" cy="70" r="4.5"></circle>
+  <text class="dg-label-sm" x="340" y="65">R_max</text>
+  <text class="dg-label-sm" x="318" y="322">t*</text>
+  <text class="dg-label-sm" x="76" y="322">0%</text>
+  <text class="dg-label-sm" x="568" y="322">100%</text>
+  <text class="dg-label-sm" x="166" y="120">稅率過低</text>
+  <text class="dg-label-sm" x="432" y="120">稅率過高</text>
+  <text class="dg-label-sm" x="210" y="250">稅基 B(t)</text>
+</svg>`,
+    variables: [
+      ["t", "稅率", "0% 到 100%。"],
+      ["R", "稅收", "稅率乘以稅基。"],
+      ["B(t)", "稅基", "工作、投資、消費與申報等活動形成的課稅基礎。"],
+      ["t^*", "稅收最大化稅率", "Laffer 曲線最高點對應的稅率。"],
+      ["R_{max}", "最大稅收", "給定稅基反應下的最高稅收。"]
+    ],
+    parameters: [
+      ["稅基彈性", "稅率變動對稅基的敏感度", "彈性越大，曲線下降段越早出現。"],
+      ["勞動與投資誘因", "供給面反應", "減稅可能提高工作、儲蓄與投資誘因。"],
+      ["動態評分", "政策評估期間", "稅收效果需考慮行為反應與時間落差。"]
+    ],
+    note: "Laffer 曲線是供給面學派的概念圖，不是「減稅必然增加稅收」的保證；實際稅收效果取決於目前稅率位置、稅基彈性與政策期間。"
+  },
+  "macro-08#0-2": {
+    sectionTitle: "第1節 經濟成長理論",
+    kicker: "學派模型 · 內生成長",
+    title: "內生成長：AK 模型與知識外溢",
+    caption: "Solow 模型把技術進步視為外生，長期每人產出成長最終取決於外生技術成長。AK 模型把資本報酬假設為固定，令 Y=AK；儲蓄率 s 與資本生產力 A 決定長期成長率 g=sA−δ。若 sA>δ，資本與產出可以持續成長，不會收斂到零成長的穩態。Romer、Lucas 等內生成長理論再用知識外溢、人力資本與研發投入，為持續成長提供個體基礎。",
+    formula: String.raw`Y=AK,\qquad g_Y=sA-\delta`,
+    svg: `
+<svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-romer-title" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-romer-title">AK 模型與內生成長</title>
+  <line class="dg-axis" x1="70" y1="300" x2="608" y2="300"></line>
+  <line class="dg-axis" x1="70" y1="300" x2="70" y2="32"></line>
+  <text class="dg-label" x="600" y="326" text-anchor="end">資本與知識 K</text>
+  <text class="dg-label" x="78" y="24">產出 Y</text>
+  <line class="dg-curve" x1="90" y1="280" x2="570" y2="60"></line>
+  <line class="dg-curve-alt" x1="90" y1="286" x2="570" y2="132"></line>
+  <line class="dg-curve-soft" x1="90" y1="292" x2="570" y2="184"></line>
+  <text class="dg-label-sm" x="520" y="54">Y = AK</text>
+  <text class="dg-label-sm" x="520" y="128">sY</text>
+  <text class="dg-label-sm" x="520" y="180">δK</text>
+  <line class="dg-arrow" x1="300" y1="214" x2="390" y2="214"></line>
+  <text class="dg-label-sm" x="310" y="202">sA &gt; δ：持續成長</text>
+  <text class="dg-label-sm" x="94" y="286">K₀</text>
+</svg>`,
+    variables: [
+      ["Y", "產出", "AK 模型中的總產出。"],
+      ["K", "資本與知識存量", "包含實體資本、人力資本與知識。"],
+      ["A", "資本生產力", "每單位資本的產出，假設固定。"],
+      ["s", "儲蓄率", "產出中用於投資的比例。"],
+      ["\\delta", "折舊率", "資本每期折舊比例。"],
+      ["g_Y", "產出成長率", "AK 模型下為 sA−δ。"],
+      ["sY", "儲蓄線", "儲蓄用於資本累積。"],
+      ["\\delta K", "折舊線", "維持資本存量所需的投資。"]
+    ],
+    parameters: [
+      ["知識外溢", "A 的成長", "知識外溢與技術水平越高，A 越大。"],
+      ["儲蓄誘因", "s 的變動", "儲蓄率提高會提高成長率，但不等於無限成長。"],
+      ["折舊壓力", "δ 的變動", "折舊越高，淨成長越低。"],
+      ["知識外溢", "Romer／Lucas 機制", "研發、教育與人力資本使資本報酬不遞減。"]
+    ],
+    note: "AK 模型是內生成長的最小教學版本；Romer 的知識外溢與 Lucas 的人力資本模型另加入研發、教育與不完全競爭。"
+  },
+  "macro-08#1-2": {
+    sectionTitle: "第2節 景氣循環",
+    kicker: "學派模型 · 新古典 RBC",
+    title: "實質景氣循環（RBC）：技術衝擊與勞動市場",
+    caption: "實質景氣循環（RBC）把景氣波動主要歸因於實質技術衝擊。技術水準 A 上升使勞動邊際生產力提高，勞動需求由 LD₀ 右移到 LD₁；在勞動供給向上下，就業、實質工資與產出增加。RBC 假設價格與工資具彈性、市場結清，貨幣在短期亦偏向中立；這與新凱因斯學派以價格黏性和需求衝擊解釋短期波動不同。",
+    formula: String.raw`Y_t=A_tK_t^\alpha L_t^{1-\alpha},\qquad \ln A_t=\rho\ln A_{t-1}+\varepsilon_t`,
+    svg: `
+<svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-rbc-title" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-rbc-title">實質景氣循環：技術衝擊與勞動市場</title>
+  <rect class="dg-panel" x="20" y="20" width="286" height="316" rx="14"></rect>
+  <rect class="dg-panel" x="334" y="20" width="286" height="316" rx="14"></rect>
+  <text class="dg-label" x="163" y="48" text-anchor="middle">勞動市場</text>
+  <text class="dg-label" x="477" y="48" text-anchor="middle">生產函數</text>
+  <line class="dg-axis" x1="56" y1="290" x2="284" y2="290"></line>
+  <line class="dg-axis" x1="56" y1="290" x2="56" y2="70"></line>
+  <text class="dg-label-sm" x="270" y="310">就業 L</text>
+  <text class="dg-label-sm" x="64" y="84">w/P</text>
+  <line class="dg-curve-alt" x1="62" y1="270" x2="278" y2="82"></line>
+  <line class="dg-curve" x1="62" y1="84" x2="278" y2="260"></line>
+  <line class="dg-curve-soft" x1="90" y1="84" x2="286" y2="238"></line>
+  <text class="dg-label-sm" x="264" y="76">LS</text>
+  <text class="dg-label-sm" x="258" y="264">LD₀</text>
+  <text class="dg-label-sm" x="278" y="230">LD₁</text>
+  <circle class="dg-point" cx="171" cy="179" r="4"></circle>
+  <circle class="dg-point" cx="198" cy="163" r="4"></circle>
+  <text class="dg-label-sm" x="150" y="170">E₀</text>
+  <text class="dg-label-sm" x="205" y="154">E₁</text>
+  <text class="dg-label-sm" x="160" y="310">L₀</text>
+  <text class="dg-label-sm" x="204" y="310">L₁</text>
+  <line class="dg-guide" x1="171" y1="179" x2="171" y2="290"></line>
+  <line class="dg-guide" x1="198" y1="163" x2="198" y2="290"></line>
+  <line class="dg-axis" x1="370" y1="290" x2="598" y2="290"></line>
+  <line class="dg-axis" x1="370" y1="290" x2="370" y2="70"></line>
+  <text class="dg-label-sm" x="584" y="310">就業 L</text>
+  <text class="dg-label-sm" x="380" y="84">產出 Y</text>
+  <path class="dg-curve" d="M380,270 Q460,220 556,110"></path>
+  <path class="dg-curve-alt" d="M380,242 Q460,174 556,70"></path>
+  <text class="dg-label-sm" x="390" y="238">Y=A₀F(K,L)</text>
+  <text class="dg-label-sm" x="390" y="132">Y=A₁F(K,L)</text>
+  <circle class="dg-point" cx="470" cy="208" r="4"></circle>
+  <circle class="dg-point" cx="470" cy="176" r="4"></circle>
+  <text class="dg-label-sm" x="480" y="222">E₀</text>
+  <text class="dg-label-sm" x="480" y="170">E₁</text>
+  <line class="dg-arrow" x1="398" y1="86" x2="450" y2="86"></line>
+  <text class="dg-label-sm" x="456" y="90">A↑</text>
+</svg>`,
+    variables: [
+      ["Y", "產出", "技術、資本與勞動共同決定。"],
+      ["A", "技術水準", "實質技術衝擊的主要來源。"],
+      ["K", "資本存量", "短期假設固定或緩慢調整。"],
+      ["L", "就業與勞動", "由勞動供給與需求共同決定。"],
+      ["w/P", "實質工資", "勞動市場均衡的價格。"],
+      ["LS", "勞動供給曲線", "工資上升時勞動供給通常增加。"],
+      ["LD", "勞動需求曲線", "技術衝擊使邊際生產力與需求改變。"],
+      ["\\alpha", "資本產出彈性", "生產函數中資本的份額。"],
+      ["\\rho", "技術衝擊持續性", "技術衝擊自我延續的程度。"],
+      ["\\varepsilon", "技術衝擊", "隨機干擾項。"]
+    ],
+    parameters: [
+      ["技術衝擊", "A 的變動", "RBC 的主要景氣驅動因素。"],
+      ["資本份額", "\\alpha", "決定資本與勞動的邊際產出。"],
+      ["衝擊持續性", "\\rho", "越高代表衝擊越持久。"],
+      ["市場結清", "價格與工資彈性", "RBC 假設市場迅速調整。"],
+      ["勞動供給彈性", "就業反應", "影響技術衝擊對就業的傳導。"]
+    ],
+    note: "RBC 的「實質」指技術與供給面衝擊，不是貨幣或金融衝擊；天空不是模型的一部分。與新凱因斯模型相比，RBC 較不強調價格黏性與需求管理。"
   }
 });

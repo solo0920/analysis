@@ -120,6 +120,7 @@ window.MACRO_EVOLUTION = {
           modelAnchors: [
             "model-macro-09-2",
             "model-macro-08-1",
+            "model-macro-08-1-2",
             "model-macro-07-0"
           ],
           nobelYears: [1995, 2004, 2011],
@@ -136,7 +137,7 @@ window.MACRO_EVOLUTION = {
           period: "1970s–1980s",
           founders: "Robert Mundell、Arthur Laffer",
           summary: "減稅、去管制與誘因改善可提升潛在供給；稅率與稅收、儲蓄與投資的關係是政策辯論核心。",
-          modelAnchors: ["model-macro-12-1"],
+          modelAnchors: ["model-macro-07-2"],
           nobelYears: [],
           chapterRefs: [
             { chapterId: "macro-07", sectionIndex: 2, label: "第七章 學派說明" }
@@ -161,7 +162,8 @@ window.MACRO_EVOLUTION = {
           summary: "為價格黏性建立個體基礎；菜單成本、Calvo 定價與 Taylor 規則成為穩定政策分析工具。",
           modelAnchors: [
             "model-macro-07-0",
-            "model-macro-09-2"
+            "model-macro-09-2",
+            "model-macro-09-2-2"
           ],
           nobelYears: [2026],
           chapterRefs: [
@@ -178,6 +180,7 @@ window.MACRO_EVOLUTION = {
           summary: "以 Mundell-Fleming、最適貨幣區與規模經濟／壟斷競爭，解釋匯率、資本流動與產業內貿易。",
           modelAnchors: [
             "model-macro-10-1",
+            "model-macro-10-1-2",
             "model-macro-10-3"
           ],
           nobelYears: [1999, 2008],
@@ -202,7 +205,7 @@ window.MACRO_EVOLUTION = {
           period: "1980s–迄今",
           founders: "Paul Romer、Robert Lucas Jr.",
           summary: "把知識、人力資本與創新內生化，突破 Solow 模型的外生技術假設；創新與創造性破壞驅動長期成長。",
-          modelAnchors: ["model-macro-08-0"],
+          modelAnchors: ["model-macro-08-0", "model-macro-08-0-2"],
           nobelYears: [1987, 2018, 2025],
           chapterRefs: [
             { chapterId: "macro-08", sectionIndex: 0, label: "第八章 經濟成長" }

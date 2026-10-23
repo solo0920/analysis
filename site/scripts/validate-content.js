@@ -802,7 +802,7 @@ check(diagramKeys.length >= 22, "總體經濟學章節圖應至少 22 張（目�
 const rawDiagramKeys = [];
 diagramFiles.forEach(function (file) {
   const text = fs.readFileSync(path.join(siteDir, "assets", file), "utf8");
-  const matches = text.match(/^\s{2}"(macro-\d+#\d+)":\s*\{/gm) || [];
+  const matches = text.match(/^\s{2}"(macro-\d+#\d+(?:-\d+)?)":\s*\{/gm) || [];
   matches.forEach(function (match) {
     rawDiagramKeys.push(match.trim().split('"')[1]);
   });
@@ -819,13 +819,14 @@ const svgIds = [];
 
 diagramKeys.forEach(function (key) {
   const keyParts = key.split("#");
-  check(keyParts.length === 2 && keyParts[0].indexOf("macro-") === 0, "模型圖只能掛在總體經濟學章節，鍵值格式：" + key);
+  const sectionToken = keyParts[1] || "";
+  check(keyParts.length === 2 && keyParts[0].indexOf("macro-") === 0 && /^\d+(?:-\d+)?$/.test(sectionToken), "模型圖只能掛在總體經濟學章節，鍵值格式：" + key);
   const chapter = macroChapterMap[keyParts[0]];
   check(Boolean(chapter), "模型圖指向不存在的總體經濟學章節：" + key);
   if (!chapter) {
     return;
   }
-  const sectionIndex = Number(keyParts[1]);
+  const sectionIndex = Number(sectionToken.split("-")[0]);
   check(Number.isInteger(sectionIndex) && sectionIndex >= 0 && sectionIndex < chapter.sections.length, "模型圖節次超出範圍：" + key);
   const section = chapter.sections[sectionIndex];
   if (!section) {
@@ -842,6 +843,7 @@ diagramKeys.forEach(function (key) {
   check(/role="img"/.test(svg), "模型圖 SVG 缺少 role=\"img\"：" + key);
   check(/aria-labelledby="/.test(svg), "模型圖 SVG 缺少 aria-labelledby：" + key);
   check(/<title /.test(svg), "模型圖 SVG 缺少 title：" + key);
+  check((svg.match(/<text\b/g) || []).length >= 4, "模型圖 SVG 缺少座標或文字標示：" + key);
   const labelledBy = svg.match(/aria-labelledby="([^"]+)"/);
   if (labelledBy) {
     labelledBy[1].split(/\s+/).forEach(function (id) {
@@ -870,6 +872,14 @@ diagramKeys.forEach(function (key) {
     check(variableSymbols.indexOf(row[0]) === -1, "模型圖變數與參數符號重複：" + key + "（" + row[0] + "）");
   });
   check(typeof diagram.note === "string" && diagram.note.length > 0, "模型圖缺少示意提醒：" + key);
+  check(typeof diagram.formula === "string" && diagram.formula.trim().length > 0, "模型圖缺少 KaTeX 模型式：" + key);
+  if (katex && typeof diagram.formula === "string") {
+    try {
+      katex.renderToString(diagram.formula, { displayMode: true, throwOnError: true, strict: "ignore", trust: false });
+    } catch (error) {
+      check(false, "模型圖 KaTeX 公式無法編譯：" + key + "（" + error.message + "）");
+    }
+  }
 });
 
 /* 投資學教學圖表：與總體模型圖共用相同的 SVG 結構與無障礙檢查。 */
@@ -1200,7 +1210,7 @@ const evolutionModelLinkCount = evolutionNodes.reduce(function (sum, node) {
   return sum + (Array.isArray(node.modelAnchors) ? node.modelAnchors.length : 0);
 }, 0);
 check(evolutionNodes.length === 10, "學派演進圖應有 10 個學派／理論節點（目前 " + evolutionNodes.length + " 個）");
-check(evolutionModelLinkCount === 19, "學派演進圖應有 19 個模型連結（目前 " + evolutionModelLinkCount + " 個）");
+check(evolutionModelLinkCount === 23, "學派演進圖應有 23 個模型連結（目前 " + evolutionModelLinkCount + " 個）");
 check(evolutionNobelYears.size === 15, "學派演進圖應包含 15 個不同的諾貝爾里程碑（目前 " + evolutionNobelYears.size + " 個）");
 check(evolutionNodes.every(function (node) { return Array.isArray(node.modelAnchors) && node.modelAnchors.length > 0; }), "學派演進圖的每個節點都應綁定至少一個模型");
 

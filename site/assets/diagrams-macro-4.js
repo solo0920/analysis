@@ -6,6 +6,8 @@ Object.assign(window.MACRO_DIAGRAMS, {
   "macro-09#2": {
     sectionTitle: "第3節 菲利浦曲線",
     title: "菲利浦曲線：短期取捨與長期垂直",
+    kicker: "學派模型 · 貨幣學派",
+    formula: String.raw`\pi=\pi^e-\beta(u-u_n)+\varepsilon`,
     caption: "短期菲利浦曲線 SRPC 為負斜率，失業率越低、通膨越高。預期通膨上升會使 SRPC 上移到 SRPC₁，同樣失業率下通膨更高。長期而言預期會調整到實際通膨，失業率回到自然失業率 uₙ，長期曲線 LRPC 為垂直線。",
     svg: `
 <svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-phillips-title" xmlns="http://www.w3.org/2000/svg">
@@ -54,6 +56,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   "macro-10#1": {
     sectionTitle: "第2節 匯率之決定",
     title: "外匯供需與均衡匯率",
+    formula: String.raw`D(e)=S(e)`,
     caption: "縱軸為直接報價的匯率 e（新臺幣兌 1 美元），橫軸為外匯數量。外匯需求線向下、供給線向上，交點決定均衡匯率 e₀。外資流入或出口增加使外匯供給右移到 S₁，均衡匯率由 e₀ 下降到 e₁，代表新臺幣升值。",
     svg: `
 <svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-fx-title" xmlns="http://www.w3.org/2000/svg">
@@ -103,6 +106,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   "macro-10#3": {
     sectionTitle: "第4節 匯率制度與央行外匯干預政策",
     title: "央行買匯干預：外匯需求右移",
+    formula: String.raw`\text{固定匯率}+\text{資本自由移動}+\text{獨立貨幣政策}\le2`,
     caption: "央行在外匯市場買入美元時，外匯需求由 D₀ 右移到 D₁，均衡匯率由 e₀ 上升到 e₁，新臺幣貶值。若央行賣出美元，則是外匯供給增加，均衡匯率下降、新臺幣升值。未沖銷干預還會影響國內貨幣供給。",
     svg: `
 <svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-intervention-title" xmlns="http://www.w3.org/2000/svg">
@@ -151,6 +155,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   "macro-11#0": {
     sectionTitle: "第1節 金融體系",
     title: "金融體系的資金流向：直接金融與間接金融",
+    formula: String.raw`\text{剩餘單位}\to\text{金融市場或中介}\to\text{不足單位}`,
     caption: "資金從剩餘單位流向不足單位，有兩條路徑：直接金融透過金融市場（股票、債券），間接金融透過金融中介（存款、放款）。中介提供期限轉換、風險分攤與資訊生產，並收取利差作為報酬。",
     svg: `
 <svg viewBox="0 0 640 340" role="img" aria-labelledby="dg-system-title" xmlns="http://www.w3.org/2000/svg">
@@ -193,5 +198,111 @@ Object.assign(window.MACRO_DIAGRAMS, {
       ["監理制度", "法規與存款保險", "維持金融穩定與投資人保護。"]
     ],
     note: "直接金融與間接金融不是互斥，而是互補；同一筆資金可能同時經過市場與中介。"
+  }
+,
+  "macro-09#2-2": {
+    sectionTitle: "第3節 菲利浦曲線",
+    kicker: "學派模型 · 新凱因斯",
+    title: "新凱因斯模型：NKPC 與 Taylor 規則",
+    caption: "新凱因斯菲利浦曲線（NKPC）把通膨連到預期通膨與產出缺口：π_t=βE_tπ_{t+1}+κy_t。價格黏性使產出缺口短期影響通膨；預期通膨上升會使 NKPC 上移。右圖的 Taylor 規則把政策利率連到通膨缺口與產出缺口，是央行以利率穩定通膨與產出的簡單回饋規則。兩者共同構成新凱因斯的三方程模型的核心。",
+    formula: String.raw`\pi_t=\beta E_t\pi_{t+1}+\kappa y_t,\qquad i_t=r^*+\pi_t+\phi_\pi(\pi_t-\pi^*)+\phi_y y_t`,
+    svg: `
+<svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-nkpc-title" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-nkpc-title">新凱因斯菲利浦曲線與 Taylor 規則</title>
+  <rect class="dg-panel" x="20" y="20" width="286" height="316" rx="14"></rect>
+  <rect class="dg-panel" x="334" y="20" width="286" height="316" rx="14"></rect>
+  <text class="dg-label" x="163" y="48" text-anchor="middle">NKPC：通膨與產出缺口</text>
+  <text class="dg-label" x="477" y="48" text-anchor="middle">Taylor 規則</text>
+  <line class="dg-axis" x1="56" y1="290" x2="284" y2="290"></line>
+  <line class="dg-axis" x1="56" y1="290" x2="56" y2="70"></line>
+  <text class="dg-label-sm" x="258" y="310">產出缺口 y</text>
+  <text class="dg-label-sm" x="34" y="84">通膨 π</text>
+  <line class="dg-curve" x1="70" y1="258" x2="270" y2="96"></line>
+  <line class="dg-curve-alt" x1="70" y1="222" x2="270" y2="70"></line>
+  <text class="dg-label-sm" x="240" y="96">NKPC</text>
+  <text class="dg-label-sm" x="238" y="68">NKPC₁</text>
+  <line class="dg-arrow" x1="180" y1="126" x2="180" y2="94"></line>
+  <text class="dg-label-sm" x="188" y="110">Eπ↑</text>
+  <circle class="dg-point" cx="170" cy="164" r="4"></circle>
+  <text class="dg-label-sm" x="178" y="158">A</text>
+  <line class="dg-axis" x1="370" y1="290" x2="598" y2="290"></line>
+  <line class="dg-axis" x1="370" y1="290" x2="370" y2="70"></line>
+  <text class="dg-label-sm" x="572" y="310">通膨 π</text>
+  <text class="dg-label-sm" x="348" y="84">政策利率 i</text>
+  <line class="dg-curve" x1="382" y1="250" x2="588" y2="90"></line>
+  <text class="dg-label-sm" x="548" y="84">Taylor rule</text>
+  <line class="dg-guide" x1="470" y1="190" x2="470" y2="290"></line>
+  <line class="dg-guide" x1="370" y1="190" x2="470" y2="190"></line>
+  <circle class="dg-point" cx="470" cy="190" r="4"></circle>
+  <text class="dg-label-sm" x="452" y="310">π*</text>
+  <text class="dg-label-sm" x="350" y="196">i*</text>
+</svg>`,
+    variables: [
+      ["\\pi", "通膨率", "物價上漲率。"],
+      ["E_t\\pi_{t+1}", "預期通膨", "廠商與家計對下一期通膨的預期。"],
+      ["y", "產出缺口", "實際產出相對潛在產出的偏離。"],
+      ["i", "名目政策利率", "央行設定的短期利率。"],
+      ["r^*", "中性實質利率", "長期均衡的實質利率。"],
+      ["\\pi^*", "通膨目標", "央行的目標通膨率。"],
+      ["\\beta", "折現因子", "未來通膨在 NKPC 中的權重。"],
+      ["\\kappa", "菲利浦曲線斜率", "產出缺口對通膨的敏感度。"],
+      ["\\phi_\\pi", "通膨反應係數", "Taylor 規則對通膨缺口的反應。"],
+      ["\\phi_y", "產出反應係數", "Taylor 規則對產出缺口的反應。"]
+    ],
+    parameters: [
+      ["價格黏性", "Calvo／菜單成本", "黏性越高，產出缺口對通膨的影響越強。"],
+      ["預期形成", "前瞻或後顧", "NKPC 強調前瞻預期。"],
+      ["政策反應", "\\phi_\\pi、\\phi_y", "係數越大，政策對缺口反應越強。"],
+      ["政策目標", "\\pi^*、r^*", "不同央行與期間可能不同。"],
+      ["模型封閉性", "三方程模型", "NKPC、IS 曲線與 Taylor 規則共同決定均衡。"]
+    ],
+    note: "NKPC 是通膨方程式，不是單純的短期菲力浦曲線；Taylor 規則是政策反應函數，實際央行仍會考慮金融穩定、匯率與不確定性。"
+  },
+  "macro-10#1-2": {
+    sectionTitle: "第2節 匯率之決定",
+    kicker: "學派模型 · 開放經濟",
+    title: "Mundell-Fleming：IS-LM-BP 與資本移動",
+    caption: "Mundell-Fleming 模型把 IS-LM 擴充到開放經濟：IS* 是商品市場均衡，LM* 是貨幣市場均衡，BP 是國際收支均衡。資本完全移動時，BP 為水平線 i=i*。浮動匯率下，財政擴張推高所得與進口，造成升值與淨出口下降，效果被抵銷；貨幣擴張使利率下降、資本外流與貶值，淨出口增加，效果放大。固定匯率下，央行必須干預維持匯率，貨幣政策失去獨立性，財政政策效果較大。",
+    formula: String.raw`Y=C(Y-T)+I(i)+G+NX(e),\qquad \frac{M}{P}=L(i,Y),\qquad i=i^*`,
+    svg: `
+<svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-mundell-title" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-mundell-title">Mundell-Fleming：IS-LM-BP 模型</title>
+  <line class="dg-axis" x1="70" y1="300" x2="608" y2="300"></line>
+  <line class="dg-axis" x1="70" y1="300" x2="70" y2="32"></line>
+  <text class="dg-label" x="558" y="326">所得 Y</text>
+  <text class="dg-label" x="78" y="24">利率 i</text>
+  <line class="dg-curve" x1="112" y1="92" x2="560" y2="252"></line>
+  <line class="dg-curve-alt" x1="112" y1="252" x2="560" y2="92"></line>
+  <line class="dg-curve-soft" x1="86" y1="170" x2="590" y2="170"></line>
+  <text class="dg-label-sm" x="526" y="274">IS*</text>
+  <text class="dg-label-sm" x="526" y="78">LM*</text>
+  <text class="dg-label-sm" x="508" y="162">BP：i=i*</text>
+  <line class="dg-guide" x1="336" y1="170" x2="336" y2="300"></line>
+  <line class="dg-guide" x1="70" y1="170" x2="336" y2="170"></line>
+  <circle class="dg-point" cx="336" cy="170" r="4.5"></circle>
+  <text class="dg-label-sm" x="344" y="164">E</text>
+  <text class="dg-label-sm" x="324" y="320">Y*</text>
+  <text class="dg-label-sm" x="44" y="176">i*</text>
+  <text class="dg-label-sm" x="84" y="54">資本完全移動</text>
+</svg>`,
+    variables: [
+      ["Y", "所得與產出", "商品市場均衡的產出水準。"],
+      ["i", "本國利率", "貨幣市場與國際資本移動共同決定。"],
+      ["e", "匯率", "直接報價；e 上升代表本國貨幣貶值。"],
+      ["G", "政府支出", "財政政策工具。"],
+      ["T", "稅收", "影響可支配所得。"],
+      ["M/P", "實質貨幣供給", "由央行決定。"],
+      ["L(i,Y)", "貨幣需求", "利率與所得的函數。"],
+      ["NX(e)", "淨出口", "匯率貶值通常改善淨出口。"],
+      ["i^*", "國外利率", "資本完全移動下的國際利率。"]
+    ],
+    parameters: [
+      ["資本移動程度", "BP 斜率", "完全移動時 BP 水平；不完全移動時向上。"],
+      ["匯率制度", "浮動或固定", "決定政策效果與央行干預。"],
+      ["經濟規模", "小型開放經濟", "本國利率不影響國際利率。"],
+      ["價格水準", "短期固定", "Mundell-Fleming 多為短期分析。"],
+      ["政策可信度", "預期與風險溢酬", "影響資本流動與匯率反應。"]
+    ],
+    note: "Mundell-Fleming 是短期、價格固定的開放經濟模型；長期仍須考慮物價、工資與經常帳調整。圖中的 BP 水平線對應資本完全移動。"
   }
 });

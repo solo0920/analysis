@@ -6,6 +6,8 @@ Object.assign(window.MACRO_DIAGRAMS, {
   "macro-12#1": {
     sectionTitle: "第2節 利率決定理論",
     title: "可貸資金市場：政府赤字與利率",
+    kicker: "學派模型 · 古典",
+    formula: String.raw`S(r)=I(r)+(G-T)`,
     caption: "可貸資金供給 S 向上、需求 D 向下，交點決定均衡利率 r₀。本圖採「民間儲蓄與國外資金流入為供給、投資與政府借款為需求」的畫法；政府赤字增加使需求由 D₀ 右移到 D₁，利率上升到 r₁，民間投資可能被排擠。",
     svg: `
 <svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-loanable-title" xmlns="http://www.w3.org/2000/svg">
@@ -55,6 +57,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   "macro-12#2": {
     sectionTitle: "第3節 利率之風險結構",
     title: "風險結構：信用價差與殖利率",
+    formula: String.raw`y_{\text{公司債}}=y_{\text{公債}}+\text{信用價差}`,
     caption: "相同到期日下，不同債券因違約風險、流動性與稅負而有不同殖利率。公司債殖利率高於同期限政府公債，差額就是信用價差。信用評等越差、流動性越低，投資人要求的風險溢酬越高，殖利率也越高。",
     svg: `
 <svg viewBox="0 0 640 340" role="img" aria-labelledby="dg-risk-title" xmlns="http://www.w3.org/2000/svg">
@@ -96,6 +99,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   "macro-12#3": {
     sectionTitle: "第4節 利率之期限結構理論",
     title: "收益率曲線：正常、平坦與倒掛",
+    formula: String.raw`(1+y_n)^n=(1+y_1)(1+f_2)\cdots(1+f_n)`,
     caption: "收益率曲線描述相同信用風險下，不同到期日的殖利率關係。正常曲線向上，反映預期短期利率上升或期限溢酬；平坦曲線代表長短期利率接近；倒掛曲線則短期利率高於長期利率，常被視為景氣衰退的領先訊號。",
     svg: `
 <svg viewBox="0 0 640 340" role="img" aria-labelledby="dg-yieldcurve-title" xmlns="http://www.w3.org/2000/svg">
@@ -130,6 +134,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   "macro-12#4": {
     sectionTitle: "第5節 利率風險管理",
     title: "存續期間與凸性：價格對利率的敏感度",
+    formula: String.raw`\frac{\Delta P}{P}\approx-D^*\Delta y+\frac12\text{Convexity}(\Delta y)^2`,
     caption: "債券價格與殖利率反向且呈凸性。修正存續期間 D* 衡量價格對殖利率的線性敏感度；在 y₀ 的切線斜率為 −D* × P。用切線近似利率小幅變動的價格變化，利率變動越大，實際價格曲線與切線的差距越大，需要凸性項修正。",
     svg: `
 <svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-duration-title" xmlns="http://www.w3.org/2000/svg">
@@ -174,6 +179,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   "macro-13#6": {
     sectionTitle: "第7節 衍生性金融商品",
     title: "選擇權到期價值：買權與賣權",
+    formula: String.raw`\max(S_T-K,0),\qquad \max(K-S_T,0)`,
     caption: "橫軸為到期時標的價格 S_T，縱軸為到期價值。買權到期價值為 max(S_T − K, 0)，標的價格超過履約價 K 才開始有價值；賣權為 max(K − S_T, 0)，標的價格低於 K 才有價值。買方最大損失是權利金，賣方風險可能很大。",
     svg: `
 <svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-option-title" xmlns="http://www.w3.org/2000/svg">

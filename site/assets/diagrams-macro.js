@@ -8,6 +8,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   "macro-01#0": {
     sectionTitle: "第1節 國民所得與GDP",
     title: "兩部門循環流量圖：生產、所得與支出的循環",
+    formula: String.raw`Y=C+I`,
     caption: "家計提供生產要素給廠商，廠商支付要素報酬；廠商生產最終財貨與勞務，家計以消費支出購買。上半部是要素市場，下半部是商品市場。同一條循環可以從生產面、所得面與支出面衡量，理論上三面法的 GDP 會相等。",
     svg: `
 <svg viewBox="0 0 640 340" role="img" aria-labelledby="dg-flow-title" xmlns="http://www.w3.org/2000/svg">
@@ -50,6 +51,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     sectionTitle: "第3節 其他國民所得衡量工具",
     kicker: "教學流程圖",
     title: "國民所得會計帳流程圖：從三面法 GDP 到 PDI",
+    formula: String.raw`GDP=C+I+G+(X-M)`,
     caption: "生產面、支出面與所得面從不同角度衡量同一筆 GDP，事後帳上數值相等。從 GDP 加上國外要素所得淨額 NFIA 得到 GNI，再依序扣除折舊 D 與間接稅淨額 NIT，得到 NNP 與 NI；NI 調整公司稅、未分配盈餘、社會安全捐、移轉支付與淨利息後得到 PI，最後扣除個人直接稅 Tp，得到 PDI = C + S。",
     svg: `
 <svg viewBox="0 0 640 690" role="img" aria-labelledby="dg-ni-title dg-ni-desc" style="max-width:640px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
@@ -157,6 +159,8 @@ Object.assign(window.MACRO_DIAGRAMS, {
   "macro-02#0": {
     sectionTitle: "第1節 均衡所得之決定",
     title: "簡單凱因斯模型：總支出線與45度線決定均衡所得",
+    kicker: "學派模型 · 凱因斯",
+    formula: String.raw`Y=\frac{1}{1-MPC}A_0`,
     caption: "45 度線代表 AE = Y。AE₀ 與 45 度線交於 E₀，決定均衡所得 Y₀。政府支出或自發支出增加會使 AE 平行上移到 AE₁，均衡點移到 E₁，所得由 Y₀ 增加到 Y₁；增加幅度是自發支出變動量乘以乘數。",
     svg: `
 <svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-keynes-title" xmlns="http://www.w3.org/2000/svg">
@@ -204,6 +208,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   "macro-02#2": {
     sectionTitle: "第3節 節儉的矛盾",
     title: "節儉的矛盾：自發儲蓄增加使總支出下移",
+    formula: String.raw`S=-C_0+(1-MPC)Y,\qquad I=S`,
     caption: "家庭想多儲蓄會減少自發消費，使 AE 由 AE₀ 下移到 AE₁，均衡所得從 Y₀ 下降到 Y₁。所得下降後，實際儲蓄未必增加，甚至可能不變或減少，這就是節儉的矛盾。",
     svg: `
 <svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-thrift-title" xmlns="http://www.w3.org/2000/svg">
@@ -250,6 +255,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   "macro-05#0": {
     sectionTitle: "第1節 存款貨幣的創造與貨幣供給",
     title: "存款貨幣的創造：準備金與貨幣乘數",
+    formula: String.raw`M=mB,\qquad m=\frac{1}{rr}`,
     caption: "銀行收到原始存款後，只保留法定準備，其餘放款；放款又會成為其他銀行的存款，如此往復創造存款貨幣。準備金增加 ΔR 後，存款總增加額為 ΔR × 1 ÷ rr；rr 為法定準備率，rr 越低貨幣乘數越大。",
     svg: `
 <svg viewBox="0 0 640 300" role="img" aria-labelledby="dg-money-title" xmlns="http://www.w3.org/2000/svg">

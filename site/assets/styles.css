@@ -2296,6 +2296,33 @@ p {
   line-height: 1.75;
 }
 
+.diagram-formula {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 12px;
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg-deep);
+  overflow-x: auto;
+}
+
+.diagram-formula-label {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.diagram-formula .ratio-math {
+  min-width: 0;
+  font-size: 0.95rem;
+  white-space: normal;
+}
+
 .diagram-tables {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
