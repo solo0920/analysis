@@ -1,6 +1,6 @@
 # 分析師備考站
 
-為「證券投資分析人員考試」整理的靜態學習網站，分成 **總體經濟學**、**投資學**、**會計學** 與 **證券交易相關法規與實務** 四個獨立科目，並附 **107–115 年歷屆考古題練習庫**。各科章節另整合 107–115 年計算／申論題與代表性選擇題的解題過程，以「讀完即可解題」為主。沒有建置流程、沒有框架、沒有後端；所有內容都內嵌在 JavaScript，直接開啟 `index.html` 也能閱讀。全站中文採臺灣繁體中文；英文只保留得主姓名、專有名詞、公式符號、縮寫與技術名稱。
+為「證券投資分析人員考試」整理的靜態學習網站，分成 **總體經濟學**、**投資學**、**會計學** 與 **證券交易相關法規與實務** 四個獨立科目，並附 **107–115 年歷屆考古題練習庫**。各科章節另整合 107–115 年計算／申論題與代表性選擇題的解題過程，以「讀完即可解題」為主。沒有前端框架、沒有後端；效能分包由 Node 腳本事先產生，所有內容都存在 JavaScript／分包檔，直接開啟 `index.html` 也能閱讀。全站中文採臺灣繁體中文；英文只保留得主姓名、專有名詞、公式符號、縮寫與技術名稱。
 
 ## 章節來源與界線
 
@@ -41,6 +41,11 @@ site/
 ├── README.md
 ├── SOURCES.md                  # 來源清單與校對原則
 ├── scripts/
+│   ├── build-core-bundle.js    # 合併／minify 核心科目資料
+│   ├── build-practice-year-bundles.js # 產生年度考古題分包與輕量統計
+│   ├── build-chapter-data-bundles.js  # 產生章節專用考古題／申論題／解題
+│   ├── build-law-article-bundles.js   # 產生法規章節全文分包
+│   ├── build-past-search-index.js     # 產生 3,710 題考古題搜尋索引
 │   ├── validate-content.js     # 章節界線、來源引用、模型圖與內容結構驗證
 │   └── verify-nobel-api.js     # 諾貝爾官方 API 年份與得主比對（需網路）
 └── assets/
@@ -60,10 +65,10 @@ site/
     ├── content-formula-tex.js  # 118 個學習單元的 KaTeX 公式與說明
     ├── content-nobel.js        # 58 屆諾貝爾經濟學獎年表與 17 個圖組
     ├── content-past-exams.js   # 107–115 年、29 次、3,710 題選擇題、章節出處與解答（全部年度用）
-    ├── content-past-exams-year-<年度>.js # 練習頁年度分包（107–115，共 9 檔）
+    ├── content-past-exams-year-<年度>.js # 年度分包（107–115，共 9 檔；註冊 PAST_EXAMS_YEAR_BUNDLES）
     ├── content-past-exam-stats.js # 章節題數統計（科目頁用，核心載入）
-    ├── content-chapter-data-<章節>.js # 章節頁專用考古題／申論題／解題分包
-    ├── content-law-articles-<章節>.js # 法規章節專用全文分包
+    ├── content-chapter-data-<章節>.js # 章節專用考古題／申論題／解題（註冊 CHAPTER_DATA）
+    ├── content-law-articles-<章節>.js # 法規章節全文分包（載入時合併）
     ├── content-past-exams-explanations.js # 3,710 題逐選項參考解析（本站整理，非官方）
     ├── content-past-exams-written.js # 107–115 年四科計算／申論題（348 題完整參考解答）
     ├── content-written-layouts.js # 計算／申論題的表格與分段版型（49 題）
@@ -71,8 +76,9 @@ site/
     ├── content-macro-current.js # 近二年國際金融時事與臺灣總經政策
     ├── content-exam-forecast.js # 單一題庫：97 題組／118 個部分、level／topic／type、38 條整合公式與敏感度
     ├── content-exam-forecast-answers.js # 118 個部分完整參考解答
-    ├── bootstrap.js            # 路由分包載入器；首頁與考前猜題只載入核心 1.34 MB
-    ├── scripts/build-practice-year-bundles.js # 產生年度考古題分包與輕量統計
+    ├── content-core-bundle.js  # 核心科目資料合併／minified bundle（建置產生）
+    ├── content-past-exam-search.js # 3,710 題考古題搜尋索引（按需載入，約 1.5 MB）
+    ├── bootstrap.js            # 路由分包載入器與跨 bundle 原地重整；首頁核心 1.19 MB
     ├── content-chapter-supplements.js # 13 個章節進階補給（總體 6、投資 5、法規 2）
     ├── diagrams-macro.js       # 總體模型圖：第 1、2、5 章
     ├── diagrams-macro-2.js     # 總體模型圖：第 5、6 章
@@ -189,8 +195,8 @@ ExamSolutionData[] {
 }
 ```
 
-- 考古題資料集中於 `site/assets/content-past-exams.js` 的 `window.PAST_EXAMS`；`answer` 是官方可接受答案的字母陣列，例如 `["B", "C"]` 代表 B、C 均給分，`["A", "B", "C", "D"]` 代表 A–D 均給分。練習時選到任一個官方可接受答案都算答對。逐選項解析另存於 `content-past-exams-explanations.js` 的 `window.PAST_EXAM_EXPLANATIONS`，以題目 id 為鍵；練習模式按「看答案」、瀏覽模式按「顯示答案」後顯示，官方答案仍以 `PAST_EXAMS.answer` 為準。解析由官方答案、題幹與章節內容整理，部分批次以自動化工具輔助產生並經結構與抽樣檢核，屬本站參考解析，不是官方公告。
-- 章節解題資料集中於 `site/assets/content-exam-solutions-107.js`–`-115.js` 的 `window.EXAM_SOLUTIONS`，依年度載入（115→107）；`app.js` 以 `chapterId::sectionIndex` 聚合各年資料，`strategies` 去重、`focus` 保留第一筆；`examples` 只存 `questionId`、解題步驟、學習重點與常見錯誤（`trap`），題幹與答案仍由既有題庫提供。計算／申論例題標示「本站參考解答（非官方）」，代表選擇題則連結官方答案。
+- 考古題資料集中於 `site/assets/content-past-exams.js` 的 `window.PAST_EXAMS`；年度分包另註冊 `window.PAST_EXAMS_YEAR_BUNDLES`，章節分包註冊 `window.CHAPTER_DATA`，切換年度或章節時由 `app.js` 重新 hydrate，不整頁重新載入；`answer` 是官方可接受答案的字母陣列，例如 `["B", "C"]` 代表 B、C 均給分，`["A", "B", "C", "D"]` 代表 A–D 均給分。練習時選到任一個官方可接受答案都算答對。逐選項解析另存於 `content-past-exams-explanations.js` 的 `window.PAST_EXAM_EXPLANATIONS`，以題目 id 為鍵；練習模式按「看答案」、瀏覽模式按「顯示答案」後顯示，官方答案仍以 `PAST_EXAMS.answer` 為準。解析由官方答案、題幹與章節內容整理，部分批次以自動化工具輔助產生並經結構與抽樣檢核，屬本站參考解析，不是官方公告。
+- 章節解題資料集中於 `site/assets/content-exam-solutions-107.js`–`-115.js` 的 `window.EXAM_SOLUTIONS`，依年度載入（115→107）；章節頁再由 `CHAPTER_DATA` 取得當前章節的解題，避免切換章節後被其他章節覆寫；`app.js` 以 `chapterId::sectionIndex` 聚合各年資料，`strategies` 去重、`focus` 保留第一筆；`examples` 只存 `questionId`、解題步驟、學習重點與常見錯誤（`trap`），題幹與答案仍由既有題庫提供。計算／申論例題標示「本站參考解答（非官方）」，代表選擇題則連結官方答案。
 - 考古題練習進度存在 `localStorage` 的 `analyst-past-exam-progress-v1`，只記錄每題最後一次選擇的字母；不記錄個資、不送到後端。切換年度、科目、次別或搜尋時，練習與瀏覽模式會保留，按「開始練習」才切回練習模式並跳到目前範圍第一題未作答的題目。
 - `terms` 是 `[名詞, 定義]` 陣列。
 - `table` 可省略；有值時為 `{ title, columns, rows, note }`，在正文後渲染為比較表。桌面版保留表格，390px 改為卡片堆疊；`columns` 與每一列的長度必須一致，表格標題與內容也會併入搜尋索引。
@@ -328,13 +334,17 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 
 2026-10-23 平衡四科考前猜題覆蓋：會計學與證券法規各新增 5 題，會計加入所得稅、股份基礎給付與員工福利、庫藏股與股票股利、合併報表與非控制權益、資本預算與 WACC；法規加入投信投顧設立與人員、境外基金、交易制度、公會自律與業務行為、證交法責任。四科成為總體 34、投資 33、會計 15、法規 15，合計 97 題組／118 個部分；390px／1280px 與 `file://` 0 頁面水平溢出、0 console errors、0 `.katex-error`；驗證器 154,021 項、失敗 0。
 
-2026-10-23 加入路由分包載入：新增 `bootstrap.js` 與 `content-past-exam-stats.js`，把科目內容、考古題、逐選項解析、圖表、法規全文、諾貝爾與時事資料分成 bundle。首頁與考前猜題只載入核心約 **1.34 MB**（原本全站約 7 MB JS），章節頁只載入該章的考古題／申論題／解題與對應圖表，考古題頁只載入選擇題題庫，計算／申論頁只載入申論題與版型，逐選項解析再按需載入。bundle 內所有檔案改為平行下載、依插入順序執行，app 最後執行；滑鼠移到內部連結時會 prefetch 目標 bundle；跨 bundle 導覽時顯示載入提示並重新載入，若遇到暫時性網路錯誤會自動重試，維持 `file://` 可讀；科目頁使用輕量章節統計，不載入 3,710 題完整題庫。390px／1280px 與 `file://` 0 頁面水平溢出、0 console errors、0 `.katex-error`；驗證器 154,272 項、失敗 0。
+2026-10-23 加入路由分包載入與核心 bundle：新增 `bootstrap.js` 與 `content-past-exam-stats.js`，把科目內容合併成 minified core bundle，考古題、逐選項解析、圖表、法規全文、諾貝爾與時事資料分成 bundle。首頁與考前猜題只載入核心約 **1.19 MB**（原本全站約 7 MB JS），章節頁只載入該章的考古題／申論題／解題與對應圖表，考古題頁只載入選擇題題庫，計算／申論頁只載入申論題與版型，逐選項解析再按需載入。bundle 內所有檔案改為平行下載、依插入順序執行，app 最後執行；滑鼠移到內部連結時會 prefetch 目標 bundle；跨 bundle 導覽時載入缺少的 bundle，完成後原地 `hydrateData()` 重新渲染，不再整頁重新載入；若遇到暫時性網路錯誤會自動重試，維持 `file://` 可讀；科目頁使用輕量章節統計，不載入 3,710 題完整題庫。390px／1280px 與 `file://` 0 頁面水平溢出、0 console errors、0 `.katex-error`；驗證器 154,272 項、失敗 0。
 
 2026-10-23 將逐選項解析改為按需載入：考古題頁預設只載入最新年度題庫（約 1.56 MB JS，原本 6.03 MB）；選擇全部年度才載入完整 3,710 題（約 3.31 MB），第一次按「看答案」或「顯示答案」時才載入 1.5 MB 解析；已顯示答案或載入失敗時仍有基本說明與「載入完整解析」按鈕。bundle 內平行下載、app 最後執行；`file://` 與 390px／1280px QA 通過；驗證器 154,272 項、失敗 0。
 
 2026-10-23 將章節頁資料縮到單一章節：新增 `build-chapter-data-bundles.js` 產生 `content-chapter-data-<章節>.js`，只包含該章的考古題、申論題與章節解題；另新增 `build-law-article-bundles.js`，法規章節只載入該章的法規全文。一般章節頁由約 4.73 MB 降至 **約 1.4～1.6 MB**，法規章節頁約 **1.6～2.0 MB**（依章節而異）；分章檔案可由建置腳本重新產生，驗證器也檢查分包是否混入其他章節。390px／1280px 與 `file://` QA 通過；驗證器 154,272 項、失敗 0。
 
 2026-10-23 考前猜題新增搜尋與篩選：可依關鍵字、程度、題型與主題即時過濾 97 題組；顯示目前可見題組數，並提供清除篩選。390px 篩選列自動換行，不造成頁面溢出。
+
+2026-10-23 新增 `build-core-bundle.js`，將核心科目資料包成單一 minified bundle；首頁與考前猜題只需 4 個 JS 請求（bootstrap、core bundle、KaTeX、app），核心 JS 約 1.19 MB。
+
+2026-10-23 完成跨 bundle 原地切換：`bootstrap.js` 在 hash 變更時只載入缺少的 bundle，載入後呼叫 `app.js` 的 `__softRefreshApp()` 重新 hydrate；章節資料以 `CHAPTER_DATA`、年度資料以 `PAST_EXAMS_YEAR_BUNDLES` 註冊，切回已載入的章節或年度仍使用正確資料；全站搜尋可按需載入 3,710 題考古題索引（約 1.5 MB），搜尋結果可直接跳到對應年度題目；考前猜題以 `seriesId` 標記 7 組中度重複題系列；會計科目頁加入 IFRS 18／19 版本查核與金管會連結。390px／1280px 與 `file://` 0 頁面水平溢出、0 console errors、0 `.katex-error`；實測首頁→章節→法規→年度→全部年度→申論題→考前猜題→首頁，`Page.loadEventFired` 僅 1 次；首頁與考前猜題 4 個 JS 請求／約 1.19 MB，年度練習約 1.40 MB，全部年度約 3.15 MB，法規章節約 1.61 MB，申論題頁約 1.74 MB；驗證器 154,272 項、失敗 0。
 
 2026-10-23 將考古題練習庫與申論題頁拆開，並把選擇題再依年度拆分：`/past-exams` 預設只載入最新年度 115 年（約 1.56 MB JS），切換年度時載入對應年度分包；選擇全部年度才載入完整 3,710 題（約 3.31 MB）。`/past-exams/written` 只載入 348 題申論題與版型（約 1.89 MB）。逐選項解析仍維持第一次看答案時才載入。390px／1280px 與 `file://` QA 通過；驗證器 154,272 項、失敗 0。
 

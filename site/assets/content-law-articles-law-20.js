@@ -1,5 +1,5 @@
 // 法規全文（law-20）：章節頁專用分包。
-window.LAW_ARTICLES = {
+window.LAW_ARTICLES = Object.assign(window.LAW_ARTICLES || {}, {
   "law-20": {
     "official": [],
     "external": [
@@ -12,4 +12,4 @@ window.LAW_ARTICLES = {
       }
     ]
   }
-};
+});

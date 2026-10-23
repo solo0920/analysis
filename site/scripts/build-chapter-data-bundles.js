@@ -62,8 +62,14 @@ chapters.forEach(function (chapter) {
   const file = "content-chapter-data-" + chapter.id + ".js";
   fs.writeFileSync(path.join(assetsDir, file),
     "// 章節專用資料（" + chapter.id + "）：考古題／申論題／解題；由 build-chapter-data-bundles.js 產生。\n" +
-    "window.PAST_EXAMS = " + JSON.stringify(pastPayload, null, 2) + ";\n" +
-    "window.PAST_EXAMS_WRITTEN = " + JSON.stringify(writtenPayload, null, 2) + ";\n" +
-    "window.EXAM_SOLUTIONS = " + JSON.stringify(chapterSolutions, null, 2) + ";\n");
+    "window.CHAPTER_DATA = window.CHAPTER_DATA || {};\n" +
+    "window.CHAPTER_DATA[" + JSON.stringify(chapter.id) + "] = {\n" +
+    "  past: " + JSON.stringify(pastPayload, null, 2) + ",\n" +
+    "  written: " + JSON.stringify(writtenPayload, null, 2) + ",\n" +
+    "  solutions: " + JSON.stringify(chapterSolutions, null, 2) + "\n" +
+    "};\n" +
+    "window.PAST_EXAMS = window.CHAPTER_DATA[" + JSON.stringify(chapter.id) + "].past;\n" +
+    "window.PAST_EXAMS_WRITTEN = window.CHAPTER_DATA[" + JSON.stringify(chapter.id) + "].written;\n" +
+    "window.EXAM_SOLUTIONS = window.CHAPTER_DATA[" + JSON.stringify(chapter.id) + "].solutions;\n");
   console.log(chapter.id, pastQuestions.length, writtenQuestions.length, chapterSolutions.length, fs.statSync(path.join(assetsDir, file)).size);
 });

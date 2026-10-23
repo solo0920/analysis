@@ -26,7 +26,7 @@ years.forEach(function (year) {
     questions: (past.questions || []).filter(function (question) { return question.year === year; })
   };
   const file = "content-past-exams-year-" + year + ".js";
-  fs.writeFileSync(path.join(assetsDir, file), "// 考古題年度分包（" + year + "）：由 build-practice-year-bundles.js 產生。\nwindow.PAST_EXAMS = " + JSON.stringify(payload, null, 2) + ";\n");
+  fs.writeFileSync(path.join(assetsDir, file), "// 考古題年度分包（" + year + "）：由 build-practice-year-bundles.js 產生。\nwindow.PAST_EXAMS_YEAR_BUNDLES = window.PAST_EXAMS_YEAR_BUNDLES || {};\nwindow.PAST_EXAMS_YEAR_BUNDLES[" + JSON.stringify(String(year)) + "] = " + JSON.stringify(payload, null, 2) + ";\nwindow.PAST_EXAMS = window.PAST_EXAMS_YEAR_BUNDLES[" + JSON.stringify(String(year)) + "];\n");
   console.log(year, payload.questions.length, fs.statSync(path.join(assetsDir, file)).size);
 });
 

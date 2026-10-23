@@ -6,48 +6,31 @@
 (function () {
   "use strict";
 
-  const content = window.EXAM_CONTENT;
-  const diagrams = Object.assign(
-    {},
-    window.MACRO_DIAGRAMS || {},
-    window.INVESTMENT_DIAGRAMS || {},
-    window.ACCOUNTING_DIAGRAMS || {}
-  );
-  const nobelData = window.NOBEL_DATA || { meta: {}, groups: [], rows: [] };
-  const nobelDiagrams = window.NOBEL_DIAGRAMS || {};
-  const macroEvolution = window.MACRO_EVOLUTION || { meta: {}, stages: [] };
-  const practiceData = window.PAST_EXAMS || { meta: {}, subjects: [], sessions: [], questions: [] };
-  const writtenData = window.PAST_EXAMS_WRITTEN || { meta: {}, questions: [] };
-  const writtenLayouts = window.WRITTEN_LAYOUTS || {};
-  const macroCurrentData = window.MACRO_CURRENT_EVENTS || { meta: {}, events: [] };
-  const forecastData = window.EXAM_FORECAST || { meta: {}, directions: [], questions: [], integrated: [], formulas: { macro: [], investment: [], accounting: [], law: [] }, sensitivity: null, indicators: [], strategy: [] };
-  const forecastAnswers = window.EXAM_FORECAST_ANSWERS || {};
+  let content = window.EXAM_CONTENT;
+  let diagrams = {};
+  let nobelData = window.NOBEL_DATA || { meta: {}, groups: [], rows: [] };
+  let nobelDiagrams = window.NOBEL_DIAGRAMS || {};
+  let macroEvolution = window.MACRO_EVOLUTION || { meta: {}, stages: [] };
+  let practiceData = window.PAST_EXAMS || { meta: {}, subjects: [], sessions: [], questions: [] };
+  let writtenData = window.PAST_EXAMS_WRITTEN || { meta: {}, questions: [] };
+  let writtenLayouts = window.WRITTEN_LAYOUTS || {};
+  let macroCurrentData = window.MACRO_CURRENT_EVENTS || { meta: {}, events: [] };
+  let forecastData = window.EXAM_FORECAST || { meta: {}, directions: [], questions: [], integrated: [], formulas: { macro: [], investment: [], accounting: [], law: [] }, sensitivity: null, indicators: [], strategy: [] };
+  let forecastAnswers = window.EXAM_FORECAST_ANSWERS || {};
+  let practiceSubjects = [];
+  let practiceSessions = [];
+  let practiceQuestions = [];
+  let writtenQuestions = [];
+  let examSolutionBatches = [];
+  let macroCurrentEvents = [];
+  let pastExamStats = null;
+
   const forecastLegacyQuestionMap = new Map();
-  (forecastData.questions || []).forEach(function (question) {
-    (question.legacyIds || [question.id]).forEach(function (legacyId) {
-      forecastLegacyQuestionMap.set(legacyId, question.id);
-    });
-  });
-  const practiceSubjects = Array.isArray(practiceData.subjects) ? practiceData.subjects : [];
-  const practiceSessions = Array.isArray(practiceData.sessions) ? practiceData.sessions : [];
-  const practiceQuestions = Array.isArray(practiceData.questions) ? practiceData.questions : [];
-  const writtenQuestions = Array.isArray(writtenData.questions) ? writtenData.questions : [];
-  const examSolutionBatches = Array.isArray(window.EXAM_SOLUTIONS) ? window.EXAM_SOLUTIONS : [];
   const examSolutionSectionMap = new Map();
   const examQuestionMap = new Map();
-  const macroCurrentEvents = Array.isArray(macroCurrentData.events) ? macroCurrentData.events : [];
   const macroCurrentEventMap = new Map();
-  macroCurrentEvents.forEach(function (event) {
-    macroCurrentEventMap.set(event.id, event);
-  });
   const practiceSessionMap = new Map();
   const practiceSubjectMap = new Map();
-  practiceSessions.forEach(function (session) {
-    practiceSessionMap.set(session.id, session);
-  });
-  practiceSubjects.forEach(function (subject) {
-    practiceSubjectMap.set(subject.id, subject);
-  });
   const practiceChapterStats = new Map();
   const practiceSectionQuestions = new Map();
   const practiceSubjectQuestionTotals = new Map();
@@ -55,122 +38,7 @@
   const writtenChapterStats = new Map();
   const writtenSectionQuestions = new Map();
   const writtenSubjectQuestionTotals = new Map();
-  practiceQuestions.forEach(function (question) {
-    const subjectId = question.subject;
-    practiceSubjectQuestionTotals.set(subjectId, (practiceSubjectQuestionTotals.get(subjectId) || 0) + 1);
-    const sourceIds = Array.isArray(question.sourceIds) && question.sourceIds.length
-      ? Array.from(new Set(question.sourceIds))
-      : (question.sourceId ? [question.sourceId] : []);
-    const sourceRefs = Array.isArray(question.sourceRefs) && question.sourceRefs.length
-      ? question.sourceRefs
-      : sourceIds.map(function (sourceId) { return { chapterId: sourceId, sectionIndex: 1 }; });
-    sourceRefs.forEach(function (ref) {
-      let stats = practiceChapterStats.get(ref.chapterId);
-      if (!stats) {
-        stats = { count: 0, sessions: new Map() };
-        practiceChapterStats.set(ref.chapterId, stats);
-      }
-      stats.count += 1;
-      stats.sessions.set(question.sessionId, (stats.sessions.get(question.sessionId) || 0) + 1);
-      const sectionKey = ref.chapterId + "#" + ref.sectionIndex;
-      if (!practiceSectionQuestions.has(sectionKey)) {
-        practiceSectionQuestions.set(sectionKey, []);
-      }
-      practiceSectionQuestions.get(sectionKey).push(question);
-    });
-  });
-  writtenQuestions.forEach(function (question) {
-    examQuestionMap.set(question.id, question);
-    writtenQuestionMap.set(question.id, question);
-    writtenSubjectQuestionTotals.set(question.subject, (writtenSubjectQuestionTotals.get(question.subject) || 0) + 1);
-    const sourceIds = Array.isArray(question.sourceIds) && question.sourceIds.length
-      ? Array.from(new Set(question.sourceIds))
-      : (question.sourceId ? [question.sourceId] : []);
-    sourceIds.forEach(function (chapterId) {
-      let stats = writtenChapterStats.get(chapterId);
-      if (!stats) {
-        stats = { count: 0, sessions: new Map() };
-        writtenChapterStats.set(chapterId, stats);
-      }
-      stats.count += 1;
-      stats.sessions.set(question.sessionId, (stats.sessions.get(question.sessionId) || 0) + 1);
-    });
-  });
-  practiceQuestions.forEach(function (question) {
-    examQuestionMap.set(question.id, question);
-  });
-  const pastExamStats = window.PAST_EXAM_STATS || null;
-  if (pastExamStats && pastExamStats.practice) {
-    Object.keys(pastExamStats.practice.subjects || {}).forEach(function (subjectId) {
-      practiceSubjectQuestionTotals.set(subjectId, pastExamStats.practice.subjects[subjectId]);
-    });
-    if (!practiceQuestions.length) {
-      Object.keys(pastExamStats.practice.chapters || {}).forEach(function (chapterId) {
-        const stats = pastExamStats.practice.chapters[chapterId];
-        practiceChapterStats.set(chapterId, {
-          count: stats.count || 0,
-          sessions: new Map(Object.keys(stats.sessions || {}).map(function (sessionId) { return [sessionId, stats.sessions[sessionId]]; }))
-        });
-      });
-    }
-  }
-  if (pastExamStats && pastExamStats.written) {
-    Object.keys(pastExamStats.written.subjects || {}).forEach(function (subjectId) {
-      writtenSubjectQuestionTotals.set(subjectId, pastExamStats.written.subjects[subjectId]);
-    });
-    if (!writtenQuestions.length) {
-      Object.keys(pastExamStats.written.chapters || {}).forEach(function (chapterId) {
-        const stats = pastExamStats.written.chapters[chapterId];
-        writtenChapterStats.set(chapterId, {
-          count: stats.count || 0,
-          sessions: new Map(Object.keys(stats.sessions || {}).map(function (sessionId) { return [sessionId, stats.sessions[sessionId]]; }))
-        });
-      });
-    }
-  }
-  examSolutionBatches.forEach(function (batch) {
-    const sections = batch && batch.sections ? batch.sections : {};
-    Object.keys(sections).forEach(function (sectionKey) {
-      const source = sections[sectionKey] || {};
-      let entry = examSolutionSectionMap.get(sectionKey);
-      if (!entry) {
-        entry = { focus: "", strategies: [], examples: [] };
-        examSolutionSectionMap.set(sectionKey, entry);
-      }
-      if (!entry.focus && source.focus) {
-        entry.focus = source.focus;
-      }
-      if (Array.isArray(source.strategies)) {
-        source.strategies.forEach(function (strategy) {
-          if (entry.strategies.indexOf(strategy) === -1) {
-            entry.strategies.push(strategy);
-          }
-        });
-      }
-      if (Array.isArray(source.examples)) {
-        source.examples.forEach(function (example) {
-          entry.examples.push(Object.assign({}, example, {
-            year: example.year || batch.year
-          }));
-        });
-      }
-    });
-  });
-  examSolutionSectionMap.forEach(function (entry, sectionKey) {
-    const normalizedKey = sectionKey.replace("::", "#");
-    entry.examples.forEach(function (example) {
-      const question = writtenQuestionMap.get(example.questionId);
-      if (!question) {
-        return;
-      }
-      const list = writtenSectionQuestions.get(normalizedKey) || [];
-      if (list.some(function (item) { return item.id === question.id; })) {
-        return;
-      }
-      list.push(question);
-      writtenSectionQuestions.set(normalizedKey, list);
-    });
-  });
+
   const main = document.getElementById("main");
   const header = document.querySelector(".site-header");
   const readingProgress = document.getElementById("reading-progress");
@@ -178,41 +46,281 @@
   const menuToggle = document.getElementById("menu-toggle");
   const mainNav = document.getElementById("main-nav");
 
-  if (!content || !Array.isArray(content.subjects) || !main) {
-    return;
-  }
-
   const subjectMap = new Map();
   const chapterMap = new Map();
   const allChapters = [];
+  const sourceMap = new Map();
+  let totalSections = 0;
+  let totalTerms = 0;
 
-  content.subjects.forEach(function (subject) {
-    subject.chapters.forEach(function (chapter, index) {
-      chapter.subjectId = subject.id;
-      chapter.subjectName = subject.name;
-      chapter.subjectClass = subject.colorClass;
-      chapter.indexInSubject = index;
-      chapter.prevId = index > 0 ? subject.chapters[index - 1].id : null;
-      chapter.nextId = index < subject.chapters.length - 1 ? subject.chapters[index + 1].id : null;
-      chapterMap.set(chapter.id, chapter);
-      allChapters.push(chapter);
+  function currentChapterId() {
+    const parts = (location.hash || "").replace(/^#/, "").split("?")[0].split("/").filter(Boolean);
+    return parts[0] === "chapter" ? (parts[1] || "") : "";
+  }
+
+  function resolveWrittenData() {
+    const direct = window.PAST_EXAMS_WRITTEN;
+    if (direct && Array.isArray(direct.questions) && direct.questions.length > 100) {
+      window.PAST_EXAMS_WRITTEN_FULL = direct;
+      return direct;
+    }
+    if (window.PAST_EXAMS_WRITTEN_FULL) return window.PAST_EXAMS_WRITTEN_FULL;
+    return direct || { meta: {}, questions: [] };
+  }
+
+  function resolvePracticeData() {
+    const direct = window.PAST_EXAMS;
+    if (direct && Array.isArray(direct.questions) && direct.questions.length > 1000) {
+      window.PAST_EXAMS_FULL = direct;
+      return direct;
+    }
+    if (window.PAST_EXAMS_FULL) return window.PAST_EXAMS_FULL;
+    const bundles = window.PAST_EXAMS_YEAR_BUNDLES || {};
+    const keys = Object.keys(bundles);
+    if (!keys.length) return direct || { meta: {}, subjects: [], sessions: [], questions: [] };
+    const subjects = [];
+    const sessions = [];
+    const questions = [];
+    const subjectSeen = new Set();
+    const sessionSeen = new Set();
+    const questionSeen = new Set();
+    keys.sort().forEach(function (key) {
+      const bundle = bundles[key] || {};
+      (bundle.subjects || []).forEach(function (subject) {
+        if (subjectSeen.has(subject.id)) return;
+        subjectSeen.add(subject.id);
+        subjects.push(subject);
+      });
+      (bundle.sessions || []).forEach(function (session) {
+        if (sessionSeen.has(session.id)) return;
+        sessionSeen.add(session.id);
+        sessions.push(session);
+      });
+      (bundle.questions || []).forEach(function (question) {
+        if (questionSeen.has(question.id)) return;
+        questionSeen.add(question.id);
+        questions.push(question);
+      });
     });
-    subjectMap.set(subject.id, subject);
-  });
+    return {
+      meta: (bundles[keys[0]] || {}).meta || {},
+      subjects: subjects,
+      sessions: sessions,
+      questions: questions
+    };
+  }
 
-  const sourceMap = new Map(content.sources.map(function (source) {
-    return [source.id, source];
-  }));
+  function hydrateData() {
+    content = window.EXAM_CONTENT;
+    diagrams = Object.assign(
+      {},
+      window.MACRO_DIAGRAMS || {},
+      window.INVESTMENT_DIAGRAMS || {},
+      window.ACCOUNTING_DIAGRAMS || {}
+    );
+    nobelData = window.NOBEL_DATA || { meta: {}, groups: [], rows: [] };
+    nobelDiagrams = window.NOBEL_DIAGRAMS || {};
+    macroEvolution = window.MACRO_EVOLUTION || { meta: {}, stages: [] };
+    const chapterId = currentChapterId();
+    const chapterData = chapterId && window.CHAPTER_DATA ? window.CHAPTER_DATA[chapterId] : null;
+    practiceData = chapterData && chapterData.past ? chapterData.past : resolvePracticeData();
+    writtenData = chapterData && chapterData.written ? chapterData.written : resolveWrittenData();
+    writtenLayouts = window.WRITTEN_LAYOUTS || {};
+    macroCurrentData = window.MACRO_CURRENT_EVENTS || { meta: {}, events: [] };
+    forecastData = window.EXAM_FORECAST || { meta: {}, directions: [], questions: [], integrated: [], formulas: { macro: [], investment: [], accounting: [], law: [] }, sensitivity: null, indicators: [], strategy: [] };
+    forecastAnswers = window.EXAM_FORECAST_ANSWERS || {};
+    practiceSubjects = Array.isArray(practiceData.subjects) ? practiceData.subjects : [];
+    practiceSessions = Array.isArray(practiceData.sessions) ? practiceData.sessions : [];
+    practiceQuestions = Array.isArray(practiceData.questions) ? practiceData.questions : [];
+    writtenQuestions = Array.isArray(writtenData.questions) ? writtenData.questions : [];
+    examSolutionBatches = chapterData && Array.isArray(chapterData.solutions)
+      ? chapterData.solutions
+      : (Array.isArray(window.EXAM_SOLUTIONS) ? window.EXAM_SOLUTIONS : []);
+    macroCurrentEvents = Array.isArray(macroCurrentData.events) ? macroCurrentData.events : [];
+    pastExamStats = window.PAST_EXAM_STATS || null;
 
-  const totalSections = allChapters.reduce(function (count, chapter) {
-    return count + chapter.sections.length;
-  }, 0);
+    forecastLegacyQuestionMap.clear();
+    examSolutionSectionMap.clear();
+    examQuestionMap.clear();
+    macroCurrentEventMap.clear();
+    practiceSessionMap.clear();
+    practiceSubjectMap.clear();
+    practiceChapterStats.clear();
+    practiceSectionQuestions.clear();
+    practiceSubjectQuestionTotals.clear();
+    writtenQuestionMap.clear();
+    writtenChapterStats.clear();
+    writtenSectionQuestions.clear();
+    writtenSubjectQuestionTotals.clear();
+    subjectMap.clear();
+    chapterMap.clear();
+    allChapters.length = 0;
+    sourceMap.clear();
 
-  const totalTerms = allChapters.reduce(function (count, chapter) {
-    return count + chapter.sections.reduce(function (sectionCount, section) {
-      return sectionCount + section.terms.length;
+    (forecastData.questions || []).forEach(function (question) {
+      (question.legacyIds || [question.id]).forEach(function (legacyId) {
+        forecastLegacyQuestionMap.set(legacyId, question.id);
+      });
+    });
+
+    macroCurrentEvents.forEach(function (event) {
+      macroCurrentEventMap.set(event.id, event);
+    });
+    practiceSessions.forEach(function (session) {
+      practiceSessionMap.set(session.id, session);
+    });
+    practiceSubjects.forEach(function (subject) {
+      practiceSubjectMap.set(subject.id, subject);
+    });
+    practiceQuestions.forEach(function (question) {
+      const subjectId = question.subject;
+      practiceSubjectQuestionTotals.set(subjectId, (practiceSubjectQuestionTotals.get(subjectId) || 0) + 1);
+      const sourceIds = Array.isArray(question.sourceIds) && question.sourceIds.length
+        ? Array.from(new Set(question.sourceIds))
+        : (question.sourceId ? [question.sourceId] : []);
+      const sourceRefs = Array.isArray(question.sourceRefs) && question.sourceRefs.length
+        ? question.sourceRefs
+        : sourceIds.map(function (sourceId) { return { chapterId: sourceId, sectionIndex: 1 }; });
+      sourceRefs.forEach(function (ref) {
+        let stats = practiceChapterStats.get(ref.chapterId);
+        if (!stats) {
+          stats = { count: 0, sessions: new Map() };
+          practiceChapterStats.set(ref.chapterId, stats);
+        }
+        stats.count += 1;
+        stats.sessions.set(question.sessionId, (stats.sessions.get(question.sessionId) || 0) + 1);
+        const sectionKey = ref.chapterId + "#" + ref.sectionIndex;
+        if (!practiceSectionQuestions.has(sectionKey)) {
+          practiceSectionQuestions.set(sectionKey, []);
+        }
+        practiceSectionQuestions.get(sectionKey).push(question);
+      });
+    });
+    writtenQuestions.forEach(function (question) {
+      examQuestionMap.set(question.id, question);
+      writtenQuestionMap.set(question.id, question);
+      writtenSubjectQuestionTotals.set(question.subject, (writtenSubjectQuestionTotals.get(question.subject) || 0) + 1);
+      const sourceIds = Array.isArray(question.sourceIds) && question.sourceIds.length
+        ? Array.from(new Set(question.sourceIds))
+        : (question.sourceId ? [question.sourceId] : []);
+      sourceIds.forEach(function (chapterId) {
+        let stats = writtenChapterStats.get(chapterId);
+        if (!stats) {
+          stats = { count: 0, sessions: new Map() };
+          writtenChapterStats.set(chapterId, stats);
+        }
+        stats.count += 1;
+        stats.sessions.set(question.sessionId, (stats.sessions.get(question.sessionId) || 0) + 1);
+      });
+    });
+    practiceQuestions.forEach(function (question) {
+      examQuestionMap.set(question.id, question);
+    });
+    if (pastExamStats && pastExamStats.practice) {
+      Object.keys(pastExamStats.practice.subjects || {}).forEach(function (subjectId) {
+        practiceSubjectQuestionTotals.set(subjectId, pastExamStats.practice.subjects[subjectId]);
+      });
+      if (!practiceQuestions.length) {
+        Object.keys(pastExamStats.practice.chapters || {}).forEach(function (chapterId) {
+          const stats = pastExamStats.practice.chapters[chapterId];
+          practiceChapterStats.set(chapterId, {
+            count: stats.count || 0,
+            sessions: new Map(Object.keys(stats.sessions || {}).map(function (sessionId) { return [sessionId, stats.sessions[sessionId]]; }))
+          });
+        });
+      }
+    }
+    if (pastExamStats && pastExamStats.written) {
+      Object.keys(pastExamStats.written.subjects || {}).forEach(function (subjectId) {
+        writtenSubjectQuestionTotals.set(subjectId, pastExamStats.written.subjects[subjectId]);
+      });
+      if (!writtenQuestions.length) {
+        Object.keys(pastExamStats.written.chapters || {}).forEach(function (chapterId) {
+          const stats = pastExamStats.written.chapters[chapterId];
+          writtenChapterStats.set(chapterId, {
+            count: stats.count || 0,
+            sessions: new Map(Object.keys(stats.sessions || {}).map(function (sessionId) { return [sessionId, stats.sessions[sessionId]]; }))
+          });
+        });
+      }
+    }
+    examSolutionBatches.forEach(function (batch) {
+      const sections = batch && batch.sections ? batch.sections : {};
+      Object.keys(sections).forEach(function (sectionKey) {
+        const source = sections[sectionKey] || {};
+        let entry = examSolutionSectionMap.get(sectionKey);
+        if (!entry) {
+          entry = { focus: "", strategies: [], examples: [] };
+          examSolutionSectionMap.set(sectionKey, entry);
+        }
+        if (!entry.focus && source.focus) {
+          entry.focus = source.focus;
+        }
+        if (Array.isArray(source.strategies)) {
+          source.strategies.forEach(function (strategy) {
+            if (entry.strategies.indexOf(strategy) === -1) {
+              entry.strategies.push(strategy);
+            }
+          });
+        }
+        if (Array.isArray(source.examples)) {
+          source.examples.forEach(function (example) {
+            entry.examples.push(Object.assign({}, example, {
+              year: example.year || batch.year
+            }));
+          });
+        }
+      });
+    });
+    examSolutionSectionMap.forEach(function (entry, sectionKey) {
+      const normalizedKey = sectionKey.replace("::", "#");
+      entry.examples.forEach(function (example) {
+        const question = writtenQuestionMap.get(example.questionId);
+        if (!question) {
+          return;
+        }
+        const list = writtenSectionQuestions.get(normalizedKey) || [];
+        if (list.some(function (item) { return item.id === question.id; })) {
+          return;
+        }
+        list.push(question);
+        writtenSectionQuestions.set(normalizedKey, list);
+      });
+    });
+
+    if (content && Array.isArray(content.subjects)) {
+      content.subjects.forEach(function (subject) {
+        subject.chapters.forEach(function (chapter, index) {
+          chapter.subjectId = subject.id;
+          chapter.subjectName = subject.name;
+          chapter.subjectClass = subject.colorClass;
+          chapter.indexInSubject = index;
+          chapter.prevId = index > 0 ? subject.chapters[index - 1].id : null;
+          chapter.nextId = index < subject.chapters.length - 1 ? subject.chapters[index + 1].id : null;
+          chapterMap.set(chapter.id, chapter);
+          allChapters.push(chapter);
+        });
+        subjectMap.set(subject.id, subject);
+      });
+      (content.sources || []).forEach(function (source) {
+        sourceMap.set(source.id, source);
+      });
+    }
+    totalSections = allChapters.reduce(function (count, chapter) {
+      return count + chapter.sections.length;
     }, 0);
-  }, 0);
+    totalTerms = allChapters.reduce(function (count, chapter) {
+      return count + chapter.sections.reduce(function (sectionCount, section) {
+        return sectionCount + section.terms.length;
+      }, 0);
+    }, 0);
+  }
+
+  hydrateData();
+
+  if (!content || !Array.isArray(content.subjects) || !main) {
+    return;
+  }
 
   const PROGRESS_KEY = "analyst-prep-progress-v2";
   const THEME_KEY = "analyst-theme";
@@ -235,6 +343,8 @@
   const searchCloseButton = document.getElementById("search-close");
   const searchInput = document.getElementById("search-input");
   const searchResults = document.getElementById("search-results");
+  const searchPastLoadButton = document.getElementById("search-past-load");
+  let pastSearchLoaded = false;
   const toastElement = document.getElementById("toast");
 
   const searchState = {
@@ -2373,6 +2483,9 @@
     if (question.topic) {
       meta.push('<span><strong>主題</strong> ' + escapeHtml(question.topic) + "</span>");
     }
+    if (question.seriesTitle) {
+      meta.push('<span><strong>系列</strong> ' + escapeHtml(question.seriesTitle) + "</span>");
+    }
     const chapters = Array.isArray(question.chapters) ? question.chapters : [];
     const chapterLinks = chapters.map(function (chapterId) {
       const chapter = getChapter(chapterId);
@@ -2448,6 +2561,7 @@
       '    <p class="forecast-scenario">' + renderInlineMath(question.scenario) + "</p>",
       '    <div class="forecast-question-meta">',
       question.topic ? '      <span><strong>主題</strong> ' + escapeHtml(question.topic) + "</span>" : "",
+      question.seriesTitle ? '      <span><strong>系列</strong> ' + escapeHtml(question.seriesTitle) + "</span>" : "",
       chapterLinks ? '      <span class="forecast-related-chapters"><strong>相關章節</strong> ' + chapterLinks + "</span>" : "",
       event ? '      <span><strong>相關時事</strong> <a href="#/macro-current?event=' + encodeURIComponent(event.id) + '">' + escapeHtml(event.title) + "</a></span>" : "",
       "    </div>",
@@ -3314,7 +3428,6 @@
       const targetYear = String(yearJump.dataset.practiceYearJump);
       if (String(practiceState.year) !== targetYear) {
         window.location.hash = "#/past-exams?year=" + targetYear;
-        window.location.reload();
         return true;
       }
       practiceState.session = "all";
@@ -3333,7 +3446,6 @@
       const targetYear = yearButton.dataset.practiceYear === "all" ? "all" : String(yearButton.dataset.practiceYear);
       if (String(practiceState.year) !== targetYear) {
         window.location.hash = "#/past-exams?year=" + targetYear;
-        window.location.reload();
         return true;
       }
       practiceState.session = "all";
@@ -3729,6 +3841,7 @@
       subject.id === "macro" ? renderMacroEvolutionCta() : "",
       subject.id === "macro" ? renderNobelCta() : "",
       subject.id === "investment" ? renderInvestmentFormulasCard() : "",
+      subject.id === "accounting" ? '<div class="notice"><strong>IFRS 版本查核：</strong>2026 年考試仍請以金管會當年度認可之 IFRS 正體中文版為準。IASB 發布之 IFRS 18「財務報表之表達與揭露」自 2027-01-01 起適用；金管會規劃臺灣公開發行公司於 117 會計年度（2028 年）接軌，符合條件者可於認可後提前適用。IFRS 19 自 2027-01-01 起適用，屬符合條件子公司之減少揭露選項。本章節以現行教材與 IFRS 9／15／16／10 等為主，考前請再核對 <a href="https://www.sfb.gov.tw/ch/home.jsp?id=931&amp;parentpath=0%2C2%2C929" target="_blank" rel="noopener noreferrer">金管會 IFRS 推動情形</a>。</div>' : "",
       '  <div class="subject-parts">' + partMarkup + "</div>",
       subject.note
         ? '  <div class="notice"><strong>目錄說明：</strong>' + escapeHtml(subject.note) + "</div>"
@@ -4467,6 +4580,27 @@
 
   /* ----------------------------- search ----------------------------- */
 
+  function appendPastExamSearchIndex() {
+    if (pastSearchLoaded) return;
+    const data = Array.isArray(window.PAST_EXAM_SEARCH_INDEX) ? window.PAST_EXAM_SEARCH_INDEX : [];
+    const subjectNames = { macro: "總體經濟學", investment: "投資學", accounting: "會計學", law: "證券法規" };
+    data.forEach(function (question) {
+      searchState.index.push({
+        type: "考古",
+        typeClass: "",
+        title: String(question.stem || "").slice(0, 90),
+        sub: (question.year || "") + " 年 · " + (subjectNames[question.subject] || question.subject) + " · 考古題",
+        text: [question.stem].concat(question.options || []).join(" "),
+        href: "#/past-exams?question=" + encodeURIComponent(question.id),
+        nTitle: normalize(String(question.stem || "")),
+        nSub: normalize((question.year || "") + " " + (subjectNames[question.subject] || question.subject)),
+        nText: normalize([question.stem].concat(question.options || []).join(" "))
+      });
+    });
+    pastSearchLoaded = true;
+    if (searchPastLoadButton) searchPastLoadButton.hidden = true;
+  }
+
   function buildSearchIndex() {
     const index = [];
 
@@ -4527,6 +4661,10 @@
         nText: normalize(entry.text)
       });
     });
+    if (Array.isArray(window.PAST_EXAM_SEARCH_INDEX) && window.PAST_EXAM_SEARCH_INDEX.length) {
+      pastSearchLoaded = false;
+      appendPastExamSearchIndex();
+    }
   }
 
   function performSearch(query) {
@@ -4631,6 +4769,7 @@
     }
     searchOverlay.hidden = false;
     document.body.classList.add("search-open");
+    if (searchPastLoadButton && pastSearchLoaded) searchPastLoadButton.hidden = true;
     searchInput.value = "";
     renderSearchResults("");
     window.setTimeout(function () {
@@ -4796,7 +4935,12 @@
   function bindEvents() {
     window.addEventListener("hashchange", function () {
       closeSearch();
+      hydrateData();
+      practiceState = null;
+      writtenState = null;
       render();
+      updateReadingProgress();
+      window.scrollTo({ top: 0, behavior: "auto" });
     });
 
     window.addEventListener("scroll", updateReadingProgress, { passive: true });
@@ -4853,6 +4997,23 @@
           event.preventDefault();
           closeSearch();
         }
+      });
+    }
+
+    if (searchPastLoadButton) {
+      searchPastLoadButton.addEventListener("click", function () {
+        if (pastSearchLoaded) return;
+        searchPastLoadButton.disabled = true;
+        searchPastLoadButton.textContent = "考古題索引載入中…";
+        const load = typeof window.__loadPastSearch === "function" ? window.__loadPastSearch() : Promise.resolve();
+        load.then(function () {
+          appendPastExamSearchIndex();
+          searchPastLoadButton.textContent = "已載入考古題搜尋";
+          renderSearchResults(searchInput.value);
+        }).catch(function () {
+          searchPastLoadButton.disabled = false;
+          searchPastLoadButton.textContent = "考古題索引載入失敗，重試";
+        });
       });
     }
 
@@ -4971,6 +5132,16 @@
   }
 
   /* ----------------------------- init ----------------------------- */
+
+  window.__softRefreshApp = function () {
+    hydrateData();
+    practiceState = null;
+    writtenState = null;
+    buildSearchIndex();
+    render();
+    updateReadingProgress();
+    window.scrollTo({ top: 0, behavior: "auto" });
+  };
 
   function init() {
     buildSearchIndex();

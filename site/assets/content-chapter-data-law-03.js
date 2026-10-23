@@ -1,5 +1,7 @@
 // 章節專用資料（law-03）：考古題／申論題／解題；由 build-chapter-data-bundles.js 產生。
-window.PAST_EXAMS = {
+window.CHAPTER_DATA = window.CHAPTER_DATA || {};
+window.CHAPTER_DATA["law-03"] = {
+  past: {
   "meta": {
     "title": "證券投資分析人員歷屆考古題練習庫",
     "examName": "證券投資分析人員資格測驗",
@@ -5311,8 +5313,8 @@ window.PAST_EXAMS = {
       ]
     }
   ]
-};
-window.PAST_EXAMS_WRITTEN = {
+},
+  written: {
   "meta": {
     "title": "證券投資分析人員 107–115 年計算與申論題",
     "updated": "2026-10-23",
@@ -5515,8 +5517,8 @@ window.PAST_EXAMS_WRITTEN = {
       "note": "本站參考解答（非官方）"
     }
   ]
-};
-window.EXAM_SOLUTIONS = [
+},
+  solutions: [
   {
     "year": 115,
     "label": "115 年",
@@ -5733,4 +5735,8 @@ window.EXAM_SOLUTIONS = [
       }
     }
   }
-];
+]
+};
+window.PAST_EXAMS = window.CHAPTER_DATA["law-03"].past;
+window.PAST_EXAMS_WRITTEN = window.CHAPTER_DATA["law-03"].written;
+window.EXAM_SOLUTIONS = window.CHAPTER_DATA["law-03"].solutions;

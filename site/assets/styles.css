@@ -7863,3 +7863,18 @@ html.is-routing body {
     margin-left: 0;
   }
 }
+
+.search-past-action {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 0.74rem;
+  line-height: 1.5;
+}
+
+.search-past-action .btn {
+  flex: 0 0 auto;
+}

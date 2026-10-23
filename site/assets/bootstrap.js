@@ -1,34 +1,16 @@
 // 路由分包載入器：先載入共用科目內容，再依目前 hash 載入考古題、圖表、法規全文等大型資料。
-// 不使用 fetch，維持 file:// 可直接開啟；跨分包導覽時以重新載入方式切換。
+// 不使用 fetch，維持 file:// 可直接開啟；跨分包導覽時載入缺少的資料後原地重新整理。
 
 (function () {
   "use strict";
 
   const bundles = {
-    core: [
-      "content-macro.js",
-      "content-macro-2.js",
-      "content-macro-3.js",
-      "content-investment.js",
-      "content-investment-formulas.js",
-      "content-investment-technical.js",
-      "content-accounting.js",
-      "content-accounting-2.js",
-      "content-law.js",
-      "content-chapter-supplements.js",
-      "content-law-deepdive.js",
-      "content-law-deepdive-2.js",
-      "content-law-quickread.js",
-      "content-formula-tex.js",
-      "content.js",
-      "content-exam-forecast.js",
-      "content-exam-forecast-answers.js",
-      "content-past-exam-stats.js"
-    ],
+    core: ["content-core-bundle.js"],
     app: ["katex/katex.min.js", "app.js"],
     pastAll: ["content-past-exams.js"],
     pastWritten: ["content-past-exams-written.js", "content-written-layouts.js"],
     explanations: ["content-past-exams-explanations.js"],
+    pastSearch: ["content-past-exam-search.js"],
     diagrams: [
       "diagrams-macro.js",
       "diagrams-macro-2.js",
@@ -251,6 +233,10 @@
     return loadBundle("explanations");
   };
 
+  window.__loadPastSearch = function () {
+    return loadBundle("pastSearch");
+  };
+
   const prefetched = new Set();
   function prefetchHref(href) {
     if (!href || href.indexOf("#/") !== 0) return;
@@ -279,13 +265,29 @@
     if (link) prefetchHref(link.getAttribute("href"));
   });
 
-  window.addEventListener("hashchange", function () {
+  let transitionLoading = false;
+
+  window.addEventListener("hashchange", function (event) {
     const required = requiredBundles();
-    const missing = required.some(function (name) { return !loaded.has(name); });
-    if (missing) {
-      showLoader("載入頁面資料…");
+    const missing = required.filter(function (name) { return !loaded.has(name); });
+    if (!missing.length) return;
+    event.stopImmediatePropagation();
+    if (transitionLoading) return;
+    transitionLoading = true;
+    showLoader("載入頁面資料…");
+    Promise.all(missing.map(loadBundle)).then(function () {
+      transitionLoading = false;
+      hideLoader();
+      if (typeof window.__softRefreshApp === "function") {
+        window.__softRefreshApp();
+      } else {
+        location.reload();
+      }
+    }).catch(function (error) {
+      transitionLoading = false;
+      console.error(error);
       location.reload();
-    }
+    });
   });
 
   boot();

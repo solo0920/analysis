@@ -1,8 +1,8 @@
 # 分析師備考站 — 系統架構
 
-更新：2026-10-21
+更新：2026-10-23
 
-本專案是**純靜態、無建置流程**的單頁網站。`site/index.html` 只提供固定外殼，所有頁面由 `site/assets/app.js` 依 hash route 渲染到 `#main`。內容以 `window.*` 全域物件在瀏覽器載入，沒有後端、資料庫或執行時 API 請求。
+本專案是**純靜態單頁網站**。`site/index.html` 只提供固定外殼，所有頁面由 `site/assets/app.js` 依 hash route 渲染到 `#main`。內容以 `window.*` 全域物件在瀏覽器載入，沒有後端、資料庫或執行時 API 請求；效能分包檔由 Node 建置腳本事先產生，瀏覽器端不需要建置。
 
 ## 1. 系統概覽
 
@@ -84,54 +84,52 @@ flowchart TB
   class Validate,Verify tooling;
 ```
 
-## 2. 載入順序
+## 2. 載入順序與分包
 
-`index.html` 的腳本順序是資料契約的一部分：先建立各科目與公式資料，再由 `content.js` 聚合；圖表與諾貝爾資料最後載入，`app.js` 才能讀到完整的 `window.*`。
+`index.html` 先載入 `bootstrap.js`；bootstrap 依目前 hash 決定需要的 bundle，下載完成後才載入 KaTeX 與 `app.js`。首頁與考前猜題只需要核心 bundle；章節、年度考古題、法規全文、圖表與搜尋索引再按路由載入。所有 script 使用 `async=false`：可平行下載，但依插入順序執行。
 
 ```mermaid
 flowchart LR
-  HTML["index.html"] --> Macro["content-macro.js<br/>content-macro-2.js<br/>content-macro-3.js"]
-  Macro --> Evolution["content-macro-evolution.js"]
-  Evolution --> Investment["content-investment.js"]
-  Investment --> Accounting["content-accounting.js<br/>content-accounting-2.js"]
-  Accounting --> Law["content-law.js"]
-  Law --> LawArticles["content-law-articles.js"]
-  LawArticles --> Formula["content-formula-tex.js"]
-  Formula --> Content["content.js<br/>聚合四個科目"]
-  Content --> MacroDiagrams["diagrams-macro*.js"]
-  MacroDiagrams --> Nobel["content-nobel.js"]
-  Nobel --> NobelDiagrams["diagrams-nobel.js"]
-  NobelDiagrams --> Katex["katex.min.js"]
-  Katex --> App["app.js"]
+  HTML["index.html"] --> B["bootstrap.js<br/>路由判斷／載入缺少 bundle"]
+  B --> Core["content-core-bundle.js<br/>科目內容＋考前猜題＋統計"]
+  Core --> App["katex.min.js → app.js"]
+  B -.->|章節| Chapter["content-chapter-data-<id>.js"]
+  B -.->|年度| Year["content-past-exams-year-YYYY.js"]
+  B -.->|全部年度| All["content-past-exams.js"]
+  B -.->|法規| Law["content-law-articles-<id>.js"]
+  B -.->|圖表| Diagrams["diagrams-*.js"]
+  B -.->|按需| Search["content-past-exam-search.js"]
 ```
 
-> `content-macro-2.js`、`content-macro-3.js` 依賴 `MACRO_SUBJECT`；`content-accounting-2.js` 依賴 `ACCOUNTING_SUBJECT`；`content.js` 依賴四個科目都已存在。這個順序不可任意調換。
+核心 bundle 由 `build-core-bundle.js` 合併並以 esbuild minify（`--charset=utf8`）；年度、章節、法規與搜尋索引分別由 `build-practice-year-bundles.js`、`build-chapter-data-bundles.js`、`build-law-article-bundles.js`、`build-past-search-index.js` 產生。
 
-## 3. 執行時請求流程
+## 3. 執行時請求與跨 bundle 切換
 
 ```mermaid
 sequenceDiagram
   autonumber
   actor U as 使用者
   participant H as index.html
-  participant A as app.js
+  participant B as bootstrap.js
   participant D as 全域資料
-  participant K as KaTeX
+  participant A as app.js
   participant S as localStorage
 
-  U->>H: 開啟 index.html#/subject/macro
-  H->>S: 讀取 analyst-theme
-  H->>H: 依序載入 content、diagrams、KaTeX
-  H->>A: 載入 app.js
-  A->>D: 讀取 EXAM_CONTENT、MACRO_DIAGRAMS、MACRO_EVOLUTION 等
-  A->>A: parseRoute()
-  A->>A: renderSubject() / renderChapter() / renderMacroModels() 等
-  A->>K: renderToString(TeX)
-  K-->>A: 公式 HTML
-  A->>S: 讀取 analyst-prep-progress-v2
-  A-->>U: 寫入 #main、更新導覽與閱讀進度
-  A->>A: 處理 ?evolution=1、?model=、?year= 等深層連結
+  U->>H: 開啟 index.html#/chapter/law-01
+  H->>B: 載入 bootstrap.js
+  B->>B: requiredBundlesFor(hash)
+  B->>D: 載入核心、章節、法規全文、圖表、KaTeX、app.js
+  A->>D: hydrateData() 建立科目／章節／練習索引
+  A->>A: renderChapter()
+  A->>S: 讀取進度與主題
+  U->>B: 點擊年度或另一章節（hashchange）
+  B->>B: 只載入缺少的 bundle
+  B->>A: __softRefreshApp()
+  A->>D: 重新 hydrate，不重新載入頁面
+  A->>A: render() 新路由
 ```
+
+跨 bundle 導覽不再 `location.reload()`；bootstrap 以 `stopImmediatePropagation()` 暫停 app 對舊資料的 render，待缺少 bundle 載入後呼叫 `window.__softRefreshApp()`。章節資料註冊於 `window.CHAPTER_DATA`、年度資料註冊於 `window.PAST_EXAMS_YEAR_BUNDLES`，因此切回已載入的章節或年度仍能取得正確資料。載入失敗時保留重試與最後的整頁重新載入 fallback。
 
 ## 4. 路由與視圖
 
@@ -139,7 +137,12 @@ sequenceDiagram
 | --- | --- | --- |
 | `#/` | `renderHome()` | `EXAM_CONTENT` |
 | `#/subject/:id` | `renderSubject()` | 科目內容、模型圖、學派演進圖、投資學公式 |
-| `#/chapter/:id` | `renderChapter()` | 章節內容、KaTeX、法規全文、模型圖 |
+| `#/chapter/:id` | `renderChapter()` | 章節內容、KaTeX、法規全文、模型圖、`CHAPTER_DATA` |
+| `#/past-exams` | `renderPastExams()` | 年度分包、`PAST_EXAMS_YEAR_BUNDLES`、統計 |
+| `#/past-exams/written` | `renderWrittenExams()` | `PAST_EXAMS_WRITTEN`、版型 |
+| `#/exam-forecast` | `renderExamForecastPage()` | 核心 `EXAM_FORECAST`、`EXAM_FORECAST_ANSWERS` |
+| `#/investment/formulas` | `renderInvestmentFormulasPage()` | 投資學公式庫與技術指標 |
+| `#/macro-current` | `renderMacroCurrentEvents()` | `MACRO_CURRENT_EVENTS` |
 | `#/models/macro` | `renderMacroModels()` | `MACRO_DIAGRAMS`、`NOBEL_DATA`、`NOBEL_DIAGRAMS` |
 | `#/nobel` | `renderNobelPage()` | `NOBEL_DATA`、`NOBEL_DIAGRAMS` |
 | `#/sources` | `renderSources()` | `EXAM_CONTENT.sources` |
@@ -173,6 +176,12 @@ sequenceDiagram
 | `window.MACRO_EVOLUTION` | `content-macro-evolution.js` | 6 階段、10 節點、模型錨點與諾貝爾年份 |
 | `window.NOBEL_DATA` | `content-nobel.js` | 58 屆諾貝爾年表、17 個圖組 |
 | `window.NOBEL_DIAGRAMS` | `diagrams-nobel.js` | 17 組諾貝爾模型 SVG |
+| `window.EXAM_FORECAST` | `content-exam-forecast.js` | 97 題組／118 個部分、系列標籤與整合公式 |
+| `window.PAST_EXAM_STATS` | `content-past-exam-stats.js` | 章節／年度／科目題數統計（核心） |
+| `window.PAST_EXAMS_YEAR_BUNDLES` | `content-past-exams-year-*.js` | 已載入年度題庫，供年度切換合併 |
+| `window.CHAPTER_DATA` | `content-chapter-data-*.js` | 各章考古題／申論題／解題 |
+| `window.PAST_EXAM_SEARCH_INDEX` | `content-past-exam-search.js` | 3,710 題考古題搜尋索引（按需） |
+| `window.LAW_ARTICLES` | `content-law-articles-*.js` | 法規全文；章節分包載入時合併 |
 
 單一來源規則：
 
@@ -181,6 +190,7 @@ sequenceDiagram
 - 諾貝爾年表頁與模型總覽的諾貝爾區都讀同一份 `NOBEL_DATA`、`NOBEL_DIAGRAMS`。
 - 投資學比例公式與選擇權公式各自只有一份資料，章節頁與科目頁共用。
 - 驗證腳本以 Node `vm` 載入同一批 `site/assets/*.js`，不維護第二套內容模型。
+- 模組化資料維持「單一來源」：年度與章節分包只是同一份完整題庫的切片；搜尋索引由完整題庫產生，不改寫題目。
 
 ## 6. 驗證與開發工具
 
@@ -188,7 +198,7 @@ sequenceDiagram
 flowchart LR
   Sources["documents/*.md<br/>章節目錄與界線"] --> Validate["validate-content.js"]
   Assets["site/assets/*.js<br/>content、diagrams、formula"] --> Validate
-  Validate --> Checks["5,245 項結構檢查<br/>章節／公式／模型／法規／繁中守門"]
+  Validate --> Checks["154,272 項結構檢查<br/>章節／公式／模型／法規／分包／繁中守門"]
   Checks -->|失敗| Fail["非 0 結束碼<br/>列出失敗訊息"]
   Checks -->|通過| Pass["結束碼 0<br/>可提交"]
   Nobel["content-nobel.js"] --> Verify["verify-nobel-api.js"]
@@ -230,8 +240,8 @@ flowchart LR
 
 ## 9. 設計限制
 
-- 無建置步驟、無框架、無後端；`file://` 可直接開啟。
-- 所有內容與 SVG 都內嵌在 JavaScript，執行時不 `fetch` 本地資料。
+- 執行時無建置步驟、無框架、無後端；分包檔由 Node 腳本事先產生，`file://` 可直接開啟。
+- 所有內容與 SVG 都內嵌在 JavaScript 或分包檔，執行時不 `fetch` 本地資料；跨 bundle 切換以動態 `<script>` 載入。
 - 只有外部來源連結與 `verify-nobel-api.js` 需要網路。
 - 進度與主題存在 `localStorage`；清除瀏覽器資料即重置。
 - 模型圖是概念示意，不提供互動拖曳或數值模擬。

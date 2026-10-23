@@ -107,7 +107,9 @@ window.EXAM_FORECAST = {
       ],
       "levels": [
         "基礎"
-      ]
+      ],
+      "seriesId": "series-uip",
+      "seriesTitle": "UIP 與利差交易"
     },
     {
       "id": "macro-05",
@@ -171,7 +173,9 @@ window.EXAM_FORECAST = {
       ],
       "levels": [
         "基礎"
-      ]
+      ],
+      "seriesId": "series-fiscal-term",
+      "seriesTitle": "財政赤字與期限溢酬"
     },
     {
       "id": "macro-07",
@@ -203,7 +207,9 @@ window.EXAM_FORECAST = {
       ],
       "levels": [
         "基礎"
-      ]
+      ],
+      "seriesId": "series-trade",
+      "seriesTitle": "關稅與貿易"
     },
     {
       "id": "macro-08",
@@ -300,7 +306,9 @@ window.EXAM_FORECAST = {
       ],
       "levels": [
         "基礎"
-      ]
+      ],
+      "seriesId": "series-central-bank",
+      "seriesTitle": "央行資產負債表與 QT"
     },
     {
       "id": "macro-12",
@@ -428,7 +436,9 @@ window.EXAM_FORECAST = {
       ],
       "levels": [
         "基礎"
-      ]
+      ],
+      "seriesId": "series-trade",
+      "seriesTitle": "關稅與貿易"
     },
     {
       "id": "extra-macro-03",
@@ -493,7 +503,9 @@ window.EXAM_FORECAST = {
       ],
       "levels": [
         "進階"
-      ]
+      ],
+      "seriesId": "series-central-bank",
+      "seriesTitle": "央行資產負債表與 QT"
     },
     {
       "id": "advanced-macro-07",
@@ -525,7 +537,9 @@ window.EXAM_FORECAST = {
       ],
       "levels": [
         "進階"
-      ]
+      ],
+      "seriesId": "series-trade",
+      "seriesTitle": "關稅與貿易"
     },
     {
       "id": "advanced-macro-10",
@@ -557,7 +571,9 @@ window.EXAM_FORECAST = {
       ],
       "levels": [
         "進階"
-      ]
+      ],
+      "seriesId": "series-uip",
+      "seriesTitle": "UIP 與利差交易"
     },
     {
       "id": "advanced-macro-11",
@@ -653,7 +669,9 @@ window.EXAM_FORECAST = {
       ],
       "levels": [
         "進階"
-      ]
+      ],
+      "seriesId": "series-fiscal-term",
+      "seriesTitle": "財政赤字與期限溢酬"
     },
     {
       "id": "advanced-macro-16",
@@ -1510,7 +1528,9 @@ window.EXAM_FORECAST = {
       ],
       "levels": [
         "基礎"
-      ]
+      ],
+      "seriesId": "series-capm-factor",
+      "seriesTitle": "CAPM 與多因子"
     },
     {
       "id": "investment-05",
@@ -1639,7 +1659,9 @@ window.EXAM_FORECAST = {
       ],
       "levels": [
         "基礎"
-      ]
+      ],
+      "seriesId": "series-asset-allocation",
+      "seriesTitle": "資產配置與風險平價"
     },
     {
       "id": "investment-15",
@@ -1671,7 +1693,9 @@ window.EXAM_FORECAST = {
       ],
       "levels": [
         "基礎"
-      ]
+      ],
+      "seriesId": "series-asset-allocation",
+      "seriesTitle": "資產配置與風險平價"
     },
     {
       "id": "investment-18",
@@ -1704,7 +1728,9 @@ window.EXAM_FORECAST = {
       ],
       "levels": [
         "基礎"
-      ]
+      ],
+      "seriesId": "series-options-vol",
+      "seriesTitle": "選擇權與波動率策略"
     },
     {
       "id": "investment-19",
@@ -2058,7 +2084,9 @@ window.EXAM_FORECAST = {
       ],
       "levels": [
         "進階"
-      ]
+      ],
+      "seriesId": "series-options-vol",
+      "seriesTitle": "選擇權與波動率策略"
     },
     {
       "id": "advanced-investment-17",
@@ -2091,7 +2119,9 @@ window.EXAM_FORECAST = {
       ],
       "levels": [
         "進階"
-      ]
+      ],
+      "seriesId": "series-options-vol",
+      "seriesTitle": "選擇權與波動率策略"
     },
     {
       "id": "advanced-investment-20",
@@ -2123,7 +2153,9 @@ window.EXAM_FORECAST = {
       ],
       "levels": [
         "進階"
-      ]
+      ],
+      "seriesId": "series-asset-allocation",
+      "seriesTitle": "資產配置與風險平價"
     },
     {
       "id": "investment-02",
@@ -2608,7 +2640,9 @@ window.EXAM_FORECAST = {
           "focus": "E(Ri)=Rf+βm×6%+0.4×2%+(−0.3)×3%+0.5×2.5%+(−0.2)×1.5%=3%+6.6%+0.8%−0.9%+1.25%−0.3%=10.45%。HML 負載與大型成長股、無形資產定價有關。",
           "answerId": "advanced-investment-10"
         }
-      ]
+      ],
+      "seriesId": "series-capm-factor",
+      "seriesTitle": "CAPM 與多因子"
     },
     {
       "id": "investment-17",

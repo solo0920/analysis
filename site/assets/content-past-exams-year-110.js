@@ -1,5 +1,6 @@
 // 考古題年度分包（110）：由 build-practice-year-bundles.js 產生。
-window.PAST_EXAMS = {
+window.PAST_EXAMS_YEAR_BUNDLES = window.PAST_EXAMS_YEAR_BUNDLES || {};
+window.PAST_EXAMS_YEAR_BUNDLES["110"] = {
   "meta": {
     "title": "證券投資分析人員歷屆考古題練習庫",
     "examName": "證券投資分析人員資格測驗",
@@ -11563,3 +11564,4 @@ window.PAST_EXAMS = {
     }
   ]
 };
+window.PAST_EXAMS = window.PAST_EXAMS_YEAR_BUNDLES["110"];
