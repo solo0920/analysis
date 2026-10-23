@@ -5152,6 +5152,8 @@ p {
 
 .past-exam-origin {
   display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
   flex-wrap: wrap;
   align-items: center;
   gap: 5px 10px;
@@ -5188,6 +5190,8 @@ p {
 }
 
 .past-exam-origin-meta {
+  min-width: 0;
+  overflow-wrap: anywhere;
   margin-left: auto;
   color: var(--muted);
   font-size: 0.72rem;
@@ -5208,6 +5212,8 @@ p {
 
 .past-exam-card-head {
   display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
@@ -5401,6 +5407,119 @@ p {
   font-size: 0.8rem;
 }
 
+.past-exam-analysis {
+  min-width: 0;
+  margin-top: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface-2);
+}
+
+.past-exam-analysis-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 12px;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.past-exam-analysis-head h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.92rem;
+  letter-spacing: 0.03em;
+}
+
+.past-exam-analysis-head span {
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.past-exam-analysis-summary {
+  margin: 0;
+  padding: 13px 16px;
+  border-bottom: 1px dashed var(--line);
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  line-height: 1.75;
+}
+
+.past-exam-analysis-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.past-exam-analysis-list li {
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px;
+  border-top: 1px dashed var(--line);
+}
+
+.past-exam-analysis-list li:first-child {
+  border-top: 0;
+}
+
+.past-exam-analysis-list li.is-correct {
+  background: #eef7f1;
+}
+
+[data-theme="dark"] .past-exam-analysis-list li.is-correct {
+  background: #162a22;
+}
+
+.past-exam-analysis-letter {
+  display: inline-flex;
+  flex: 0 0 28px;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.past-exam-analysis-list li.is-correct .past-exam-analysis-letter {
+  background: #2f7d5c;
+  color: #fff;
+}
+
+.past-exam-analysis-body {
+  min-width: 0;
+}
+
+.past-exam-analysis-tag {
+  display: inline-block;
+  margin-bottom: 3px;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.past-exam-analysis-list li.is-correct .past-exam-analysis-tag {
+  color: #2f7d5c;
+}
+
+[data-theme="dark"] .past-exam-analysis-list li.is-correct .past-exam-analysis-tag {
+  color: #8dd6b1;
+}
+
+.past-exam-analysis-body p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.84rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
 .past-exam-actions {
   display: flex;
   flex-wrap: wrap;
@@ -5410,6 +5529,8 @@ p {
 
 .past-exam-source-links {
   display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
   flex-wrap: wrap;
   align-items: center;
   gap: 8px 14px;
@@ -5432,11 +5553,15 @@ p {
 
 .past-exam-browse-list {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 14px;
 }
 
 .past-exam-browse-card {
+  min-width: 0;
+  width: 100%;
   padding: 22px;
+  overflow-x: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
@@ -5462,6 +5587,7 @@ p {
 
 .past-exam-browse-options li {
   display: flex;
+  min-width: 0;
   align-items: flex-start;
   gap: 10px;
   padding: 9px 11px;
@@ -5502,6 +5628,8 @@ p {
 
 .past-exam-browse-actions {
   display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
   flex-wrap: wrap;
   align-items: center;
   gap: 10px 16px;
@@ -5736,6 +5864,8 @@ p {
   }
 
   .past-exam-origin-meta {
+  min-width: 0;
+  overflow-wrap: anywhere;
     width: 100%;
     margin-left: 0;
     white-space: normal;
@@ -5776,6 +5906,13 @@ p {
 
   .past-exam-browse-card {
     padding: 16px;
+  }
+
+  .past-exam-analysis-head,
+  .past-exam-analysis-summary,
+  .past-exam-analysis-list li {
+    padding-right: 12px;
+    padding-left: 12px;
   }
 
   .past-exam-year-grid {
@@ -6183,9 +6320,50 @@ p {
   margin: 0 0 10px;
 }
 
+.written-answer-block {
+  margin: 0 0 10px;
+  overflow-wrap: anywhere;
+}
+
 .written-answer-note {
   color: var(--muted);
   font-size: 0.76rem;
+}
+
+.written-answer-table-wrap {
+  max-width: 100%;
+  margin: 12px 0;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.written-answer-table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.written-answer-table th,
+.written-answer-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.written-answer-table th {
+  background: var(--surface-2);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.written-answer-table tr:last-child td {
+  border-bottom: 0;
 }
 
 .past-exam-origin-current {

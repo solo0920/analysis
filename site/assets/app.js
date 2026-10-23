@@ -787,7 +787,7 @@
       : "";
     const referenceAnswer = !isChoice && Array.isArray(question.answer) && question.answer.length
       ? '<details class="worked-example-reference"><summary>完整參考解答（本站）</summary><div class="worked-example-reference-body">' + question.answer.map(function (text) {
-          return "<p>" + renderWrittenAnswer(text) + "</p>";
+          return '<div class="written-answer-block">' + renderWrittenAnswer(text) + "</div>";
         }).join("") + "</div></details>"
       : "";
     const questionLink = isChoice
@@ -804,6 +804,7 @@
       '    <p class="worked-example-stem">' + renderInlineMath(question.stem) + "</p>",
       options,
       isChoice ? '    <p class="worked-example-answer"><strong>答案</strong> ' + escapeHtml(correctOptions) + "</p>" : "",
+      isChoice ? renderPastExamAnalysis(question) : "",
       steps.length
         ? '    <div class="worked-example-steps"><h4>解題步驟</h4><ol>' + steps.map(function (step) {
             return "<li>" + renderWrittenAnswer(step) + "</li>";
@@ -2030,6 +2031,53 @@
     ].join("");
   }
 
+  const pastExamExplanationMap = new Map(Object.entries(window.PAST_EXAM_EXPLANATIONS || {}));
+
+  function pastExamExplanationFor(question) {
+    const explanation = pastExamExplanationMap.get(question.id);
+    return explanation && explanation.options ? explanation : null;
+  }
+
+  function fallbackOptionAnalysis(question, letter) {
+    const correct = question.answer.indexOf(letter) !== -1;
+    return correct
+      ? "此選項符合題意，為官方答案。"
+      : "此選項與題意不符；本題官方答案為 " + question.answer.join("、") + "。";
+  }
+
+  function renderPastExamAnalysis(question) {
+    if (!Array.isArray(question.options) || !question.options.length) {
+      return "";
+    }
+    const explanation = pastExamExplanationFor(question);
+    const summary = explanation && explanation.summary
+      ? explanation.summary
+      : "本題官方答案為 " + question.answer.join("、") + "。";
+    const items = question.options.map(function (text, index) {
+      const letter = "ABCD"[index];
+      const correct = question.answer.indexOf(letter) !== -1;
+      const analysis = explanation && explanation.options && explanation.options[letter]
+        ? explanation.options[letter]
+        : fallbackOptionAnalysis(question, letter);
+      return [
+        '<li class="' + (correct ? "is-correct" : "") + '">',
+        '  <span class="past-exam-analysis-letter">' + letter + "</span>",
+        '  <div class="past-exam-analysis-body">',
+        '    <span class="past-exam-analysis-tag">' + (correct ? "正解" : "非正解") + "</span>",
+        "    <p>" + renderInlineMath(analysis) + "</p>",
+        "  </div>",
+        "</li>"
+      ].join("");
+    }).join("");
+    return [
+      '<section class="past-exam-analysis" aria-label="選項分析">',
+      '  <div class="past-exam-analysis-head"><h3>選項分析</h3><span>本站參考解析（非官方）</span></div>',
+      '  <p class="past-exam-analysis-summary">' + renderInlineMath(summary) + "</p>",
+      '  <ul class="past-exam-analysis-list">' + items + "</ul>",
+      "</section>"
+    ].join("");
+  }
+
   function renderPracticeMode(questions) {
     const question = questions[practiceState.index];
     const session = practiceSessionMap.get(question.sessionId) || {};
@@ -2080,6 +2128,7 @@
       }).join(""),
       "  </div>",
       feedback,
+      revealed ? renderPastExamAnalysis(question) : "",
       '  <div class="past-exam-actions">' + actions + "</div>",
       renderPracticeSourceLinks(session, false),
       "</article>"
@@ -2109,6 +2158,7 @@
       renderPracticeQuestionOrigin(question, session),
       '  <ol class="past-exam-browse-options">' + options + "</ol>",
       answer,
+      revealed ? renderPastExamAnalysis(question) : "",
       '  <div class="past-exam-browse-actions">',
       '    <button class="btn btn-small" type="button" data-practice-reveal="' + escapeHtml(question.id) + '">' + (revealed ? "收起答案" : "顯示答案") + "</button>",
       renderPracticeSourceLinks(session, true),
@@ -2357,7 +2407,7 @@
     }).join("");
   }
 
-  function renderWrittenAnswer(text) {
+  function renderWrittenAnswerText(text) {
     const source = String(text == null ? "" : text);
     const parts = [];
     const pattern = /\\\[([\s\S]+?)\\\]|\\\(([\s\S]+?)\\\)/g;
@@ -2376,6 +2426,73 @@
       parts.push(autoMathProseToHtml(source.slice(last)));
     }
     return parts.join("");
+  }
+
+  function splitWrittenTableRow(line) {
+    return String(line || "").trim().replace(/^\|/, "").replace(/\|$/, "").split("|").map(function (cell) {
+      return cell.trim();
+    });
+  }
+
+  function isWrittenTableStart(lines, index) {
+    if (index + 1 >= lines.length) {
+      return false;
+    }
+    const head = lines[index].trim();
+    const separator = lines[index + 1].trim();
+    return head.indexOf("|") !== -1 && /\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?/.test(separator);
+  }
+
+  function renderWrittenTable(lines, start) {
+    const header = splitWrittenTableRow(lines[start]);
+    const rows = [];
+    let index = start + 2;
+    while (index < lines.length && lines[index].indexOf("|") !== -1 && lines[index].trim()) {
+      rows.push(splitWrittenTableRow(lines[index]));
+      index += 1;
+    }
+    const headHtml = header.map(function (cell) {
+      return "<th>" + renderWrittenAnswerText(cell) + "</th>";
+    }).join("");
+    const bodyHtml = rows.map(function (row) {
+      return "<tr>" + header.map(function (_, cellIndex) {
+        return "<td>" + renderWrittenAnswerText(row[cellIndex] || "") + "</td>";
+      }).join("") + "</tr>";
+    }).join("");
+    return {
+      html: '<div class="written-answer-table-wrap"><table class="written-answer-table"><thead><tr>' + headHtml + "</tr></thead><tbody>" + bodyHtml + "</tbody></table></div>",
+      next: index
+    };
+  }
+
+  function renderWrittenAnswer(text) {
+    const source = String(text == null ? "" : text).replace(/\r\n?/g, "\n");
+    const lines = source.split("\n");
+    const blocks = [];
+    let textLines = [];
+    function flushText() {
+      if (!textLines.length) {
+        return;
+      }
+      blocks.push(textLines.map(function (line) {
+        return renderWrittenAnswerText(line);
+      }).join("<br>"));
+      textLines = [];
+    }
+    let index = 0;
+    while (index < lines.length) {
+      if (isWrittenTableStart(lines, index)) {
+        flushText();
+        const table = renderWrittenTable(lines, index);
+        blocks.push(table.html);
+        index = table.next;
+        continue;
+      }
+      textLines.push(lines[index]);
+      index += 1;
+    }
+    flushText();
+    return blocks.join("");
   }
 
   function renderInlineMath(text) {
@@ -2552,7 +2669,7 @@
       session.questionUrl ? '    <a class="text-link" href="' + escapeHtml(session.questionUrl) + '" target="_blank" rel="noopener noreferrer">原始試題 PDF →</a>' : "",
       '  </div>',
       open ? '  <div class="written-answer">' + answers.map(function (text) {
-        return '<p>' + renderWrittenAnswer(text) + '</p>';
+        return '<div class="written-answer-block">' + renderWrittenAnswer(text) + '</div>';
       }).join("") + '<p class="written-answer-note">' + escapeHtml(question.note || "本站參考解答（非官方）") + '</p></div>' : "",
       '</article>'
     ].join("");

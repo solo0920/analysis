@@ -105,7 +105,7 @@ const nobelDiagramFiles = ["diagrams-nobel.js"];
 function loadContent() {
   const context = { window: {} };
   vm.createContext(context);
-  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-investment-formulas.js", "content-investment-technical.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-macro-current.js", "content-past-exams-written.js", "content-written-layouts.js", "content-past-exams.js", "content-exam-solutions-115.js", "content-exam-solutions-114.js", "content-exam-solutions-113.js", "content-exam-solutions-112.js", "content-exam-solutions-111.js", "content-exam-solutions-110.js", "content-exam-solutions-109.js", "content-exam-solutions-108.js", "content-exam-solutions-107.js"].forEach(function (file) {
+  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-investment-formulas.js", "content-investment-technical.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-macro-current.js", "content-past-exams-written.js", "content-written-layouts.js", "content-past-exams.js", "content-past-exams-explanations.js", "content-exam-solutions-115.js", "content-exam-solutions-114.js", "content-exam-solutions-113.js", "content-exam-solutions-112.js", "content-exam-solutions-111.js", "content-exam-solutions-110.js", "content-exam-solutions-109.js", "content-exam-solutions-108.js", "content-exam-solutions-107.js"].forEach(function (file) {
     const fullPath = path.join(siteDir, "assets", file);
     vm.runInContext(fs.readFileSync(fullPath, "utf8"), context, { filename: file });
   });
@@ -128,6 +128,7 @@ function loadContent() {
     lawArticles: context.window.LAW_ARTICLES || {},
     formulaTex: context.window.FORMULA_TEX || {},
     pastExams: context.window.PAST_EXAMS || { meta: {}, subjects: [], sessions: [], questions: [] },
+    pastExamExplanations: context.window.PAST_EXAM_EXPLANATIONS || {},
     pastWritten: context.window.PAST_EXAMS_WRITTEN || { meta: {}, questions: [] },
     writtenLayouts: context.window.WRITTEN_LAYOUTS || {},
     examSolutions: Array.isArray(context.window.EXAM_SOLUTIONS) ? context.window.EXAM_SOLUTIONS : [],
@@ -1339,6 +1340,28 @@ pastExamQuestions.forEach(function (question) {
 check(pastExamTextIssues.length === 0, "考古題題幹或選項殘留頁首頁尾：" + pastExamTextIssues.join("、"));
 check(pastExamOptionContextIssues.length === 0, "考古題選項不應包含共享題組說明：" + pastExamOptionContextIssues.join("、"));
 
+const pastExamExplanations = loaded.pastExamExplanations || {};
+const pastExamExplanationIds = Object.keys(pastExamExplanations);
+check(pastExamExplanationIds.length === pastExamQuestions.length, "選擇題逐選項解析應涵蓋全部 3,710 題（目前 " + pastExamExplanationIds.length + " 題）");
+pastExamExplanationIds.forEach(function (id) {
+  check(pastExamQuestionIds.has(id), "選擇題逐選項解析指向不存在的題目：" + id);
+});
+pastExamQuestions.forEach(function (question) {
+  const explanation = pastExamExplanations[question.id];
+  check(Boolean(explanation) && typeof explanation === "object", "選擇題缺少逐選項解析：" + question.id);
+  if (!explanation) {
+    return;
+  }
+  check(typeof explanation.summary === "string" && explanation.summary.trim().length >= 10, "選擇題解析缺少摘要：" + question.id);
+  const optionKeys = explanation.options && typeof explanation.options === "object" ? Object.keys(explanation.options) : [];
+  const expectedKeys = question.options.map(function (_, index) { return "ABCD"[index]; });
+  check(optionKeys.length === expectedKeys.length && expectedKeys.every(function (letter) { return optionKeys.indexOf(letter) !== -1; }), "選擇題解析選項不完整：" + question.id);
+  expectedKeys.forEach(function (letter) {
+    const text = explanation.options && explanation.options[letter];
+    check(typeof text === "string" && text.trim().length >= 8, "選擇題解析選項內容不足：" + question.id + " / " + letter);
+  });
+});
+
 pastExamSessions.forEach(function (session) {
   check(session.questionCount === pastExamSessionQuestionCounts[session.id], "考古題考試次別題數與題目數不一致：" + session.id);
   pastExamSubjectIds.forEach(function (subjectId) {
@@ -1453,10 +1476,12 @@ const languageSurface = [
   read("site/index.html"),
   read("site/assets/app.js"),
   read("site/assets/content-past-exams.js"),
+  read("site/assets/content-past-exams-explanations.js"),
   read("site/assets/content-past-exams-written.js"),
   read("site/assets/content-written-layouts.js"),
   read("site/assets/content-macro-current.js"),
   JSON.stringify(pastExams),
+  JSON.stringify(loaded.pastExamExplanations),
   JSON.stringify(pastWritten),
   JSON.stringify(writtenLayouts),
   JSON.stringify(examSolutions),
@@ -1477,6 +1502,7 @@ const writtenGroupCounts = {};
 check(writtenQuestions.length === 348, "計算／申論題應有 348 題（目前 " + writtenQuestions.length + " 題）");
 check(writtenMeta.sessionCount === 29, "計算／申論題 meta.sessionCount 應為 29");
 check(writtenMeta.questionCount === 348, "計算／申論題 meta.questionCount 應為 348");
+check(typeof writtenMeta.answerReview === "string" && writtenMeta.answerReview.length > 20, "計算／申論題 meta.answerReview 應記錄逐題檢核結果");
 check(JSON.stringify(writtenMeta.years) === JSON.stringify([107, 108, 109, 110, 111, 112, 113, 114, 115]), "計算／申論題年度應為 107–115");
 writtenQuestions.forEach(function (question) {
   check(Boolean(question) && typeof question === "object", "計算／申論題資料格式錯誤");
@@ -1744,6 +1770,7 @@ console.log("KaTeX 公式：" + formulaSections.length + " 個學習單元（" +
 console.log("KaTeX 編譯：" + formulaTexCompiled + "/" + formulaTexKeys.length + " 筆公式、" + inlineMathCount + " 個行內公式、" + displayMathCount + " 個區塊公式");
 console.log("投資學公式庫：" + formulaLibraryStats.entries + " 條（" + formulaLibraryStats.categories + " 類）；技術分析指標：" + technicalIndicatorStats.entries + " 條（" + technicalIndicatorStats.categories + " 類）");
 console.log("考古題：" + pastExamSessions.length + " 次、 " + pastExamQuestions.length + " 題（107–115 年）");
+console.log("選擇題逐選項解析：" + pastExamExplanationIds.length + " 題");
 console.log("計算／申論題：" + writtenQuestions.length + " 題（107–115 年）");
 console.log("總經時事：" + currentEvents.length + " 個主題");
 console.log("檢查項目：" + checks.length + "，失敗：" + failures.length);
