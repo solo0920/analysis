@@ -1178,7 +1178,7 @@
       '  <div>',
       '    <p class="eyebrow">模型索引</p>',
       '    <strong>總體經濟模型總覽</strong>',
-      "    <span>涵蓋 " + subject.chapters.length + " 章、共 " + total + " 張章節模型圖（" + withModels + " 章含模型）；另收錄 " + nobelYears + " 屆諾貝爾經濟學獎年表與 " + nobelTotal + " 組模型圖。</span>",
+      "    <span>涵蓋 " + subject.chapters.length + " 章、共 " + total + " 張章節模型圖（" + withModels + " 章含模型）；諾貝爾經濟學獎 17 組模型與 58 屆年表另見完整年表。</span>",
       "  </div>",
       '  <span class="subject-written-cta-arrow">查看模型總覽 →</span>',
       "</a>"
@@ -3931,10 +3931,6 @@
     const chaptersWithModels = groups.filter(function (group) {
       return group.entries.length > 0;
     }).length;
-    const nobelGroups = nobelGroupsWithDiagrams();
-    const nobelTotal = countNobelModels(nobelGroups);
-    const grandTotal = total + nobelTotal;
-    const nobelYears = Array.isArray(nobelData.rows) ? nobelData.rows.length : 0;
 
     const jumpLinks = groups.map(function (group) {
       const chapter = group.chapter;
@@ -3948,12 +3944,7 @@
         " <span>" + group.entries.length + "</span>",
         "</a>"
       ].join("");
-    }).join("") + [
-      '<a href="#/models/macro?chapter=nobel"',
-      ' aria-label="歷年諾貝爾經濟學獎模型（' + nobelTotal + ' 組）">',
-      "諾貝爾獎 <span>" + nobelTotal + "</span>",
-      "</a>"
-    ].join("");
+    }).join("");
 
     const chapterSections = groups.map(function (group) {
       const chapter = group.chapter;
@@ -3989,36 +3980,6 @@
       ].join("");
     }).join("");
 
-    const nobelSections = nobelGroups.map(function (group, index) {
-      return [
-        '<article class="models-entry" id="model-' + escapeHtml(group.id) + '">',
-        '  <div class="models-entry-ref">',
-        '    <span class="eyebrow">諾貝爾模型 ' + padNumber(index + 1) + " · " + escapeHtml(nobelYearSpan(group)) + "</span>",
-        '    <a href="#/nobel?group=' + encodeURIComponent(group.id) + '">' + escapeHtml(group.title) + "</a>",
-        '    <span class="nobel-entry-years">' + group.rows.length + " 屆</span>",
-        "  </div>",
-        renderDiagram(group.diagram, { split: true }),
-        "</article>"
-      ].join("");
-    }).join("");
-
-    const nobelSection = [
-      '<section class="models-chapter models-nobel" id="models-nobel">',
-      '  <div class="models-chapter-head">',
-      "    <div>",
-      '      <p class="eyebrow">諾貝爾經濟學獎 · ' + escapeHtml(nobelData.meta.period || "1969–2026") + "</p>",
-      "      <h2>歷年諾貝爾經濟學獎模型</h2>",
-      "    </div>",
-      '    <div class="models-chapter-side">',
-      '      <span class="models-badge">' + nobelTotal + " 組模型</span>",
-      '      <a class="text-link" href="#/nobel">完整年表 →</a>',
-      "    </div>",
-      "  </div>",
-      '  <p class="models-nobel-intro">從 ' + nobelYears + ' 屆年表整理出 ' + nobelTotal + " 組代表模型：表格保留每屆得主、代表公式與結論，圖組則把同一分析家族放在一起。這些圖與年表頁共用同一份資料。</p>",
-      nobelSections,
-      "</section>"
-    ].join("");
-
     return [
       '<div class="page subject-macro">',
       '  <nav class="breadcrumb" aria-label="麵包屑">',
@@ -4030,28 +3991,28 @@
       "    <div>",
       '      <p class="eyebrow">總體模型總覽</p>',
       "      <h1>總體經濟模型總覽</h1>",
-      '      <p class="lede">把 ' + subject.chapters.length + " 章用到的 " + total + " 張章節模型圖，以及 " + nobelYears + " 屆諾貝爾經濟學獎整理出的 " + nobelTotal + " 組模型圖集中在同一頁；每張圖的標題、圖說、變數、參數與 SVG 都和來源頁共用同一份資料。</p>",
+      '      <p class="lede">把 ' + subject.chapters.length + " 章用到的 " + total + " 張章節模型圖集中在同一頁；諾貝爾經濟學獎的 17 組代表模型與 58 屆完整年表已整合至「歷年諾貝爾經濟學獎」頁面。</p>",
       '      <div class="models-summary">',
       "        <span><strong>" + total + "</strong> 章節模型</span>",
-      "        <span><strong>" + nobelTotal + "</strong> 諾貝爾模型</span>",
+      "        <span><strong>" + chaptersWithModels + "</strong> 章含模型</span>",
       "        <span><strong>" + subject.chapters.length + "</strong> 章</span>",
-      "        <span><strong>" + nobelYears + "</strong> 屆年表</span>",
       "      </div>",
       "    </div>",
       '    <div class="chapter-head-side">',
       '      <a class="btn btn-small" href="#/subject/macro">← 回總經首頁</a>',
+      '      <a class="btn btn-small" href="#/nobel">諾貝爾完整年表 →</a>',
       "    </div>",
       "  </header>",
       '  <div class="notice models-binding">',
-      "    <strong>同步更新：</strong>本頁與各章模型圖、諾貝爾獎年表共用同一份模型資料，不另存副本；修改任一模型的 SVG、圖說、變數或參數後，重新載入章節頁、年表頁與本頁即可看到同步結果。",
+      "    <strong>同步更新：</strong>本頁與各章模型圖共用同一份模型資料，不另存副本；諾貝爾經濟學獎模型與年表已整合至「歷年諾貝爾經濟學獎」，可從頁首或下方連結前往。",
       "  </div>",
-      '  <nav class="models-jump" aria-label="模型章節與諾貝爾獎快速跳轉">',
+      '  <nav class="models-jump" aria-label="模型章節快速跳轉">',
       '    <p class="eyebrow">模型快速跳轉</p>',
       jumpLinks,
       "  </nav>",
-      '  <div class="models-list">' + chapterSections + nobelSection + "</div>",
+      '  <div class="models-list">' + chapterSections + "</div>",
       '  <footer class="models-foot">',
-      "    <p>共 " + grandTotal + " 張模型圖（" + total + " 張章節模型＋" + nobelTotal + " 組諾貝爾模型）；各章的概念、名詞與考試重點仍以章節頁為完整版本。</p>",
+      "    <p>共 " + total + " 張章節模型圖；諾貝爾經濟學獎 17 組模型與 58 屆年表請見 <a href=\"#/nobel\">完整年表</a>。各章的概念、名詞與考試重點仍以章節頁為完整版本。</p>",
       '    <a href="#/models/macro">↑ 回到頂端</a>',
       "  </footer>",
       "</div>"
@@ -4095,7 +4056,7 @@
       "    <div>",
       '      <p class="eyebrow">諾貝爾經濟學獎 · ' + escapeHtml(period) + "</p>",
       "      <h1>歷年諾貝爾經濟學獎</h1>",
-      '      <p class="lede">保留 ' + rows.length + " 屆年表的得主、主要理論、代表模型與核心結論，並把 " + diagramGroups.length + " 組 SVG 模型圖併入同一份年表：每一列左側是該屆資料，右側是對應模型圖；圖組與模型總覽共用同一份資料。</p>",
+      '      <p class="lede">完整整合 ' + rows.length + " 屆年表的得主、主要理論、代表模型與核心結論，以及 " + diagramGroups.length + " 組 SVG 模型圖：每一列左側是該屆資料，右側是對應模型圖；模型內容只在此頁呈現。</p>",
       '      <div class="models-summary">',
       "        <span><strong>" + rows.length + "</strong> 屆年表</span>",
       "        <span><strong>" + diagramGroups.length + "</strong> 組模型圖</span>",
@@ -4365,7 +4326,7 @@
       "      <li>會計學的章名、順序與頁碼以 <code>documents/accounting_toc.md</code> 為依據；有列節名的章節照原節名呈現，未列節名的章節以「學習重點」標示，不冒充原書節名。第 23 章來源註明原書章號印為 22，本站依順序列為第 23 章。財務分析總架構、杜邦分析與四表連結的圖表內容另參考 <code>documents/accounting_contents.md</code>。</li>",
       "      <li>四個科目的來源目錄不同：總體經濟學使用 <code>gross_economics_contents.md</code>（第 11–13 章為金融市場）；投資學使用 <code>investment_contents.md</code>；會計學章節使用 <code>accounting_toc.md</code>、財務分析圖表使用 <code>accounting_contents.md</code>；證券法規使用 <code>securities_law_contents.md</code>；不以其中一科的章節補另一科。</li>",
       "      <li>依投資學來源目錄，章號由第十一章直接跳到第十三章；本站保留原始編號，不自行補章。</li>",
-      "      <li>總體經濟學另設「模型總覽」（#/models/macro），依 13 章集中 27 張章節圖（含 1 張教學流程圖與 5 張學派模型補充），並加入諾貝爾經濟學獎的 17 組模型圖；另有「歷年諾貝爾經濟學獎」（#/nobel）逐年雙欄年表，左側為該屆資料、右側為對應模型圖。三個視圖共用同一份模型資料，修改後重新載入即可看到同步結果。</li>",
+      "      <li>總體經濟學另設「模型總覽」（#/models/macro），依 13 章集中 27 張章節圖（含 1 張教學流程圖與 5 張學派模型補充）；「歷年諾貝爾經濟學獎」（#/nobel）則逐年雙欄呈現 58 屆年表、17 組代表模型與對應圖，兩頁共用同一份模型資料。</li>",
       "      <li>「考古題練習庫」（#/past-exams）收錄 107–115 年共 29 次、3,710 題選擇題；可依年度、科目與次別篩選，先作答再看答案。練習紀錄只存在瀏覽器，換裝置不會同步；申論題與計算題請點原始試題連結。</li>",
       "      <li>名詞與公式以臺灣官方網站（主計總處、中央銀行、金管會、證交所、期交所等）與繁體中文公開資料交叉核對。</li>",
       "      <li>同一公式若在不同來源有不同符號定義，應先確認假設與適用條件，再以官方或正式教材為準。</li>",
@@ -4791,7 +4752,7 @@
         '<a class="search-result" href="#/subject/investment"><span class="result-type">科目</span><span><strong>投資學</strong><small>金融體系、利率與各類金融工具</small></span><span class="result-arrow">→</span></a>',
         '<a class="search-result" href="#/subject/accounting"><span class="result-type">科目</span><span><strong>會計學</strong><small>現金與存貨、金融資產、報表分析與資本預算</small></span><span class="result-arrow">→</span></a>',
         '<a class="search-result" href="#/past-exams"><span class="result-type">題庫</span><span><strong>考古題練習庫</strong><small>107–115 年選擇題；進入後可用題幹關鍵字搜尋</small></span><span class="result-arrow">→</span></a>',
-        '<a class="search-result" href="#/models/macro"><span class="result-type">模型</span><span><strong>總體經濟模型總覽</strong><small>' + (macroModelTotal + nobelTotal) + ' 張模型圖（' + macroModelTotal + ' 章節＋' + nobelTotal + ' 諾貝爾），依 ' + (macroSubject ? macroSubject.chapters.length : 13) + ' 章與 ' + nobelYears + ' 屆年表整理</small></span><span class="result-arrow">→</span></a>',
+        '<a class="search-result" href="#/models/macro"><span class="result-type">模型</span><span><strong>總體經濟模型總覽</strong><small>' + macroModelTotal + ' 張章節模型圖，依 ' + (macroSubject ? macroSubject.chapters.length : 13) + ' 章整理；諾貝爾模型另見完整年表</small></span><span class="result-arrow">→</span></a>',
         '<a class="search-result" href="#/nobel"><span class="result-type">年表</span><span><strong>歷年諾貝爾經濟學獎</strong><small>' + nobelYears + ' 屆得主、代表模型與 ' + nobelTotal + ' 組 SVG 圖解</small></span><span class="result-arrow">→</span></a>',
         '<div class="search-group-label">試試這些名詞</div>',
         '<button class="search-result" type="button" data-query="GDP"><span class="result-type term">名詞</span><span><strong>GDP</strong><small>國內生產毛額</small></span><span class="result-arrow">→</span></button>',

@@ -153,7 +153,6 @@ sequenceDiagram
 
 - `#/subject/macro?evolution=1` → `#macro-evolution`
 - `#/models/macro?model=model-macro-06-0` → 指定 `.models-entry`，短暫加上 `.is-targeted`
-- `#/models/macro?chapter=nobel` → `#models-nobel`
 - `#/nobel?year=YYYY` → `#nobel-YYYY`
 - `#/nobel?group=nobel-XX` → `#nobel-group-nobel-XX`
 - `#/nobel?table=1` → `#nobel-table`
@@ -190,7 +189,7 @@ sequenceDiagram
 
 - 章節頁與模型總覽都讀同一份 `MACRO_DIAGRAMS`；模型總覽不複製內容。
 - 學派演進圖不複製模型名稱或諾貝爾得主，而是用錨點與年份反查 `MACRO_DIAGRAMS`、`NOBEL_DATA`。
-- 諾貝爾年表頁與模型總覽的諾貝爾區都讀同一份 `NOBEL_DATA`、`NOBEL_DIAGRAMS`。
+- 諾貝爾完整年表 `#/nobel` 讀取 `NOBEL_DATA`、`NOBEL_DIAGRAMS`；模型總覽只呈現章節模型，不重複列諾貝爾模型。
 - 投資學比例公式與選擇權公式各自只有一份資料，章節頁與科目頁共用。
 - 驗證腳本以 Node `vm` 載入同一批 `site/assets/*.js`，不維護第二套內容模型。
 - 模組化資料維持「單一來源」：年度與章節分包只是同一份完整題庫的切片；搜尋索引由完整題庫產生，不改寫題目。

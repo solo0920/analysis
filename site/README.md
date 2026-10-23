@@ -120,10 +120,9 @@ Repository 的 Pages Source 已設為 **GitHub Actions**；若之後重新建立
 - `#/macro/evolution`：總體經濟學學派演進圖獨立頁
 - `#/subject/macro?evolution=1`：舊網址，仍會開啟學派演進圖獨立頁
 - `#/subject/law`：證券交易相關法規與實務章節地圖
-- `#/models/macro`：總體經濟模型總覽（13 章分組、27 張章節圖＋17 組諾貝爾模型；27 張含 1 張教學流程圖與 5 張學派模型補充；桌面模型圖與變數表採 1:1，手機改為直向堆疊）
+- `#/models/macro`：總體經濟模型總覽（13 章分組、27 張章節圖；含 1 張教學流程圖與 5 張學派模型補充；桌面模型圖與變數表採 1:1，手機改為直向堆疊）
 - `#/models/macro?model=model-macro-06-0`：直接跳到模型總覽的指定模型卡，並短暫標示
-- `#/models/macro?chapter=nobel`：直接跳到模型總覽的諾貝爾區
-- `#/nobel`：歷年諾貝爾經濟學獎逐年雙欄年表（左側屆別資料、右側對應模型圖）
+- - `#/nobel`：歷年諾貝爾經濟學獎逐年雙欄年表（左側屆別資料、右側對應模型圖）
 - `#/nobel?group=nobel-01`：跳到指定諾貝爾圖組的首屆列
 - `#/nobel?year=2026`：跳到指定屆別
 - `#/nobel?table=1`：跳到完整年表與模型圖
@@ -213,7 +212,7 @@ ExamSolutionData[] {
 - 模型圖是概念示意，不是原始教材的掃圖；SVG 直接內嵌，`file://` 也能顯示，不會發出外部圖片請求。
 - **模型資料只有一份**：章節頁的 `renderSection()` 透過 `getDiagrams()` 讀取 `window.MACRO_DIAGRAMS`、`window.INVESTMENT_DIAGRAMS` 與 `window.ACCOUNTING_DIAGRAMS`，同一節次有後綴圖時會依序渲染；`#/models/macro` 的 `renderMacroModels()` 透過 `getDiagram()` 讀取 `window.MACRO_DIAGRAMS` 的主要圖，總覽頁不複製第二份內容。修改 `diagrams-macro*.js`、`diagrams-investment.js` 或 `diagrams-accounting.js` 中的 SVG、標題、圖說、變數、參數或提醒後，重新載入章節頁都會同步；新增或移除總體模型圖也會自動反映在總覽頁。
 - **學派演進圖只有一份**：`window.MACRO_EVOLUTION`（`content-macro-evolution.js`）只保存階段、學派名稱、提出者、摘要、模型錨點與諾貝爾年份；模型名稱由 `macroModelGroups()` 反查 `MACRO_DIAGRAMS`，諾貝爾年份、得主與領域由 `NOBEL_DATA` 反查，不另存副本。演進圖位於獨立頁 `#/macro/evolution`，總體經濟學首頁保留一張整張可點擊的 CTA；每個模型名稱連到 `#/models/macro?model=<anchor>`，路由會捲動到該模型卡並加上短暫高亮；每個諾貝爾里程碑連到 `#/nobel?year=YYYY`。修改模型圖或諾貝爾資料後，演進圖會同步更新；驗證器會檢查每個錨點與年份都存在。
-- **諾貝爾資料只有一份**：年表頁的 `renderNobelPage()` 與模型總覽的諾貝爾區都讀取 `window.NOBEL_DATA` 與 `window.NOBEL_DIAGRAMS`；年表保留原始 58 列，每一列左側是該屆得主、領域、公式與結論，右側直接顯示對應模型圖，17 個圖組以 `nobel-XX` 對應。同一圖組重複出現在多列時，`renderNobelTable()` 會為每份 inline SVG 的內部 ID 加上年度後綴，避免重複 ID。修改任一圖組的 SVG、標題、圖說、變數或參數後，重新載入 `#/nobel` 與 `#/models/macro` 都會同步。
+- **諾貝爾資料只有一份**：`#/nobel` 完整年表讀取 `window.NOBEL_DATA` 與 `window.NOBEL_DIAGRAMS`；年表保留原始 58 列，每一列左側是該屆得主、領域、公式與結論，右側直接顯示對應模型圖，17 個圖組以 `nobel-XX` 對應。同一圖組重複出現在多列時，`renderNobelTable()` 會為每份 inline SVG 的內部 ID 加上年度後綴，避免重複 ID。修改任一圖組的 SVG、標題、圖說、變數或參數後，重新載入 `#/nobel` 即可同步；模型總覽只保留章節模型。
 - 模型總覽頁依 13 章分組；沒有模型圖的章節仍會列出並顯示說明。每張模型圖都連回所屬章節與節次，方便交叉閱讀。
 - 諾貝爾年表頁保留 1969–2026 的 58 屆與每屆公式，並整合為逐年雙欄：左欄保留屆別、得主、領域、公式與結論，右欄顯示該屆對應的 SVG 模型圖。2025 屆公式已依官方科學背景修正為 g = λ(γ−1) ≈ λ ln(γ)；2026 屆別已納入，年份、得主與官方獎項說明已對照諾貝爾獎官方 API，公式與學說已對照官方 popular information 與 2026 年科學背景；2019–2026 代表原始論文書目已核對；2019–2026 每年至少一篇代表論文完成全文抽查（2026 為 Hall；Woodford 2003 專書未逐條），其餘全文仍待逐條核對。年份可跳到對應圖組首屆，模型圖下方的屆別晶片可跳到同組其他年份；重複圖組只在首次出現時展開完整變數與參數。
 - 總體經濟學與投資學都有 `parts`；總體經濟學的 Part 1、Part 2 由 `content-macro-3.js` 在載入時補上並依章號分組，投資學章節則直接帶有 `part` 資訊。
@@ -343,9 +342,9 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 
 2026-10-23 考前猜題新增搜尋與篩選：可依關鍵字、程度、題型與主題即時過濾 97 題組；顯示目前可見題組數，並提供清除篩選。390px 篩選列自動換行，不造成頁面溢出。
 
-2026-10-24 調整總體經濟模型總覽的模型卡版面：桌面版把 SVG 圖與變數說明排成 1:1 的橫向網格（左右各半），27 張章節模型與 17 組諾貝爾代表模型都適用，參數表、圖說、模型式與提醒仍放在下方；900px 以下改為單欄直向堆疊，手機不需要左右並排。390px／1280px 與 `file://` 實測模型卡沒有頁面水平溢出、0 `.katex-error`、0 console errors；章節頁維持原本的上下排列。驗證器 154,710 項、失敗 0。
+2026-10-24 調整總體經濟模型總覽的模型卡版面：桌面版把 SVG 圖與變數說明排成 1:1 的橫向網格（左右各半），27 張章節模型適用；17 組諾貝爾代表模型已移至 `#/nobel` 完整年表，參數表、圖說、模型式與提醒仍放在下方；900px 以下改為單欄直向堆疊，手機不需要左右並排。390px／1280px 與 `file://` 實測模型卡沒有頁面水平溢出、0 `.katex-error`、0 console errors；章節頁維持原本的上下排列。驗證器 154,710 項、失敗 0。
 
-2026-10-24 稽核總體經濟模型總覽並補齊學派模型：新增 5 張 inline SVG 與 KaTeX 模型式，分別是供給面 Laffer 曲線、內生成長 AK／Romer、實質景氣循環 RBC、新凱因斯 NKPC／Taylor 規則、開放經濟 Mundell-Fleming IS-LM-BP；既有 22 張模型圖也補上模型式，模型總覽現在有 27 張章節模型圖、17 組諾貝爾模型，共 44 張 SVG，每張章節模型圖都有模型定義、變數／參數、限制與 KaTeX 公式。學派演進圖由 19 個模型連結增為 23 個，新增連到 Laffer、RBC、NKPC、Mundell-Fleming 與 AK／Romer。390px／1280px 與 `file://` 0 頁面水平溢出、0 `.katex-error`、0 console errors；驗證器 154,710 項、失敗 0。
+2026-10-24 稽核總體經濟模型總覽並補齊學派模型：新增 5 張 inline SVG 與 KaTeX 模型式，分別是供給面 Laffer 曲線、內生成長 AK／Romer、實質景氣循環 RBC、新凱因斯 NKPC／Taylor 規則、開放經濟 Mundell-Fleming IS-LM-BP；既有 22 張模型圖也補上模型式，模型總覽現在有 27 張章節模型圖，每張都有模型定義、變數／參數、限制與 KaTeX 公式；17 組諾貝爾代表模型與 58 屆年表集中在 `#/nobel`，不再重複列於模型總覽。學派演進圖由 19 個模型連結增為 23 個，新增連到 Laffer、RBC、NKPC、Mundell-Fleming 與 AK／Romer。390px／1280px 與 `file://` 0 頁面水平溢出、0 `.katex-error`、0 console errors；驗證器 154,710 項、失敗 0。
 
 2026-10-24 將技術分析 50 指標從投資學公式總表移出，成立獨立頁面 `#/investment/technical`（舊網址 `#/investment/technical-indicators` 亦可開啟）；投資學首頁新增第二張 CTA「技術分析 50 指標」，與公式總表並列。公式總表只保留比例分析 32 條、核心公式 66 條與選擇權評價 7 項，頁尾提供技術分析頁連結；技術分析頁保留 5 類 50 種指標、公式、參數、限制、優先級與章節連結。390px／1280px 與 `file://` 0 頁面水平溢出、0 `.katex-error`、0 console errors；驗證器 154,471 項、失敗 0。
 
@@ -363,7 +362,7 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 2. 修改對應的 `site/assets/content-*.js`；不要用另一個科目的章節補洞。模型圖變更則修改 `site/assets/diagrams-macro*.js`、`diagrams-investment.js` 或 `diagrams-accounting.js`，確認 `sectionTitle` 仍與節次相符。學派演進圖修改 `content-macro-evolution.js`；模型名稱與諾貝爾資料仍分別以 `diagrams-macro*.js`、`content-nobel.js` 為單一來源。諾貝爾年表修改 `content-nobel.js`，圖組修改 `diagrams-nobel.js`，維持 58 列與 17 組的對應。
 3. 執行 `node site/scripts/validate-content.js`，確認差異都已被處理；再用 `node --check` 檢查所有 JavaScript。
 4. 用瀏覽器檢查首頁、四個科目頁（總體含第 11–13 章與學派演進圖）、至少一個含模型圖的總體章、`#/models/macro`、`#/models/macro?model=<anchor>` 的模型卡跳轉與高亮、`#/macro/evolution`（舊網址 `#/subject/macro?evolution=1` 仍可開啟）、`#/nobel`、`?group=`／`?year=`／`?table=`／`?models=` 跳轉、搜尋入口（含會計名詞）、`#/sources`、`#/past-exams` 的年度／科目／次別篩選與作答、`#/investment/formulas` 的公式總表、`#/investment/technical` 的技術分析 50 指標、`#/chapter/investment-14` 的綁定公式，會計第 14、15、23 章，以及證券法規章節。
-5. 若修改模型圖，確認總覽頁與原章節顯示相同內容；可暫時修改記憶體中的 `MACRO_DIAGRAMS`、`INVESTMENT_DIAGRAMS`、`ACCOUNTING_DIAGRAMS` 或 `NOBEL_DIAGRAMS`，切換路由檢查資料綁定。諾貝爾頁與模型總覽的諾貝爾區必須同步。
+5. 若修改模型圖，確認總覽頁與原章節顯示相同內容；可暫時修改記憶體中的 `MACRO_DIAGRAMS`、`INVESTMENT_DIAGRAMS`、`ACCOUNTING_DIAGRAMS` 或 `NOBEL_DIAGRAMS`，切換路由檢查資料綁定。諾貝爾頁是 `NOBEL_DATA`／`NOBEL_DIAGRAMS` 的唯一呈現頁；模型總覽不重複列諾貝爾模型。
 6. 在桌機與 390px 寬度檢查頁面沒有水平溢出；諾貝爾年表在窄螢幕改為上下堆疊，模型圖可在圖表區內滑動；並以 `file://` 開啟確認可閱讀。
 7. 若修改公式或模型圖，依 `SOURCES.md` 與 `documents/content_review_checklist.md` 記錄校對結果；29 條投資／總體公式與 21 張既有總體模型圖已完成公開教材核對；新增國民所得會計帳流程圖、投資學 9 張教學圖與會計學 7 張教學圖為教學示意，尚未逐條教材核對；其他屆諾貝爾原始文獻與會計各章例題未逐題重算前保持「待查」。
 
