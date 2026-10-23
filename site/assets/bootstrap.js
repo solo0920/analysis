@@ -99,23 +99,41 @@
     return list;
   }
 
-  function loadScript(file) {
+  function loadFiles(files) {
     return new Promise(function (resolve, reject) {
-      const script = document.createElement("script");
-      script.src = basePath + file;
-      script.async = false;
-      script.onload = function () { resolve(); };
-      script.onerror = function () { reject(new Error("無法載入 " + file)); };
-      document.body.appendChild(script);
+      if (!files.length) {
+        resolve();
+        return;
+      }
+      let remaining = files.length;
+      let settled = false;
+      files.forEach(function (file) {
+        const script = document.createElement("script");
+        script.src = basePath + file;
+        // async=false：瀏覽器可平行下載，但依插入順序執行，保留 content.js／app.js 的依賴順序。
+        script.async = false;
+        script.onload = function () {
+          remaining -= 1;
+          if (remaining === 0 && !settled) {
+            settled = true;
+            resolve();
+          }
+        };
+        script.onerror = function () {
+          if (!settled) {
+            settled = true;
+            reject(new Error("無法載入 " + file));
+          }
+        };
+        document.body.appendChild(script);
+      });
     });
   }
 
   async function loadBundle(name) {
     if (loaded.has(name)) return;
     const files = bundles[name] || [];
-    for (const file of files) {
-      await loadScript(file);
-    }
+    await loadFiles(files);
     loaded.add(name);
     window.__LAZY_LOADED_BUNDLES = Array.from(loaded);
   }
@@ -145,12 +163,43 @@
     showLoader("載入頁面資料…");
     try {
       const required = requiredBundles();
-      for (const name of required) {
-        await loadBundle(name);
+      const loadedNames = required.concat("app");
+      const files = [];
+      const seen = new Set();
+      loadedNames.forEach(function (name) {
+        (bundles[name] || []).forEach(function (file) {
+          if (!seen.has(file)) {
+            seen.add(file);
+            files.push(file);
+          }
+        });
+      });
+      await loadFiles(files);
+      loadedNames.forEach(function (name) { loaded.add(name); });
+      window.__LAZY_LOADED_BUNDLES = Array.from(loaded);
+      try {
+        sessionStorage.removeItem("lazy-retry:" + location.hash);
+      } catch (error) {
+        /* file:// 或隱私模式可能停用 sessionStorage */
       }
-      await loadBundle("app");
       hideLoader();
     } catch (error) {
+      let attempt = 0;
+      try {
+        attempt = Number(sessionStorage.getItem("lazy-retry:" + location.hash) || 0);
+      } catch (storageError) {
+        attempt = 0;
+      }
+      if (attempt < 2) {
+        try {
+          sessionStorage.setItem("lazy-retry:" + location.hash, String(attempt + 1));
+        } catch (storageError) {
+          /* 無法儲存時仍重試一次 */
+        }
+        showLoader("網路不穩，重新載入…");
+        location.reload();
+        return;
+      }
       const node = document.getElementById("route-loader");
       if (node) {
         node.hidden = false;
