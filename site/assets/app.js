@@ -20,10 +20,8 @@
   const writtenData = window.PAST_EXAMS_WRITTEN || { meta: {}, questions: [] };
   const writtenLayouts = window.WRITTEN_LAYOUTS || {};
   const macroCurrentData = window.MACRO_CURRENT_EVENTS || { meta: {}, events: [] };
-  const forecastData = window.EXAM_FORECAST || { meta: {}, directions: [], sections: [], integrated: [], formulas: { macro: [], investment: [] }, indicators: [], strategy: [] };
+  const forecastData = window.EXAM_FORECAST || { meta: {}, directions: [], questions: [], integrated: [], formulas: { macro: [], investment: [], accounting: [], law: [] }, sensitivity: null, indicators: [], strategy: [] };
   const forecastAnswers = window.EXAM_FORECAST_ANSWERS || {};
-  const forecastExtras = window.EXAM_FORECAST_EXTRAS || { macro: [], investment: [], formulas: { macro: [], investment: [] } };
-  const forecastAdvanced = window.EXAM_FORECAST_ADVANCED || { macro: [], investment: [], formulas: { macro: [], investment: [] }, sensitivity: null };
   const practiceSubjects = Array.isArray(practiceData.subjects) ? practiceData.subjects : [];
   const practiceSessions = Array.isArray(practiceData.sessions) ? practiceData.sessions : [];
   const practiceQuestions = Array.isArray(practiceData.questions) ? practiceData.questions : [];
@@ -2293,20 +2291,38 @@
   function renderForecastQuestion(question) {
     const priorityClass = forecastPriorityClass(question.priority);
     const asks = Array.isArray(question.ask) ? question.ask : [];
+    const level = question.level || "基礎";
+    const levelClass = level === "進階" ? " is-advanced" : "";
+    const chapters = Array.isArray(question.chapters) ? question.chapters : [];
+    const chapterLinks = chapters.map(function (chapterId) {
+      const chapter = getChapter(chapterId);
+      if (!chapter) {
+        return "";
+      }
+      return '<a href="#/chapter/' + encodeURIComponent(chapter.id) + '">' + escapeHtml(chapter.title) + "</a>";
+    }).filter(Boolean).join("");
+    const event = question.eventId ? macroCurrentEventMap.get(question.eventId) : null;
     return [
       '<details class="forecast-question" id="forecast-' + escapeHtml(question.id) + '">',
       '  <summary>',
       '    <span class="forecast-question-num">' + String(question.number).padStart(2, "0") + "</span>",
       '    <span class="forecast-question-title">' + escapeHtml(question.title) + "</span>",
+      '    <span class="forecast-level' + levelClass + '">' + escapeHtml(level) + "</span>",
       '    <span class="forecast-chip">' + escapeHtml(question.type) + "</span>",
       '    <span class="forecast-priority ' + priorityClass + '">' + escapeHtml(question.priority) + "</span>",
       "  </summary>",
       '  <div class="forecast-question-body">',
       '    <p class="forecast-scenario">' + renderInlineMath(question.scenario) + "</p>",
+      '    <div class="forecast-question-meta">',
+      question.topic ? '      <span><strong>主題</strong> ' + escapeHtml(question.topic) + "</span>" : "",
+      chapterLinks ? '      <span class="forecast-related-chapters"><strong>相關章節</strong> ' + chapterLinks + "</span>" : "",
+      event ? '      <span><strong>相關時事</strong> <a href="#/macro-current?event=' + encodeURIComponent(event.id) + '">' + escapeHtml(event.title) + "</a></span>" : "",
+      "    </div>",
       '    <div class="forecast-ask"><h4>可能問法</h4><ul>' + asks.map(function (item) {
         return "<li>" + renderInlineMath(item) + "</li>";
       }).join("") + "</ul></div>",
       '    <div class="forecast-focus"><strong>作答方向</strong><p>' + renderInlineMath(question.focus) + "</p></div>",
+      (question.scoring || question.trap) ? '    <div class="forecast-exam-tip"><div><strong>得分關鍵</strong><p>' + renderInlineMath(question.scoring || "") + '</p></div><div><strong>易錯點</strong><p>' + renderInlineMath(question.trap || "") + "</p></div></div>" : "",
       Array.isArray(forecastAnswers[question.id]) && forecastAnswers[question.id].length
         ? '    <details class="forecast-answer"><summary>完整參考解答</summary><div class="forecast-answer-body">' + forecastAnswers[question.id].map(function (paragraph) {
             return "<p>" + renderInlineMath(paragraph) + "</p>";
@@ -2411,62 +2427,49 @@
   }
 
   function renderExamForecastPage(activeSubject) {
-    const subjectFilter = activeSubject === "macro" || activeSubject === "investment" || activeSubject === "accounting" || activeSubject === "law" || activeSubject === "advanced" ? activeSubject : "all";
+    const subjectFilter = activeSubject === "macro" || activeSubject === "investment" || activeSubject === "accounting" || activeSubject === "law" ? activeSubject : "all";
     const showAll = subjectFilter === "all";
     const meta = forecastData.meta || {};
-    const sections = Array.isArray(forecastData.sections) ? forecastData.sections : [];
-    const visibleSections = showAll ? sections : sections.filter(function (section) { return section.id === subjectFilter; });
+    const questions = Array.isArray(forecastData.questions) ? forecastData.questions : [];
     const integrated = Array.isArray(forecastData.integrated) ? forecastData.integrated : [];
-    const macroFormulas = forecastData.formulas && Array.isArray(forecastData.formulas.macro) ? forecastData.formulas.macro : [];
-    const investmentFormulas = forecastData.formulas && Array.isArray(forecastData.formulas.investment) ? forecastData.formulas.investment : [];
-    const extraMacro = Array.isArray(forecastExtras.macro) ? forecastExtras.macro : [];
-    const extraInvestment = Array.isArray(forecastExtras.investment) ? forecastExtras.investment : [];
-    const extraAccounting = Array.isArray(forecastExtras.accounting) ? forecastExtras.accounting : [];
-    const extraLaw = Array.isArray(forecastExtras.law) ? forecastExtras.law : [];
-    const extraMacroFormulas = forecastExtras.formulas && Array.isArray(forecastExtras.formulas.macro) ? forecastExtras.formulas.macro : [];
-    const extraInvestmentFormulas = forecastExtras.formulas && Array.isArray(forecastExtras.formulas.investment) ? forecastExtras.formulas.investment : [];
-    const accountingFormulas = forecastExtras.formulas && Array.isArray(forecastExtras.formulas.accounting) ? forecastExtras.formulas.accounting : [];
-    const advancedMacro = Array.isArray(forecastAdvanced.macro) ? forecastAdvanced.macro : [];
-    const advancedInvestment = Array.isArray(forecastAdvanced.investment) ? forecastAdvanced.investment : [];
-    const advancedMacroFormulas = forecastAdvanced.formulas && Array.isArray(forecastAdvanced.formulas.macro) ? forecastAdvanced.formulas.macro : [];
-    const advancedInvestmentFormulas = forecastAdvanced.formulas && Array.isArray(forecastAdvanced.formulas.investment) ? forecastAdvanced.formulas.investment : [];
-    const sensitivity = forecastAdvanced.sensitivity || null;
-    const allMacroFormulas = macroFormulas.concat(extraMacroFormulas, advancedMacroFormulas);
-    const allInvestmentFormulas = investmentFormulas.concat(extraInvestmentFormulas, advancedInvestmentFormulas);
-    const allAccountingFormulas = accountingFormulas;
     const indicators = Array.isArray(forecastData.indicators) ? forecastData.indicators : [];
     const strategy = Array.isArray(forecastData.strategy) ? forecastData.strategy : [];
-    const counts = meta.counts || {};
-    const formulaCount = allMacroFormulas.length + allInvestmentFormulas.length + allAccountingFormulas.length;
-    const advancedFormulaCount = advancedMacroFormulas.length + advancedInvestmentFormulas.length;
-    const visibleFormulaCount = showAll ? formulaCount : subjectFilter === "macro" ? allMacroFormulas.length : subjectFilter === "investment" ? allInvestmentFormulas.length : subjectFilter === "accounting" ? allAccountingFormulas.length : subjectFilter === "advanced" ? advancedFormulaCount : 0;
-    const extraTotal = extraMacro.length + extraInvestment.length + extraAccounting.length + extraLaw.length;
-    const advancedTotal = advancedMacro.length + advancedInvestment.length;
-    const totalQuestions = sections.reduce(function (sum, section) { return sum + (section.questions ? section.questions.length : 0); }, 0) + extraTotal + advancedTotal;
-    const extraGroups = [
-      { id: "macro", title: "總體經濟學補充題", desc: "泰勒法則、犧牲比率、損益兩平通膨與債務動態。", questions: extraMacro },
-      { id: "investment", title: "投資學補充題", desc: "遠期利率、最小變異數、股權風險溢酬與 VaR。", questions: extraInvestment },
-      { id: "accounting", title: "會計學考前重點", desc: "應收、存貨、折舊、租賃、公司債、EPS 與報表分析。", questions: extraAccounting },
-      { id: "law", title: "證券法規考前重點", desc: "公司治理、內線交易、公開收購、投信投顧與財報責任。", questions: extraLaw }
-    ].filter(function (group) { return group.questions.length && (showAll || subjectFilter === group.id); });
-    const advancedGroups = [
-      { id: "macro", title: "教授命題核心：總體經濟計算與申論", desc: "泰勒法則、QT、AS-AD、UIP、QTM、MMT 與總體審慎。", questions: advancedMacro },
-      { id: "investment", title: "教授命題核心：投資學計算與申論", desc: "DCF、杜邦、久期免疫、Merton、VaR、BSM、期貨避險與風險平價。", questions: advancedInvestment }
-    ].filter(function (group) { return group.questions.length && (showAll || subjectFilter === "advanced" || subjectFilter === group.id); });
-    const coverageExtras = { macro: extraMacro, investment: extraInvestment, accounting: extraAccounting, law: extraLaw };
-    const coverageAdvanced = { macro: advancedMacro, investment: advancedInvestment, accounting: [], law: [] };
-    const coverageRows = ["macro", "investment", "accounting", "law"].map(function (subjectId) {
-      const subject = getSubject(subjectId);
-      const mainCount = sections.filter(function (section) { return section.id === subjectId; }).reduce(function (sum, section) { return sum + section.questions.length; }, 0);
+    const sensitivity = forecastData.sensitivity || null;
+    const formulas = forecastData.formulas || {};
+    const subjectDefs = [
+      { id: "macro", name: "總體經濟學" },
+      { id: "investment", name: "投資學" },
+      { id: "accounting", name: "會計學" },
+      { id: "law", name: "證券法規" }
+    ];
+    const subjectCounts = {};
+    subjectDefs.forEach(function (subject) {
+      subjectCounts[subject.id] = questions.filter(function (question) { return question.subject === subject.id; }).length;
+    });
+    const visibleSubjects = showAll ? subjectDefs : subjectDefs.filter(function (subject) { return subject.id === subjectFilter; });
+    const formulaCount = subjectDefs.reduce(function (sum, subject) {
+      return sum + (Array.isArray(formulas[subject.id]) ? formulas[subject.id].length : 0);
+    }, 0);
+    const visibleFormulaCount = showAll ? formulaCount : (Array.isArray(formulas[subjectFilter]) ? formulas[subjectFilter].length : 0);
+    const basicCount = questions.filter(function (question) { return question.level === "基礎"; }).length;
+    const advancedCount = questions.filter(function (question) { return question.level === "進階"; }).length;
+    const totalQuestions = questions.length;
+    const coverageRows = subjectDefs.map(function (subject) {
+      const info = getSubject(subject.id);
       return {
-        id: subjectId,
-        name: subject ? subject.name : subjectId,
-        chapters: subject ? subject.chapters.length : 0,
-        mcq: practiceQuestions.filter(function (q) { return q.subject === subjectId; }).length,
-        written: writtenQuestions.filter(function (q) { return q.subject === subjectId; }).length,
-        forecast: mainCount + (coverageExtras[subjectId] || []).length + (coverageAdvanced[subjectId] || []).length
+        id: subject.id,
+        name: subject.name,
+        chapters: info ? info.chapters.length : 0,
+        mcq: practiceQuestions.filter(function (question) { return question.subject === subject.id; }).length,
+        written: writtenQuestions.filter(function (question) { return question.subject === subject.id; }).length,
+        forecast: subjectCounts[subject.id]
       };
     });
+    const formulaGroups = visibleSubjects.filter(function (subject) {
+      return Array.isArray(formulas[subject.id]) && formulas[subject.id].length > 0;
+    }).map(function (subject) {
+      return renderForecastFormulaGroup(subject.name, formulas[subject.id]);
+    }).join("");
     return [
       '<div class="page forecast-page">',
       '  <nav class="breadcrumb" aria-label="麵包屑">',
@@ -2479,10 +2482,10 @@
       '    <div class="forecast-stats">',
       '      <div><strong>' + totalQuestions + '</strong><span>總題數</span></div>',
       '      <div><strong>4</strong><span>科目</span></div>',
-      '      <div><strong>' + (counts.integrated || integrated.length) + '</strong><span>跨章節整合</span></div>',
-      '      <div><strong>' + formulaCount + '</strong><span>必背公式</span></div>',
+      '      <div><strong>' + (meta.counts && meta.counts.integrated || integrated.length) + '</strong><span>跨章節整合</span></div>',
+      '      <div><strong>' + formulaCount + '</strong><span>整合公式</span></div>',
       "    </div>",
-      '    <p class="forecast-count-note">主預測 40 題＋科目補充 ' + extraTotal + ' 題＋教授核心 ' + advancedTotal + ' 題；公式 ' + formulaCount + ' 條。</p>',
+      '    <p class="forecast-count-note">基礎 ' + basicCount + ' 題＋進階 ' + advancedCount + ' 題；公式 ' + formulaCount + ' 條。</p>',
       '    <div class="forecast-actions">',
       '      <a class="btn btn-primary" href="#/past-exams/written">練計算／申論題</a>',
       '      <a class="btn" href="#/macro-current">看總經時事</a>',
@@ -2491,11 +2494,9 @@
       "  </section>",
       '  <nav class="forecast-tabs" aria-label="考前猜題科目">',
       '    <a class="forecast-tab' + (showAll ? " is-active" : "") + '" href="#/exam-forecast"' + (showAll ? ' aria-current="page"' : "") + '>全部 ' + totalQuestions + ' 題</a>',
-      '    <a class="forecast-tab' + (subjectFilter === "macro" ? " is-active" : "") + '" href="#/exam-forecast?subject=macro"' + (subjectFilter === "macro" ? ' aria-current="page"' : "") + '>總體經濟學 ' + (20 + extraMacro.length + advancedMacro.length) + ' 題</a>',
-      '    <a class="forecast-tab' + (subjectFilter === "investment" ? " is-active" : "") + '" href="#/exam-forecast?subject=investment"' + (subjectFilter === "investment" ? ' aria-current="page"' : "") + '>投資學 ' + (20 + extraInvestment.length + advancedInvestment.length) + ' 題</a>',
-      '    <a class="forecast-tab' + (subjectFilter === "accounting" ? " is-active" : "") + '" href="#/exam-forecast?subject=accounting"' + (subjectFilter === "accounting" ? ' aria-current="page"' : "") + '>會計學 ' + extraAccounting.length + ' 題</a>',
-      '    <a class="forecast-tab' + (subjectFilter === "law" ? " is-active" : "") + '" href="#/exam-forecast?subject=law"' + (subjectFilter === "law" ? ' aria-current="page"' : "") + '>證券法規 ' + extraLaw.length + ' 題</a>',
-      '    <a class="forecast-tab' + (subjectFilter === "advanced" ? " is-active" : "") + '" href="#/exam-forecast?subject=advanced"' + (subjectFilter === "advanced" ? ' aria-current="page"' : "") + '>教授核心 ' + advancedTotal + ' 題</a>',
+      subjectDefs.map(function (subject) {
+        return '    <a class="forecast-tab' + (subjectFilter === subject.id ? " is-active" : "") + '" href="#/exam-forecast?subject=' + subject.id + '"' + (subjectFilter === subject.id ? ' aria-current="page"' : "") + '>' + escapeHtml(subject.name) + " " + subjectCounts[subject.id] + " 題</a>";
+      }).join("\n"),
       "  </nav>",
       '  <section class="forecast-directions">' + (forecastData.directions || []).map(function (item) {
         return [
@@ -2516,32 +2517,27 @@
         '    <p class="forecast-count-note">3,710 題選擇題均有逐選項解析；348 題計算／申論均有參考解答；73 個章節均有名詞、重點與考古題出處。四科考前猜題合計 ' + totalQuestions + ' 題。</p>',
         "  </section>"
       ].join("") : "",
-      visibleSections.map(function (section) {
-        const questions = Array.isArray(section.questions) ? section.questions : [];
+      visibleSubjects.map(function (subject) {
+        const subjectQuestions = questions.filter(function (question) { return question.subject === subject.id; });
+        const levels = ["基礎", "進階"].filter(function (level) {
+          return subjectQuestions.some(function (question) { return (question.level || "基礎") === level; });
+        });
         return [
-          '<section class="forecast-section" id="forecast-' + escapeHtml(section.id) + '">',
-          '  <div class="forecast-section-head"><div><p class="eyebrow">' + escapeHtml(section.id === "macro" ? "總體經濟學" : "投資學") + "</p><h2>" + escapeHtml(section.title) + "</h2><p>" + escapeHtml(section.subtitle || "") + "</p></div><span>" + questions.length + " 題</span></div>",
-          '  <div class="forecast-question-list">' + questions.map(renderForecastQuestion).join("") + "</div>",
-          "</section>"
-        ].join("");
-      }).join(""),
-      extraGroups.map(function (group) {
-        return [
-          '  <section class="forecast-section forecast-extras" id="forecast-extra-' + group.id + '">',
-          '    <div class="forecast-section-head"><div><p class="eyebrow">科目補充</p><h2>' + escapeHtml(group.title) + '</h2><p>' + escapeHtml(group.desc) + '</p></div><span>' + group.questions.length + " 題</span></div>",
-          '    <div class="forecast-question-list">' + group.questions.map(renderForecastQuestion).join("") + "</div>",
+          '  <section class="forecast-section forecast-subject" id="forecast-subject-' + subject.id + '">',
+          '    <div class="forecast-section-head"><div><p class="eyebrow">科目題庫</p><h2>' + escapeHtml(subject.name) + "：" + subjectQuestions.length + ' 題</h2><p>' + ((subject.id === "accounting" || subject.id === "law") ? "此為重點 " + subjectQuestions.length + " 題，未涵蓋全部章節；請搭配章節與考古題複習。" : "依主題與 level 分組；進階題數字為教學假設，實際考試以題目給定為準。") + '</p></div><span>' + subjectQuestions.length + " 題</span></div>",
+          levels.map(function (level) {
+            const levelQuestions = subjectQuestions.filter(function (question) { return (question.level || "基礎") === level; });
+            return [
+              '    <div class="forecast-level-block">',
+              '      <div class="forecast-level-head"><h3>' + escapeHtml(level) + '題</h3><span>' + levelQuestions.length + ' 題</span></div>',
+              '      <div class="forecast-question-list">' + levelQuestions.map(renderForecastQuestion).join("") + "</div>",
+              "    </div>"
+            ].join("");
+          }).join(""),
           "  </section>"
         ].join("");
       }).join(""),
-      advancedGroups.map(function (group) {
-        return [
-          '  <section class="forecast-section forecast-advanced" id="forecast-advanced-' + group.id + '">',
-          '    <div class="forecast-section-head"><div><p class="eyebrow">教授命題核心</p><h2>' + escapeHtml(group.title) + '</h2><p>' + escapeHtml(group.desc) + '</p></div><span>' + group.questions.length + " 題</span></div>",
-          '    <div class="forecast-question-list">' + group.questions.map(renderForecastQuestion).join("") + "</div>",
-          "  </section>"
-        ].join("");
-      }).join(""),
-      (showAll || subjectFilter === "advanced" || subjectFilter === "investment") ? renderForecastSensitivitySection(sensitivity) : "",
+      (showAll || subjectFilter === "investment") ? renderForecastSensitivitySection(sensitivity) : "",
       showAll ? [
         '  <section class="forecast-section" id="forecast-integrated">',
         '    <div class="forecast-section-head"><div><p class="eyebrow">整合題</p><h2>如果只練 6 題，先練這些</h2><p>把多個章節串成一個完整案例，適合申論與計算混合題。</p></div><span>' + integrated.length + " 組</span></div>",
@@ -2558,19 +2554,13 @@
         }).join("") + "</div>",
         "  </section>"
       ].join("") : "",
-      subjectFilter === "law" ? [
-        '  <div class="notice"><strong>法規題提示：</strong>證券法規以條文、程序、構成要件與案例適用為主，不另列公式；請搭配考古題逐選項解析複習。</div>'
-      ].join("") : [
+      formulaGroups ? [
         '  <section class="forecast-section" id="forecast-formulas">',
-        '    <div class="forecast-section-head"><div><p class="eyebrow">公式</p><h2>考前必背公式</h2><p>先確認變數定義與單位，再代入數字。</p></div><span>' + visibleFormulaCount + " 條</span></div>",
-        '    <div class="forecast-formula-grid">',
-        (showAll || subjectFilter === "macro") ? renderForecastFormulaGroup("總體經濟學", allMacroFormulas) : "",
-        (showAll || subjectFilter === "investment") ? renderForecastFormulaGroup("投資學", allInvestmentFormulas) : "",
-        (showAll || subjectFilter === "accounting") ? renderForecastFormulaGroup("會計學", allAccountingFormulas) : "",
-        subjectFilter === "advanced" ? renderForecastFormulaGroup("進階總體經濟學", advancedMacroFormulas) : "",
-        subjectFilter === "advanced" ? renderForecastFormulaGroup("進階投資學", advancedInvestmentFormulas) : "",
-        "    </div>",
+        '    <div class="forecast-section-head"><div><p class="eyebrow">公式</p><h2>考前整合公式</h2><p>同一主題的基礎、進階與變形放在一起；先確認變數定義與單位，再代入數字。</p></div><span>' + visibleFormulaCount + " 條</span></div>",
+        '    <div class="forecast-formula-grid">' + formulaGroups + "</div>",
         "  </section>"
+      ].join("") : [
+        '  <div class="notice"><strong>本科提示：</strong>證券法規以條文、程序、構成要件與案例適用為主，不另列公式；請搭配考古題逐選項解析複習。</div>'
       ].join(""),
       '  <section class="forecast-section" id="forecast-indicators">',
       '    <div class="forecast-section-head"><div><p class="eyebrow">時事</p><h2>考前要追蹤的數字</h2><p>截至 ' + escapeHtml(meta.updated || "") + "；考試前請更新官方數據，不要死背單一價格。</p></div><span>" + indicators.length + " 項</span></div>",
@@ -4142,7 +4132,7 @@
       title = "近二年重要國際金融時事與總經政策｜總體經濟學｜" + content.meta.title;
     } else if (route.parts[0] === "exam-forecast") {
       const forecastSubject = route.query.get("subject");
-      const forecastLabel = { macro: "總體經濟學", investment: "投資學", accounting: "會計學", law: "證券法規", advanced: "教授命題核心" }[forecastSubject];
+      const forecastLabel = { macro: "總體經濟學", investment: "投資學", accounting: "會計學", law: "證券法規" }[forecastSubject];
       html = renderExamForecastPage(forecastSubject);
       title = (forecastLabel || "2026 年 12 月") + "考前猜題｜" + content.meta.title;
     } else if (route.parts[0] === "sources") {
@@ -4162,6 +4152,17 @@
     updateProgressDisplays();
     setupSectionObserver();
     closeMobileMenu();
+
+    if (route.parts[0] === "exam-forecast" && route.query.get("question")) {
+      const questionId = route.query.get("question");
+      window.requestAnimationFrame(function () {
+        const target = document.getElementById("forecast-" + questionId);
+        if (target) {
+          target.open = true;
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    }
 
     if (route.parts[0] === "models" && route.parts[1] === "macro" && route.query.get("model")) {
       const modelAnchor = route.query.get("model") || "";
@@ -4298,6 +4299,18 @@
       });
     });
 
+    (forecastData.questions || []).forEach(function (question) {
+      const subject = getSubject(question.subject);
+      index.push({
+        type: "考前",
+        typeClass: "",
+        title: question.title,
+        sub: (subject ? subject.name : question.subject) + " · " + question.topic + " · " + question.level,
+        text: [question.scenario].concat(question.ask || []).join(" "),
+        href: "#/exam-forecast?subject=" + question.subject + "&question=" + encodeURIComponent(question.id)
+      });
+    });
+
     searchState.index = index.map(function (entry) {
       return Object.assign({}, entry, {
         nTitle: normalize(entry.title),
@@ -4333,6 +4346,9 @@
   }
 
   function searchHref(result) {
+    if (result.href) {
+      return result.href;
+    }
     return "#/chapter/" + result.chapterId + (result.sectionIndex ? "?section=" + result.sectionIndex : "");
   }
 

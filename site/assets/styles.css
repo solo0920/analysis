@@ -1793,8 +1793,19 @@ p {
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 30px;
   align-items: end;
+  min-width: 0;
+  max-width: 100%;
   padding-bottom: 32px;
   border-bottom: 1px solid var(--line);
+}
+
+.chapter-head > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.chapter-head .eyebrow {
+  white-space: normal;
 }
 
 .chapter-head h1 {
@@ -1937,7 +1948,15 @@ p {
 
 .section-body {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 12px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.section-body > * {
+  min-width: 0;
+  max-width: 100%;
 }
 
 .section-body p {
@@ -2220,7 +2239,10 @@ p {
 }
 
 .diagram-table {
-  overflow: hidden;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   background: var(--surface-2);
@@ -6310,6 +6332,114 @@ p {
   white-space: normal;
 }
 
+.forecast-level {
+  flex: 0 0 auto;
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.forecast-level.is-advanced {
+  border-color: color-mix(in srgb, var(--gold) 55%, var(--line));
+  background: color-mix(in srgb, var(--gold) 12%, var(--surface));
+  color: var(--accent-ink);
+}
+
+.forecast-level-block {
+  margin-top: 18px;
+}
+
+.forecast-level-block:first-of-type {
+  margin-top: 0;
+}
+
+.forecast-level-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 12px;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+}
+
+.forecast-level-head h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.forecast-level-head span {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.forecast-question-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
+
+.forecast-question-meta strong {
+  color: var(--ink-soft);
+}
+
+.forecast-question-meta a {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.forecast-question-meta a:hover {
+  text-decoration: underline;
+}
+
+.forecast-exam-tip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 12px 0 0;
+}
+
+.forecast-exam-tip > div {
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-2);
+}
+
+.forecast-exam-tip strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--ink);
+  font-size: 0.78rem;
+}
+
+.forecast-exam-tip p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 640px) {
+  .forecast-exam-tip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .forecast-priority {
   flex: 0 0 auto;
   padding: 3px 8px;
@@ -7103,6 +7233,8 @@ p {
 
 /* ----------------------------- worked exam solutions ----------------------------- */
 .section-solutions {
+  min-width: 0;
+  max-width: 100%;
   margin-top: 24px;
   padding: 20px;
   border: 1px solid var(--line);
@@ -7130,7 +7262,10 @@ p {
 
 .solution-strategy {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 8px;
+  min-width: 0;
+  max-width: 100%;
   margin: 0;
   padding-left: 1.35rem;
   color: var(--ink-soft);
@@ -7214,6 +7349,8 @@ p {
 }
 
 .worked-example-body {
+  min-width: 0;
+  max-width: 100%;
   padding: 0 14px 14px;
   border-top: 1px solid var(--line);
 }
@@ -7528,4 +7665,14 @@ p {
 
 .written-answer p {
   overflow-wrap: anywhere;
+}
+
+
+/* 內容區表格在窄螢幕只讓表格本身水平滑動，避免撐開整頁。 */
+.written-answer-table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
 }

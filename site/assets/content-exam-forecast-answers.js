@@ -1,5 +1,5 @@
 // 2026 年 12 月考前猜題：完整參考解答
-// 與 content-exam-forecast.js／content-exam-forecast-extras.js／content-exam-forecast-advanced.js 的題目 id 對應。
+// 與單一題庫 content-exam-forecast.js 的題目 id 對應。
 
 window.EXAM_FORECAST_ANSWERS = {
   "macro-01": [
