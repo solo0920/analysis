@@ -21,6 +21,7 @@
   const writtenLayouts = window.WRITTEN_LAYOUTS || {};
   const macroCurrentData = window.MACRO_CURRENT_EVENTS || { meta: {}, events: [] };
   const forecastData = window.EXAM_FORECAST || { meta: {}, directions: [], sections: [], integrated: [], formulas: { macro: [], investment: [] }, indicators: [], strategy: [] };
+  const forecastAnswers = window.EXAM_FORECAST_ANSWERS || {};
   const practiceSubjects = Array.isArray(practiceData.subjects) ? practiceData.subjects : [];
   const practiceSessions = Array.isArray(practiceData.sessions) ? practiceData.sessions : [];
   const practiceQuestions = Array.isArray(practiceData.questions) ? practiceData.questions : [];
@@ -2304,6 +2305,11 @@
         return "<li>" + renderInlineMath(item) + "</li>";
       }).join("") + "</ul></div>",
       '    <div class="forecast-focus"><strong>作答方向</strong><p>' + renderInlineMath(question.focus) + "</p></div>",
+      Array.isArray(forecastAnswers[question.id]) && forecastAnswers[question.id].length
+        ? '    <details class="forecast-answer"><summary>完整參考解答</summary><div class="forecast-answer-body">' + forecastAnswers[question.id].map(function (paragraph) {
+            return "<p>" + renderInlineMath(paragraph) + "</p>";
+          }).join("") + "</div></details>"
+        : "",
       "  </div>",
       "</details>"
     ].join("");
