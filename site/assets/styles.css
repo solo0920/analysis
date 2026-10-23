@@ -6031,6 +6031,136 @@ p {
   line-height: 1.75;
 }
 
+.written-stem-body {
+  display: block;
+  min-width: 0;
+}
+
+.written-stem-body > * + * {
+  margin-top: 10px;
+}
+
+.written-stem-p,
+.written-stem-note {
+  margin: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.written-stem-p .inline-math,
+.written-stem-p .inline-math .katex,
+.written-stem-p .inline-math .katex-html,
+.written-table th .inline-math,
+.written-table td .inline-math,
+.written-table th .inline-math .katex,
+.written-table td .inline-math .katex {
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.written-stem-p.is-sub {
+  padding-left: 14px;
+  border-left: 2px solid var(--line);
+}
+
+.written-stem-list {
+  margin: 0;
+  padding-left: 24px;
+  display: grid;
+  gap: 6px;
+}
+
+.written-stem-list li {
+  padding-left: 2px;
+}
+
+.written-stem-formula {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2px 0;
+}
+
+.written-table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.written-table-caption {
+  margin: 0;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.written-table {
+  width: 100%;
+  min-width: 480px;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.written-table.is-compact {
+  min-width: 0;
+}
+
+.written-table th,
+.written-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.written-table thead th {
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.written-table tbody tr:last-child th,
+.written-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.written-table tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--surface-2) 55%, transparent);
+}
+
+.written-table-note {
+  margin: 0;
+  padding: 8px 12px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+@media (max-width: 680px) {
+  .written-table {
+    min-width: 440px;
+  }
+
+  .written-table.is-compact {
+    min-width: 0;
+  }
+
+  .written-stem-p.is-sub {
+    padding-left: 10px;
+  }
+}
+
 .written-actions {
   display: flex;
   flex-wrap: wrap;

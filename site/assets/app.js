@@ -18,6 +18,7 @@
   const macroEvolution = window.MACRO_EVOLUTION || { meta: {}, stages: [] };
   const practiceData = window.PAST_EXAMS || { meta: {}, subjects: [], sessions: [], questions: [] };
   const writtenData = window.PAST_EXAMS_WRITTEN || { meta: {}, questions: [] };
+  const writtenLayouts = window.WRITTEN_LAYOUTS || {};
   const macroCurrentData = window.MACRO_CURRENT_EVENTS || { meta: {}, events: [] };
   const practiceSubjects = Array.isArray(practiceData.subjects) ? practiceData.subjects : [];
   const practiceSessions = Array.isArray(practiceData.sessions) ? practiceData.sessions : [];
@@ -2348,7 +2349,8 @@
       if (/^[；。！？，]$/.test(part)) {
         return escapeHtml(part);
       }
-      if (part.length > 240 || !mathIndicator.test(part) || /[\uE000-\uF8FF\u0300-\u036F]/.test(part)) {
+      const cjkCount = (part.match(/[\u3400-\u9fff]/g) || []).length;
+      if (part.length > 240 || (part.length > 72 && cjkCount >= 24) || !mathIndicator.test(part) || /[\uE000-\uF8FF\u0300-\u036F]/.test(part)) {
         return escapeHtml(part);
       }
       return '<span class="written-answer-math">' + renderKatex(clauseToTex(part), false) + "</span>";
@@ -2380,6 +2382,156 @@
     return renderWrittenAnswer(text).replace(/class="written-answer-math/g, 'class="inline-math');
   }
 
+  function splitWrittenStemParagraphs(text) {
+    let source = String(text == null ? "" : text).replace(/\r\n?/g, "\n").trim();
+    if (!source) {
+      return [];
+    }
+    const mathSegments = [];
+    source = source.replace(/\\\[[\s\S]+?\\\]|\\\([\s\S]+?\\\)/g, function (segment) {
+      const token = "@@MATH" + mathSegments.length + "@@";
+      mathSegments.push(segment);
+      return token;
+    });
+    source = source.replace(/([。；：])\s*(?=(?:請問|試問|請回答|請計算|試求|請說明|請編製|請列出|請依|作答)[：:])/g, "$1\n");
+    const marker = /(?=\([0-9]{1,2}\)|（[0-9]{1,2}）|\([A-Da-d]\)|（[A-Da-d]）|●|•|※|[一二三四五六七八九十]+、)/g;
+    const parts = source.split(/\n+/).reduce(function (items, line) {
+      return items.concat(line.split(marker));
+    }, []).map(function (part) {
+      return part.trim();
+    }).filter(Boolean);
+
+    function packSentences(value) {
+      const sentences = value.match(/[^。！？]+[。！？]?/g) || [value];
+      const packed = [];
+      let current = "";
+      sentences.forEach(function (sentence) {
+        const clean = sentence.trim();
+        if (!clean) {
+          return;
+        }
+        if (!current) {
+          current = clean;
+        } else if (current.length + clean.length <= 150) {
+          current += clean;
+        } else {
+          packed.push(current);
+          current = clean;
+        }
+      });
+      if (current) {
+        packed.push(current);
+      }
+      return packed;
+    }
+
+    const paragraphs = [];
+    parts.forEach(function (part) {
+      const semicolonParts = part.length > 60 && /；/.test(part) ? part.split(/；+/) : [part];
+      semicolonParts.forEach(function (piece) {
+        const clean = piece.trim();
+        if (!clean) {
+          return;
+        }
+        packSentences(clean).forEach(function (sentence) {
+          paragraphs.push(sentence);
+        });
+      });
+    });
+    const restored = paragraphs.map(function (paragraph) {
+      return paragraph.replace(/@@MATH(\d+)@@/g, function (match, index) {
+        return mathSegments[Number(index)] || match;
+      });
+    });
+    return restored.length ? restored : [source];
+  }
+
+  function renderExplicitMathText(text) {
+    const source = String(text == null ? "" : text);
+    const parts = [];
+    const pattern = /\\\[([\s\S]+?)\\\]|\\\(([\s\S]+?)\\\)/g;
+    let last = 0;
+    let match;
+    while ((match = pattern.exec(source))) {
+      if (match.index > last) {
+        parts.push(escapeHtml(source.slice(last, match.index)));
+      }
+      const display = match[1] !== undefined;
+      const tex = display ? match[1] : match[2];
+      parts.push('<span class="inline-math">' + renderKatex(tex, display) + '</span>');
+      last = pattern.lastIndex;
+    }
+    if (last < source.length) {
+      parts.push(escapeHtml(source.slice(last)));
+    }
+    return parts.join("");
+  }
+
+  function renderWrittenTableBlock(block) {
+    const columns = Array.isArray(block.columns) ? block.columns : [];
+    const rows = Array.isArray(block.rows) ? block.rows : [];
+    const compact = columns.length <= 2 ? " is-compact" : "";
+    const head = columns.length
+      ? '<thead><tr>' + columns.map(function (cell) {
+        return '<th scope="col">' + renderInlineMath(cell) + '</th>';
+      }).join("") + '</tr></thead>'
+      : "";
+    const body = rows.map(function (row) {
+      return '<tr>' + row.map(function (cell, index) {
+        const tag = block.rowHeader && index === 0 ? "th" : "td";
+        const scope = tag === "th" ? ' scope="row"' : "";
+        return '<' + tag + scope + '>' + renderInlineMath(cell == null ? "" : cell) + '</' + tag + '>';
+      }).join("") + '</tr>';
+    }).join("");
+    return [
+      '<div class="written-table-wrap">',
+      block.caption ? '<p class="written-table-caption">' + renderInlineMath(block.caption) + '</p>' : "",
+      '<table class="written-table' + compact + '">',
+      head,
+      '<tbody>' + body + '</tbody>',
+      '</table>',
+      block.note ? '<p class="written-table-note">' + renderInlineMath(block.note) + '</p>' : "",
+      '</div>'
+    ].join("");
+  }
+
+  function renderWrittenBlock(block) {
+    if (!block || !block.type) {
+      return "";
+    }
+    if (block.type === "table") {
+      return renderWrittenTableBlock(block);
+    }
+    if (block.type === "plain") {
+      return '<p class="written-stem-p">' + renderExplicitMathText(block.text || "") + '</p>';
+    }
+    if (block.type === "formula") {
+      return '<div class="written-stem-formula">' + renderKatex(block.tex || "", true) + '</div>';
+    }
+    if (block.type === "list") {
+      const tag = block.ordered ? "ol" : "ul";
+      return '<' + tag + ' class="written-stem-list">' + (block.items || []).map(function (item) {
+        return '<li>' + renderInlineMath(item) + '</li>';
+      }).join("") + '</' + tag + '>';
+    }
+    if (block.type === "note") {
+      return '<p class="written-stem-note">' + renderInlineMath(block.text || "") + '</p>';
+    }
+    return '<p class="written-stem-p">' + renderInlineMath(block.text || "") + '</p>';
+  }
+
+  function renderWrittenStem(question) {
+    const layout = writtenLayouts[question.id];
+    if (Array.isArray(layout) && layout.length) {
+      return '<div class="written-stem-body">' + layout.map(renderWrittenBlock).join("") + '</div>';
+    }
+    const paragraphs = splitWrittenStemParagraphs(question.stem);
+    return '<div class="written-stem-body">' + paragraphs.map(function (paragraph) {
+      const sub = /^(?:\([0-9]{1,2}\)|（[0-9]{1,2}）|\([A-Da-d]\)|（[A-Da-d]）|[0-9]{1,2}[.)、]|[一二三四五六七八九十]+、)/.test(paragraph);
+      return '<p class="written-stem-p' + (sub ? " is-sub" : "") + '">' + renderInlineMath(paragraph) + '</p>';
+    }).join("") + '</div>';
+  }
+
   function renderWrittenCard(question) {
     const session = practiceSessionMap.get(question.sessionId) || { label: question.sessionId };
     const subject = practiceSubjectMap.get(question.subject) || { short: question.subject, colorClass: "" };
@@ -2393,7 +2545,7 @@
       '    <span class="written-kind">' + escapeHtml(question.kind || "計算／申論") + '</span>',
       '    <span class="written-reference">參考解答</span>',
       '  </div>',
-      '  <h3 class="written-stem">' + renderInlineMath(question.stem) + '</h3>',
+      '  <div class="written-stem">' + renderWrittenStem(question) + '</div>',
       renderPracticeQuestionOrigin(question, session),
       '  <div class="written-actions">',
       '    <button class="btn btn-small" type="button" data-written-toggle="' + escapeHtml(question.id) + '">' + (open ? "收起解答" : "顯示參考解答") + '</button>',

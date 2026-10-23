@@ -105,7 +105,7 @@ const nobelDiagramFiles = ["diagrams-nobel.js"];
 function loadContent() {
   const context = { window: {} };
   vm.createContext(context);
-  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-investment-formulas.js", "content-investment-technical.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-macro-current.js", "content-past-exams-written.js", "content-past-exams.js", "content-exam-solutions-115.js", "content-exam-solutions-114.js", "content-exam-solutions-113.js", "content-exam-solutions-112.js", "content-exam-solutions-111.js", "content-exam-solutions-110.js", "content-exam-solutions-109.js", "content-exam-solutions-108.js", "content-exam-solutions-107.js"].forEach(function (file) {
+  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-investment-formulas.js", "content-investment-technical.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-macro-current.js", "content-past-exams-written.js", "content-written-layouts.js", "content-past-exams.js", "content-exam-solutions-115.js", "content-exam-solutions-114.js", "content-exam-solutions-113.js", "content-exam-solutions-112.js", "content-exam-solutions-111.js", "content-exam-solutions-110.js", "content-exam-solutions-109.js", "content-exam-solutions-108.js", "content-exam-solutions-107.js"].forEach(function (file) {
     const fullPath = path.join(siteDir, "assets", file);
     vm.runInContext(fs.readFileSync(fullPath, "utf8"), context, { filename: file });
   });
@@ -129,6 +129,7 @@ function loadContent() {
     formulaTex: context.window.FORMULA_TEX || {},
     pastExams: context.window.PAST_EXAMS || { meta: {}, subjects: [], sessions: [], questions: [] },
     pastWritten: context.window.PAST_EXAMS_WRITTEN || { meta: {}, questions: [] },
+    writtenLayouts: context.window.WRITTEN_LAYOUTS || {},
     examSolutions: Array.isArray(context.window.EXAM_SOLUTIONS) ? context.window.EXAM_SOLUTIONS : [],
     macroCurrent: context.window.MACRO_CURRENT_EVENTS || { meta: {}, events: [] }
   };
@@ -274,6 +275,7 @@ const lawArticles = loaded.lawArticles;
 const formulaTex = loaded.formulaTex;
 const pastExams = loaded.pastExams;
 const pastWritten = loaded.pastWritten || { meta: {}, questions: [] };
+const writtenLayouts = loaded.writtenLayouts || {};
 const examSolutions = loaded.examSolutions || [];
 const macroCurrent = loaded.macroCurrent || { meta: {}, events: [] };
 const macro = content.subjects.find(function (subject) { return subject.id === "macro"; });
@@ -1452,9 +1454,11 @@ const languageSurface = [
   read("site/assets/app.js"),
   read("site/assets/content-past-exams.js"),
   read("site/assets/content-past-exams-written.js"),
+  read("site/assets/content-written-layouts.js"),
   read("site/assets/content-macro-current.js"),
   JSON.stringify(pastExams),
   JSON.stringify(pastWritten),
+  JSON.stringify(writtenLayouts),
   JSON.stringify(examSolutions),
   JSON.stringify(macroCurrent),
   read("site/README.md"),
@@ -1638,6 +1642,58 @@ solutionBatches.forEach(function (batch) {
 writtenQuestions.forEach(function (question) {
   (question.answer || []).forEach(function (text, index) {
     checkRenderedMath(text, question.id + " 參考解答 " + (index + 1));
+  });
+});
+
+const writtenLayoutIds = Object.keys(writtenLayouts);
+writtenLayoutIds.forEach(function (id) {
+  check(writtenIds.has(id), "計算／申論題結構化版型指向不存在的題目：" + id);
+});
+writtenQuestions.forEach(function (question) {
+  const blocks = writtenLayouts[question.id];
+  if (blocks === undefined) {
+    return;
+  }
+  check(Array.isArray(blocks) && blocks.length > 0, "計算／申論題結構化版型必須是非空陣列：" + question.id);
+  if (!Array.isArray(blocks)) {
+    return;
+  }
+  blocks.forEach(function (block, blockIndex) {
+    const label = question.id + " 版型區塊 " + (blockIndex + 1);
+    check(Boolean(block) && typeof block === "object", label + " 格式錯誤");
+    if (!block) {
+      return;
+    }
+    check(["plain", "p", "table", "list", "formula", "note"].includes(block.type), label + " 類型錯誤");
+    if (block.type === "table") {
+      check(Array.isArray(block.columns) && block.columns.length > 0, label + " 缺少欄位");
+      check(Array.isArray(block.rows) && block.rows.length > 0, label + " 缺少列資料");
+      (block.rows || []).forEach(function (row, rowIndex) {
+        check(Array.isArray(row) && row.length === block.columns.length, label + " 第 " + (rowIndex + 1) + " 列欄數不符");
+      });
+      if (block.caption) {
+        checkRenderedMath(block.caption, label + " 表標題");
+      }
+      (block.columns || []).forEach(function (cell) {
+        checkRenderedMath(cell, label + " 表頭");
+      });
+      (block.rows || []).forEach(function (row) {
+        (row || []).forEach(function (cell) {
+          checkRenderedMath(cell, label + " 儲存格");
+        });
+      });
+    } else if (block.type === "list") {
+      check(Array.isArray(block.items) && block.items.length > 0, label + " 缺少列表項目");
+      (block.items || []).forEach(function (item) {
+        checkRenderedMath(item, label + " 列表");
+      });
+    } else if (block.type === "formula") {
+      check(typeof block.tex === "string" && block.tex.trim().length > 0, label + " 缺少公式");
+      checkRenderedMath("\\(" + (block.tex || "") + "\\)", label + " 公式");
+    } else {
+      check(typeof block.text === "string" && block.text.trim().length > 0, label + " 缺少文字");
+      checkRenderedMath(block.text, label + " 文字");
+    }
   });
 });
 

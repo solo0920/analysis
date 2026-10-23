@@ -41,9 +41,9 @@
 
 ### 驗證
 
-- `validate-content.js`：114,357 項、失敗 0。
+- `validate-content.js`：117,083 項、失敗 0（加入結構化版型檢查後）。
 - 靜態 KaTeX 稽核：4,770 個可轉換子句、0 編譯失敗。
-- Chrome CDP：33 個全域頁面狀態＋8 個修正題目 390px 狀態，0 頁面水平溢出、0 console errors、0 `.katex-error`。
+- Chrome CDP：33 個全域頁面狀態＋49 個結構化版型題 390px 狀態，0 頁面水平溢出、0 console errors、0 `.katex-error`。
 
 ## 一、公式結構明顯異常（優先看）
 
