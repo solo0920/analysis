@@ -20,6 +20,7 @@
   const writtenData = window.PAST_EXAMS_WRITTEN || { meta: {}, questions: [] };
   const writtenLayouts = window.WRITTEN_LAYOUTS || {};
   const macroCurrentData = window.MACRO_CURRENT_EVENTS || { meta: {}, events: [] };
+  const forecastData = window.EXAM_FORECAST || { meta: {}, directions: [], sections: [], integrated: [], formulas: { macro: [], investment: [] }, indicators: [], strategy: [] };
   const practiceSubjects = Array.isArray(practiceData.subjects) ? practiceData.subjects : [];
   const practiceSessions = Array.isArray(practiceData.sessions) ? practiceData.sessions : [];
   const practiceQuestions = Array.isArray(practiceData.questions) ? practiceData.questions : [];
@@ -2247,6 +2248,7 @@
       '    <div class="macro-current-actions">',
       '      <a class="btn btn-primary" href="#/past-exams">回考古題練習庫</a>',
       '      <a class="btn" href="#/subject/macro">回總體經濟學</a>',
+      '      <a class="btn" href="#/exam-forecast">12 月考前猜題</a>',
       '    </div>',
       '  </section>',
       '  <div class="macro-current-list">' + macroCurrentEvents.map(function (event) {
@@ -2272,6 +2274,141 @@
         ].join("");
       }).join("") + '</div>',
       '</div>'
+    ].join("");
+  }
+
+  function forecastPriorityClass(priority) {
+    if (priority === "最高") {
+      return "is-top";
+    }
+    if (priority === "高") {
+      return "is-high";
+    }
+    return "is-mid";
+  }
+
+  function renderForecastQuestion(question) {
+    const priorityClass = forecastPriorityClass(question.priority);
+    const asks = Array.isArray(question.ask) ? question.ask : [];
+    return [
+      '<details class="forecast-question" id="forecast-' + escapeHtml(question.id) + '">',
+      '  <summary>',
+      '    <span class="forecast-question-num">' + String(question.number).padStart(2, "0") + "</span>",
+      '    <span class="forecast-question-title">' + escapeHtml(question.title) + "</span>",
+      '    <span class="forecast-chip">' + escapeHtml(question.type) + "</span>",
+      '    <span class="forecast-priority ' + priorityClass + '">' + escapeHtml(question.priority) + "</span>",
+      "  </summary>",
+      '  <div class="forecast-question-body">',
+      '    <p class="forecast-scenario">' + renderInlineMath(question.scenario) + "</p>",
+      '    <div class="forecast-ask"><h4>可能問法</h4><ul>' + asks.map(function (item) {
+        return "<li>" + renderInlineMath(item) + "</li>";
+      }).join("") + "</ul></div>",
+      '    <div class="forecast-focus"><strong>作答方向</strong><p>' + renderInlineMath(question.focus) + "</p></div>",
+      "  </div>",
+      "</details>"
+    ].join("");
+  }
+
+  function renderForecastFormulaGroup(title, formulas) {
+    return [
+      '<div class="forecast-formula-group">',
+      '  <h3>' + escapeHtml(title) + "</h3>",
+      '  <dl class="forecast-formula-list">' + (formulas || []).map(function (formula) {
+        return [
+          "<div>",
+          "  <dt>" + escapeHtml(formula.name) + "</dt>",
+          '  <dd><span class="forecast-formula-math">' + renderInlineMath("\\(" + formula.latex + "\\)") + "</span>",
+          "  <small>" + renderInlineMath(formula.note || "") + "</small></dd>",
+          "</div>"
+        ].join("");
+      }).join("") + "</dl>",
+      "</div>"
+    ].join("");
+  }
+
+  function renderExamForecastPage() {
+    const meta = forecastData.meta || {};
+    const sections = Array.isArray(forecastData.sections) ? forecastData.sections : [];
+    const integrated = Array.isArray(forecastData.integrated) ? forecastData.integrated : [];
+    const macroFormulas = forecastData.formulas && Array.isArray(forecastData.formulas.macro) ? forecastData.formulas.macro : [];
+    const investmentFormulas = forecastData.formulas && Array.isArray(forecastData.formulas.investment) ? forecastData.formulas.investment : [];
+    const indicators = Array.isArray(forecastData.indicators) ? forecastData.indicators : [];
+    const strategy = Array.isArray(forecastData.strategy) ? forecastData.strategy : [];
+    const counts = meta.counts || {};
+    const formulaCount = macroFormulas.length + investmentFormulas.length;
+    return [
+      '<div class="page forecast-page">',
+      '  <nav class="breadcrumb" aria-label="麵包屑">',
+      '    <a href="#/">首頁</a><span>/</span><span>考前猜題</span>',
+      "  </nav>",
+      '  <section class="forecast-hero">',
+      '    <p class="eyebrow">考前猜題 · ' + escapeHtml(meta.examPeriod || "2026 年 12 月") + "</p>",
+      "    <h1>" + escapeHtml(meta.title || "考前猜題") + "</h1>",
+      '    <p class="lede">' + escapeHtml(meta.subtitle || "") + "</p>",
+      '    <div class="forecast-stats">',
+      '      <div><strong>' + (counts.macro || 20) + '</strong><span>總體經濟題</span></div>',
+      '      <div><strong>' + (counts.investment || 20) + '</strong><span>投資學題</span></div>',
+      '      <div><strong>' + (counts.integrated || integrated.length) + '</strong><span>跨章節整合</span></div>',
+      '      <div><strong>' + (counts.formulas || formulaCount) + '</strong><span>必背公式</span></div>',
+      "    </div>",
+      '    <div class="forecast-actions">',
+      '      <a class="btn btn-primary" href="#/past-exams/written">練計算／申論題</a>',
+      '      <a class="btn" href="#/macro-current">看總經時事</a>',
+      "    </div>",
+      '    <p class="forecast-disclaimer">' + escapeHtml(meta.note || "") + "</p>",
+      "  </section>",
+      '  <section class="forecast-directions">' + (forecastData.directions || []).map(function (item) {
+        return [
+          '<article class="forecast-direction">',
+          "  <h2>" + escapeHtml(item.title) + "</h2>",
+          "  <p>" + renderInlineMath(item.text) + "</p>",
+          "</article>"
+        ].join("");
+      }).join("") + "</section>",
+      sections.map(function (section) {
+        const questions = Array.isArray(section.questions) ? section.questions : [];
+        return [
+          '<section class="forecast-section" id="forecast-' + escapeHtml(section.id) + '">',
+          '  <div class="forecast-section-head"><div><p class="eyebrow">' + escapeHtml(section.id === "macro" ? "總體經濟學" : "投資學") + "</p><h2>" + escapeHtml(section.title) + "</h2><p>" + escapeHtml(section.subtitle || "") + "</p></div><span>" + questions.length + " 題</span></div>",
+          '  <div class="forecast-question-list">' + questions.map(renderForecastQuestion).join("") + "</div>",
+          "</section>"
+        ].join("");
+      }).join(""),
+      '  <section class="forecast-section" id="forecast-integrated">',
+      '    <div class="forecast-section-head"><div><p class="eyebrow">整合題</p><h2>如果只練 6 題，先練這些</h2><p>把多個章節串成一個完整案例，適合申論與計算混合題。</p></div><span>' + integrated.length + " 組</span></div>",
+      '    <div class="forecast-integrated-grid">' + integrated.map(function (item) {
+        return [
+          '<article class="forecast-integrated-card">',
+          '  <div class="forecast-integrated-head"><span>' + String(item.number).padStart(2, "0") + "</span><h3>" + escapeHtml(item.title) + '</h3><em class="forecast-priority ' + forecastPriorityClass(item.priority) + '">' + escapeHtml(item.priority) + "</em></div>",
+          "  <ol>" + (item.steps || []).map(function (step) {
+            return "<li>" + renderInlineMath(step) + "</li>";
+          }).join("") + "</ol>",
+          '  <p class="forecast-why"><strong>為什麼優先</strong> ' + renderInlineMath(item.why || "") + "</p>",
+          "</article>"
+        ].join("");
+      }).join("") + "</div>",
+      "  </section>",
+      '  <section class="forecast-section" id="forecast-formulas">',
+      '    <div class="forecast-section-head"><div><p class="eyebrow">公式</p><h2>考前必背公式</h2><p>先確認變數定義與單位，再代入數字。</p></div><span>' + formulaCount + " 條</span></div>",
+      '    <div class="forecast-formula-grid">',
+      renderForecastFormulaGroup("總體經濟學", macroFormulas),
+      renderForecastFormulaGroup("投資學", investmentFormulas),
+      "    </div>",
+      "  </section>",
+      '  <section class="forecast-section" id="forecast-indicators">',
+      '    <div class="forecast-section-head"><div><p class="eyebrow">時事</p><h2>考前要追蹤的數字</h2><p>截至 ' + escapeHtml(meta.updated || "") + "；考試前請更新官方數據，不要死背單一價格。</p></div><span>" + indicators.length + " 項</span></div>",
+      '    <div class="forecast-table-wrap"><table class="forecast-table"><thead><tr><th>主題</th><th>參考值</th><th>考試要會分析什麼</th></tr></thead><tbody>' + indicators.map(function (item) {
+        return "<tr><td>" + escapeHtml(item.name) + "</td><td>" + escapeHtml(item.value) + "</td><td>" + renderInlineMath(item.read) + "</td></tr>";
+      }).join("") + "</tbody></table></div>",
+      "  </section>",
+      '  <section class="forecast-section" id="forecast-strategy">',
+      '    <div class="forecast-section-head"><div><p class="eyebrow">準備順序</p><h2>時間有限時這樣練</h2><p>先拿計算題基本分，再做跨章節整合，最後限時寫申論。</p></div></div>',
+      '    <div class="forecast-strategy-grid">' + strategy.map(function (item, index) {
+        return '<article class="forecast-strategy-card"><span>' + String(index + 1).padStart(2, "0") + "</span><h3>" + escapeHtml(item.title) + "</h3><p>" + renderInlineMath(item.text) + "</p></article>";
+      }).join("") + "</div>",
+      "  </section>",
+      '  <div class="notice"><strong>再次提醒：</strong>' + escapeHtml(meta.note || "") + "</div>",
+      "</div>"
     ].join("");
   }
 
@@ -3131,6 +3268,17 @@
       '    <div class="subject-grid">' + content.subjects.map(renderSubjectCard).join("") + "</div>",
       "  </section>",
       '  <section class="home-section">',
+      '    <a class="subject-written-cta forecast-cta" href="#/exam-forecast">',
+      '      <div>',
+      '        <p class="eyebrow">考前猜題 · 2026 年 12 月</p>',
+      '        <strong>總體經濟學 × 投資學：40 題命題預測</strong>',
+      '        <span>美國公債、Fed、AI、原油、黃金、法國財政、台灣政策與匯率，整理成計算題、申論題與 6 組跨章節整合。</span>',
+      '        <span class="subject-written-cta-note">2 科 · 40 題 · 6 組整合 · 16 條公式</span>',
+      '      </div>',
+      '      <span class="subject-written-cta-arrow">查看考前猜題 →</span>',
+      '    </a>',
+      '  </section>',
+      '  <section class="home-section">',
       '    <a class="subject-written-cta" href="#/past-exams">',
       '      <div>',
       '        <p class="eyebrow">歷屆試題</p>',
@@ -3825,6 +3973,9 @@
     } else if (route.parts[0] === "macro-current") {
       html = renderMacroCurrentEvents();
       title = "近二年重要國際金融時事與總經政策｜總體經濟學｜" + content.meta.title;
+    } else if (route.parts[0] === "exam-forecast") {
+      html = renderExamForecastPage();
+      title = "2026 年 12 月考前猜題｜總體經濟學 × 投資學｜" + content.meta.title;
     } else if (route.parts[0] === "sources") {
       html = renderSources();
       title = "資料來源｜" + content.meta.title;
