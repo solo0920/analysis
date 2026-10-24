@@ -692,7 +692,7 @@
     }).join("");
   }
 
-  /* 年表每一列都會內嵌同一圖組的 SVG；複製前先為內部 ID 加上年度後綴，
+  /* 年表每一屆都會內嵌同一圖組的 SVG；複製前先為內部 ID 加上年度後綴，
      避免同一頁出現重複 ID，並同步更新 aria-labelledby 與 marker 參照。 */
   function scopeNobelSvg(svg, suffix) {
     const scoped = String(svg || "").replace(/\bid="([^"]+)"/g, function (_, id) {
@@ -714,14 +714,15 @@
 
   function renderNobelYearChips(group, currentYear) {
     return [
-      '<div class="nobel-year-chips" aria-label="同組屆別">',
+      '<div class="nobel-year-chips" aria-label="同組屆別，切換上方屆別資料">',
       group.rows.map(function (row) {
         const isCurrent = row.year === currentYear;
         return [
-          '<a class="nobel-year-chip' + (isCurrent ? " is-current" : "") + '"',
-          ' href="#/nobel?year=' + row.year + '"',
+          '<button type="button" class="nobel-year-chip' + (isCurrent ? " is-current" : "") + '"',
+          ' data-nobel-year-chip="' + row.year + '"',
+          ' aria-pressed="' + (isCurrent ? "true" : "false") + '"',
           isCurrent ? ' aria-current="true"' : "",
-          ">" + row.year + "</a>"
+          ">" + row.year + "</button>"
         ].join("");
       }).join(""),
       "</div>"
@@ -737,7 +738,7 @@
       return "";
     }
     return [
-      '<details class="nobel-model-details">',
+      '<details class="nobel-model-details" open>',
       "  <summary>變數與參數</summary>",
       '  <div class="diagram-tables">' + tables + "</div>",
       diagram.note ? '  <p class="diagram-note">' + renderInlineMath(diagram.note) + "</p>" : "",
@@ -745,23 +746,35 @@
     ].join("");
   }
 
-  function renderNobelYearModel(group, groupIndex, groupCount, currentYear, isFirst) {
-    const titleId = "nobel-year-model-" + group.id + "-" + currentYear;
-    const firstYear = group.rows.length ? group.rows[0].year : currentYear;
+  function renderNobelYearDataBody(row, index, group, groupIndex) {
     return [
-      '<figure class="nobel-year-figure model-diagram' + (isFirst ? " is-group-first" : " is-group-repeat") + '" aria-labelledby="' + titleId + '">',
+      '<div class="nobel-year-heading">',
+      '  <a class="nobel-year-link" href="#/nobel?group=' + encodeURIComponent(row.group) + '" aria-label="' + escapeHtml(row.year + " 年，前往 " + (group ? group.title : "對應模型圖")) + '">' + row.year + "</a>",
+      '  <span class="nobel-year-sequence">第 ' + (index + 1) + " 屆</span>",
+      "</div>",
+      group ? '  <p class="nobel-year-group-label">模型 ' + padNumber(groupIndex + 1) + " · " + escapeHtml(group.title) + "</p>" : "",
+      '  <dl class="nobel-entry-fields">',
+      '    <div><dt>得主</dt><dd class="nobel-laureates">' + escapeHtml(row.laureates) + "</dd></div>",
+      '    <div><dt>主要理論／研究領域</dt><dd>' + escapeHtml(row.field) + "</dd></div>",
+      '    <div><dt>代表模型／關鍵公式</dt><dd class="nobel-formula">' + renderNobelFormula(row.formula) + "</dd></div>",
+      '    <div><dt>核心假說與結論</dt><dd>' + renderNobelRichText(row.conclusion) + "</dd></div>",
+      "  </dl>"
+    ].join("");
+  }
+
+  function renderNobelYearModel(group, groupIndex, groupCount, currentYear) {
+    const titleId = "nobel-year-model-" + group.id + "-" + currentYear;
+    return [
+      '<figure class="nobel-year-figure model-diagram" aria-labelledby="' + titleId + '">',
       '  <div class="nobel-year-model-head">',
       '    <p class="eyebrow">諾貝爾模型 ' + padNumber(groupIndex + 1) + "／" + padNumber(groupCount) + " · " + group.rows.length + " 屆</p>",
       '    <h3 id="' + titleId + '">' + escapeHtml(group.title) + "</h3>",
       "  </div>",
-      isFirst ? '  <p class="nobel-group-description">' + escapeHtml(group.description || "") + "</p>" : "",
+      '  <p class="nobel-group-description">' + escapeHtml(group.description || "") + "</p>",
       renderNobelYearChips(group, currentYear),
       '  <div class="diagram-canvas nobel-year-canvas">' + scopeNobelSvg(group.diagram.svg, group.id + "-" + currentYear) + "</div>",
       '  <p class="diagram-scroll-hint">圖表較寬，可左右滑動查看。</p>',
       "  <figcaption>" + escapeHtml(group.diagram.caption) + "</figcaption>",
-      isFirst
-        ? renderNobelModelDetails(group.diagram)
-        : '  <p class="nobel-model-repeat">完整變數與參數說明見 <a href="#/nobel?year=' + firstYear + '">' + firstYear + " 年</a>同組圖。</p>",
       "</figure>"
     ].join("");
   }
@@ -775,42 +788,79 @@
     const period = nobelData.meta && nobelData.meta.period ? nobelData.meta.period : "1969–2026";
 
     return [
-      '<div class="nobel-table-wrap nobel-ledger-wrap" id="nobel-table" role="region" aria-label="歷年諾貝爾經濟學獎年表，左側為屆別資料、右側為對應模型圖" tabindex="0">',
-      '  <table class="nobel-table nobel-year-table">',
-      "    <caption>" + escapeHtml(period) + " 年歷屆諾貝爾經濟學獎：左側屆別資料、右側代表模型圖</caption>",
-      "    <thead><tr><th scope=\"col\">屆別與得主資料</th><th scope=\"col\">該屆代表模型圖</th></tr></thead>",
-      "    <tbody>" + rows.map(function (row, index) {
+      '<div class="nobel-year-list" id="nobel-table" role="region" aria-label="歷年諾貝爾經濟學獎年表；每一屆上方為屆別資料，下方為對應模型圖與變數參數">',
+      '  <p class="nobel-year-list-caption">' + escapeHtml(period) + " 年歷屆諾貝爾經濟學獎：每一屆先列屆別資料，下方以 1:1 排列代表模型圖與變數／參數說明。</p>",
+      rows.map(function (row, index) {
         const groupEntry = groupEntries.get(row.group) || null;
         const group = groupEntry ? groupEntry.group : null;
         const groupIndex = groupEntry ? groupEntry.index : -1;
         const isFirst = Boolean(group && group.rows.length && group.rows[0].year === row.year);
         return [
-          '<tr id="nobel-' + row.year + '" class="nobel-year-row" data-nobel-group="' + escapeHtml(row.group) + '">',
-          '  <td class="nobel-year-data">',
+          '<article class="nobel-year-entry" id="nobel-' + row.year + '" data-nobel-group="' + escapeHtml(row.group) + '" data-nobel-year="' + row.year + '" data-nobel-view-year="' + row.year + '">',
+          '  <div class="nobel-year-data">',
           isFirst && group ? '    <span class="nobel-group-anchor" id="nobel-group-' + escapeHtml(group.id) + '" aria-hidden="true"></span>' : "",
-          '    <div class="nobel-year-heading">',
-          '      <a class="nobel-year-link" href="#/nobel?group=' + encodeURIComponent(row.group) + '" aria-label="' + escapeHtml(row.year + " 年，前往 " + (group ? group.title : "對應模型圖")) + '">' + row.year + "</a>",
-          '      <span class="nobel-year-sequence">第 ' + (index + 1) + " 屆</span>",
+          '    <div class="nobel-year-data-body" data-nobel-year-body>',
+          renderNobelYearDataBody(row, index, group, groupIndex),
           "    </div>",
-          group ? '    <p class="nobel-year-group-label">模型 ' + padNumber(groupIndex + 1) + " · " + escapeHtml(group.title) + "</p>" : "",
-          '    <dl class="nobel-entry-fields">',
-          '      <div><dt>得主</dt><dd class="nobel-laureates">' + escapeHtml(row.laureates) + "</dd></div>",
-          '      <div><dt>主要理論／研究領域</dt><dd>' + escapeHtml(row.field) + "</dd></div>",
-          '      <div><dt>代表模型／關鍵公式</dt><dd class="nobel-formula">' + renderNobelFormula(row.formula) + "</dd></div>",
-          '      <div><dt>核心假說與結論</dt><dd>' + renderNobelRichText(row.conclusion) + "</dd></div>",
-          "    </dl>",
-          "  </td>",
-          '  <td class="nobel-year-model-cell">',
+          "  </div>",
+          '  <div class="nobel-year-model-block">',
           group && group.diagram
-            ? renderNobelYearModel(group, groupIndex, groups.length, row.year, isFirst)
-            : '    <p class="models-empty">此屆尚無獨立模型圖；左側年表資料仍保留。</p>',
-          "  </td>",
-          "</tr>"
+            ? [
+              '    <div class="nobel-year-model-layout">',
+              '      <div class="nobel-year-model-main">',
+              renderNobelYearModel(group, groupIndex, groups.length, row.year),
+              "      </div>",
+              '      <div class="nobel-year-model-side">',
+              renderNobelModelDetails(group.diagram),
+              "      </div>",
+              "    </div>"
+            ].join("")
+            : '    <p class="models-empty">此屆尚無獨立模型圖；上方年表資料仍保留。</p>',
+          "  </div>",
+          "</article>"
         ].join("");
-      }).join("") + "</tbody>",
-      "  </table>",
+      }).join(""),
       "</div>"
     ].join("");
+  }
+
+  function handleNobelClick(event) {
+    const chip = event.target.closest("[data-nobel-year-chip]");
+    if (!chip) {
+      return false;
+    }
+    event.preventDefault();
+    const year = Number(chip.dataset.nobelYearChip);
+    const card = chip.closest(".nobel-year-entry");
+    const rows = Array.isArray(nobelData.rows) ? nobelData.rows : [];
+    const row = rows.filter(function (item) {
+      return item.year === year;
+    })[0];
+    if (!card || !row) {
+      return true;
+    }
+    const index = rows.indexOf(row);
+    const groups = nobelModelGroups();
+    const groupIndex = groups.findIndex(function (group) {
+      return group.id === row.group;
+    });
+    const group = groupIndex === -1 ? null : groups[groupIndex];
+    const body = card.querySelector("[data-nobel-year-body]");
+    if (body) {
+      body.innerHTML = renderNobelYearDataBody(row, index, group, groupIndex);
+    }
+    card.dataset.nobelViewYear = String(year);
+    card.querySelectorAll("[data-nobel-year-chip]").forEach(function (item) {
+      const isCurrent = Number(item.dataset.nobelYearChip) === year;
+      item.classList.toggle("is-current", isCurrent);
+      item.setAttribute("aria-pressed", isCurrent ? "true" : "false");
+      if (isCurrent) {
+        item.setAttribute("aria-current", "true");
+      } else {
+        item.removeAttribute("aria-current");
+      }
+    });
+    return true;
   }
 
   function renderDiagramTable(title, rows) {
@@ -4056,7 +4106,7 @@
       "    <div>",
       '      <p class="eyebrow">諾貝爾經濟學獎 · ' + escapeHtml(period) + "</p>",
       "      <h1>歷年諾貝爾經濟學獎</h1>",
-      '      <p class="lede">完整整合 ' + rows.length + " 屆年表的得主、主要理論、代表模型與核心結論，以及 " + diagramGroups.length + " 組 SVG 模型圖：每一列左側是該屆資料，右側是對應模型圖；模型內容只在此頁呈現。</p>",
+      '      <p class="lede">完整整合 ' + rows.length + " 屆年表的得主、主要理論、代表模型與核心結論，以及 " + diagramGroups.length + " 組 SVG 模型圖：每一屆先在上方顯示屆別資料，下方以 1:1 排列模型圖與變數／參數說明；模型內容只在此頁呈現。</p>",
       '      <div class="models-summary">',
       "        <span><strong>" + rows.length + "</strong> 屆年表</span>",
       "        <span><strong>" + diagramGroups.length + "</strong> 組模型圖</span>",
@@ -4075,7 +4125,7 @@
         : "",
       "  </div>",
       '  <div class="notice nobel-formula-note">',
-      "    <strong>閱讀方式：</strong>年表每一列左側保留屆別欄位與複習公式（2025 屆已依官方科學背景修正），右側顯示該屆對應的 SVG 模型圖；畫面上的公式以 KaTeX 排版。同一組圖可能對應多個屆別，重複列會標示同組屆別與完整變數、參數說明的所在年份，不代表所有獎項共用同一條方程式。",
+      "    <strong>閱讀方式：</strong>每一屆先在上方保留屆別欄位與複習公式（2025 屆已依官方科學背景修正），下方左側顯示該屆對應的 SVG 模型圖、右側顯示變數與參數；畫面上的公式以 KaTeX 排版。同一組圖可能對應多個屆別，點圖上方的屆別可在原地切換上方屆別文字，不會跳動，也不代表所有獎項共用同一條方程式。",
       "  </div>",
       '  <section class="nobel-table-section" aria-labelledby="nobel-table-heading">',
       '    <div class="section-heading nobel-section-heading">',
@@ -4083,7 +4133,7 @@
       '        <p class="eyebrow">歷屆得主與代表模型 · ' + escapeHtml(period) + "</p>",
       '        <h2 id="nobel-table-heading">完整年表與模型圖</h2>',
       "      </div>",
-      '      <span class="nobel-table-hint">每一列左側是該屆得主、領域、公式與結論，右側是對應模型圖；點右側屆別可跳到同組其他年份。</span>',
+      '      <span class="nobel-table-hint">每一屆先列得主、領域、公式與結論，下方以 1:1 排模型圖與變數／參數；點圖上方的屆別可在原地切換文字，不會跳動。</span>',
       "    </div>",
       '    <nav class="models-jump nobel-model-jump" id="nobel-models" aria-label="諾貝爾模型圖索引">',
       '      <p class="eyebrow">' + diagramGroups.length + " 組模型圖索引</p>",
@@ -4092,7 +4142,7 @@
       renderNobelTable(),
       "  </section>",
       '  <footer class="models-foot">',
-      "    <p>共 " + rows.length + " 屆、 " + diagramGroups.length + " 組模型圖；年表每一列都對應一組模型圖，官方年份與得主仍以諾貝爾獎官網為準。</p>",
+      "    <p>共 " + rows.length + " 屆、 " + diagramGroups.length + " 組模型圖；每一屆都對應一組模型圖，官方年份與得主仍以諾貝爾獎官網為準。</p>",
       '    <a href="#/subject/macro">← 回總體經濟學</a>',
       "  </footer>",
       "</div>"
@@ -4326,7 +4376,7 @@
       "      <li>會計學的章名、順序與頁碼以 <code>documents/accounting_toc.md</code> 為依據；有列節名的章節照原節名呈現，未列節名的章節以「學習重點」標示，不冒充原書節名。第 23 章來源註明原書章號印為 22，本站依順序列為第 23 章。財務分析總架構、杜邦分析與四表連結的圖表內容另參考 <code>documents/accounting_contents.md</code>。</li>",
       "      <li>四個科目的來源目錄不同：總體經濟學使用 <code>gross_economics_contents.md</code>（第 11–13 章為金融市場）；投資學使用 <code>investment_contents.md</code>；會計學章節使用 <code>accounting_toc.md</code>、財務分析圖表使用 <code>accounting_contents.md</code>；證券法規使用 <code>securities_law_contents.md</code>；不以其中一科的章節補另一科。</li>",
       "      <li>依投資學來源目錄，章號由第十一章直接跳到第十三章；本站保留原始編號，不自行補章。</li>",
-      "      <li>總體經濟學另設「模型總覽」（#/models/macro），依 13 章集中 27 張章節圖（含 1 張教學流程圖與 5 張學派模型補充）；「歷年諾貝爾經濟學獎」（#/nobel）則逐年雙欄呈現 58 屆年表、17 組代表模型與對應圖，兩頁共用同一份模型資料。</li>",
+      "      <li>總體經濟學另設「模型總覽」（#/models/macro），依 13 章集中 27 張章節圖（含 1 張教學流程圖與 5 張學派模型補充）；「歷年諾貝爾經濟學獎」（#/nobel）則以每一屆上下二塊、下方 1:1 的方式呈現 58 屆年表、17 組代表模型與對應圖，兩頁共用同一份模型資料。</li>",
       "      <li>「考古題練習庫」（#/past-exams）收錄 107–115 年共 29 次、3,710 題選擇題；可依年度、科目與次別篩選，先作答再看答案。練習紀錄只存在瀏覽器，換裝置不會同步；申論題與計算題請點原始試題連結。</li>",
       "      <li>名詞與公式以臺灣官方網站（主計總處、中央銀行、金管會、證交所、期交所等）與繁體中文公開資料交叉核對。</li>",
       "      <li>同一公式若在不同來源有不同符號定義，應先確認假設與適用條件，再以官方或正式教材為準。</li>",
@@ -4558,7 +4608,7 @@
       window.requestAnimationFrame(function () {
         const target = document.getElementById("nobel-" + year);
         if (target) {
-          target.scrollIntoView({ behavior: "smooth", block: "center" });
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
         } else {
           window.scrollTo({ top: 0, behavior: "auto" });
         }
@@ -5087,6 +5137,9 @@
     });
 
     main.addEventListener("click", function (event) {
+      if (handleNobelClick(event)) {
+        return;
+      }
       if (handleWrittenClick(event)) {
         return;
       }

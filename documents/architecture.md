@@ -153,11 +153,13 @@ sequenceDiagram
 
 - `#/subject/macro?evolution=1` → `#macro-evolution`
 - `#/models/macro?model=model-macro-06-0` → 指定 `.models-entry`，短暫加上 `.is-targeted`
-- `#/nobel?year=YYYY` → `#nobel-YYYY`
+- `#/nobel?year=YYYY` → `#nobel-YYYY`（卡片頂端對齊）
 - `#/nobel?group=nobel-XX` → `#nobel-group-nobel-XX`
 - `#/nobel?table=1` → `#nobel-table`
 - `#/nobel?models=1` → `#nobel-models`
 - `#/chapter/:id?section=N` → `#section-N`
+
+諾貝爾年表每一屆是一張上下二塊卡片；下方模型圖與變數／參數在桌機為 1:1、900px 以下單欄。圖上方的屆別晶片是 `button[data-nobel-year-chip]`，由 `handleNobelClick()` 原地更新該卡上方的屆別文字與晶片狀態，不變更 hash；`?year=` 外部連結仍由 `render()` 捲動到目標卡。
 
 ## 5. 資料契約與單一來源
 

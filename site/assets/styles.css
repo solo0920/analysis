@@ -3066,6 +3066,105 @@ p {
   font-weight: 800;
 }
 
+/* 每一屆一張卡：上方屆別資料、下方模型圖與變數表 1:1。 */
+.nobel-year-list {
+  display: grid;
+  gap: 18px;
+}
+
+.nobel-year-list-caption {
+  margin: 0 0 2px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.65;
+}
+
+.nobel-year-entry {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  scroll-margin-top: calc(var(--header-h) + 20px);
+}
+
+.nobel-year-data {
+  position: relative;
+  padding: 16px 18px 18px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+}
+
+.nobel-year-data-body {
+  min-width: 0;
+}
+
+.nobel-year-model-block {
+  padding: 18px;
+}
+
+.nobel-year-model-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.nobel-year-model-main,
+.nobel-year-model-side {
+  min-width: 0;
+}
+
+.nobel-year-model-side .nobel-model-details {
+  margin-top: 0;
+  background: var(--surface-2);
+}
+
+.nobel-year-model-side .diagram-tables {
+  grid-template-columns: minmax(0, 1fr);
+  margin-top: 0;
+  padding: 12px;
+}
+
+.nobel-year-chip {
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.nobel-year-chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+  .nobel-year-model-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .nobel-year-model-side {
+    order: 2;
+  }
+}
+
+@media (max-width: 680px) {
+  .nobel-year-list {
+    gap: 14px;
+  }
+
+  .nobel-year-data {
+    padding: 14px;
+  }
+
+  .nobel-year-model-block {
+    padding: 12px;
+  }
+
+  .nobel-year-model-layout {
+    gap: 14px;
+  }
+}
+
 .nobel-model-jump {
   margin-top: 0;
   margin-bottom: 14px;
