@@ -3670,6 +3670,23 @@ a.landing-item:hover {
   font-weight: 700;
 }
 
+.model-diagram svg .dg-label-plus {
+  fill: var(--accent);
+  font-weight: 700;
+}
+
+.model-diagram svg .dg-label-minus {
+  fill: var(--danger);
+  font-weight: 700;
+}
+
+.model-diagram svg .dg-operator {
+  fill: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 24px;
+  font-weight: 700;
+}
+
 [data-theme="light"] .model-diagram svg .dg-label-sm,
 [data-theme="light"] .model-diagram svg .dg-label-xs {
   fill: #55666a;

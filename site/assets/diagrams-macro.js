@@ -47,6 +47,76 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "本圖為兩部門簡化版本，只畫要素市場與商品市場，未另畫金融市場。I 與 S 是輔助變數，不是圖上的獨立箭頭；S = I 僅在無政府、無國際貿易的兩部門模型成立。加入政府與國外部門後，支出面成為 GDP = C + I + G + (X − M)。"
   },
 
+  "macro-01#0-2": {
+    sectionTitle: "第1節 國民所得與GDP",
+    kicker: "觀念釐清圖",
+    title: "GDP 到 GNI：加上國外要素所得淨額 NFIA",
+    formula: String.raw`GNI=GDP+NFIA=GDP+(F-F^{*})`,
+    caption: "GDP 以「在哪裡生產」衡量境內產出；GNI 以「誰的所得」衡量本國居民的生產所得。把本國居民在國外的要素所得 F 加進來，再扣掉外國居民在本國的要素所得 F*，就是 NFIA。因此 GNI = GDP + NFIA；NFIA 為正時 GNI 大於 GDP，為負時 GNI 小於 GDP。",
+    svg: `
+<svg viewBox="0 0 640 430" role="img" aria-labelledby="dg-nfia-title dg-nfia-desc" style="max-width:640px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-nfia-title">GDP 與 GNI 的關係：加上國外要素所得淨額 NFIA</title>
+  <desc id="dg-nfia-desc">GDP 衡量境內生產；加上本國居民在國外要素所得、減去外國居民在本國要素所得，得到本國居民的 GNI。公式為 GNI 等於 GDP 加 NFIA。</desc>
+
+  <text class="dg-label-xs" x="320" y="20" text-anchor="middle">GDP 看「在哪裡生產」；GNI 看「誰的所得」</text>
+
+  <rect class="dg-box" x="20" y="44" width="176" height="120" rx="12"></rect>
+  <text class="dg-label dg-label-strong" x="108" y="72" text-anchor="middle">GDP</text>
+  <text class="dg-label-sm" x="108" y="94" text-anchor="middle">國內生產毛額</text>
+  <text class="dg-label-xs" x="108" y="122" text-anchor="middle">境內生產</text>
+  <text class="dg-label-xs" x="108" y="140" text-anchor="middle">屬地原則</text>
+  <text class="dg-label-xs" x="108" y="158" text-anchor="middle">外籍移工在臺產值計入</text>
+
+  <text class="dg-label dg-operator" x="212" y="112" text-anchor="middle">+</text>
+
+  <rect class="dg-box dg-box-accent" x="228" y="36" width="184" height="136" rx="12"></rect>
+  <text class="dg-label dg-label-strong" x="320" y="60" text-anchor="middle">NFIA</text>
+  <text class="dg-label-sm" x="320" y="80" text-anchor="middle">國外要素所得淨額</text>
+  <line class="dg-guide" x1="244" y1="92" x2="396" y2="92"></line>
+  <text class="dg-label-sm dg-label-plus" x="320" y="114" text-anchor="middle">＋ 本國居民在國外所得</text>
+  <text class="dg-label-sm dg-label-minus" x="320" y="136" text-anchor="middle">－ 外國居民在本國所得</text>
+  <text class="dg-label-xs" x="320" y="158" text-anchor="middle">可正可負</text>
+
+  <text class="dg-label dg-operator" x="428" y="112" text-anchor="middle">=</text>
+
+  <rect class="dg-box dg-box-outcome" x="444" y="44" width="176" height="120" rx="12"></rect>
+  <text class="dg-label dg-label-strong" x="532" y="72" text-anchor="middle">GNI</text>
+  <text class="dg-label-sm" x="532" y="94" text-anchor="middle">國民總收入</text>
+  <text class="dg-label-xs" x="532" y="122" text-anchor="middle">本國居民所得</text>
+  <text class="dg-label-xs" x="532" y="140" text-anchor="middle">屬人原則</text>
+  <text class="dg-label-xs" x="532" y="158" text-anchor="middle">臺商海外所得計入</text>
+
+  <rect class="dg-panel" x="20" y="192" width="292" height="104" rx="10"></rect>
+  <text class="dg-label-sm dg-label-plus" x="36" y="216">＋ 本國居民在國外所得</text>
+  <text class="dg-label-xs" x="36" y="242">例：臺商海外工廠利潤、海外投資收益</text>
+  <text class="dg-label-xs" x="36" y="264">臺灣籍員工的海外薪資</text>
+  <text class="dg-label-xs dg-label-plus" x="36" y="288">→ 計入 GNI，不計入 GDP</text>
+
+  <rect class="dg-panel" x="328" y="192" width="292" height="104" rx="10"></rect>
+  <text class="dg-label-sm dg-label-minus" x="344" y="216">－ 外國居民在本國所得</text>
+  <text class="dg-label-xs" x="344" y="242">例：外籍移工在臺薪資、外資在臺利潤</text>
+  <text class="dg-label-xs" x="344" y="264">外國居民在臺的租金、利息</text>
+  <text class="dg-label-xs dg-label-minus" x="344" y="288">→ 計入 GDP，不計入 GNI</text>
+
+  <rect class="dg-box" x="20" y="316" width="600" height="92" rx="12"></rect>
+  <text class="dg-label dg-label-strong" x="320" y="342" text-anchor="middle">GNI = GDP + NFIA</text>
+  <text class="dg-label-xs" x="320" y="366" text-anchor="middle">NFIA &gt; 0 → GNI &gt; GDP；NFIA &lt; 0 → GNI &lt; GDP</text>
+  <text class="dg-label-xs" x="320" y="390" text-anchor="middle">例：GDP 1,000 ＋ NFIA 20 ＝ GNI 1,020</text>
+</svg>`,
+    variables: [
+      ["GDP", "國內生產毛額", "一國境內在一定期間生產的最終財貨與勞務市場價值；採屬地原則。"],
+      ["GNI", "國民總收入", "本國居民在一定期間的生產所得；採屬人原則，多數教材與 GNP 同義。"],
+      ["NFIA", "國外要素所得淨額", "本國居民在國外要素所得 F 減外國居民在本國要素所得 F*；可正可負。"],
+      ["F", "本國居民在國外要素所得", "本國居民在海外提供勞動、資本、土地或企業才能所得的報酬總和；計入 GNI，不計入 GDP。"],
+      ["F*", "外國居民在本國要素所得", "外國居民在本國境內提供生產要素所得的報酬總和；計入 GDP，不計入 GNI。"]
+    ],
+    parameters: [
+      ["NFIA>0", "要素所得淨流入", "本國居民海外所得大於外國居民在本國所得，GNI 大於 GDP。"],
+      ["NFIA<0", "要素所得淨流出", "外國居民在本國所得大於本國居民海外所得，GNI 小於 GDP。"]
+    ],
+    note: "本圖為教學示意。實務上 NFIA 包含薪資、投資收益、租金與利息等跨境要素報酬，各國統計細項與名稱略有差異；GNI 與 GNP 多數教材視為同義，臺灣官方近年多用 GNI。"
+  },
+
   "macro-01#2": {
     sectionTitle: "第3節 其他國民所得衡量工具",
     kicker: "教學流程圖",

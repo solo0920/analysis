@@ -29,13 +29,13 @@
 | 測驗範圍補充 | ☑ 通過 | 總體 Ch8 景氣訊號燈；投資 Ch7 利率期限結構、Ch8 交易制度、Ch16 客戶風險態度與稅負；會計 Ch19 外匯風險 |
 | 會計學公式與分錄 | 通過（代表項目） | A1–A12 公式均已核對（A1、A3–A5、A7、A8、A12 依 IFRS 官方；A2、A6、A9–A11 依公開教材）；代表性分錄與報表勾稽已檢查（review 2.1）；各章例題逐題重算仍待 |
 | `node site/scripts/validate-content.js` 通過 | ☑ 通過 | 失敗數應為 0 |
-| 總體經濟學模型圖掛在正確的章節與節次 | ☑ 通過 | 27 張（含 1 張教學流程圖與 5 張學派模型）；`chapterId#sectionIndex` 與 `sectionTitle` 一致 |
+| 總體經濟學模型圖掛在正確的章節與節次 | ☑ 通過 | 28 張（含 1 張教學流程圖、1 張 NFIA 觀念圖與 5 張學派模型）；`chapterId#sectionIndex` 與 `sectionTitle` 一致 |
 | 每張模型圖與教學流程圖都有變數表、參數表與示意提醒 | ☑ 通過 | `variables`、`parameters` 皆為 `[符號, 名稱, 說明]` |
 | 模型圖與教學流程圖為 inline SVG，沒有外部圖片或腳本 | ☑ 通過 | 需有 `viewBox`、`role="img"`、`aria-labelledby`、`<title>` |
 | 模型圖與教學流程圖在窄螢幕可在區塊內水平滑動 | ☑ 通過 | 390px 實測頁面無水平溢出，且顯示滑動提示 |
-| 總體經濟模型總覽頁 | ☑ 通過 | `#/models/macro` 依 13 章分組、27 張章節圖（含 1 張教學流程圖與 5 張學派模型）；沒有模型的章節仍列出 |
+| 總體經濟模型總覽頁 | ☑ 通過 | `#/models/macro` 依 13 章分組、28 張章節圖（含 1 張教學流程圖、1 張 NFIA 觀念圖與 5 張學派模型）；沒有模型的章節仍列出 |
 | 會計學教學流程圖掛在正確章節與節次 | ☑ 通過 | 7 張（`accounting-14#0`、`accounting-14#0-2`、`accounting-14#0-3`、`accounting-14#0-4`、`accounting-15#0`、`accounting-15#1`、`accounting-23#1`）；同一節次允許多張圖，`chapterId#sectionIndex` 與 `sectionTitle` 一致 |
-| 章節教學圖總數 | ☑ 通過 | 43 張（總體 27、投資 9、會計 7） |
+| 章節教學圖總數 | ☑ 通過 | 44 張（總體 28、投資 9、會計 7） |
 | 模型總覽與章節頁共用同一份模型資料 | ☑ 通過 | 兩邊皆讀取 `window.MACRO_DIAGRAMS`；修改後重新載入同步 |
 | 諾貝爾年表 58 屆、1969–2026 完整出現 | ☑ 通過 | 2026 屆已納入；58 屆年份與得主已對照諾貝爾獎官方 API，0 筆不一致 |
 | 17 組諾貝爾模型與年表映射 | ☑ 通過 | `nobel-01`–`nobel-17` 均有圖；2026 屆對應 `nobel-17`，無缺圖或孤兒圖 |
@@ -331,6 +331,7 @@
 | 2026-10-24 | 全站 SEO 與 AI 搜尋優化 | Chrome CDP＋1280px／390px／無 JavaScript＋curl | title／description／canonical／OG／Twitter、JSON-LD 4 種類型、FAQ 6 題、robots／sitemap／llms／og-cover 200、無 JS 靜態摘要、動態路由 meta、頁面溢出、console | 首頁 title 與 description 精簡；canonical、OG／Twitter 與 1200×630 `og-cover.png` 正常；JSON-LD 為 WebSite、EducationalOrganization、ItemList、FAQPage；FAQ 6 題；`robots.txt`、`sitemap.xml`、`llms.txt`、`og-cover.png` 皆 200；無 JS 時顯示靜態摘要、6 題 FAQ、12 個入口連結；科目／章節／考古題／考前猜題／時事的 title 與 description 會更新；1280px／390px 0 水平溢出、0 console errors；驗證器 155,837 項、失敗 0 | 通過；hash routing 仍只索引根入口，sitemap 不列 fragment URL |
 | 2026-10-24 | 方案 A：8 個靜態落地頁 | Chrome CDP＋1280px／390px＋curl | 4 科目頁、考古題、考前猜題、總經時事、諾貝爾頁；self canonical、JSON-LD、章節／主題清單、連回 SPA、sitemap、首頁頁尾連結、頁面溢出、console | 8 頁皆回傳 200、canonical 與合法 JSON-LD（WebPage／BreadcrumbList／LearningResource／FAQPage）；科目頁 13／16／23／21 章完整目錄；首頁頁尾 8 個靜態入口；sitemap 9 個實體 URL、0 個 fragment URL；1280px／390px 0 水平溢出、0 console errors；驗證器 155,837 項、失敗 0 | 通過；保留 hash SPA 作為互動版 |
 | 2026-10-24 | 方案 A 擴充至全部 73 章 | Chrome CDP＋1280px／390px＋curl | `/chapters/` 索引、73 個章節頁、章節摘要／各節導讀／名詞／考試重點／公式／考古題題數、上一章／下一章、三層 breadcrumb、self canonical、JSON-LD、sitemap、首頁頁尾連結、頁面溢出、console | 靜態頁總數 82、sitemap 83 個實體 URL；73 個章節頁皆回傳 200；章節頁 JSON-LD 為 WebPage／BreadcrumbList／LearningResource／FAQPage；`/chapters/` 有 73 個章節連結；科目頁章節卡連到 `/chapters/<id>/`；章節頁 CTA 可解析回 `/index.html#/chapter/<id>`；1280px／390px 0 水平溢出、0 console errors；驗證器 155,837 項、失敗 0 | 通過；仍保留 hash SPA 作為互動版 |
+| 2026-10-24 | 第 1 章新增 NFIA 觀念圖 | 驗證腳本＋Chrome CDP＋1280px／390px／深淺主題／`file://` | `macro-01#0-2` 章節綁定、GDP＋NFIA＝GNI 等式、本國居民國外所得加項／外國居民本國所得減項、GDP／GNI 屬地與屬人標示、變數／參數表、SVG `title`／`desc`、模型總覽、頁面溢出、console、`.katex-error` | 圖掛在 macro-01 第 1 節並依序顯示於既有循環流量圖之後；29 個 SVG 文字節點、7 列變數／參數表；模型總覽 28 張章節圖且含 `model-macro-01-0-2`；1280px 與 390px 頁面 0 水平溢出，390px 圖表區可水平滑動（client 334／scroll 476）；深淺主題與 `file://` 正常；0 console errors、0 `.katex-error`；驗證器 155,869 項、失敗 0 | 通過；內容為教學示意，未逐條教材核對 |
 | 2026-10-23 | 跨 bundle 原地切換、考古題全站搜尋、系列標籤與 IFRS 查核 | 驗證腳本＋Chrome CDP＋390px／1280px／`file://` | `__softRefreshApp()`、`CHAPTER_DATA`、`PAST_EXAMS_YEAR_BUNDLES`、`content-past-exam-search.js`、7 組系列標籤、IFRS 18／19 notice、首頁→章節→法規→年度→全部年度→申論題→考前猜題→首頁、搜尋結果跳題、看答案載入解析、頁面溢出、console | 跨 bundle 導覽 0 次整頁重新載入（`Page.loadEventFired` 僅 1 次）；章節來回、年度來回、全部年度與 113 年切換、申論題、考前猜題與首頁均顯示正確資料；考古題搜尋索引 3,710 題按需載入；搜尋結果可跳到 112 年題目並載入逐選項解析；7 組系列標籤與 IFRS 版本 notice 顯示；390px／1280px 與 `file://` 0 頁面水平溢出、0 console errors、0 `.katex-error`；首頁 4 個 JS 請求／約 1.19 MB、年度練習約 1.40 MB、全部年度約 3.15 MB、法規章節約 1.61 MB、申論題頁約 1.74 MB；驗證器 154,272 項、失敗 0 | 通過；搜尋索引約 1.5 MB，只在使用者按下載入時抓取 |
 | 2026-10-23 | 逐選項解析按需載入 | 驗證腳本＋Chrome CDP＋390px／1280px／`file://` | 考古題頁初始 bundle、第一次看答案／瀏覽模式顯示答案、解析載入提示、載入失敗 fallback、`file://`、頁面溢出、console | 考古題頁初始約 4.56 MB JS（原本 6.03 MB），第一次看答案才載入解析並顯示完整選項分析；瀏覽模式與 `file://` 正常；390px／1280px 0 頁面水平溢出、0 console errors、0 `.katex-error`；驗證器 154,272 項、失敗 0 | 通過；解析仍為本站參考解析 |
 | 2026-10-23 | 考古題、解題與法規全文依章節分包 | 驗證腳本＋Chrome CDP＋390px／1280px／`file://` | `build-chapter-data-bundles.js`、`build-law-article-bundles.js`、章節專用考古題／申論題／解題、法規全文分包、章節範例、科目統計、`file://`、頁面溢出、console | 章節頁只載入該章資料；一般章節約 1.4～1.6 MB、法規章節約 1.6～2.0 MB；章節範例、出題統計與 `file://` 正常；390px／1280px 0 頁面水平溢出、0 console errors、0 `.katex-error`；驗證器 154,272 項、失敗 0 | 通過；分包由建置腳本產生 |
@@ -353,7 +354,7 @@
 - [x] 已確認會計學未列節名的章節顯示「學習重點」與單元說明，不冒充原書節名；第 23 章保留原書章號印刷註記。
 - [x] 已確認首頁 4 張科目卡、導覽、搜尋與來源頁（26 項，含會計準則與監理）都已加入會計學與證券法規。
 - [x] 已確認證券法規 21 頁（21 章、21 節）與 1,507 條官方全文，以及 macro-08／investment-07／investment-08／investment-16／accounting-19 的測驗範圍補充單元顯示正常。
-- [x] 已確認來源頁的核對進度公告包含投資／總體 29 條公式、21 張既有總體模型圖、1 張新增國民所得會計帳流程圖、7 張會計學教學流程圖、會計 A1–A12 與代表性分錄／報表勾稽，且沒有把已完成項目誤列為待查。
+- [x] 已確認來源頁的核對進度公告包含投資／總體 29 條公式、21 張既有總體模型圖、2 張新增國民所得教學圖（國民所得會計帳流程圖、NFIA 觀念圖）、7 張會計學教學流程圖、會計 A1–A12 與代表性分錄／報表勾稽，且沒有把已完成項目誤列為待查。
 - [x] 已用諾貝爾獎官方 API 核對 58 屆年份與得主，0 筆不一致；2026 屆為 Hall 與 Woodford。
 - [x] 已對照 2026 屆官方 popular information，確認 Hall 消費變動不可預測與 Woodford 三方程式新凱因斯模型的概念方向。
 - [x] 已用 2026 科學背景核對 Hall 隨機漫步（式 12）與 Woodford 新凱因斯菲利浦曲線（式 15）。
@@ -382,11 +383,11 @@
 - [x] 已確認全站未標記的數學子句會自動轉成 KaTeX，涵蓋正文、名詞、考試重點、記憶卡、解題策略、參考解答、章節摘要、科目說明、圖表說明與考古題題幹／選項；4,790 個可轉換子句 0 編譯失敗，33 個頁面狀態 0 頁面水平溢出、0 console errors、0 `.katex-error`。
 - [x] 已確認 7 個含私人使用字元或合併符號的題幹已恢復為可讀公式，包含 115Q2 梭羅成長模型 `\(Y=A L^{\alpha}K^{1-\alpha}\)`；並同步修正各年度解題中的 Solow／Cobb-Douglas 公式為勞動 L、資本 K；行內公式字級 1.06em、參考解答 1.08em、比例與正式公式 1.04em；長公式在 390px 於公式區內水平滑動，頁面本身無溢出。
 - [x] 已確認 `#/investment/formulas` 顯示 7 項選擇權評價優先順序：買賣權到期損益、二項式、Black-Scholes、買賣權平價、三項式樹、蒙地卡羅、Heston；30 條公式以 KaTeX 顯示、54 項變數定義，390px 卡片堆疊。
-- [x] 已確認模型總覽顯示 13 章、27 張章節圖（含 1 張教學流程圖與 5 張學派模型），且沒有模型的章節仍會列出；17 組諾貝爾模型已在 `#/nobel` 以模型模組呈現。
-- [x] 已確認 `#/models/macro` 顯示 27 張總體章節圖；17 組諾貝爾圖已整合至 `#/nobel`，模型總覽不再重複呈現。
+- [x] 已確認模型總覽顯示 13 章、28 張章節圖（含 1 張教學流程圖、1 張 NFIA 觀念圖與 5 張學派模型），且沒有模型的章節仍會列出；17 組諾貝爾模型已在 `#/nobel` 以模型模組呈現。
+- [x] 已確認 `#/models/macro` 顯示 28 張總體章節圖；17 組諾貝爾圖已整合至 `#/nobel`，模型總覽不再重複呈現。
 - [x] 已確認會計學第 14 章第 1 節顯示 4 張教學圖：`accounting-14#0` 會計循環、`accounting-14#0-2` 主要財務報表架構、`accounting-14#0-3` 借記／貸記常用項目、`accounting-14#0-4` 交易到報表流程；四張圖皆含中英文名詞、`title`／`desc`、變數／參數表與示意提醒，390px 可在圖表區水平滑動。
 - [x] 已確認會計學第 15 章第 1、2 節與第 23 章第 2 節分別顯示財務分析總架構（`accounting-15#0`）、三階段／五階段杜邦分析（`accounting-15#1`）與四大財務報表連結（`accounting-23#1`）；三張圖皆含中英文名詞、`title`／`desc`、變數／參數表與示意提醒。
-- [x] 已確認三張新圖在 1280px／390px、深淺主題與 `file://` 均可讀；390px 頁面無水平溢出、圖表區可水平滑動，0 console errors、0 `.katex-error`；`#/models/macro` 為 27 張章節 SVG；諾貝爾 17 組模型另在 `#/nobel`。
+- [x] 已確認三張新圖在 1280px／390px、深淺主題與 `file://` 均可讀；390px 頁面無水平溢出、圖表區可水平滑動，0 console errors、0 `.katex-error`；`#/models/macro` 為 28 張章節 SVG；諾貝爾 17 組模型另在 `#/nobel`。
 - [x] 已確認 accounting-15#1 與 accounting-23#1 新增的 14 張比率／報表名詞卡顯示正常，全站名詞卡為 1,233 張；驗證器 90,511 項、失敗 0。
 - [x] 已確認總體經濟學首頁的學派演進圖顯示 6 階段、10 個節點、23 個模型連結與 15 個諾貝爾里程碑；每個節點都有學派／理論名稱、提出者、摘要與延伸章節。
 - [x] 已確認演進圖的模型名稱連到 `#/models/macro?model=<anchor>`，可捲動到指定模型卡並短暫高亮；諾貝爾里程碑連到 `#/nobel?year=YYYY`。
@@ -395,12 +396,12 @@
 - [x] 已確認模型總覽的章節跳轉可捲動到指定章，且每張圖可連回所屬章節與節次。
 - [x] 已確認總體章節的「模型總覽」按鈕會連到該章在總覽頁的位置。
 - [x] 已用瀏覽器修改記憶體中的 `MACRO_DIAGRAMS`，確認章節頁與模型總覽同步顯示新標題與圖說。
-- [x] 已確認模型圖的曲線方向、移動方向與圖說一致，並完成 21 張既有模型圖公開教材核對；另新增 macro-01#2 國民所得會計帳流程圖，已通過結構、章節綁定與 1280px／390px、深淺主題、`file://` 實測；B9 的 SRAS₁ 虛線已與 E_LR 對齊。
+- [x] 已確認模型圖的曲線方向、移動方向與圖說一致，並完成 21 張既有模型圖公開教材核對；另新增 macro-01#2 國民所得會計帳流程圖與 macro-01#0-2 NFIA 觀念圖，已通過結構、章節綁定與 1280px／390px、深淺主題、`file://` 實測；B9 的 SRAS₁ 虛線已與 E_LR 對齊。
 - [x] 已用 390px 寬度確認模型圖可在區塊內水平滑動，頁面沒有水平溢出；模型總覽同樣無水平溢出。
 - [x] 已確認 `#/nobel` 以 17 組模型模組呈現 58 屆資料與 2026 屆，且 `?group=`、`?year=`、`?table=`、`?models=` 都能捲動到目標。
 - [x] 已確認諾貝爾年份下拉為依 1969–2026 年份排序的單一清單（0 個 `optgroup`），每個選項顯示所屬模型與得主；選取年份後會切換所屬模型的屆別資料並捲動到該模型。
 - [x] 已確認諾貝爾模型上的屆別晶片是原地切換按鈕：點選後只更新該模組的屆別資料與晶片狀態，不變更網址、不改變捲動位置。
-- [x] 已確認諾貝爾 17 組模型與 58 屆年表集中在 `#/nobel`；模型總覽只顯示 27 張章節圖。
+- [x] 已確認諾貝爾 17 組模型與 58 屆年表集中在 `#/nobel`；模型總覽只顯示 28 張章節圖。
 - [x] 已用瀏覽器修改記憶體中的 `NOBEL_DIAGRAMS`，確認 `#/nobel` 與 `#/models/macro` 同步顯示新標題與圖說。
 - [x] 已確認諾貝爾頁為 17 張模型模組：桌機左右 1:1（左方標題／說明／晶片／屆別資料／SVG，右方 `figcaption` 圖說與 `.nobel-year-model-side` 變數／參數）、390px 單欄，頁面無水平溢出，模型圖可在圖表區內水平滑動，`file://` 可直接開啟諾貝爾頁。
 - [x] 已完成 115→107 年考古題批次核對：29 次考試、3,710 題選擇題與 348 題計算／申論題；選擇題答案與證基會公告逐題比對，單一答案題全部一致，多答案題保留官方可接受答案；更正 `107Q4-law-20` C→A，修正 `107Q4-macro-written-2` 的 `K_0=1000`→`K_0=100`、`109Q1-macro-written-2` 的 `Md P`→`M^d/P`、`110Q1-macro-written-3` 的 Unicode 數學斜體、`111Q1-macro-written-2` 的 `dY`→`Y_d`、`111Q3-macro-written-1` 的 SRAS／Okun 缺項、`112Q1-investment-26` 遺失的 `√12`、`112Q3-macro-written-1` 的 `AK0.5N0.5`→`A K^{0.5}N^{0.5}`、`113Q2-macro-written-2` 的 `dY`／`Md`／`Ms`、`113Q3-investment-written-2`／`-3` 的共變異數下標、`114Q1-macro-written-2` 的 `Α𝐾0.3𝑁0.7`→`A K^{0.3}N^{0.7}`、`114Q2-investment-written-1` 的 `E(rS)`／`σS` 下標，以及 `111Q2-accounting-28`、`113Q1-accounting-12`、`113Q1-accounting-27` 的 Wingdings 圓圈數字；同步更新 `107Q4-macro-written-2` 與 `114Q1-macro-written-2` 的章節解題步驟。靜態稽核 4,770 個可轉換子句、0 編譯失敗；33 個全域頁面狀態＋8 個修正題目 390px 狀態，0 頁面水平溢出、0 console errors、0 `.katex-error`；驗證器 114,357 項、失敗 0。
