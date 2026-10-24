@@ -4200,9 +4200,9 @@
       "      </div>",
       "    </aside>",
       "  </section>",
-      subject.id === "macro" ? renderModelAtlasCard(subject) : "",
-      subject.id === "macro" ? renderMacroEvolutionCta() : "",
-      subject.id === "macro" ? renderNobelCta() : "",
+      subject.id === "macro"
+        ? '<div class="subject-cta-grid">' + renderModelAtlasCard(subject) + renderMacroEvolutionCta() + renderNobelCta() + "</div>"
+        : "",
       subject.id === "investment" ? renderInvestmentFormulasCard() : "",
       subject.id === "investment" ? renderInvestmentTechnicalCard() : "",
       subject.id === "accounting" ? '<div class="notice"><strong>IFRS 版本查核：</strong>2026 年考試仍請以金管會當年度認可之 IFRS 正體中文版為準。IASB 發布之 IFRS 18「財務報表之表達與揭露」自 2027-01-01 起適用；金管會規劃臺灣公開發行公司於 117 會計年度（2028 年）接軌，符合條件者可於認可後提前適用。IFRS 19 自 2027-01-01 起適用，屬符合條件子公司之減少揭露選項。本章節以現行教材與 IFRS 9／15／16／10 等為主，考前請再核對 <a href="https://www.sfb.gov.tw/ch/home.jsp?id=931&amp;parentpath=0%2C2%2C929" target="_blank" rel="noopener noreferrer">金管會 IFRS 推動情形</a>。</div>' : "",
