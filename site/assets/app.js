@@ -3215,8 +3215,102 @@
     writtenState = {
       year: "all",
       subject: "all",
+      session: "all",
       open: new Set()
     };
+  }
+
+  const WRITTEN_SUBJECT_SHORT = {
+    law: "證券法規",
+    investment: "投資學",
+    accounting: "會計",
+    macro: "總體"
+  };
+
+  function writtenSessionEntry(question) {
+    const known = practiceSessionMap.get(question.sessionId);
+    if (known) {
+      return known;
+    }
+    return {
+      id: question.sessionId,
+      year: question.year,
+      session: question.session,
+      label: question.year + " 年第 " + question.session + " 次"
+    };
+  }
+
+  function writtenSessionList() {
+    const seen = new Set();
+    const sessions = [];
+    writtenQuestions.forEach(function (question) {
+      if (seen.has(question.sessionId)) {
+        return;
+      }
+      seen.add(question.sessionId);
+      sessions.push(writtenSessionEntry(question));
+    });
+    return sessions.sort(comparePracticeSessionsDesc);
+  }
+
+  function writtenSessionLabel(sessionId) {
+    const known = practiceSessionMap.get(sessionId);
+    if (known) {
+      return known.label;
+    }
+    const question = writtenQuestions.find(function (item) {
+      return item.sessionId === sessionId;
+    });
+    return question ? question.year + " 年第 " + question.session + " 次" : sessionId;
+  }
+
+  function writtenSubjectEntry(subjectId) {
+    const known = practiceSubjectMap.get(subjectId);
+    if (known) {
+      return known;
+    }
+    const base = (content.subjects || []).find(function (subject) {
+      return subject.id === subjectId;
+    }) || {};
+    return {
+      id: subjectId,
+      name: base.name || subjectId,
+      short: WRITTEN_SUBJECT_SHORT[subjectId] || base.name || subjectId,
+      colorClass: base.colorClass || ""
+    };
+  }
+
+  function writtenSubjectList() {
+    const order = ["law", "investment", "accounting", "macro"];
+    const ids = [];
+    writtenQuestions.forEach(function (question) {
+      if (ids.indexOf(question.subject) === -1) {
+        ids.push(question.subject);
+      }
+    });
+    return ids.sort(function (a, b) {
+      const aIndex = order.indexOf(a);
+      const bIndex = order.indexOf(b);
+      return (aIndex === -1 ? 99 : aIndex) - (bIndex === -1 ? 99 : bIndex);
+    }).map(writtenSubjectEntry);
+  }
+
+  function writtenSessionsForYear() {
+    ensureWrittenState();
+    return writtenSessionList().filter(function (session) {
+      return writtenState.year === "all" || session.year === writtenState.year;
+    });
+  }
+
+  function writtenSyncSession() {
+    ensureWrittenState();
+    const sessions = writtenSessionsForYear();
+    const exists = sessions.some(function (session) {
+      return session.id === writtenState.session;
+    });
+    if (writtenState.session !== "all" && !exists) {
+      writtenState.session = "all";
+    }
   }
 
   function writtenFilteredQuestions() {
@@ -3228,29 +3322,62 @@
       if (writtenState.subject !== "all" && question.subject !== writtenState.subject) {
         return false;
       }
+      if (writtenState.session !== "all" && question.sessionId !== writtenState.session) {
+        return false;
+      }
       return true;
     });
   }
 
+  function writtenSummaryText() {
+    const questions = writtenFilteredQuestions();
+    const sessionCount = new Set(questions.map(function (question) {
+      return question.sessionId;
+    })).size;
+    const yearLabel = writtenState.year === "all" ? "全部年度" : writtenState.year + " 年";
+    const subject = writtenState.subject === "all" ? null : writtenSubjectEntry(writtenState.subject);
+    const subjectLabel = subject ? (subject.short || subject.name) : "全部科目";
+    const sessionLabel = writtenState.session === "all" ? "全部次別" : writtenSessionLabel(writtenState.session);
+    return "<strong>" + questions.length + "</strong> 題 · " + sessionCount + " 次考試 · " +
+      escapeHtml(yearLabel) + " · " + escapeHtml(subjectLabel) + " · " + escapeHtml(sessionLabel) + " · 完整參考解答";
+  }
+
   function renderWrittenFilters() {
     ensureWrittenState();
+    writtenSyncSession();
     const years = Array.from(new Set(writtenQuestions.map(function (question) { return question.year; }))).sort(function (a, b) { return b - a; });
-    const subjects = practiceSubjects.length ? practiceSubjects : [];
+    const subjects = writtenSubjectList();
+    const sessions = writtenSessionsForYear();
+    const sessionOptions = [
+      '<option value="all"' + (writtenState.session === "all" ? " selected" : "") + ">全部次別</option>"
+    ].concat(sessions.map(function (session) {
+      return '<option value="' + escapeHtml(session.id) + '"' + (writtenState.session === session.id ? " selected" : "") + ">" + escapeHtml(session.label) + "</option>";
+    })).join("");
     return [
       '<div class="written-filter-shell" id="written-filters">',
       '  <div class="past-exam-filter-row"><span class="past-exam-filter-label">年度</span>',
-      '    <button class="past-exam-chip' + (writtenState.year === "all" ? " is-active" : "") + '" type="button" data-written-year="all">全部年度</button>',
+      '    <div class="past-exam-chips">',
+      '      <button class="past-exam-chip' + (writtenState.year === "all" ? " is-active" : "") + '" type="button" data-written-year="all" aria-pressed="' + (writtenState.year === "all") + '">全部年度</button>',
       years.map(function (year) {
-        return '<button class="past-exam-chip' + (writtenState.year === year ? " is-active" : "") + '" type="button" data-written-year="' + year + '">' + year + ' 年</button>';
+        return '<button class="past-exam-chip' + (writtenState.year === year ? " is-active" : "") + '" type="button" data-written-year="' + year + '" aria-pressed="' + (writtenState.year === year) + '">' + year + ' 年</button>';
       }).join(""),
+      '    </div>',
       '  </div>',
       '  <div class="past-exam-filter-row"><span class="past-exam-filter-label">科目</span>',
-      '    <button class="past-exam-chip' + (writtenState.subject === "all" ? " is-active" : "") + '" type="button" data-written-subject="all">全部科目</button>',
+      '    <div class="past-exam-chips">',
+      '      <button class="past-exam-chip' + (writtenState.subject === "all" ? " is-active" : "") + '" type="button" data-written-subject="all" aria-pressed="' + (writtenState.subject === "all") + '">全部科目</button>',
       subjects.map(function (subject) {
-        return '<button class="past-exam-chip' + (writtenState.subject === subject.id ? " is-active" : "") + '" type="button" data-written-subject="' + escapeHtml(subject.id) + '">' + escapeHtml(subject.short || subject.name) + '</button>';
+        return '<button class="past-exam-chip' + (writtenState.subject === subject.id ? " is-active" : "") + '" type="button" data-written-subject="' + escapeHtml(subject.id) + '" aria-pressed="' + (writtenState.subject === subject.id) + '">' + escapeHtml(subject.short || subject.name) + '</button>';
       }).join(""),
+      '    </div>',
       '  </div>',
-      '  <div class="written-filter-summary"><strong>' + writtenFilteredQuestions().length + '</strong> 題 · 107–115 年 · 完整參考解答</div>',
+      '  <div class="past-exam-filter-row past-exam-filter-row-session">',
+      '    <span class="past-exam-filter-label">次別</span>',
+      '    <div class="past-exam-session-tools">',
+      '      <select class="past-exam-select" data-written-session aria-label="選擇考試次別">' + sessionOptions + '</select>',
+      '    </div>',
+      '  </div>',
+      '  <div class="written-filter-summary">' + writtenSummaryText() + '</div>',
       '</div>'
     ].join("");
   }
@@ -3575,8 +3702,8 @@
   }
 
   function renderWrittenCard(question) {
-    const session = practiceSessionMap.get(question.sessionId) || { label: question.sessionId };
-    const subject = practiceSubjectMap.get(question.subject) || { short: question.subject, colorClass: "" };
+    const session = writtenSessionEntry(question);
+    const subject = writtenSubjectEntry(question.subject);
     const open = writtenState.open.has(question.id);
     const answers = Array.isArray(question.answer) ? question.answer : [String(question.answer || "")];
     return [
@@ -3605,6 +3732,7 @@
     if (questionId) {
       writtenState.year = "all";
       writtenState.subject = "all";
+      writtenState.session = "all";
       writtenState.open.add(questionId);
     }
     const questions = writtenFilteredQuestions();
@@ -3628,7 +3756,7 @@
       '    </aside>',
       '  </section>',
       renderWrittenFilters(),
-      '<div class="written-list" id="written-list">' + (questions.length ? questions.map(renderWrittenCard).join("") : '<div class="past-exam-empty"><h2>目前沒有符合的題目</h2><p>換一個年度或科目再試。</p></div>') + '</div>',
+      '<div class="written-list" id="written-list">' + (questions.length ? questions.map(renderWrittenCard).join("") : '<div class="past-exam-empty"><h2>目前沒有符合的題目</h2><p>換一個年度、科目或次別再試。</p></div>') + '</div>',
       '  <div class="notice"><strong>解答說明：</strong>申論與計算題沒有官方公告解答；題卡均標示「參考解答」，107–115 年 348 題均已提供完整參考解答；若與補習班、教材或官方答案不同，請以官方與正式教材為準。</div>',
       '</div>'
     ].join("");
@@ -3734,6 +3862,7 @@
       event.preventDefault();
       ensureWrittenState();
       writtenState.year = year.dataset.writtenYear === "all" ? "all" : Number(year.dataset.writtenYear);
+      writtenSyncSession();
       render();
       return true;
     }
@@ -4032,6 +4161,20 @@
     practiceResetCursor(practiceFilteredQuestions());
     practiceRefreshPanel();
     practiceRefreshSummary();
+    return true;
+  }
+
+  function handleWrittenChange(event) {
+    if (!document.getElementById("written-list")) {
+      return false;
+    }
+    const select = event.target.closest("[data-written-session]");
+    if (!select) {
+      return false;
+    }
+    ensureWrittenState();
+    writtenState.session = select.value;
+    render();
     return true;
   }
 
@@ -5565,6 +5708,9 @@
 
     main.addEventListener("change", function (event) {
       if (handleNobelChange(event)) {
+        return;
+      }
+      if (handleWrittenChange(event)) {
         return;
       }
       handlePracticeChange(event);

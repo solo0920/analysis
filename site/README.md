@@ -10,7 +10,7 @@
 | 投資學 | `documents/investment_contents.md` | Parts 1–5，共 16 個列出的章（第 1–11 章、第 13–17 章） | Part、章號與章名依來源；章內「學習重點」是本站複習單元 |
 | 會計學 | `documents/accounting_toc.md` | 第 1–23 章，共 41 個具名節次 | 有列節名的章節照原節名呈現；未列節名的章節以「學習重點」標示。財務分析圖表內容另參考 `documents/accounting_contents.md` |
 | 證券交易相關法規與實務 | `documents/ExamScope.md`、`documents/securities_law_contents.md`、全國法規資料庫 Open API | 21 章、52 節 | 14 頁提供官方逐條全文（15 部法規、1,507 條）；7 頁以自律規範或主管機關連結與摘要呈現 |
-| 歷屆考古題練習庫 | 證基會歷屆試題下載、公開題庫鏡像 | 107–115 年、29 次考試、3,710 題選擇題＋107–115 年 348 題計算／申論題 | 選擇題可依年度／科目／次別篩選；每題在公布答案後顯示逐選項參考解析；計算／申論題附完整參考解答並完成題意檢核；每題標示章節出處與考試次別，科目頁顯示各章出題次數與頻率；解題過程另整合進各科對應章節。 |
+| 歷屆考古題練習庫 | 證基會歷屆試題下載、公開題庫鏡像 | 107–115 年、29 次考試、3,710 題選擇題＋107–115 年 348 題計算／申論題 | 選擇題可依年度／科目／次別篩選；每題在公布答案後顯示逐選項參考解析；計算／申論題可依年度／科目／次別篩選，附完整參考解答並完成題意檢核；每題標示章節出處與考試次別，科目頁顯示各章出題次數與頻率；解題過程另整合進各科對應章節。 |
 | 近二年總經時事 | 公開官方資料與 114–115 年試題 | 15 個國際金融與臺灣政策主題 | 美國對等關稅、Fed FOMC 與利率、全球物價、公債市場穩定、黃金、安倍三箭、加密貨幣監理、美元穩定幣、CBDC、AI、歐債、臺灣貨幣政策；12 個主題另附 KaTeX 公式與官方參考資料。20 則美國重大經濟新聞 TOP 20 摘要已整合至對應主題卡，另有 8 大優先主題與 5 題綜合申論。 |
 | 2026 年 12 月考前猜題 | 官方資料、歷屆命題邏輯與時事 | 總體 34、投資 33、會計 15、法規 15；97 題組／118 個部分；6 組整合 | 依 2026-10-23 資訊整理的單一題庫模擬猜題；同主題重複題已整併為 21 組多部分題組；含 118 個部分完整參考解答、38 條整合公式、2 組敏感度分析、8 項時事指標與準備順序；非官方題目。 |
 
@@ -156,7 +156,7 @@ Repository 的 Pages Source 已設為 **GitHub Actions**；若之後重新建立
 - `#/investment/technical`：技術分析 50 指標（5 類；舊網址 `#/investment/technical-indicators` 也可開啟）
 - `#/subject/accounting`：會計學第 1–23 章章節地圖
 - `#/past-exams`：歷屆考古題練習庫（107–115 年、29 次、3,710 題選擇題）
-- `#/past-exams/written`：107–115 年計算／申論題（348 題；全部完整參考解答）
+- `#/past-exams/written`：107–115 年計算／申論題（348 題；可依年度／科目／次別篩選；全部完整參考解答）
 - `#/macro-current`：近二年重要國際金融時事與臺灣總經政策（15 個主題；12 個主題含 KaTeX 公式；20 則美國重大經濟新聞摘要已整合至主題卡，另有 8 大主題與 5 題綜合申論；入口與麵包屑皆在考前猜題下）
 - `#/exam-forecast`：2026 年 12 月四科單一題庫（97 題組／118 個部分、74 個題組含「本題公式」、21 組多部分題組、6 組整合、38 條整合公式、2 組敏感度；分頁只有全部／總體／投資／會計／法規；標題下方有「近二年時事 · 總經政策」入口卡片）
 - `#/chapter/<id>`：章節內容
@@ -406,6 +406,8 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 
 2026-10-24 新增總體經濟學第 1 章第 1 節的 NFIA 觀念圖（`macro-01#0-2`）：以「GDP＋NFIA＝GNI」橫向等式拆解國外要素所得淨額，左側 GDP 標示境內生產與屬地原則，中間 NFIA 分成「本國居民在國外所得（加項）」與「外國居民在本國所得（減項）」，右側 GNI 標示本國居民所得與屬人原則；下方以臺商海外利潤、外籍移工在臺薪資等例子說明哪些計入 GDP、哪些計入 GNI，並列出 NFIA 正負號規則與 GDP 1,000＋NFIA 20＝GNI 1,020 數例。inline SVG 沿用 `dg-*` 樣式並新增 `dg-label-plus`、`dg-label-minus`、`dg-operator`；1280px／390px、深淺主題與 `file://` 實測 0 頁面水平溢出、0 console errors、0 `.katex-error`；模型總覽增為 28 張總體章節圖，全站 44 張章節教學圖；驗證器 155,869 項、失敗 0。
 
+2026-10-24 計算／申論題頁新增「次別」篩選：`#/past-exams/written` 在年度、科目下方加入與選擇題相同的次別下拉選單，選項依年度連動（全部年度 29 次；各年 3–4 次），並可與年度、科目交叉篩選；摘要改為「N 題 · S 次考試 · 年度 · 科目 · 次別 · 完整參考解答」。同時把年度／科目 chips 包進 `.past-exam-chips`，390px 由一列一顆改為自動換行；直接開啟申論題頁時，科目與次別標籤由 `PAST_EXAMS_WRITTEN` 反推，不再顯示 `law`／`107Q1` 原始代碼。實測 348 題／29 次、115 年 24 題／2 次、115 年＋總體 6 題、115Q1＋總體 3 題；1280px／390px、深淺主題與 `file://` 0 頁面水平溢出、0 console errors、0 `.katex-error`；驗證器 155,869 項、失敗 0。
+
 2026-10-24 將技術分析 50 指標從投資學公式總表移出，成立獨立頁面 `#/investment/technical`（舊網址 `#/investment/technical-indicators` 亦可開啟）；投資學首頁新增第二張 CTA「技術分析 50 指標」，與公式總表並列。公式總表只保留比例分析 32 條、核心公式 66 條與選擇權評價 7 項，頁尾提供技術分析頁連結；技術分析頁保留 5 類 50 種指標、公式、參數、限制、優先級與章節連結。390px／1280px 與 `file://` 0 頁面水平溢出、0 `.katex-error`、0 console errors；驗證器 154,471 項、失敗 0。
 
 2026-10-24 將投資學公式總表的進階模型拆成三個獨立主題：三項式樹（Trinomial Tree）、蒙地卡羅模擬（Monte Carlo Simulation）與 Heston 隨機波動率模型。三者各自補上模型定義、風險中立評價公式、變數定義、假設與限制，不再合併成單一「理解用途」卡片；選擇權評價優先順序由 5 項增為 7 項、KaTeX 公式由 13 條增為 30 條、變數定義由 36 項增為 54 項。另修正 390px 公式卡片的 grid min-width，長公式只在卡片內水平滑動，不造成頁面溢出；修正公式庫分類說明被整段 KaTeX 化造成的窄螢幕溢出。390px／1280px 與 `file://` 0 頁面水平溢出、0 `.katex-error`、0 console errors；驗證器 154,471 項、失敗 0。
@@ -421,7 +423,7 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 1. 先更新 `documents/` 下的來源目錄。
 2. 修改對應的 `site/assets/content-*.js`；不要用另一個科目的章節補洞。模型圖變更則修改 `site/assets/diagrams-macro*.js`、`diagrams-investment.js` 或 `diagrams-accounting.js`，確認 `sectionTitle` 仍與節次相符。學派演進圖修改 `content-macro-evolution.js`；模型名稱與諾貝爾資料仍分別以 `diagrams-macro*.js`、`content-nobel.js` 為單一來源。諾貝爾年表修改 `content-nobel.js`，圖組修改 `diagrams-nobel.js`，維持 58 屆資料與 17 組模型的對應。
 3. 執行 `node site/scripts/validate-content.js`，確認差異都已被處理；再用 `node --check` 檢查所有 JavaScript。
-4. 用瀏覽器檢查首頁、四個科目頁（總體含第 11–13 章與學派演進圖）、至少一個含模型圖的總體章、`#/models/macro`、`#/models/macro?model=<anchor>` 的模型卡跳轉與高亮、`#/macro/evolution`（舊網址 `#/subject/macro?evolution=1` 仍可開啟）、`#/nobel`、`?group=`／`?year=`／`?table=`／`?models=` 跳轉、搜尋入口（含會計名詞）、`#/sources`、`#/past-exams` 的年度／科目／次別篩選與作答、`#/investment/formulas` 的公式總表、`#/investment/technical` 的技術分析 50 指標、`#/chapter/investment-14` 的綁定公式，會計第 14、15、23 章，以及證券法規章節。
+4. 用瀏覽器檢查首頁、四個科目頁（總體含第 11–13 章與學派演進圖）、至少一個含模型圖的總體章、`#/models/macro`、`#/models/macro?model=<anchor>` 的模型卡跳轉與高亮、`#/macro/evolution`（舊網址 `#/subject/macro?evolution=1` 仍可開啟）、`#/nobel`、`?group=`／`?year=`／`?table=`／`?models=` 跳轉、搜尋入口（含會計名詞）、`#/sources`、`#/past-exams` 的年度／科目／次別篩選與作答、`#/past-exams/written` 的年度／科目／次別篩選、`#/investment/formulas` 的公式總表、`#/investment/technical` 的技術分析 50 指標、`#/chapter/investment-14` 的綁定公式，會計第 14、15、23 章，以及證券法規章節。
 5. 若修改模型圖，確認總覽頁與原章節顯示相同內容；可暫時修改記憶體中的 `MACRO_DIAGRAMS`、`INVESTMENT_DIAGRAMS`、`ACCOUNTING_DIAGRAMS` 或 `NOBEL_DIAGRAMS`，切換路由檢查資料綁定。諾貝爾頁是 `NOBEL_DATA`／`NOBEL_DIAGRAMS` 的唯一呈現頁；模型總覽不重複列諾貝爾模型。
 6. 在桌機與 390px 寬度檢查頁面沒有水平溢出；諾貝爾頁為 17 組模型，每組在桌機左右 1:1、900px 以下為單欄，模型圖可在圖表區內滑動；年份下拉可切換所屬模型並捲動，屆別晶片只切換屆別資料；並以 `file://` 開啟確認可閱讀。
 7. 若修改公式或模型圖，依 `SOURCES.md` 與 `documents/content_review_checklist.md` 記錄校對結果；29 條投資／總體公式與 21 張既有總體模型圖已完成公開教材核對；新增國民所得會計帳流程圖、NFIA 觀念圖、投資學 9 張教學圖與會計學 7 張教學圖為教學示意，尚未逐條教材核對；其他屆諾貝爾原始文獻與會計各章例題未逐題重算前保持「待查」。

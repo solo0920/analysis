@@ -139,7 +139,7 @@ sequenceDiagram
 | `#/subject/:id` | `renderSubject()` | 科目內容、模型圖、學派演進圖、投資學公式 |
 | `#/chapter/:id` | `renderChapter()` | 章節內容、KaTeX、法規全文、模型圖、`CHAPTER_DATA` |
 | `#/past-exams` | `renderPastExams()` | 年度分包、`PAST_EXAMS_YEAR_BUNDLES`、統計 |
-| `#/past-exams/written` | `renderWrittenExams()` | `PAST_EXAMS_WRITTEN`、版型 |
+| `#/past-exams/written` | `renderWrittenExams()` | `PAST_EXAMS_WRITTEN`、版型；年度／科目／次別篩選 |
 | `#/exam-forecast` | `renderExamForecastPage()` | 核心 `EXAM_FORECAST`、`EXAM_FORECAST_ANSWERS`；總經時事入口卡片 |
 | `#/investment/formulas` | `renderInvestmentFormulasPage()` | 比例公式、核心公式庫、選擇權評價 |
 | `#/investment/technical` | `renderInvestmentTechnicalPage()` | 技術分析 5 類 50 指標 |
