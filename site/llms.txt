@@ -15,6 +15,17 @@
 - [近二年總經時事](https://solo0920.github.io/analysis/#/macro-current)：15 個國際金融與臺灣政策主題、20 則美國重大經濟新聞摘要與 KaTeX 公式。
 - [資料來源](https://solo0920.github.io/analysis/#/sources)：官方連結、版本與查核紀錄。
 
+## 可索引的靜態入口
+
+- [總體經濟學科目頁](https://solo0920.github.io/analysis/subjects/macro/)
+- [投資學科目頁](https://solo0920.github.io/analysis/subjects/investment/)
+- [會計學科目頁](https://solo0920.github.io/analysis/subjects/accounting/)
+- [證券法規科目頁](https://solo0920.github.io/analysis/subjects/law/)
+- [考古題練習庫](https://solo0920.github.io/analysis/past-exams/)
+- [考前猜題](https://solo0920.github.io/analysis/exam-forecast/)
+- [近二年總經時事](https://solo0920.github.io/analysis/macro-current/)
+- [諾貝爾經濟學獎模型](https://solo0920.github.io/analysis/nobel/)
+
 ## 內容範圍
 
 - 4 個科目、73 章、229 個學習單元、1,513 張名詞卡。
