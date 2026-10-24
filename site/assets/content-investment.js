@@ -773,7 +773,7 @@ window.INVESTMENT_SUBJECT = {
       partTitle: "金融投資商品",
       title: "選擇權",
       page: "P. 75",
-      summary: "理解買權、賣權、履約價格、權利金與到期損益，並掌握賣權買權平價與基本選擇權策略。",
+      summary: "理解買權、賣權、履約價格、權利金與到期損益，掌握 Black–Scholes 定價、賣權買權平價、Greeks 與基本選擇權策略。",
       sourceIds: ["taifex", "sfb", "twse-edu", "naer"],
       sections: [
         {
@@ -823,26 +823,53 @@ window.INVESTMENT_SUBJECT = {
         {
           title: "學習重點 3：選擇權評價與策略",
           body: [
-            "賣權買權平價描述歐式買權、賣權、標的資產與無風險債券之間的關係。Black-Scholes 模型則以標的價格、履約價格、波動率、利率與到期時間評價選擇權。",
-            "常見策略包括掩護性買權、保護性賣權、價差交易與跨式交易。Delta、Gamma、Theta、Vega 衡量選擇權價格對標的價格、時間與波動率的敏感度。"
+            "Black–Scholes 模型假設歐式選擇權、標的股票不支付股利、無風險利率與波動率固定、標的價格服從對數常態分配，且無套利與交易成本。令 \\(S_0\\) 為期初股價、\\(K\\) 為履約價、\\(r\\) 為連續複利無風險利率、\\(T\\) 為距到期年數、\\(\\sigma\\) 為年化波動率；\\(N(\\cdot)\\) 為標準常態累積分配函數，\\(\\phi(\\cdot)\\) 為標準常態機率密度函數。",
+            "歐式買權與賣權的封閉解為 \\(C=S_0N(d_1)-Ke^{-rT}N(d_2)\\)、\\(P=Ke^{-rT}N(-d_2)-S_0N(-d_1)\\)，其中 \\(d_1=\\frac{\\ln(S_0/K)+(r+\\sigma^2/2)T}{\\sigma\\sqrt T}\\)、\\(d_2=d_1-\\sigma\\sqrt T\\)。直覺上，\\(N(d_2)\\) 是風險中立下買權到期為價內的機率，\\(S_0N(d_1)\\) 則是複製買權所需的股票部位價值。",
+            "由兩式相減可得賣權買權平價：\\(C-P=S_0-Ke^{-rT}\\)，或 \\(C+Ke^{-rT}=P+S_0\\)。平價只用無套利、相同履約價與到期日，不需要假設波動率；因此可用來檢查買權與賣權報價是否一致，或用其中一邊推算另一邊。",
+            "Greeks 是選擇權價格對各參數的偏導數，用來衡量風險暴露。以下以 \\(\\Delta=\\partial V/\\partial S_0\\)、\\(\\Gamma=\\partial^2V/\\partial S_0^2\\)、\\(\\mathcal V=\\partial V/\\partial\\sigma\\)、\\(\\Theta=\\partial V/\\partial t=-\\partial V/\\partial T\\)、\\(\\rho=\\partial V/\\partial r\\) 表示；\\(V\\) 為選擇權價格，\\(t\\) 為曆日時間，\\(T\\) 為剩餘到期日。",
+            "Delta：對買權微分，\\(\\Delta_C=N(d_1)+S_0\\phi(d_1)\\frac{\\partial d_1}{\\partial S_0}-Ke^{-rT}\\phi(d_2)\\frac{\\partial d_2}{\\partial S_0}\\)。因 \\(\\partial d_1/\\partial S_0=\\partial d_2/\\partial S_0=1/(S_0\\sigma\\sqrt T)\\)，且 \\(S_0\\phi(d_1)=Ke^{-rT}\\phi(d_2)\\)，後兩項相消，得 \\(\\Delta_C=N(d_1)\\)。賣權由平價 \\(P=C+Ke^{-rT}-S_0\\) 得 \\(\\Delta_P=\\Delta_C-1=N(d_1)-1=-N(-d_1)\\)。",
+            "Gamma：對 Delta 再微分，\\(\\Gamma_C=\\frac{\\phi(d_1)}{S_0\\sigma\\sqrt T}\\)；賣權的 Gamma 與買權相同，因為平價中 \\(S_0\\) 與 \\(Ke^{-rT}\\) 對 \\(S_0\\) 的二階導數為零，故 \\(\\Gamma_P=\\Gamma_C\\)。",
+            "Vega：對 \\(\\sigma\\) 微分，\\(\\mathcal V_C=S_0\\phi(d_1)\\sqrt T\\)。平價右邊 \\(S_0-Ke^{-rT}\\) 不含 \\(\\sigma\\)，所以 \\(\\mathcal V_P=\\mathcal V_C\\)。Vega 對波動率變動 1.00（100 個百分點）給出價格變動；若波動率變動 1 個百分點，約為 \\(S_0\\phi(d_1)\\sqrt T/100\\)。",
+            "Theta：先對剩餘到期日 T 微分，再取負號。\\(\\partial C/\\partial T=\\frac{S_0\\phi(d_1)\\sigma}{2\\sqrt T}+rKe^{-rT}N(d_2)\\)，故 \\(\\Theta_C=-\\frac{S_0\\phi(d_1)\\sigma}{2\\sqrt T}-rKe^{-rT}N(d_2)\\)。賣權為 \\(\\Theta_P=-\\frac{S_0\\phi(d_1)\\sigma}{2\\sqrt T}+rKe^{-rT}N(-d_2)\\)；深度價內賣權的利率項可能使 Theta 為正。",
+            "Rho：對 \\(r\\) 微分，\\(\\rho_C=KTe^{-rT}N(d_2)\\)；賣權 \\(\\rho_P=-KTe^{-rT}N(-d_2)\\)。利率上升使履約價現值下降，對買權有利、對賣權不利。",
+            "數例：\\(S_0=100\\)、\\(K=100\\)、\\(r=5\\%\\)、\\(\\sigma=20\\%\\)、\\(T=1\\)。則 \\(d_1=0.35\\)、\\(d_2=0.15\\)、\\(N(d_1)=0.6368\\)、\\(N(d_2)=0.5596\\)、\\(\\phi(d_1)=0.3752\\)；買權 \\(C\\approx10.45\\)、賣權 \\(P\\approx5.57\\)，且 \\(C-P=4.88=S_0-Ke^{-rT}\\)。",
+            "Greeks 數值：\\(\\Delta_C\\approx0.6368\\)、\\(\\Delta_P\\approx-0.3632\\)；\\(\\Gamma\\approx0.01876\\)；\\(\\mathcal V\\approx37.52\\)（波動率變動 1.00）；\\(\\Theta_C\\approx-6.41\\)／年、\\(\\Theta_P\\approx-1.66\\)／年；\\(\\rho_C\\approx53.23\\)、\\(\\rho_P\\approx-41.89\\)（利率變動 1.00）。",
+            "解讀：Delta 是方向曝險，Gamma 衡量 Delta 的變化速度，Vega 是波動率曝險，Theta 是時間衰減，Rho 是利率曝險。買權 Delta 介於 0 與 1，賣權 Delta 介於 −1 與 0；Gamma 與 Vega 對買權、賣權同號；Theta 通常為負，但深度價內賣權可能因履約價折現效果而為正。"
           ],
+          table: {
+            title: "Black–Scholes Greeks 比較表",
+            columns: ["Greek", "定義", "歐式買權", "歐式賣權"],
+            rows: [
+              ["Delta", "\\(\\partial V/\\partial S_0\\)", "\\(N(d_1)\\)", "\\(N(d_1)-1\\)"],
+              ["Gamma", "\\(\\partial^2V/\\partial S_0^2\\)", "\\(\\phi(d_1)/(S_0\\sigma\\sqrt T)\\)", "同買權"],
+              ["Vega", "\\(\\partial V/\\partial\\sigma\\)", "\\(S_0\\phi(d_1)\\sqrt T\\)", "同買權"],
+              ["Theta", "\\(\\partial V/\\partial t\\)", "通常為負；公式見內文", "不一定；公式見內文"],
+              ["Rho", "\\(\\partial V/\\partial r\\)", "正；公式見內文", "負；公式見內文"]
+            ],
+            note: "Theta 以曆日時間 t 定義；若以剩餘到期日 T 微分，符號相反。Vega 與 Rho 的單位分別為波動率與利率變動 1.00。"
+          },
           terms: [
             ["賣權買權平價", "歐式買權與賣權價格之間的無套利關係。"],
             ["Black-Scholes 模型", "以波動率等參數評價歐式選擇權的模型。"],
             ["掩護性買權", "持有標的資產並賣出買權，收取權利金。"],
             ["保護性賣權", "持有標的資產並買入賣權，降低下跌風險。"],
+            ["Greeks（希臘字母）", "Delta、Gamma、Vega、Theta、Rho 等選擇權價格敏感度的統稱。"],
             ["Delta", "選擇權價格對標的資產價格變動的敏感度。"],
             ["Gamma", "Delta 對標的資產價格變動的敏感度。"],
-            ["Theta", "選擇權價格對時間流逝的敏感度。"],
-            ["Vega", "選擇權價格對波動率變動的敏感度。"]
+            ["Theta", "選擇權價格對時間流逝的敏感度；以 \\(\\partial V/\\partial t\\) 定義時，買權通常為負，深度價內賣權可能為正。"],
+            ["Vega", "選擇權價格對波動率變動的敏感度。"],
+            ["Rho（利率敏感度）", "選擇權價格對無風險利率的敏感度；買權 Rho 為正，賣權 Rho 為負。"]
           ],
           points: [
-            "平價關係可用來檢查選擇權價格是否合理。",
+            "平價關係可用來檢查選擇權價格是否合理；平價與波動率無關。",
             "掩護性買權犧牲上漲空間換取權利金。",
-            "保護性賣權像買保險，降低下方風險但需支付權利金。"
+            "保護性賣權像買保險，降低下方風險但需支付權利金。",
+            "Black–Scholes 的輸入是 S0、K、r、σ、T；σ 是唯一不可直接觀察、需估計的參數。",
+            "Delta 看方向、Gamma 看曲率、Vega 看波動、Theta 看時間、Rho 看利率。",
+            "Gamma 與 Vega 對買權、賣權同號；Theta 通常為負，但深度價內賣權可能為正。"
           ],
-          memory: "平價看套利，Black-Scholes 看波動；掩護買權收租金，保護賣權買保險。",
-          formula: "C + K ÷ (1+r)ᵀ = P + S₀（歐式、無股利、相同 K 與到期日、無套利）"
+          memory: "平價看套利，Black–Scholes 看波動；Delta 看方向，Gamma 看曲率，Vega 看波動，Theta 看時間，Rho 看利率。",
+          formula: "BS：C=S₀N(d₁)−Ke^(−rT)N(d₂)、P=Ke^(−rT)N(−d₂)−S₀N(−d₁)；d₁、d₂ 見內文；C−P=S₀−Ke^(−rT)；Greeks：Delta、Gamma、Vega、Theta、Rho"
         }
       ]
     },

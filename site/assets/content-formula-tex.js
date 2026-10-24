@@ -75,7 +75,13 @@ PDI &= PI - T_p = C + S
   "investment-08::學習重點 2：股票評價": { tex: String.raw`P_0 = \frac{D_1}{r-g}`, note: "D₁ 為下一期股利；r > g；股利固定成長。" },
   "investment-08::學習重點 3：股票報酬與風險": { tex: String.raw`\text{股票報酬率}=\text{股利收益率}+\text{資本利得率}`, note: "" },
   "investment-09::學習重點 2：到期價值與損益": { tex: String.raw`\begin{gathered}\text{買權到期內在價值}=\max(S_T-K,0)\\\text{賣權到期內在價值}=\max(K-S_T,0)\end{gathered}`, note: "未扣權利金；損益 = 到期內在價值 − 權利金。" },
-  "investment-09::學習重點 3：選擇權評價與策略": { tex: String.raw`C+\frac{K}{(1+r)^T}=P+S_0`, note: "歐式、無股利、相同 K 與到期日、無套利。" },
+  "investment-09::學習重點 3：選擇權評價與策略": { tex: String.raw`\begin{gathered}
+C=S_0N(d_1)-Ke^{-rT}N(d_2)\\
+P=Ke^{-rT}N(-d_2)-S_0N(-d_1)\\
+d_1=\frac{\ln(S_0/K)+(r+\sigma^2/2)T}{\sigma\sqrt T}\\
+d_2=d_1-\sigma\sqrt T\\
+C-P=S_0-Ke^{-rT}
+\end{gathered}`, note: "歐式、無股利、波動率固定；Greeks 的定義、推導與數例見本節內文。" },
 
   "investment-10::學習重點 2：期貨價格與基差": { tex: String.raw`F_0=S_0 e^{(r-q)T}`, note: "連續複利；r 為無風險利率（持有成本）；q 為契約期間平均收益率（連續複利）；不另計儲存成本與便利收益。" },
   "investment-10::學習重點 3：避險與交易策略": { tex: String.raw`\text{避險契約數}\approx \frac{(\beta_{\text{目標}}-\beta_{\text{現貨}})\times\text{現貨部位價值}}{\text{每口期貨契約價值}}`, note: "負值代表賣出期貨；全數避險至 β目標 = 0、期貨 β ≈ 1 時，賣出契約數為 β現貨 × 現貨部位價值 ÷ 每口期貨契約價值。" },

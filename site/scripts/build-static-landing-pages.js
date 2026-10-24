@@ -791,7 +791,7 @@ function chaptersHubPage() {
     ].join("");
   }).join("");
   const faqs = [
-    { question: "總共有幾章？", answer: "四科共 " + totalChapters + " 章、" + totals.sections + " 個學習單元，另整理 1,513 張名詞卡。" },
+    { question: "總共有幾章？", answer: "四科共 " + totalChapters + " 章、" + totals.sections + " 個學習單元，另整理 " + formatNumber(totals.terms) + " 張名詞卡。" },
     { question: "章節頁與互動版有什麼不同？", answer: "章節頁提供可直接閱讀與索引的摘要、名詞、考試重點與公式；互動版提供完整內容、圖表、逐選項解析與練習紀錄。" },
     { question: "要從哪裡開始？", answer: "先選科目，再依章節順序閱讀；時間有限時可先看考試重點與考古題出處。" }
   ];
