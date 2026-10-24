@@ -143,7 +143,7 @@ sequenceDiagram
 | `#/exam-forecast` | `renderExamForecastPage()` | 核心 `EXAM_FORECAST`、`EXAM_FORECAST_ANSWERS`；總經時事入口卡片 |
 | `#/investment/formulas` | `renderInvestmentFormulasPage()` | 比例公式、核心公式庫、選擇權評價 |
 | `#/investment/technical` | `renderInvestmentTechnicalPage()` | 技術分析 5 類 50 指標 |
-| `#/macro-current` | `renderMacroCurrentEvents()` | `MACRO_CURRENT_EVENTS`；由考前猜題頁卡片進入 |
+| `#/macro-current` | `renderMacroCurrentEvents()` | `MACRO_CURRENT_EVENTS`；由考前猜題頁卡片進入，麵包屑掛在「考前猜題」下 |
 | `#/models/macro` | `renderMacroModels()` | `MACRO_DIAGRAMS`、`NOBEL_DATA`、`NOBEL_DIAGRAMS` |
 | `#/nobel` | `renderNobelPage()` | `NOBEL_DATA`、`NOBEL_DIAGRAMS` |
 | `#/sources` | `renderSources()` | `EXAM_CONTENT.sources` |
