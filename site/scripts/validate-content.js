@@ -1815,6 +1815,65 @@ Object.keys(currentFormulasById).forEach(function (eventId) {
   });
 });
 check(Array.isArray(currentFormulasById["tariffs-2025"]) && currentFormulasById["tariffs-2025"].length > 0, "美國對等關稅時事應有公式");
+const currentTop20 = macroCurrent.top20 || {};
+check(typeof currentTop20.title === "string" && currentTop20.title.trim().length > 0, "總經時事 TOP 20 缺少標題");
+check(typeof currentTop20.period === "string" && currentTop20.period.trim().length > 0, "總經時事 TOP 20 缺少統計期間");
+check(typeof currentTop20.intro === "string" && currentTop20.intro.trim().length > 0, "總經時事 TOP 20 缺少說明");
+const top20Items = Array.isArray(currentTop20.items) ? currentTop20.items : [];
+check(top20Items.length === 20, "總經時事 TOP 20 應有 20 項（目前 " + top20Items.length + " 項）");
+const top20Ranks = new Set();
+top20Items.forEach(function (item, index) {
+  check(Boolean(item) && typeof item === "object", "總經時事 TOP 20 項目格式錯誤：" + (index + 1));
+  if (!item) {
+    return;
+  }
+  check(Number.isInteger(item.rank) && item.rank >= 1 && item.rank <= 20, "總經時事 TOP 20 排名錯誤：" + (index + 1));
+  check(!top20Ranks.has(item.rank), "總經時事 TOP 20 排名重複：" + item.rank);
+  top20Ranks.add(item.rank);
+  check(typeof item.title === "string" && item.title.trim().length > 0, "總經時事 TOP 20 缺少事件標題：" + (index + 1));
+  check(typeof item.period === "string" && item.period.trim().length > 0, "總經時事 TOP 20 缺少期間：" + (index + 1));
+  check(typeof item.category === "string" && item.category.trim().length > 0, "總經時事 TOP 20 缺少類別：" + (index + 1));
+  check(typeof item.summary === "string" && item.summary.trim().length > 0, "總經時事 TOP 20 缺少摘要：" + (index + 1));
+  check(typeof item.focus === "string" && item.focus.trim().length > 0, "總經時事 TOP 20 缺少考試重點：" + (index + 1));
+  if (item.eventId) {
+    check(currentEventIds.has(item.eventId), "總經時事 TOP 20 指向不存在的時事：" + item.title + " / " + item.eventId);
+  }
+  checkRenderedMath(item.summary, "總經時事 TOP 20 " + item.rank + " 摘要");
+  checkRenderedMath(item.focus, "總經時事 TOP 20 " + item.rank + " 考試重點");
+});
+check(top20Ranks.size === 20, "總經時事 TOP 20 排名應為 1–20");
+const top20Themes = Array.isArray(currentTop20.themes) ? currentTop20.themes : [];
+check(top20Themes.length === 8, "總經時事 TOP 20 應有 8 大主題（目前 " + top20Themes.length + " 個）");
+const top20ThemePriorities = new Set();
+top20Themes.forEach(function (theme, index) {
+  check(Boolean(theme) && typeof theme === "object", "總經時事 8 大主題格式錯誤：" + (index + 1));
+  if (!theme) {
+    return;
+  }
+  check(Number.isInteger(theme.priority) && theme.priority >= 1 && theme.priority <= 8, "總經時事 8 大主題優先級錯誤：" + (index + 1));
+  check(!top20ThemePriorities.has(theme.priority), "總經時事 8 大主題優先級重複：" + theme.priority);
+  top20ThemePriorities.add(theme.priority);
+  check(typeof theme.title === "string" && theme.title.trim().length > 0, "總經時事 8 大主題缺少名稱：" + (index + 1));
+  check(typeof theme.text === "string" && theme.text.trim().length > 0, "總經時事 8 大主題缺少必會理論：" + (index + 1));
+  checkRenderedMath(theme.text, "總經時事 8 大主題 " + theme.title);
+});
+const top20Essays = Array.isArray(currentTop20.essays) ? currentTop20.essays : [];
+check(top20Essays.length === 5, "總經時事 TOP 20 應有 5 題綜合申論（目前 " + top20Essays.length + " 題）");
+top20Essays.forEach(function (essay, index) {
+  check(Boolean(essay) && typeof essay === "object", "總經時事綜合申論格式錯誤：" + (index + 1));
+  if (!essay) {
+    return;
+  }
+  check(typeof essay.title === "string" && essay.title.trim().length > 0, "總經時事綜合申論缺少題目：" + (index + 1));
+  check(typeof essay.answer === "string" && essay.answer.trim().length > 0, "總經時事綜合申論缺少答題方向：" + (index + 1));
+  checkRenderedMath(essay.answer, "總經時事綜合申論 " + (index + 1) + " 答題方向");
+});
+check(typeof currentTop20.note === "string" && currentTop20.note.trim().length > 0, "總經時事 TOP 20 缺少資料提醒");
+check(Array.isArray(currentTop20.references) && currentTop20.references.length >= 3, "總經時事 TOP 20 參考資料不足");
+(currentTop20.references || []).forEach(function (ref, index) {
+  check(Boolean(ref) && typeof ref.label === "string" && ref.label.trim().length > 0, "總經時事 TOP 20 參考資料缺少標籤：" + (index + 1));
+  check(Boolean(ref) && typeof ref.url === "string" && /^https?:\/\//.test(ref.url), "總經時事 TOP 20 參考資料網址錯誤：" + (index + 1));
+});
 pastExamQuestions.forEach(function (question) {
   if (question.eventId) {
     check(currentEventIds.has(question.eventId), "考古題時事出處不存在：" + question.id + " / " + question.eventId);

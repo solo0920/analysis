@@ -6291,6 +6291,271 @@ p {
   text-decoration: underline;
 }
 
+.macro-top20 {
+  margin-top: 26px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.macro-top20-head .eyebrow {
+  margin: 0 0 4px;
+  color: var(--gold);
+}
+
+.macro-top20-head h2 {
+  margin: 0 0 6px;
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+}
+
+.macro-top20-period {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.macro-top20-intro {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.macro-top20-table-wrap {
+  max-width: 100%;
+  margin-top: 18px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  scrollbar-width: thin;
+}
+
+.macro-top20-table-wrap:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.macro-top20-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+}
+
+.macro-top20-table th {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line-strong);
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-align: left;
+}
+
+.macro-top20-table td {
+  padding: 12px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
+  line-height: 1.65;
+  vertical-align: top;
+}
+
+.macro-top20-table tbody tr:first-child td {
+  border-top: 0;
+}
+
+.macro-top20-rank {
+  width: 54px;
+  color: var(--gold);
+  font-family: var(--font-mono);
+  font-weight: 800;
+  text-align: center;
+}
+
+.macro-top20-event strong {
+  display: block;
+  color: var(--ink);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.macro-top20-event span {
+  display: block;
+  margin: 2px 0 5px;
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+
+.macro-top20-event p {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.65;
+}
+
+.macro-top20-focus {
+  font-size: 0.8rem;
+}
+
+.macro-top20-link {
+  display: inline-block;
+  margin-top: 6px;
+  color: var(--accent);
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.macro-top20-link:hover {
+  text-decoration: underline;
+}
+
+.macro-top20-themes,
+.macro-top20-essays {
+  margin-top: 24px;
+}
+
+.macro-top20-themes h3,
+.macro-top20-essays h3 {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+}
+
+.macro-top20-theme-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.macro-top20-theme {
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-2);
+}
+
+.macro-top20-theme-priority {
+  color: var(--gold);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.macro-top20-theme h4 {
+  margin: 4px 0;
+  font-size: 0.92rem;
+}
+
+.macro-top20-theme p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  line-height: 1.65;
+}
+
+.macro-top20-essay-list {
+  display: grid;
+  gap: 10px;
+}
+
+.macro-top20-essay {
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.macro-top20-essay-num {
+  color: var(--gold);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.macro-top20-essay h4 {
+  margin: 4px 0 6px;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.macro-top20-essay p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.macro-top20-essay p strong {
+  color: var(--accent);
+}
+
+.macro-top20-note {
+  margin: 16px 0 0;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line);
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.7;
+}
+
+.macro-top20-refs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.74rem;
+}
+
+.macro-top20-refs a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.macro-top20-refs a:hover {
+  text-decoration: underline;
+}
+
+.macro-current-section-head {
+  margin-top: 30px;
+}
+
+.macro-current-section-head .eyebrow {
+  margin: 0 0 4px;
+  color: var(--gold);
+}
+
+.macro-current-section-head h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 680px) {
+  .macro-top20 {
+    padding: 18px;
+  }
+
+  .macro-top20-theme-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .macro-top20-essay {
+    padding: 12px 14px;
+  }
+}
+
+@media (min-width: 681px) {
+  .macro-top20 .diagram-scroll-hint {
+    display: none;
+  }
+}
+
 .forecast-page {
   padding-top: 34px;
 }

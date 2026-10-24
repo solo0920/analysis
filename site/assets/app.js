@@ -2625,6 +2625,87 @@
     ].join("");
   }
 
+  function renderMacroTop20() {
+    const data = macroCurrentData.top20;
+    if (!data || !Array.isArray(data.items) || !data.items.length) {
+      return "";
+    }
+    const items = data.items;
+    const themes = Array.isArray(data.themes) ? data.themes : [];
+    const essays = Array.isArray(data.essays) ? data.essays : [];
+    const references = Array.isArray(data.references) ? data.references : [];
+    return [
+      '<section class="macro-top20" id="macro-top20" aria-labelledby="macro-top20-title">',
+      '  <div class="macro-top20-head">',
+      '    <p class="eyebrow">考前總複習 · 美國總經</p>',
+      '    <h2 id="macro-top20-title">' + escapeHtml(data.title || "美國近兩年重大經濟新聞 TOP 20") + "</h2>",
+      '    <p class="macro-top20-period">' + escapeHtml(data.period || "") + "</p>",
+      '    <p class="macro-top20-intro">' + renderExplicitMathText(data.intro || "") + "</p>",
+      "  </div>",
+      '  <div class="macro-top20-table-wrap" role="region" aria-label="美國近兩年重大經濟新聞 TOP 20" tabindex="0">',
+      '    <table class="macro-top20-table">',
+      '      <thead><tr><th scope="col">#</th><th scope="col">事件與期間</th><th scope="col">考試重點</th></tr></thead>',
+      "      <tbody>",
+      items.map(function (item) {
+        const eventLink = item.eventId
+          ? '        <a class="macro-top20-link" href="#/macro-current?event=' + encodeURIComponent(item.eventId) + '">深入閱讀 →</a>'
+          : "";
+        return [
+          "        <tr>",
+          '          <td class="macro-top20-rank">' + String(item.rank || "").padStart(2, "0") + "</td>",
+          '          <td class="macro-top20-event"><strong>' + escapeHtml(item.title || "") + "</strong><span>" + escapeHtml([item.period, item.category].filter(Boolean).join(" · ")) + "</span><p>" + renderExplicitMathText(item.summary || "") + "</p>" + eventLink + "</td>",
+          '          <td class="macro-top20-focus">' + renderExplicitMathText(item.focus || "") + "</td>",
+          "        </tr>"
+        ].join("");
+      }).join(""),
+      "      </tbody>",
+      "    </table>",
+      "  </div>",
+      '  <p class="diagram-scroll-hint">表格較寬，可左右滑動。</p>',
+      themes.length ? [
+        '  <div class="macro-top20-themes">',
+        "    <h3>考試最值得優先掌握的 8 大主題</h3>",
+        '    <div class="macro-top20-theme-grid">',
+        themes.map(function (theme) {
+          return [
+            '<article class="macro-top20-theme">',
+            '  <span class="macro-top20-theme-priority">優先級 ' + String(theme.priority || "").padStart(2, "0") + "</span>",
+            "  <h4>" + escapeHtml(theme.title || "") + "</h4>",
+            "  <p>" + renderExplicitMathText(theme.text || "") + "</p>",
+            "</article>"
+          ].join("");
+        }).join(""),
+        "    </div>",
+        "  </div>"
+      ].join("") : "",
+      essays.length ? [
+        '  <div class="macro-top20-essays">',
+        "    <h3>最重要的綜合申論題</h3>",
+        '    <div class="macro-top20-essay-list">',
+        essays.map(function (essay, index) {
+          return [
+            '<article class="macro-top20-essay">',
+            '  <span class="macro-top20-essay-num">申論 ' + (index + 1) + "</span>",
+            "  <h4>" + escapeHtml(essay.title || "") + "</h4>",
+            "  <p><strong>答題方向</strong> " + renderExplicitMathText(essay.answer || "") + "</p>",
+            "</article>"
+          ].join("");
+        }).join(""),
+        "    </div>",
+        "  </div>"
+      ].join("") : "",
+      data.note ? '  <p class="macro-top20-note">' + renderExplicitMathText(data.note) + "</p>" : "",
+      references.length ? [
+        '  <div class="macro-top20-refs"><span>參考資料</span>',
+        references.map(function (ref) {
+          return '<a href="' + escapeHtml(ref.url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(ref.label) + "</a>";
+        }).join(""),
+        "  </div>"
+      ].join("") : "",
+      "</section>"
+    ].join("");
+  }
+
   function renderMacroCurrentEvents() {
     const meta = macroCurrentData.meta || {};
     return [
@@ -2644,6 +2725,11 @@
       '      <a class="btn" href="#/exam-forecast">12 月考前猜題</a>',
       '    </div>',
       '  </section>',
+      renderMacroTop20(),
+      '  <div class="macro-current-section-head">',
+      '    <p class="eyebrow">15 個主題深入整理</p>',
+      "    <h2>時事主題與考試框架</h2>",
+      "  </div>",
       '  <div class="macro-current-list">' + macroCurrentEvents.map(function (event) {
         return [
           '<article class="macro-current-card" id="macro-event-' + escapeHtml(event.id) + '">',

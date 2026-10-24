@@ -178,7 +178,7 @@ sequenceDiagram
 | `window.INVESTMENT_TECHNICAL_INDICATORS` | `content-investment-technical.js` | 5 類 50 種技術分析指標 |
 | `window.MACRO_DIAGRAMS` | `diagrams-macro*.js` | 27 張總體章節模型圖（含 5 張學派模型補充），鍵為 `chapterId#sectionIndex` |
 | `window.MACRO_EVOLUTION` | `content-macro-evolution.js` | 6 階段、10 節點、模型錨點與諾貝爾年份 |
-| `window.MACRO_CURRENT_EVENTS` | `content-macro-current.js` | 15 個總經時事、12 個主題公式（26 條）與官方參考資料 |
+| `window.MACRO_CURRENT_EVENTS` | `content-macro-current.js` | 15 個總經時事、12 個主題公式（26 條）、TOP 20、8 大主題、5 題申論與官方參考資料 |
 | `window.NOBEL_DATA` | `content-nobel.js` | 58 屆諾貝爾年表、17 個圖組 |
 | `window.NOBEL_DIAGRAMS` | `diagrams-nobel.js` | 17 組諾貝爾模型 SVG |
 | `window.EXAM_FORECAST` | `content-exam-forecast.js` | 97 題組／118 個部分、38 條整合公式、27 個主題公式對應（74 個題組） |
