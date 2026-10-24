@@ -6175,6 +6175,54 @@ p {
   margin: 0 0 10px;
 }
 
+.macro-current-formulas {
+  min-width: 0;
+  margin-top: 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.macro-current-formulas h3 {
+  margin: 0 0 10px;
+  font-size: 0.9rem;
+}
+
+.macro-current-formula + .macro-current-formula {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line);
+}
+
+.macro-current-formula-name {
+  display: block;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.macro-current-formula-math {
+  max-width: 100%;
+  margin-top: 5px;
+  overflow-x: auto;
+  color: var(--ink);
+  font-size: 0.95rem;
+  scrollbar-width: thin;
+}
+
+.macro-current-formula-math .katex-display {
+  margin: 0;
+}
+
+.macro-current-formula p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
 .macro-current-points {
   min-width: 0;
   margin-top: 14px;
@@ -6639,6 +6687,57 @@ p {
   color: var(--ink-soft);
   font-size: 0.86rem;
   line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+.forecast-question-formulas {
+  min-width: 0;
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+}
+
+.forecast-question-formulas summary {
+  padding: 10px 12px;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.forecast-question-formulas[open] summary {
+  border-bottom: 1px solid var(--line);
+}
+
+.forecast-question-formula-list {
+  min-width: 0;
+  padding: 10px 12px;
+}
+
+.forecast-question-formula + .forecast-question-formula {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+}
+
+.forecast-question-formula-name {
+  display: block;
+  color: var(--ink);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.forecast-question-formula .forecast-formula-math {
+  margin-top: 4px;
+}
+
+.forecast-question-formula p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.74rem;
+  line-height: 1.6;
   overflow-wrap: anywhere;
 }
 

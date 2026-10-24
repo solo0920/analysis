@@ -1798,6 +1798,23 @@ currentEvents.forEach(function (event) {
     });
   }
 });
+const currentFormulasById = macroCurrent.formulasById || {};
+Object.keys(currentFormulasById).forEach(function (eventId) {
+  check(currentEventIds.has(eventId), "總經時事公式指向不存在的時事：" + eventId);
+  const formulas = currentFormulasById[eventId];
+  check(Array.isArray(formulas) && formulas.length > 0, "總經時事公式格式錯誤：" + eventId);
+  (formulas || []).forEach(function (formula, index) {
+    check(Boolean(formula) && typeof formula === "object", "總經時事公式資料格式錯誤：" + eventId + " / " + (index + 1));
+    if (!formula) {
+      return;
+    }
+    check(typeof formula.name === "string" && formula.name.trim().length > 0, "總經時事公式缺少名稱：" + eventId + " / " + (index + 1));
+    check(typeof formula.latex === "string" && formula.latex.trim().length > 0, "總經時事公式缺少 LaTeX：" + eventId + " / " + (index + 1));
+    check(typeof formula.note === "string" && formula.note.trim().length > 0, "總經時事公式缺少說明：" + eventId + " / " + (index + 1));
+    checkRenderedMath("\\[" + formula.latex + "\\]", "總經時事公式 " + eventId + " " + (index + 1));
+  });
+});
+check(Array.isArray(currentFormulasById["tariffs-2025"]) && currentFormulasById["tariffs-2025"].length > 0, "美國對等關稅時事應有公式");
 pastExamQuestions.forEach(function (question) {
   if (question.eventId) {
     check(currentEventIds.has(question.eventId), "考古題時事出處不存在：" + question.id + " / " + question.eventId);
@@ -1966,6 +1983,33 @@ forecastSubjectIds.forEach(function (group) {
   });
 });
 check(forecastFormulaCount === 38, "考前猜題整合公式應有 38 條（目前 " + forecastFormulaCount + " 條）");
+const forecastFormulaByName = new Map();
+forecastSubjectIds.forEach(function (group) {
+  (Array.isArray(forecastFormulas[group]) ? forecastFormulas[group] : []).forEach(function (formula) {
+    if (formula && formula.name) {
+      forecastFormulaByName.set(formula.name, formula);
+    }
+  });
+});
+const forecastTopicFormulas = forecast.topicFormulas || {};
+const forecastQuestionTopics = new Set(forecastQuestions.map(function (question) { return question.topic; }).filter(Boolean));
+check(Object.keys(forecastTopicFormulas).length >= 20, "考前猜題應有至少 20 個主題公式對應（目前 " + Object.keys(forecastTopicFormulas).length + " 個）");
+Object.keys(forecastTopicFormulas).forEach(function (topic) {
+  check(forecastQuestionTopics.has(topic), "考前猜題主題公式指向不存在的主題：" + topic);
+  const refs = forecastTopicFormulas[topic];
+  check(Array.isArray(refs) && refs.length > 0, "考前猜題主題公式格式錯誤：" + topic);
+  (refs || []).forEach(function (ref, index) {
+    const formula = typeof ref === "string" ? forecastFormulaByName.get(ref) : ref;
+    check(Boolean(formula) && typeof formula === "object", "考前猜題主題公式找不到公式：" + topic + " / " + index);
+    if (!formula) {
+      return;
+    }
+    check(typeof formula.name === "string" && formula.name.trim().length > 0, "考前猜題主題公式缺少名稱：" + topic + " / " + index);
+    check(typeof formula.latex === "string" && formula.latex.trim().length > 0, "考前猜題主題公式缺少 LaTeX：" + topic + " / " + index);
+    check(typeof formula.note === "string" && formula.note.trim().length > 0, "考前猜題主題公式缺少說明：" + topic + " / " + index);
+    checkRenderedMath("\\(" + formula.latex + "\\)", "考前猜題主題公式 " + topic + " " + index);
+  });
+});
 const sensitivity = forecast.sensitivity || {};
 check(Boolean(sensitivity.dcf) && Array.isArray(sensitivity.dcf.rows) && sensitivity.dcf.rows.length === 5, "考前猜題 DCF 敏感度應有 5 列");
 check(Boolean(sensitivity.dcf) && Array.isArray(sensitivity.dcf.columns) && sensitivity.dcf.columns.length === 6, "考前猜題 DCF 敏感度應有 6 欄");

@@ -25,6 +25,12 @@ window.MACRO_CURRENT_EVENTS = {
         "macro-10",
         "macro-02",
         "macro-12"
+      ],
+      "references": [
+        {
+          "label": "White House：對等關稅行政命令（2025-04-02）",
+          "url": "https://www.whitehouse.gov/presidential-actions/2025/04/regulating-imports-with-a-reciprocal-tariff-to-rectify-trade-practices-that-contribute-to-large-and-persistent-annual-united-states-goods-trade-deficits/"
+        }
       ]
     },
     {
@@ -412,6 +418,163 @@ window.MACRO_CURRENT_EVENTS = {
         "macro-04",
         "macro-12"
       ]
+    }
+  ]
+};
+
+window.MACRO_CURRENT_EVENTS.formulasById = {
+  "tariffs-2025": [
+    {
+      "name": "對等關稅率",
+      "latex": "\\tau_i=\\max\\left(\\tau_{\\min},\\frac{M_i-X_i}{2M_i}\\right)",
+      "note": "M_i 為美國自 i 國進口額、X_i 為美國對 i 國出口額；實際稅率、豁免與暫停期限依官方公告為準。"
+    },
+    {
+      "name": "進口價格效果",
+      "latex": "P_{\\text{進口}}=P_{\\text{外國}}\\times(1+\\tau_i)",
+      "note": "關稅名目上由進口商支付，實際負擔取決於供需彈性，也可能由出口國降價或匯率吸收。"
+    }
+  ],
+  "fed-2025": [
+    {
+      "name": "Taylor 法則",
+      "latex": "i=\\pi+r^*+0.5(\\pi-\\pi^*)+0.5(y-y^*)",
+      "note": "π 為實際通膨、r* 為中性利率、y−y* 為產出缺口；點陣圖不是政策承諾。"
+    },
+    {
+      "name": "實質政策利率",
+      "latex": "r=i-\\pi^e",
+      "note": "名目利率扣除預期通膨；政策利率、IORB、ON RRP 與長天期殖利率不是同一個利率。"
+    }
+  ],
+  "global-rate-policy": [
+    {
+      "name": "Taylor 法則",
+      "latex": "i=\\pi+r^*+0.5(\\pi-\\pi^*)+0.5(y-y^*)",
+      "note": "常用來判斷政策利率相對中性利率的位置。"
+    },
+    {
+      "name": "期限溢酬",
+      "latex": "i_n\\approx\\frac{1}{n}\\sum_{j=1}^{n}E_t[i_{t+j}]+\\text{TP}_n",
+      "note": "長天期殖利率約等於預期短期利率平均加上期限溢酬；QT 主要影響長端與期限溢酬。"
+    },
+    {
+      "name": "未拋補利率平價",
+      "latex": "i-i^*\\approx E_t[\\Delta s_{t+1}]",
+      "note": "利差應約等於預期匯率變動；風險溢酬、干預與資本管制會造成偏離。"
+    }
+  ],
+  "global-inflation-2026": [
+    {
+      "name": "菲利浦曲線",
+      "latex": "\\pi=\\pi^e-\\beta(u-u_n)+v",
+      "note": "v 為供給衝擊；預期上升會使短期曲線上移，長期失業回到自然率。"
+    },
+    {
+      "name": "Fisher 方程式",
+      "latex": "1+i=(1+r)(1+\\pi^e)",
+      "note": "近似式 r≈i−π^e；通膨較高時使用精確式。"
+    }
+  ],
+  "us-debt-gold": [
+    {
+      "name": "黃金實質持有成本",
+      "latex": "\\text{機會成本}\\approx r-\\pi^e",
+      "note": "實質利率上升提高持有黃金的機會成本；央行購金、地緣政治與美元也影響金價。"
+    },
+    {
+      "name": "債務動態",
+      "latex": "\\Delta d\\approx(r-g)d-pb",
+      "note": "d 為債務/GDP、pb 為初級財政餘額；r>g 時需要初級盈餘穩定債務。"
+    }
+  ],
+  "us-treasury-market-stabilization": [
+    {
+      "name": "公債價格",
+      "latex": "P=\\sum_{t=1}^{n}\\frac{C}{(1+y)^t}+\\frac{F}{(1+y)^n}",
+      "note": "C 為票息、F 為面額、y 為到期殖利率；殖利率上升使價格下跌。"
+    },
+    {
+      "name": "存續期間近似",
+      "latex": "\\frac{\\Delta P}{P}\\approx-D_{\\text{mod}}\\Delta y",
+      "note": "Δy 用小數，例如 0.75% = 0.0075；凸性可改善大幅利率變動的估計。"
+    }
+  ],
+  "abenomics": [
+    {
+      "name": "實質薪資成長",
+      "latex": "1+g_{\\text{real}}=\\frac{1+g_{\\text{nominal}}}{1+\\pi}",
+      "note": "名目薪資成長扣除物價上漲；安倍三箭後實質薪資與內需仍是弱點。"
+    },
+    {
+      "name": "債務動態",
+      "latex": "\\Delta d\\approx(r-g)d-pb",
+      "note": "日本債務/GDP 高，長期低利率與名目成長是維持可持續性的關鍵。"
+    }
+  ],
+  "stablecoin-2026": [
+    {
+      "name": "穩定幣價格與準備",
+      "latex": "P_{\\text{token}}\\approx\\frac{R}{S}",
+      "note": "R 為準備資產市值、S 為流通代幣；R/S<1 代表市場折價，可能引發擠兌。"
+    },
+    {
+      "name": "準備率",
+      "latex": "\\text{準備率}=\\frac{R}{S}\\ge 1",
+      "note": "1:1 準備不代表零風險，準備資產的流動性、存續期間與託管風險仍在。"
+    }
+  ],
+  "usd-stablecoin-issuance": [
+    {
+      "name": "準備率",
+      "latex": "\\text{準備率}=\\frac{R}{S}\\ge 1",
+      "note": "GENIUS Act 要求支付型穩定幣至少 1:1 準備，並定期公開準備組合。"
+    },
+    {
+      "name": "準備資產利息收入",
+      "latex": "\\text{利息收入}\\approx R\\times r",
+      "note": "發行人主要收入來自準備資產利息；升息有利、降息壓縮利潤。"
+    }
+  ],
+  "taiwan-monetary-2025": [
+    {
+      "name": "Taylor 法則",
+      "latex": "i=\\pi+r^*+0.5(\\pi-\\pi^*)+0.5(y-y^*)",
+      "note": "臺灣是小型開放經濟，政策利率還要考慮匯率、資本流動與金融穩定。"
+    },
+    {
+      "name": "未拋補利率平價",
+      "latex": "i-i^*\\approx E_t[\\Delta s_{t+1}]",
+      "note": "臺灣與美國利差會影響資本流動與新台幣匯率，但央行干預與風險溢酬會造成偏離。"
+    },
+    {
+      "name": "貨幣乘數",
+      "latex": "m=\\frac{1+c}{rr+e+c}",
+      "note": "c 為現金存款比、rr 為法定準備率、e 為超額準備率；實際效果受銀行放款意願影響。"
+    }
+  ],
+  "ai-gpt-2025": [
+    {
+      "name": "Cobb-Douglas 生產函數",
+      "latex": "Y=AK^\\alpha L^{1-\\alpha}",
+      "note": "A 為技術或 TFP、K 為資本、L 為勞動；AI 主要透過 A 與互補投資影響產出。"
+    },
+    {
+      "name": "Solow 成長會計",
+      "latex": "g_Y=g_A+\\alpha g_K+(1-\\alpha)g_L",
+      "note": "TFP 成長是產出成長中無法由資本與勞動解釋的殘差。"
+    }
+  ],
+  "euro-crisis-2025": [
+    {
+      "name": "債務動態",
+      "latex": "\\Delta d\\approx(r-g)d-pb",
+      "note": "r 為名目利率、g 為名目成長率、pb 為初級財政餘額；r>g 時債務容易上升。"
+    },
+    {
+      "name": "主權利差",
+      "latex": "\\text{主權利差}=i_{\\text{成員國}}-i_{\\text{基準}}",
+      "note": "利差反映違約風險、流動性與退出歐元區風險；銀行與主權資產負債表會互相傳染。"
     }
   ]
 };

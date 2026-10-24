@@ -178,9 +178,10 @@ sequenceDiagram
 | `window.INVESTMENT_TECHNICAL_INDICATORS` | `content-investment-technical.js` | 5 類 50 種技術分析指標 |
 | `window.MACRO_DIAGRAMS` | `diagrams-macro*.js` | 27 張總體章節模型圖（含 5 張學派模型補充），鍵為 `chapterId#sectionIndex` |
 | `window.MACRO_EVOLUTION` | `content-macro-evolution.js` | 6 階段、10 節點、模型錨點與諾貝爾年份 |
+| `window.MACRO_CURRENT_EVENTS` | `content-macro-current.js` | 15 個總經時事、12 個主題公式（26 條）與官方參考資料 |
 | `window.NOBEL_DATA` | `content-nobel.js` | 58 屆諾貝爾年表、17 個圖組 |
 | `window.NOBEL_DIAGRAMS` | `diagrams-nobel.js` | 17 組諾貝爾模型 SVG |
-| `window.EXAM_FORECAST` | `content-exam-forecast.js` | 97 題組／118 個部分、系列標籤與整合公式 |
+| `window.EXAM_FORECAST` | `content-exam-forecast.js` | 97 題組／118 個部分、38 條整合公式、27 個主題公式對應（74 個題組） |
 | `window.PAST_EXAM_STATS` | `content-past-exam-stats.js` | 章節／年度／科目題數統計（核心） |
 | `window.PAST_EXAMS_YEAR_BUNDLES` | `content-past-exams-year-*.js` | 已載入年度題庫，供年度切換合併 |
 | `window.CHAPTER_DATA` | `content-chapter-data-*.js` | 各章考古題／申論題／解題 |

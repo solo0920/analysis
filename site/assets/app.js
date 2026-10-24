@@ -2604,6 +2604,27 @@
     }).join('<span class="past-exam-origin-sep">、</span>');
   }
 
+  function renderMacroCurrentFormulas(event) {
+    const formulas = macroCurrentData.formulasById && macroCurrentData.formulasById[event.id];
+    if (!Array.isArray(formulas) || !formulas.length) {
+      return "";
+    }
+    return [
+      '<div class="macro-current-formulas">',
+      "  <h3>公式</h3>",
+      formulas.map(function (formula) {
+        return [
+          '<div class="macro-current-formula">',
+          '  <span class="macro-current-formula-name">' + escapeHtml(formula.name || "公式") + "</span>",
+          '  <div class="macro-current-formula-math">' + renderKatex(formula.latex || "", true) + "</div>",
+          formula.note ? "  <p>" + renderExplicitMathText(formula.note) + "</p>" : "",
+          "</div>"
+        ].join("");
+      }).join(""),
+      "</div>"
+    ].join("");
+  }
+
   function renderMacroCurrentEvents() {
     const meta = macroCurrentData.meta || {};
     return [
@@ -2633,6 +2654,7 @@
           '  <div class="macro-current-summary">' + event.summary.map(function (text) {
             return '<p>' + renderInlineMath(text) + '</p>';
           }).join("") + '</div>',
+          renderMacroCurrentFormulas(event),
           '  <div class="macro-current-points"><h3>考試重點</h3><ul>' + event.points.map(function (point) {
             return '<li>' + renderInlineMath(point) + '</li>';
           }).join("") + '</ul></div>',
@@ -2676,6 +2698,46 @@
     }).join("") + "</div></details>";
   }
 
+  function forecastFormulaEntries(question) {
+    const refs = question && question.topic && forecastData.topicFormulas ? forecastData.topicFormulas[question.topic] : null;
+    if (!Array.isArray(refs) || !refs.length) {
+      return [];
+    }
+    const library = forecastData.formulas && forecastData.formulas[question.subject];
+    const byName = new Map((Array.isArray(library) ? library : []).map(function (formula) {
+      return [formula.name, formula];
+    }));
+    return refs.map(function (ref) {
+      if (typeof ref === "string") {
+        return byName.get(ref) || null;
+      }
+      return ref && ref.latex ? ref : null;
+    }).filter(Boolean);
+  }
+
+  function renderForecastQuestionFormulas(question) {
+    const formulas = forecastFormulaEntries(question);
+    if (!formulas.length) {
+      return "";
+    }
+    return [
+      '<details class="forecast-question-formulas">',
+      '  <summary>本題公式 <span>' + formulas.length + "</span></summary>",
+      '  <div class="forecast-question-formula-list">',
+      formulas.map(function (formula) {
+        return [
+          '<div class="forecast-question-formula">',
+          '  <span class="forecast-question-formula-name">' + escapeHtml(formula.name || "公式") + "</span>",
+          '  <div class="forecast-formula-math">' + renderInlineMath("\\(" + (formula.latex || "") + "\\)") + "</div>",
+          formula.note ? "  <p>" + renderExplicitMathText(formula.note) + "</p>" : "",
+          "</div>"
+        ].join("");
+      }).join(""),
+      "  </div>",
+      "</details>"
+    ].join("");
+  }
+
   function renderForecastSeries(question) {
     const parts = Array.isArray(question.parts) ? question.parts : [];
     const meta = [];
@@ -2710,6 +2772,7 @@
       '    <p class="forecast-scenario">' + renderInlineMath(question.scenario) + "</p>",
       '    <div class="forecast-question-meta">' + meta.join("") + "</div>",
       (question.scoring || question.trap) ? '    <div class="forecast-exam-tip"><div><strong>得分關鍵</strong><p>' + renderInlineMath(question.scoring || "") + '</p></div><div><strong>易錯點</strong><p>' + renderInlineMath(question.trap || "") + "</p></div></div>" : "",
+      renderForecastQuestionFormulas(question),
       '    <div class="forecast-series-parts">',
       parts.map(function (part, index) {
         return [
@@ -2768,6 +2831,7 @@
         return "<li>" + renderInlineMath(item) + "</li>";
       }).join("") + "</ul></div>",
       '    <div class="forecast-focus"><strong>作答方向</strong><p>' + renderInlineMath(question.focus) + "</p></div>",
+      renderForecastQuestionFormulas(question),
       (question.scoring || question.trap) ? '    <div class="forecast-exam-tip"><div><strong>得分關鍵</strong><p>' + renderInlineMath(question.scoring || "") + '</p></div><div><strong>易錯點</strong><p>' + renderInlineMath(question.trap || "") + "</p></div></div>" : "",
       renderForecastAnswerBlock(question.answerId || question.id),
       "  </div>",
