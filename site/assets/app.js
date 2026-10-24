@@ -817,6 +817,13 @@
 
   function renderNobelYearJump(groups) {
     const period = nobelData.meta && nobelData.meta.period ? nobelData.meta.period : "1969–2026";
+    const rows = (Array.isArray(nobelData.rows) ? nobelData.rows : []).slice().sort(function (a, b) {
+      return a.year - b.year;
+    });
+    const groupTitles = new Map(groups.map(function (group) {
+      return [group.id, group.title];
+    }));
+
     return [
       '<div class="nobel-year-jump">',
       '  <label class="nobel-year-jump-label" for="nobel-year-select">',
@@ -826,17 +833,12 @@
       '  <div class="nobel-year-jump-field">',
       '    <select id="nobel-year-select" data-nobel-year-select aria-describedby="nobel-year-select-hint">',
       '      <option value="">選擇年份（' + escapeHtml(period) + "）</option>",
-      groups.map(function (group, groupIndex) {
-        return [
-          '<optgroup label="' + escapeHtml("模型 " + padNumber(groupIndex + 1) + " · " + group.title) + '">',
-          group.rows.map(function (row) {
-            return '<option value="' + row.year + '">' + escapeHtml(row.year + " · " + row.laureates) + "</option>";
-          }).join(""),
-          "</optgroup>"
-        ].join("");
+      rows.map(function (row) {
+        const modelTitle = groupTitles.get(row.group) || "";
+        return '<option value="' + row.year + '">' + escapeHtml(row.year + " · " + modelTitle + "｜" + row.laureates) + "</option>";
       }).join(""),
       "    </select>",
-      '    <p class="nobel-year-jump-hint" id="nobel-year-select-hint">選取後切換該模型的屆別資料，並捲動到模型位置。</p>',
+      '    <p class="nobel-year-jump-hint" id="nobel-year-select-hint">選項依年份排序，顯示所屬模型與得主；選取後切換該模型並捲動。</p>',
       "  </div>",
       "</div>"
     ].join("");

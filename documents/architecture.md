@@ -159,7 +159,7 @@ sequenceDiagram
 - `#/nobel?models=1` → `#nobel-models`
 - `#/chapter/:id?section=N` → `#section-N`
 
-諾貝爾頁依 58 屆資料呈現 17 張模型模組，每組預設第一屆；模組在桌機為左右 1:1，左側是模型標題、說明、屆別晶片、目前屆別資料與 SVG，右側是 `figcaption` 圖說與 `.nobel-year-model-side` 的變數／參數 details，900px 以下改為單欄。上方年份下拉以 `<optgroup>` 分組，`handleNobelChange()` 會以年份反查模型、呼叫 `setNobelModuleYear()` 後捲動；圖上的屆別晶片是 `button[data-nobel-year-chip]`，由 `handleNobelClick()` 原地更新該模組的屆別資料與晶片狀態，不變更 hash、也不改變捲動位置。`?year=` 外部連結由 `render()` 反查年份所屬模型、切換該模組再捲動。
+諾貝爾頁依 58 屆資料呈現 17 張模型模組，每組預設第一屆；模組在桌機為左右 1:1，左側是模型標題、說明、屆別晶片、目前屆別資料與 SVG，右側是 `figcaption` 圖說與 `.nobel-year-model-side` 的變數／參數 details，900px 以下改為單欄。上方年份下拉為依年份排序的單一清單，選項顯示所屬模型與得主；`handleNobelChange()` 會以年份反查模型、呼叫 `setNobelModuleYear()` 後捲動。圖上的屆別晶片是 `button[data-nobel-year-chip]`，由 `handleNobelClick()` 原地更新該模組的屆別資料與晶片狀態，不變更 hash、也不改變捲動位置。`?year=` 外部連結由 `render()` 反查年份所屬模型、切換該模組再捲動。
 
 ## 5. 資料契約與單一來源
 
