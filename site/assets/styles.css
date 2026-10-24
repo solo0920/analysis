@@ -2737,98 +2737,6 @@ p {
   text-align: right;
 }
 
-.nobel-table-wrap {
-  overflow-x: auto;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
-  scroll-margin-top: calc(var(--header-h) + 20px);
-  scrollbar-width: thin;
-  scrollbar-color: var(--line-strong) transparent;
-}
-
-.nobel-table-wrap:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-}
-
-.nobel-table-wrap::-webkit-scrollbar {
-  height: 9px;
-}
-
-.nobel-table-wrap::-webkit-scrollbar-thumb {
-  border-radius: 999px;
-  background: var(--line-strong);
-}
-
-.nobel-table-wrap::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.nobel-table {
-  width: 100%;
-  min-width: 0;
-  border-collapse: collapse;
-  table-layout: fixed;
-  font-size: 0.84rem;
-}
-
-.nobel-table caption {
-  padding: 13px 16px;
-  border-bottom: 1px solid var(--line);
-  background: var(--surface-2);
-  color: var(--ink-soft);
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-align: left;
-}
-
-.nobel-table th {
-  padding: 10px 14px;
-  border-bottom: 1px solid var(--line-strong);
-  background: var(--surface-2);
-  color: var(--muted);
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-align: left;
-  vertical-align: bottom;
-}
-
-.nobel-table th:first-child {
-  width: 42%;
-}
-
-.nobel-table th:last-child {
-  width: 58%;
-}
-
-.nobel-table td {
-  padding: 16px;
-  border-top: 1px solid var(--line);
-  color: var(--ink-soft);
-  line-height: 1.65;
-  vertical-align: top;
-}
-
-.nobel-table tbody tr:nth-child(even) .nobel-year-data {
-  background: color-mix(in srgb, var(--surface-2) 55%, transparent);
-}
-
-.nobel-table tbody tr:hover .nobel-year-data {
-  background: var(--accent-soft);
-}
-
-.nobel-year-row {
-  scroll-margin-top: calc(var(--header-h) + 20px);
-}
-
-.nobel-year-data {
-  position: relative;
-  border-right: 1px solid var(--line);
-}
-
 .nobel-group-anchor {
   display: block;
   height: 0;
@@ -2954,10 +2862,6 @@ p {
   white-space: nowrap;
 }
 
-.nobel-year-model-cell {
-  padding: 16px 16px 18px;
-}
-
 .nobel-year-figure {
   margin: 0;
   padding: 0;
@@ -3054,19 +2958,74 @@ p {
   border-radius: 0;
 }
 
-.nobel-model-repeat {
-  margin: 10px 0 0;
+/* 17 組模型：每組左右 1:1；左方屆別資料與模型圖，右方圖說與變數表。 */
+.nobel-year-jump {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 22px;
+  margin: 0 0 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.nobel-year-jump-label {
+  flex: 0 0 auto;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.nobel-year-jump-label .eyebrow {
+  display: block;
+  margin: 0 0 3px;
+  color: var(--gold);
+  font-size: 0.62rem;
+}
+
+.nobel-year-jump-label strong {
+  display: block;
+  font-size: 0.92rem;
+}
+
+.nobel-year-jump-field {
+  display: flex;
+  flex: 1 1 320px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  min-width: 0;
+}
+
+.nobel-year-jump select {
+  flex: 0 1 360px;
+  min-width: 0;
+  max-width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.nobel-year-jump select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.nobel-year-jump-hint {
+  flex: 1 1 220px;
+  margin: 0;
   color: var(--muted);
-  font-size: 0.78rem;
-  line-height: 1.6;
+  font-size: 0.72rem;
+  line-height: 1.55;
 }
 
-.nobel-model-repeat a {
-  color: var(--accent);
-  font-weight: 800;
-}
-
-/* 每一屆一張卡：上方屆別資料、下方模型圖與變數表 1:1。 */
 .nobel-year-list {
   display: grid;
   gap: 18px;
@@ -3079,8 +3038,9 @@ p {
   line-height: 1.65;
 }
 
-.nobel-year-entry {
-  overflow: hidden;
+.nobel-module {
+  position: relative;
+  padding: 18px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
@@ -3088,32 +3048,40 @@ p {
   scroll-margin-top: calc(var(--header-h) + 20px);
 }
 
-.nobel-year-data {
-  position: relative;
-  padding: 16px 18px 18px;
-  border: 0;
-  border-bottom: 1px solid var(--line);
-  background: color-mix(in srgb, var(--surface-2) 70%, transparent);
-}
-
-.nobel-year-data-body {
-  min-width: 0;
-}
-
-.nobel-year-model-block {
-  padding: 18px;
-}
-
-.nobel-year-model-layout {
+.nobel-module-figure {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 18px;
+  grid-template-areas:
+    "main caption"
+    "main side";
+  grid-template-rows: auto minmax(0, 1fr);
+  align-content: stretch;
   align-items: start;
+  gap: 12px 22px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
-.nobel-year-model-main,
-.nobel-year-model-side {
+.nobel-year-model-main {
+  grid-area: main;
   min-width: 0;
+}
+
+.nobel-year-model-side {
+  grid-area: side;
+  min-width: 0;
+}
+
+.nobel-module-figure > figcaption {
+  grid-area: caption;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+  line-height: 1.75;
 }
 
 .nobel-year-model-side .nobel-model-details {
@@ -3127,6 +3095,22 @@ p {
   padding: 12px;
 }
 
+.nobel-module .nobel-year-data {
+  position: relative;
+  padding: 14px 15px 15px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+}
+
+.nobel-year-data-body {
+  min-width: 0;
+}
+
+.nobel-module .nobel-year-canvas {
+  margin-top: 12px;
+}
+
 .nobel-year-chip {
   cursor: pointer;
   line-height: 1.4;
@@ -3138,12 +3122,15 @@ p {
 }
 
 @media (max-width: 900px) {
-  .nobel-year-model-layout {
+  .nobel-module-figure {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .nobel-year-model-side {
-    order: 2;
+    grid-template-areas:
+      "main"
+      "caption"
+      "side";
+    grid-template-rows: auto auto auto;
+    align-content: start;
+    gap: 16px;
   }
 }
 
@@ -3152,16 +3139,25 @@ p {
     gap: 14px;
   }
 
-  .nobel-year-data {
+  .nobel-module {
     padding: 14px;
   }
 
-  .nobel-year-model-block {
-    padding: 12px;
+  .nobel-year-jump {
+    padding: 12px 14px;
   }
 
-  .nobel-year-model-layout {
-    gap: 14px;
+  .nobel-year-jump-field {
+    flex-basis: 100%;
+  }
+
+  .nobel-year-jump select {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .nobel-year-jump-label strong {
+    font-size: 0.86rem;
   }
 }
 
@@ -3907,47 +3903,6 @@ p {
     min-height: auto;
   }
 
-  .nobel-table,
-  .nobel-table tbody,
-  .nobel-table tr,
-  .nobel-table td,
-  .nobel-table caption {
-    display: block;
-    width: 100%;
-  }
-
-  .nobel-table {
-    min-width: 0;
-    font-size: 0.8rem;
-  }
-
-  .nobel-table thead {
-    display: none;
-  }
-
-  .nobel-table td {
-    padding: 14px;
-    border-top: 0;
-    line-height: 1.6;
-  }
-
-  .nobel-year-row {
-    border-top: 1px solid var(--line-strong);
-  }
-
-  .nobel-year-row:first-child {
-    border-top: 0;
-  }
-
-  .nobel-year-data {
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .nobel-year-model-cell {
-    padding: 14px 12px 16px;
-  }
-
   .nobel-entry-fields > div {
     grid-template-columns: 78px minmax(0, 1fr);
   }
@@ -4543,6 +4498,7 @@ p {
   .exam-box,
   .memory-card,
   .model-diagram,
+  .nobel-module,
   .models-entry,
   .chapter-summary {
     break-inside: avoid;
@@ -4560,51 +4516,8 @@ p {
     min-width: 0;
   }
 
-  .nobel-table-wrap {
-    overflow: visible;
-    border: 0;
-    box-shadow: none;
-  }
-
-  .nobel-table {
-    min-width: 0;
-    font-size: 0.62rem;
-  }
-
-  .nobel-year-table,
-  .nobel-year-table tbody {
-    display: table;
-    width: 100%;
-  }
-
-  .nobel-year-table thead {
-    display: table-header-group;
-  }
-
-  .nobel-year-table tr {
-    display: table-row;
-    break-inside: avoid;
-  }
-
-  .nobel-year-table th,
-  .nobel-year-table td {
-    display: table-cell;
-    padding: 8px;
-  }
-
-  .nobel-year-row,
   .nobel-year-figure {
     break-inside: avoid;
-  }
-
-  .nobel-year-data {
-    border-right: 1px solid var(--line);
-  }
-
-  .nobel-year-table th:first-child,
-  .nobel-year-table td:first-child {
-    position: static;
-    background: transparent;
   }
 }
 

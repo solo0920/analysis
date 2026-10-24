@@ -153,13 +153,13 @@ sequenceDiagram
 
 - `#/subject/macro?evolution=1` → `#macro-evolution`
 - `#/models/macro?model=model-macro-06-0` → 指定 `.models-entry`，短暫加上 `.is-targeted`
-- `#/nobel?year=YYYY` → `#nobel-YYYY`（卡片頂端對齊）
-- `#/nobel?group=nobel-XX` → `#nobel-group-nobel-XX`
+- `#/nobel?year=YYYY` → 該年份所屬 `#nobel-module-nobel-XX`，切換屆別後捲動（模組頂端對齊）
+- `#/nobel?group=nobel-XX` → `#nobel-module-nobel-XX`（模型模組頂端；`#nobel-group-nobel-XX` 錨點保留在屆別資料內）
 - `#/nobel?table=1` → `#nobel-table`
 - `#/nobel?models=1` → `#nobel-models`
 - `#/chapter/:id?section=N` → `#section-N`
 
-諾貝爾年表每一屆是一張上下二塊卡片；下方模型圖與變數／參數在桌機為 1:1、900px 以下單欄。圖上方的屆別晶片是 `button[data-nobel-year-chip]`，由 `handleNobelClick()` 原地更新該卡上方的屆別文字與晶片狀態，不變更 hash；`?year=` 外部連結仍由 `render()` 捲動到目標卡。
+諾貝爾頁依 58 屆資料呈現 17 張模型模組，每組預設第一屆；模組在桌機為左右 1:1，左側是模型標題、說明、屆別晶片、目前屆別資料與 SVG，右側是 `figcaption` 圖說與 `.nobel-year-model-side` 的變數／參數 details，900px 以下改為單欄。上方年份下拉以 `<optgroup>` 分組，`handleNobelChange()` 會以年份反查模型、呼叫 `setNobelModuleYear()` 後捲動；圖上的屆別晶片是 `button[data-nobel-year-chip]`，由 `handleNobelClick()` 原地更新該模組的屆別資料與晶片狀態，不變更 hash、也不改變捲動位置。`?year=` 外部連結由 `render()` 反查年份所屬模型、切換該模組再捲動。
 
 ## 5. 資料契約與單一來源
 
@@ -191,7 +191,7 @@ sequenceDiagram
 
 - 章節頁與模型總覽都讀同一份 `MACRO_DIAGRAMS`；模型總覽不複製內容。
 - 學派演進圖不複製模型名稱或諾貝爾得主，而是用錨點與年份反查 `MACRO_DIAGRAMS`、`NOBEL_DATA`。
-- 諾貝爾完整年表 `#/nobel` 讀取 `NOBEL_DATA`、`NOBEL_DIAGRAMS`；模型總覽只呈現章節模型，不重複列諾貝爾模型。
+- 諾貝爾頁 `#/nobel` 讀取 `NOBEL_DATA`、`NOBEL_DIAGRAMS`，將 58 屆資料整理成 17 張模型模組；模型總覽只呈現章節模型，不重複列諾貝爾模型。
 - 投資學比例公式與選擇權公式各自只有一份資料，章節頁與科目頁共用。
 - 驗證腳本以 Node `vm` 載入同一批 `site/assets/*.js`，不維護第二套內容模型。
 - 模組化資料維持「單一來源」：年度與章節分包只是同一份完整題庫的切片；搜尋索引由完整題庫產生，不改寫題目。
