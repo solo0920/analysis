@@ -4057,6 +4057,9 @@
   }
 
   function renderHome() {
+    const forecastCounts = forecastData.meta && forecastData.meta.counts ? forecastData.meta.counts : {};
+    const forecastSeries = Number(forecastCounts.series) || (Array.isArray(forecastData.questions) ? forecastData.questions.length : 97);
+    const forecastParts = Number(forecastCounts.parts) || 118;
     return [
       '<div class="page">',
       '  <section class="hero">',
@@ -4104,15 +4107,26 @@
       '    <div class="subject-grid">' + content.subjects.map(renderSubjectCard).join("") + "</div>",
       "  </section>",
       '  <section class="home-section">',
-      '    <a class="subject-written-cta" href="#/past-exams">',
-      '      <div>',
-      '        <p class="eyebrow">歷屆試題</p>',
-      '        <strong>用考古題練習庫檢查吸收程度</strong>',
-      "        <span>收錄 107–115 年共 29 次、3,710 題選擇題；可依年度、科目與考試次別篩選，先作答再看答案，練習紀錄只存在你的瀏覽器。</span>",
-      '        <span class="subject-written-cta-note">4 科 · 9 個年度 · 29 次考試</span>',
-      "      </div>",
-      '      <span class="subject-written-cta-arrow">開始練考古題 →</span>',
-      "    </a>",
+      '    <div class="home-cta-grid">',
+      '      <a class="subject-written-cta" href="#/past-exams">',
+      '        <div>',
+      '          <p class="eyebrow">歷屆試題</p>',
+      '          <strong>用考古題練習庫檢查吸收程度</strong>',
+      "          <span>收錄 107–115 年共 29 次、3,710 題選擇題；可依年度、科目與考試次別篩選，先作答再看答案，練習紀錄只存在你的瀏覽器。</span>",
+      '          <span class="subject-written-cta-note">4 科 · 9 個年度 · 29 次考試</span>',
+      "        </div>",
+      '        <span class="subject-written-cta-arrow">開始練考古題 →</span>',
+      "      </a>",
+      '      <a class="subject-written-cta" href="#/exam-forecast">',
+      '        <div>',
+      '          <p class="eyebrow">考前猜題</p>',
+      '          <strong>用考前猜題抓命題方向</strong>',
+      "          <span>2026 年 12 月四科 " + forecastSeries + " 題組／" + forecastParts + " 個部分；附完整參考解答、38 條整合公式與 2 組敏感度分析，可依科目、程度、題型與主題篩選。</span>",
+      '          <span class="subject-written-cta-note">4 科 · ' + forecastSeries + " 題組 · " + forecastParts + " 個部分</span>",
+      "        </div>",
+      '        <span class="subject-written-cta-arrow">查看考前猜題 →</span>',
+      "      </a>",
+      "    </div>",
       "  </section>",
       '  <section class="home-section">',
       '    <div class="section-heading">',
