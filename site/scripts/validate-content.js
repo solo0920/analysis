@@ -772,6 +772,43 @@ allChapters.forEach(function (chapter) {
         checkRenderedMath(table.note, chapter.id + " 第 " + (index + 1) + " 單元比較表註記");
       }
     }
+    (section.subsections || []).forEach(function (sub, subIndex) {
+      const label = chapter.id + " 第 " + (index + 1) + " 單元補充 " + (subIndex + 1);
+      check(typeof sub.title === "string" && sub.title.trim().length > 0, label + "缺少標題");
+      check(Array.isArray(sub.body) && sub.body.length > 0, label + "缺少正文");
+      (sub.body || []).forEach(function (text, paragraphIndex) {
+        checkRenderedMath(text, label + "正文 " + (paragraphIndex + 1));
+      });
+      if (sub.table) {
+        const table = sub.table;
+        check(Array.isArray(table.columns) && table.columns.length >= 2, label + "表格缺少欄位");
+        check(Array.isArray(table.rows) && table.rows.length > 0, label + "表格缺少資料列");
+        const columnCount = Array.isArray(table.columns) ? table.columns.length : 0;
+        (table.columns || []).forEach(function (column, columnIndex) {
+          check(typeof column === "string" && column.trim().length > 0, label + "表格第 " + (columnIndex + 1) + " 欄缺少標題");
+        });
+        (table.rows || []).forEach(function (row, rowIndex) {
+          check(Array.isArray(row) && row.length === columnCount, label + "表格第 " + (rowIndex + 1) + " 列欄位數不一致");
+          (row || []).forEach(function (cell, cellIndex) {
+            check(typeof cell === "string" && cell.trim().length > 0, label + "表格第 " + (rowIndex + 1) + " 列第 " + (cellIndex + 1) + " 格為空");
+            checkRenderedMath(cell, label + "表格第 " + (rowIndex + 1) + " 列第 " + (cellIndex + 1) + " 格");
+          });
+        });
+        if (table.note) {
+          checkRenderedMath(table.note, label + "表格註記");
+        }
+      }
+      if (sub.formula) {
+        check(typeof sub.formula === "string" && sub.formula.trim().length > 0, label + "公式為空");
+        if (katex) {
+          try {
+            katex.renderToString(sub.formula, { displayMode: true, throwOnError: true, strict: "ignore", trust: false });
+          } catch (error) {
+            check(false, label + "公式無法編譯：" + error.message);
+          }
+        }
+      }
+    });
     (section.points || []).forEach(function (text, pointIndex) {
       checkRenderedMath(text, chapter.id + " 第 " + (index + 1) + " 單元考試重點 " + (pointIndex + 1));
     });

@@ -256,7 +256,7 @@ window.INVESTMENT_DIAGRAMS = {
     note: "買權買方最大損失為權利金 C₀，最大獲利無限；賣權買方最大損失為權利金 P₀，最大獲利為 K−P₀。圖中未考慮交易成本與提前履約。"
   },
   "investment-09#2": {
-    sectionTitle: "學習重點 3：選擇權評價與策略",
+    sectionTitle: "學習重點 3：Black–Scholes 定價與 Greeks",
     title: "掩護性買權與保護性賣權的損益",
     caption: "左圖為持有股票並賣出買權（掩護性買權），上方獲利被權利金與履約價封頂；右圖為持有股票並買入賣權（保護性賣權），下方損失被履約價限制。",
     svg: `

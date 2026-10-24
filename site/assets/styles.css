@@ -1517,6 +1517,18 @@ a.landing-item:hover {
   min-width: 760px;
 }
 
+.comparison-table.is-compact {
+  min-width: 0;
+}
+
+.comparison-table.is-compact tbody th {
+  width: 30%;
+}
+
+.comparison-table.is-compact tbody td {
+  min-width: 0;
+}
+
 .comparison-table thead th {
   vertical-align: bottom;
   white-space: normal;
@@ -2555,6 +2567,45 @@ a.landing-item:hover {
   font-size: 0.98rem;
   font-weight: 700;
   line-height: 1.65;
+}
+
+.section-subsections {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+  margin-top: 18px;
+}
+
+.section-subsection {
+  min-width: 0;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  background: var(--surface-2);
+}
+
+.section-subsection-title {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1.02rem;
+  line-height: 1.45;
+}
+
+.section-subsection .section-body p {
+  margin-bottom: 8px;
+}
+
+.section-subsection .section-body p:last-child {
+  margin-bottom: 0;
+}
+
+.section-subsection .section-table,
+.section-subsection .formula {
+  min-width: 0;
+  max-width: 100%;
+  margin-top: 12px;
 }
 
 .formula {
@@ -4670,6 +4721,10 @@ a.landing-item:hover {
 
   .section-block {
     padding: 28px 0;
+  }
+
+  .section-subsection {
+    padding: 12px;
   }
 
   .memory-card {

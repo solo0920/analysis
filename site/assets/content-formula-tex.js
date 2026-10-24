@@ -75,7 +75,7 @@ PDI &= PI - T_p = C + S
   "investment-08::學習重點 2：股票評價": { tex: String.raw`P_0 = \frac{D_1}{r-g}`, note: "D₁ 為下一期股利；r > g；股利固定成長。" },
   "investment-08::學習重點 3：股票報酬與風險": { tex: String.raw`\text{股票報酬率}=\text{股利收益率}+\text{資本利得率}`, note: "" },
   "investment-09::學習重點 2：到期價值與損益": { tex: String.raw`\begin{gathered}\text{買權到期內在價值}=\max(S_T-K,0)\\\text{賣權到期內在價值}=\max(K-S_T,0)\end{gathered}`, note: "未扣權利金；損益 = 到期內在價值 − 權利金。" },
-  "investment-09::學習重點 3：選擇權評價與策略": { tex: String.raw`\begin{gathered}
+  "investment-09::學習重點 3：Black–Scholes 定價與 Greeks": { tex: String.raw`\begin{gathered}
 \boxed{C=S_0N(d_1)-Ke^{-rT}N(d_2)}\\
 \boxed{P=Ke^{-rT}N(-d_2)-S_0N(-d_1)}\\
 d_1=\frac{\ln(S_0/K)+(r+\frac{\sigma^2}{2})T}{\sigma\sqrt T}\\

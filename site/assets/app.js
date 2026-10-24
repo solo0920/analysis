@@ -1168,11 +1168,12 @@
       return "";
     }
     const title = table.title || "比較表";
+    const compact = Array.isArray(table.columns) && table.columns.length <= 2 ? " is-compact" : "";
     return [
       '<div class="section-table">',
       '  <h3 class="section-table-title">' + escapeHtml(title) + "</h3>",
       '  <div class="ratio-table-wrap comparison-table-wrap">',
-      '    <table class="ratio-table comparison-table" aria-label="' + escapeHtml(title) + '">',
+      '    <table class="ratio-table comparison-table' + compact + '" aria-label="' + escapeHtml(title) + '">',
       '      <thead><tr>' + table.columns.map(function (column) {
         return '<th scope="col">' + escapeHtml(column) + "</th>";
       }).join("") + "</tr></thead>",
@@ -1189,6 +1190,26 @@
       table.note ? '  <p class="section-table-note">' + renderInlineMath(table.note) + "</p>" : "",
       "</div>"
     ].join("");
+  }
+
+  function renderSectionSubsections(section) {
+    const subsections = Array.isArray(section.subsections) ? section.subsections : [];
+    if (!subsections.length) {
+      return "";
+    }
+    return '<div class="section-subsections">' + subsections.map(function (sub, index) {
+      const body = Array.isArray(sub.body) ? sub.body : [];
+      return [
+        '<section class="section-subsection">',
+        '  <h3 class="section-subsection-title">' + escapeHtml(sub.title || "補充 " + (index + 1)) + "</h3>",
+        body.length ? '  <div class="section-body">' + body.map(function (text) {
+          return "<p>" + renderInlineMath(text) + "</p>";
+        }).join("") + "</div>" : "",
+        sub.table ? renderSectionTable(sub.table) : "",
+        sub.formula ? '  <div class="formula formula-katex" role="note">' + renderKatex(sub.formula, true) + "</div>" : "",
+        "</section>"
+      ].join("");
+    }).join("") + "</div>";
   }
 
   function renderSection(section, index, subject, chapter) {
@@ -1216,6 +1237,7 @@
         return "<p>" + renderInlineMath(paragraph) + "</p>";
       }).join("") + "</div>",
       renderSectionTable(section.table),
+      renderSectionSubsections(section),
       sectionDiagrams.map(renderDiagram).join(""),
       '  <div class="subheading">名詞速查</div>',
       renderTerms(section.terms),
