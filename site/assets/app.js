@@ -2625,46 +2625,60 @@
     ].join("");
   }
 
-  function renderMacroTop20() {
-    const data = macroCurrentData.top20;
-    if (!data || !Array.isArray(data.items) || !data.items.length) {
+  function macroNewsItemsForEvent(eventId) {
+    const items = macroCurrentData.top20 && Array.isArray(macroCurrentData.top20.items)
+      ? macroCurrentData.top20.items
+      : [];
+    return items.filter(function (item) {
+      return item.eventId === eventId;
+    }).sort(function (a, b) {
+      return a.rank - b.rank;
+    });
+  }
+
+  function renderMacroNewsSummary(event) {
+    const items = macroNewsItemsForEvent(event.id);
+    if (!items.length) {
       return "";
     }
-    const items = data.items;
+    return [
+      '<div class="macro-current-news">',
+      "  <h3>近兩年新聞摘要</h3>",
+      "  <ul>",
+      items.map(function (item) {
+        return [
+          "<li>",
+          '  <span class="macro-current-news-rank">#' + String(item.rank || "").padStart(2, "0") + "</span>",
+          '  <div class="macro-current-news-body">',
+          "    <strong>" + escapeHtml(item.title || "") + "</strong>",
+          '    <span class="macro-current-news-meta">' + escapeHtml([item.period, item.category].filter(Boolean).join(" · ")) + "</span>",
+          "    <p>" + renderExplicitMathText(item.summary || "") + "</p>",
+          "  </div>",
+          "</li>"
+        ].join("");
+      }).join(""),
+      "  </ul>",
+      "</div>"
+    ].join("");
+  }
+
+  function renderMacroCurrentSynthesis() {
+    const data = macroCurrentData.top20;
+    if (!data) {
+      return "";
+    }
     const themes = Array.isArray(data.themes) ? data.themes : [];
     const essays = Array.isArray(data.essays) ? data.essays : [];
     const references = Array.isArray(data.references) ? data.references : [];
     return [
-      '<section class="macro-top20" id="macro-top20" aria-labelledby="macro-top20-title">',
-      '  <div class="macro-top20-head">',
-      '    <p class="eyebrow">考前總複習 · 美國總經</p>',
-      '    <h2 id="macro-top20-title">' + escapeHtml(data.title || "美國近兩年重大經濟新聞 TOP 20") + "</h2>",
-      '    <p class="macro-top20-period">' + escapeHtml(data.period || "") + "</p>",
-      '    <p class="macro-top20-intro">' + renderExplicitMathText(data.intro || "") + "</p>",
+      '<div class="macro-current-synthesis" id="macro-current-synthesis">',
+      '  <div class="macro-current-synthesis-head">',
+      '    <p class="eyebrow">考前整合</p>',
+      "    <h3>8 大主題與 5 題綜合申論</h3>",
+      "    <p>TOP 20 的新聞摘要已整合至上方對應的 15 個主題卡；以下把重複出現的考點收斂成 8 大主題，並用 5 題申論串起跨章節架構。</p>",
       "  </div>",
-      '  <div class="macro-top20-table-wrap" role="region" aria-label="美國近兩年重大經濟新聞 TOP 20" tabindex="0">',
-      '    <table class="macro-top20-table">',
-      '      <thead><tr><th scope="col">#</th><th scope="col">事件與期間</th><th scope="col">考試重點</th></tr></thead>',
-      "      <tbody>",
-      items.map(function (item) {
-        const eventLink = item.eventId
-          ? '        <a class="macro-top20-link" href="#/macro-current?event=' + encodeURIComponent(item.eventId) + '">深入閱讀 →</a>'
-          : "";
-        return [
-          "        <tr>",
-          '          <td class="macro-top20-rank">' + String(item.rank || "").padStart(2, "0") + "</td>",
-          '          <td class="macro-top20-event"><strong>' + escapeHtml(item.title || "") + "</strong><span>" + escapeHtml([item.period, item.category].filter(Boolean).join(" · ")) + "</span><p>" + renderExplicitMathText(item.summary || "") + "</p>" + eventLink + "</td>",
-          '          <td class="macro-top20-focus">' + renderExplicitMathText(item.focus || "") + "</td>",
-          "        </tr>"
-        ].join("");
-      }).join(""),
-      "      </tbody>",
-      "    </table>",
-      "  </div>",
-      '  <p class="diagram-scroll-hint">表格較寬，可左右滑動。</p>',
       themes.length ? [
-        '  <div class="macro-top20-themes">',
-        "    <h3>考試最值得優先掌握的 8 大主題</h3>",
+        '  <div class="macro-current-synthesis-themes">',
         '    <div class="macro-top20-theme-grid">',
         themes.map(function (theme) {
           return [
@@ -2679,8 +2693,8 @@
         "  </div>"
       ].join("") : "",
       essays.length ? [
-        '  <div class="macro-top20-essays">',
-        "    <h3>最重要的綜合申論題</h3>",
+        '  <div class="macro-current-synthesis-essays">',
+        "    <h4>綜合申論</h4>",
         '    <div class="macro-top20-essay-list">',
         essays.map(function (essay, index) {
           return [
@@ -2702,7 +2716,7 @@
         }).join(""),
         "  </div>"
       ].join("") : "",
-      "</section>"
+      "</div>"
     ].join("");
   }
 
@@ -2725,7 +2739,6 @@
       '      <a class="btn" href="#/exam-forecast">12 月考前猜題</a>',
       '    </div>',
       '  </section>',
-      renderMacroTop20(),
       '  <div class="macro-current-section-head">',
       '    <p class="eyebrow">15 個主題深入整理</p>',
       "    <h2>時事主題與考試框架</h2>",
@@ -2740,6 +2753,7 @@
           '  <div class="macro-current-summary">' + event.summary.map(function (text) {
             return '<p>' + renderInlineMath(text) + '</p>';
           }).join("") + '</div>',
+          renderMacroNewsSummary(event),
           renderMacroCurrentFormulas(event),
           '  <div class="macro-current-points"><h3>考試重點</h3><ul>' + event.points.map(function (point) {
             return '<li>' + renderInlineMath(point) + '</li>';
@@ -2753,6 +2767,7 @@
           '</article>'
         ].join("");
       }).join("") + '</div>',
+      renderMacroCurrentSynthesis(),
       '</div>'
     ].join("");
   }

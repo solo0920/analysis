@@ -6291,137 +6291,111 @@ p {
   text-decoration: underline;
 }
 
-.macro-top20 {
+.macro-current-news {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.macro-current-news h3 {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+}
+
+.macro-current-news ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.macro-current-news li {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+}
+
+.macro-current-news li:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.macro-current-news-rank {
+  color: var(--gold);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+.macro-current-news-body {
+  min-width: 0;
+}
+
+.macro-current-news-body strong {
+  display: block;
+  color: var(--ink);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.macro-current-news-meta {
+  display: block;
+  margin: 2px 0 4px;
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+
+.macro-current-news-body p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.macro-current-synthesis {
   margin-top: 26px;
-  padding: 24px;
+  padding: 22px;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   background: var(--surface);
   box-shadow: var(--shadow-sm);
 }
 
-.macro-top20-head .eyebrow {
+.macro-current-synthesis-head .eyebrow {
   margin: 0 0 4px;
   color: var(--gold);
 }
 
-.macro-top20-head h2 {
+.macro-current-synthesis-head h3 {
   margin: 0 0 6px;
-  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  font-size: 1.25rem;
 }
 
-.macro-top20-period {
-  margin: 0 0 12px;
-  color: var(--muted);
-  font-size: 0.78rem;
-  line-height: 1.6;
-}
-
-.macro-top20-intro {
+.macro-current-synthesis-head p:not(.eyebrow) {
   margin: 0;
   color: var(--ink-soft);
-  font-size: 0.9rem;
-  line-height: 1.8;
+  font-size: 0.86rem;
+  line-height: 1.75;
 }
 
-.macro-top20-table-wrap {
-  max-width: 100%;
+.macro-current-synthesis-themes {
   margin-top: 18px;
-  overflow-x: auto;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  scrollbar-width: thin;
 }
 
-.macro-top20-table-wrap:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+.macro-current-synthesis-essays {
+  margin-top: 20px;
 }
 
-.macro-top20-table {
-  width: 100%;
-  min-width: 760px;
-  border-collapse: collapse;
-  font-size: 0.84rem;
-}
-
-.macro-top20-table th {
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--line-strong);
-  background: var(--surface-2);
-  color: var(--muted);
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-align: left;
-}
-
-.macro-top20-table td {
-  padding: 12px;
-  border-top: 1px solid var(--line);
-  color: var(--ink-soft);
-  line-height: 1.65;
-  vertical-align: top;
-}
-
-.macro-top20-table tbody tr:first-child td {
-  border-top: 0;
-}
-
-.macro-top20-rank {
-  width: 54px;
-  color: var(--gold);
-  font-family: var(--font-mono);
-  font-weight: 800;
-  text-align: center;
-}
-
-.macro-top20-event strong {
-  display: block;
-  color: var(--ink);
-  font-size: 0.88rem;
-  line-height: 1.55;
-}
-
-.macro-top20-event span {
-  display: block;
-  margin: 2px 0 5px;
-  color: var(--muted);
-  font-size: 0.7rem;
-}
-
-.macro-top20-event p {
-  margin: 0;
-  font-size: 0.8rem;
-  line-height: 1.65;
-}
-
-.macro-top20-focus {
-  font-size: 0.8rem;
-}
-
-.macro-top20-link {
-  display: inline-block;
-  margin-top: 6px;
-  color: var(--accent);
-  font-size: 0.74rem;
-  font-weight: 800;
-  text-decoration: none;
-}
-
-.macro-top20-link:hover {
-  text-decoration: underline;
-}
-
-.macro-top20-themes,
-.macro-top20-essays {
-  margin-top: 24px;
-}
-
-.macro-top20-themes h3,
-.macro-top20-essays h3 {
+.macro-current-synthesis-essays h4 {
   margin: 0 0 10px;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
 }
 
 .macro-top20-theme-grid {
@@ -6537,8 +6511,16 @@ p {
 }
 
 @media (max-width: 680px) {
-  .macro-top20 {
-    padding: 18px;
+  .macro-current-news {
+    padding: 12px 14px;
+  }
+
+  .macro-current-news li {
+    grid-template-columns: 36px minmax(0, 1fr);
+  }
+
+  .macro-current-synthesis {
+    padding: 16px;
   }
 
   .macro-top20-theme-grid {
@@ -6547,12 +6529,6 @@ p {
 
   .macro-top20-essay {
     padding: 12px 14px;
-  }
-}
-
-@media (min-width: 681px) {
-  .macro-top20 .diagram-scroll-hint {
-    display: none;
   }
 }
 
