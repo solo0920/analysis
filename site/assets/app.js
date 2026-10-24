@@ -1499,8 +1499,7 @@
       '  <div>',
       '    <p class="eyebrow">' + escapeHtml(meta.eyebrow || "思想演進") + "</p>",
       '    <strong>' + escapeHtml(meta.title || "總體經濟學學派演進圖") + "</strong>",
-      "    <span>" + escapeHtml(meta.description || "") + "</span>",
-      '    <span class="subject-written-cta-note">' + nodeCount + " 個節點 · " + nobelYears.size + " 個諾貝爾里程碑</span>",
+      "    <span>從古典學派到新制成長，依時間整理主要理論、" + nodeCount + " 個節點、" + nobelYears.size + " 個諾貝爾里程碑、代表模型與提出者。</span>",
       "  </div>",
       '  <span class="subject-written-cta-arrow">查看演進圖 →</span>',
       "</a>"
