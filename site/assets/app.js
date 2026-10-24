@@ -2649,11 +2649,11 @@
         return [
           "<li>",
           '  <span class="macro-current-news-rank">#' + String(item.rank || "").padStart(2, "0") + "</span>",
-          '  <div class="macro-current-news-body">',
-          "    <strong>" + escapeHtml(item.title || "") + "</strong>",
+          '  <div class="macro-current-news-line">',
           '    <span class="macro-current-news-meta">' + escapeHtml([item.period, item.category].filter(Boolean).join(" · ")) + "</span>",
-          "    <p>" + renderExplicitMathText(item.summary || "") + "</p>",
+          "    <strong>" + escapeHtml(item.title || "") + "</strong>",
           "  </div>",
+          '  <p class="macro-current-news-summary">' + renderExplicitMathText(item.summary || "") + "</p>",
           "</li>"
         ].join("");
       }).join(""),

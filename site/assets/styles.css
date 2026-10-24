@@ -6315,7 +6315,11 @@ p {
 .macro-current-news li {
   display: grid;
   grid-template-columns: 42px minmax(0, 1fr);
-  gap: 8px;
+  grid-template-areas:
+    "rank line"
+    ". summary";
+  column-gap: 8px;
+  row-gap: 3px;
   padding-top: 10px;
   border-top: 1px dashed var(--line);
 }
@@ -6326,6 +6330,7 @@ p {
 }
 
 .macro-current-news-rank {
+  grid-area: rank;
   color: var(--gold);
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -6333,25 +6338,29 @@ p {
   line-height: 1.6;
 }
 
-.macro-current-news-body {
+.macro-current-news-line {
+  display: block;
+  grid-area: line;
   min-width: 0;
 }
 
-.macro-current-news-body strong {
-  display: block;
+.macro-current-news-meta {
+  display: inline;
+  margin-right: 6px;
+  color: var(--muted);
+  font-size: 0.7rem;
+  line-height: 1.6;
+}
+
+.macro-current-news-line strong {
+  display: inline;
   color: var(--ink);
   font-size: 0.84rem;
   line-height: 1.55;
 }
 
-.macro-current-news-meta {
-  display: block;
-  margin: 2px 0 4px;
-  color: var(--muted);
-  font-size: 0.7rem;
-}
-
-.macro-current-news-body p {
+.macro-current-news-summary {
+  grid-area: summary;
   margin: 0;
   color: var(--ink-soft);
   font-size: 0.8rem;
