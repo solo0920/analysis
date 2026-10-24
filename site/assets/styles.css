@@ -6264,37 +6264,6 @@ p {
   max-width: 880px;
 }
 
-.forecast-stats {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 22px;
-}
-
-.forecast-stats div {
-  min-width: 0;
-  padding: 12px 14px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--surface);
-}
-
-.forecast-stats strong,
-.forecast-stats span {
-  display: block;
-}
-
-.forecast-stats strong {
-  color: var(--accent);
-  font-family: var(--font-mono);
-  font-size: 1.45rem;
-}
-
-.forecast-stats span {
-  color: var(--muted);
-  font-size: 0.76rem;
-}
-
 .forecast-count-note {
   margin: 10px 0 0;
   color: var(--muted);
@@ -6303,13 +6272,6 @@ p {
 
 .forecast-extras {
   padding-top: 4px;
-}
-
-.forecast-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 18px;
 }
 
 .forecast-disclaimer {
@@ -6985,10 +6947,6 @@ p {
 
   .forecast-hero {
     padding: 22px 18px;
-  }
-
-  .forecast-stats {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .forecast-section-head h2 {

@@ -2905,9 +2905,6 @@
       }
     });
     const totalParts = allParts.length;
-    const basicCount = allParts.filter(function (part) { return part.level === "基礎"; }).length;
-    const advancedCount = allParts.filter(function (part) { return part.level === "進階"; }).length;
-    const multiCount = questions.filter(function (question) { return question.level === "多層"; }).length;
     const totalQuestions = questions.length;
     const coverageRows = subjectDefs.map(function (subject) {
       const info = getSubject(subject.id);
@@ -2934,16 +2931,6 @@
       '    <p class="eyebrow">考前猜題 · ' + escapeHtml(meta.examPeriod || "2026 年 12 月") + "</p>",
       "    <h1>" + escapeHtml(meta.title || "考前猜題") + "</h1>",
       '    <p class="lede">' + escapeHtml(meta.subtitle || "") + "</p>",
-      '    <div class="forecast-stats">',
-      '      <div><strong>' + totalQuestions + '</strong><span>總題組</span></div>',
-      '      <div><strong>4</strong><span>科目</span></div>',
-      '      <div><strong>' + (meta.counts && meta.counts.integrated || integrated.length) + '</strong><span>跨章節整合</span></div>',
-      '      <div><strong>' + formulaCount + '</strong><span>整合公式</span></div>',
-      "    </div>",
-      '    <p class="forecast-count-note">' + totalQuestions + ' 題組（基礎 ' + basicCount + '、進階 ' + advancedCount + ' 個部分；' + multiCount + ' 組多部分題組）；公式 ' + formulaCount + ' 條。</p>',
-      '    <div class="forecast-actions">',
-      '      <a class="btn btn-primary" href="#/past-exams/written">練計算／申論題</a>',
-      "    </div>",
       '    <p class="forecast-disclaimer">' + escapeHtml(meta.note || "") + "</p>",
       "  </section>",
       renderMacroCurrentEventsCard(),

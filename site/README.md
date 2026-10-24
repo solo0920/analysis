@@ -354,6 +354,8 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 
 2026-10-24 將「近二年時事 · 總經政策」入口卡片從總體經濟學首頁移到 `#/exam-forecast` 考前猜題頁：卡片放在 hero 與科目分頁之間，連到 `#/macro-current`，hero 只保留「練計算／申論題」按鈕。總體經濟學首頁現在有 3 張 CTA（模型總覽、學派演進圖、諾貝爾模型），0 個 `#/macro-current` 連結；考前猜題頁 1 張時事卡片，點擊後顯示 15 個時事主題。1280px／390px／`file://` 0 水平溢出、0 console errors、0 `.katex-error`；驗證器 154,710 項、失敗 0。
 
+2026-10-24 移除考前猜題 hero 的統計卡、題組數與「練計算／申論題」按鈕：hero 只保留標題、說明與提醒；97 題組等數字仍顯示於科目分頁、篩選列與覆蓋檢查。實測 hero 內 0 個 `.forecast-stats`、0 個 `.forecast-count-note`、0 個 `.forecast-actions`、0 個按鈕；時事卡片仍在 hero 與分頁之間；1280px／390px／`file://` 0 水平溢出、0 console errors、0 `.katex-error`；驗證器 154,710 項、失敗 0。
+
 2026-10-24 將技術分析 50 指標從投資學公式總表移出，成立獨立頁面 `#/investment/technical`（舊網址 `#/investment/technical-indicators` 亦可開啟）；投資學首頁新增第二張 CTA「技術分析 50 指標」，與公式總表並列。公式總表只保留比例分析 32 條、核心公式 66 條與選擇權評價 7 項，頁尾提供技術分析頁連結；技術分析頁保留 5 類 50 種指標、公式、參數、限制、優先級與章節連結。390px／1280px 與 `file://` 0 頁面水平溢出、0 `.katex-error`、0 console errors；驗證器 154,471 項、失敗 0。
 
 2026-10-24 將投資學公式總表的進階模型拆成三個獨立主題：三項式樹（Trinomial Tree）、蒙地卡羅模擬（Monte Carlo Simulation）與 Heston 隨機波動率模型。三者各自補上模型定義、風險中立評價公式、變數定義、假設與限制，不再合併成單一「理解用途」卡片；選擇權評價優先順序由 5 項增為 7 項、KaTeX 公式由 13 條增為 30 條、變數定義由 36 項增為 54 項。另修正 390px 公式卡片的 grid min-width，長公式只在卡片內水平滑動，不造成頁面溢出；修正公式庫分類說明被整段 KaTeX 化造成的窄螢幕溢出。390px／1280px 與 `file://` 0 頁面水平溢出、0 `.katex-error`、0 console errors；驗證器 154,471 項、失敗 0。
