@@ -6261,7 +6261,7 @@ p {
 }
 
 .forecast-hero .lede {
-  max-width: 880px;
+  max-width: none;
 }
 
 .forecast-count-note {
