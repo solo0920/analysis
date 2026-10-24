@@ -54,9 +54,9 @@
 | --- | --- | --- |
 | KaTeX | 0.19.0，<https://katex.org/> | 將學習單元公式、比例分析公式、選擇權公式與諾貝爾年表公式排版為 HTML／MathML；檔案放在 `site/assets/katex/`，包含 JS、CSS、字型與 MIT 授權。 |
 
-全站目前有 118 個含公式的學習單元，集中在 `site/assets/content-formula-tex.js` 的 `window.FORMULA_TEX`；比例分析 32 條、選擇權 30 條與諾貝爾 58 屆公式也全部改用 KaTeX 渲染。公式不依賴 CDN，`file://` 可離線顯示。
+全站目前有 119 個含公式的學習單元，集中在 `site/assets/content-formula-tex.js` 的 `window.FORMULA_TEX`；比例分析 32 條、選擇權 30 條與諾貝爾 58 屆公式也全部改用 KaTeX 渲染。公式不依賴 CDN，`file://` 可離線顯示。
 
-變數的數字下標一律寫成 `P_0`、`D_1`、`E_2`；上標寫在整個變數後，例如 `\sigma_p^2`、`w_1^2`、`\sigma_1^2`。共變異數與變異數使用 `\operatorname{Cov}`、`\operatorname{Var}`，不使用斜體 `Cov`、`Var`。驗證器以本地 KaTeX 0.19.0 實際編譯 118/118 筆正式公式、2,695 個行內公式與 176 個區塊公式，並檢查 Unicode 上下標、raw `Cov`／`Var`、raw 數字下標（如 `P0`）與重複跳脫反斜線。
+變數的數字下標一律寫成 `P_0`、`D_1`、`E_2`；上標寫在整個變數後，例如 `\sigma_p^2`、`w_1^2`、`\sigma_1^2`。共變異數與變異數使用 `\operatorname{Cov}`、`\operatorname{Var}`，不使用斜體 `Cov`、`Var`。驗證器以本地 KaTeX 0.19.0 實際編譯 119/119 筆正式公式、2,695 個行內公式與 176 個區塊公式，並檢查 Unicode 上下標、raw `Cov`／`Var`、raw 數字下標（如 `P0`）與重複跳脫反斜線。
 
 ## 官方與繁體中文來源
 

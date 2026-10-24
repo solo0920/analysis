@@ -3144,7 +3144,7 @@ window.CHAPTER_DATA["investment-09"] = {
           }
         ]
       },
-      "investment-09::3": {
+      "investment-09::4": {
         "focus": "價差策略先看「買哪個履約價、賣哪個履約價」。買高履約價買權＋賣低履約價買權，是看跌的買權空頭價差。",
         "strategies": [
           "買權多頭價差：買低履約價買權、賣高履約價買權，看漲。",
@@ -3172,7 +3172,7 @@ window.CHAPTER_DATA["investment-09"] = {
     "year": 114,
     "label": "114 年",
     "sections": {
-      "investment-09::1": {
+      "investment-09::3": {
         "focus": "單期二項樹的複製投資組合，是用股票與無風險借貸複製選擇權的到期報酬。解題時先算避險比率（delta），再令複製組合的到期價值等於選擇權到期價值。",
         "strategies": [
           "避險比率 \\(h=(C_u-C_d)/(S_u-S_d)\\)，即買進多少股股票才能抵銷一份選擇權的價格變動。",
@@ -3199,7 +3199,7 @@ window.CHAPTER_DATA["investment-09"] = {
     "year": 112,
     "label": "112 年",
     "sections": {
-      "investment-09::1": {
+      "investment-09::3": {
         "focus": "單期二項樹的複製投資組合，是用股票與無風險借貸複製選擇權的到期報酬。解題時先算避險比率（delta），再令複製組合的到期價值等於選擇權到期價值。",
         "strategies": [
           "避險比率 \\(h=(C_u-C_d)/(S_u-S_d)\\)，即買進多少股股票才能抵銷一份選擇權的價格變動。",
@@ -3247,7 +3247,7 @@ window.CHAPTER_DATA["investment-09"] = {
     "year": 110,
     "label": "110 年",
     "sections": {
-      "investment-09::1": {
+      "investment-09::4": {
         "focus": "選擇權價格六大因素：股價、履約價、波動性、到期日、無風險利率、股利；買權與賣權方向多相反，波動性則同為正相關；到期日對歐式選擇權不一定，須搭配價內外與利率判斷。平價關係 \\(C-P=S-\\text{PV}(K)\\)。",
         "strategies": [
           "買權：股價↑、波動性↑、無風險利率↑→價格↑；履約價↑、股利↑→價格↓；到期日不一定。",
@@ -3303,7 +3303,7 @@ window.CHAPTER_DATA["investment-09"] = {
     "year": 109,
     "label": "109 年",
     "sections": {
-      "investment-09::1": {
+      "investment-09::3": {
         "focus": "單期二項樹的複製投資組合，是用股票與無風險借貸複製選擇權的到期報酬。解題時先算避險比率（delta），再令複製組合的到期價值等於選擇權到期價值。",
         "strategies": [
           "避險比率 \\(h=(C_u-C_d)/(S_u-S_d)\\)，即買進多少股股票才能抵銷一份選擇權的價格變動。",
@@ -3359,7 +3359,7 @@ window.CHAPTER_DATA["investment-09"] = {
     "year": 108,
     "label": "108 年",
     "sections": {
-      "investment-09::1": {
+      "investment-09::3": {
         "focus": "單期二項樹的複製投資組合，是用股票與無風險借貸複製選擇權的到期報酬。解題時先算避險比率（delta），再令複製組合的到期價值等於選擇權到期價值。",
         "strategies": [
           "避險比率 \\(h=(C_u-C_d)/(S_u-S_d)\\)，即買進多少股股票才能抵銷一份選擇權的價格變動。",

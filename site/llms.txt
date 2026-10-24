@@ -6,7 +6,7 @@
 
 - [首頁](https://solo0920.github.io/analysis/)
 - [總體經濟學](https://solo0920.github.io/analysis/#/subject/macro)：13 章、56 節，含模型總覽、學派演進圖與諾貝爾經濟學獎模型。
-- [投資學](https://solo0920.github.io/analysis/#/subject/investment)：16 章、57 個學習重點，含公式總表與 50 種技術分析指標。
+- [投資學](https://solo0920.github.io/analysis/#/subject/investment)：16 章、58 個學習重點，含公式總表與 50 種技術分析指標。
 - [會計學](https://solo0920.github.io/analysis/#/subject/accounting)：23 章、64 個單元，含 IFRS 教學流程圖與財務分析。
 - [證券法規](https://solo0920.github.io/analysis/#/subject/law)：21 章、52 節，含 15 部、1,507 條官方條文全文與深度導讀。
 - [考古題練習庫](https://solo0920.github.io/analysis/#/past-exams)：107–115 年、29 次考試、3,710 題選擇題，逐選項解析。
@@ -31,8 +31,8 @@
 
 ## 內容範圍
 
-- 4 個科目、73 章、229 個學習單元、1,515 張名詞卡。
-- 118 個學習單元的 KaTeX 公式、44 張章節教學圖、17 組諾貝爾經濟學獎模型。
+- 4 個科目、73 章、230 個學習單元、1,519 張名詞卡。
+- 119 個學習單元的 KaTeX 公式、44 張章節教學圖、17 組諾貝爾經濟學獎模型。
 - 107–115 年 3,710 題選擇題與 348 題計算／申論題。
 - 法規 15 部、1,507 條官方條文；另有自律規範與主管機關連結。
 - 考前猜題為模擬題，不是官方題目；時事數字與法規版本請以官方公告為準。
