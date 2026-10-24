@@ -35,8 +35,11 @@
 
 ```text
 site/
-├── index.html                  # 靜態外殼、導覽、搜尋與腳本載入順序
+├── index.html                  # 靜態外殼、SEO metadata、JSON-LD、無 JS 摘要與腳本載入
 ├── 404.html                    # GitHub Pages 未知路徑導回站點根目錄
+├── robots.txt                  # 爬蟲允許範圍與 sitemap
+├── sitemap.xml                 # 站點入口 sitemap
+├── llms.txt                    # AI 搜尋／LLM 可讀的站點摘要與主要入口
 ├── .nojekyll                   # 停用 GitHub Pages 的 Jekyll 處理
 ├── README.md
 ├── SOURCES.md                  # 來源清單與校對原則
@@ -52,6 +55,7 @@ site/
     ├── app.js                  # hash routing、搜尋、進度、主題、考古題練習與列印
     ├── styles.css              # 響應式與明暗主題樣式
     ├── favicon.svg
+    ├── og-cover.png            # 1200×630 社群分享圖
     ├── content.js              # 考試資訊、29 個來源、四科目聚合
     ├── content-macro.js        # 總體經濟學第 1–5 章（Part 1）
     ├── content-macro-2.js      # 總體經濟學第 6–10 章（Part 1）
@@ -92,6 +96,17 @@ site/
 ```
 
 系統分層、載入順序與資料流圖見 [`documents/architecture.md`](../documents/architecture.md)。
+
+## SEO 與 AI 搜尋
+
+- 首頁 `index.html` 使用唯一的 `<title>`、精簡 meta description、canonical、`robots`、Open Graph 與 Twitter Card；社群分享圖為 `assets/og-cover.png`（1200×630）。
+- 首頁 `head` 內含 `WebSite`、`EducationalOrganization`、四科 `ItemList`（`LearningResource`）與 `FAQPage` JSON-LD；FAQ 內容與首頁「常見問題」同步。
+- `robots.txt` 允許一般搜尋與主要 AI 爬蟲（GPTBot、ClaudeBot、Google-Extended、CCBot），並指向 `sitemap.xml`。
+- `sitemap.xml` 列出站點入口；`llms.txt` 提供 AI 搜尋／LLM 可讀的站點摘要、主要入口、內容範圍與資料界線。
+- `index.html` 的 `<main>` 內建無 JavaScript 的靜態摘要與連結；啟用 JavaScript 後由 app 取代，兼顧無 JS 使用者與不執行 JavaScript 的爬蟲。
+- `render()` 會依路由更新 `document.title`、meta description、og:title／og:description 與 twitter:title／twitter:description；章節頁會帶入章名與科目。
+- 限制：本站使用 hash routing，`#/...` 不會變成獨立的實體 URL；搜尋引擎主要索引站點入口。`sitemap.xml` 因此只列根路徑，不列 fragment URL，避免產生不存在的頁面。
+- 內容更新後可用 `curl` 檢查 `robots.txt`、`sitemap.xml`、`llms.txt` 與 `og-cover.png` 均回傳 200；JSON-LD 需保持合法 JSON。
 
 ## 本機預覽
 
@@ -374,6 +389,8 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 
 2026-10-24 總體經濟學頁三張 CTA 改為橫向 1:1:1：模型總覽、學派演進圖與 17 組諾貝爾模型放在同一個 `subject-cta-grid`；1280px 各 383px、等高 237px，箭頭置於卡片右下；1100px 以下改為單欄，390px 卡內直向。0 水平溢出、0 console errors；驗證器 155,837 項、失敗 0。
 
+2026-10-24 全站 SEO 與 AI 搜尋優化：首頁改用精簡 title／description、canonical、robots、Open Graph 與 Twitter Card，新增 1200×630 `og-cover.png`；head 加入 `WebSite`、`EducationalOrganization`、四科 `ItemList` 與 6 題 `FAQPage` JSON-LD；新增 `robots.txt`、`sitemap.xml`、`llms.txt`，並在 `<main>` 加入無 JavaScript 的靜態摘要。`render()` 會依路由更新 title、meta description、og:title／description 與 twitter:title／description。1280px／390px／無 JS 實測 FAQ 6 題、JSON-LD 4 種類型、4 個 SEO 資源皆 200、0 水平溢出、0 console errors；驗證器 155,837 項、失敗 0。
+
 2026-10-24 將技術分析 50 指標從投資學公式總表移出，成立獨立頁面 `#/investment/technical`（舊網址 `#/investment/technical-indicators` 亦可開啟）；投資學首頁新增第二張 CTA「技術分析 50 指標」，與公式總表並列。公式總表只保留比例分析 32 條、核心公式 66 條與選擇權評價 7 項，頁尾提供技術分析頁連結；技術分析頁保留 5 類 50 種指標、公式、參數、限制、優先級與章節連結。390px／1280px 與 `file://` 0 頁面水平溢出、0 `.katex-error`、0 console errors；驗證器 154,471 項、失敗 0。
 
 2026-10-24 將投資學公式總表的進階模型拆成三個獨立主題：三項式樹（Trinomial Tree）、蒙地卡羅模擬（Monte Carlo Simulation）與 Heston 隨機波動率模型。三者各自補上模型定義、風險中立評價公式、變數定義、假設與限制，不再合併成單一「理解用途」卡片；選擇權評價優先順序由 5 項增為 7 項、KaTeX 公式由 13 條增為 30 條、變數定義由 36 項增為 54 項。另修正 390px 公式卡片的 grid min-width，長公式只在卡片內水平滑動，不造成頁面溢出；修正公式庫分類說明被整段 KaTeX 化造成的窄螢幕溢出。390px／1280px 與 `file://` 0 頁面水平溢出、0 `.katex-error`、0 console errors；驗證器 154,471 項、失敗 0。
@@ -393,6 +410,7 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 5. 若修改模型圖，確認總覽頁與原章節顯示相同內容；可暫時修改記憶體中的 `MACRO_DIAGRAMS`、`INVESTMENT_DIAGRAMS`、`ACCOUNTING_DIAGRAMS` 或 `NOBEL_DIAGRAMS`，切換路由檢查資料綁定。諾貝爾頁是 `NOBEL_DATA`／`NOBEL_DIAGRAMS` 的唯一呈現頁；模型總覽不重複列諾貝爾模型。
 6. 在桌機與 390px 寬度檢查頁面沒有水平溢出；諾貝爾頁為 17 組模型，每組在桌機左右 1:1、900px 以下為單欄，模型圖可在圖表區內滑動；年份下拉可切換所屬模型並捲動，屆別晶片只切換屆別資料；並以 `file://` 開啟確認可閱讀。
 7. 若修改公式或模型圖，依 `SOURCES.md` 與 `documents/content_review_checklist.md` 記錄校對結果；29 條投資／總體公式與 21 張既有總體模型圖已完成公開教材核對；新增國民所得會計帳流程圖、投資學 9 張教學圖與會計學 7 張教學圖為教學示意，尚未逐條教材核對；其他屆諾貝爾原始文獻與會計各章例題未逐題重算前保持「待查」。
+8. 若修改首頁 head、路由 title／description 或 SEO 資產，檢查 canonical、Open Graph／Twitter Card、JSON-LD 是否為合法 JSON、`robots.txt`／`sitemap.xml`／`llms.txt` 是否回傳 200，以及關閉 JavaScript 時 `<main>` 的靜態摘要是否仍可讀；sitemap 不列 hash fragment URL。
 
 ## 設計限制
 

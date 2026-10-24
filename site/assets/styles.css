@@ -410,6 +410,71 @@ p {
   margin-top: 58px;
 }
 
+.home-faq {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.home-faq details {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.home-faq summary {
+  padding: 12px 14px;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.home-faq details[open] summary {
+  border-bottom: 1px solid var(--line);
+}
+
+.home-faq p {
+  margin: 0;
+  padding: 10px 14px 14px;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+  line-height: 1.75;
+}
+
+.seo-fallback {
+  padding: 34px 0;
+}
+
+.seo-fallback h1 {
+  margin-bottom: 12px;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.seo-fallback h2 {
+  margin: 28px 0 10px;
+  font-size: 1.25rem;
+}
+
+.seo-fallback h3 {
+  margin: 16px 0 4px;
+  font-size: 0.95rem;
+}
+
+.seo-fallback ul {
+  color: var(--ink-soft);
+  line-height: 1.9;
+}
+
+.seo-fallback li {
+  margin-bottom: 6px;
+}
+
+.seo-fallback p {
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
 .page-head {
   padding: 8px 0 34px;
   border-bottom: 1px solid var(--line);

@@ -161,6 +161,12 @@ sequenceDiagram
 
 諾貝爾頁依 58 屆資料呈現 17 張模型模組，每組預設第一屆；模組在桌機為左右 1:1，左側是模型標題、說明、屆別晶片、目前屆別資料與 SVG，右側是 `figcaption` 圖說與 `.nobel-year-model-side` 的變數／參數 details，900px 以下改為單欄。上方年份下拉為依年份排序的單一清單，選項顯示所屬模型與得主；`handleNobelChange()` 會以年份反查模型、呼叫 `setNobelModuleYear()` 後捲動。圖上的屆別晶片是 `button[data-nobel-year-chip]`，由 `handleNobelClick()` 原地更新該模組的屆別資料與晶片狀態，不變更 hash、也不改變捲動位置。`?year=` 外部連結由 `render()` 反查年份所屬模型、切換該模組再捲動。
 
+### 4.1 SEO、無 JavaScript 與 AI 搜尋
+
+`index.html` 是唯一的實體入口，`head` 提供 title、meta description、canonical、robots、Open Graph、Twitter Card，以及 `WebSite`、`EducationalOrganization`、四科 `LearningResource` `ItemList` 與 `FAQPage` JSON-LD。首頁「常見問題」與 FAQ JSON-LD 使用同一組 6 題內容。`main` 內含無 JavaScript 的靜態摘要與主要入口，app 啟動後由 `render()` 取代。
+
+`render()` 會依路由更新 document title、meta description、og:title／og:description 與 twitter:title／twitter:description；章節頁會帶入章名、科目與章節內容。`robots.txt` 指向 `sitemap.xml`；`llms.txt` 提供 AI 搜尋可讀的站點摘要。因為站點使用 hash routing，`#/...` 不是獨立 URL，`sitemap.xml` 只列根路徑，不列 fragment URL。
+
 ## 5. 資料契約與單一來源
 
 | 全域物件 | 定義檔案 | 用途 |

@@ -1313,7 +1313,6 @@
       '    <strong>總體經濟模型總覽</strong>',
       "    <span>涵蓋 " + subject.chapters.length + " 章、共 " + total + " 張章節模型圖（" + withModels + " 章含模型）；諾貝爾經濟學獎 17 組模型與 58 屆資料另見諾貝爾模型頁。</span>",
       "  </div>",
-      '  <span class="subject-written-cta-arrow">查看模型總覽 →</span>',
       "</a>"
     ].join("");
   }
@@ -1501,7 +1500,6 @@
       '    <strong>' + escapeHtml(meta.title || "總體經濟學學派演進圖") + "</strong>",
       "    <span>從古典學派到新制成長，依時間整理主要理論、" + nodeCount + " 個節點、" + nobelYears.size + " 個諾貝爾里程碑、代表模型與提出者。</span>",
       "  </div>",
-      '  <span class="subject-written-cta-arrow">查看演進圖 →</span>',
       "</a>"
     ].join("");
   }
@@ -1516,7 +1514,6 @@
       '    <strong>17 組諾貝爾經濟學獎模型</strong>',
       "    <span>收錄 " + nobelYears + " 屆年份與得主，以及 " + nobelGroups.length + " 組模型圖；可依年份跳到所屬模型，或用屆別晶片切換屆別資料。</span>",
       "  </div>",
-      '  <span class="subject-written-cta-arrow">查看模型 →</span>',
       "</a>"
     ].join("");
   }
@@ -4055,6 +4052,33 @@
     return true;
   }
 
+  const homeFaqs = [
+    {
+      question: "這個網站適合誰？",
+      answer: "適合準備證券投資分析人員考試的考生，以及需要快速複習總體經濟學、投資學、會計學與證券法規的人。"
+    },
+    {
+      question: "網站包含哪些科目與章節？",
+      answer: "四科共 73 章、229 個學習單元、1,513 張名詞卡：總體經濟學 13 章、投資學 16 章、會計學 23 章、證券法規 21 章。"
+    },
+    {
+      question: "有考古題與完整解答嗎？",
+      answer: "有。收錄 107–115 年 29 次考試、3,710 題選擇題與 348 題計算／申論題；選擇題提供逐選項解析，計算／申論題提供完整參考解答。"
+    },
+    {
+      question: "公式與法規如何呈現？",
+      answer: "公式以本地 KaTeX 排版；法規收錄 15 部、1,507 條官方條文，並在資料來源頁列出官方連結、版本與查核日期。"
+    },
+    {
+      question: "可以離線或用手機閱讀嗎？",
+      answer: "可以。本站是靜態 HTML，支援手機與 file:// 直接開啟；練習紀錄只存在瀏覽器的 localStorage。"
+    },
+    {
+      question: "內容是最新的嗎？",
+      answer: "內容更新至 2026-10-24；考試範圍、法規與時事數據仍應以主管機關及官方公告為準。"
+    }
+  ];
+
   function renderHome() {
     const forecastCounts = forecastData.meta && forecastData.meta.counts ? forecastData.meta.counts : {};
     const forecastSeries = Number(forecastCounts.series) || (Array.isArray(forecastData.questions) ? forecastData.questions.length : 97);
@@ -4142,6 +4166,23 @@
           "  <h3>" + escapeHtml(step.title) + "</h3>",
           "  <p>" + escapeHtml(step.text) + "</p>",
           "</article>"
+        ].join("");
+      }).join("") + "</div>",
+      "  </section>",
+      '  <section class="home-section" id="faq">',
+      '    <div class="section-heading">',
+      "      <div>",
+      '        <p class="eyebrow">常見問題</p>',
+      "        <h2>關於這個備考站</h2>",
+      "        <p>考試範圍、內容來源、考古題與使用方式。</p>",
+      "      </div>",
+      "    </div>",
+      '    <div class="home-faq">' + homeFaqs.map(function (faq) {
+        return [
+          "<details>",
+          "  <summary>" + escapeHtml(faq.question) + "</summary>",
+          "  <p>" + escapeHtml(faq.answer) + "</p>",
+          "</details>"
         ].join("");
       }).join("") + "</div>",
       "  </section>",
@@ -4740,64 +4781,133 @@
     readingProgress.style.width = percent + "%";
   }
 
+  const DEFAULT_DESCRIPTION = "證券投資分析人員考試備考站：總體經濟學、投資學、會計學與證券法規的章節筆記、名詞、KaTeX 公式、1,507 條法規、107–115 年 3,710 題考古題與考前猜題。";
+
+  function routeDescription(route) {
+    const parts = route.parts || [];
+    if (!parts.length) {
+      return DEFAULT_DESCRIPTION;
+    }
+    if ((parts[0] === "macro" && parts[1] === "evolution") || (parts[0] === "subject" && parts[1] === "macro" && route.query.get("evolution"))) {
+      return "總體經濟學學派演進圖：6 階段、10 節點、23 個模型連結與 15 個諾貝爾里程碑。";
+    }
+    if (parts[0] === "subject" && getSubject(parts[1])) {
+      const subject = getSubject(parts[1]);
+      return subject.name + "：" + subject.chapters.length + " 章、" + subjectSections(subject) + " 個學習單元；名詞、考試重點、公式與考古題。";
+    }
+    if (parts[0] === "investment" && parts[1] === "formulas") {
+      return "投資學公式總表：32 條比例分析、66 條核心公式、7 項選擇權評價與 30 條 KaTeX 公式。";
+    }
+    if (parts[0] === "investment" && (parts[1] === "technical" || parts[1] === "technical-indicators")) {
+      return "技術分析 50 指標：5 類指標、公式、參數、限制與章節連結。";
+    }
+    if (parts[0] === "models" && parts[1] === "macro") {
+      return "總體經濟模型總覽：27 張章節模型圖、模型定義、變數、限制與 KaTeX 公式。";
+    }
+    if (parts[0] === "nobel") {
+      return "17 組諾貝爾經濟學獎模型、58 屆年份與得主、KaTeX 公式與屆別切換。";
+    }
+    if (parts[0] === "chapter" && getChapter(parts[1])) {
+      const chapter = getChapter(parts[1]);
+      return chapterLabel(chapter) + " " + chapter.title + "：" + chapter.subjectName + "的名詞、考試重點、公式與考古題。";
+    }
+    if (parts[0] === "past-exams" && parts[1] === "written") {
+      return "107–115 年 348 題計算／申論題，附完整參考解答、章節出處與題意檢核。";
+    }
+    if (parts[0] === "past-exams") {
+      return "107–115 年 29 次、3,710 題選擇題，逐選項解析與年度／科目／次別篩選。";
+    }
+    if (parts[0] === "macro-current") {
+      return "15 個近二年總經時事、20 則美國重大經濟新聞摘要、KaTeX 公式與考試框架。";
+    }
+    if (parts[0] === "exam-forecast") {
+      return "2026 年 12 月四科 97 題組／118 個部分考前猜題，含完整解答、38 條整合公式與敏感度分析。";
+    }
+    if (parts[0] === "sources") {
+      return "29 個資料來源、官方連結、版本與查核紀錄。";
+    }
+    if (parts[0] === "about") {
+      return "使用說明：章節閱讀、考古題練習、進度儲存與隱私。";
+    }
+    return DEFAULT_DESCRIPTION;
+  }
+
+  function setMetaContent(selector, value) {
+    const node = document.head.querySelector(selector);
+    if (node) {
+      node.setAttribute("content", value);
+    }
+  }
+
+  function updatePageMeta(route, title) {
+    const description = routeDescription(route);
+    setMetaContent('meta[name="description"]', description);
+    setMetaContent('meta[property="og:description"]', description);
+    setMetaContent('meta[name="twitter:description"]', description);
+    setMetaContent('meta[property="og:title"]', title);
+    setMetaContent('meta[name="twitter:title"]', title);
+  }
+
   function render() {
     const route = parseRoute();
     let html = "";
     let title = content.meta.title;
+    const examBrand = "證券投資分析人員考試｜" + content.meta.title;
 
     if (route.parts.length === 0) {
       html = renderHome();
-      title = "總體經濟學、投資學、會計學與證券法規｜" + content.meta.title;
+      title = "證券投資分析人員考試｜分析師備考站：總體經濟、投資學、會計學、證券法規";
     } else if ((route.parts[0] === "macro" && route.parts[1] === "evolution") || (route.parts[0] === "subject" && route.parts[1] === "macro" && route.query.get("evolution"))) {
       html = renderMacroEvolutionPage();
-      title = "總體經濟學學派演進圖｜總體經濟學｜" + content.meta.title;
+      title = "總體經濟學學派演進圖｜" + examBrand;
     } else if (route.parts[0] === "subject" && getSubject(route.parts[1])) {
       const subject = getSubject(route.parts[1]);
       html = renderSubject(subject);
-      title = subject.name + "｜" + content.meta.title;
+      title = subject.name + "｜" + examBrand;
     } else if (route.parts[0] === "investment" && route.parts[1] === "formulas") {
       html = renderInvestmentFormulasPage();
-      title = "投資學公式總表｜投資學｜" + content.meta.title;
+      title = "投資學公式總表｜" + examBrand;
     } else if (route.parts[0] === "investment" && (route.parts[1] === "technical" || route.parts[1] === "technical-indicators")) {
       html = renderInvestmentTechnicalPage();
-      title = "技術分析 50 指標｜投資學｜" + content.meta.title;
+      title = "技術分析 50 指標｜" + examBrand;
     } else if (route.parts[0] === "models" && route.parts[1] === "macro") {
       html = renderMacroModels();
-      title = "總體經濟模型總覽｜總體經濟學｜" + content.meta.title;
+      title = "總體經濟模型總覽｜" + examBrand;
     } else if (route.parts[0] === "nobel") {
       html = renderNobelPage();
-      title = "歷年諾貝爾經濟學獎｜總體經濟學｜" + content.meta.title;
+      title = "歷年諾貝爾經濟學獎｜" + examBrand;
     } else if (route.parts[0] === "chapter" && getChapter(route.parts[1])) {
       const chapter = getChapter(route.parts[1]);
       html = renderChapter(chapter);
-      title = chapterLabel(chapter) + " " + chapter.title + "｜" + chapter.subjectName + "｜" + content.meta.title;
+      title = chapterLabel(chapter) + " " + chapter.title + "｜" + examBrand;
     } else if (route.parts[0] === "past-exams" && route.parts[1] === "written") {
       html = renderWrittenExams(route.query.get("question"));
-      title = "計算題與申論題｜" + content.meta.title;
+      title = "計算題與申論題｜" + examBrand;
     } else if (route.parts[0] === "past-exams") {
       html = renderPastExams(route.query.get("question"));
-      title = "考古題練習庫｜" + content.meta.title;
+      title = "考古題練習庫｜" + examBrand;
     } else if (route.parts[0] === "macro-current") {
       html = renderMacroCurrentEvents();
-      title = "近二年重要國際金融時事與總經政策｜總體經濟學｜" + content.meta.title;
+      title = "近二年重要國際金融時事與總經政策｜" + examBrand;
     } else if (route.parts[0] === "exam-forecast") {
       const forecastSubject = route.query.get("subject");
       const forecastLabel = { macro: "總體經濟學", investment: "投資學", accounting: "會計學", law: "證券法規" }[forecastSubject];
       html = renderExamForecastPage(forecastSubject);
-      title = (forecastLabel || "2026 年 12 月") + "考前猜題｜" + content.meta.title;
+      title = (forecastLabel || "2026 年 12 月") + "考前猜題｜" + examBrand;
     } else if (route.parts[0] === "sources") {
       html = renderSources();
-      title = "資料來源｜" + content.meta.title;
+      title = "資料來源｜" + examBrand;
     } else if (route.parts[0] === "about") {
       html = renderAbout();
-      title = "使用說明｜" + content.meta.title;
+      title = "使用說明｜" + examBrand;
     } else {
       html = renderNotFound();
-      title = "找不到頁面｜" + content.meta.title;
+      title = "找不到頁面｜" + examBrand;
     }
 
     main.innerHTML = html;
     document.title = title;
+    updatePageMeta(route, title);
     updateNav(route);
     updateProgressDisplays();
     setupSectionObserver();
