@@ -140,10 +140,10 @@ sequenceDiagram
 | `#/chapter/:id` | `renderChapter()` | 章節內容、KaTeX、法規全文、模型圖、`CHAPTER_DATA` |
 | `#/past-exams` | `renderPastExams()` | 年度分包、`PAST_EXAMS_YEAR_BUNDLES`、統計 |
 | `#/past-exams/written` | `renderWrittenExams()` | `PAST_EXAMS_WRITTEN`、版型 |
-| `#/exam-forecast` | `renderExamForecastPage()` | 核心 `EXAM_FORECAST`、`EXAM_FORECAST_ANSWERS` |
+| `#/exam-forecast` | `renderExamForecastPage()` | 核心 `EXAM_FORECAST`、`EXAM_FORECAST_ANSWERS`；總經時事入口卡片 |
 | `#/investment/formulas` | `renderInvestmentFormulasPage()` | 比例公式、核心公式庫、選擇權評價 |
 | `#/investment/technical` | `renderInvestmentTechnicalPage()` | 技術分析 5 類 50 指標 |
-| `#/macro-current` | `renderMacroCurrentEvents()` | `MACRO_CURRENT_EVENTS` |
+| `#/macro-current` | `renderMacroCurrentEvents()` | `MACRO_CURRENT_EVENTS`；由考前猜題頁卡片進入 |
 | `#/models/macro` | `renderMacroModels()` | `MACRO_DIAGRAMS`、`NOBEL_DATA`、`NOBEL_DIAGRAMS` |
 | `#/nobel` | `renderNobelPage()` | `NOBEL_DATA`、`NOBEL_DIAGRAMS` |
 | `#/sources` | `renderSources()` | `EXAM_CONTENT.sources` |
