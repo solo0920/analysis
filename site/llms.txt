@@ -17,6 +17,7 @@
 
 ## 可索引的靜態入口
 
+- [73 章章節索引](https://solo0920.github.io/analysis/chapters/)
 - [總體經濟學科目頁](https://solo0920.github.io/analysis/subjects/macro/)
 - [投資學科目頁](https://solo0920.github.io/analysis/subjects/investment/)
 - [會計學科目頁](https://solo0920.github.io/analysis/subjects/accounting/)
@@ -25,6 +26,8 @@
 - [考前猜題](https://solo0920.github.io/analysis/exam-forecast/)
 - [近二年總經時事](https://solo0920.github.io/analysis/macro-current/)
 - [諾貝爾經濟學獎模型](https://solo0920.github.io/analysis/nobel/)
+
+每個章節另有靜態頁，路徑為 `/chapters/<章節 ID>/`，例如 `/chapters/macro-06/`、`/chapters/investment-14/`、`/chapters/accounting-15/`、`/chapters/law-01/`。
 
 ## 內容範圍
 

@@ -48,6 +48,15 @@ function cleanText(value) {
     .trim();
 }
 
+function truncateText(value, maxLength) {
+  const text = cleanText(value);
+  return text.length > maxLength ? text.slice(0, maxLength).trim() + "…" : text;
+}
+
+function sectionTitleText(value) {
+  return cleanText(value).replace(/^第\s*\d+\s*節\s*/, "").trim();
+}
+
 function formatNumber(value) {
   return String(Number(value) || 0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -72,39 +81,45 @@ function rootHref(depth, hash) {
   return prefix(depth) + "index.html" + (hash || "");
 }
 
-function subjectHref(depth, slug) {
-  return depth === 2 ? "../" + slug + "/" : "subjects/" + slug + "/";
+function subjectHref(subjectBase, slug) {
+  return subjectBase + slug + "/";
+}
+
+function chapterHref(chapterBase, id) {
+  return chapterBase + id + "/";
 }
 
 function staticHref(depth, slug) {
   return depth === 2 ? "../../" + slug + "/" : "../" + slug + "/";
 }
 
-function navHtml(depth) {
+function navHtml(depth, subjectBase) {
   return [
     '<nav class="landing-nav" aria-label="主要導覽">',
     '  <a href="' + rootHref(depth) + '">首頁</a>',
-    '  <a href="' + subjectHref(depth, "macro") + '">總體經濟學</a>',
-    '  <a href="' + subjectHref(depth, "investment") + '">投資學</a>',
-    '  <a href="' + subjectHref(depth, "accounting") + '">會計學</a>',
-    '  <a href="' + subjectHref(depth, "law") + '">證券法規</a>',
+    '  <a href="' + subjectHref(subjectBase, "macro") + '">總體經濟學</a>',
+    '  <a href="' + subjectHref(subjectBase, "investment") + '">投資學</a>',
+    '  <a href="' + subjectHref(subjectBase, "accounting") + '">會計學</a>',
+    '  <a href="' + subjectHref(subjectBase, "law") + '">證券法規</a>',
+    '  <a href="' + staticHref(depth, "chapters") + '">章節索引</a>',
     '  <a href="' + staticHref(depth, "past-exams") + '">考古題</a>',
     '  <a href="' + staticHref(depth, "exam-forecast") + '">考前猜題</a>',
     "</nav>"
   ].join("");
 }
 
-function footerHtml(depth) {
+function footerHtml(depth, subjectBase) {
   return [
     '<footer class="landing-footer">',
     '  <div class="landing-footer-inner">',
     "    <p><strong>分析師備考站</strong> — 證券投資分析人員考試的靜態備考筆記與題庫；內容以臺灣官方與繁體中文公開資料整理。</p>",
     '    <nav class="landing-footer-links" aria-label="頁尾導覽">',
     '      <a href="' + rootHref(depth) + '">首頁</a>',
-    '      <a href="' + subjectHref(depth, "macro") + '">總體經濟學</a>',
-    '      <a href="' + subjectHref(depth, "investment") + '">投資學</a>',
-    '      <a href="' + subjectHref(depth, "accounting") + '">會計學</a>',
-    '      <a href="' + subjectHref(depth, "law") + '">證券法規</a>',
+    '      <a href="' + subjectHref(subjectBase, "macro") + '">總體經濟學</a>',
+    '      <a href="' + subjectHref(subjectBase, "investment") + '">投資學</a>',
+    '      <a href="' + subjectHref(subjectBase, "accounting") + '">會計學</a>',
+    '      <a href="' + subjectHref(subjectBase, "law") + '">證券法規</a>',
+    '      <a href="' + staticHref(depth, "chapters") + '">章節索引</a>',
     '      <a href="' + staticHref(depth, "past-exams") + '">考古題</a>',
     '      <a href="' + staticHref(depth, "exam-forecast") + '">考前猜題</a>',
     "    </nav>",
@@ -146,6 +161,12 @@ function faqHtml(faqs) {
 
 function jsonLdForPage(options) {
   const canonical = options.canonical;
+  const breadcrumbs = Array.isArray(options.breadcrumbs) && options.breadcrumbs.length
+    ? options.breadcrumbs
+    : [
+        { name: "首頁", item: BASE_URL + "/" },
+        { name: options.label, item: canonical }
+      ];
   const graph = [
     {
       "@type": "WebPage",
@@ -157,20 +178,14 @@ function jsonLdForPage(options) {
     },
     {
       "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
+      "itemListElement": breadcrumbs.map(function (crumb, index) {
+        return {
           "@type": "ListItem",
-          "position": 1,
-          "name": "首頁",
-          "item": BASE_URL + "/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": options.label,
-          "item": canonical
-        }
-      ]
+          "position": index + 1,
+          "name": crumb.name,
+          "item": crumb.item
+        };
+      })
     },
     {
       "@type": "LearningResource",
@@ -262,14 +277,14 @@ function pageHtml(options) {
     '      <span class="brand-mark" aria-hidden="true">析</span>',
     '      <span class="brand-text"><strong>分析師備考站</strong><small>證券投資分析人員備考</small></span>',
     "    </a>",
-    navHtml(depth),
+    navHtml(depth, options.subjectBase || "../subjects/"),
     "  </div>",
     "</header>",
     '<main class="page landing-page">',
-    breadcrumbHtml(depth, options.label),
+    options.breadcrumb || breadcrumbHtml(depth, options.label),
     options.body,
     "</main>",
-    footerHtml(depth),
+    footerHtml(depth, options.subjectBase || "../subjects/"),
     "</body>",
     "</html>",
     ""
@@ -310,7 +325,7 @@ function subjectPage(subject, slug) {
       '<article class="landing-chapter">',
       '  <div class="landing-chapter-head"><span>' + escapeHtml(String(chapter.number || "").padStart(2, "0")) + "</span><h3>" + escapeHtml(cleanText(chapter.title)) + "</h3></div>",
       "  <p>" + escapeHtml(cleanText(chapter.summary || "")) + "</p>",
-      '  <div class="landing-chapter-meta"><span>' + chapterStats.sections + " 節</span><span>" + chapterStats.terms + ' 個名詞</span><a href="' + rootHref(2, "#/chapter/" + chapter.id) + '">閱讀章節 →</a></div>',
+      '  <div class="landing-chapter-meta"><span>' + chapterStats.sections + " 節</span><span>" + chapterStats.terms + ' 個名詞</span><a href="' + chapterHref("../../chapters/", chapter.id) + '">閱讀章節 →</a></div>',
       "</article>"
     ].join("");
   }).join("");
@@ -354,7 +369,8 @@ function subjectPage(subject, slug) {
       canonical: canonical,
       label: subject.name,
       body: body,
-      faqs: faqs
+      faqs: faqs,
+      subjectBase: "../"
     })
   };
 }
@@ -424,7 +440,8 @@ function pastExamsPage() {
       label: "考古題練習庫",
       body: body,
       faqs: faqs,
-      resourceType: "考古題庫"
+      resourceType: "考古題庫",
+      subjectBase: "../subjects/"
     })
   };
 }
@@ -484,7 +501,8 @@ function forecastPage() {
       label: "考前猜題",
       body: body,
       faqs: faqs,
-      resourceType: "考前猜題與解答"
+      resourceType: "考前猜題與解答",
+      subjectBase: "../subjects/"
     })
   };
 }
@@ -539,7 +557,8 @@ function currentPage() {
       label: "近二年總經時事",
       body: body,
       faqs: faqs,
-      resourceType: "時事整理與考試框架"
+      resourceType: "時事整理與考試框架",
+      subjectBase: "../subjects/"
     })
   };
 }
@@ -594,7 +613,219 @@ function nobelPage() {
       label: "諾貝爾經濟學獎模型",
       body: body,
       faqs: faqs,
-      resourceType: "諾貝爾經濟學獎模型整理"
+      resourceType: "諾貝爾經濟學獎模型整理",
+      subjectBase: "../subjects/"
+    })
+  };
+}
+
+function chapterPage(subject, slug, chapter, index) {
+  const sections = Array.isArray(chapter.sections) ? chapter.sections : [];
+  const terms = [];
+  const points = [];
+  const formulas = [];
+  sections.forEach(function (section) {
+    (Array.isArray(section.terms) ? section.terms : []).forEach(function (term) {
+      if (Array.isArray(term) && term[0]) {
+        terms.push(term);
+      }
+    });
+    (Array.isArray(section.points) ? section.points : []).forEach(function (point) {
+      if (cleanText(point)) {
+        points.push(point);
+      }
+    });
+    if (cleanText(section.formula)) {
+      formulas.push(cleanText(section.formula));
+    }
+  });
+  const practice = Number((stats.practice.chapters || {})[chapter.id] && (stats.practice.chapters || {})[chapter.id].count) || 0;
+  const written = Number((stats.written.chapters || {})[chapter.id] && (stats.written.chapters || {})[chapter.id].count) || 0;
+  const chapterNumber = chapter.number || index + 1;
+  const chapterName = "第 " + chapterNumber + " 章 " + cleanText(chapter.title);
+  const canonical = BASE_URL + "/chapters/" + chapter.id + "/";
+  const subjectPage = subjectHref("../../subjects/", slug);
+  const summary = cleanText(chapter.summary || "");
+  const prev = subject.chapters[index - 1];
+  const next = subject.chapters[index + 1];
+  const faqs = [
+    {
+      question: "這章主要內容是什麼？",
+      answer: summary || "本章整理核心概念、名詞、考試重點與公式。"
+    },
+    {
+      question: "這章有考古題嗎？",
+      answer: "107–115 年考古題中，本章共有 " + formatNumber(practice) + " 題選擇題與 " + formatNumber(written) + " 題計算／申論題可練習。"
+    },
+    {
+      question: "公式與名詞要到哪裡看？",
+      answer: "本頁先列名詞與考試重點；完整公式、圖表與逐選項解析請進入互動版章節頁。"
+    }
+  ];
+  const breadcrumb = [
+    '<nav class="breadcrumb" aria-label="麵包屑">',
+    '  <a href="' + rootHref(2) + '">首頁</a><span>/</span>',
+    '  <a href="' + subjectPage + '">' + escapeHtml(subject.name) + '</a><span>/</span>',
+    "  <span>" + escapeHtml(chapterName) + "</span>",
+    "</nav>"
+  ].join("");
+  const sectionCards = sections.map(function (section, sectionIndex) {
+    return [
+      '<article class="landing-chapter">',
+      '  <div class="landing-chapter-head"><span>第 ' + (sectionIndex + 1) + ' 節</span><h3>' + escapeHtml(sectionTitleText(section.title)) + "</h3></div>",
+      "  <p>" + escapeHtml(truncateText((section.body || [])[0] || "", 180)) + "</p>",
+      '  <div class="landing-chapter-meta"><span>' + (Array.isArray(section.terms) ? section.terms.length : 0) + ' 個名詞</span><a href="' + rootHref(2, "#/chapter/" + chapter.id + "?section=" + (sectionIndex + 1)) + '">閱讀本節 →</a></div>',
+      "</article>"
+    ].join("");
+  }).join("");
+  const termCards = terms.map(function (term) {
+    return '<div class="landing-term"><strong>' + escapeHtml(cleanText(term[0])) + "</strong><p>" + escapeHtml(cleanText(term[1])) + "</p></div>";
+  }).join("");
+  const pointItems = points.map(function (point) {
+    return "<li>" + escapeHtml(cleanText(point)) + "</li>";
+  }).join("");
+  const formulaItems = Array.from(new Set(formulas)).map(function (formula) {
+    return "<li><code>" + escapeHtml(formula) + "</code></li>";
+  }).join("");
+  const pager = [
+    '<nav class="landing-pager" aria-label="章節導覽">',
+    prev ? '<a href="../' + prev.id + '/">← 上一章：' + escapeHtml(cleanText(prev.title)) + "</a>" : "<span></span>",
+    next ? '<a href="../' + next.id + '/">下一章：' + escapeHtml(cleanText(next.title)) + " →</a>" : "<span></span>",
+    "</nav>"
+  ].join("");
+  const body = [
+    '<section class="landing-hero">',
+    '  <p class="eyebrow">' + escapeHtml(subject.name) + " · 第 " + chapterNumber + " 章</p>",
+    "  <h1>" + escapeHtml(cleanText(chapter.title)) + "</h1>",
+    '  <p class="lede">' + escapeHtml(summary) + "</p>",
+    '  <div class="landing-stats">',
+    "    <div><strong>" + sections.length + "</strong><span>節</span></div>",
+    "    <div><strong>" + terms.length + "</strong><span>名詞</span></div>",
+    "    <div><strong>" + formatNumber(practice) + "</strong><span>選擇題</span></div>",
+    "    <div><strong>" + formatNumber(written) + "</strong><span>計算／申論</span></div>",
+    "  </div>",
+    '  <div class="landing-actions">',
+    '    <a class="btn btn-primary" href="' + rootHref(2, "#/chapter/" + chapter.id) + '">進入互動版章節 →</a>',
+    '    <a class="btn" href="' + subjectPage + '">回科目總覽</a>',
+    '    <a class="btn" href="' + staticHref(2, "chapters") + '">章節索引</a>',
+    "  </div>",
+    "</section>",
+    '<section class="landing-section">',
+    "  <h2>本章導讀</h2>",
+    '  <div class="landing-chapter-list">' + sectionCards + "</div>",
+    "</section>",
+    terms.length ? [
+      '<section class="landing-section">',
+      "  <h2>名詞速查</h2>",
+      '  <div class="landing-term-grid">' + termCards + "</div>",
+      "</section>"
+    ].join("") : "",
+    points.length ? [
+      '<section class="landing-section">',
+      "  <h2>考試重點</h2>",
+      '  <ul class="landing-list">' + pointItems + "</ul>",
+      "</section>"
+    ].join("") : "",
+    formulaItems ? [
+      '<section class="landing-section">',
+      "  <h2>本章公式</h2>",
+      '  <ul class="landing-formula-list">' + formulaItems + "</ul>",
+      '  <p class="landing-note">公式在互動版以 KaTeX 排版；實際計算請確認變數定義、單位與適用條件。</p>',
+      "</section>"
+    ].join("") : "",
+    '<section class="landing-section">',
+    "  <h2>考古題練習</h2>",
+    '  <p class="landing-note">107–115 年考古題中，本章共有 ' + formatNumber(practice) + " 題選擇題與 " + formatNumber(written) + " 題計算／申論題。可先作答再看解析，或回到章節頁複習。 </p>",
+    '  <div class="landing-actions"><a class="btn btn-primary" href="' + staticHref(2, "past-exams") + '">練考古題 →</a><a class="btn" href="' + rootHref(2, "#/chapter/" + chapter.id) + '">回互動版章節</a></div>',
+    "</section>",
+    faqHtml(faqs),
+    pager
+  ].join("");
+  return {
+    relativePath: "chapters/" + chapter.id,
+    html: pageHtml({
+      depth: 2,
+      title: chapterName + "｜" + subject.name + "｜分析師備考站",
+      description: subject.name + " " + chapterName + "：" + truncateText(summary, 110) + " 含名詞、考試重點、公式與考古題。",
+      canonical: canonical,
+      label: chapterName,
+      body: body,
+      faqs: faqs,
+      resourceType: "章節備考筆記",
+      subjectBase: "../../subjects/",
+      breadcrumb: breadcrumb,
+      breadcrumbs: [
+        { name: "首頁", item: BASE_URL + "/" },
+        { name: subject.name, item: BASE_URL + "/subjects/" + slug + "/" },
+        { name: chapterName, item: canonical }
+      ]
+    })
+  };
+}
+
+function chaptersHubPage() {
+  const totalChapters = subjects.reduce(function (sum, entry) {
+    return sum + (entry.data.chapters || []).length;
+  }, 0);
+  const totals = subjects.reduce(function (acc, entry) {
+    const stat = subjectStats(entry.data);
+    acc.sections += stat.sections;
+    acc.terms += stat.terms;
+    return acc;
+  }, { sections: 0, terms: 0 });
+  const groups = subjects.map(function (entry) {
+    const items = (entry.data.chapters || []).map(function (chapter) {
+      const chapterNumber = chapter.number || (entry.data.chapters.indexOf(chapter) + 1);
+      return [
+        '<a class="landing-item" href="' + chapter.id + '/">',
+        "  <strong>第 " + chapterNumber + " 章 " + escapeHtml(cleanText(chapter.title)) + "</strong>",
+        "  <span>" + escapeHtml(truncateText(chapter.summary || "", 72)) + "</span>",
+        "</a>"
+      ].join("");
+    }).join("");
+    return [
+      '<section class="landing-section">',
+      "  <h2>" + escapeHtml(entry.data.name) + "</h2>",
+      '  <div class="landing-grid">' + items + "</div>",
+      "</section>"
+    ].join("");
+  }).join("");
+  const faqs = [
+    { question: "總共有幾章？", answer: "四科共 " + totalChapters + " 章、" + totals.sections + " 個學習單元，另整理 1,513 張名詞卡。" },
+    { question: "章節頁與互動版有什麼不同？", answer: "章節頁提供可直接閱讀與索引的摘要、名詞、考試重點與公式；互動版提供完整內容、圖表、逐選項解析與練習紀錄。" },
+    { question: "要從哪裡開始？", answer: "先選科目，再依章節順序閱讀；時間有限時可先看考試重點與考古題出處。" }
+  ];
+  const body = [
+    '<section class="landing-hero">',
+    '  <p class="eyebrow">四科 · 章節索引</p>',
+    "  <h1>73 章章節索引</h1>",
+    '  <p class="lede">總體經濟學、投資學、會計學與證券法規共 73 章；每章都有靜態摘要、名詞、考試重點與連回互動版的入口。</p>',
+    '  <div class="landing-stats">',
+    "    <div><strong>" + totalChapters + "</strong><span>章</span></div>",
+    "    <div><strong>" + subjects.length + "</strong><span>科目</span></div>",
+    "    <div><strong>" + totals.sections + "</strong><span>學習單元</span></div>",
+    "    <div><strong>" + formatNumber(totals.terms) + "</strong><span>名詞卡</span></div>",
+    "  </div>",
+    '  <div class="landing-actions">',
+    '    <a class="btn btn-primary" href="' + rootHref(1, "#/models/macro") + '">看總體模型總覽 →</a>',
+    '    <a class="btn" href="' + staticHref(1, "past-exams") + '">練考古題</a>',
+    "  </div>",
+    "</section>",
+    groups,
+    faqHtml(faqs)
+  ].join("");
+  return {
+    relativePath: "chapters",
+    html: pageHtml({
+      depth: 1,
+      title: "73 章章節索引｜證券投資分析人員考試｜分析師備考站",
+      description: "總體經濟學、投資學、會計學與證券法規共 73 章的靜態索引：每章摘要、名詞、考試重點、公式與連回互動版章節頁。",
+      canonical: BASE_URL + "/chapters/",
+      label: "章節索引",
+      body: body,
+      faqs: faqs,
+      resourceType: "章節索引",
+      subjectBase: "../subjects/"
     })
   };
 }
@@ -602,6 +833,12 @@ function nobelPage() {
 const pages = [];
 subjects.forEach(function (entry) {
   pages.push(subjectPage(entry.data, entry.slug));
+});
+pages.push(chaptersHubPage());
+subjects.forEach(function (entry) {
+  (entry.data.chapters || []).forEach(function (chapter, index) {
+    pages.push(chapterPage(entry.data, entry.slug, chapter, index));
+  });
 });
 pages.push(pastExamsPage());
 pages.push(forecastPage());
@@ -611,17 +848,24 @@ pages.push(nobelPage());
 const written = pages.map(function (page) {
   return writePage(page.relativePath, page.html);
 });
+const chapterUrls = [];
+subjects.forEach(function (entry) {
+  (entry.data.chapters || []).forEach(function (chapter) {
+    chapterUrls.push({ loc: BASE_URL + "/chapters/" + chapter.id + "/", priority: "0.7" });
+  });
+});
 const urls = [
   { loc: BASE_URL + "/", priority: "1.0" },
   { loc: BASE_URL + "/subjects/macro/", priority: "0.9" },
   { loc: BASE_URL + "/subjects/investment/", priority: "0.9" },
   { loc: BASE_URL + "/subjects/accounting/", priority: "0.9" },
   { loc: BASE_URL + "/subjects/law/", priority: "0.9" },
+  { loc: BASE_URL + "/chapters/", priority: "0.8" },
   { loc: BASE_URL + "/past-exams/", priority: "0.8" },
   { loc: BASE_URL + "/exam-forecast/", priority: "0.8" },
   { loc: BASE_URL + "/macro-current/", priority: "0.8" },
   { loc: BASE_URL + "/nobel/", priority: "0.8" }
-];
+].concat(chapterUrls);
 const sitemap = [
   '<?xml version="1.0" encoding="UTF-8"?>',
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',

@@ -646,6 +646,16 @@ p {
   background: var(--surface);
 }
 
+a.landing-item {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+a.landing-item:hover {
+  border-color: var(--accent);
+}
+
 .landing-item strong {
   display: block;
   color: var(--ink);
@@ -658,6 +668,75 @@ p {
   color: var(--muted);
   font-size: 0.76rem;
   line-height: 1.55;
+}
+
+.landing-term-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.landing-term {
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.landing-term strong {
+  display: block;
+  color: var(--ink);
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.landing-term p {
+  margin: 4px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.landing-formula-list {
+  margin: 0;
+  padding-left: 1.3em;
+  color: var(--ink-soft);
+  line-height: 1.9;
+}
+
+.landing-formula-list code {
+  color: var(--accent-ink);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  overflow-wrap: anywhere;
+}
+
+.landing-note {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.landing-pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 30px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.landing-pager a {
+  color: var(--accent);
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.landing-pager a:hover {
+  text-decoration: underline;
 }
 
 .landing-list,
@@ -728,6 +807,14 @@ p {
 
   .landing-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .landing-term-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .landing-pager {
+    flex-direction: column;
   }
 }
 

@@ -167,7 +167,7 @@ sequenceDiagram
 
 `render()` 會依路由更新 document title、meta description、og:title／og:description 與 twitter:title／twitter:description；章節頁會帶入章名、科目與章節內容。`robots.txt` 指向 `sitemap.xml`；`llms.txt` 提供 AI 搜尋可讀的站點摘要。因為站點使用 hash routing，`#/...` 不是獨立 URL，`sitemap.xml` 只列實體路徑，不列 fragment URL。
 
-方案 A 另由 `scripts/build-static-landing-pages.js` 從現有內容資料產生 8 個靜態落地頁：`/subjects/macro/`、`/subjects/investment/`、`/subjects/accounting/`、`/subjects/law/`、`/past-exams/`、`/exam-forecast/`、`/macro-current/`、`/nobel/`。每頁有 self canonical、完整 metadata、`LearningResource`／`BreadcrumbList`／`FAQPage` JSON-LD、章節或主題清單，並連回 hash SPA 的互動頁；`sitemap.xml` 由同一腳本產生。
+方案 A 另由 `scripts/build-static-landing-pages.js` 從現有內容資料產生 82 個靜態頁：4 個科目頁（`/subjects/macro/` 等）、`/chapters/` 章節索引、73 個章節頁（`/chapters/<chapter-id>/`）與 `/past-exams/`、`/exam-forecast/`、`/macro-current/`、`/nobel/`。每頁有 self canonical、完整 metadata、`LearningResource`／`BreadcrumbList`／`FAQPage` JSON-LD、章節或主題清單，並連回 hash SPA 的互動頁；章節頁另有各節導讀、名詞、考試重點、公式、考古題題數與上一章／下一章。`sitemap.xml` 由同一腳本產生 83 個實體 URL，不列 fragment URL。
 
 ## 5. 資料契約與單一來源
 

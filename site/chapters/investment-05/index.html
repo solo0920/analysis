@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第 5 章 CAPM模型｜投資學｜分析師備考站</title>
+  <meta name="description" content="投資學 第 5 章 CAPM模型：理解 CAPM 的假設、市場投資組合、β 與證券市場線，並能用 CAPM 判斷資產是否被低估或高估。 含名詞、考試重點、公式與考古題。">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="author" content="分析師備考站">
+  <meta name="theme-color" content="#0f5c5c">
+  <link rel="canonical" href="https://solo0920.github.io/analysis/chapters/investment-05/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:site_name" content="分析師備考站">
+  <meta property="og:title" content="第 5 章 CAPM模型｜投資學｜分析師備考站">
+  <meta property="og:description" content="投資學 第 5 章 CAPM模型：理解 CAPM 的假設、市場投資組合、β 與證券市場線，並能用 CAPM 判斷資產是否被低估或高估。 含名詞、考試重點、公式與考古題。">
+  <meta property="og:url" content="https://solo0920.github.io/analysis/chapters/investment-05/">
+  <meta property="og:image" content="https://solo0920.github.io/analysis/assets/og-cover.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="分析師備考站：證券投資分析人員考試備考">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="第 5 章 CAPM模型｜投資學｜分析師備考站">
+  <meta name="twitter:description" content="投資學 第 5 章 CAPM模型：理解 CAPM 的假設、市場投資組合、β 與證券市場線，並能用 CAPM 判斷資產是否被低估或高估。 含名詞、考試重點、公式與考古題。">
+  <meta name="twitter:image" content="https://solo0920.github.io/analysis/assets/og-cover.png">
+  <link rel="stylesheet" href="../../assets/styles.css">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("analyst-theme");
+        var dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme = saved || (dark ? "dark" : "light");
+      } catch (error) {
+        document.documentElement.dataset.theme = "light";
+      }
+    })();
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://solo0920.github.io/analysis/chapters/investment-05/#webpage",
+      "url": "https://solo0920.github.io/analysis/chapters/investment-05/",
+      "name": "第 5 章 CAPM模型｜投資學｜分析師備考站",
+      "description": "投資學 第 5 章 CAPM模型：理解 CAPM 的假設、市場投資組合、β 與證券市場線，並能用 CAPM 判斷資產是否被低估或高估。 含名詞、考試重點、公式與考古題。",
+      "inLanguage": "zh-Hant-TW"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首頁",
+          "item": "https://solo0920.github.io/analysis/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "投資學",
+          "item": "https://solo0920.github.io/analysis/subjects/investment/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "第 5 章 CAPM模型",
+          "item": "https://solo0920.github.io/analysis/chapters/investment-05/"
+        }
+      ]
+    },
+    {
+      "@type": "LearningResource",
+      "@id": "https://solo0920.github.io/analysis/chapters/investment-05/#resource",
+      "name": "第 5 章 CAPM模型",
+      "description": "投資學 第 5 章 CAPM模型：理解 CAPM 的假設、市場投資組合、β 與證券市場線，並能用 CAPM 判斷資產是否被低估或高估。 含名詞、考試重點、公式與考古題。",
+      "url": "https://solo0920.github.io/analysis/chapters/investment-05/",
+      "inLanguage": "zh-Hant-TW",
+      "isAccessibleForFree": true,
+      "learningResourceType": "章節備考筆記",
+      "educationalLevel": "證券投資分析人員考試",
+      "provider": {
+        "@type": "EducationalOrganization",
+        "name": "分析師備考站",
+        "url": "https://solo0920.github.io/analysis/"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://solo0920.github.io/analysis/chapters/investment-05/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "這章主要內容是什麼？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "理解 CAPM 的假設、市場投資組合、β 與證券市場線，並能用 CAPM 判斷資產是否被低估或高估。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "這章有考古題嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "107–115 年考古題中，本章共有 98 題選擇題與 10 題計算／申論題可練習。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "公式與名詞要到哪裡看？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "本頁先列名詞與考試重點；完整公式、圖表與逐選項解析請進入互動版章節頁。"
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<header class="landing-header">
+  <div class="landing-header-inner">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark" aria-hidden="true">析</span>
+      <span class="brand-text"><strong>分析師備考站</strong><small>證券投資分析人員備考</small></span>
+    </a>
+<nav class="landing-nav" aria-label="主要導覽">  <a href="../../index.html">首頁</a>  <a href="../../subjects/macro/">總體經濟學</a>  <a href="../../subjects/investment/">投資學</a>  <a href="../../subjects/accounting/">會計學</a>  <a href="../../subjects/law/">證券法規</a>  <a href="../../chapters/">章節索引</a>  <a href="../../past-exams/">考古題</a>  <a href="../../exam-forecast/">考前猜題</a></nav>
+  </div>
+</header>
+<main class="page landing-page">
+<nav class="breadcrumb" aria-label="麵包屑">  <a href="../../index.html">首頁</a><span>/</span>  <a href="../../subjects/investment/">投資學</a><span>/</span>  <span>第 5 章 CAPM模型</span></nav>
+<section class="landing-hero">  <p class="eyebrow">投資學 · 第 5 章</p>  <h1>CAPM模型</h1>  <p class="lede">理解 CAPM 的假設、市場投資組合、β 與證券市場線，並能用 CAPM 判斷資產是否被低估或高估。</p>  <div class="landing-stats">    <div><strong>5</strong><span>節</span></div>    <div><strong>30</strong><span>名詞</span></div>    <div><strong>98</strong><span>選擇題</span></div>    <div><strong>10</strong><span>計算／申論</span></div>  </div>  <div class="landing-actions">    <a class="btn btn-primary" href="../../index.html#/chapter/investment-05">進入互動版章節 →</a>    <a class="btn" href="../../subjects/investment/">回科目總覽</a>    <a class="btn" href="../../chapters/">章節索引</a>  </div></section><section class="landing-section">  <h2>本章導讀</h2>  <div class="landing-chapter-list"><article class="landing-chapter">  <div class="landing-chapter-head"><span>第 1 節</span><h3>學習重點 1：CAPM 的假設與市場投資組合</h3></div>  <p>CAPM 假設投資人理性、風險趨避、可自由借貸無風險資產、市場無摩擦且預期同質。在這些假設下，所有投資人會持有相同的風險性投資組合，即市場投資組合。</p>  <div class="landing-chapter-meta"><span>6 個名詞</span><a href="../../index.html#/chapter/investment-05?section=1">閱讀本節 →</a></div></article><article class="landing-chapter">  <div class="landing-chapter-head"><span>第 2 節</span><h3>學習重點 2：證券市場線與必要報酬率</h3></div>  <p>證券市場線（SML）描述 β 與預期報酬的關係。β 越大，必要報酬越高；β 等於 1 代表與市場同波動，β 大於 1 代表波動大於市場。</p>  <div class="landing-chapter-meta"><span>6 個名詞</span><a href="../../index.html#/chapter/investment-05?section=2">閱讀本節 →</a></div></article><article class="landing-chapter">  <div class="landing-chapter-head"><span>第 3 節</span><h3>學習重點 3：CAPM 的應用與限制</h3></div>  <p>CAPM 常用於估算權益資金成本、計算風險調整後報酬與評估投資績效。企業評價時，可用 CAPM 算出投資人要求的必要報酬，再作為折現率。</p>  <div class="landing-chapter-meta"><span>4 個名詞</span><a href="../../index.html#/chapter/investment-05?section=3">閱讀本節 →</a></div></article><article class="landing-chapter">  <div class="landing-chapter-head"><span>第 4 節</span><h3>學習重點 4：套利定價理論與股價變動因素</h3></div>  <p>套利定價理論（APT）把資產預期報酬寫成多個系統性因子的線性函數。每個因子有自己的風險溢酬，資產對因子的敏感度越高，承擔的因子風險越大，要求的預期報酬也越高。與 CAPM 相比，APT 不要求市場投資組合必須可觀察，也不假設投資人只關心市場風險，但同樣建立在無套利機會的均衡概念上。</p>  <div class="landing-chapter-meta"><span>8 個名詞</span><a href="../../index.html#/chapter/investment-05?section=4">閱讀本節 →</a></div></article><article class="landing-chapter">  <div class="landing-chapter-head"><span>第 5 節</span><h3>進階專題：Fama-French 五因子與風險平價</h3></div>  <p>Fama-French 五因子模型將超額報酬拆成市場、規模（SMB）、價值（HML）、獲利能力（RMW）與投資風格（CMA）：R_i − R_f = α + β_m(R_m − R_f) + β_SMB SMB + β_HML HML + β_RMW RMW + β_CMA CMA + ε。α 是模型未解釋的異常報酬；因子載荷可正可負，不能只看名稱就判斷風格…</p>  <div class="landing-chapter-meta"><span>6 個名詞</span><a href="../../index.html#/chapter/investment-05?section=5">閱讀本節 →</a></div></article></div></section><section class="landing-section">  <h2>名詞速查</h2>  <div class="landing-term-grid"><div class="landing-term"><strong>CAPM</strong><p>資本資產定價模型，用系統風險解釋資產預期報酬。</p></div><div class="landing-term"><strong>市場投資組合</strong><p>包含所有風險性資產的理論投資組合，常以大盤指數代表。</p></div><div class="landing-term"><strong>系統風險</strong><p>影響整體市場、無法分散的風險。</p></div><div class="landing-term"><strong>β（Beta）</strong><p>資產報酬對市場報酬的敏感度，衡量系統風險。</p></div><div class="landing-term"><strong>效率市場</strong><p>價格已充分反映可得資訊的市場。</p></div><div class="landing-term"><strong>無風險利率</strong><p>CAPM 中的無風險借貸利率，常以政府公債利率代表。</p></div><div class="landing-term"><strong>證券市場線（SML）</strong><p>以 β 為橫軸、預期報酬為縱軸的 CAPM 定價線。</p></div><div class="landing-term"><strong>必要報酬率</strong><p>投資人承擔系統風險所要求的最低報酬。</p></div><div class="landing-term"><strong>風險溢酬</strong><p>市場預期報酬高於無風險利率的部分。</p></div><div class="landing-term"><strong>α（Alpha）</strong><p>實際或預期報酬高於 CAPM 必要報酬的部分。</p></div><div class="landing-term"><strong>低估</strong><p>預期報酬高於必要報酬，價格可能偏低。</p></div><div class="landing-term"><strong>高估</strong><p>預期報酬低於必要報酬，價格可能偏高。</p></div><div class="landing-term"><strong>權益資金成本</strong><p>股東投資公司所要求的報酬率，可用 CAPM 估算。</p></div><div class="landing-term"><strong>多因子模型</strong><p>以多個風險因子解釋報酬的模型，如 Fama-French 三因子模型。</p></div><div class="landing-term"><strong>市場投資組合迷思</strong><p>真實市場組合難以完全觀察與持有。</p></div><div class="landing-term"><strong>實證限制</strong><p>CAPM 在實際資料中解釋力有限，β 與報酬關係不總是穩定。</p></div><div class="landing-term"><strong>套利定價理論（APT）</strong><p>以多個系統性因子解釋資產預期報酬的定價模型。</p></div><div class="landing-term"><strong>因子</strong><p>與資產報酬相關、可解釋共同風險變動的變數或特徵。</p></div><div class="landing-term"><strong>因子敏感度</strong><p>資產報酬對某一因子變動的敏感程度，常以 β 表示。</p></div><div class="landing-term"><strong>因子風險溢酬</strong><p>承擔一單位因子風險所要求的額外預期報酬。</p></div><div class="landing-term"><strong>套利機會</strong><p>在無風險、無額外投入下取得正報酬的機會；均衡時應不存在。</p></div><div class="landing-term"><strong>多因子模型</strong><p>以兩個以上因子解釋報酬的模型，如 Fama-French 三因子模型。</p></div><div class="landing-term"><strong>股價變動因素</strong><p>影響未來現金流或折現率的變數，包括獲利、成長、利率、通膨與風險溢酬。</p></div><div class="landing-term"><strong>折現率</strong><p>把未來現金流換算為現值的報酬率，受利率與風險溢酬影響。</p></div><div class="landing-term"><strong>SMB</strong><p>Small Minus Big；小型股相對大型股的規模因子。</p></div><div class="landing-term"><strong>HML</strong><p>High Minus Low；高帳面市值比相對低帳面市值比的價值因子。</p></div><div class="landing-term"><strong>RMW</strong><p>Robust Minus Weak；高獲利能力相對低獲利能力的因子。</p></div><div class="landing-term"><strong>CMA</strong><p>Conservative Minus Aggressive；保守投資相對積極投資的因子。</p></div><div class="landing-term"><strong>風險平價</strong><p>讓各資產邊際風險貢獻相等，而非資金權重相等的配置方法。</p></div><div class="landing-term"><strong>邊際風險貢獻</strong><p>資產權重變動一單位對組合波動度的影響，乘以權重。</p></div></div></section><section class="landing-section">  <h2>考試重點</h2>  <ul class="landing-list"><li>CAPM 以 β 而非標準差衡量風險。</li><li>市場投資組合是理論上的完全分散組合。</li><li>CAPM 的假設很嚴格，實務上常作為基準模型。</li><li>SML 的斜率是市場風險溢酬。</li><li>β 越大，必要報酬越高。</li><li>α 為正代表可能被低估，α 為負代表可能被高估。</li><li>CAPM 是估算必要報酬與資金成本的常用起點。</li><li>β 會隨公司財務結構與景氣改變，不是固定常數。</li><li>多因子模型可補足 CAPM 對其他風險因子的忽略。</li><li>APT 以多個因子解釋報酬，CAPM 可視為只有市場因子的特例。</li><li>APT 的關鍵假設是無套利機會，因子數目與內容需由研究者設定。</li><li>股價同時受未來現金流與折現率影響，不能只看單一因子。</li><li>因子模型是分析工具，不是保證超額報酬的公式。</li><li>五因子模型的 α 不是保證選股能力，可能是未捕捉的風險或資料探勘。</li><li>HML 近年失效可能與無形資產、大型成長股與利率環境有關，但不等於因子永久消失。</li><li>風險平價在低相關時有效，危機時相關性上升會使實際風險偏離目標。</li><li>槓桿是風險平價的一部分，資金成本與保證金追繳不可忽略。</li></ul></section><section class="landing-section">  <h2>本章公式</h2>  <ul class="landing-formula-list"><li><code>E(Rᵢ) = R_f + βᵢ × [E(R_m) − R_f]</code></li><li><code>βᵢ = Cov(Rᵢ, R_m) ÷ Var(R_m)；α = 實際報酬 − CAPM 必要報酬</code></li><li><code>E(Rᵢ) = R_f + βᵢ₁λ₁ + βᵢ₂λ₂ + … + βᵢₖλₖ（λ 為因子風險溢酬）</code></li></ul>  <p class="landing-note">公式在互動版以 KaTeX 排版；實際計算請確認變數定義、單位與適用條件。</p></section><section class="landing-section">  <h2>考古題練習</h2>  <p class="landing-note">107–115 年考古題中，本章共有 98 題選擇題與 10 題計算／申論題。可先作答再看解析，或回到章節頁複習。 </p>  <div class="landing-actions"><a class="btn btn-primary" href="../../past-exams/">練考古題 →</a><a class="btn" href="../../index.html#/chapter/investment-05">回互動版章節</a></div></section><section class="landing-section">  <h2>常見問題</h2>  <div class="home-faq"><details>  <summary>這章主要內容是什麼？</summary>  <p>理解 CAPM 的假設、市場投資組合、β 與證券市場線，並能用 CAPM 判斷資產是否被低估或高估。</p></details><details>  <summary>這章有考古題嗎？</summary>  <p>107–115 年考古題中，本章共有 98 題選擇題與 10 題計算／申論題可練習。</p></details><details>  <summary>公式與名詞要到哪裡看？</summary>  <p>本頁先列名詞與考試重點；完整公式、圖表與逐選項解析請進入互動版章節頁。</p></details>  </div></section><nav class="landing-pager" aria-label="章節導覽"><a href="../investment-04/">← 上一章：投資組合理論</a><a href="../investment-06/">下一章：效率市場假說 →</a></nav>
+</main>
+<footer class="landing-footer">  <div class="landing-footer-inner">    <p><strong>分析師備考站</strong> — 證券投資分析人員考試的靜態備考筆記與題庫；內容以臺灣官方與繁體中文公開資料整理。</p>    <nav class="landing-footer-links" aria-label="頁尾導覽">      <a href="../../index.html">首頁</a>      <a href="../../subjects/macro/">總體經濟學</a>      <a href="../../subjects/investment/">投資學</a>      <a href="../../subjects/accounting/">會計學</a>      <a href="../../subjects/law/">證券法規</a>      <a href="../../chapters/">章節索引</a>      <a href="../../past-exams/">考古題</a>      <a href="../../exam-forecast/">考前猜題</a>    </nav>    <p class="landing-footer-copy">© 2026 分析師備考站 · 靜態網站，無追蹤、無廣告。內容僅供考試複習，不代表官方認證。</p>  </div></footer>
+</body>
+</html>
