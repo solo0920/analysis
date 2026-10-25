@@ -2870,8 +2870,24 @@ a.landing-item:hover {
 
 .diagram-table table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
   font-size: 0.86rem;
+}
+
+.diagram-table th:first-child,
+.diagram-table td:first-child {
+  width: 24%;
+}
+
+.diagram-table th:nth-child(2),
+.diagram-table td:nth-child(2) {
+  width: 27%;
+}
+
+.diagram-table th:last-child,
+.diagram-table td:last-child {
+  width: 49%;
 }
 
 .diagram-table caption {
@@ -3707,6 +3723,59 @@ a.landing-item:hover {
 
 .model-diagram svg .dg-arrow-head {
   fill: var(--danger);
+}
+
+.model-diagram svg .dg-arrow-line {
+  stroke: var(--muted);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.model-diagram svg .dg-arrow-head-soft {
+  fill: var(--muted);
+}
+
+.model-diagram svg .dg-area-accent {
+  fill: var(--accent);
+  opacity: 0.18;
+}
+
+.model-diagram svg .dg-area-gold {
+  fill: var(--gold);
+  opacity: 0.2;
+}
+
+.model-diagram svg .dg-callout {
+  fill: var(--surface-2);
+  stroke: var(--line-strong);
+  stroke-width: 1.2;
+}
+
+.model-diagram svg .dg-callout-accent {
+  fill: var(--accent-soft);
+  stroke: var(--accent);
+  stroke-width: 1.3;
+}
+
+.model-diagram svg .dg-callout-gold {
+  fill: var(--gold-soft);
+  stroke: var(--gold);
+  stroke-width: 1.3;
+}
+
+.model-diagram svg .dg-callout-strike {
+  fill: var(--surface-2);
+  stroke: var(--ink-soft);
+  stroke-width: 1.3;
+  stroke-dasharray: 5 4;
+}
+
+[data-theme="light"] .model-diagram svg .dg-area-accent {
+  opacity: 0.14;
+}
+
+[data-theme="light"] .model-diagram svg .dg-area-gold {
+  opacity: 0.18;
 }
 
 .model-diagram svg .dg-point {

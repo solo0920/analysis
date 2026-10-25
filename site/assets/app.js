@@ -612,10 +612,29 @@
     }).join("") + "</dl>";
   }
 
+  function diagramSortParts(key) {
+    const suffix = key.slice(key.indexOf("#") + 1);
+    return suffix.split("-").map(function (part) {
+      return parseInt(part, 10);
+    });
+  }
+
   function getDiagrams(chapterId, sectionIndex) {
     const baseKey = chapterId + "#" + sectionIndex;
     return Object.keys(diagrams).filter(function (key) {
       return key === baseKey || key.indexOf(baseKey + "-") === 0;
+    }).sort(function (a, b) {
+      const aParts = diagramSortParts(a);
+      const bParts = diagramSortParts(b);
+      const length = Math.max(aParts.length, bParts.length);
+      for (let index = 0; index < length; index += 1) {
+        const aValue = index < aParts.length ? aParts[index] : -1;
+        const bValue = index < bParts.length ? bParts[index] : -1;
+        if (aValue !== bValue) {
+          return aValue - bValue;
+        }
+      }
+      return 0;
     }).map(function (key) {
       return diagrams[key];
     });

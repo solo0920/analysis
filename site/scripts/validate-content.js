@@ -928,12 +928,12 @@ diagramKeys.forEach(function (key) {
 
 /* 投資學教學圖表：與總體模型圖共用相同的 SVG 結構與無障礙檢查。 */
 const investmentDiagramKeys = Object.keys(investmentDiagrams);
-check(investmentDiagramKeys.length >= 9, "投資學教學圖應至少 9 張（目前 " + investmentDiagramKeys.length + " 張）");
+check(investmentDiagramKeys.length >= 10, "投資學教學圖應至少 10 張（目前 " + investmentDiagramKeys.length + " 張）");
 
 const rawInvestmentKeys = [];
 investmentDiagramFiles.forEach(function (file) {
   const text = fs.readFileSync(path.join(siteDir, "assets", file), "utf8");
-  const matches = text.match(/^\s{2}"(investment-\d+#\d+)":\s*\{/gm) || [];
+  const matches = text.match(/^\s{2}"(investment-\d+#\d+(?:-\d+)?)":\s*\{/gm) || [];
   matches.forEach(function (match) {
     rawInvestmentKeys.push(match.trim().split('"')[1]);
   });
@@ -943,13 +943,13 @@ check(rawInvestmentKeys.length === investmentDiagramKeys.length, "投資學教�
 
 investmentDiagramKeys.forEach(function (key) {
   const keyParts = key.split("#");
-  check(keyParts.length === 2 && keyParts[0].indexOf("investment-") === 0, "投資學教學圖只能掛在投資學章節，鍵值格式：" + key);
+  check(keyParts.length === 2 && keyParts[0].indexOf("investment-") === 0 && /^investment-\d+#\d+(?:-\d+)?$/.test(key), "投資學教學圖只能掛在投資學章節，鍵值格式：" + key);
   const chapter = investmentChapterMap[keyParts[0]];
   check(Boolean(chapter), "投資學教學圖指向不存在的章節：" + key);
   if (!chapter) {
     return;
   }
-  const sectionIndex = Number(keyParts[1]);
+  const sectionIndex = parseInt(keyParts[1], 10);
   check(Number.isInteger(sectionIndex) && sectionIndex >= 0 && sectionIndex < chapter.sections.length, "投資學教學圖節次超出範圍：" + key);
   const section = chapter.sections[sectionIndex];
   if (!section) {

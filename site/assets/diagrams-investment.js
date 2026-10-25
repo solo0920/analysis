@@ -308,6 +308,101 @@ window.INVESTMENT_DIAGRAMS = {
     ],
     note: "掩護性買權以放棄上方漲幅換取權利金，適合盤整偏多；保護性賣權像買保險，最大損失有限但需支付權利金。圖為到期日損益，未考慮交易成本。"
   },
+  "investment-09#3-3": {
+    sectionTitle: "學習重點 4：Black–Scholes 定價與 Greeks",
+    kicker: "公式概念圖",
+    title: "Black–Scholes 公式概念圖：現貨項、履約成本項與風險中立機率",
+    caption: "買權價格可拆成「現貨價 × N(d₁)」的標的物價值項，減去「履約價折現 × N(d₂)」的履約成本項；賣權則相反。陰影只代表 N(d₂)／N(−d₂) 的風險中立價內機率；N(d₁) 是現貨項權重／Delta，不是同一塊面積。",
+    svg: `
+<svg viewBox="0 0 760 520" role="img" aria-labelledby="dg-bs-concept-title dg-bs-concept-desc" style="max-width:760px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-bs-concept-title">Black–Scholes 公式概念圖</title>
+  <desc id="dg-bs-concept-desc">買權價格拆成現貨價乘 N(d₁) 的標的物價值項，減去履約價折現乘 N(d₂) 的履約成本項；賣權價格則是履約價折現乘 N(−d₂) 減去現貨價乘 N(−d₁)。圖中陰影代表風險中立下的價內機率 N(d₂) 或 N(−d₂)；N(d₁)、N(−d₁) 是現貨項權重／Delta，不是同一塊面積。</desc>
+  <defs>
+    <marker id="dg-bs-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="dg-arrow-head-soft" d="M0,0 L10,5 L0,10 z"></path>
+    </marker>
+  </defs>
+
+  <rect class="dg-panel" x="16" y="16" width="356" height="488" rx="14"></rect>
+  <rect class="dg-panel" x="388" y="16" width="356" height="488" rx="14"></rect>
+
+  <text class="dg-label dg-label-strong" x="194" y="46" text-anchor="middle">買權 Call</text>
+  <text class="dg-label-sm" x="194" y="68" text-anchor="middle">C = S₀N(d₁) − K e^(−rT) N(d₂)</text>
+  <text class="dg-label dg-label-strong" x="566" y="46" text-anchor="middle">賣權 Put</text>
+  <text class="dg-label-sm" x="566" y="68" text-anchor="middle">P = K e^(−rT) N(−d₂) − S₀N(−d₁)</text>
+
+  <line class="dg-axis" x1="44" y1="330" x2="344" y2="330" marker-end="url(#dg-bs-arrow)"></line>
+  <line class="dg-axis" x1="44" y1="330" x2="44" y2="96" marker-end="url(#dg-bs-arrow)"></line>
+  <line class="dg-axis" x1="416" y1="330" x2="716" y2="330" marker-end="url(#dg-bs-arrow)"></line>
+  <line class="dg-axis" x1="416" y1="330" x2="416" y2="96" marker-end="url(#dg-bs-arrow)"></line>
+  <text class="dg-label-sm" x="344" y="350" text-anchor="end">S_T</text>
+  <text class="dg-label-sm" x="716" y="350" text-anchor="end">S_T</text>
+  <text class="dg-label-sm" x="30" y="210" text-anchor="middle" transform="rotate(-90 30 210)">f(S_T)</text>
+  <text class="dg-label-sm" x="402" y="210" text-anchor="middle" transform="rotate(-90 402 210)">f(S_T)</text>
+
+  <path class="dg-curve" d="M48 326 C 90 326 105 300 122 240 C 140 176 162 138 190 132 C 218 138 240 176 258 240 C 275 300 290 326 336 326"></path>
+  <path class="dg-curve" d="M420 326 C 462 326 477 300 494 240 C 512 176 534 138 562 132 C 590 138 612 176 630 240 C 647 300 662 326 708 326"></path>
+
+  <path class="dg-area-accent" d="M250 220 C 268 255 295 315 336 326 L250 326 Z"></path>
+  <line class="dg-guide" x1="250" y1="220" x2="250" y2="330"></line>
+  <text class="dg-label-sm" x="250" y="350" text-anchor="middle">K</text>
+  <text class="dg-label-sm" x="304" y="252" text-anchor="middle">N(d₂)</text>
+  <text class="dg-label-xs" x="304" y="267" text-anchor="middle">風險中立價內機率</text>
+  <line class="dg-arrow-line" x1="304" y1="272" x2="304" y2="306" marker-end="url(#dg-bs-arrow)"></line>
+
+  <path class="dg-area-accent" d="M420 326 C 462 326 477 300 494 240 C 497 232 498 228 500 225 L500 326 Z"></path>
+  <line class="dg-guide" x1="500" y1="225" x2="500" y2="330"></line>
+  <text class="dg-label-sm" x="500" y="350" text-anchor="middle">K</text>
+  <text class="dg-label-sm" x="455" y="300" text-anchor="middle">N(−d₂)</text>
+  <text class="dg-label-xs" x="455" y="315" text-anchor="middle">風險中立價內機率</text>
+
+  <rect class="dg-callout-accent" x="50" y="80" width="150" height="40" rx="8"></rect>
+  <text class="dg-label-sm" x="125" y="97" text-anchor="middle">S₀N(d₁)</text>
+  <text class="dg-label-xs" x="125" y="111" text-anchor="middle">現貨項權重／Delta</text>
+  <line class="dg-arrow-line" x1="160" y1="120" x2="185" y2="130" marker-end="url(#dg-bs-arrow)"></line>
+
+  <rect class="dg-callout-strike" x="210" y="80" width="150" height="40" rx="8"></rect>
+  <text class="dg-label-sm" x="285" y="97" text-anchor="middle">K e^(−rT) N(d₂)</text>
+  <text class="dg-label-xs" x="285" y="111" text-anchor="middle">履約成本項</text>
+  <line class="dg-arrow-line" x1="285" y1="120" x2="252" y2="226" marker-end="url(#dg-bs-arrow)"></line>
+
+  <rect class="dg-callout-strike" x="410" y="80" width="150" height="40" rx="8"></rect>
+  <text class="dg-label-sm" x="485" y="97" text-anchor="middle">K e^(−rT) N(−d₂)</text>
+  <text class="dg-label-xs" x="485" y="111" text-anchor="middle">履約價折現項</text>
+  <line class="dg-arrow-line" x1="485" y1="120" x2="498" y2="218" marker-end="url(#dg-bs-arrow)"></line>
+
+  <rect class="dg-callout-accent" x="580" y="80" width="150" height="40" rx="8"></rect>
+  <text class="dg-label-sm" x="655" y="97" text-anchor="middle">S₀N(−d₁)</text>
+  <text class="dg-label-xs" x="655" y="111" text-anchor="middle">標的物價值項（權重）</text>
+  <line class="dg-arrow-line" x1="620" y1="120" x2="600" y2="190" marker-end="url(#dg-bs-arrow)"></line>
+
+  <rect class="dg-callout" x="40" y="370" width="308" height="54" rx="10"></rect>
+  <text class="dg-label-sm" x="194" y="392" text-anchor="middle">買權 = 現貨項 − 履約成本</text>
+  <text class="dg-label-xs" x="194" y="408" text-anchor="middle">S₀N(d₁) − K e^(−rT)N(d₂)</text>
+
+  <rect class="dg-callout" x="412" y="370" width="308" height="54" rx="10"></rect>
+  <text class="dg-label-sm" x="566" y="392" text-anchor="middle">賣權 = 履約價折現 − 標的物價值</text>
+  <text class="dg-label-xs" x="566" y="408" text-anchor="middle">K e^(−rT)N(−d₂) − S₀N(−d₁)</text>
+
+  <text class="dg-label-xs" x="380" y="462" text-anchor="middle">陰影是風險中立下的價內機率 N(d₂)／N(−d₂)；N(d₁)／N(−d₁) 是現貨項權重，不是同一塊面積。</text>
+  <text class="dg-label-xs" x="380" y="480" text-anchor="middle">折現只作用在履約價 K；S₀ 已經是現值。</text>
+</svg>`,
+    variables: [
+      ["S₀", "期初價格", "目前標的物現貨價格。"],
+      ["K", "履約價", "到期時買賣標的的約定價格。"],
+      ["N(d₁)", "現貨項權重", "風險中立測度下標的物價值項的權重，也是買權 Delta。"],
+      ["N(d₂)", "履約項權重", "風險中立測度下履約價成本項的權重；可解讀為到期價內的風險中立機率。"],
+      ["N(−d₁)", "賣權現貨權重", "由 N(−d₁)=1−N(d₁) 得到；賣權標的物項的累積機率值，也是賣權 Delta 絕對值的來源。"],
+      ["N(−d₂)", "賣權履約權重", "由 N(−d₂)=1−N(d₂) 得到；賣權履約價折現項的累積機率值。"]
+    ],
+    parameters: [
+      ["r", "利率", "連續複利無風險利率，用於履約價折現。"],
+      ["T", "到期", "距到期年數，也是履約價折現與 d₁、d₂ 的時間基礎。"],
+      ["σ", "波動", "標的報酬的年化波動率。"],
+      ["d₁、d₂", "中間值", "整合現貨價、履約價、利率、波動率與到期時間的中間變數。"]
+    ],
+    note: "此圖為公式概念示意：陰影代表風險中立下的價內機率 N(d₂)／N(−d₂)；N(d₁)／N(−d₁) 是現貨項權重／Delta，不是同一塊面積，也不應直接解讀為單純的獲利機率。折現只作用在履約價 K，現貨價 S₀ 已是現在價值。"
+  },
   "investment-14#2": {
     sectionTitle: "學習重點 3：杜邦分析與盈餘品質",
     title: "杜邦分析：ROE 的三因子分解",

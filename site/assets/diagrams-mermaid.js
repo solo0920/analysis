@@ -575,6 +575,12 @@ window.MERMAID_RELATED = {
       "href": "#/lab/mermaid?diagram=investment-bs-derivation"
     }
   ],
+  "investment-09#3-3": [
+    {
+      "label": "Black–Scholes 推導流程",
+      "href": "#/lab/mermaid?diagram=investment-bs-derivation"
+    }
+  ],
   "accounting-14#0-3": [
     {
       "label": "會計循環（MMD）",
