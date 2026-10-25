@@ -4563,7 +4563,7 @@
       '    <p class="lede">流程、樹狀與推導步驟改用 Mermaid；既有手繪 SVG 保留為 SVG 版，新推導圖另有建置時產生的靜態 SVG。連續函數曲線與精確座標圖仍保留原本手繪 SVG。</p>',
       "  </header>",
       '  <div class="mermaid-lab-intro">',
-      "    <p><strong>轉換範圍：</strong>" + existingCount + " 張既有流程／樹狀圖，加上 " + newCount + " 張新推導圖（總體模型地圖、CAPM／SML、債券利率風險、選擇權定價、Black–Scholes）。每張圖上方可切換「SVG」與「MMD」；MMD 只在切換時才載入 Pele。右上角 <strong>◈</strong> 可切換全站風格，網站 CSS 與 Pele 會同步套用。31 張未轉換的量化曲線圖與速查表保留原 SVG／表格，並以「相關圖表」連到這些 MMD 地圖。</p>",
+      "    <p><strong>轉換範圍：</strong>" + existingCount + " 張既有流程／樹狀圖，加上 " + newCount + " 張新推導圖（總體模型地圖、CAPM／SML、債券利率風險、選擇權定價、Black–Scholes）。每張圖上方可切換「SVG」與「MMD」；MMD 只在切換時才載入 Pele。右上角 <strong>◈</strong> 可切換全站風格，網站 CSS 與 Pele 會同步套用。31 張量化曲線圖與 1 張速查表保留原 SVG／表格，並以 32 組「相關圖表」連到 MMD 地圖或總覽。</p>",
       '    <span class="mermaid-lab-style-hint"><span aria-hidden="true">◈</span>右上角切換全站風格</span>',
       "  </div>",
       '  <nav class="mermaid-lab-index" aria-label="Mermaid 圖表索引">' + index + "</nav>",

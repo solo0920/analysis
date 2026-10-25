@@ -417,9 +417,9 @@
 - [x] 已確認計算／申論題改用結構化版型：`content-written-layouts.js` 支援段落、清單、獨立公式與表格，首批 49 題套用表格／多層資料版型；其餘題目以 `(1)`、`(2)`、`●`、中文序号、句號、分號與「請問／試問」等提問語自動分段。表格在 390px 於 `written-table-wrap` 內水平滑動，頁面本身無水平溢出；49 個版型題與 33 個全域 QA 狀態均 0 水平溢出、0 console errors、0 `.katex-error`；驗證器新增版型 ID、區塊類型、表格欄列數、清單、公式與文字 KaTeX 檢查，共 117,083 項、失敗 0。
 - [x] 已確認 `#/lab/mermaid` 第 1 步 Pilot：`macro-01#2`、`accounting-14#0`、`accounting-15#0`、`investment-14#2` 四張圖都有「SVG／MMD」切換；MMD 只在切換時載入 Pele，`file://` 可直接開啟，1280px／390px 均無頁面水平溢出，0 console errors、0 `.katex-error`。
 - [x] 已確認右上角 ◈ 全站風格切換器提供紙感、藍圖、極簡、高對比、森林、海洋、夕陽、櫻花、終端機、薰衣草十種 CSS style；切換後會設定 `data-site-style` 同步套用全站 CSS，並即時注入 `<style id="pele-style-runtime">`，destroy 既有 Pele 實例並重新 mount，選擇保存在 `localStorage`；深淺主題下皆可運作。
-- [x] 已確認四張 Pilot 圖的 `.mmd` 可從 `site/diagrams/mermaid/` 直接下載／複製，manifest 與 `diagrams-mermaid.js` 同步；驗證器新增 manifest、`.mmd`、Pele bundle、bootstrap 與風格切換器檢查，共 157,015 項、失敗 0。
+- [x] 已確認四張 Pilot 圖的 `.mmd` 可從 `site/diagrams/mermaid/` 直接下載／複製，manifest 與 `diagrams-mermaid.js` 同步；驗證器新增 manifest、`.mmd`、Pele bundle、bootstrap 與風格切換器檢查，共 157,018 項、失敗 0。
 - [x] 已完成第 2 步 P0：`macro-01#0-2`（GDP → GNI）、`macro-05#0`（存款貨幣創造）、`macro-11#0`（直接／間接金融）、`accounting-23#1`（四大財務報表連結）加入 MMD；連同 Pilot 的 4 張，A 類流程圖全部可用 SVG／MMD 切換。
 - [x] 已完成第 3 步 P1：`macro-01#0`（兩部門循環）、`accounting-14#0-2`（四表一附註）、`accounting-14#0-4`（交易到財務報表）、`accounting-15#1`（杜邦三／五階段）加入 MMD，並保留 `accounting-15#0` 的營收→淨利→比率；T 字帳速查圖 `accounting-14#0-3` 保留表格，連到會計循環。
 - [x] 已完成第 4 步 P2：新增 5 張推導圖 `macro-06#0-2`（總體模型地圖）、`investment-05#1-2`（CAPM／SML）、`investment-07#2-2`（債券利率風險）、`investment-09#0`（選擇權定價地圖）、`investment-09#3-2`（Black–Scholes 推導）；由 `build-mermaid-static.mjs` 產生靜態 SVG fallback，SVG／MMD 兩版都可切換。
-- [x] 已完成第 5 步：31 張未轉換的量化曲線圖與速查表保留原 SVG／表格，並在 `MERMAID_RELATED` 加入 31 組「相關圖表」連結（總體模型、CAPM／SML、債券風險、選擇權定價、BS 推導、會計循環）；`#/lab/mermaid` 改為 17 張圖表總覽，依總體／會計／投資分組。
-- [x] 已完成 17 張 MMD 的 1280px／390px、深淺主題、`file://`、靜態章節頁與 `#/models/macro` QA：17 個 SVG／MMD 切換、5 張新推導圖靜態 SVG、31 組相關連結、0 頁面水平溢出、0 console errors、0 `.katex-error`；驗證器 157,015 項、失敗 0。
+- [x] 已完成第 5 步：31 張量化曲線圖與 1 張速查表保留原 SVG／表格，並在 `MERMAID_RELATED` 加入 32 組「相關圖表」連結（總體模型、CAPM／SML、債券風險、選擇權定價、BS 推導、會計循環）；`#/lab/mermaid` 改為 17 張圖表總覽，依總體／會計／投資分組。
+- [x] 已完成 17 張 MMD 的 1280px／390px、深淺主題、`file://`、靜態章節頁與 `#/models/macro` QA：17 個 SVG／MMD 切換、5 張新推導圖靜態 SVG、32 組相關連結、0 頁面水平溢出、0 console errors、0 `.katex-error`；驗證器 157,018 項、失敗 0。

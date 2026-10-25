@@ -700,5 +700,11 @@ window.MERMAID_RELATED = {
       "label": "CAPM／SML 推導地圖",
       "href": "#/lab/mermaid?diagram=investment-capm-sml"
     }
+  ],
+  "investment-15#2": [
+    {
+      "label": "Mermaid 圖表總覽",
+      "href": "#/lab/mermaid"
+    }
   ]
 };
