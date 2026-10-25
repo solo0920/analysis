@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-Hant-TW">
+<html lang="zh-Hant-TW" data-site-style="paper">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,10 +32,13 @@
     (function () {
       try {
         var saved = localStorage.getItem("analyst-theme");
+        var siteStyle = localStorage.getItem("analyst-site-style");
         var dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
         document.documentElement.dataset.theme = saved || (dark ? "dark" : "light");
+        document.documentElement.dataset.siteStyle = siteStyle || "paper";
       } catch (e) {
         document.documentElement.dataset.theme = "light";
+        document.documentElement.dataset.siteStyle = "paper";
       }
     })();
   </script>
@@ -216,7 +219,7 @@
         <button class="icon-btn" id="theme-toggle" type="button" aria-label="切換深色模式" title="切換深色模式">
           <span aria-hidden="true">◐</span>
         </button>
-        <button class="icon-btn" id="pele-style-toggle" type="button" aria-label="切換圖表風格" title="切換圖表風格" aria-haspopup="true" aria-expanded="false" aria-controls="pele-style-menu">
+        <button class="icon-btn" id="pele-style-toggle" type="button" aria-label="切換全站風格" title="切換全站風格" aria-haspopup="true" aria-expanded="false" aria-controls="pele-style-menu">
           <span aria-hidden="true">◈</span>
         </button>
         <button class="icon-btn menu-btn" id="menu-toggle" type="button" aria-label="開啟選單" aria-expanded="false" aria-controls="main-nav">
@@ -224,10 +227,10 @@
         </button>
         <div class="pele-style-menu" id="pele-style-menu" hidden>
           <div class="pele-style-menu-head">
-            <strong>圖表風格</strong>
-            <span>套用於 Mermaid × Pele 圖表</span>
+            <strong>全站風格</strong>
+            <span>同步套用網站 CSS 與 Pele 圖表</span>
           </div>
-          <div class="pele-style-options" role="group" aria-label="選擇圖表風格">
+          <div class="pele-style-options" role="group" aria-label="選擇全站風格">
             <button type="button" data-pele-style-option="paper" aria-pressed="true">
               <span class="pele-style-swatch is-paper" aria-hidden="true"></span>
               <span><strong>紙感</strong><small>沿用網站色票</small></span>
@@ -245,7 +248,7 @@
               <span><strong>高對比</strong><small>黑底螢光重點</small></span>
             </button>
           </div>
-          <p class="pele-style-menu-note">切換後會立即重新 render 已開啟的 Pele 圖表。</p>
+          <p class="pele-style-menu-note">切換後會立即套用全站 CSS，並重新 render 已開啟的 Pele 圖表。</p>
         </div>
       </div>
     </div>

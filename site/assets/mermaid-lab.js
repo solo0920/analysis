@@ -1,12 +1,13 @@
 /* Mermaid × Pele Pilot runtime.
-   1. 只在讀者切到「新版 mmd」時才載入 Pele flowchart bundle。
-   2. 右上角圖表風格切換器會即時注入 CSS，並 destroy／重新 mount 已開啟的 Pele 圖表。
+   1. 只在讀者切到「MMD」時才載入 Pele flowchart bundle；「SVG」使用原本的靜態圖。
+   2. 右上角全站風格切換器會同步套用網站 CSS 與 Pele CSS，並 destroy／重新 mount 已開啟的 Pele 圖表。
    3. .mmd 可直接複製或下載，方便帶到其他網頁或應用程式。 */
 
 (function () {
   "use strict";
 
   const STYLE_KEY = "analyst-pele-style";
+  const SITE_STYLE_KEY = "analyst-site-style";
   const DEFAULT_STYLE = "paper";
   const STYLES = {
     paper: { label: "紙感", note: "沿用網站色票" },
@@ -14,126 +15,220 @@
     mono: { label: "極簡", note: "黑白線稿" },
     contrast: { label: "高對比", note: "黑底螢光重點" }
   };
+  const STYLE_THEME_COLORS = {
+    paper: { light: "#0f5c5c", dark: "#0f1719" },
+    blueprint: { light: "#eef4fa", dark: "#081a2b" },
+    mono: { light: "#f7f7f4", dark: "#121212" },
+    contrast: { light: "#ffffff", dark: "#000000" }
+  };
 
   const PRESET_CSS = {
     paper: "",
-    blueprint: [
-      '[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele {',
-      '  --pele-bg: #081a2b;',
-      '  --pele-fg: #d9ecff;',
-      '  --pele-muted: #8eb8dd;',
-      '  --pele-line: #5d93c4;',
-      '  --pele-surface: #0e2740;',
-      '  --pele-surface-alt: #0a2036;',
-      '  --pele-border: #3e6f9e;',
-      '  --pele-accent: #67c7ff;',
-      '  --pele-critical: #ff8c7a;',
-      '  --pele-font: var(--font-mono);',
-      '  --pele-font-mono: var(--font-mono);',
-      '  --pele-radius: 0px;',
-      '  background-color: #081a2b;',
-      '  background-image: linear-gradient(rgba(103, 199, 255, 0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(103, 199, 255, 0.09) 1px, transparent 1px);',
-      '  background-size: 24px 24px;',
-      '}',
-      '[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-cluster rect {',
-      '  fill: #0b2238 !important;',
-      '  fill-opacity: 0.92;',
-      '  stroke: #3e6f9e !important;',
-      '  stroke-dasharray: 4 4;',
-      '}',
-      '[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-cluster-label { fill: #8eb8dd !important; }',
-      '[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-node rect {',
-      '  fill: #0e2740 !important;',
-      '  stroke: #5d93c4 !important;',
-      '}',
-      '[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-node.accent rect {',
-      '  fill: #123c5c !important;',
-      '  stroke: #67c7ff !important;',
-      '}',
-      '[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-node.outcome rect {',
-      '  fill: #3a2a12 !important;',
-      '  stroke: #ffb86b !important;',
-      '}',
-      '[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-node .pele-label { fill: #d9ecff !important; }',
-      '[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-node.accent .pele-label { fill: #eaf7ff !important; }',
-      '[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-node.outcome .pele-label { fill: #ffe3bd !important; }',
-      '[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-edge path { stroke: #5d93c4 !important; }',
-      '[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-marker { fill: #5d93c4 !important; }'
-    ].join("\n"),
-    mono: [
-      '[data-pele-style="mono"] .diagram-canvas-mermaid .pele {',
-      '  --pele-bg: transparent;',
-      '  --pele-fg: var(--ink);',
-      '  --pele-muted: var(--muted);',
-      '  --pele-line: var(--ink);',
-      '  --pele-surface: transparent;',
-      '  --pele-surface-alt: transparent;',
-      '  --pele-border: var(--ink);',
-      '  --pele-accent: var(--ink);',
-      '  --pele-critical: var(--danger);',
-      '  --pele-radius: 0px;',
-      '  background: transparent;',
-      '}',
-      '[data-pele-style="mono"] .diagram-canvas-mermaid .pele-cluster rect {',
-      '  fill: transparent !important;',
-      '  stroke: var(--line-strong) !important;',
-      '  stroke-dasharray: 3 3;',
-      '}',
-      '[data-pele-style="mono"] .diagram-canvas-mermaid .pele-cluster-label { fill: var(--muted) !important; }',
-      '[data-pele-style="mono"] .diagram-canvas-mermaid .pele-node rect {',
-      '  fill: transparent !important;',
-      '  stroke: var(--ink) !important;',
-      '  stroke-width: 1.2px !important;',
-      '}',
-      '[data-pele-style="mono"] .diagram-canvas-mermaid .pele-node.accent rect,',
-      '[data-pele-style="mono"] .diagram-canvas-mermaid .pele-node.outcome rect {',
-      '  fill: transparent !important;',
-      '  stroke: var(--ink) !important;',
-      '  stroke-width: 2px !important;',
-      '}',
-      '[data-pele-style="mono"] .diagram-canvas-mermaid .pele-node .pele-label { fill: var(--ink) !important; }',
-      '[data-pele-style="mono"] .diagram-canvas-mermaid .pele-edge path { stroke: var(--line-strong) !important; }',
-      '[data-pele-style="mono"] .diagram-canvas-mermaid .pele-marker { fill: var(--line-strong) !important; }'
-    ].join("\n"),
-    contrast: [
-      '[data-pele-style="contrast"] .diagram-canvas-mermaid .pele {',
-      '  --pele-bg: #000000;',
-      '  --pele-fg: #ffffff;',
-      '  --pele-muted: #ffe600;',
-      '  --pele-line: #ffffff;',
-      '  --pele-surface: #111111;',
-      '  --pele-surface-alt: #000000;',
-      '  --pele-border: #ffffff;',
-      '  --pele-accent: #ffe600;',
-      '  --pele-critical: #ff5252;',
-      '  --pele-radius: 2px;',
-      '  background: #000000;',
-      '}',
-      '[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-cluster rect {',
-      '  fill: #111111 !important;',
-      '  stroke: #ffe600 !important;',
-      '  stroke-dasharray: 5 4;',
-      '}',
-      '[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-cluster-label { fill: #ffe600 !important; }',
-      '[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-node rect {',
-      '  fill: #111111 !important;',
-      '  stroke: #ffffff !important;',
-      '  stroke-width: 2px !important;',
-      '}',
-      '[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-node.accent rect {',
-      '  fill: #ffe600 !important;',
-      '  stroke: #ffe600 !important;',
-      '}',
-      '[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-node.outcome rect {',
-      '  fill: #00e5ff !important;',
-      '  stroke: #00e5ff !important;',
-      '}',
-      '[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-node .pele-label { fill: #ffffff !important; }',
-      '[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-node.accent .pele-label,',
-      '[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-node.outcome .pele-label { fill: #000000 !important; }',
-      '[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-edge path { stroke: #ffffff !important; }',
-      '[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-marker { fill: #ffffff !important; }'
-    ].join("\n")
+    blueprint: `
+[data-pele-style="blueprint"][data-theme="light"] .diagram-canvas-mermaid .pele {
+  --pele-bg: #eef4fa;
+  --pele-fg: #0b2740;
+  --pele-muted: #527a9c;
+  --pele-line: #8fb3d1;
+  --pele-surface: #f8fbff;
+  --pele-surface-alt: #eaf2fa;
+  --pele-border: #8fb3d1;
+  --pele-accent: #0b5f8a;
+  --pele-critical: #a33a32;
+  --pele-font: var(--font-mono);
+  --pele-font-mono: var(--font-mono);
+  --pele-radius: 0px;
+  --pele-node-fill: #f8fbff;
+  --pele-node-stroke: #8fb3d1;
+  --pele-accent-fill: #d7eaf8;
+  --pele-accent-stroke: #0b5f8a;
+  --pele-outcome-fill: #f7e3c8;
+  --pele-outcome-stroke: #a05a00;
+  --pele-label: #0b2740;
+  --pele-accent-label: #08496b;
+  --pele-outcome-label: #6b3d00;
+  --pele-cluster-fill: #eaf2fa;
+  --pele-cluster-stroke: #b8cfe3;
+  --pele-cluster-label: #527a9c;
+  --pele-edge: #8fb3d1;
+  --pele-marker: #8fb3d1;
+  --pele-grid: rgba(11, 95, 138, 0.09);
+  background-color: #eef4fa;
+  background-image: linear-gradient(var(--pele-grid) 1px, transparent 1px), linear-gradient(90deg, var(--pele-grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+[data-pele-style="blueprint"][data-theme="dark"] .diagram-canvas-mermaid .pele {
+  --pele-bg: #081a2b;
+  --pele-fg: #d9ecff;
+  --pele-muted: #8eb8dd;
+  --pele-line: #5d93c4;
+  --pele-surface: #0e2740;
+  --pele-surface-alt: #0a2036;
+  --pele-border: #3e6f9e;
+  --pele-accent: #67c7ff;
+  --pele-critical: #ff8c7a;
+  --pele-font: var(--font-mono);
+  --pele-font-mono: var(--font-mono);
+  --pele-radius: 0px;
+  --pele-node-fill: #0e2740;
+  --pele-node-stroke: #5d93c4;
+  --pele-accent-fill: #123c5c;
+  --pele-accent-stroke: #67c7ff;
+  --pele-outcome-fill: #3a2a12;
+  --pele-outcome-stroke: #ffb86b;
+  --pele-label: #d9ecff;
+  --pele-accent-label: #eaf7ff;
+  --pele-outcome-label: #ffe3bd;
+  --pele-cluster-fill: #0b2238;
+  --pele-cluster-stroke: #3e6f9e;
+  --pele-cluster-label: #8eb8dd;
+  --pele-edge: #5d93c4;
+  --pele-marker: #5d93c4;
+  --pele-grid: rgba(103, 199, 255, 0.09);
+  background-color: #081a2b;
+  background-image: linear-gradient(var(--pele-grid) 1px, transparent 1px), linear-gradient(90deg, var(--pele-grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-cluster rect {
+  fill: var(--pele-cluster-fill) !important;
+  fill-opacity: 0.92;
+  stroke: var(--pele-cluster-stroke) !important;
+  stroke-dasharray: 4 4;
+}
+[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-cluster-label { fill: var(--pele-cluster-label) !important; }
+[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-node rect {
+  fill: var(--pele-node-fill) !important;
+  stroke: var(--pele-node-stroke) !important;
+}
+[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-node.accent rect {
+  fill: var(--pele-accent-fill) !important;
+  stroke: var(--pele-accent-stroke) !important;
+}
+[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-node.outcome rect {
+  fill: var(--pele-outcome-fill) !important;
+  stroke: var(--pele-outcome-stroke) !important;
+}
+[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-node .pele-label { fill: var(--pele-label) !important; }
+[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-node.accent .pele-label { fill: var(--pele-accent-label) !important; }
+[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-node.outcome .pele-label { fill: var(--pele-outcome-label) !important; }
+[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-edge path { stroke: var(--pele-edge) !important; }
+[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-marker { fill: var(--pele-marker) !important; }
+`,
+    mono: `
+[data-pele-style="mono"] .diagram-canvas-mermaid .pele {
+  --pele-bg: transparent;
+  --pele-fg: var(--ink);
+  --pele-muted: var(--muted);
+  --pele-line: var(--ink);
+  --pele-surface: transparent;
+  --pele-surface-alt: transparent;
+  --pele-border: var(--ink);
+  --pele-accent: var(--ink);
+  --pele-critical: var(--danger);
+  --pele-radius: 0px;
+  background: transparent;
+}
+[data-pele-style="mono"] .diagram-canvas-mermaid .pele-cluster rect {
+  fill: transparent !important;
+  stroke: var(--line-strong) !important;
+  stroke-dasharray: 3 3;
+}
+[data-pele-style="mono"] .diagram-canvas-mermaid .pele-cluster-label { fill: var(--muted) !important; }
+[data-pele-style="mono"] .diagram-canvas-mermaid .pele-node rect {
+  fill: transparent !important;
+  stroke: var(--ink) !important;
+  stroke-width: 1.2px !important;
+}
+[data-pele-style="mono"] .diagram-canvas-mermaid .pele-node.accent rect,
+[data-pele-style="mono"] .diagram-canvas-mermaid .pele-node.outcome rect {
+  fill: transparent !important;
+  stroke: var(--ink) !important;
+  stroke-width: 2px !important;
+}
+[data-pele-style="mono"] .diagram-canvas-mermaid .pele-node .pele-label { fill: var(--ink) !important; }
+[data-pele-style="mono"] .diagram-canvas-mermaid .pele-edge path { stroke: var(--line-strong) !important; }
+[data-pele-style="mono"] .diagram-canvas-mermaid .pele-marker { fill: var(--line-strong) !important; }
+`,
+    contrast: `
+[data-pele-style="contrast"][data-theme="light"] .diagram-canvas-mermaid .pele {
+  --pele-bg: #ffffff;
+  --pele-fg: #000000;
+  --pele-muted: #333333;
+  --pele-line: #000000;
+  --pele-surface: #ffffff;
+  --pele-surface-alt: #f5f5f5;
+  --pele-border: #000000;
+  --pele-accent: #000000;
+  --pele-critical: #c00000;
+  --pele-radius: 2px;
+  --pele-node-fill: #ffffff;
+  --pele-node-stroke: #000000;
+  --pele-accent-fill: #ffe600;
+  --pele-accent-stroke: #000000;
+  --pele-outcome-fill: #00e5ff;
+  --pele-outcome-stroke: #000000;
+  --pele-label: #000000;
+  --pele-accent-label: #000000;
+  --pele-outcome-label: #000000;
+  --pele-cluster-fill: #f5f5f5;
+  --pele-cluster-stroke: #000000;
+  --pele-cluster-label: #000000;
+  --pele-edge: #000000;
+  --pele-marker: #000000;
+  background: #ffffff;
+}
+[data-pele-style="contrast"][data-theme="dark"] .diagram-canvas-mermaid .pele {
+  --pele-bg: #000000;
+  --pele-fg: #ffffff;
+  --pele-muted: #ffe600;
+  --pele-line: #ffffff;
+  --pele-surface: #111111;
+  --pele-surface-alt: #000000;
+  --pele-border: #ffffff;
+  --pele-accent: #ffe600;
+  --pele-critical: #ff5252;
+  --pele-radius: 2px;
+  --pele-node-fill: #111111;
+  --pele-node-stroke: #ffffff;
+  --pele-accent-fill: #ffe600;
+  --pele-accent-stroke: #ffe600;
+  --pele-outcome-fill: #00e5ff;
+  --pele-outcome-stroke: #00e5ff;
+  --pele-label: #ffffff;
+  --pele-accent-label: #000000;
+  --pele-outcome-label: #000000;
+  --pele-cluster-fill: #111111;
+  --pele-cluster-stroke: #ffe600;
+  --pele-cluster-label: #ffe600;
+  --pele-edge: #ffffff;
+  --pele-marker: #ffffff;
+  background: #000000;
+}
+[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-cluster rect {
+  fill: var(--pele-cluster-fill) !important;
+  stroke: var(--pele-cluster-stroke) !important;
+  stroke-dasharray: 5 4;
+}
+[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-cluster-label { fill: var(--pele-cluster-label) !important; }
+[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-node rect {
+  fill: var(--pele-node-fill) !important;
+  stroke: var(--pele-node-stroke) !important;
+  stroke-width: 2px !important;
+}
+[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-node.accent rect {
+  fill: var(--pele-accent-fill) !important;
+  stroke: var(--pele-accent-stroke) !important;
+}
+[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-node.outcome rect {
+  fill: var(--pele-outcome-fill) !important;
+  stroke: var(--pele-outcome-stroke) !important;
+}
+[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-node .pele-label { fill: var(--pele-label) !important; }
+[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-node.accent .pele-label,
+[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-node.outcome .pele-label { fill: var(--pele-accent-label) !important; }
+[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-edge path { stroke: var(--pele-edge) !important; }
+[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-marker { fill: var(--pele-marker) !important; }
+`
   };
 
   const currentScript = document.currentScript;
@@ -177,7 +272,8 @@
 
   function readSavedStyle() {
     try {
-      const saved = window.localStorage.getItem(STYLE_KEY);
+      const saved = window.localStorage.getItem(SITE_STYLE_KEY) ||
+        window.localStorage.getItem(STYLE_KEY);
       return STYLES[saved] ? saved : DEFAULT_STYLE;
     } catch (error) {
       return DEFAULT_STYLE;
@@ -186,10 +282,19 @@
 
   function saveStyle(name) {
     try {
+      window.localStorage.setItem(SITE_STYLE_KEY, name);
       window.localStorage.setItem(STYLE_KEY, name);
     } catch (error) {
       /* file:// 或隱私模式可能停用 localStorage */
     }
+  }
+
+  function updateThemeColor(name) {
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (!meta) return;
+    const dark = document.documentElement.getAttribute("data-theme") === "dark";
+    const pair = STYLE_THEME_COLORS[name] || STYLE_THEME_COLORS.paper;
+    meta.setAttribute("content", dark ? pair.dark : pair.light);
   }
 
   function updateMenuState() {
@@ -200,14 +305,22 @@
       button.setAttribute("aria-pressed", active ? "true" : "false");
       button.classList.toggle("is-active", active);
     });
+    const toggle = document.getElementById("pele-style-toggle");
+    if (toggle && STYLES[currentStyle]) {
+      const label = "切換全站風格（目前：" + STYLES[currentStyle].label + "）";
+      toggle.setAttribute("aria-label", label);
+      toggle.title = label;
+    }
   }
 
   function applyStyle(name, options) {
     const opts = options || {};
     const next = STYLES[name] ? name : DEFAULT_STYLE;
     currentStyle = next;
+    document.documentElement.setAttribute("data-site-style", next);
     document.documentElement.setAttribute("data-pele-style", next);
     ensureStyleElement().textContent = PRESET_CSS[next] || "";
+    updateThemeColor(next);
     updateMenuState();
     if (opts.remount !== false) {
       remountAll();
@@ -299,7 +412,7 @@
     const style = window.getComputedStyle(element);
     const mono = style.getPropertyValue("--font-mono").trim() || undefined;
     const sans = style.getPropertyValue("--font-sans").trim() || style.fontFamily || undefined;
-    const fontFamily = document.documentElement.getAttribute("data-pele-style") === "blueprint" && mono ? mono : sans;
+    const fontFamily = document.documentElement.getAttribute("data-site-style") === "blueprint" && mono ? mono : sans;
     const fontFamilyMono = mono;
     return {
       fontFamily: fontFamily,
@@ -342,7 +455,7 @@
         console.warn("Pele render error:", key, instance.error);
       }
     } catch (error) {
-      element.innerHTML = '<p class="mermaid-error">新版圖表渲染失敗：' + escapeHtml(error.message) + "</p>";
+      element.innerHTML = '<p class="mermaid-error">MMD 圖表渲染失敗：' + escapeHtml(error.message) + "</p>";
     }
   }
 
@@ -350,24 +463,24 @@
     compare.querySelectorAll("[data-mermaid-view]").forEach(function (button) {
       button.setAttribute("aria-pressed", button.getAttribute("data-mermaid-view") === view ? "true" : "false");
     });
-    const legacy = compare.querySelector('[data-mermaid-panel="legacy"]');
-    const next = compare.querySelector('[data-mermaid-panel="new"]');
+    const svgPanel = compare.querySelector('[data-mermaid-panel="svg"]');
+    const mmdPanel = compare.querySelector('[data-mermaid-panel="mmd"]');
     const hint = compare.querySelector(".diagram-compare-hint");
-    if (legacy) legacy.hidden = view !== "legacy";
-    if (next) next.hidden = view !== "new";
+    if (svgPanel) svgPanel.hidden = view !== "svg";
+    if (mmdPanel) mmdPanel.hidden = view !== "mmd";
     if (hint) {
-      hint.textContent = view === "new" ? "目前顯示新版 Mermaid／Pele" : "目前顯示舊版手繪 SVG";
+      hint.textContent = view === "mmd" ? "目前顯示 MMD（Pele）" : "目前顯示 SVG";
     }
   }
 
-  async function showNew(compare) {
+  async function showMmd(compare) {
     const key = compare.getAttribute("data-mermaid-key");
-    const panel = compare.querySelector('[data-mermaid-panel="new"]');
+    const panel = compare.querySelector('[data-mermaid-panel="mmd"]');
     if (!panel) return;
-    setView(compare, "new");
+    setView(compare, "mmd");
     if (mounts.has(panel) || loadingPanels.has(panel)) return;
     loadingPanels.add(panel);
-    panel.innerHTML = '<p class="mermaid-loading">正在載入 Pele 並渲染新版圖表…</p>';
+    panel.innerHTML = '<p class="mermaid-loading">正在載入 Pele 並渲染 MMD 圖表…</p>';
     try {
       await ensurePele();
       if (panel.hidden || !document.documentElement.contains(panel)) return;
@@ -379,9 +492,9 @@
     }
   }
 
-  function showLegacy(compare) {
-    const panel = compare.querySelector('[data-mermaid-panel="new"]');
-    setView(compare, "legacy");
+  function showSvg(compare) {
+    const panel = compare.querySelector('[data-mermaid-panel="mmd"]');
+    setView(compare, "svg");
     if (!panel) return;
     const record = mounts.get(panel);
     if (record) {
@@ -468,10 +581,10 @@
     if (viewButton) {
       const compare = viewButton.closest("[data-mermaid-key]");
       if (!compare) return;
-      if (viewButton.getAttribute("data-mermaid-view") === "new") {
-        showNew(compare);
+      if (viewButton.getAttribute("data-mermaid-view") === "mmd") {
+        showMmd(compare);
       } else {
-        showLegacy(compare);
+        showSvg(compare);
       }
       return;
     }
@@ -504,6 +617,11 @@
     bindStyleMenu();
     applyStyle(readSavedStyle(), { remount: false, persist: false });
     document.addEventListener("click", handleDocumentClick);
+    if (window.MutationObserver) {
+      new MutationObserver(function () {
+        updateThemeColor(currentStyle);
+      }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    }
   }
 
   window.MermaidLab = {

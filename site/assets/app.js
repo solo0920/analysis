@@ -977,11 +977,11 @@
     const parametersTable = renderDiagramTable("參數說明", diagram.parameters);
     const compareBar = mmd ? [
       '    <div class="diagram-compare-bar">',
-      '      <div class="diagram-view-toggle" role="group" aria-label="圖表版本">',
-      '        <button type="button" data-mermaid-view="legacy" aria-pressed="true">舊版</button>',
-      '        <button type="button" data-mermaid-view="new" aria-pressed="false">新版 mmd</button>',
+      '      <div class="diagram-view-toggle" role="group" aria-label="圖表格式">',
+      '        <button type="button" data-mermaid-view="svg" aria-pressed="true" aria-label="顯示 SVG 圖表" title="顯示原本的 SVG">SVG</button>',
+      '        <button type="button" data-mermaid-view="mmd" aria-pressed="false" aria-label="顯示 MMD 圖表" title="用 Pele 渲染 MMD">MMD</button>',
       "      </div>",
-      '      <span class="diagram-compare-hint">目前顯示舊版手繪 SVG</span>',
+      '      <span class="diagram-compare-hint">目前顯示 SVG</span>',
       '      <div class="diagram-tools">',
       '        <button type="button" class="diagram-tool-btn" data-mermaid-copy="' + escapeHtml(mmd.key) + '">複製 .mmd</button>',
       '        <button type="button" class="diagram-tool-btn" data-mermaid-download="' + escapeHtml(mmd.key) + '">下載 .mmd</button>',
@@ -997,8 +997,8 @@
     const visual = mmd ? [
       '  <div class="diagram-visual diagram-compare" data-mermaid-key="' + escapeHtml(mmd.key) + '">',
       compareBar,
-      '    <div class="diagram-canvas diagram-canvas-legacy" data-mermaid-panel="legacy">' + diagram.svg + "</div>",
-      '    <div class="diagram-canvas diagram-canvas-mermaid" data-mermaid-panel="new" hidden aria-live="polite"></div>',
+      '    <div class="diagram-canvas diagram-canvas-legacy" data-mermaid-panel="svg">' + diagram.svg + "</div>",
+      '    <div class="diagram-canvas diagram-canvas-mermaid" data-mermaid-panel="mmd" hidden aria-live="polite"></div>',
       '    <p class="diagram-scroll-hint">圖表較寬，可左右滑動查看。</p>',
       sourceBlock,
       "  </div>"
@@ -4508,12 +4508,12 @@
       "  </nav>",
       '  <header class="page-head">',
       '    <p class="eyebrow">Mermaid × Pele · 第 1 步 Pilot</p>',
-      "    <h1>4 張流程圖的舊版／新版對照</h1>",
-      '    <p class="lede">用同一份 .mmd 來源測試 Pele 的排版、網站 CSS 變數注入與圖表風格切換；確認效果後再決定是否進行第 2–5 步。</p>',
+      "    <h1>4 張流程圖的 SVG／MMD 對照</h1>",
+      '    <p class="lede">用同一份 .mmd 來源測試 Pele 的排版、全站 CSS 風格切換與 SVG／MMD 對照；確認效果後再決定是否進行第 2–5 步。</p>',
       "  </header>",
       '  <div class="mermaid-lab-intro">',
-      "    <p><strong>Pilot 範圍：</strong>GDP → PDI、會計循環、營業收入 → 淨利 → 比率、杜邦分析。每張圖上方可切換「舊版」手繪 SVG 與「新版 mmd」；新版只在切換時才載入 Pele，並套用網站 CSS 變數。右上角 <strong>◈</strong> 可切換圖表風格，切換後會 destroy 並重新 render 已開啟的 Pele 圖表。這頁不會替換原章節的預設圖。</p>",
-      '    <span class="mermaid-lab-style-hint"><span aria-hidden="true">◈</span>右上角切換圖表風格</span>',
+      "    <p><strong>Pilot 範圍：</strong>GDP → PDI、會計循環、營業收入 → 淨利 → 比率、杜邦分析。每張圖上方可切換「SVG」與「MMD」；MMD 只在切換時才載入 Pele，並套用網站 CSS 變數。右上角 <strong>◈</strong> 可切換全站風格，網站 CSS 與 Pele 會同步套用；切換後會 destroy 並重新 render 已開啟的 Pele 圖表。這頁不會替換原章節的預設圖。</p>",
+      '    <span class="mermaid-lab-style-hint"><span aria-hidden="true">◈</span>右上角切換全站風格</span>',
       "  </div>",
       '  <nav class="mermaid-lab-index" aria-label="Pilot 圖表索引">' + index + "</nav>",
       '  <div class="notice"><strong>輸出：</strong>每張圖的「複製 .mmd」與「下載 .mmd」可直接帶到其他網頁或應用程式；來源檔同步放在 <code>site/diagrams/mermaid/</code>（<a href="diagrams/mermaid/manifest.json" target="_blank" rel="noopener">manifest.json</a>）。連續函數曲線圖與 T 字帳／速查表暫不轉換。</div>',
@@ -5067,7 +5067,7 @@
       return "技術分析 50 指標：5 類指標、公式、參數、限制與章節連結。";
     }
     if (parts[0] === "lab" && parts[1] === "mermaid") {
-      return "Mermaid × Pele 第 1 步 Pilot：4 張流程圖的舊版／新版對照、.mmd 下載與多種圖表風格切換。";
+      return "Mermaid × Pele 第 1 步 Pilot：4 張流程圖的 SVG／MMD 對照、.mmd 下載與多種全站風格切換。";
     }
     if (parts[0] === "models" && parts[1] === "macro") {
       return "總體經濟模型總覽：28 張章節模型圖、模型定義、變數、限制與 KaTeX 公式。";

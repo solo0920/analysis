@@ -228,7 +228,7 @@ function pageHtml(options) {
   const assetPrefix = prefix(depth);
   return [
     "<!doctype html>",
-    '<html lang="zh-Hant-TW">',
+    '<html lang="zh-Hant-TW" data-site-style="paper">',
     "<head>",
     '  <meta charset="utf-8">',
     '  <meta name="viewport" content="width=device-width, initial-scale=1">',
@@ -259,10 +259,13 @@ function pageHtml(options) {
     "    (function () {",
     "      try {",
     '        var saved = localStorage.getItem("analyst-theme");',
+    '        var siteStyle = localStorage.getItem("analyst-site-style");',
     '        var dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;',
     '        document.documentElement.dataset.theme = saved || (dark ? "dark" : "light");',
+    '        document.documentElement.dataset.siteStyle = siteStyle || "paper";',
     "      } catch (error) {",
     '        document.documentElement.dataset.theme = "light";',
+    '        document.documentElement.dataset.siteStyle = "paper";',
     "      }",
     "    })();",
     "  </script>",

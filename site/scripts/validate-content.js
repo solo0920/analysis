@@ -2156,7 +2156,19 @@ mermaidManifestEntries.forEach(function (entry) {
 const bootstrapSource = read("site/assets/bootstrap.js");
 check(bootstrapSource.indexOf("diagrams-mermaid.js") !== -1 && bootstrapSource.indexOf("mermaid-lab.js") !== -1, "bootstrap 未載入 Mermaid Pilot 資料或執行檔");
 const indexSource = read("site/index.html");
-check(indexSource.indexOf('id="pele-style-toggle"') !== -1 && indexSource.indexOf('id="pele-style-menu"') !== -1, "index.html 缺少右上角圖表風格切換器");
+check(indexSource.indexOf('id="pele-style-toggle"') !== -1 && indexSource.indexOf('id="pele-style-menu"') !== -1, "index.html 缺少右上角全站風格切換器");
+check(indexSource.indexOf('data-site-style="paper"') !== -1 && indexSource.indexOf("analyst-site-style") !== -1, "index.html 缺少全站風格初始化");
+const stylesSource = read("site/assets/styles.css");
+["blueprint", "mono", "contrast"].forEach(function (style) {
+  check(stylesSource.indexOf('[data-site-style="' + style + '"]') !== -1, "styles.css 缺少全站風格：" + style);
+});
+const labSource = read("site/assets/mermaid-lab.js");
+check(labSource.indexOf("data-site-style") !== -1 && labSource.indexOf("analyst-site-style") !== -1, "mermaid-lab.js 未同步全站風格");
+const appSource = read("site/assets/app.js");
+check(appSource.indexOf('data-mermaid-view="svg"') !== -1 && appSource.indexOf('data-mermaid-view="mmd"') !== -1, "圖表切換按鈕應為 SVG／MMD");
+const staticBuilderSource = read("site/scripts/build-static-landing-pages.js");
+check(staticBuilderSource.indexOf("analyst-site-style") !== -1, "靜態頁產生器未同步全站風格");
+check(read("site/chapters/accounting-01/index.html").indexOf("analyst-site-style") !== -1, "靜態章節頁未套用全站風格初始化");
 const peleBundlePath = path.join(siteDir, "assets", "vendor", "pele-flow.min.js");
 check(fs.existsSync(peleBundlePath), "找不到 Pele vendor bundle");
 if (fs.existsSync(peleBundlePath)) {
