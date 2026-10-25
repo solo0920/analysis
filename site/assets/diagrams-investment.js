@@ -326,12 +326,10 @@ window.INVESTMENT_DIAGRAMS = {
   <rect class="dg-panel" x="16" y="16" width="356" height="488" rx="14"></rect>
   <rect class="dg-panel" x="388" y="16" width="356" height="488" rx="14"></rect>
 
-  <text class="dg-label dg-label-strong" x="194" y="36" text-anchor="middle">買權 Call</text>
-  <text class="dg-label-sm" x="150" y="55" text-anchor="start">C = S₀N(d₁)</text>
-  <text class="dg-label-sm" x="150" y="73" text-anchor="start">− K e<tspan class="dg-sup" dy="-5">−rT</tspan><tspan dy="5"> N(d₂)</tspan></text>
-  <text class="dg-label dg-label-strong" x="566" y="36" text-anchor="middle">賣權 Put</text>
-  <text class="dg-label-sm" x="512" y="55" text-anchor="start">P = K e<tspan class="dg-sup" dy="-5">−rT</tspan><tspan dy="5"> N(−d₂)</tspan></text>
-  <text class="dg-label-sm" x="512" y="73" text-anchor="start">− S₀N(−d₁)</text>
+  <text class="dg-label dg-label-strong" x="194" y="46" text-anchor="middle">買權 Call</text>
+  <text class="dg-label-sm" x="194" y="68" text-anchor="middle">C = S₀N(d₁) − K e<tspan class="dg-sup" dy="-5">−rT</tspan><tspan dy="5"> N(d₂)</tspan></text>
+  <text class="dg-label dg-label-strong" x="566" y="46" text-anchor="middle">賣權 Put</text>
+  <text class="dg-label-sm" x="566" y="68" text-anchor="middle">P = K e<tspan class="dg-sup" dy="-5">−rT</tspan><tspan dy="5"> N(−d₂) − S₀N(−d₁)</tspan></text>
 
   <line class="dg-axis" x1="44" y1="330" x2="344" y2="330" marker-end="url(#dg-bs-arrow)"></line>
   <line class="dg-axis" x1="44" y1="330" x2="44" y2="96" marker-end="url(#dg-bs-arrow)"></line>
