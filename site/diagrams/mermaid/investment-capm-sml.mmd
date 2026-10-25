@@ -1,0 +1,23 @@
+flowchart TD
+  accTitle: CAPM 與證券市場線推導地圖
+  accDescr: 從個別資產與效率前緣出發，加入無風險資產形成資本配置線，切點為市場投資組合，進而得到 CAPM、證券市場線與 α。
+
+  ASSETS["個別資產與投資組合"]:::accent
+  EF["效率前緣<br/>最小變異數邊界"]
+  CAL["資本配置線 CAL<br/>Rf + 風險溢酬"]
+  MKT["市場投資組合 M<br/>切點組合"]
+  CAPM["CAPM<br/>E(Ri) = Rf + βi [E(Rm) − Rf]"]:::outcome
+  SML["證券市場線 SML<br/>β 與必要報酬"]
+  BETA["β = Cov(Ri, Rm) ÷ Var(Rm)"]
+  ALPHA["α = 實際報酬 − CAPM 必要報酬"]
+
+  ASSETS --> EF
+  EF --> CAL
+  CAL --> MKT
+  MKT --> CAPM
+  CAPM --> SML
+  CAPM --> BETA
+  SML --> ALPHA
+
+  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px
+  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px

@@ -1,0 +1,23 @@
+flowchart TD
+  accTitle: 債券利率風險地圖
+  accDescr: 從債券價格與現金流出發，經殖利率、存續期間與凸性，得到價格變動近似，並連到信用價差與利率風險管理。
+
+  PRICE["債券價格<br/>現金流折現"]:::accent
+  YTM["殖利率 YTM<br/>價格與殖利率反向"]
+  DUR["存續期間<br/>Macaulay D、修正 D*"]
+  CONV["凸性<br/>二階敏感度"]
+  APPROX["價格近似<br/>ΔP/P ≈ −D* Δy + ½ × 凸性 × (Δy)²"]:::outcome
+  CREDIT["信用價差、流動性"]
+  RISK["利率風險管理<br/>避險、免疫"]
+
+  PRICE --> YTM
+  YTM --> DUR
+  DUR --> CONV
+  DUR --> APPROX
+  CONV --> APPROX
+  YTM --> CREDIT
+  CREDIT --> RISK
+  APPROX --> RISK
+
+  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px
+  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px

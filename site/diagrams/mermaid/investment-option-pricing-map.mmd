@@ -1,0 +1,17 @@
+flowchart TD
+  accTitle: 選擇權定價地圖
+  accDescr: 從無套利原則出發，經二項式模型與風險中立機率，連到 Black–Scholes 與 Greeks；另列美式選擇權的提前履約分支與數值方法。
+
+  NOARB["無套利原則<br/>同風險同報酬"]:::accent
+  BIN["二項式模型<br/>u、d、q"] --> BS["Black–Scholes<br/>C = S N(d1) − K e^(−rT) N(d2)"]:::outcome
+  NOARB --> BIN
+  BIN --> RN["風險中立機率<br/>q = (e^(rΔt) − d) ÷ (u − d)"]
+  RN --> BS
+  BS --> GREEKS["Greeks<br/>Delta、Gamma、Vega、Theta、Rho"]
+  BIN --> AM["美式選擇權<br/>提前履約分支"]
+  AM --> TREE["三項式／樹狀數值法"]
+  BS --> SMILE["波動率微笑／偏斜"]
+  GREEKS --> RISK["風險管理與避險"]
+
+  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px
+  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px

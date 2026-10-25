@@ -101,7 +101,7 @@ const diagramFiles = [
 const investmentDiagramFiles = ["diagrams-investment.js"];
 const accountingDiagramFiles = ["diagrams-accounting.js"];
 const nobelDiagramFiles = ["diagrams-nobel.js"];
-const mermaidFiles = ["diagrams-mermaid.js"];
+const mermaidFiles = ["diagrams-mermaid.js", "diagrams-mermaid-static.js"];
 
 function loadContent() {
   const context = { window: {} };
@@ -122,6 +122,8 @@ function loadContent() {
     nobelData: context.window.NOBEL_DATA || { rows: [], groups: [], meta: {} },
     nobelDiagrams: context.window.NOBEL_DIAGRAMS || {},
     mermaidDiagrams: context.window.MERMAID_DIAGRAMS || {},
+    mermaidStaticSvgs: context.window.MERMAID_STATIC_SVGS || {},
+    mermaidRelated: context.window.MERMAID_RELATED || {},
     macroEvolution: context.window.MACRO_EVOLUTION || { meta: {}, stages: [] },
     ratioFormulas: context.window.INVESTMENT_RATIO_FORMULAS || [],
     optionPriorities: context.window.INVESTMENT_OPTION_PRIORITIES || [],
@@ -273,6 +275,8 @@ const accountingDiagrams = loaded.accountingDiagrams || {};
 const nobelData = loaded.nobelData;
 const nobelDiagrams = loaded.nobelDiagrams;
 const mermaidDiagrams = loaded.mermaidDiagrams || {};
+const mermaidStaticSvgs = loaded.mermaidStaticSvgs || {};
+const mermaidRelated = loaded.mermaidRelated || {};
 const macroEvolution = loaded.macroEvolution;
 const ratioFormulas = loaded.ratioFormulas;
 const optionPriorities = loaded.optionPriorities;
@@ -2132,18 +2136,29 @@ writtenQuestions.forEach(function (question) {
   }
 });
 
-/* Mermaid × Pele 第 1 步 Pilot */
+/* Mermaid × Pele 圖表（第 2–5 步） */
 const mermaidManifest = JSON.parse(read("site/diagrams/mermaid/manifest.json"));
 const mermaidManifestEntries = Array.isArray(mermaidManifest.diagrams) ? mermaidManifest.diagrams : [];
 const mermaidExistingDiagrams = Object.assign({}, diagrams, investmentDiagrams, accountingDiagrams);
 const mermaidKeys = Object.keys(mermaidDiagrams);
-check(mermaidManifestEntries.length === 4, "Mermaid Pilot 應有 4 張圖（目前 " + mermaidManifestEntries.length + " 張）");
-check(mermaidKeys.length === mermaidManifestEntries.length, "Mermaid Pilot 產生檔數量與 manifest 不一致（manifest " + mermaidManifestEntries.length + "、產生 " + mermaidKeys.length + "）");
+const mermaidNewEntries = mermaidManifestEntries.filter(function (entry) { return entry && entry.createDiagram; });
+check(mermaidManifestEntries.length === 17, "Mermaid 圖表應有 17 張（目前 " + mermaidManifestEntries.length + " 張）");
+check(mermaidNewEntries.length === 5, "Mermaid 新推導圖應有 5 張（目前 " + mermaidNewEntries.length + " 張）");
+check(mermaidKeys.length === mermaidManifestEntries.length, "Mermaid 產生檔數量與 manifest 不一致（manifest " + mermaidManifestEntries.length + "、產生 " + mermaidKeys.length + "）");
 mermaidManifestEntries.forEach(function (entry) {
   check(Boolean(entry && entry.key && entry.file), "Mermaid manifest 項目缺少 key 或 file");
   if (!entry || !entry.key || !entry.file) return;
   check(Boolean(mermaidDiagrams[entry.key]), "Mermaid 產生檔缺少圖表：" + entry.key);
-  check(Boolean(mermaidExistingDiagrams[entry.key]), "Mermaid 圖表 key 對應不到既有 SVG：" + entry.key);
+  if (entry.createDiagram) {
+    check(entry.generatedSvg === true, "Mermaid 新推導圖應標記 generatedSvg：" + entry.key);
+    check(typeof entry.title === "string" && entry.title.trim().length > 0, "Mermaid 新推導圖缺少 title：" + entry.key);
+    check(typeof entry.caption === "string" && entry.caption.trim().length > 0, "Mermaid 新推導圖缺少 caption：" + entry.key);
+    check(Array.isArray(entry.variables) && entry.variables.length >= 3, "Mermaid 新推導圖缺少 variables：" + entry.key);
+    check(Array.isArray(entry.parameters) && entry.parameters.length >= 3, "Mermaid 新推導圖缺少 parameters：" + entry.key);
+    check(Boolean(mermaidStaticSvgs[entry.key]) && String(mermaidStaticSvgs[entry.key]).indexOf("<svg") !== -1, "Mermaid 新推導圖缺少靜態 SVG：" + entry.key);
+  } else {
+    check(Boolean(mermaidExistingDiagrams[entry.key]), "Mermaid 圖表 key 對應不到既有 SVG：" + entry.key);
+  }
   const mmdPath = "site/diagrams/mermaid/" + entry.file;
   check(fs.existsSync(path.join(root, mmdPath)), "找不到 Mermaid 來源：" + mmdPath);
   if (!fs.existsSync(path.join(root, mmdPath))) return;
@@ -2153,8 +2168,18 @@ mermaidManifestEntries.forEach(function (entry) {
   check(!/classDef[^\n]*var\(/.test(mmdSource), "Mermaid 來源的 classDef 不應使用 var()（Pele 會解析失敗）：" + entry.file);
   check(Boolean(mermaidDiagrams[entry.key]) && mermaidDiagrams[entry.key].source.trim() === mmdSource, "diagrams-mermaid.js 與 .mmd 來源不同步：" + entry.file);
 });
+check(Object.keys(mermaidRelated).length >= 10, "Mermaid 相關圖表連結應至少 10 組（目前 " + Object.keys(mermaidRelated).length + " 組）");
+Object.keys(mermaidRelated).forEach(function (key) {
+  check(Boolean(mermaidExistingDiagrams[key]), "Mermaid 相關圖表 key 不存在：" + key);
+  const links = mermaidRelated[key];
+  check(Array.isArray(links) && links.length > 0, "Mermaid 相關圖表連結格式錯誤：" + key);
+  (Array.isArray(links) ? links : []).forEach(function (link) {
+    check(Boolean(link) && typeof link.label === "string" && typeof link.href === "string" && link.href.indexOf("#/") === 0, "Mermaid 相關圖表連結內容錯誤：" + key);
+  });
+});
+
 const bootstrapSource = read("site/assets/bootstrap.js");
-check(bootstrapSource.indexOf("diagrams-mermaid.js") !== -1 && bootstrapSource.indexOf("mermaid-lab.js") !== -1, "bootstrap 未載入 Mermaid Pilot 資料或執行檔");
+check(bootstrapSource.indexOf("diagrams-mermaid.js") !== -1 && bootstrapSource.indexOf("diagrams-mermaid-static.js") !== -1 && bootstrapSource.indexOf("mermaid-lab.js") !== -1, "bootstrap 未載入 Mermaid 圖表資料或執行檔");
 const indexSource = read("site/index.html");
 check(indexSource.indexOf('id="pele-style-toggle"') !== -1 && indexSource.indexOf('id="pele-style-menu"') !== -1, "index.html 缺少右上角全站風格切換器");
 check(indexSource.indexOf('data-site-style="paper"') !== -1 && indexSource.indexOf("analyst-site-style") !== -1, "index.html 缺少全站風格初始化");
@@ -2178,13 +2203,20 @@ if (fs.existsSync(peleBundlePath)) {
   check(peleBundle.indexOf("window.PeleFlow") !== -1, "Pele vendor bundle 未暴露 window.PeleFlow");
 }
 
+const mermaidNewMacroCount = mermaidNewEntries.filter(function (entry) { return entry.subject === "macro"; }).length;
+const mermaidNewInvestmentCount = mermaidNewEntries.filter(function (entry) { return entry.subject === "investment"; }).length;
+const totalMacroDiagrams = diagramKeys.length + mermaidNewMacroCount;
+const totalInvestmentDiagrams = investmentDiagramKeys.length + mermaidNewInvestmentCount;
+const totalAccountingDiagrams = accountingDiagramKeys.length;
+const totalChapterDiagrams = totalMacroDiagrams + totalInvestmentDiagrams + totalAccountingDiagrams;
+
 console.log("科目：" + content.subjects.length);
 console.log("章節：" + allChapters.length + "（總體經濟學 " + macro.chapters.length + "、投資學 " + investment.chapters.length + "、會計學 " + accounting.chapters.length + "、證券法規 " + law.chapters.length + "）");
 console.log("學習單元：" + totalSections + "（總體經濟學 " + macroSections + " 節、投資學 " + investmentSections + " 個重點、會計學 " + accountingSections + " 個單元、證券法規 " + lawSections + " 節）");
 console.log("名詞卡：" + totalTerms);
-console.log("章節圖：" + diagramKeys.length + "（總體經濟學；含 1 張教學流程圖與 1 張 NFIA 觀念圖）");
-console.log("教學圖：" + (investmentDiagramKeys.length + accountingDiagramKeys.length) + "（投資學 " + investmentDiagramKeys.length + "、會計學 " + accountingDiagramKeys.length + "）");
-console.log("Mermaid Pilot：" + mermaidKeys.length + " 張（" + mermaidManifestEntries.map(function (entry) { return entry.shortTitle || entry.key; }).join("、") + "）");
+console.log("章節圖：" + totalMacroDiagrams + "（總體經濟學；含 1 張教學流程圖、1 張 NFIA 觀念圖與 1 張 MMD 模型地圖）");
+console.log("教學圖：" + (totalInvestmentDiagrams + totalAccountingDiagrams) + "（投資學 " + totalInvestmentDiagrams + "、會計學 " + totalAccountingDiagrams + "）");
+console.log("Mermaid 圖表：" + mermaidKeys.length + " 張（既有流程／樹狀 " + (mermaidManifestEntries.length - mermaidNewEntries.length) + "、新推導 " + mermaidNewEntries.length + "；" + Object.keys(mermaidRelated).length + " 組相關連結）");
 console.log("諾貝爾年表：" + nobelRows.length + " 屆、 " + nobelDiagramKeys.length + " 組模型圖");
 console.log("學派演進圖：" + evolutionStages.length + " 個階段、 " + evolutionNodes.length + " 個節點、 " + evolutionModelLinkCount + " 個模型連結、 " + evolutionNobelYears.size + " 個諾貝爾里程碑");
 console.log("資料來源：" + content.sources.length);
@@ -2208,4 +2240,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log("驗證通過：總體經濟學（13 章、56 節）、投資學（16 章、58 個重點）、會計學（23 章、64 個單元）、證券法規（21 章、52 節、1,507 條官方全文）、" + (diagramKeys.length + investmentDiagramKeys.length + accountingDiagramKeys.length) + " 張章節教學圖（總體 " + diagramKeys.length + "、投資 " + investmentDiagramKeys.length + "、會計 " + accountingDiagramKeys.length + "）、119 個 KaTeX 公式、諾貝爾年表（1969–2026）與 107–115 年 3,710 題考古題練習庫結構一致。");
+console.log("驗證通過：總體經濟學（13 章、56 節）、投資學（16 章、58 個重點）、會計學（23 章、64 個單元）、證券法規（21 章、52 節、1,507 條官方全文）、" + totalChapterDiagrams + " 張章節教學圖（總體 " + totalMacroDiagrams + "、投資 " + totalInvestmentDiagrams + "、會計 " + totalAccountingDiagrams + "；含 " + mermaidNewEntries.length + " 張 Mermaid 新推導圖）、119 個 KaTeX 公式、諾貝爾年表（1969–2026）與 107–115 年 3,710 題考古題練習庫結構一致。");

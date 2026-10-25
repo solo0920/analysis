@@ -1,0 +1,24 @@
+flowchart TD
+  accTitle: 總體經濟模型地圖
+  accDescr: 從古典學派與凱因斯出發，經 IS-LM、AD-AS、Phillips 曲線到新凱因斯；另列 Solow 成長與政策分析。
+
+  CLASS["古典學派<br/>彈性價格、充分就業"]:::accent
+  KEYNES["凱因斯<br/>有效需求、工資僵固"]
+  ISLM["IS-LM<br/>商品與貨幣市場"]
+  ADAS["AD-AS<br/>短期與長期"]
+  PHILLIPS["Phillips 曲線<br/>通膨與失業"]
+  NK["新凱因斯<br/>NKPC、Taylor 規則"]
+  SOLOW["Solow 成長<br/>資本累積與穩態"]
+  POLICY["政策分析<br/>財政、貨幣、供給面"]:::outcome
+
+  CLASS --> ISLM
+  KEYNES --> ISLM
+  ISLM --> ADAS
+  ADAS --> PHILLIPS
+  PHILLIPS --> NK
+  CLASS --> SOLOW
+  NK --> POLICY
+  SOLOW --> POLICY
+
+  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px
+  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px

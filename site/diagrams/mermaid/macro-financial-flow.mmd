@@ -1,0 +1,30 @@
+flowchart LR
+  accTitle: 金融體系的資金流向：直接金融與間接金融
+  accDescr: 資金供給者透過金融市場直接購買證券，或透過銀行、保險與基金等金融中介放款與投資，把資金導向資金需求者。
+
+  SAVERS["資金供給者<br/>家計、企業、政府"]:::accent
+  USERS["資金需求者<br/>企業、政府、家計"]:::outcome
+
+  subgraph DIRECT["直接金融"]
+    direction TB
+    MARKET["金融市場<br/>股票、債券、票券"]
+    SEC["證券發行與交易"]
+    MARKET --> SEC
+  end
+
+  subgraph INDIRECT["間接金融"]
+    direction TB
+    BANK["金融中介<br/>銀行、保險、基金"]
+    LOAN["放款、投資與保險給付"]
+    BANK --> LOAN
+  end
+
+  SAVERS -- "購買證券" --> MARKET
+  SEC -- "資金" --> USERS
+  SAVERS -- "存款、保費、申購" --> BANK
+  LOAN -- "放款、投資" --> USERS
+  USERS -. "利息、股利、還本" .-> SAVERS
+  BANK -. "存款利息、給付" .-> SAVERS
+
+  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px
+  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px

@@ -1,0 +1,29 @@
+flowchart TD
+  accTitle: 兩部門循環流量圖
+  accDescr: 家計單位提供生產要素給廠商，廠商支付要素報酬；家計以所得購買最終財貨與勞務，廠商取得銷售收入，形成生產、所得與支出的循環。
+
+  HH["家計單位<br/>提供要素、取得所得"]:::accent
+  FIRM["廠商<br/>僱用要素、生產商品"]:::accent
+
+  subgraph FACTOR["生產要素市場"]
+    direction LR
+    F1["勞動、資本、土地"]
+    F2["要素報酬<br/>工資、租金、利息、利潤"]
+  end
+
+  subgraph GOODS["最終財貨市場"]
+    direction LR
+    G1["消費支出 C"]
+    G2["最終財貨與勞務"]
+  end
+
+  HH -- "提供生產要素" --> F1
+  F1 --> FIRM
+  FIRM -- "支付要素報酬" --> F2
+  F2 --> HH
+  HH -- "消費支出" --> G1
+  G1 --> FIRM
+  FIRM -- "提供商品與勞務" --> G2
+  G2 --> HH
+
+  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px

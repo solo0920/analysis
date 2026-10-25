@@ -9257,6 +9257,37 @@ html.is-routing body {
   background: var(--surface);
 }
 
+.diagram-related {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+}
+
+.diagram-related-label {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.diagram-related a {
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 0.72rem;
+  text-decoration: none;
+}
+
+.diagram-related a:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
 .diagram-source {
   margin-top: 10px;
   border-top: 1px dashed var(--line);
@@ -9329,6 +9360,31 @@ html.is-routing body {
   color: var(--accent);
   font-size: 1rem;
   line-height: 1;
+}
+
+.mermaid-lab-group {
+  margin-top: 28px;
+}
+
+.mermaid-lab-group-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.mermaid-lab-group-head h2 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+}
+
+.mermaid-lab-group-head span {
+  color: var(--muted);
+  font-size: 0.76rem;
 }
 
 .mermaid-lab-list {
@@ -10063,6 +10119,7 @@ html.is-routing body {
   .diagram-view-toggle,
   .diagram-view-toggle button,
   .diagram-tool-btn,
+  .diagram-related a,
   .mermaid-lab-index a,
   .mermaid-lab-style-hint
 ) {

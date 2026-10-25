@@ -1,13 +1,41 @@
 {
-  "version": 1,
-  "description": "Mermaid × Pele 第 1 步 Pilot：4 張流程／樹狀圖。網站以這裡的 .mmd 為來源，執行時用 Pele 渲染新版，舊版仍保留原本的手繪 SVG。",
+  "version": 2,
+  "description": "Mermaid × Pele 圖表：流程／樹狀／推導圖的 SVG／MMD 對照。網站以 .mmd 為來源；既有圖保留手繪 SVG，新增推導圖使用建置時產生的靜態 SVG。",
   "generatedAsset": "site/assets/diagrams-mermaid.js",
   "diagrams": [
+    {
+      "key": "macro-01#0",
+      "file": "macro-circular-flow.mmd",
+      "slug": "macro-circular-flow",
+      "order": 1,
+      "subject": "macro",
+      "subjectName": "總體經濟學",
+      "chapterId": "macro-01",
+      "chapterTitle": "國民所得與經濟福祉",
+      "section": 0,
+      "sectionTitle": "第1節 國民所得與GDP",
+      "shortTitle": "兩部門循環流量",
+      "note": "家計提供要素、廠商支付報酬，家計消費、廠商取得收入，形成生產、所得與支出的循環。"
+    },
+    {
+      "key": "macro-01#0-2",
+      "file": "macro-gdp-to-gni.mmd",
+      "slug": "macro-gdp-to-gni",
+      "order": 2,
+      "subject": "macro",
+      "subjectName": "總體經濟學",
+      "chapterId": "macro-01",
+      "chapterTitle": "國民所得與經濟福祉",
+      "section": 0,
+      "sectionTitle": "第1節 國民所得與GDP",
+      "shortTitle": "GDP → GNI（NFIA）",
+      "note": "GDP 依屬地原則，加上 NFIA 後得到 GNI；GNI 依國籍原則衡量本國居民所得。"
+    },
     {
       "key": "macro-01#2",
       "file": "macro-gdp-to-pdi.mmd",
       "slug": "macro-gdp-to-pdi",
-      "order": 1,
+      "order": 3,
       "subject": "macro",
       "subjectName": "總體經濟學",
       "chapterId": "macro-01",
@@ -18,10 +46,101 @@
       "note": "三面法等價，再依序調整 NFIA、折舊、間接稅、公司稅與移轉收支，最後得到 PDI。"
     },
     {
+      "key": "macro-05#0",
+      "file": "macro-deposit-creation.mmd",
+      "slug": "macro-deposit-creation",
+      "order": 4,
+      "subject": "macro",
+      "subjectName": "總體經濟學",
+      "chapterId": "macro-05",
+      "chapterTitle": "貨幣供需與貨幣政策",
+      "section": 0,
+      "sectionTitle": "第1節 存款貨幣的創造與貨幣供給",
+      "shortTitle": "存款貨幣創造",
+      "note": "原始存款經銀行保留準備、貸出超額準備，形成存款乘數。"
+    },
+    {
+      "key": "macro-06#0-2",
+      "file": "macro-model-map.mmd",
+      "slug": "macro-model-map",
+      "order": 5,
+      "subject": "macro",
+      "subjectName": "總體經濟學",
+      "chapterId": "macro-06",
+      "chapterTitle": "IS-LM模型",
+      "section": 0,
+      "sectionTitle": "第1節 IS曲線與LM曲線",
+      "shortTitle": "總體模型地圖",
+      "note": "此圖是模型關係地圖，不是單一模型的完整推導；各模型的假設與均衡條件仍以對應章節為準。",
+      "createDiagram": true,
+      "generatedSvg": true,
+      "kicker": "Mermaid 推導圖",
+      "title": "總體經濟模型地圖：從古典到新凱因斯",
+      "caption": "把古典學派、凱因斯、IS-LM、AD-AS、Phillips 曲線、新凱因斯與 Solow 成長放在同一張地圖，標示模型之間的傳承與政策分析位置。",
+      "variables": [
+        [
+          "Y",
+          "產出／所得",
+          "商品市場與勞動市場的共同結果。"
+        ],
+        [
+          "i",
+          "利率",
+          "IS-LM 的貨幣市場價格。"
+        ],
+        [
+          "π",
+          "通膨率",
+          "Phillips 曲線與 NKPC 的核心變數。"
+        ],
+        [
+          "u",
+          "失業率",
+          "勞動市場鬆緊程度。"
+        ]
+      ],
+      "parameters": [
+        [
+          "古典",
+          "彈性價格",
+          "充分就業與市場清算。"
+        ],
+        [
+          "凱因斯",
+          "有效需求",
+          "工資與價格僵固，短期產出由需求決定。"
+        ],
+        [
+          "NKPC",
+          "新凱因斯 Phillips 曲線",
+          "通膨取決於預期與產出缺口。"
+        ],
+        [
+          "Taylor",
+          "Taylor 規則",
+          "央行依通膨與產出缺口調整利率。"
+        ]
+      ]
+    },
+    {
+      "key": "macro-11#0",
+      "file": "macro-financial-flow.mmd",
+      "slug": "macro-financial-flow",
+      "order": 6,
+      "subject": "macro",
+      "subjectName": "總體經濟學",
+      "chapterId": "macro-11",
+      "chapterTitle": "金融體系",
+      "section": 0,
+      "sectionTitle": "第1節 金融體系",
+      "shortTitle": "直接金融與間接金融",
+      "note": "資金供給者透過金融市場直接買證券，或透過金融中介放款與投資，把資金導向需求者。"
+    },
+    {
       "key": "accounting-14#0",
       "file": "accounting-cycle.mmd",
       "slug": "accounting-cycle",
-      "order": 2,
+      "order": 7,
       "subject": "accounting",
       "subjectName": "會計學",
       "chapterId": "accounting-14",
@@ -32,10 +151,38 @@
       "note": "從交易、分錄、過帳到調整、結帳與下一會計期間的 11 個步驟。"
     },
     {
+      "key": "accounting-14#0-2",
+      "file": "accounting-statements-notes.mmd",
+      "slug": "accounting-statements-notes",
+      "order": 8,
+      "subject": "accounting",
+      "subjectName": "會計學",
+      "chapterId": "accounting-14",
+      "chapterTitle": "財務報表的基本觀念",
+      "section": 0,
+      "sectionTitle": "第1節 財務報表與一般公認會計原則",
+      "shortTitle": "四表一附註",
+      "note": "資產負債表、綜合損益表、權益變動表、現金流量表與附註的架構與勾稽。"
+    },
+    {
+      "key": "accounting-14#0-4",
+      "file": "accounting-transaction-to-statements.mmd",
+      "slug": "accounting-transaction-to-statements",
+      "order": 9,
+      "subject": "accounting",
+      "subjectName": "會計學",
+      "chapterId": "accounting-14",
+      "chapterTitle": "財務報表的基本觀念",
+      "section": 0,
+      "sectionTitle": "第1節 財務報表與一般公認會計原則",
+      "shortTitle": "交易到財務報表",
+      "note": "交易、分錄、過帳、試算、調整、編表與結帳的緊湊流程。"
+    },
+    {
       "key": "accounting-15#0",
       "file": "accounting-revenue-to-ratios.mmd",
       "slug": "accounting-revenue-to-ratios",
-      "order": 3,
+      "order": 10,
       "subject": "accounting",
       "subjectName": "會計學",
       "chapterId": "accounting-15",
@@ -46,10 +193,300 @@
       "note": "損益表主要結轉路徑，以及本期淨利連到的三項報酬率。"
     },
     {
+      "key": "accounting-15#1",
+      "file": "accounting-dupont.mmd",
+      "slug": "accounting-dupont",
+      "order": 11,
+      "subject": "accounting",
+      "subjectName": "會計學",
+      "chapterId": "accounting-15",
+      "chapterTitle": "財務報表分析",
+      "section": 1,
+      "sectionTitle": "第2節 比率分析",
+      "shortTitle": "杜邦三階段／五階段",
+      "note": "三階段 ROE 拆解，以及淨利率再拆成稅務效率、利息負擔與本業獲利。"
+    },
+    {
+      "key": "accounting-23#1",
+      "file": "accounting-four-statements.mmd",
+      "slug": "accounting-four-statements",
+      "order": 12,
+      "subject": "accounting",
+      "subjectName": "會計學",
+      "chapterId": "accounting-23",
+      "chapterTitle": "其他",
+      "section": 1,
+      "sectionTitle": "學習重點 2：跨報表整合與考前檢查",
+      "shortTitle": "四大財務報表連結",
+      "note": "本期淨利、期末權益與現金淨變動如何串起四張報表與附註。"
+    },
+    {
+      "key": "investment-05#1-2",
+      "file": "investment-capm-sml.mmd",
+      "slug": "investment-capm-sml",
+      "order": 13,
+      "subject": "investment",
+      "subjectName": "投資學",
+      "chapterId": "investment-05",
+      "chapterTitle": "CAPM模型",
+      "section": 1,
+      "sectionTitle": "學習重點 2：證券市場線與必要報酬率",
+      "shortTitle": "CAPM／SML 推導",
+      "note": "CAPM 是均衡模型；實證 α 可能來自模型假設不成立、因子遺漏或交易成本。",
+      "createDiagram": true,
+      "generatedSvg": true,
+      "kicker": "Mermaid 推導圖",
+      "title": "CAPM 與證券市場線：從效率前緣到 α",
+      "caption": "從效率前緣與資本配置線推到市場投資組合，再得到 CAPM、SML 與 α；β 衡量系統風險。",
+      "variables": [
+        [
+          "E(Ri)",
+          "資產 i 的預期報酬",
+          "CAPM 的結果。"
+        ],
+        [
+          "Rf",
+          "無風險利率",
+          "資本配置線的截距。"
+        ],
+        [
+          "βi",
+          "系統風險",
+          "Cov(Ri, Rm) ÷ Var(Rm)。"
+        ],
+        [
+          "E(Rm)",
+          "市場組合預期報酬",
+          "SML 的市場報酬。"
+        ],
+        [
+          "α",
+          "超額報酬",
+          "實際報酬 − CAPM 必要報酬。"
+        ]
+      ],
+      "parameters": [
+        [
+          "M",
+          "市場投資組合",
+          "CAL 與效率前緣的切點。"
+        ],
+        [
+          "SML",
+          "證券市場線",
+          "β 與必要報酬的線性關係。"
+        ],
+        [
+          "CAPM",
+          "資產定價模型",
+          "無套利、可無風險借貸等假設。"
+        ]
+      ]
+    },
+    {
+      "key": "investment-07#2-2",
+      "file": "investment-bond-risk.mmd",
+      "slug": "investment-bond-risk",
+      "order": 14,
+      "subject": "investment",
+      "subjectName": "投資學",
+      "chapterId": "investment-07",
+      "chapterTitle": "債券價格與收益率",
+      "section": 2,
+      "sectionTitle": "學習重點 3：存續期間與利率風險",
+      "shortTitle": "債券利率風險地圖",
+      "note": "存續期間近似在小幅利率變動時較準；大幅變動要加凸性項。",
+      "createDiagram": true,
+      "generatedSvg": true,
+      "kicker": "Mermaid 推導圖",
+      "title": "債券利率風險地圖：存續期間、凸性與價格近似",
+      "caption": "從債券價格與殖利率連到存續期間、凸性與價格變動近似，並標示信用價差與利率風險管理。",
+      "variables": [
+        [
+          "P",
+          "債券價格",
+          "未來現金流的現值。"
+        ],
+        [
+          "y",
+          "殖利率",
+          "每期折現率。"
+        ],
+        [
+          "D*",
+          "修正存續期間",
+          "Macaulay D ÷ (1 + y/k)。"
+        ],
+        [
+          "凸性",
+          "二階敏感度",
+          "價格對殖利率的二階導數。"
+        ],
+        [
+          "ΔP/P",
+          "價格變動率",
+          "存續期間與凸性的近似。"
+        ]
+      ],
+      "parameters": [
+        [
+          "k",
+          "每年付息次數",
+          "決定 D* 的年化。"
+        ],
+        [
+          "信用價差",
+          "違約與流動性補償",
+          "加到無風險利率上的溢酬。"
+        ],
+        [
+          "免疫",
+          "Duration matching",
+          "資產與負債存續期間配對。"
+        ]
+      ]
+    },
+    {
+      "key": "investment-09#0",
+      "file": "investment-option-pricing-map.mmd",
+      "slug": "investment-option-pricing-map",
+      "order": 15,
+      "subject": "investment",
+      "subjectName": "投資學",
+      "chapterId": "investment-09",
+      "chapterTitle": "選擇權",
+      "section": 0,
+      "sectionTitle": "學習重點 1：選擇權基本概念",
+      "shortTitle": "選擇權定價地圖",
+      "note": "此圖是方法地圖；公式與推導細節見選擇權章節與 Black–Scholes 推導圖。",
+      "createDiagram": true,
+      "generatedSvg": true,
+      "kicker": "Mermaid 推導圖",
+      "title": "選擇權定價地圖：無套利、二項式與 Black–Scholes",
+      "caption": "從無套利原則出發，經二項式與風險中立機率，連到 Black–Scholes、Greeks、美式提前履約與數值方法。",
+      "variables": [
+        [
+          "S",
+          "標的資產價格",
+          "選擇權的基礎資產。"
+        ],
+        [
+          "K",
+          "履約價格",
+          "到期執行價。"
+        ],
+        [
+          "T",
+          "到期時間",
+          "以年為單位。"
+        ],
+        [
+          "σ",
+          "波動率",
+          "Black–Scholes 的核心參數。"
+        ],
+        [
+          "q",
+          "風險中立機率",
+          "二項式模型的機率。"
+        ]
+      ],
+      "parameters": [
+        [
+          "u,d",
+          "上漲／下跌倍數",
+          "二項式樹的價格變動。"
+        ],
+        [
+          "r",
+          "無風險利率",
+          "連續複利。"
+        ],
+        [
+          "美式",
+          "提前履約",
+          "可在到期前執行。"
+        ],
+        [
+          "Greeks",
+          "敏感度",
+          "Delta、Gamma、Vega、Theta、Rho。"
+        ]
+      ]
+    },
+    {
+      "key": "investment-09#3-2",
+      "file": "investment-bs-derivation.mmd",
+      "slug": "investment-bs-derivation",
+      "order": 16,
+      "subject": "investment",
+      "subjectName": "投資學",
+      "chapterId": "investment-09",
+      "chapterTitle": "選擇權",
+      "section": 3,
+      "sectionTitle": "學習重點 4：Black–Scholes 定價與 Greeks",
+      "shortTitle": "Black–Scholes 推導",
+      "note": "推導假設包含無套利、連續交易、無摩擦、常數波動率與對數常態報酬；實務上需放寬。",
+      "createDiagram": true,
+      "generatedSvg": true,
+      "kicker": "Mermaid 推導圖",
+      "title": "Black–Scholes 推導流程：從 Itô 到 Greeks",
+      "caption": "從無套利與連續交易假設，經 Itô 引理、Black–Scholes PDE、風險中立期望與 d1/d2，得到封閉解與 Greeks。",
+      "variables": [
+        [
+          "C",
+          "買權價格",
+          "歐式買權。"
+        ],
+        [
+          "S",
+          "標的價格",
+          "連續交易。"
+        ],
+        [
+          "K",
+          "履約價",
+          "到期執行。"
+        ],
+        [
+          "r",
+          "無風險利率",
+          "連續複利。"
+        ],
+        [
+          "σ",
+          "波動率",
+          "常數假設。"
+        ],
+        [
+          "N(·)",
+          "標準常態 CDF",
+          "d1、d2 的累積機率。"
+        ]
+      ],
+      "parameters": [
+        [
+          "PDE",
+          "偏微分方程",
+          "Black–Scholes PDE。"
+        ],
+        [
+          "Q",
+          "風險中立測度",
+          "以無風險利率折現。"
+        ],
+        [
+          "Greeks",
+          "敏感度",
+          "Delta、Gamma、Vega、Theta、Rho。"
+        ]
+      ]
+    },
+    {
       "key": "investment-14#2",
       "file": "investment-dupont.mmd",
       "slug": "investment-dupont",
-      "order": 4,
+      "order": 17,
       "subject": "investment",
       "subjectName": "投資學",
       "chapterId": "investment-14",
@@ -59,5 +496,193 @@
       "shortTitle": "杜邦分析",
       "note": "把 ROE 拆成淨利率、總資產週轉率與權益乘數三個來源。"
     }
-  ]
+  ],
+  "related": {
+    "macro-06#0": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-07#0": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-09#2": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "investment-04#0": [
+      {
+        "label": "CAPM／SML 推導地圖",
+        "href": "#/lab/mermaid?diagram=investment-capm-sml"
+      }
+    ],
+    "investment-04#1": [
+      {
+        "label": "CAPM／SML 推導地圖",
+        "href": "#/lab/mermaid?diagram=investment-capm-sml"
+      }
+    ],
+    "investment-05#1": [
+      {
+        "label": "CAPM／SML 推導地圖",
+        "href": "#/lab/mermaid?diagram=investment-capm-sml"
+      }
+    ],
+    "investment-07#2": [
+      {
+        "label": "債券利率風險地圖",
+        "href": "#/lab/mermaid?diagram=investment-bond-risk"
+      }
+    ],
+    "macro-12#4": [
+      {
+        "label": "債券利率風險地圖",
+        "href": "#/lab/mermaid?diagram=investment-bond-risk"
+      }
+    ],
+    "investment-09#1": [
+      {
+        "label": "選擇權定價地圖",
+        "href": "#/lab/mermaid?diagram=investment-option-pricing-map"
+      }
+    ],
+    "investment-09#3": [
+      {
+        "label": "Black–Scholes 推導流程",
+        "href": "#/lab/mermaid?diagram=investment-bs-derivation"
+      }
+    ],
+    "accounting-14#0-3": [
+      {
+        "label": "會計循環（MMD）",
+        "href": "#/lab/mermaid?diagram=accounting-cycle"
+      }
+    ],
+    "macro-02#0": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-02#2": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-05#1": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-06#1": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-06#2": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-07#1": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-07#2": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-08#0": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-08#0-2": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-08#1": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-08#1-2": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-09#2-2": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-10#1": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-10#1-2": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-10#3": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-12#1": [
+      {
+        "label": "債券利率風險地圖",
+        "href": "#/lab/mermaid?diagram=investment-bond-risk"
+      }
+    ],
+    "macro-12#2": [
+      {
+        "label": "債券利率風險地圖",
+        "href": "#/lab/mermaid?diagram=investment-bond-risk"
+      }
+    ],
+    "macro-12#3": [
+      {
+        "label": "債券利率風險地圖",
+        "href": "#/lab/mermaid?diagram=investment-bond-risk"
+      }
+    ],
+    "macro-13#6": [
+      {
+        "label": "選擇權定價地圖",
+        "href": "#/lab/mermaid?diagram=investment-option-pricing-map"
+      }
+    ],
+    "investment-04#2": [
+      {
+        "label": "CAPM／SML 推導地圖",
+        "href": "#/lab/mermaid?diagram=investment-capm-sml"
+      }
+    ]
+  }
 }

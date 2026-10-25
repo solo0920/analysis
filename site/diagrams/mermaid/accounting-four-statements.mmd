@@ -1,0 +1,24 @@
+flowchart TD
+  accTitle: 四大財務報表的連結
+  accDescr: 本期淨利從綜合損益表流入權益變動表與現金流量表；期末權益進入資產負債表，現金淨變動調整資產負債表的現金餘額；附註說明四張報表的會計政策與估計。
+
+  NOTES["附註<br/>會計政策、估計、揭露"]:::accent
+
+  IS["綜合損益表<br/>收入 − 費用 = 本期淨利"]:::outcome
+  RE["權益變動表<br/>淨利、股利、其他綜合損益"]
+  CF["現金流量表<br/>營業、投資、籌資"]
+  BS["資產負債表<br/>資產 = 負債 + 權益"]
+
+  NOTES -.-> IS
+  NOTES -.-> RE
+  NOTES -.-> CF
+  NOTES -.-> BS
+
+  IS -- "本期淨利" --> RE
+  IS -- "非現金項目調整" --> CF
+  RE -- "期末權益" --> BS
+  CF -- "現金淨變動" --> BS
+  BS -- "期初餘額" --> IS
+
+  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px
+  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px

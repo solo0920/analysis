@@ -1,0 +1,19 @@
+flowchart TD
+  accTitle: 從交易到財務報表
+  accDescr: 交易經原始憑證、日記帳分錄、過帳、試算表、調整分錄與調整後試算表，最後編製財務報表並結帳。
+
+  T["交易與事項"]:::accent
+  J["日記帳分錄"]
+  L["過帳至分類帳"]
+  TB["試算表"]
+  ADJ["調整分錄"]
+  ATB["調整後試算表"]
+  FS["財務報表"]:::outcome
+  CL["結帳分錄"]
+  PCTB["結帳後試算表"]
+
+  T --> J --> L --> TB --> ADJ --> ATB --> FS --> CL --> PCTB
+  PCTB -. "下一會計期間" .-> T
+
+  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px
+  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px

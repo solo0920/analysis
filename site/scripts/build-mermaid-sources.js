@@ -45,10 +45,13 @@ const header = [
   ""
 ].join("\n");
 
+const related = manifest.related && typeof manifest.related === "object" ? manifest.related : {};
 fs.writeFileSync(
   outputPath,
-  header + "window.MERMAID_DIAGRAMS = " + JSON.stringify(entries, null, 2) + ";\n",
+  header +
+    "window.MERMAID_DIAGRAMS = " + JSON.stringify(entries, null, 2) + ";\n\n" +
+    "window.MERMAID_RELATED = " + JSON.stringify(related, null, 2) + ";\n",
   "utf8"
 );
 
-console.log("已產生 " + path.relative(root, outputPath) + "（" + Object.keys(entries).length + " 張圖）");
+console.log("已產生 " + path.relative(root, outputPath) + "（" + Object.keys(entries).length + " 張圖、" + Object.keys(related).length + " 組相關連結）");

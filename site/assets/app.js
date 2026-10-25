@@ -119,9 +119,30 @@
       window.ACCOUNTING_DIAGRAMS || {}
     );
     const mermaidDiagrams = window.MERMAID_DIAGRAMS || {};
+    const mermaidStaticSvgs = window.MERMAID_STATIC_SVGS || {};
+    const mermaidRelated = window.MERMAID_RELATED || {};
     Object.keys(mermaidDiagrams).forEach(function (key) {
+      const entry = mermaidDiagrams[key];
+      if (!diagrams[key] && entry.createDiagram) {
+        diagrams[key] = {
+          sectionTitle: entry.sectionTitle || "",
+          kicker: entry.kicker || "Mermaid 推導圖",
+          title: entry.title || entry.shortTitle || key,
+          caption: entry.caption || entry.note || "",
+          svg: mermaidStaticSvgs[key] || "",
+          svgIsMermaid: true,
+          variables: entry.variables || [],
+          parameters: entry.parameters || [],
+          note: entry.note || ""
+        };
+      }
       if (diagrams[key]) {
-        diagrams[key].mermaid = mermaidDiagrams[key];
+        diagrams[key].mermaid = entry;
+      }
+    });
+    Object.keys(mermaidRelated).forEach(function (key) {
+      if (diagrams[key]) {
+        diagrams[key].related = mermaidRelated[key];
       }
     });
     nobelData = window.NOBEL_DATA || { meta: {}, groups: [], rows: [] };
@@ -994,10 +1015,21 @@
       "      <pre><code>" + escapeHtml(mmd.source || "") + "</code></pre>",
       "    </details>"
     ].join("") : "";
+    const svgPanelClass = diagram.svgIsMermaid
+      ? "diagram-canvas diagram-canvas-mermaid diagram-canvas-static"
+      : "diagram-canvas diagram-canvas-legacy";
+    const relatedBlock = Array.isArray(diagram.related) && diagram.related.length ? [
+      '  <div class="diagram-related">',
+      '    <span class="diagram-related-label">相關圖表</span>',
+      diagram.related.map(function (item) {
+        return '<a href="' + escapeHtml(item.href) + '">' + escapeHtml(item.label) + "</a>";
+      }).join(""),
+      "  </div>"
+    ].join("") : "";
     const visual = mmd ? [
       '  <div class="diagram-visual diagram-compare" data-mermaid-key="' + escapeHtml(mmd.key) + '">',
       compareBar,
-      '    <div class="diagram-canvas diagram-canvas-legacy" data-mermaid-panel="svg">' + diagram.svg + "</div>",
+      '    <div class="' + svgPanelClass + '" data-mermaid-panel="svg">' + diagram.svg + "</div>",
       '    <div class="diagram-canvas diagram-canvas-mermaid" data-mermaid-panel="mmd" hidden aria-live="polite"></div>',
       '    <p class="diagram-scroll-hint">圖表較寬，可左右滑動查看。</p>',
       sourceBlock,
@@ -1026,6 +1058,7 @@
       diagram.formula ? '  <div class="diagram-formula"><span class="diagram-formula-label">模型式</span><span class="ratio-math">' + renderKatex(diagram.formula, true) + "</span></div>" : "",
       belowTables ? '  <div class="diagram-tables">' + belowTables + "</div>" : "",
       diagram.note ? '  <p class="diagram-note">' + renderInlineMath(diagram.note) + "</p>" : "",
+      relatedBlock,
       "</figure>"
     ].join("");
   }
@@ -4474,12 +4507,14 @@
       return renderNotFound();
     }
 
+    const existingCount = entries.filter(function (entry) { return !entry.createDiagram; }).length;
+    const newCount = entries.filter(function (entry) { return entry.createDiagram; }).length;
     const index = entries.map(function (entry) {
       return '<a href="#/lab/mermaid?diagram=' + encodeURIComponent(entry.slug) + '">' +
         escapeHtml(entry.shortTitle || entry.key) + "</a>";
     }).join("");
 
-    const cards = entries.map(function (entry) {
+    function renderLabCard(entry) {
       const diagram = diagrams[entry.key];
       const subject = getSubject(entry.subject);
       const chapter = getChapter(entry.chapterId);
@@ -4498,26 +4533,42 @@
         renderDiagram(Object.assign({}, diagram, { mermaid: entry }), { showSource: true }),
         "</article>"
       ].join("");
+    }
+
+    const subjectOrder = ["macro", "accounting", "investment"];
+    const groups = subjectOrder.map(function (subjectId) {
+      const subject = getSubject(subjectId);
+      const groupEntries = entries.filter(function (entry) { return entry.subject === subjectId; });
+      if (!groupEntries.length) return "";
+      return [
+        '<section class="mermaid-lab-group" aria-labelledby="mermaid-group-' + escapeHtml(subjectId) + '">',
+        '  <div class="mermaid-lab-group-head">',
+        '    <h2 id="mermaid-group-' + escapeHtml(subjectId) + '">' + escapeHtml(subject ? subject.name : subjectId) + "</h2>",
+        "    <span>" + groupEntries.length + " 張</span>",
+        "  </div>",
+        '  <div class="mermaid-lab-list">' + groupEntries.map(renderLabCard).join("") + "</div>",
+        "</section>"
+      ].join("");
     }).join("");
 
     return [
       '<div class="page mermaid-lab">',
       '  <nav class="breadcrumb" aria-label="麵包屑">',
       '    <a href="#/">首頁</a><span>/</span>',
-      "    <span>Mermaid × Pele 試作</span>",
+      "    <span>Mermaid × Pele 圖表</span>",
       "  </nav>",
       '  <header class="page-head">',
-      '    <p class="eyebrow">Mermaid × Pele · 第 1 步 Pilot</p>',
-      "    <h1>4 張流程圖的 SVG／MMD 對照</h1>",
-      '    <p class="lede">用同一份 .mmd 來源測試 Pele 的排版、全站 CSS 風格切換與 SVG／MMD 對照；確認效果後再決定是否進行第 2–5 步。</p>',
+      '    <p class="eyebrow">Mermaid × Pele · 第 2–5 步完成</p>',
+      "    <h1>" + entries.length + " 張 Mermaid 圖表的 SVG／MMD 對照</h1>",
+      '    <p class="lede">流程、樹狀與推導步驟改用 Mermaid；既有手繪 SVG 保留為 SVG 版，新推導圖另有建置時產生的靜態 SVG。連續函數曲線與精確座標圖仍保留原本手繪 SVG。</p>',
       "  </header>",
       '  <div class="mermaid-lab-intro">',
-      "    <p><strong>Pilot 範圍：</strong>GDP → PDI、會計循環、營業收入 → 淨利 → 比率、杜邦分析。每張圖上方可切換「SVG」與「MMD」；MMD 只在切換時才載入 Pele，並套用網站 CSS 變數。右上角 <strong>◈</strong> 可切換全站風格，網站 CSS 與 Pele 會同步套用；切換後會 destroy 並重新 render 已開啟的 Pele 圖表。這頁不會替換原章節的預設圖。</p>",
+      "    <p><strong>轉換範圍：</strong>" + existingCount + " 張既有流程／樹狀圖，加上 " + newCount + " 張新推導圖（總體模型地圖、CAPM／SML、債券利率風險、選擇權定價、Black–Scholes）。每張圖上方可切換「SVG」與「MMD」；MMD 只在切換時才載入 Pele。右上角 <strong>◈</strong> 可切換全站風格，網站 CSS 與 Pele 會同步套用。31 張未轉換的量化曲線圖與速查表保留原 SVG／表格，並以「相關圖表」連到這些 MMD 地圖。</p>",
       '    <span class="mermaid-lab-style-hint"><span aria-hidden="true">◈</span>右上角切換全站風格</span>',
       "  </div>",
-      '  <nav class="mermaid-lab-index" aria-label="Pilot 圖表索引">' + index + "</nav>",
-      '  <div class="notice"><strong>輸出：</strong>每張圖的「複製 .mmd」與「下載 .mmd」可直接帶到其他網頁或應用程式；來源檔同步放在 <code>site/diagrams/mermaid/</code>（<a href="diagrams/mermaid/manifest.json" target="_blank" rel="noopener">manifest.json</a>）。連續函數曲線圖與 T 字帳／速查表暫不轉換。</div>',
-      '  <div class="mermaid-lab-list">' + cards + "</div>",
+      '  <nav class="mermaid-lab-index" aria-label="Mermaid 圖表索引">' + index + "</nav>",
+      '  <div class="notice"><strong>輸出：</strong>每張圖的「複製 .mmd」與「下載 .mmd」可直接帶到其他網頁或應用程式；來源檔同步放在 <code>site/diagrams/mermaid/</code>（<a href="diagrams/mermaid/manifest.json" target="_blank" rel="noopener">manifest.json</a>）。T 字帳／速查表保留表格，連續函數曲線圖保留手繪 SVG。</div>',
+      groups,
       "</div>"
     ].join("");
   }
@@ -4929,7 +4980,7 @@
       "      <li>會計學的章名、順序與頁碼以 <code>documents/accounting_toc.md</code> 為依據；有列節名的章節照原節名呈現，未列節名的章節以「學習重點」標示，不冒充原書節名。第 23 章來源註明原書章號印為 22，本站依順序列為第 23 章。財務分析總架構、杜邦分析與四表連結的圖表內容另參考 <code>documents/accounting_contents.md</code>。</li>",
       "      <li>四個科目的來源目錄不同：總體經濟學使用 <code>gross_economics_contents.md</code>（第 11–13 章為金融市場）；投資學使用 <code>investment_contents.md</code>；會計學章節使用 <code>accounting_toc.md</code>、財務分析圖表使用 <code>accounting_contents.md</code>；證券法規使用 <code>securities_law_contents.md</code>；不以其中一科的章節補另一科。</li>",
       "      <li>依投資學來源目錄，章號由第十一章直接跳到第十三章；本站保留原始編號，不自行補章。</li>",
-      "      <li>總體經濟學另設「模型總覽」（#/models/macro），依 13 章集中 28 張章節圖（含 1 張國民所得流程圖、1 張 NFIA 觀念圖與 5 張學派模型補充）；「歷年諾貝爾經濟學獎」（#/nobel）則以 17 張模型模組呈現 58 屆資料，每組左右 1:1 排列屆別資料、模型圖與變數／參數，兩頁共用同一份模型資料。</li>",
+      "      <li>總體經濟學另設「模型總覽」（#/models/macro），依 13 章集中 29 張章節圖（含 1 張國民所得流程圖、1 張 NFIA 觀念圖、1 張 MMD 總體模型地圖與 5 張學派模型補充）；「歷年諾貝爾經濟學獎」（#/nobel）則以 17 張模型模組呈現 58 屆資料，每組左右 1:1 排列屆別資料、模型圖與變數／參數，兩頁共用同一份模型資料。</li>",
       "      <li>「考古題練習庫」（#/past-exams）收錄 107–115 年共 29 次、3,710 題選擇題；可依年度、科目與次別篩選，先作答再看答案。練習紀錄只存在瀏覽器，換裝置不會同步；申論題與計算題請點原始試題連結。</li>",
       "      <li>名詞與公式以臺灣官方網站（主計總處、中央銀行、金管會、證交所、期交所等）與繁體中文公開資料交叉核對。</li>",
       "      <li>同一公式若在不同來源有不同符號定義，應先確認假設與適用條件，再以官方或正式教材為準。</li>",
@@ -5067,10 +5118,10 @@
       return "技術分析 50 指標：5 類指標、公式、參數、限制與章節連結。";
     }
     if (parts[0] === "lab" && parts[1] === "mermaid") {
-      return "Mermaid × Pele 第 1 步 Pilot：4 張流程圖的 SVG／MMD 對照、.mmd 下載與多種全站風格切換。";
+      return "Mermaid × Pele 圖表總覽：17 張流程／樹狀／推導圖的 SVG／MMD 對照、.mmd 下載、全站風格與相關圖表連結。";
     }
     if (parts[0] === "models" && parts[1] === "macro") {
-      return "總體經濟模型總覽：28 張章節模型圖、模型定義、變數、限制與 KaTeX 公式。";
+      return "總體經濟模型總覽：29 張章節模型圖、模型定義、變數、限制與 KaTeX 公式。";
     }
     if (parts[0] === "nobel") {
       return "17 組諾貝爾經濟學獎模型、58 屆年份與得主、KaTeX 公式與屆別切換。";
@@ -5140,7 +5191,7 @@
       title = "技術分析 50 指標｜" + examBrand;
     } else if (route.parts[0] === "lab" && route.parts[1] === "mermaid") {
       html = renderMermaidLab();
-      title = "Mermaid × Pele 圖表試作｜" + examBrand;
+      title = "Mermaid × Pele 圖表總覽｜" + examBrand;
     } else if (route.parts[0] === "models" && route.parts[1] === "macro") {
       html = renderMacroModels();
       title = "總體經濟模型總覽｜" + examBrand;

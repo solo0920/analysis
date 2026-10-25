@@ -1,0 +1,26 @@
+flowchart TD
+  accTitle: 存款貨幣的創造與貨幣乘數
+  accDescr: 原始存款進入銀行後，銀行保留法定準備、貸出超額準備；貸款再存入其他銀行，形成一連串存款與放款，存款總額收斂到原始存款乘以貨幣乘數。
+
+  DEP["原始存款<br/>+100"]:::accent
+  A["銀行 A<br/>準備 +10、放款 +90"]
+  B["銀行 B<br/>存款 +90<br/>準備 +9、放款 +81"]
+  C["銀行 C<br/>存款 +81<br/>準備 +8.1、放款 +72.9"]
+  MORE["其餘銀行<br/>持續創造存款…"]
+  TOTAL["存款總額<br/>100 + 90 + 81 + …<br/>= 100 × (1 ÷ rr)"]:::outcome
+
+  DEP --> A --> B --> C --> MORE --> TOTAL
+
+  subgraph RULE["準備金與乘數"]
+    direction TB
+    RR["法定準備率 rr<br/>準備 = 存款 × rr"]
+    EX["超額準備<br/>放款 = 存款 × (1 − rr)"]
+    MM["簡單貨幣乘數<br/>m = 1 ÷ rr"]
+    RR --> MM
+    EX --> MM
+  end
+
+  MM -.-> TOTAL
+
+  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px
+  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px

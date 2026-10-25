@@ -1,0 +1,30 @@
+flowchart TD
+  accTitle: GDP 到 GNI：加上國外要素所得淨額
+  accDescr: GDP 依屬地原則衡量境內生產；加上本國居民在國外生產的要素所得，減去外國居民在本國生產的要素所得，得到 GNI。GNI 依國籍原則衡量本國居民的所得。
+
+  GDP["國內生產毛額 GDP<br/>屬地原則：在哪裡生產"]:::accent
+  GNI["國民總收入 GNI<br/>GDP + NFIA（GNP ≈ GNI）"]:::outcome
+
+  subgraph NFIA["國外要素所得淨額 NFIA"]
+    direction TB
+    OUT["本國居民在國外生產<br/>要素所得（+）"]
+    IN["外國居民在本國生產<br/>要素所得（−）"]
+    NET["NFIA = 本國在國外所得<br/>− 外國在本國所得"]
+    OUT --> NET
+    IN --> NET
+  end
+
+  GDP -- "+ NFIA" --> GNI
+  NET -.-> GNI
+
+  subgraph VIEW["看的角度"]
+    direction LR
+    WHERE["GDP：在哪裡生產"]
+    WHOSE["GNI：誰的所得"]
+  end
+
+  GDP -.-> WHERE
+  GNI -.-> WHOSE
+
+  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px
+  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px

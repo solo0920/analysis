@@ -1,0 +1,25 @@
+flowchart TD
+  accTitle: 主要財務報表架構：四表一附註
+  accDescr: 財務報導由資產負債表、綜合損益表、權益變動表、現金流量表與附註組成；四張報表透過淨利、期末權益與現金餘額互相勾稽。
+
+  subgraph FRAME["四表一附註"]
+    direction TB
+    NOTES["附註<br/>會計政策、估計、揭露"]:::accent
+    BS["資產負債表<br/>資產 = 負債 + 權益"]
+    IS["綜合損益表<br/>收入 − 費用 = 本期淨利"]:::outcome
+    RE["權益變動表<br/>淨利、股利、其他綜合損益"]
+    CF["現金流量表<br/>營業、投資、籌資"]
+  end
+
+  NOTES -.-> BS
+  NOTES -.-> IS
+  NOTES -.-> RE
+  NOTES -.-> CF
+  IS -- "本期淨利" --> RE
+  RE -- "期末權益" --> BS
+  IS -- "非現金調整" --> CF
+  CF -- "現金淨變動" --> BS
+  BS -- "期初餘額" --> IS
+
+  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px
+  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px
