@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "description": "Mermaid × Pele 第 1 步 Pilot：4 張流程／樹狀圖。網站以這裡的 .mmd 為來源，執行時用 Pele 渲染新版，舊版仍保留原本的手繪 SVG。",
+  "generatedAsset": "site/assets/diagrams-mermaid.js",
+  "diagrams": [
+    {
+      "key": "macro-01#2",
+      "file": "macro-gdp-to-pdi.mmd",
+      "slug": "macro-gdp-to-pdi",
+      "order": 1,
+      "subject": "macro",
+      "subjectName": "總體經濟學",
+      "chapterId": "macro-01",
+      "chapterTitle": "國民所得與經濟福祉",
+      "section": 2,
+      "sectionTitle": "第3節 其他國民所得衡量工具",
+      "shortTitle": "GDP → PDI",
+      "note": "三面法等價，再依序調整 NFIA、折舊、間接稅、公司稅與移轉收支，最後得到 PDI。"
+    },
+    {
+      "key": "accounting-14#0",
+      "file": "accounting-cycle.mmd",
+      "slug": "accounting-cycle",
+      "order": 2,
+      "subject": "accounting",
+      "subjectName": "會計學",
+      "chapterId": "accounting-14",
+      "chapterTitle": "財務報表的基本觀念",
+      "section": 0,
+      "sectionTitle": "第1節 財務報表與一般公認會計原則",
+      "shortTitle": "會計循環",
+      "note": "從交易、分錄、過帳到調整、結帳與下一會計期間的 11 個步驟。"
+    },
+    {
+      "key": "accounting-15#0",
+      "file": "accounting-revenue-to-ratios.mmd",
+      "slug": "accounting-revenue-to-ratios",
+      "order": 3,
+      "subject": "accounting",
+      "subjectName": "會計學",
+      "chapterId": "accounting-15",
+      "chapterTitle": "財務報表分析",
+      "section": 0,
+      "sectionTitle": "第1節 財務報表分析之基本觀念及方法",
+      "shortTitle": "營業收入 → 淨利 → 比率",
+      "note": "損益表主要結轉路徑，以及本期淨利連到的三項報酬率。"
+    },
+    {
+      "key": "investment-14#2",
+      "file": "investment-dupont.mmd",
+      "slug": "investment-dupont",
+      "order": 4,
+      "subject": "investment",
+      "subjectName": "投資學",
+      "chapterId": "investment-14",
+      "chapterTitle": "財務分析",
+      "section": 2,
+      "sectionTitle": "學習重點 3：杜邦分析與盈餘品質",
+      "shortTitle": "杜邦分析",
+      "note": "把 ROE 拆成淨利率、總資產週轉率與權益乘數三個來源。"
+    }
+  ]
+}

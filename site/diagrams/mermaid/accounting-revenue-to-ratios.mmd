@@ -1,0 +1,18 @@
+flowchart TD
+  accTitle: 從營業收入到本期淨利與財務比率
+  accDescr: 營業收入依序減銷貨成本、營業費用、營業外收支與所得稅，得到毛利、營業利益、稅前淨利與本期淨利；本期淨利再連到淨利率、總資產報酬率與權益報酬率。
+
+  R["營業收入<br/>Revenue"]:::accent --> GP["毛利<br/>Gross Profit"]
+  COGS["− 銷貨成本<br/>COGS"] -.-> GP
+  GP --> OI["營業利益<br/>Operating Income"]
+  OPEX["− 營業費用<br/>Operating Expenses"] -.-> OI
+  OI --> EBT["稅前淨利<br/>EBT"]
+  NONOP["± 營業外收支<br/>Non-operating"] -.-> EBT
+  EBT --> NI["本期淨利<br/>Net Income"]:::outcome
+  TAX["− 所得稅<br/>Income Tax"] -.-> NI
+  NI --> PM["淨利率<br/>NI ÷ Revenue"]
+  NI --> ROA["總資產報酬率<br/>NI ÷ Total Assets"]
+  NI --> ROE["權益報酬率<br/>NI ÷ Equity"]
+
+  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px
+  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px

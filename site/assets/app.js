@@ -118,6 +118,12 @@
       window.INVESTMENT_DIAGRAMS || {},
       window.ACCOUNTING_DIAGRAMS || {}
     );
+    const mermaidDiagrams = window.MERMAID_DIAGRAMS || {};
+    Object.keys(mermaidDiagrams).forEach(function (key) {
+      if (diagrams[key]) {
+        diagrams[key].mermaid = mermaidDiagrams[key];
+      }
+    });
     nobelData = window.NOBEL_DATA || { meta: {}, groups: [], rows: [] };
     nobelDiagrams = window.NOBEL_DIAGRAMS || {};
     macroEvolution = window.MACRO_EVOLUTION || { meta: {}, stages: [] };
@@ -966,9 +972,37 @@
   function renderDiagram(diagram, options) {
     const opts = options || {};
     const split = Boolean(opts.split);
+    const mmd = diagram.mermaid && opts.mermaid !== false ? diagram.mermaid : null;
     const variablesTable = renderDiagramTable("變數說明", diagram.variables);
     const parametersTable = renderDiagramTable("參數說明", diagram.parameters);
-    const visual = [
+    const compareBar = mmd ? [
+      '    <div class="diagram-compare-bar">',
+      '      <div class="diagram-view-toggle" role="group" aria-label="圖表版本">',
+      '        <button type="button" data-mermaid-view="legacy" aria-pressed="true">舊版</button>',
+      '        <button type="button" data-mermaid-view="new" aria-pressed="false">新版 mmd</button>',
+      "      </div>",
+      '      <span class="diagram-compare-hint">目前顯示舊版手繪 SVG</span>',
+      '      <div class="diagram-tools">',
+      '        <button type="button" class="diagram-tool-btn" data-mermaid-copy="' + escapeHtml(mmd.key) + '">複製 .mmd</button>',
+      '        <button type="button" class="diagram-tool-btn" data-mermaid-download="' + escapeHtml(mmd.key) + '">下載 .mmd</button>',
+      "      </div>",
+      "    </div>"
+    ].join("") : "";
+    const sourceBlock = mmd && opts.showSource ? [
+      '    <details class="diagram-source">',
+      "      <summary>查看 Mermaid 原始碼（.mmd）</summary>",
+      "      <pre><code>" + escapeHtml(mmd.source || "") + "</code></pre>",
+      "    </details>"
+    ].join("") : "";
+    const visual = mmd ? [
+      '  <div class="diagram-visual diagram-compare" data-mermaid-key="' + escapeHtml(mmd.key) + '">',
+      compareBar,
+      '    <div class="diagram-canvas diagram-canvas-legacy" data-mermaid-panel="legacy">' + diagram.svg + "</div>",
+      '    <div class="diagram-canvas diagram-canvas-mermaid" data-mermaid-panel="new" hidden aria-live="polite"></div>',
+      '    <p class="diagram-scroll-hint">圖表較寬，可左右滑動查看。</p>',
+      sourceBlock,
+      "  </div>"
+    ].join("") : [
       '  <div class="diagram-visual">',
       '    <div class="diagram-canvas">' + diagram.svg + "</div>",
       '    <p class="diagram-scroll-hint">圖表較寬，可左右滑動查看。</p>',
@@ -4423,6 +4457,71 @@
     ].join("");
   }
 
+  function mermaidLabEntries() {
+    const source = window.MERMAID_DIAGRAMS || {};
+    return Object.keys(source).map(function (key) {
+      return source[key];
+    }).filter(function (entry) {
+      return entry && diagrams[entry.key];
+    }).sort(function (a, b) {
+      return (Number(a.order) || 0) - (Number(b.order) || 0);
+    });
+  }
+
+  function renderMermaidLab() {
+    const entries = mermaidLabEntries();
+    if (!entries.length) {
+      return renderNotFound();
+    }
+
+    const index = entries.map(function (entry) {
+      return '<a href="#/lab/mermaid?diagram=' + encodeURIComponent(entry.slug) + '">' +
+        escapeHtml(entry.shortTitle || entry.key) + "</a>";
+    }).join("");
+
+    const cards = entries.map(function (entry) {
+      const diagram = diagrams[entry.key];
+      const subject = getSubject(entry.subject);
+      const chapter = getChapter(entry.chapterId);
+      return [
+        '<article class="mermaid-lab-card" id="mermaid-' + escapeHtml(entry.slug) + '">',
+        '  <div class="mermaid-lab-card-head">',
+        "    <div>",
+        '      <p class="eyebrow">' + escapeHtml(subject ? subject.name : entry.subjectName) + " · " + escapeHtml(entry.chapterTitle || entry.chapterId) + "</p>",
+        "      <h2>" + escapeHtml(entry.shortTitle || entry.title || entry.key) + "</h2>",
+        "    </div>",
+        '    <div class="mermaid-lab-card-meta">',
+        "      <span>" + escapeHtml(entry.sectionTitle || "") + "</span>",
+        chapter ? '<a class="text-link" href="#/chapter/' + escapeHtml(chapter.id) + "?section=" + (Number(entry.section) + 1) + '">回原章節 →</a>' : "",
+        "    </div>",
+        "  </div>",
+        renderDiagram(Object.assign({}, diagram, { mermaid: entry }), { showSource: true }),
+        "</article>"
+      ].join("");
+    }).join("");
+
+    return [
+      '<div class="page mermaid-lab">',
+      '  <nav class="breadcrumb" aria-label="麵包屑">',
+      '    <a href="#/">首頁</a><span>/</span>',
+      "    <span>Mermaid × Pele 試作</span>",
+      "  </nav>",
+      '  <header class="page-head">',
+      '    <p class="eyebrow">Mermaid × Pele · 第 1 步 Pilot</p>',
+      "    <h1>4 張流程圖的舊版／新版對照</h1>",
+      '    <p class="lede">用同一份 .mmd 來源測試 Pele 的排版、網站 CSS 變數注入與圖表風格切換；確認效果後再決定是否進行第 2–5 步。</p>',
+      "  </header>",
+      '  <div class="mermaid-lab-intro">',
+      "    <p><strong>Pilot 範圍：</strong>GDP → PDI、會計循環、營業收入 → 淨利 → 比率、杜邦分析。每張圖上方可切換「舊版」手繪 SVG 與「新版 mmd」；新版只在切換時才載入 Pele，並套用網站 CSS 變數。右上角 <strong>◈</strong> 可切換圖表風格，切換後會 destroy 並重新 render 已開啟的 Pele 圖表。這頁不會替換原章節的預設圖。</p>",
+      '    <span class="mermaid-lab-style-hint"><span aria-hidden="true">◈</span>右上角切換圖表風格</span>',
+      "  </div>",
+      '  <nav class="mermaid-lab-index" aria-label="Pilot 圖表索引">' + index + "</nav>",
+      '  <div class="notice"><strong>輸出：</strong>每張圖的「複製 .mmd」與「下載 .mmd」可直接帶到其他網頁或應用程式；來源檔同步放在 <code>site/diagrams/mermaid/</code>（<a href="diagrams/mermaid/manifest.json" target="_blank" rel="noopener">manifest.json</a>）。連續函數曲線圖與 T 字帳／速查表暫不轉換。</div>',
+      '  <div class="mermaid-lab-list">' + cards + "</div>",
+      "</div>"
+    ].join("");
+  }
+
   function renderMacroModels() {
     const subject = getSubject("macro");
     if (!subject) {
@@ -4867,6 +4966,7 @@
       law: false,
       "past-exams": route.parts[0] === "past-exams",
       "exam-forecast": route.parts[0] === "exam-forecast",
+      "mermaid-lab": route.parts[0] === "lab" && route.parts[1] === "mermaid",
       sources: route.parts[0] === "sources",
       about: route.parts[0] === "about"
     };
@@ -4966,6 +5066,9 @@
     if (parts[0] === "investment" && (parts[1] === "technical" || parts[1] === "technical-indicators")) {
       return "技術分析 50 指標：5 類指標、公式、參數、限制與章節連結。";
     }
+    if (parts[0] === "lab" && parts[1] === "mermaid") {
+      return "Mermaid × Pele 第 1 步 Pilot：4 張流程圖的舊版／新版對照、.mmd 下載與多種圖表風格切換。";
+    }
     if (parts[0] === "models" && parts[1] === "macro") {
       return "總體經濟模型總覽：28 張章節模型圖、模型定義、變數、限制與 KaTeX 公式。";
     }
@@ -5035,6 +5138,9 @@
     } else if (route.parts[0] === "investment" && (route.parts[1] === "technical" || route.parts[1] === "technical-indicators")) {
       html = renderInvestmentTechnicalPage();
       title = "技術分析 50 指標｜" + examBrand;
+    } else if (route.parts[0] === "lab" && route.parts[1] === "mermaid") {
+      html = renderMermaidLab();
+      title = "Mermaid × Pele 圖表試作｜" + examBrand;
     } else if (route.parts[0] === "models" && route.parts[1] === "macro") {
       html = renderMacroModels();
       title = "總體經濟模型總覽｜" + examBrand;
@@ -5070,6 +5176,9 @@
       title = "找不到頁面｜" + examBrand;
     }
 
+    if (window.MermaidLab) {
+      window.MermaidLab.reset();
+    }
     main.innerHTML = html;
     document.title = title;
     updatePageMeta(route, title);
@@ -5078,7 +5187,17 @@
     setupSectionObserver();
     closeMobileMenu();
 
-    if (route.parts[0] === "exam-forecast" && route.query.get("question")) {
+    if (route.parts[0] === "lab" && route.parts[1] === "mermaid" && route.query.get("diagram")) {
+      const slug = route.query.get("diagram") || "";
+      window.requestAnimationFrame(function () {
+        const target = /^[a-z0-9-]+$/.test(slug) ? document.getElementById("mermaid-" + slug) : null;
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          window.scrollTo({ top: 0, behavior: "auto" });
+        }
+      });
+    } else if (route.parts[0] === "exam-forecast" && route.query.get("question")) {
       const questionId = route.query.get("question");
       window.requestAnimationFrame(function () {
         const targetId = forecastLegacyQuestionMap.get(questionId) || questionId;

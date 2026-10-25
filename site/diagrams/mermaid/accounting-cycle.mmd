@@ -1,0 +1,25 @@
+flowchart LR
+  accTitle: 會計循環流程圖
+  accDescr: 從交易與原始憑證開始，依序完成日記帳、過帳、分類帳與調整前試算表；期末作調整分錄、調整後試算表與財務報表，再作結帳分錄與結帳後試算表，最後進入下一會計期間。
+
+  subgraph R["平時帳務處理"]
+    direction TB
+    A["① 交易與事項<br/>Transaction"] --> B["② 原始憑證<br/>Source documents"]
+    B --> C["③ 日記帳<br/>Journal"]
+    C --> D["④ 過帳<br/>Posting"]
+    D --> E["⑤ 分類帳<br/>Ledger"]
+    E --> F["⑥ 試算表（調整前）<br/>Unadjusted trial balance"]
+  end
+
+  subgraph C2["期末處理與結帳"]
+    direction TB
+    G["⑦ 調整分錄<br/>Adjusting entries"] --> H["⑧ 調整後試算表<br/>Adjusted trial balance"]
+    H --> I["⑨ 財務報表<br/>Financial statements"]:::outcome
+    I --> J["⑩ 結帳分錄<br/>Closing entries"]
+    J --> K["⑪ 結帳後試算表<br/>Post-closing trial balance"]
+  end
+
+  F --> G
+  K -. "下一會計期間" .-> A
+
+  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px

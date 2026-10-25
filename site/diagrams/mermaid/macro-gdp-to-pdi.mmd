@@ -1,0 +1,25 @@
+flowchart TD
+  accTitle: 國民所得會計帳流程圖
+  accDescr: 生產面、支出面與所得面三種算法都得到 GDP；GDP 加國外要素所得淨額得到 GNI，再依序扣除折舊與間接稅淨額，調整公司稅、未分配盈餘、社會安全捐、移轉支付與淨利息，最後扣除個人直接稅得到 PDI，並拆分為消費與儲蓄。
+
+  subgraph S["三面等價：同一筆 GDP"]
+    direction LR
+    P["生產面<br/>各業附加價值加總"]
+    E["支出面<br/>C + I + G + (X − M)"]
+    I["所得面<br/>要素所得＋折舊＋間接稅淨額"]
+  end
+
+  P --> GDP
+  E --> GDP
+  I --> GDP
+  GDP["國內生產毛額 GDP<br/>三面數值相等 · 屬地原則"]:::accent
+  GDP -- "+ NFIA" --> GNI["國民總收入 GNI<br/>GDP + NFIA（GNP ≈ GNI）"]
+  GNI -- "− 折舊 D" --> NNP["國民生產淨額 NNP<br/>GNI − 折舊 D"]
+  NNP -- "− 間接稅淨額 NIT" --> NI["國民所得 NI<br/>NNP − NIT（要素成本）"]
+  NI -- "− CIT − URE − SSC<br/>+ TR + INT" --> PI["個人所得 PI<br/>NI − CIT − URE − SSC + TR + INT"]
+  PI -- "− 個人直接稅 Tp" --> PDI["個人可支配所得 PDI<br/>PI − Tp = C + S"]:::outcome
+  PDI --> C["消費 C<br/>PDI 中用於消費"]
+  PDI --> SAVE["儲蓄 S<br/>PDI − C"]
+
+  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px
+  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px

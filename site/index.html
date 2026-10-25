@@ -205,6 +205,7 @@
         <a href="#/subject/law" data-nav="law">證券法規</a>
         <a href="#/past-exams" data-nav="past-exams">考古題練習</a>
         <a href="#/exam-forecast" data-nav="exam-forecast">考前猜題</a>
+        <a href="#/lab/mermaid" data-nav="mermaid-lab">Mermaid 試作</a>
         <a href="#/sources" data-nav="sources">資料來源</a>
       </nav>
 
@@ -215,9 +216,37 @@
         <button class="icon-btn" id="theme-toggle" type="button" aria-label="切換深色模式" title="切換深色模式">
           <span aria-hidden="true">◐</span>
         </button>
+        <button class="icon-btn" id="pele-style-toggle" type="button" aria-label="切換圖表風格" title="切換圖表風格" aria-haspopup="true" aria-expanded="false" aria-controls="pele-style-menu">
+          <span aria-hidden="true">◈</span>
+        </button>
         <button class="icon-btn menu-btn" id="menu-toggle" type="button" aria-label="開啟選單" aria-expanded="false" aria-controls="main-nav">
           <span aria-hidden="true">☰</span>
         </button>
+        <div class="pele-style-menu" id="pele-style-menu" hidden>
+          <div class="pele-style-menu-head">
+            <strong>圖表風格</strong>
+            <span>套用於 Mermaid × Pele 圖表</span>
+          </div>
+          <div class="pele-style-options" role="group" aria-label="選擇圖表風格">
+            <button type="button" data-pele-style-option="paper" aria-pressed="true">
+              <span class="pele-style-swatch is-paper" aria-hidden="true"></span>
+              <span><strong>紙感</strong><small>沿用網站色票</small></span>
+            </button>
+            <button type="button" data-pele-style-option="blueprint" aria-pressed="false">
+              <span class="pele-style-swatch is-blueprint" aria-hidden="true"></span>
+              <span><strong>藍圖</strong><small>深藍網格與等寬字</small></span>
+            </button>
+            <button type="button" data-pele-style-option="mono" aria-pressed="false">
+              <span class="pele-style-swatch is-mono" aria-hidden="true"></span>
+              <span><strong>極簡</strong><small>黑白線稿</small></span>
+            </button>
+            <button type="button" data-pele-style-option="contrast" aria-pressed="false">
+              <span class="pele-style-swatch is-contrast" aria-hidden="true"></span>
+              <span><strong>高對比</strong><small>黑底螢光重點</small></span>
+            </button>
+          </div>
+          <p class="pele-style-menu-note">切換後會立即重新 render 已開啟的 Pele 圖表。</p>
+        </div>
       </div>
     </div>
     <div class="reading-progress" id="reading-progress" aria-hidden="true"></div>

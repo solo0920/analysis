@@ -6,7 +6,7 @@
 
   const bundles = {
     core: ["content-core-bundle.js"],
-    app: ["katex/katex.min.js", "app.js"],
+    app: ["diagrams-mermaid.js", "mermaid-lab.js", "katex/katex.min.js", "app.js"],
     pastAll: ["content-past-exams.js"],
     pastWritten: ["content-past-exams-written.js", "content-written-layouts.js"],
     explanations: ["content-past-exams-explanations.js"],
@@ -88,6 +88,8 @@
       else if (subjectId === "accounting") list.push("diagramsAccounting");
       else if (subjectId === "law") list.push("lawArticle:" + chapterId);
       else list.push("diagrams");
+    } else if (top === "lab" && parts[1] === "mermaid") {
+      list.push("diagrams");
     } else if (top === "subject" && parts[1] === "macro") {
       list.push("macroSubject");
     } else if (top === "models" && parts[1] === "macro") {

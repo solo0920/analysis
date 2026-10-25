@@ -101,6 +101,7 @@ const diagramFiles = [
 const investmentDiagramFiles = ["diagrams-investment.js"];
 const accountingDiagramFiles = ["diagrams-accounting.js"];
 const nobelDiagramFiles = ["diagrams-nobel.js"];
+const mermaidFiles = ["diagrams-mermaid.js"];
 
 function loadContent() {
   const context = { window: {} };
@@ -109,7 +110,7 @@ function loadContent() {
     const fullPath = path.join(siteDir, "assets", file);
     vm.runInContext(fs.readFileSync(fullPath, "utf8"), context, { filename: file });
   });
-  diagramFiles.concat(investmentDiagramFiles, accountingDiagramFiles, nobelDiagramFiles).forEach(function (file) {
+  diagramFiles.concat(investmentDiagramFiles, accountingDiagramFiles, nobelDiagramFiles, mermaidFiles).forEach(function (file) {
     const fullPath = path.join(siteDir, "assets", file);
     vm.runInContext(fs.readFileSync(fullPath, "utf8"), context, { filename: file });
   });
@@ -120,6 +121,7 @@ function loadContent() {
     accountingDiagrams: context.window.ACCOUNTING_DIAGRAMS || {},
     nobelData: context.window.NOBEL_DATA || { rows: [], groups: [], meta: {} },
     nobelDiagrams: context.window.NOBEL_DIAGRAMS || {},
+    mermaidDiagrams: context.window.MERMAID_DIAGRAMS || {},
     macroEvolution: context.window.MACRO_EVOLUTION || { meta: {}, stages: [] },
     ratioFormulas: context.window.INVESTMENT_RATIO_FORMULAS || [],
     optionPriorities: context.window.INVESTMENT_OPTION_PRIORITIES || [],
@@ -270,6 +272,7 @@ const investmentDiagrams = loaded.investmentDiagrams || {};
 const accountingDiagrams = loaded.accountingDiagrams || {};
 const nobelData = loaded.nobelData;
 const nobelDiagrams = loaded.nobelDiagrams;
+const mermaidDiagrams = loaded.mermaidDiagrams || {};
 const macroEvolution = loaded.macroEvolution;
 const ratioFormulas = loaded.ratioFormulas;
 const optionPriorities = loaded.optionPriorities;
@@ -2129,12 +2132,45 @@ writtenQuestions.forEach(function (question) {
   }
 });
 
+/* Mermaid × Pele 第 1 步 Pilot */
+const mermaidManifest = JSON.parse(read("site/diagrams/mermaid/manifest.json"));
+const mermaidManifestEntries = Array.isArray(mermaidManifest.diagrams) ? mermaidManifest.diagrams : [];
+const mermaidExistingDiagrams = Object.assign({}, diagrams, investmentDiagrams, accountingDiagrams);
+const mermaidKeys = Object.keys(mermaidDiagrams);
+check(mermaidManifestEntries.length === 4, "Mermaid Pilot 應有 4 張圖（目前 " + mermaidManifestEntries.length + " 張）");
+check(mermaidKeys.length === mermaidManifestEntries.length, "Mermaid Pilot 產生檔數量與 manifest 不一致（manifest " + mermaidManifestEntries.length + "、產生 " + mermaidKeys.length + "）");
+mermaidManifestEntries.forEach(function (entry) {
+  check(Boolean(entry && entry.key && entry.file), "Mermaid manifest 項目缺少 key 或 file");
+  if (!entry || !entry.key || !entry.file) return;
+  check(Boolean(mermaidDiagrams[entry.key]), "Mermaid 產生檔缺少圖表：" + entry.key);
+  check(Boolean(mermaidExistingDiagrams[entry.key]), "Mermaid 圖表 key 對應不到既有 SVG：" + entry.key);
+  const mmdPath = "site/diagrams/mermaid/" + entry.file;
+  check(fs.existsSync(path.join(root, mmdPath)), "找不到 Mermaid 來源：" + mmdPath);
+  if (!fs.existsSync(path.join(root, mmdPath))) return;
+  const mmdSource = fs.readFileSync(path.join(root, mmdPath), "utf8").replace(/\r\n/g, "\n").trim();
+  check(/^flowchart\b/.test(mmdSource), "Mermaid 來源應以 flowchart 開頭：" + entry.file);
+  check(mmdSource.indexOf("accTitle:") !== -1 && mmdSource.indexOf("accDescr:") !== -1, "Mermaid 來源缺少無障礙標題或描述：" + entry.file);
+  check(!/classDef[^\n]*var\(/.test(mmdSource), "Mermaid 來源的 classDef 不應使用 var()（Pele 會解析失敗）：" + entry.file);
+  check(Boolean(mermaidDiagrams[entry.key]) && mermaidDiagrams[entry.key].source.trim() === mmdSource, "diagrams-mermaid.js 與 .mmd 來源不同步：" + entry.file);
+});
+const bootstrapSource = read("site/assets/bootstrap.js");
+check(bootstrapSource.indexOf("diagrams-mermaid.js") !== -1 && bootstrapSource.indexOf("mermaid-lab.js") !== -1, "bootstrap 未載入 Mermaid Pilot 資料或執行檔");
+const indexSource = read("site/index.html");
+check(indexSource.indexOf('id="pele-style-toggle"') !== -1 && indexSource.indexOf('id="pele-style-menu"') !== -1, "index.html 缺少右上角圖表風格切換器");
+const peleBundlePath = path.join(siteDir, "assets", "vendor", "pele-flow.min.js");
+check(fs.existsSync(peleBundlePath), "找不到 Pele vendor bundle");
+if (fs.existsSync(peleBundlePath)) {
+  const peleBundle = fs.readFileSync(peleBundlePath, "utf8");
+  check(peleBundle.indexOf("window.PeleFlow") !== -1, "Pele vendor bundle 未暴露 window.PeleFlow");
+}
+
 console.log("科目：" + content.subjects.length);
 console.log("章節：" + allChapters.length + "（總體經濟學 " + macro.chapters.length + "、投資學 " + investment.chapters.length + "、會計學 " + accounting.chapters.length + "、證券法規 " + law.chapters.length + "）");
 console.log("學習單元：" + totalSections + "（總體經濟學 " + macroSections + " 節、投資學 " + investmentSections + " 個重點、會計學 " + accountingSections + " 個單元、證券法規 " + lawSections + " 節）");
 console.log("名詞卡：" + totalTerms);
 console.log("章節圖：" + diagramKeys.length + "（總體經濟學；含 1 張教學流程圖與 1 張 NFIA 觀念圖）");
 console.log("教學圖：" + (investmentDiagramKeys.length + accountingDiagramKeys.length) + "（投資學 " + investmentDiagramKeys.length + "、會計學 " + accountingDiagramKeys.length + "）");
+console.log("Mermaid Pilot：" + mermaidKeys.length + " 張（" + mermaidManifestEntries.map(function (entry) { return entry.shortTitle || entry.key; }).join("、") + "）");
 console.log("諾貝爾年表：" + nobelRows.length + " 屆、 " + nobelDiagramKeys.length + " 組模型圖");
 console.log("學派演進圖：" + evolutionStages.length + " 個階段、 " + evolutionNodes.length + " 個節點、 " + evolutionModelLinkCount + " 個模型連結、 " + evolutionNobelYears.size + " 個諾貝爾里程碑");
 console.log("資料來源：" + content.sources.length);

@@ -4410,6 +4410,42 @@ a.landing-item:hover {
   }
 }
 
+/* 9 個導覽項目在 781–1160px 會超過 header 寬度，提前收合為選單。 */
+@media (max-width: 1160px) {
+  .main-nav {
+    position: absolute;
+    top: calc(var(--header-h) - 1px);
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    margin: 0;
+    padding: 10px 14px 14px;
+    border-bottom: 1px solid var(--line);
+    background: var(--surface);
+    box-shadow: var(--shadow-md);
+  }
+
+  .main-nav.is-open {
+    display: flex;
+  }
+
+  .main-nav a {
+    padding: 11px 12px;
+    border-radius: 8px;
+  }
+
+  .menu-btn {
+    display: grid;
+  }
+
+  .header-actions {
+    margin-left: auto;
+  }
+}
+
 @media (max-width: 780px) {
   :root {
     --header-h: 64px;
@@ -8856,4 +8892,452 @@ html.is-routing body {
 
 .search-past-action .btn {
   flex: 0 0 auto;
+}
+
+/* =========================================================
+   Mermaid × Pele pilot
+   舊版／新版切換、圖表風格選單、mmd 來源與 Pele 主題注入
+   ========================================================= */
+
+.header-actions {
+  position: relative;
+}
+
+.pele-style-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 140;
+  width: min(282px, calc(100vw - 28px));
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+}
+
+.pele-style-menu-head {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+
+.pele-style-menu-head strong {
+  font-family: var(--font-serif);
+  font-size: 0.96rem;
+}
+
+.pele-style-menu-head span,
+.pele-style-menu-note {
+  color: var(--muted);
+  font-size: 0.74rem;
+  line-height: 1.55;
+}
+
+.pele-style-options {
+  display: grid;
+  gap: 5px;
+}
+
+.pele-style-options button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 9px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.pele-style-options button:hover {
+  border-color: var(--line);
+  background: var(--surface-2);
+}
+
+.pele-style-options button.is-active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.pele-style-options button span:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.pele-style-options button strong {
+  font-size: 0.8rem;
+}
+
+.pele-style-options button small {
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+
+.pele-style-swatch {
+  width: 26px;
+  height: 26px;
+  flex: 0 0 auto;
+  border: 1px solid var(--line-strong);
+  border-radius: 7px;
+  background: var(--surface-2);
+}
+
+.pele-style-swatch.is-paper {
+  background: linear-gradient(135deg, #fffdf8 0 48%, #0f5c5c 48% 56%, #a86d27 56% 64%, #f5ead8 64%);
+}
+
+.pele-style-swatch.is-blueprint {
+  background-color: #081a2b;
+  background-image: linear-gradient(rgba(103, 199, 255, 0.55) 1px, transparent 1px), linear-gradient(90deg, rgba(103, 199, 255, 0.55) 1px, transparent 1px);
+  background-size: 7px 7px;
+  border-color: #3e6f9e;
+}
+
+.pele-style-swatch.is-mono {
+  background: #fff;
+  border-color: #182426;
+  box-shadow: inset 0 0 0 6px #fff, inset 0 0 0 8px #182426;
+}
+
+.pele-style-swatch.is-contrast {
+  background: #000;
+  border-color: #ffe600;
+  box-shadow: inset 0 0 0 6px #000, inset 0 0 0 8px #ffe600, inset 0 0 0 12px #00e5ff;
+}
+
+.pele-style-menu-note {
+  margin: 10px 2px 0;
+}
+
+.diagram-compare-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  margin-bottom: 9px;
+}
+
+.diagram-view-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-2);
+}
+
+.diagram-view-toggle button {
+  padding: 4px 11px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.diagram-view-toggle button[aria-pressed="true"] {
+  background: var(--surface);
+  color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+
+.diagram-compare-hint {
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.diagram-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-left: auto;
+}
+
+.diagram-tool-btn {
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.diagram-tool-btn:hover {
+  border-color: var(--line-strong);
+  background: var(--surface-2);
+}
+
+.diagram-tool-btn:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.diagram-canvas-mermaid {
+  min-height: 80px;
+}
+
+.diagram-canvas-mermaid .pele {
+  --pele-bg: transparent;
+  --pele-fg: var(--ink);
+  --pele-muted: var(--muted);
+  --pele-line: var(--line-strong);
+  --pele-surface: var(--surface);
+  --pele-surface-alt: var(--surface-2);
+  --pele-border: var(--line-strong);
+  --pele-accent: var(--accent);
+  --pele-critical: var(--danger);
+  --pele-font: var(--font-sans);
+  --pele-font-mono: var(--font-mono);
+  --pele-radius: 10px;
+  width: auto;
+  max-width: 100%;
+  margin-inline: auto;
+  background: transparent;
+}
+
+.diagram-canvas-mermaid .pele-cluster rect {
+  fill: var(--surface-2);
+  fill-opacity: 0.65;
+  stroke: var(--line);
+}
+
+.diagram-canvas-mermaid .pele-cluster-label {
+  fill: var(--muted);
+  font-weight: 700;
+}
+
+.diagram-canvas-mermaid .pele-node rect {
+  fill: var(--surface) !important;
+  stroke: var(--line-strong) !important;
+}
+
+.diagram-canvas-mermaid .pele-node.accent rect {
+  fill: var(--accent-soft) !important;
+  stroke: var(--accent) !important;
+  stroke-width: 1.8px !important;
+}
+
+.diagram-canvas-mermaid .pele-node.outcome rect {
+  fill: var(--gold-soft) !important;
+  stroke: var(--gold) !important;
+  stroke-width: 1.8px !important;
+}
+
+.diagram-canvas-mermaid .pele-node .pele-label {
+  fill: var(--ink) !important;
+}
+
+.diagram-canvas-mermaid .pele-node.accent .pele-label,
+.diagram-canvas-mermaid .pele-node.outcome .pele-label {
+  fill: var(--ink) !important;
+  font-weight: 700;
+}
+
+.diagram-canvas-mermaid .pele-edge path {
+  stroke: var(--line-strong) !important;
+}
+
+.diagram-canvas-mermaid .pele-marker {
+  fill: var(--line-strong) !important;
+}
+
+.mermaid-loading,
+.mermaid-error {
+  margin: 8px 4px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.mermaid-loading {
+  border: 1px dashed var(--line);
+  color: var(--muted);
+  background: var(--surface);
+}
+
+.mermaid-error {
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  background: var(--surface);
+}
+
+.diagram-source {
+  margin-top: 10px;
+  border-top: 1px dashed var(--line);
+  padding-top: 8px;
+}
+
+.diagram-source summary {
+  color: var(--muted);
+  font-size: 0.76rem;
+  cursor: pointer;
+}
+
+.diagram-source pre {
+  max-height: 320px;
+  margin: 8px 0 0;
+  padding: 12px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.65;
+  white-space: pre;
+}
+
+.diagram-source code {
+  font-family: inherit;
+}
+
+.mermaid-lab-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  margin: 18px 0 22px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.mermaid-lab-intro p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.75;
+}
+
+.mermaid-lab-intro strong {
+  color: var(--ink);
+}
+
+.mermaid-lab-style-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 0.74rem;
+  white-space: nowrap;
+}
+
+.mermaid-lab-style-hint span {
+  color: var(--accent);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.mermaid-lab-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 22px;
+}
+
+.mermaid-lab-card {
+  min-width: 0;
+  scroll-margin-top: calc(var(--header-h) + 24px);
+}
+
+.mermaid-lab-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-bottom: 8px;
+}
+
+.mermaid-lab-card-head .eyebrow {
+  margin-bottom: 2px;
+}
+
+.mermaid-lab-card-head h2 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.12rem;
+  line-height: 1.45;
+}
+
+.mermaid-lab-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.mermaid-lab-card .model-diagram {
+  margin-top: 0;
+}
+
+.mermaid-lab-index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 12px 0 22px;
+}
+
+.mermaid-lab-index a {
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink-soft);
+  font-size: 0.74rem;
+  text-decoration: none;
+}
+
+.mermaid-lab-index a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+@media (max-width: 680px) {
+  .diagram-compare-bar {
+    align-items: flex-start;
+  }
+
+  .diagram-compare-hint {
+    width: 100%;
+    order: 3;
+  }
+
+  .diagram-tools {
+    margin-left: 0;
+  }
+
+  .diagram-canvas-mermaid svg {
+    min-width: 0;
+  }
+
+  .mermaid-lab-intro {
+    grid-template-columns: 1fr;
+  }
+
+  .mermaid-lab-style-hint {
+    justify-self: start;
+  }
 }

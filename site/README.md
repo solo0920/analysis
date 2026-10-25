@@ -29,7 +29,7 @@
 - 107–108 年已納入自動練習庫：選擇題解答由使用者提供的逐題轉錄檔（MD／JSON）匯入，並與公開解答 PDF 及原始 JPG 解答抽查核對；兩題官方接受多個答案（108Q3 法規第 28 題 C、D；108Q3 會計第 28 題 B、D）已保留。
 - 考古題出處以章節為單位：每題的 `sourceId` 指向同一科目的章節，題目卡可直接連到該章內容；章節頁列出 107–115 年出現的考試次別與題數。科目首頁的章節列顯示「出題次數」與「頻率」，頻率＝該章題數 ÷ 該科總題數。出處依題幹、選項與章節內容比對後建立，作為複習導覽，不代表官方命題分類。
 
-目前規模：4 個科目、73 章、230 個學習單元、1,519 張名詞卡、119 組學習單元 KaTeX 公式（另含比例 32 條、核心公式 66 條、技術指標 50 種、選擇權 30 條、諾貝爾 58 屆）、1,507 條官方法規條文列（含刪除條文）、44 張章節教學圖（總體經濟 28、投資學 9、會計學 7）、32 條投資學比例分析公式、66 條投資學核心公式、50 種技術分析指標、7 項選擇權評價優先順序、17 組諾貝爾模型模組（58 屆資料）、1 個總體經濟學派演進圖（6 階段、10 個節點、23 個模型連結、15 個諾貝爾里程碑）、29 個資料來源、29 次考古題（3,710 題，全部標示章節出處與出題頻率）、348 題計算／申論題（107–115 年，全部提供完整參考解答）、107–115 年章節解題（347 節次、601 個例題：348 題計算／申論＋253 題代表選擇題）與 1 個總經時事頁、1 個考前猜題頁（97 題組／118 個部分、五個科目分頁、21 組多部分題組、38 條整合公式、DCF／債券敏感度矩陣、13 個章節進階補給）；並有 1 個總體經濟模型總覽頁、1 個學派演進圖區塊、1 個諾貝爾獎模型頁、1 個投資學公式總表頁、1 個技術分析指標頁、1 個考古題練習庫。總體經濟 21 張既有模型圖、新增 5 張學派模型圖與 29 條投資／總體公式已完成公開教材核對，狀態為「通過（教材）」；另 2 張新增國民所得教學圖（國民所得會計帳流程圖、NFIA 觀念圖）、投資學 9 張教學圖與會計學 7 張教學圖（會計循環、主要財務報表架構、借記／貸記常用項目、交易到報表流程、財務分析總架構、杜邦分析、四表連結）為依教材概念繪製的示意圖，已通過結構與章節綁定驗證，尚未逐條對照公開教材。這不是官方認證整站。
+目前規模：4 個科目、73 章、230 個學習單元、1,519 張名詞卡、119 組學習單元 KaTeX 公式（另含比例 32 條、核心公式 66 條、技術指標 50 種、選擇權 30 條、諾貝爾 58 屆）、1,507 條官方法規條文列（含刪除條文）、44 張章節教學圖（總體經濟 28、投資學 9、會計學 7）、32 條投資學比例分析公式、66 條投資學核心公式、50 種技術分析指標、7 項選擇權評價優先順序、17 組諾貝爾模型模組（58 屆資料）、1 個總體經濟學派演進圖（6 階段、10 個節點、23 個模型連結、15 個諾貝爾里程碑）、29 個資料來源、29 次考古題（3,710 題，全部標示章節出處與出題頻率）、348 題計算／申論題（107–115 年，全部提供完整參考解答）、107–115 年章節解題（347 節次、601 個例題：348 題計算／申論＋253 題代表選擇題）與 1 個總經時事頁、1 個考前猜題頁（97 題組／118 個部分、五個科目分頁、21 組多部分題組、38 條整合公式、DCF／債券敏感度矩陣、13 個章節進階補給）；並有 1 個總體經濟模型總覽頁、1 個學派演進圖區塊、1 個諾貝爾獎模型頁、1 個投資學公式總表頁、1 個技術分析指標頁、1 個考古題練習庫。總體經濟 21 張既有模型圖、新增 5 張學派模型圖與 29 條投資／總體公式已完成公開教材核對，狀態為「通過（教材）」；另 2 張新增國民所得教學圖（國民所得會計帳流程圖、NFIA 觀念圖）、投資學 9 張教學圖與會計學 7 張教學圖（會計循環、主要財務報表架構、借記／貸記常用項目、交易到報表流程、財務分析總架構、杜邦分析、四表連結）為依教材概念繪製的示意圖，已通過結構與章節綁定驗證，尚未逐條對照公開教材。另有 4 張 Mermaid × Pele Pilot 對照圖（`#/lab/mermaid`），只在新版切換時以 Pele 即時 render，不替換原章節的預設 SVG。這不是官方認證整站。
 
 ## 檔案結構
 
@@ -46,6 +46,7 @@ site/
 ├── exam-forecast/              # 考前猜題靜態落地頁
 ├── macro-current/              # 近二年總經時事靜態落地頁
 ├── nobel/                      # 諾貝爾經濟學獎模型靜態落地頁
+├── diagrams/mermaid/           # Mermaid 母檔、manifest 與 Pilot 說明（可直接下載 .mmd）
 ├── .nojekyll                   # 停用 GitHub Pages 的 Jekyll 處理
 ├── README.md
 ├── SOURCES.md                  # 來源清單與校對原則
@@ -57,6 +58,8 @@ site/
 │   ├── build-past-search-index.js     # 產生 3,710 題考古題搜尋索引
 │   ├── validate-content.js     # 章節界線、來源引用、模型圖與內容結構驗證
 │   ├── build-static-landing-pages.js # 產生 82 個靜態頁與 83 個 URL 的 sitemap
+│   ├── build-mermaid-sources.js # 由 .mmd／manifest 產生 assets/diagrams-mermaid.js
+│   ├── build-pele-bundle.mjs   # 重建樹搖後的 Pele flowchart vendor bundle（需 npm）
 │   └── verify-nobel-api.js     # 諾貝爾官方 API 年份與得主比對（需網路）
 └── assets/
     ├── app.js                  # hash routing、搜尋、進度、主題、考古題練習與列印
@@ -99,6 +102,10 @@ site/
     ├── diagrams-investment.js # 投資學教學圖：9 張
     ├── diagrams-accounting.js # 會計學教學流程圖：7 張
     ├── diagrams-nobel.js       # 諾貝爾圖組的 17 張 SVG 模型圖
+    ├── diagrams-mermaid.js     # Mermaid Pilot 4 張圖的 .mmd 來源（建置產生）
+    ├── mermaid-lab.js          # 舊版／新版切換、Pele 延遲載入、圖表風格與 .mmd 下載
+    ├── vendor/pele-flow.min.js # 樹搖後的 Pele flowchart bundle（約 58 KB gzip）
+    ├── vendor/pele-LICENSE.txt # Pele MIT 授權
     └── katex/                  # KaTeX 0.19.0 的 JS、CSS、字型與授權
 ```
 
@@ -144,6 +151,8 @@ Repository 的 Pages Source 已設為 **GitHub Actions**；若之後重新建立
 - `#/macro/evolution`：總體經濟學學派演進圖獨立頁
 - `#/subject/macro?evolution=1`：舊網址，仍會開啟學派演進圖獨立頁
 - `#/subject/law`：證券交易相關法規與實務章節地圖
+- `#/lab/mermaid`：Mermaid × Pele 第 1 步 Pilot（4 張圖的舊版／新版對照、.mmd 下載與圖表風格切換）
+- `#/lab/mermaid?diagram=accounting-cycle`：直接跳到 Pilot 的指定圖表
 - `#/models/macro`：總體經濟模型總覽（13 章分組、28 張章節圖；含 1 張教學流程圖、1 張 NFIA 觀念圖與 5 張學派模型補充；桌面模型圖與變數表採 1:1，手機改為直向堆疊）
 - `#/models/macro?model=model-macro-06-0`：直接跳到模型總覽的指定模型卡，並短暫標示
 - `#/nobel`：歷年諾貝爾經濟學獎（17 組模型模組；每組預設第一屆，桌機左右 1:1）
@@ -162,6 +171,14 @@ Repository 的 Pages Source 已設為 **GitHub Actions**；若之後重新建立
 - `#/chapter/<id>`：章節內容
 - `#/sources`：資料來源
 - `#/about`：使用說明與進度重置
+
+## Mermaid × Pele Pilot（第 1 步）
+
+- Pilot 只涵蓋 4 張流程／樹狀圖：`macro-01#2`（GDP → PDI）、`accounting-14#0`（會計循環）、`accounting-15#0`（營業收入 → 淨利 → 比率）、`investment-14#2`（杜邦分析）。原章節與模型總覽的預設圖仍是舊版手繪 SVG；切到「新版 mmd」時才載入 Pele 並即時 render。
+- `.mmd` 母檔與 manifest 在 `site/diagrams/mermaid/`；修改後執行 `node site/scripts/build-mermaid-sources.js` 產生 `site/assets/diagrams-mermaid.js`。Pele bundle 可用 `node site/scripts/build-pele-bundle.mjs` 重建（需網路與 npm；網站執行時不需要 npm）。
+- 右上角 **◈** 是圖表風格切換器：紙感、藍圖、極簡、高對比。切換時會把 CSS 注入 `<style id="pele-style-runtime">`，destroy 既有 Pele 實例後重新 mount；選擇會存在 `localStorage`。
+- 只有 `pele/core` 與 `pele/diagrams/flowchart` 被打包，約 58 KB gzip；全量 Pele 約 264 KB gzip。
+- 限制：`classDef fill:var(--...)` 會讓 Pele 解析失敗，因此 `.mmd` 內使用固定色 fallback 的 `classDef`，網站再以 `!important` 的 CSS 變數覆寫。連續函數曲線、精確座標、T 字帳與速查表不在此次轉換範圍。
 
 ## 內容結構
 
