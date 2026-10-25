@@ -55,7 +55,7 @@
 - 網站上的「複製 .mmd」與「下載 .mmd」按鈕直接使用同一份來源，不需要另外維護副本。
 - 每張 MMD 模型圖右上角有「顯示 MMD 碼」按鈕；按下後在 MMD SVG 右側顯示原始碼，980px 以下改為上下堆疊。
 - 新推導圖的靜態 SVG 另存於 `site/diagrams/mermaid/static/`，可單獨下載或檢查。
-- 右上角 ◈ 會同步切換全站 CSS 與 Pele 圖表；風格名稱（紙感／藍圖／極簡／高對比／森林／海洋／夕陽／櫻花／終端機／薰衣草）與網站一致。
+- 右上角 ◈ 會同步切換全站 CSS 與 Pele 圖表；風格名稱（紙感／藍圖／極簡／高對比／森林／海洋／夕陽／櫻花／終端機／薰衣草／Apple／Google／Microsoft／Amazon／Meta／Netflix／NVIDIA／Tesla／OpenAI／Anthropic）與網站一致。
 
 ## 注意事項
 

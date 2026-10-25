@@ -19,7 +19,17 @@
     sunset: { label: "夕陽", note: "陶土橘與暮色紫" },
     sakura: { label: "櫻花", note: "玫瑰粉與奶油白" },
     terminal: { label: "終端機", note: "黑底綠字與掃描格" },
-    lavender: { label: "薰衣草", note: "柔和紫與奶油色" }
+    lavender: { label: "薰衣草", note: "柔和紫與奶油色" },
+    apple: { label: "Apple", note: "極簡白、藍色重點" },
+    google: { label: "Google", note: "Material 圓角與四色" },
+    microsoft: { label: "Microsoft", note: "Fluent 藍與灰白" },
+    amazon: { label: "Amazon", note: "深海軍藍與橘色" },
+    meta: { label: "Meta", note: "Facebook 藍與圓角" },
+    netflix: { label: "Netflix", note: "黑紅影院感" },
+    nvidia: { label: "NVIDIA", note: "黑底螢光綠與方格" },
+    tesla: { label: "Tesla", note: "黑白極簡與紅色" },
+    openai: { label: "OpenAI", note: "米白極簡與綠色" },
+    anthropic: { label: "Anthropic", note: "暖奶油、陶土色" }
   };
   const STYLE_THEME_COLORS = {
     paper: { light: "#0f5c5c", dark: "#0f1719" },
@@ -31,12 +41,25 @@
     sunset: { light: "#fdf2ec", dark: "#1b1019" },
     sakura: { light: "#fdf2f4", dark: "#1e1118" },
     terminal: { light: "#f0f7f1", dark: "#030b06" },
-    lavender: { light: "#f5f1fb", dark: "#130f1c" }
+    lavender: { light: "#f5f1fb", dark: "#130f1c" },
+    apple: { light: "#f5f5f7", dark: "#000000" },
+    google: { light: "#ffffff", dark: "#202124" },
+    microsoft: { light: "#f3f2f1", dark: "#1b1a19" },
+    amazon: { light: "#eaeded", dark: "#0f1111" },
+    meta: { light: "#f0f2f5", dark: "#18191a" },
+    netflix: { light: "#ffffff", dark: "#000000" },
+    nvidia: { light: "#f7f7f7", dark: "#000000" },
+    tesla: { light: "#ffffff", dark: "#000000" },
+    openai: { light: "#f7f7f4", dark: "#0d0d0d" },
+    anthropic: { light: "#f7f4ed", dark: "#1f1b17" }
   };
 
   const PALETTE_STYLES = ["forest", "ocean", "sunset", "sakura", "lavender"];
 
-  function palettePeleCss(style) {
+  function palettePeleCss(style, options) {
+    const opts = options || {};
+    const font = opts.font || "var(--font-sans)";
+    const radius = opts.radius || "var(--radius)";
     return `
 [data-pele-style="${style}"] .diagram-canvas-mermaid .pele {
   --pele-bg: transparent;
@@ -48,9 +71,9 @@
   --pele-border: var(--line-strong);
   --pele-accent: var(--accent);
   --pele-critical: var(--danger);
-  --pele-font: var(--font-sans);
+  --pele-font: ${font};
   --pele-font-mono: var(--font-mono);
-  --pele-radius: var(--radius);
+  --pele-radius: ${radius};
   --pele-node-fill: var(--surface);
   --pele-node-stroke: var(--line-strong);
   --pele-node-stroke-width: 1.4px;
@@ -289,6 +312,31 @@
   PALETTE_STYLES.forEach(function (style) {
     PRESET_CSS[style] = palettePeleCss(style);
   });
+
+  const BRAND_PELE_STYLES = {
+    apple: {},
+    google: {},
+    microsoft: {},
+    amazon: {},
+    meta: {},
+    netflix: {},
+    tesla: {},
+    openai: {},
+    nvidia: { font: "var(--font-mono)", radius: "0px" },
+    anthropic: { font: "var(--font-serif)" }
+  };
+
+  Object.keys(BRAND_PELE_STYLES).forEach(function (style) {
+    PRESET_CSS[style] = palettePeleCss(style, BRAND_PELE_STYLES[style]);
+  });
+
+  PRESET_CSS.nvidia += `
+[data-pele-style="nvidia"] .diagram-canvas-mermaid .pele {
+  background-color: var(--surface-2);
+  background-image: linear-gradient(var(--style-grid) 1px, transparent 1px), linear-gradient(90deg, var(--style-grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+`;
 
   const currentScript = document.currentScript;
   const scriptSrc = currentScript && currentScript.getAttribute("src")
