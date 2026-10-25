@@ -518,6 +518,42 @@
     }
   }
 
+  function codeParts(compare) {
+    const figure = compare && compare.closest(".model-diagram");
+    return {
+      figure: figure,
+      panel: figure && figure.querySelector("[data-mermaid-code-panel]"),
+      stage: figure && figure.querySelector("[data-mermaid-stage]"),
+      toggle: figure && figure.querySelector("[data-mermaid-code-toggle]")
+    };
+  }
+
+  function setCodeOpen(compare, open) {
+    const parts = codeParts(compare);
+    if (!parts.panel || !parts.stage || !parts.toggle) return;
+    parts.panel.hidden = !open;
+    parts.stage.classList.toggle("is-code-open", open);
+    parts.toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    parts.toggle.innerHTML = open
+      ? '<span aria-hidden="true">&lt;/&gt;</span> 收合 MMD 碼'
+      : '<span aria-hidden="true">&lt;/&gt;</span> 顯示 MMD 碼';
+  }
+
+  function toggleCode(button) {
+    const figure = button.closest(".model-diagram");
+    const compare = figure && figure.querySelector("[data-mermaid-key]");
+    if (!compare) return;
+    const panel = figure.querySelector("[data-mermaid-code-panel]");
+    const open = Boolean(panel && panel.hidden);
+    setCodeOpen(compare, open);
+    if (open) {
+      const mmdButton = compare.querySelector('[data-mermaid-view="mmd"]');
+      if (mmdButton && mmdButton.getAttribute("aria-pressed") !== "true") {
+        showMmd(compare);
+      }
+    }
+  }
+
   function setView(compare, view) {
     compare.querySelectorAll("[data-mermaid-view]").forEach(function (button) {
       button.setAttribute("aria-pressed", button.getAttribute("data-mermaid-view") === view ? "true" : "false");
@@ -554,6 +590,7 @@
   function showSvg(compare) {
     const panel = compare.querySelector('[data-mermaid-panel="mmd"]');
     setView(compare, "svg");
+    setCodeOpen(compare, false);
     if (!panel) return;
     const record = mounts.get(panel);
     if (record) {
@@ -636,6 +673,12 @@
   }
 
   function handleDocumentClick(event) {
+    const codeButton = event.target.closest("[data-mermaid-code-toggle]");
+    if (codeButton) {
+      toggleCode(codeButton);
+      return;
+    }
+
     const viewButton = event.target.closest("[data-mermaid-view]");
     if (viewButton) {
       const compare = viewButton.closest("[data-mermaid-key]");

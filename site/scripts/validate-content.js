@@ -2193,6 +2193,8 @@ const labSource = read("site/assets/mermaid-lab.js");
 check(labSource.indexOf("data-site-style") !== -1 && labSource.indexOf("analyst-site-style") !== -1, "mermaid-lab.js 未同步全站風格");
 const appSource = read("site/assets/app.js");
 check(appSource.indexOf('data-mermaid-view="svg"') !== -1 && appSource.indexOf('data-mermaid-view="mmd"') !== -1, "圖表切換按鈕應為 SVG／MMD");
+check(appSource.indexOf("data-mermaid-code-toggle") !== -1 && appSource.indexOf("data-mermaid-code-panel") !== -1, "模型圖缺少 MMD 程式碼面板");
+check(labSource.indexOf("data-mermaid-code-toggle") !== -1 && stylesSource.indexOf(".diagram-code-panel") !== -1, "MMD 程式碼面板的樣式或互動未載入");
 const staticBuilderSource = read("site/scripts/build-static-landing-pages.js");
 check(staticBuilderSource.indexOf("analyst-site-style") !== -1, "靜態頁產生器未同步全站風格");
 check(read("site/chapters/accounting-01/index.html").indexOf("analyst-site-style") !== -1, "靜態章節頁未套用全站風格初始化");

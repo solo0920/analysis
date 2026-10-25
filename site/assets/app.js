@@ -1009,15 +1009,26 @@
       "      </div>",
       "    </div>"
     ].join("") : "";
-    const sourceBlock = mmd && opts.showSource ? [
-      '    <details class="diagram-source">',
-      "      <summary>查看 Mermaid 原始碼（.mmd）</summary>",
-      "      <pre><code>" + escapeHtml(mmd.source || "") + "</code></pre>",
-      "    </details>"
-    ].join("") : "";
     const svgPanelClass = diagram.svgIsMermaid
       ? "diagram-canvas diagram-canvas-mermaid diagram-canvas-static"
       : "diagram-canvas diagram-canvas-legacy";
+    const codePanelId = mmd
+      ? "mmd-code-" + (mmd.slug || String(mmd.key).replace(/[^a-z0-9]+/gi, "-"))
+      : "";
+    const codeToggle = mmd ? [
+      '<button type="button" class="diagram-code-toggle" data-mermaid-code-toggle="' + escapeHtml(mmd.key) + '" aria-expanded="false" aria-controls="' + escapeHtml(codePanelId) + '">',
+      '<span aria-hidden="true">&lt;/&gt;</span> 顯示 MMD 碼',
+      "</button>"
+    ].join("") : "";
+    const codePanel = mmd ? [
+      '      <aside class="diagram-code-panel" id="' + escapeHtml(codePanelId) + '" data-mermaid-code-panel hidden>',
+      '        <div class="diagram-code-head">',
+      "          <span>MMD 原始碼</span>",
+      "          <code>" + escapeHtml(mmd.file || "") + "</code>",
+      "        </div>",
+      "        <pre><code>" + escapeHtml(mmd.source || "") + "</code></pre>",
+      "      </aside>"
+    ].join("") : "";
     const relatedBlock = Array.isArray(diagram.related) && diagram.related.length ? [
       '  <div class="diagram-related">',
       '    <span class="diagram-related-label">相關圖表</span>',
@@ -1029,10 +1040,14 @@
     const visual = mmd ? [
       '  <div class="diagram-visual diagram-compare" data-mermaid-key="' + escapeHtml(mmd.key) + '">',
       compareBar,
-      '    <div class="' + svgPanelClass + '" data-mermaid-panel="svg">' + diagram.svg + "</div>",
-      '    <div class="diagram-canvas diagram-canvas-mermaid" data-mermaid-panel="mmd" hidden aria-live="polite"></div>',
+      '    <div class="diagram-compare-stage" data-mermaid-stage>',
+      '      <div class="diagram-compare-body">',
+      '        <div class="' + svgPanelClass + '" data-mermaid-panel="svg">' + diagram.svg + "</div>",
+      '        <div class="diagram-canvas diagram-canvas-mermaid" data-mermaid-panel="mmd" hidden aria-live="polite"></div>',
+      "      </div>",
+      codePanel,
+      "    </div>",
       '    <p class="diagram-scroll-hint">圖表較寬，可左右滑動查看。</p>',
-      sourceBlock,
       "  </div>"
     ].join("") : [
       '  <div class="diagram-visual">',
@@ -1046,9 +1061,12 @@
     const belowTables = split ? parametersTable : variablesTable + parametersTable;
     return [
       '<figure class="model-diagram' + (split ? " has-split-layout" : "") + '">',
-      '  <div class="diagram-head">',
-      '    <p class="diagram-kicker">' + escapeHtml(diagram.kicker || "模型圖") + "</p>",
-      "    <h3>" + escapeHtml(diagram.title) + "</h3>",
+      '  <div class="diagram-head' + (mmd ? " has-code-toggle" : "") + '">',
+      "    <div>",
+      '      <p class="diagram-kicker">' + escapeHtml(diagram.kicker || "模型圖") + "</p>",
+      "      <h3>" + escapeHtml(diagram.title) + "</h3>",
+      "    </div>",
+      codeToggle,
       "  </div>",
       '  <div class="diagram-layout' + (split ? " is-split" : "") + '">',
       visual,
@@ -4530,7 +4548,7 @@
         chapter ? '<a class="text-link" href="#/chapter/' + escapeHtml(chapter.id) + "?section=" + (Number(entry.section) + 1) + '">回原章節 →</a>' : "",
         "    </div>",
         "  </div>",
-        renderDiagram(Object.assign({}, diagram, { mermaid: entry }), { showSource: true }),
+        renderDiagram(Object.assign({}, diagram, { mermaid: entry })),
         "</article>"
       ].join("");
     }

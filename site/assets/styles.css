@@ -2698,7 +2698,50 @@ a.landing-item:hover {
 }
 
 .diagram-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px 14px;
   margin-bottom: 12px;
+}
+
+.diagram-head > div {
+  min-width: 0;
+}
+
+.diagram-code-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.diagram-code-toggle span {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+}
+
+.diagram-code-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.diagram-code-toggle[aria-expanded="true"] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
 }
 
 .diagram-kicker {
@@ -9289,35 +9332,84 @@ html.is-routing body {
   background: var(--accent-soft);
 }
 
-.diagram-source {
-  margin-top: 10px;
-  border-top: 1px dashed var(--line);
-  padding-top: 8px;
+.diagram-compare-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
 }
 
-.diagram-source summary {
-  color: var(--muted);
-  font-size: 0.76rem;
-  cursor: pointer;
+.diagram-compare-stage.is-code-open {
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
 }
 
-.diagram-source pre {
-  max-height: 320px;
-  margin: 8px 0 0;
-  padding: 12px;
-  overflow: auto;
+.diagram-compare-body {
+  min-width: 0;
+}
+
+.diagram-layout.is-split .diagram-compare-stage.is-code-open {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.diagram-code-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  max-height: 72vh;
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   background: var(--surface-2);
+  direction: ltr;
+  text-align: left;
+}
+
+.diagram-code-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 10px;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.diagram-code-head code {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 400;
+}
+
+.diagram-code-panel pre {
+  flex: 1;
+  min-height: 0;
+  margin: 0;
+  padding: 12px;
+  overflow: auto;
   color: var(--ink-soft);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   line-height: 1.65;
   white-space: pre;
+  tab-size: 2;
 }
 
-.diagram-source code {
+.diagram-code-panel code {
   font-family: inherit;
+}
+
+@media (max-width: 980px) {
+  .diagram-compare-stage.is-code-open {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .diagram-code-panel {
+    max-height: 56vh;
+  }
 }
 
 .mermaid-lab-intro {
