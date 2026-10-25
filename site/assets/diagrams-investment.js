@@ -343,15 +343,15 @@ window.INVESTMENT_DIAGRAMS = {
   <path class="dg-curve" d="M48 326 C 90 326 105 300 122 240 C 140 176 162 138 190 132 C 218 138 240 176 258 240 C 275 300 290 326 336 326"></path>
   <path class="dg-curve" d="M420 326 C 462 326 477 300 494 240 C 512 176 534 138 562 132 C 590 138 612 176 630 240 C 647 300 662 326 708 326"></path>
 
-  <path class="dg-area-accent" d="M250 220 C 268 255 295 315 336 326 L250 326 Z"></path>
-  <line class="dg-guide" x1="250" y1="220" x2="250" y2="330"></line>
+  <path class="dg-area-accent" d="M250 214.1 C 252.8 222.2 255.4 230.8 258 240 C 275 300 290 326 336 326 L250 326 Z"></path>
+  <line class="dg-guide" x1="250" y1="214.1" x2="250" y2="330"></line>
   <text class="dg-label-sm" x="250" y="350" text-anchor="middle">K</text>
-  <text class="dg-label-sm" x="304" y="252" text-anchor="middle">N(d₂)</text>
-  <text class="dg-label-xs" x="304" y="267" text-anchor="middle">風險中立價內機率</text>
-  <line class="dg-arrow-line" x1="304" y1="272" x2="304" y2="306" marker-end="url(#dg-bs-arrow)"></line>
+  <text class="dg-label-sm" x="285" y="250" text-anchor="middle">N(d₂)</text>
+  <text class="dg-label-xs" x="285" y="265" text-anchor="middle">風險中立價內機率</text>
+  <line class="dg-arrow-line" x1="285" y1="270" x2="275" y2="292" marker-end="url(#dg-bs-arrow)"></line>
 
-  <path class="dg-area-accent" d="M420 326 C 462 326 477 300 494 240 C 497 232 498 228 500 225 L500 326 Z"></path>
-  <line class="dg-guide" x1="500" y1="225" x2="500" y2="330"></line>
+  <path class="dg-area-accent" d="M420 326 C 462 326 477 300 494 240 C 496 233.1 498 226.4 500 220.1 L500 326 Z"></path>
+  <line class="dg-guide" x1="500" y1="220.1" x2="500" y2="330"></line>
   <text class="dg-label-sm" x="500" y="350" text-anchor="middle">K</text>
   <text class="dg-label-sm" x="455" y="300" text-anchor="middle">N(−d₂)</text>
   <text class="dg-label-xs" x="455" y="315" text-anchor="middle">風險中立價內機率</text>
@@ -364,12 +364,12 @@ window.INVESTMENT_DIAGRAMS = {
   <rect class="dg-callout-strike" x="210" y="80" width="150" height="40" rx="8"></rect>
   <text class="dg-label-sm" x="285" y="97" text-anchor="middle">K e^(−rT) N(d₂)</text>
   <text class="dg-label-xs" x="285" y="111" text-anchor="middle">履約成本項</text>
-  <line class="dg-arrow-line" x1="285" y1="120" x2="252" y2="226" marker-end="url(#dg-bs-arrow)"></line>
+  <line class="dg-arrow-line" x1="285" y1="120" x2="251" y2="222" marker-end="url(#dg-bs-arrow)"></line>
 
   <rect class="dg-callout-strike" x="410" y="80" width="150" height="40" rx="8"></rect>
   <text class="dg-label-sm" x="485" y="97" text-anchor="middle">K e^(−rT) N(−d₂)</text>
   <text class="dg-label-xs" x="485" y="111" text-anchor="middle">履約價折現項</text>
-  <line class="dg-arrow-line" x1="485" y1="120" x2="498" y2="218" marker-end="url(#dg-bs-arrow)"></line>
+  <line class="dg-arrow-line" x1="485" y1="120" x2="498" y2="216" marker-end="url(#dg-bs-arrow)"></line>
 
   <rect class="dg-callout-accent" x="580" y="80" width="150" height="40" rx="8"></rect>
   <text class="dg-label-sm" x="655" y="97" text-anchor="middle">S₀N(−d₁)</text>
