@@ -14,9 +14,9 @@ Object.assign(window.NOBEL_DIAGRAMS, {
   <line class="dg-axis" x1="70" y1="300" x2="608" y2="300"></line>
   <line class="dg-axis" x1="70" y1="300" x2="70" y2="42"></line>
   <text class="dg-label-sm" x="570" y="326">時間 t</text>
-  <text class="dg-label-sm" x="78" y="30">產出 Y_t</text>
+  <text class="dg-label-sm" x="78" y="30">產出 Yₜ</text>
   <line class="dg-guide" x1="245" y1="62" x2="245" y2="300"></line>
-  <text class="dg-label-sm" x="253" y="76">外生衝擊 ε_t</text>
+  <text class="dg-label-sm" x="253" y="76">外生衝擊 εₜ</text>
   <path class="dg-curve" d="M 90 235 C 170 226 250 220 320 205 S 470 170 590 135"></path>
   <path class="dg-curve-alt" d="M 90 235 C 160 234 210 232 245 232 C 280 232 295 274 330 272 C 410 264 500 230 590 210"></path>
   <path class="dg-curve-soft" d="M 90 235 C 160 234 210 232 245 232 C 290 232 310 255 345 250 C 430 238 510 195 590 165"></path>
@@ -50,8 +50,8 @@ Object.assign(window.NOBEL_DIAGRAMS, {
   <path class="dg-curve-soft" d="M 200 95 C 250 140 290 170 330 190 C 370 210 410 230 455 260"></path>
   <line class="dg-guide" x1="190" y1="260" x2="470" y2="120"></line>
   <circle class="dg-point" cx="330" cy="190" r="5"></circle>
-  <text class="dg-label-sm" x="116" y="324">O_A</text>
-  <text class="dg-label-sm" x="538" y="50">O_B</text>
+  <text class="dg-label-sm" x="116" y="324">O<tspan class="dg-sub" dy="3">A</tspan></text>
+  <text class="dg-label-sm" x="538" y="50">O<tspan class="dg-sub" dy="3">B</tspan></text>
   <text class="dg-label-sm" x="280" y="334">A 的消費組合 →</text>
   <text class="dg-label-sm" x="350" y="44">B 的消費組合 ←</text>
   <text class="dg-label-sm" x="395" y="102">契約曲線</text>
@@ -137,12 +137,12 @@ Object.assign(window.NOBEL_DIAGRAMS, {
   <circle class="dg-point" cx="168.75" cy="177.66" r="4"></circle>
   <text class="dg-label-sm" x="242" y="84">儲蓄 S</text>
   <text class="dg-label-sm" x="242" y="252">投資 I</text>
-  <text class="dg-label-sm" x="58" y="169">r_n</text>
+  <text class="dg-label-sm" x="58" y="169">rₙ</text>
   <path class="dg-curve" d="M 370 100 C 420 130 455 165 510 195 S 565 225 590 240"></path>
   <line class="dg-curve-alt" x1="485" y1="85" x2="485" y2="285"></line>
   <text class="dg-label-sm" x="494" y="104">LRPC</text>
   <text class="dg-label-sm" x="500" y="158">SRPC</text>
-  <text class="dg-label-sm" x="445" y="314">u_n</text>
+  <text class="dg-label-sm" x="445" y="314">uₙ</text>
   <line class="dg-guide" x1="485" y1="285" x2="485" y2="180.26"></line>
   <circle class="dg-point" cx="485" cy="180.26" r="4"></circle>
   <text class="dg-label-sm" x="400" y="70">預期通膨 ↑</text>
@@ -309,7 +309,7 @@ Object.assign(window.NOBEL_DIAGRAMS, {
   <text class="dg-label-sm" x="196" y="147">M</text>
   <text class="dg-label-sm" x="246" y="134">效率前緣</text>
   <text class="dg-label-sm" x="252" y="92">CML</text>
-  <text class="dg-label-sm" x="62" y="274">R_f</text>
+  <text class="dg-label-sm" x="62" y="274">R<tspan class="dg-sub" dy="3">f</tspan></text>
   <text class="dg-label-sm" x="180" y="328">β 決定系統性風險補償</text>
   <line class="dg-axis" x1="370" y1="290" x2="610" y2="290"></line>
   <line class="dg-axis" x1="370" y1="290" x2="370" y2="55"></line>
@@ -686,7 +686,7 @@ Object.assign(window.NOBEL_DIAGRAMS, {
   <line class="dg-axis" x1="45" y1="290" x2="300" y2="290"></line>
   <line class="dg-axis" x1="45" y1="290" x2="45" y2="55"></line>
   <text class="dg-label-sm" x="255" y="316">時間 t</text>
-  <text class="dg-label-sm" x="53" y="44">消費 C_t</text>
+  <text class="dg-label-sm" x="53" y="44">消費 Cₜ</text>
   <path class="dg-curve" d="M 65 250 L 100 250 L 100 230 L 140 230 L 140 245 L 180 245 L 180 205 L 220 205 L 220 220 L 260 220 L 260 185 L 292 185"></path>
   <text class="dg-label-sm" x="105" y="214">隨機衝擊</text>
   <text class="dg-label-sm" x="70" y="278">C(t+1) = C(t) + ε(t+1)</text>

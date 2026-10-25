@@ -186,7 +186,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   <title id="dg-option-title">買權與賣權到期價值圖</title>
   <line class="dg-axis" x1="70" y1="300" x2="608" y2="300"></line>
   <line class="dg-axis" x1="70" y1="300" x2="70" y2="32"></line>
-  <text class="dg-label" x="600" y="326" text-anchor="end">標的價格 S_T</text>
+  <text class="dg-label" x="600" y="326" text-anchor="end">標的價格 S(T)</text>
   <text class="dg-label" x="78" y="24">到期價值</text>
   <line class="dg-guide" x1="70" y1="250" x2="608" y2="250"></line>
   <text class="dg-label-sm" x="580" y="244">0</text>

@@ -3833,6 +3833,10 @@ a.landing-item:hover {
   font-size: 9px;
 }
 
+.model-diagram svg .dg-sub {
+  font-size: 9px;
+}
+
 .model-diagram svg .dg-label-adjust {
   fill: var(--gold);
   font-weight: 700;

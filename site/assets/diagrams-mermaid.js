@@ -379,9 +379,9 @@ window.MERMAID_DIAGRAMS = {
     "caption": "從無套利原則出發，經二項式與風險中立機率，連到 Black–Scholes、Greeks、美式提前履約與數值方法。",
     "variables": [
       [
-        "S",
-        "標的資產價格",
-        "選擇權的基礎資產。"
+        "S₀",
+        "期初標的價格",
+        "選擇權的期初標的資產價格。"
       ],
       [
         "K",
@@ -426,7 +426,7 @@ window.MERMAID_DIAGRAMS = {
         "Delta、Gamma、Vega、Theta、Rho。"
       ]
     ],
-    "source": "flowchart TD\n  accTitle: 選擇權定價地圖\n  accDescr: 從無套利原則出發，經二項式模型與風險中立機率，連到 Black–Scholes 與 Greeks；另列美式選擇權的提前履約分支與數值方法。\n\n  NOARB[\"無套利原則<br/>同風險同報酬\"]:::accent\n  BIN[\"二項式模型<br/>u、d、q\"] --> BS[\"Black–Scholes<br/>C = S N(d1) − K e^(−rT) N(d2)\"]:::outcome\n  NOARB --> BIN\n  BIN --> RN[\"風險中立機率<br/>q = (e^(rΔt) − d) ÷ (u − d)\"]\n  RN --> BS\n  BS --> GREEKS[\"Greeks<br/>Delta、Gamma、Vega、Theta、Rho\"]\n  BIN --> AM[\"美式選擇權<br/>提前履約分支\"]\n  AM --> TREE[\"三項式／樹狀數值法\"]\n  BS --> SMILE[\"波動率微笑／偏斜\"]\n  GREEKS --> RISK[\"風險管理與避險\"]\n\n  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px\n  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px\n"
+    "source": "flowchart TD\n  accTitle: 選擇權定價地圖\n  accDescr: 從無套利原則出發，經二項式模型與風險中立機率，連到 Black–Scholes 與 Greeks；另列美式選擇權的提前履約分支與數值方法。\n\n  NOARB[\"無套利原則<br/>同風險同報酬\"]:::accent\n  BIN[\"二項式模型<br/>u、d、q\"] --> BS[\"Black–Scholes<br/>C = S₀N(d₁) − K e⁻ʳᵀ N(d₂)\"]:::outcome\n  NOARB --> BIN\n  BIN --> RN[\"風險中立機率<br/>q = (exp(rΔt) − d) ÷ (u − d)\"]\n  RN --> BS\n  BS --> GREEKS[\"Greeks<br/>Delta、Gamma、Vega、Theta、Rho\"]\n  BIN --> AM[\"美式選擇權<br/>提前履約分支\"]\n  AM --> TREE[\"三項式／樹狀數值法\"]\n  BS --> SMILE[\"波動率微笑／偏斜\"]\n  GREEKS --> RISK[\"風險管理與避險\"]\n\n  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px\n  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px\n"
   },
   "investment-09#3-2": {
     "key": "investment-09#3-2",
@@ -445,7 +445,7 @@ window.MERMAID_DIAGRAMS = {
     "generatedSvg": true,
     "kicker": "Mermaid 推導圖",
     "title": "Black–Scholes 推導流程：從 Itô 到 Greeks",
-    "caption": "從無套利與連續交易假設，經 Itô 引理、Black–Scholes PDE、風險中立期望與 d1/d2，得到封閉解與 Greeks。",
+    "caption": "從無套利與連續交易假設，經 Itô 引理、Black–Scholes PDE、風險中立期望與 d₁/d₂，得到封閉解與 Greeks。",
     "variables": [
       [
         "C",
@@ -453,9 +453,9 @@ window.MERMAID_DIAGRAMS = {
         "歐式買權。"
       ],
       [
-        "S",
-        "標的價格",
-        "連續交易。"
+        "S₀",
+        "期初標的價格",
+        "連續交易下的期初標的價格。"
       ],
       [
         "K",
@@ -475,7 +475,7 @@ window.MERMAID_DIAGRAMS = {
       [
         "N(·)",
         "標準常態 CDF",
-        "d1、d2 的累積機率。"
+        "d₁、d₂ 的累積機率。"
       ]
     ],
     "parameters": [
@@ -495,7 +495,7 @@ window.MERMAID_DIAGRAMS = {
         "Delta、Gamma、Vega、Theta、Rho。"
       ]
     ],
-    "source": "flowchart TD\n  accTitle: Black–Scholes 推導流程\n  accDescr: 從無套利與連續交易假設出發，以 Itô 引理建立 Black–Scholes 偏微分方程，轉為風險中立期望，得到 d1、d2 與封閉解，最後延伸到 Greeks。\n\n  ASSUME[\"假設<br/>無套利、連續交易<br/>常數波動率、無摩擦\"]:::accent\n  ITO[\"Itô 引理<br/>dS、dC 的隨機微分\"]\n  PDE[\"Black–Scholes PDE<br/>∂C/∂t + ½σ²S² ∂²C/∂S²<br/>+ rS ∂C/∂S − rC = 0\"]\n  RISK[\"風險中立定價<br/>C = e^(−rT) E^Q[max(S_T − K, 0)]\"]\n  D1D2[\"d1、d2<br/>d1 = [ln(S/K) + (r + ½σ²)T] ÷ (σ√T)<br/>d2 = d1 − σ√T\"]\n  BS[\"Black–Scholes 公式<br/>C = S N(d1) − K e^(−rT) N(d2)\"]:::outcome\n  GREEKS[\"Greeks 與敏感度<br/>Delta、Gamma、Vega、Theta、Rho\"]\n\n  ASSUME --> ITO --> PDE --> RISK --> D1D2 --> BS --> GREEKS\n\n  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px\n  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px\n"
+    "source": "flowchart TD\n  accTitle: Black–Scholes 推導流程\n  accDescr: 從無套利與連續交易假設出發，以 Itô 引理建立 Black–Scholes 偏微分方程，轉為風險中立期望，得到 d₁、d₂ 與封閉解，最後延伸到 Greeks。\n\n  ASSUME[\"假設<br/>無套利、連續交易<br/>常數波動率、無摩擦\"]:::accent\n  ITO[\"Itô 引理<br/>dS、dC 的隨機微分\"]\n  PDE[\"Black–Scholes PDE<br/>∂C/∂t + ½σ²S² ∂²C/∂S²<br/>+ rS ∂C/∂S − rC = 0\"]\n  RISK[\"風險中立定價<br/>C = e⁻ʳᵀ E[max(S(T) − K, 0)]\"]\n  D1D2[\"d₁、d₂<br/>d₁ = [ln(S₀/K) + (r + ½σ²)T] ÷ (σ√T)<br/>d₂ = d₁ − σ√T\"]\n  BS[\"Black–Scholes 公式<br/>C = S₀N(d₁) − K e⁻ʳᵀ N(d₂)\"]:::outcome\n  GREEKS[\"Greeks 與敏感度<br/>Delta、Gamma、Vega、Theta、Rho\"]\n\n  ASSUME --> ITO --> PDE --> RISK --> D1D2 --> BS --> GREEKS\n\n  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px\n  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px\n"
   },
   "investment-14#2": {
     "key": "investment-14#2",

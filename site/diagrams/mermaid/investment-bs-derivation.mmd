@@ -1,13 +1,13 @@
 flowchart TD
   accTitle: Black–Scholes 推導流程
-  accDescr: 從無套利與連續交易假設出發，以 Itô 引理建立 Black–Scholes 偏微分方程，轉為風險中立期望，得到 d1、d2 與封閉解，最後延伸到 Greeks。
+  accDescr: 從無套利與連續交易假設出發，以 Itô 引理建立 Black–Scholes 偏微分方程，轉為風險中立期望，得到 d₁、d₂ 與封閉解，最後延伸到 Greeks。
 
   ASSUME["假設<br/>無套利、連續交易<br/>常數波動率、無摩擦"]:::accent
   ITO["Itô 引理<br/>dS、dC 的隨機微分"]
   PDE["Black–Scholes PDE<br/>∂C/∂t + ½σ²S² ∂²C/∂S²<br/>+ rS ∂C/∂S − rC = 0"]
-  RISK["風險中立定價<br/>C = e^(−rT) E^Q[max(S_T − K, 0)]"]
-  D1D2["d1、d2<br/>d1 = [ln(S/K) + (r + ½σ²)T] ÷ (σ√T)<br/>d2 = d1 − σ√T"]
-  BS["Black–Scholes 公式<br/>C = S N(d1) − K e^(−rT) N(d2)"]:::outcome
+  RISK["風險中立定價<br/>C = e⁻ʳᵀ E[max(S(T) − K, 0)]"]
+  D1D2["d₁、d₂<br/>d₁ = [ln(S₀/K) + (r + ½σ²)T] ÷ (σ√T)<br/>d₂ = d₁ − σ√T"]
+  BS["Black–Scholes 公式<br/>C = S₀N(d₁) − K e⁻ʳᵀ N(d₂)"]:::outcome
   GREEKS["Greeks 與敏感度<br/>Delta、Gamma、Vega、Theta、Rho"]
 
   ASSUME --> ITO --> PDE --> RISK --> D1D2 --> BS --> GREEKS

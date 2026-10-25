@@ -3,9 +3,9 @@ flowchart TD
   accDescr: 從無套利原則出發，經二項式模型與風險中立機率，連到 Black–Scholes 與 Greeks；另列美式選擇權的提前履約分支與數值方法。
 
   NOARB["無套利原則<br/>同風險同報酬"]:::accent
-  BIN["二項式模型<br/>u、d、q"] --> BS["Black–Scholes<br/>C = S N(d1) − K e^(−rT) N(d2)"]:::outcome
+  BIN["二項式模型<br/>u、d、q"] --> BS["Black–Scholes<br/>C = S₀N(d₁) − K e⁻ʳᵀ N(d₂)"]:::outcome
   NOARB --> BIN
-  BIN --> RN["風險中立機率<br/>q = (e^(rΔt) − d) ÷ (u − d)"]
+  BIN --> RN["風險中立機率<br/>q = (exp(rΔt) − d) ÷ (u − d)"]
   RN --> BS
   BS --> GREEKS["Greeks<br/>Delta、Gamma、Vega、Theta、Rho"]
   BIN --> AM["美式選擇權<br/>提前履約分支"]

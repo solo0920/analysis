@@ -366,9 +366,9 @@
       "caption": "從無套利原則出發，經二項式與風險中立機率，連到 Black–Scholes、Greeks、美式提前履約與數值方法。",
       "variables": [
         [
-          "S",
-          "標的資產價格",
-          "選擇權的基礎資產。"
+          "S₀",
+          "期初標的價格",
+          "選擇權的期初標的資產價格。"
         ],
         [
           "K",
@@ -431,7 +431,7 @@
       "generatedSvg": true,
       "kicker": "Mermaid 推導圖",
       "title": "Black–Scholes 推導流程：從 Itô 到 Greeks",
-      "caption": "從無套利與連續交易假設，經 Itô 引理、Black–Scholes PDE、風險中立期望與 d1/d2，得到封閉解與 Greeks。",
+      "caption": "從無套利與連續交易假設，經 Itô 引理、Black–Scholes PDE、風險中立期望與 d₁/d₂，得到封閉解與 Greeks。",
       "variables": [
         [
           "C",
@@ -439,9 +439,9 @@
           "歐式買權。"
         ],
         [
-          "S",
-          "標的價格",
-          "連續交易。"
+          "S₀",
+          "期初標的價格",
+          "連續交易下的期初標的價格。"
         ],
         [
           "K",
@@ -461,7 +461,7 @@
         [
           "N(·)",
           "標準常態 CDF",
-          "d1、d2 的累積機率。"
+          "d₁、d₂ 的累積機率。"
         ]
       ],
       "parameters": [

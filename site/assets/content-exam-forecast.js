@@ -2381,7 +2381,7 @@ window.EXAM_FORECAST = {
             "計算 d1、d2 與買權價格。",
             "解釋波動率上升對買權與賣權的影響。"
           ],
-          "focus": "C=S0N(d1)−Ke^(−rT)N(d2)；d1=[ln(S0/K)+(r+σ^2/2)T]/(σ sqrt(T))，d2=d1−σ sqrt(T)。波動率上升提高選擇權價值。",
+          "focus": "\\(C=S_0N(d_1)-Ke^{-rT}N(d_2)\\)；\\(d_1=\\frac{\\ln(S_0/K)+(r+\\sigma^2/2)T}{\\sigma\\sqrt T}\\)，\\(d_2=d_1-\\sigma\\sqrt T\\)。波動率上升提高選擇權價值。",
           "answerId": "investment-09"
         },
         {
@@ -3874,7 +3874,7 @@ window.EXAM_FORECAST = {
       {
         "name": "Fisher 方程式",
         "latex": "1+i=(1+r)(1+\\pi^e)",
-        "note": "近似式 r≈i−π^e；精確式用於通膨較高時。"
+        "note": "近似式 \\(r\\approx i-\\pi^e\\)；精確式用於通膨較高時。"
       },
       {
         "name": "未拋補利率平價",
@@ -3951,7 +3951,7 @@ window.EXAM_FORECAST = {
       {
         "name": "Black-Scholes 買權",
         "latex": "C=S_0N(d_1)-Ke^{-rT}N(d_2)",
-        "note": "d1=[ln(S0/K)+(r+σ^2/2)T]/(σ sqrt(T))，d2=d1−σ sqrt(T)。"
+        "note": "\\(d_1=\\frac{\\ln(S_0/K)+(r+\\sigma^2/2)T}{\\sigma\\sqrt T}\\)，\\(d_2=d_1-\\sigma\\sqrt T\\)。"
       },
       {
         "name": "期貨最適避險比率",

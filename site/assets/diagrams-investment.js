@@ -54,8 +54,8 @@ window.INVESTMENT_DIAGRAMS = {
   <text class="dg-label-sm" x="62" y="34" text-anchor="end">E(R)</text>
   <line class="dg-guide" x1="300" y1="310" x2="300" y2="160"></line>
   <line class="dg-guide" x1="70" y1="160" x2="300" y2="160"></line>
-  <text class="dg-label-sm" x="64" y="164" text-anchor="end">E(R_T)</text>
-  <text class="dg-label-sm" x="300" y="326" text-anchor="middle">σ_T</text>
+  <text class="dg-label-sm" x="64" y="164" text-anchor="end">E(R(T))</text>
+  <text class="dg-label-sm" x="300" y="326" text-anchor="middle">σ(T)</text>
   <path class="dg-curve-soft" d="M215 225 C 290 257 400 285 540 296"></path>
   <path class="dg-curve" d="M215 225 C 215 215 262 181.8 300 160 C 342 137 460 85 575 52"></path>
   <line class="dg-curve-alt" x1="70" y1="285" x2="550" y2="24"></line>
@@ -64,7 +64,7 @@ window.INVESTMENT_DIAGRAMS = {
   <circle class="dg-point" cx="300" cy="160" r="5"></circle>
   <circle class="dg-point" cx="165" cy="233" r="4"></circle>
   <circle class="dg-point" cx="430" cy="89" r="4"></circle>
-  <text class="dg-label-sm" x="58" y="289" text-anchor="end">R_f</text>
+  <text class="dg-label-sm" x="58" y="289" text-anchor="end">R<tspan class="dg-sub" dy="3">f</tspan></text>
   <text class="dg-label-sm" x="205" y="248" text-anchor="end">GMV（最小變異數）</text>
   <text class="dg-label-sm" x="315" y="182">T（市場投資組合）</text>
   <line class="dg-guide" x1="312" y1="176" x2="303" y2="162"></line>
@@ -229,8 +229,8 @@ window.INVESTMENT_DIAGRAMS = {
   <path class="dg-curve-alt" d="M350 63 L460 263 L570 263"></path>
   <circle class="dg-point" cx="183" cy="235" r="4"></circle>
   <circle class="dg-point" cx="445" cy="235" r="4"></circle>
-  <text class="dg-label-sm" x="285" y="305" text-anchor="end">S_T</text>
-  <text class="dg-label-sm" x="585" y="305" text-anchor="end">S_T</text>
+  <text class="dg-label-sm" x="285" y="305" text-anchor="end">S(T)</text>
+  <text class="dg-label-sm" x="585" y="305" text-anchor="end">S(T)</text>
   <text class="dg-label-sm" x="48" y="66" text-anchor="end">損益</text>
   <text class="dg-label-sm" x="343" y="66" text-anchor="end">損益</text>
   <text class="dg-label-sm" x="165" y="303" text-anchor="middle">K</text>
@@ -280,8 +280,8 @@ window.INVESTMENT_DIAGRAMS = {
   <path class="dg-curve-alt" d="M350 264 L449 264 L570 99"></path>
   <circle class="dg-point" cx="156" cy="120" r="4"></circle>
   <circle class="dg-point" cx="467" cy="240" r="4"></circle>
-  <text class="dg-label-sm" x="285" y="305" text-anchor="end">S_T</text>
-  <text class="dg-label-sm" x="585" y="305" text-anchor="end">S_T</text>
+  <text class="dg-label-sm" x="285" y="305" text-anchor="end">S(T)</text>
+  <text class="dg-label-sm" x="585" y="305" text-anchor="end">S(T)</text>
   <text class="dg-label-sm" x="48" y="81" text-anchor="end">損益</text>
   <text class="dg-label-sm" x="343" y="81" text-anchor="end">損益</text>
   <text class="dg-label-sm" x="176" y="303" text-anchor="middle">K</text>
@@ -335,10 +335,10 @@ window.INVESTMENT_DIAGRAMS = {
   <line class="dg-axis" x1="44" y1="330" x2="44" y2="96" marker-end="url(#dg-bs-arrow)"></line>
   <line class="dg-axis" x1="416" y1="330" x2="716" y2="330" marker-end="url(#dg-bs-arrow)"></line>
   <line class="dg-axis" x1="416" y1="330" x2="416" y2="96" marker-end="url(#dg-bs-arrow)"></line>
-  <text class="dg-label-sm" x="344" y="350" text-anchor="end">S_T</text>
-  <text class="dg-label-sm" x="716" y="350" text-anchor="end">S_T</text>
-  <text class="dg-label-sm" x="35" y="210" text-anchor="middle" transform="rotate(-90 35 210)">f(S_T)</text>
-  <text class="dg-label-sm" x="407" y="210" text-anchor="middle" transform="rotate(-90 407 210)">f(S_T)</text>
+  <text class="dg-label-sm" x="344" y="350" text-anchor="end">S(T)</text>
+  <text class="dg-label-sm" x="716" y="350" text-anchor="end">S(T)</text>
+  <text class="dg-label-sm" x="35" y="210" text-anchor="middle" transform="rotate(-90 35 210)">f(S(T))</text>
+  <text class="dg-label-sm" x="407" y="210" text-anchor="middle" transform="rotate(-90 407 210)">f(S(T))</text>
 
   <path class="dg-curve" d="M48 326 C 90 326 105 300 122 240 C 140 176 162 138 190 132 C 218 138 240 176 258 240 C 275 300 290 326 336 326"></path>
   <path class="dg-curve" d="M420 326 C 462 326 477 300 494 240 C 512 176 534 138 562 132 C 590 138 612 176 630 240 C 647 300 662 326 708 326"></path>

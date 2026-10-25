@@ -38,7 +38,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   <circle class="dg-point" cx="418.6" cy="154.81" r="4.5"></circle>
   <text class="dg-label" x="427" y="149">E₁</text>
   <circle class="dg-point" cx="380" cy="139.7" r="4.5"></circle>
-  <text class="dg-label" x="352" y="134">E_LR</text>
+  <text class="dg-label" x="352" y="134">E(LR)</text>
   <path class="dg-arrow" d="M413,158 Q397,147 385,142" marker-end="url(#dg-adas-arrow)"></path>
   <text class="dg-label-sm" x="380" y="318" text-anchor="middle">Yn</text>
   <text class="dg-label-sm" x="418.6" y="318" text-anchor="middle">Y₁</text>
@@ -233,7 +233,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   <line class="dg-guide" x1="330" y1="70" x2="330" y2="300"></line>
   <line class="dg-guide" x1="70" y1="70" x2="330" y2="70"></line>
   <circle class="dg-point" cx="330" cy="70" r="4.5"></circle>
-  <text class="dg-label-sm" x="340" y="65">R_max</text>
+  <text class="dg-label-sm" x="340" y="65">Rₘₐₓ</text>
   <text class="dg-label-sm" x="318" y="322">t*</text>
   <text class="dg-label-sm" x="76" y="322">0%</text>
   <text class="dg-label-sm" x="568" y="322">100%</text>

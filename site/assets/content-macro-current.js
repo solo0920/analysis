@@ -473,7 +473,7 @@ window.MACRO_CURRENT_EVENTS.formulasById = {
     {
       "name": "Fisher 方程式",
       "latex": "1+i=(1+r)(1+\\pi^e)",
-      "note": "近似式 r≈i−π^e；通膨較高時使用精確式。"
+      "note": "近似式 \\(r\\approx i-\\pi^e\\)；通膨較高時使用精確式。"
     }
   ],
   "us-debt-gold": [
