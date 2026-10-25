@@ -2744,6 +2744,7 @@ a.landing-item:hover {
 
 .diagram-canvas {
   padding: 10px 8px 6px;
+  overflow-x: auto;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   background: var(--surface-2);

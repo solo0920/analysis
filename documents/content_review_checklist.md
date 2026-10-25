@@ -422,4 +422,4 @@
 - [x] 已完成第 3 步 P1：`macro-01#0`（兩部門循環）、`accounting-14#0-2`（四表一附註）、`accounting-14#0-4`（交易到財務報表）、`accounting-15#1`（杜邦三／五階段）加入 MMD，並保留 `accounting-15#0` 的營收→淨利→比率；T 字帳速查圖 `accounting-14#0-3` 保留表格，連到會計循環。
 - [x] 已完成第 4 步 P2：新增 5 張推導圖 `macro-06#0-2`（總體模型地圖）、`investment-05#1-2`（CAPM／SML）、`investment-07#2-2`（債券利率風險）、`investment-09#0`（選擇權定價地圖）、`investment-09#3-2`（Black–Scholes 推導）；由 `build-mermaid-static.mjs` 產生靜態 SVG fallback，SVG／MMD 兩版都可切換。
 - [x] 已完成第 5 步：31 張量化曲線圖與 1 張速查表保留原 SVG／表格，並在 `MERMAID_RELATED` 加入 32 組「相關圖表」連結（總體模型、CAPM／SML、債券風險、選擇權定價、BS 推導、會計循環）；`#/lab/mermaid` 改為 17 張圖表總覽，依總體／會計／投資分組。
-- [x] 已完成 17 張 MMD 的 1280px／390px、深淺主題、`file://`、靜態章節頁與 `#/models/macro` QA：17 個 SVG／MMD 切換、5 張新推導圖靜態 SVG、32 組相關連結、0 頁面水平溢出、0 console errors、0 `.katex-error`；驗證器 157,018 項、失敗 0。
+- [x] 已完成 17 張 MMD 的 1280／1024／900／800／768／390px、深淺主題、`file://`、靜態章節頁與 `#/models/macro` QA：17 個 SVG／MMD 切換、5 張新推導圖靜態 SVG、32 組相關連結、0 頁面水平溢出、0 console errors、0 `.katex-error`；驗證器 157,018 項、失敗 0。
