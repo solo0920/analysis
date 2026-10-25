@@ -13,14 +13,66 @@
     paper: { label: "紙感", note: "沿用網站色票" },
     blueprint: { label: "藍圖", note: "深藍網格與等寬字" },
     mono: { label: "極簡", note: "黑白線稿" },
-    contrast: { label: "高對比", note: "黑底螢光重點" }
+    contrast: { label: "高對比", note: "黑底螢光重點" },
+    forest: { label: "森林", note: "鼠尾草綠與樹皮色" },
+    ocean: { label: "海洋", note: "海水藍與珊瑚橘" },
+    sunset: { label: "夕陽", note: "陶土橘與暮色紫" },
+    sakura: { label: "櫻花", note: "玫瑰粉與奶油白" },
+    terminal: { label: "終端機", note: "黑底綠字與掃描格" },
+    lavender: { label: "薰衣草", note: "柔和紫與奶油色" }
   };
   const STYLE_THEME_COLORS = {
     paper: { light: "#0f5c5c", dark: "#0f1719" },
     blueprint: { light: "#eef4fa", dark: "#081a2b" },
     mono: { light: "#f7f7f4", dark: "#121212" },
-    contrast: { light: "#ffffff", dark: "#000000" }
+    contrast: { light: "#ffffff", dark: "#000000" },
+    forest: { light: "#f2f5ec", dark: "#0b1a10" },
+    ocean: { light: "#eef7f8", dark: "#071c24" },
+    sunset: { light: "#fdf2ec", dark: "#1b1019" },
+    sakura: { light: "#fdf2f4", dark: "#1e1118" },
+    terminal: { light: "#f0f7f1", dark: "#030b06" },
+    lavender: { light: "#f5f1fb", dark: "#130f1c" }
   };
+
+  const PALETTE_STYLES = ["forest", "ocean", "sunset", "sakura", "lavender"];
+
+  function palettePeleCss(style) {
+    return `
+[data-pele-style="${style}"] .diagram-canvas-mermaid .pele {
+  --pele-bg: transparent;
+  --pele-fg: var(--ink);
+  --pele-muted: var(--muted);
+  --pele-line: var(--line-strong);
+  --pele-surface: var(--surface);
+  --pele-surface-alt: var(--surface-2);
+  --pele-border: var(--line-strong);
+  --pele-accent: var(--accent);
+  --pele-critical: var(--danger);
+  --pele-font: var(--font-sans);
+  --pele-font-mono: var(--font-mono);
+  --pele-radius: var(--radius);
+  --pele-node-fill: var(--surface);
+  --pele-node-stroke: var(--line-strong);
+  --pele-node-stroke-width: 1.4px;
+  --pele-accent-fill: var(--accent-soft);
+  --pele-accent-stroke: var(--accent);
+  --pele-accent-stroke-width: 2px;
+  --pele-outcome-fill: var(--gold-soft);
+  --pele-outcome-stroke: var(--gold);
+  --pele-label: var(--ink);
+  --pele-accent-label: var(--accent-ink);
+  --pele-outcome-label: var(--ink);
+  --pele-cluster-fill: var(--surface-2);
+  --pele-cluster-opacity: 0.65;
+  --pele-cluster-stroke: var(--line);
+  --pele-cluster-label: var(--muted);
+  --pele-cluster-dash: 4 4;
+  --pele-edge: var(--line-strong);
+  --pele-marker: var(--line-strong);
+  background: transparent;
+}
+`;
+  }
 
   const PRESET_CSS = {
     paper: "",
@@ -40,21 +92,24 @@
   --pele-radius: 0px;
   --pele-node-fill: #f8fbff;
   --pele-node-stroke: #8fb3d1;
+  --pele-node-stroke-width: 1.4px;
   --pele-accent-fill: #d7eaf8;
   --pele-accent-stroke: #0b5f8a;
+  --pele-accent-stroke-width: 2px;
   --pele-outcome-fill: #f7e3c8;
   --pele-outcome-stroke: #a05a00;
   --pele-label: #0b2740;
   --pele-accent-label: #08496b;
   --pele-outcome-label: #6b3d00;
   --pele-cluster-fill: #eaf2fa;
+  --pele-cluster-opacity: 0.92;
   --pele-cluster-stroke: #b8cfe3;
   --pele-cluster-label: #527a9c;
+  --pele-cluster-dash: 4 4;
   --pele-edge: #8fb3d1;
   --pele-marker: #8fb3d1;
-  --pele-grid: rgba(11, 95, 138, 0.09);
   background-color: #eef4fa;
-  background-image: linear-gradient(var(--pele-grid) 1px, transparent 1px), linear-gradient(90deg, var(--pele-grid) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(11, 95, 138, 0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(11, 95, 138, 0.09) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 [data-pele-style="blueprint"][data-theme="dark"] .diagram-canvas-mermaid .pele {
@@ -72,47 +127,26 @@
   --pele-radius: 0px;
   --pele-node-fill: #0e2740;
   --pele-node-stroke: #5d93c4;
+  --pele-node-stroke-width: 1.4px;
   --pele-accent-fill: #123c5c;
   --pele-accent-stroke: #67c7ff;
+  --pele-accent-stroke-width: 2px;
   --pele-outcome-fill: #3a2a12;
   --pele-outcome-stroke: #ffb86b;
   --pele-label: #d9ecff;
   --pele-accent-label: #eaf7ff;
   --pele-outcome-label: #ffe3bd;
   --pele-cluster-fill: #0b2238;
+  --pele-cluster-opacity: 0.92;
   --pele-cluster-stroke: #3e6f9e;
   --pele-cluster-label: #8eb8dd;
+  --pele-cluster-dash: 4 4;
   --pele-edge: #5d93c4;
   --pele-marker: #5d93c4;
-  --pele-grid: rgba(103, 199, 255, 0.09);
   background-color: #081a2b;
-  background-image: linear-gradient(var(--pele-grid) 1px, transparent 1px), linear-gradient(90deg, var(--pele-grid) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(103, 199, 255, 0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(103, 199, 255, 0.09) 1px, transparent 1px);
   background-size: 24px 24px;
 }
-[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-cluster rect {
-  fill: var(--pele-cluster-fill) !important;
-  fill-opacity: 0.92;
-  stroke: var(--pele-cluster-stroke) !important;
-  stroke-dasharray: 4 4;
-}
-[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-cluster-label { fill: var(--pele-cluster-label) !important; }
-[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-node rect {
-  fill: var(--pele-node-fill) !important;
-  stroke: var(--pele-node-stroke) !important;
-}
-[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-node.accent rect {
-  fill: var(--pele-accent-fill) !important;
-  stroke: var(--pele-accent-stroke) !important;
-}
-[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-node.outcome rect {
-  fill: var(--pele-outcome-fill) !important;
-  stroke: var(--pele-outcome-stroke) !important;
-}
-[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-node .pele-label { fill: var(--pele-label) !important; }
-[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-node.accent .pele-label { fill: var(--pele-accent-label) !important; }
-[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-node.outcome .pele-label { fill: var(--pele-outcome-label) !important; }
-[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-edge path { stroke: var(--pele-edge) !important; }
-[data-pele-style="blueprint"] .diagram-canvas-mermaid .pele-marker { fill: var(--pele-marker) !important; }
 `,
     mono: `
 [data-pele-style="mono"] .diagram-canvas-mermaid .pele {
@@ -125,29 +159,29 @@
   --pele-border: var(--ink);
   --pele-accent: var(--ink);
   --pele-critical: var(--danger);
+  --pele-font: var(--font-mono);
+  --pele-font-mono: var(--font-mono);
   --pele-radius: 0px;
+  --pele-node-fill: transparent;
+  --pele-node-stroke: var(--ink);
+  --pele-node-stroke-width: 1.2px;
+  --pele-accent-fill: transparent;
+  --pele-accent-stroke: var(--ink);
+  --pele-accent-stroke-width: 2px;
+  --pele-outcome-fill: transparent;
+  --pele-outcome-stroke: var(--ink);
+  --pele-label: var(--ink);
+  --pele-accent-label: var(--ink);
+  --pele-outcome-label: var(--ink);
+  --pele-cluster-fill: transparent;
+  --pele-cluster-opacity: 1;
+  --pele-cluster-stroke: var(--line-strong);
+  --pele-cluster-label: var(--muted);
+  --pele-cluster-dash: 3 3;
+  --pele-edge: var(--line-strong);
+  --pele-marker: var(--line-strong);
   background: transparent;
 }
-[data-pele-style="mono"] .diagram-canvas-mermaid .pele-cluster rect {
-  fill: transparent !important;
-  stroke: var(--line-strong) !important;
-  stroke-dasharray: 3 3;
-}
-[data-pele-style="mono"] .diagram-canvas-mermaid .pele-cluster-label { fill: var(--muted) !important; }
-[data-pele-style="mono"] .diagram-canvas-mermaid .pele-node rect {
-  fill: transparent !important;
-  stroke: var(--ink) !important;
-  stroke-width: 1.2px !important;
-}
-[data-pele-style="mono"] .diagram-canvas-mermaid .pele-node.accent rect,
-[data-pele-style="mono"] .diagram-canvas-mermaid .pele-node.outcome rect {
-  fill: transparent !important;
-  stroke: var(--ink) !important;
-  stroke-width: 2px !important;
-}
-[data-pele-style="mono"] .diagram-canvas-mermaid .pele-node .pele-label { fill: var(--ink) !important; }
-[data-pele-style="mono"] .diagram-canvas-mermaid .pele-edge path { stroke: var(--line-strong) !important; }
-[data-pele-style="mono"] .diagram-canvas-mermaid .pele-marker { fill: var(--line-strong) !important; }
 `,
     contrast: `
 [data-pele-style="contrast"][data-theme="light"] .diagram-canvas-mermaid .pele {
@@ -163,16 +197,20 @@
   --pele-radius: 2px;
   --pele-node-fill: #ffffff;
   --pele-node-stroke: #000000;
+  --pele-node-stroke-width: 2px;
   --pele-accent-fill: #ffe600;
   --pele-accent-stroke: #000000;
+  --pele-accent-stroke-width: 2px;
   --pele-outcome-fill: #00e5ff;
   --pele-outcome-stroke: #000000;
   --pele-label: #000000;
   --pele-accent-label: #000000;
   --pele-outcome-label: #000000;
   --pele-cluster-fill: #f5f5f5;
+  --pele-cluster-opacity: 1;
   --pele-cluster-stroke: #000000;
   --pele-cluster-label: #000000;
+  --pele-cluster-dash: 5 4;
   --pele-edge: #000000;
   --pele-marker: #000000;
   background: #ffffff;
@@ -190,46 +228,67 @@
   --pele-radius: 2px;
   --pele-node-fill: #111111;
   --pele-node-stroke: #ffffff;
+  --pele-node-stroke-width: 2px;
   --pele-accent-fill: #ffe600;
   --pele-accent-stroke: #ffe600;
+  --pele-accent-stroke-width: 2px;
   --pele-outcome-fill: #00e5ff;
   --pele-outcome-stroke: #00e5ff;
   --pele-label: #ffffff;
   --pele-accent-label: #000000;
   --pele-outcome-label: #000000;
   --pele-cluster-fill: #111111;
+  --pele-cluster-opacity: 1;
   --pele-cluster-stroke: #ffe600;
   --pele-cluster-label: #ffe600;
+  --pele-cluster-dash: 5 4;
   --pele-edge: #ffffff;
   --pele-marker: #ffffff;
   background: #000000;
 }
-[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-cluster rect {
-  fill: var(--pele-cluster-fill) !important;
-  stroke: var(--pele-cluster-stroke) !important;
-  stroke-dasharray: 5 4;
+`,
+    terminal: `
+[data-pele-style="terminal"] .diagram-canvas-mermaid .pele {
+  --pele-bg: var(--surface-2);
+  --pele-fg: var(--ink);
+  --pele-muted: var(--muted);
+  --pele-line: var(--line-strong);
+  --pele-surface: var(--surface);
+  --pele-surface-alt: var(--surface-2);
+  --pele-border: var(--line-strong);
+  --pele-accent: var(--accent);
+  --pele-critical: var(--danger);
+  --pele-font: var(--font-mono);
+  --pele-font-mono: var(--font-mono);
+  --pele-radius: 0px;
+  --pele-node-fill: var(--surface);
+  --pele-node-stroke: var(--line-strong);
+  --pele-node-stroke-width: 1.4px;
+  --pele-accent-fill: var(--accent-soft);
+  --pele-accent-stroke: var(--accent);
+  --pele-accent-stroke-width: 2px;
+  --pele-outcome-fill: var(--gold-soft);
+  --pele-outcome-stroke: var(--gold);
+  --pele-label: var(--ink);
+  --pele-accent-label: var(--accent-ink);
+  --pele-outcome-label: var(--ink);
+  --pele-cluster-fill: var(--surface-2);
+  --pele-cluster-opacity: 0.9;
+  --pele-cluster-stroke: var(--line-strong);
+  --pele-cluster-label: var(--accent);
+  --pele-cluster-dash: 2 2;
+  --pele-edge: var(--line-strong);
+  --pele-marker: var(--accent);
+  background-color: var(--surface-2);
+  background-image: linear-gradient(var(--style-grid, rgba(0, 255, 102, 0.05)) 1px, transparent 1px), linear-gradient(90deg, var(--style-grid, rgba(0, 255, 102, 0.05)) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
-[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-cluster-label { fill: var(--pele-cluster-label) !important; }
-[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-node rect {
-  fill: var(--pele-node-fill) !important;
-  stroke: var(--pele-node-stroke) !important;
-  stroke-width: 2px !important;
-}
-[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-node.accent rect {
-  fill: var(--pele-accent-fill) !important;
-  stroke: var(--pele-accent-stroke) !important;
-}
-[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-node.outcome rect {
-  fill: var(--pele-outcome-fill) !important;
-  stroke: var(--pele-outcome-stroke) !important;
-}
-[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-node .pele-label { fill: var(--pele-label) !important; }
-[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-node.accent .pele-label,
-[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-node.outcome .pele-label { fill: var(--pele-accent-label) !important; }
-[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-edge path { stroke: var(--pele-edge) !important; }
-[data-pele-style="contrast"] .diagram-canvas-mermaid .pele-marker { fill: var(--pele-marker) !important; }
 `
   };
+
+  PALETTE_STYLES.forEach(function (style) {
+    PRESET_CSS[style] = palettePeleCss(style);
+  });
 
   const currentScript = document.currentScript;
   const scriptSrc = currentScript && currentScript.getAttribute("src")

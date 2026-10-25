@@ -8908,8 +8908,11 @@ html.is-routing body {
   top: calc(100% + 10px);
   right: 0;
   z-index: 140;
-  width: min(282px, calc(100vw - 28px));
+  width: min(360px, calc(100vw - 28px));
+  max-height: calc(100vh - var(--header-h) - 24px);
   padding: 14px;
+  overflow-y: auto;
+  scrollbar-width: thin;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
@@ -8937,6 +8940,7 @@ html.is-routing body {
 
 .pele-style-options {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 5px;
 }
 
@@ -9010,6 +9014,34 @@ html.is-routing body {
   background: #000;
   border-color: #ffe600;
   box-shadow: inset 0 0 0 6px #000, inset 0 0 0 8px #ffe600, inset 0 0 0 12px #00e5ff;
+}
+
+.pele-style-swatch.is-forest {
+  background: linear-gradient(135deg, #f2f5ec 0 48%, #2f6b45 48% 62%, #9a6a2f 62% 74%, #dcebdc 74%);
+}
+
+.pele-style-swatch.is-ocean {
+  background: linear-gradient(135deg, #eef7f8 0 42%, #0b6b7a 42% 62%, #b06a3a 62% 76%, #d2eef2 76%);
+}
+
+.pele-style-swatch.is-sunset {
+  background: linear-gradient(135deg, #fdf2ec 0 38%, #b24b3c 38% 58%, #6b4fa0 58% 78%, #f5e3c8 78%);
+}
+
+.pele-style-swatch.is-sakura {
+  background: linear-gradient(135deg, #fffafb 0 38%, #a84f6b 38% 60%, #f5dce4 60% 80%, #a86d27 80%);
+}
+
+.pele-style-swatch.is-terminal {
+  background-color: #030b06;
+  background-image: linear-gradient(rgba(0, 255, 102, 0.35) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 102, 0.35) 1px, transparent 1px);
+  background-size: 6px 6px;
+  border-color: #00ff66;
+  box-shadow: inset 0 0 0 4px #030b06, inset 0 0 0 5px #00ff66;
+}
+
+.pele-style-swatch.is-lavender {
+  background: linear-gradient(135deg, #f5f1fb 0 40%, #6b4fa0 40% 62%, #b79cff 62% 76%, #f5e6d0 76%);
 }
 
 .pele-style-menu-note {
@@ -9152,6 +9184,56 @@ html.is-routing body {
 
 .diagram-canvas-mermaid .pele-marker {
   fill: var(--line-strong) !important;
+}
+
+/* 非紙感風格的 Pele 圖表：由各風格注入的 --pele-* 變數控制 */
+[data-pele-style]:not([data-pele-style="paper"]) .diagram-canvas-mermaid .pele-cluster rect {
+  fill: var(--pele-cluster-fill, var(--surface-2)) !important;
+  fill-opacity: var(--pele-cluster-opacity, 0.92);
+  stroke: var(--pele-cluster-stroke, var(--line)) !important;
+  stroke-dasharray: var(--pele-cluster-dash, 4 4);
+}
+
+[data-pele-style]:not([data-pele-style="paper"]) .diagram-canvas-mermaid .pele-cluster-label {
+  fill: var(--pele-cluster-label, var(--muted)) !important;
+}
+
+[data-pele-style]:not([data-pele-style="paper"]) .diagram-canvas-mermaid .pele-node rect {
+  fill: var(--pele-node-fill, var(--surface)) !important;
+  stroke: var(--pele-node-stroke, var(--line-strong)) !important;
+  stroke-width: var(--pele-node-stroke-width, 1.4px) !important;
+}
+
+[data-pele-style]:not([data-pele-style="paper"]) .diagram-canvas-mermaid .pele-node.accent rect {
+  fill: var(--pele-accent-fill, var(--accent-soft)) !important;
+  stroke: var(--pele-accent-stroke, var(--accent)) !important;
+  stroke-width: var(--pele-accent-stroke-width, 2px) !important;
+}
+
+[data-pele-style]:not([data-pele-style="paper"]) .diagram-canvas-mermaid .pele-node.outcome rect {
+  fill: var(--pele-outcome-fill, var(--gold-soft)) !important;
+  stroke: var(--pele-outcome-stroke, var(--gold)) !important;
+  stroke-width: var(--pele-accent-stroke-width, 2px) !important;
+}
+
+[data-pele-style]:not([data-pele-style="paper"]) .diagram-canvas-mermaid .pele-node .pele-label {
+  fill: var(--pele-label, var(--ink)) !important;
+}
+
+[data-pele-style]:not([data-pele-style="paper"]) .diagram-canvas-mermaid .pele-node.accent .pele-label {
+  fill: var(--pele-accent-label, var(--ink)) !important;
+}
+
+[data-pele-style]:not([data-pele-style="paper"]) .diagram-canvas-mermaid .pele-node.outcome .pele-label {
+  fill: var(--pele-outcome-label, var(--ink)) !important;
+}
+
+[data-pele-style]:not([data-pele-style="paper"]) .diagram-canvas-mermaid .pele-edge path {
+  stroke: var(--pele-edge, var(--line-strong)) !important;
+}
+
+[data-pele-style]:not([data-pele-style="paper"]) .diagram-canvas-mermaid .pele-marker {
+  fill: var(--pele-marker, var(--line-strong)) !important;
 }
 
 .mermaid-loading,
@@ -9532,7 +9614,381 @@ html.is-routing body {
   --style-accent-soft: #333300;
 }
 
-/* 藍圖／極簡／高對比：全站頁面背景 */
+/* 森林：淺色 */
+[data-site-style="forest"][data-theme="light"] {
+  --bg: #f2f5ec;
+  --bg-deep: #e6eddf;
+  --surface: #fbfdf7;
+  --surface-2: #eef4e8;
+  --ink: #1e2f23;
+  --ink-soft: #3d5545;
+  --muted: #6b7f6f;
+  --line: #c9d8c3;
+  --line-strong: #a8c09f;
+  --accent: #2f6b45;
+  --accent-ink: #245437;
+  --accent-soft: #dcebdc;
+  --gold: #9a6a2f;
+  --gold-soft: #f3e6d2;
+  --danger: #9a3f35;
+  --success: #2f7d4f;
+  --shadow-sm: 0 1px 2px rgba(30, 47, 35, 0.06);
+  --shadow-md: 0 14px 40px rgba(30, 47, 35, 0.10);
+  --shadow-lg: 0 28px 70px rgba(30, 47, 35, 0.16);
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --style-accent: #2f6b45;
+  --style-accent-ink: #245437;
+  --style-accent-soft: #dcebdc;
+  --style-glow-1: rgba(47, 107, 69, 0.12);
+  --style-glow-2: rgba(154, 106, 47, 0.08);
+}
+
+/* 森林：深色 */
+[data-site-style="forest"][data-theme="dark"] {
+  --bg: #0b1a10;
+  --bg-deep: #07130c;
+  --surface: #12251a;
+  --surface-2: #0e1f15;
+  --ink: #e4f2e4;
+  --ink-soft: #c2dcc5;
+  --muted: #8eae95;
+  --line: #24402c;
+  --line-strong: #3b6146;
+  --accent: #7fd49a;
+  --accent-ink: #a8e6b9;
+  --accent-soft: #1b3a26;
+  --gold: #e1b06a;
+  --gold-soft: #33261a;
+  --danger: #e28b7f;
+  --success: #7ed69b;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.28);
+  --shadow-md: 0 18px 48px rgba(0, 0, 0, 0.38);
+  --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.52);
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --style-accent: #7fd49a;
+  --style-accent-ink: #a8e6b9;
+  --style-accent-soft: #1b3a26;
+  --style-glow-1: rgba(127, 212, 154, 0.10);
+  --style-glow-2: rgba(225, 176, 106, 0.08);
+}
+
+/* 海洋：淺色 */
+[data-site-style="ocean"][data-theme="light"] {
+  --bg: #eef7f8;
+  --bg-deep: #e0eff2;
+  --surface: #f8fdfe;
+  --surface-2: #e8f3f6;
+  --ink: #0d2b36;
+  --ink-soft: #244b59;
+  --muted: #5b7f8b;
+  --line: #b9d7df;
+  --line-strong: #8ebcc9;
+  --accent: #0b6b7a;
+  --accent-ink: #07515d;
+  --accent-soft: #d2eef2;
+  --gold: #b06a3a;
+  --gold-soft: #f6e2d7;
+  --danger: #a33a32;
+  --success: #2f7d5c;
+  --shadow-sm: 0 1px 2px rgba(13, 43, 54, 0.06);
+  --shadow-md: 0 14px 40px rgba(13, 43, 54, 0.10);
+  --shadow-lg: 0 28px 70px rgba(13, 43, 54, 0.16);
+  --radius-sm: 10px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --style-accent: #0b6b7a;
+  --style-accent-ink: #07515d;
+  --style-accent-soft: #d2eef2;
+  --style-glow-1: rgba(11, 107, 122, 0.12);
+  --style-glow-2: rgba(176, 106, 58, 0.08);
+}
+
+/* 海洋：深色 */
+[data-site-style="ocean"][data-theme="dark"] {
+  --bg: #071c24;
+  --bg-deep: #05151c;
+  --surface: #0c2a34;
+  --surface-2: #09232c;
+  --ink: #d8f1f5;
+  --ink-soft: #b2dbe3;
+  --muted: #82b4c0;
+  --line: #1d4652;
+  --line-strong: #33707f;
+  --accent: #5ed6e6;
+  --accent-ink: #8be8f4;
+  --accent-soft: #0f3f4b;
+  --gold: #ffb27a;
+  --gold-soft: #3d2a1b;
+  --danger: #ff8c7a;
+  --success: #7fe0b0;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.28);
+  --shadow-md: 0 18px 48px rgba(0, 0, 0, 0.38);
+  --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.52);
+  --radius-sm: 10px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --style-accent: #5ed6e6;
+  --style-accent-ink: #8be8f4;
+  --style-accent-soft: #0f3f4b;
+  --style-glow-1: rgba(94, 214, 230, 0.10);
+  --style-glow-2: rgba(255, 178, 122, 0.08);
+}
+
+/* 夕陽：淺色 */
+[data-site-style="sunset"][data-theme="light"] {
+  --bg: #fdf2ec;
+  --bg-deep: #f7e6dc;
+  --surface: #fffaf7;
+  --surface-2: #fbeee7;
+  --ink: #3a1f2b;
+  --ink-soft: #5c3544;
+  --muted: #8a6b76;
+  --line: #e8cfc7;
+  --line-strong: #d6ada3;
+  --accent: #b24b3c;
+  --accent-ink: #8a352b;
+  --accent-soft: #f6ddd5;
+  --gold: #a86d27;
+  --gold-soft: #f5e3c8;
+  --danger: #9a3f35;
+  --success: #2f7d4f;
+  --shadow-sm: 0 1px 2px rgba(58, 31, 43, 0.06);
+  --shadow-md: 0 14px 40px rgba(58, 31, 43, 0.10);
+  --shadow-lg: 0 28px 70px rgba(58, 31, 43, 0.16);
+  --radius-sm: 12px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --style-accent: #b24b3c;
+  --style-accent-ink: #8a352b;
+  --style-accent-soft: #f6ddd5;
+  --style-glow-1: rgba(178, 75, 60, 0.10);
+  --style-glow-2: rgba(168, 109, 39, 0.10);
+}
+
+/* 夕陽：深色 */
+[data-site-style="sunset"][data-theme="dark"] {
+  --bg: #1b1019;
+  --bg-deep: #140b12;
+  --surface: #2a1722;
+  --surface-2: #22121c;
+  --ink: #f8e8e4;
+  --ink-soft: #e3c9c4;
+  --muted: #b99a9c;
+  --line: #4a2a35;
+  --line-strong: #70404d;
+  --accent: #ff8f7a;
+  --accent-ink: #ffb3a3;
+  --accent-soft: #4a2226;
+  --gold: #ffc078;
+  --gold-soft: #3d2a18;
+  --danger: #ff6b6b;
+  --success: #7fe0a0;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.28);
+  --shadow-md: 0 18px 48px rgba(0, 0, 0, 0.38);
+  --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.52);
+  --radius-sm: 12px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --style-accent: #ff8f7a;
+  --style-accent-ink: #ffb3a3;
+  --style-accent-soft: #4a2226;
+  --style-glow-1: rgba(255, 143, 122, 0.10);
+  --style-glow-2: rgba(255, 192, 120, 0.08);
+}
+
+/* 櫻花：淺色 */
+[data-site-style="sakura"][data-theme="light"] {
+  --bg: #fdf2f4;
+  --bg-deep: #f8e4e8;
+  --surface: #fffafb;
+  --surface-2: #fbeef1;
+  --ink: #35202a;
+  --ink-soft: #5a3442;
+  --muted: #8a6673;
+  --line: #edd0d8;
+  --line-strong: #d9aebc;
+  --accent: #a84f6b;
+  --accent-ink: #853b53;
+  --accent-soft: #f5dce4;
+  --gold: #a86d27;
+  --gold-soft: #f5e6d0;
+  --danger: #9a3f35;
+  --success: #2f7d4f;
+  --shadow-sm: 0 1px 2px rgba(53, 32, 42, 0.05);
+  --shadow-md: 0 14px 40px rgba(53, 32, 42, 0.09);
+  --shadow-lg: 0 28px 70px rgba(53, 32, 42, 0.15);
+  --radius-sm: 12px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --style-accent: #a84f6b;
+  --style-accent-ink: #853b53;
+  --style-accent-soft: #f5dce4;
+  --style-glow-1: rgba(168, 79, 107, 0.10);
+  --style-glow-2: rgba(168, 109, 39, 0.08);
+}
+
+/* 櫻花：深色 */
+[data-site-style="sakura"][data-theme="dark"] {
+  --bg: #1e1118;
+  --bg-deep: #160b11;
+  --surface: #2c1822;
+  --surface-2: #24131b;
+  --ink: #fae9ee;
+  --ink-soft: #e8cbd5;
+  --muted: #c09aa7;
+  --line: #4a2836;
+  --line-strong: #704052;
+  --accent: #ff9fbc;
+  --accent-ink: #ffc2d4;
+  --accent-soft: #4a2332;
+  --gold: #ffc078;
+  --gold-soft: #3d2a18;
+  --danger: #ff7a7a;
+  --success: #7fe0a0;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.28);
+  --shadow-md: 0 18px 48px rgba(0, 0, 0, 0.38);
+  --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.52);
+  --radius-sm: 12px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --style-accent: #ff9fbc;
+  --style-accent-ink: #ffc2d4;
+  --style-accent-soft: #4a2332;
+  --style-glow-1: rgba(255, 159, 188, 0.10);
+  --style-glow-2: rgba(255, 192, 120, 0.08);
+}
+
+/* 終端機：淺色 */
+[data-site-style="terminal"][data-theme="light"] {
+  --bg: #f0f7f1;
+  --bg-deep: #e4f0e6;
+  --surface: #fafffa;
+  --surface-2: #eaf5ec;
+  --ink: #0c2414;
+  --ink-soft: #234b2c;
+  --muted: #557a5d;
+  --line: #b8d8be;
+  --line-strong: #8dbb96;
+  --accent: #0b7a35;
+  --accent-ink: #075c27;
+  --accent-soft: #d4f0dc;
+  --gold: #9a6a2f;
+  --gold-soft: #f3e6d2;
+  --danger: #a33a32;
+  --success: #0b7a35;
+  --shadow-sm: 0 1px 2px rgba(12, 36, 20, 0.06);
+  --shadow-md: 0 14px 40px rgba(12, 36, 20, 0.10);
+  --shadow-lg: 0 28px 70px rgba(12, 36, 20, 0.16);
+  --radius-sm: 0px;
+  --radius: 0px;
+  --radius-lg: 0px;
+  --font-sans: "SFMono-Regular", "Cascadia Code", "Consolas", "Noto Sans TC", "PingFang TC", monospace;
+  --font-serif: "SFMono-Regular", "Cascadia Code", "Consolas", "Noto Sans TC", "PingFang TC", monospace;
+  --style-accent: #0b7a35;
+  --style-accent-ink: #075c27;
+  --style-accent-soft: #d4f0dc;
+  --style-grid: rgba(11, 122, 53, 0.06);
+}
+
+/* 終端機：深色 */
+[data-site-style="terminal"][data-theme="dark"] {
+  --bg: #030b06;
+  --bg-deep: #010704;
+  --surface: #07150c;
+  --surface-2: #05100a;
+  --ink: #b8ffcf;
+  --ink-soft: #8ee6a8;
+  --muted: #5fb878;
+  --line: #144d27;
+  --line-strong: #1f7a3d;
+  --accent: #00ff66;
+  --accent-ink: #66ff99;
+  --accent-soft: #0a3318;
+  --gold: #ffcc66;
+  --gold-soft: #33260a;
+  --danger: #ff5555;
+  --success: #00ff66;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.32);
+  --shadow-md: 0 18px 48px rgba(0, 0, 0, 0.46);
+  --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.60);
+  --radius-sm: 0px;
+  --radius: 0px;
+  --radius-lg: 0px;
+  --font-sans: "SFMono-Regular", "Cascadia Code", "Consolas", "Noto Sans TC", "PingFang TC", monospace;
+  --font-serif: "SFMono-Regular", "Cascadia Code", "Consolas", "Noto Sans TC", "PingFang TC", monospace;
+  --style-accent: #00ff66;
+  --style-accent-ink: #66ff99;
+  --style-accent-soft: #0a3318;
+  --style-grid: rgba(0, 255, 102, 0.05);
+}
+
+/* 薰衣草：淺色 */
+[data-site-style="lavender"][data-theme="light"] {
+  --bg: #f5f1fb;
+  --bg-deep: #ebe4f7;
+  --surface: #fcfaff;
+  --surface-2: #f2edfa;
+  --ink: #2a2038;
+  --ink-soft: #47345e;
+  --muted: #7a6a8f;
+  --line: #d9cfe9;
+  --line-strong: #bdaed6;
+  --accent: #6b4fa0;
+  --accent-ink: #523a7d;
+  --accent-soft: #e7def7;
+  --gold: #a86d27;
+  --gold-soft: #f5e6d0;
+  --danger: #9a3f35;
+  --success: #2f7d4f;
+  --shadow-sm: 0 1px 2px rgba(42, 32, 56, 0.06);
+  --shadow-md: 0 14px 40px rgba(42, 32, 56, 0.10);
+  --shadow-lg: 0 28px 70px rgba(42, 32, 56, 0.16);
+  --radius-sm: 12px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --style-accent: #6b4fa0;
+  --style-accent-ink: #523a7d;
+  --style-accent-soft: #e7def7;
+  --style-glow-1: rgba(107, 79, 160, 0.10);
+  --style-glow-2: rgba(168, 109, 39, 0.08);
+}
+
+/* 薰衣草：深色 */
+[data-site-style="lavender"][data-theme="dark"] {
+  --bg: #130f1c;
+  --bg-deep: #0d0a14;
+  --surface: #1d1729;
+  --surface-2: #171120;
+  --ink: #ede6ff;
+  --ink-soft: #d3c6ed;
+  --muted: #a695c2;
+  --line: #322745;
+  --line-strong: #4f3c6b;
+  --accent: #b79cff;
+  --accent-ink: #d2c0ff;
+  --accent-soft: #2e2345;
+  --gold: #ffc078;
+  --gold-soft: #3d2a18;
+  --danger: #ff7a7a;
+  --success: #7fe0a0;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.28);
+  --shadow-md: 0 18px 48px rgba(0, 0, 0, 0.38);
+  --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.52);
+  --radius-sm: 12px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --style-accent: #b79cff;
+  --style-accent-ink: #d2c0ff;
+  --style-accent-soft: #2e2345;
+  --style-glow-1: rgba(183, 156, 255, 0.10);
+  --style-glow-2: rgba(255, 192, 120, 0.08);
+}
+
+/* 非紙感風格：全站頁面背景 */
 [data-site-style="blueprint"] body {
   background:
     radial-gradient(circle at 8% -10%, var(--style-glow-1), transparent 34rem),
@@ -9548,6 +10004,23 @@ html.is-routing body {
   background: var(--bg);
 }
 
+[data-site-style="forest"] body,
+[data-site-style="ocean"] body,
+[data-site-style="sunset"] body,
+[data-site-style="sakura"] body,
+[data-site-style="lavender"] body {
+  background:
+    radial-gradient(circle at 8% -10%, var(--style-glow-1), transparent 34rem),
+    radial-gradient(circle at 96% 4%, var(--style-glow-2), transparent 38rem),
+    var(--bg);
+}
+
+[data-site-style="terminal"] body {
+  background-color: var(--bg);
+  background-image: linear-gradient(var(--style-grid) 1px, transparent 1px), linear-gradient(90deg, var(--style-grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
 [data-site-style="blueprint"] .hero::before {
   background-image:
     linear-gradient(var(--style-grid) 1px, transparent 1px),
@@ -9555,23 +10028,24 @@ html.is-routing body {
 }
 
 [data-site-style="mono"] .hero::before,
-[data-site-style="contrast"] .hero::before {
+[data-site-style="contrast"] .hero::before,
+[data-site-style="forest"] .hero::before,
+[data-site-style="ocean"] .hero::before,
+[data-site-style="sunset"] .hero::before,
+[data-site-style="sakura"] .hero::before,
+[data-site-style="lavender"] .hero::before {
   display: none;
 }
 
+[data-site-style="terminal"] .hero::before {
+  background-image:
+    linear-gradient(var(--style-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--style-grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
 /* 非紙感風格：科目卡也使用同一組強調色，避免四科色彩破壞全站一致性 */
-[data-site-style="blueprint"] .subject-macro,
-[data-site-style="blueprint"] .subject-investment,
-[data-site-style="blueprint"] .subject-accounting,
-[data-site-style="blueprint"] .subject-law,
-[data-site-style="mono"] .subject-macro,
-[data-site-style="mono"] .subject-investment,
-[data-site-style="mono"] .subject-accounting,
-[data-site-style="mono"] .subject-law,
-[data-site-style="contrast"] .subject-macro,
-[data-site-style="contrast"] .subject-investment,
-[data-site-style="contrast"] .subject-accounting,
-[data-site-style="contrast"] .subject-law {
+[data-site-style]:not([data-site-style="paper"]) :is(.subject-macro, .subject-investment, .subject-accounting, .subject-law) {
   --subject-color: var(--style-accent);
   --subject-soft: var(--style-accent-soft);
   --accent: var(--style-accent);
@@ -9580,7 +10054,7 @@ html.is-routing body {
 }
 
 /* 非紙感風格：把膠囊元件收成與 Pele 節點一致的方形 */
-:is([data-site-style="blueprint"], [data-site-style="mono"], [data-site-style="contrast"]) :is(
+[data-site-style]:not([data-site-style="paper"]) :is(
   .btn,
   .icon-btn,
   .main-nav a,
@@ -9596,7 +10070,13 @@ html.is-routing body {
 }
 
 /* 深色風格的淺色強調色，選取文字改用深色 */
-:is([data-site-style="blueprint"], [data-site-style="mono"], [data-site-style="contrast"])[data-theme="dark"] ::selection {
+[data-site-style]:not([data-site-style="paper"])[data-theme="dark"] ::selection {
   background: var(--accent);
   color: #081a2b;
+}
+
+@media (max-width: 360px) {
+  .pele-style-options {
+    grid-template-columns: 1fr;
+  }
 }

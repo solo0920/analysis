@@ -2159,9 +2159,11 @@ const indexSource = read("site/index.html");
 check(indexSource.indexOf('id="pele-style-toggle"') !== -1 && indexSource.indexOf('id="pele-style-menu"') !== -1, "index.html 缺少右上角全站風格切換器");
 check(indexSource.indexOf('data-site-style="paper"') !== -1 && indexSource.indexOf("analyst-site-style") !== -1, "index.html 缺少全站風格初始化");
 const stylesSource = read("site/assets/styles.css");
-["blueprint", "mono", "contrast"].forEach(function (style) {
+["blueprint", "mono", "contrast", "forest", "ocean", "sunset", "sakura", "terminal", "lavender"].forEach(function (style) {
   check(stylesSource.indexOf('[data-site-style="' + style + '"]') !== -1, "styles.css 缺少全站風格：" + style);
 });
+const styleOptionCount = (indexSource.match(/data-pele-style-option="/g) || []).length;
+check(styleOptionCount === 10, "全站風格選單應有 10 種（目前 " + styleOptionCount + " 種）");
 const labSource = read("site/assets/mermaid-lab.js");
 check(labSource.indexOf("data-site-style") !== -1 && labSource.indexOf("analyst-site-style") !== -1, "mermaid-lab.js 未同步全站風格");
 const appSource = read("site/assets/app.js");

@@ -176,7 +176,7 @@ Repository 的 Pages Source 已設為 **GitHub Actions**；若之後重新建立
 
 - Pilot 只涵蓋 4 張流程／樹狀圖：`macro-01#2`（GDP → PDI）、`accounting-14#0`（會計循環）、`accounting-15#0`（營業收入 → 淨利 → 比率）、`investment-14#2`（杜邦分析）。原章節與模型總覽的預設圖仍是 SVG；切到「MMD」時才載入 Pele 並即時 render。
 - `.mmd` 母檔與 manifest 在 `site/diagrams/mermaid/`；修改後執行 `node site/scripts/build-mermaid-sources.js` 產生 `site/assets/diagrams-mermaid.js`。Pele bundle 可用 `node site/scripts/build-pele-bundle.mjs` 重建（需網路與 npm；網站執行時不需要 npm）。
-- 右上角 **◈** 是全站風格切換器：紙感、藍圖、極簡、高對比。切換時會設定 `data-site-style` 同步套用全站 CSS，並注入 `<style id="pele-style-runtime">`；destroy 既有 Pele 實例後重新 mount。選擇會存在 `localStorage` 的 `analyst-site-style`（舊鍵 `analyst-pele-style` 仍可讀取）。`styles.css` 內含三種非預設風格的 light／dark 變體；靜態落地頁也會在 `<head>` 讀取同一個鍵，導覽到靜態頁時仍維持風格。
+- 右上角 **◈** 是全站風格切換器：紙感、藍圖、極簡、高對比、森林、海洋、夕陽、櫻花、終端機、薰衣草。切換時會設定 `data-site-style` 同步套用全站 CSS，並注入 `<style id="pele-style-runtime">`；destroy 既有 Pele 實例後重新 mount。選擇會存在 `localStorage` 的 `analyst-site-style`（舊鍵 `analyst-pele-style` 仍可讀取）。`styles.css` 內含九種非預設風格的 light／dark 變體；靜態落地頁也會在 `<head>` 讀取同一個鍵，導覽到靜態頁時仍維持風格。
 - 只有 `pele/core` 與 `pele/diagrams/flowchart` 被打包，約 58 KB gzip；全量 Pele 約 264 KB gzip。
 - 限制：`classDef fill:var(--...)` 會讓 Pele 解析失敗，因此 `.mmd` 內使用固定色 fallback 的 `classDef`，網站再以 `!important` 的 CSS 變數覆寫。連續函數曲線、精確座標、T 字帳與速查表不在此次轉換範圍。
 

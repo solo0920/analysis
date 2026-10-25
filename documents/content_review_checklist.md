@@ -416,5 +416,5 @@
 - [x] 已在「實際複核紀錄」留下日期、來源與結論。
 - [x] 已確認計算／申論題改用結構化版型：`content-written-layouts.js` 支援段落、清單、獨立公式與表格，首批 49 題套用表格／多層資料版型；其餘題目以 `(1)`、`(2)`、`●`、中文序号、句號、分號與「請問／試問」等提問語自動分段。表格在 390px 於 `written-table-wrap` 內水平滑動，頁面本身無水平溢出；49 個版型題與 33 個全域 QA 狀態均 0 水平溢出、0 console errors、0 `.katex-error`；驗證器新增版型 ID、區塊類型、表格欄列數、清單、公式與文字 KaTeX 檢查，共 117,083 項、失敗 0。
 - [x] 已確認 `#/lab/mermaid` 第 1 步 Pilot：`macro-01#2`、`accounting-14#0`、`accounting-15#0`、`investment-14#2` 四張圖都有「SVG／MMD」切換；MMD 只在切換時載入 Pele，`file://` 可直接開啟，1280px／390px 均無頁面水平溢出，0 console errors、0 `.katex-error`。
-- [x] 已確認右上角 ◈ 全站風格切換器提供紙感、藍圖、極簡、高對比四種 CSS style；切換後會設定 `data-site-style` 同步套用全站 CSS，並即時注入 `<style id="pele-style-runtime">`，destroy 既有 Pele 實例並重新 mount，選擇保存在 `localStorage`；深淺主題下皆可運作。
-- [x] 已確認四張 Pilot 圖的 `.mmd` 可從 `site/diagrams/mermaid/` 直接下載／複製，manifest 與 `diagrams-mermaid.js` 同步；驗證器新增 manifest、`.mmd`、Pele bundle、bootstrap 與風格切換器檢查，共 156,784 項、失敗 0。
+- [x] 已確認右上角 ◈ 全站風格切換器提供紙感、藍圖、極簡、高對比、森林、海洋、夕陽、櫻花、終端機、薰衣草十種 CSS style；切換後會設定 `data-site-style` 同步套用全站 CSS，並即時注入 `<style id="pele-style-runtime">`，destroy 既有 Pele 實例並重新 mount，選擇保存在 `localStorage`；深淺主題下皆可運作。
+- [x] 已確認四張 Pilot 圖的 `.mmd` 可從 `site/diagrams/mermaid/` 直接下載／複製，manifest 與 `diagrams-mermaid.js` 同步；驗證器新增 manifest、`.mmd`、Pele bundle、bootstrap 與風格切換器檢查，共 156,791 項、失敗 0。
