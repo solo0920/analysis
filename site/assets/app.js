@@ -376,9 +376,17 @@
 
   const searchState = {
     index: [],
+    fuzzyDocuments: [],
     results: [],
     active: -1
   };
+  const fuzzyState = {
+    index: null,
+    status: "idle",
+    promise: null,
+    generation: 0
+  };
+  let miniSearchPromise = null;
 
   /* ----------------------------- utilities ----------------------------- */
 
@@ -5375,6 +5383,118 @@
   }
 
   /* ----------------------------- search ----------------------------- */
+  /* 精確子字串搜尋優先；MiniSearch 只在第一次開啟搜尋時 lazy load，作為核心索引的模糊補位。 */
+
+  function loadMiniSearch() {
+    if (window.MiniSearch) {
+      return Promise.resolve(window.MiniSearch);
+    }
+    if (miniSearchPromise) {
+      return miniSearchPromise;
+    }
+    miniSearchPromise = new Promise(function (resolve, reject) {
+      const script = document.createElement("script");
+      script.src = (window.__ASSET_BASE__ || "assets/") + "vendor/minisearch.min.js";
+      script.async = true;
+      script.onload = function () {
+        if (window.MiniSearch) {
+          resolve(window.MiniSearch);
+        } else {
+          miniSearchPromise = null;
+          reject(new Error("MiniSearch 載入後找不到 MiniSearch"));
+        }
+      };
+      script.onerror = function () {
+        miniSearchPromise = null;
+        reject(new Error("無法載入 MiniSearch"));
+      };
+      document.head.appendChild(script);
+    });
+    return miniSearchPromise;
+  }
+
+  function ensureFuzzySearch() {
+    if (fuzzyState.index) {
+      return Promise.resolve(fuzzyState.index);
+    }
+    if (fuzzyState.promise) {
+      return fuzzyState.promise;
+    }
+    const generation = fuzzyState.generation;
+    fuzzyState.status = "loading";
+    fuzzyState.promise = loadMiniSearch().then(function (MiniSearchCtor) {
+      if (generation !== fuzzyState.generation) {
+        return null;
+      }
+      const documents = searchState.fuzzyDocuments || [];
+      if (!documents.length) {
+        fuzzyState.status = "ready";
+        fuzzyState.promise = null;
+        return null;
+      }
+      const index = new MiniSearchCtor({
+        fields: ["title", "sub", "text"],
+        storeFields: ["type", "typeClass", "title", "sub", "href"],
+        searchOptions: {
+          prefix: true,
+          fuzzy: 0.2,
+          combineWith: "AND",
+          boost: { title: 2, sub: 1.2 }
+        }
+      });
+      index.addAll(documents);
+      if (generation !== fuzzyState.generation) {
+        return null;
+      }
+      fuzzyState.index = index;
+      fuzzyState.status = "ready";
+      fuzzyState.promise = null;
+      return index;
+    }).catch(function (error) {
+      if (generation === fuzzyState.generation) {
+        fuzzyState.status = "error";
+        fuzzyState.promise = null;
+      }
+      throw error;
+    });
+    return fuzzyState.promise;
+  }
+
+  function performFuzzySearch(query, limit) {
+    if (!fuzzyState.index) {
+      return [];
+    }
+    return fuzzyState.index.search(query, {
+      limit: Math.max(0, limit || 24)
+    }).map(function (result) {
+      return {
+        id: result.id,
+        type: result.type || "相似",
+        typeClass: result.typeClass || "",
+        title: result.title || "",
+        sub: result.sub || "",
+        href: result.href || "",
+        fuzzy: true
+      };
+    }).filter(function (result) {
+      return Boolean(result.href);
+    });
+  }
+
+  function warmFuzzySearch() {
+    if (fuzzyState.index || fuzzyState.status === "loading") {
+      return;
+    }
+    ensureFuzzySearch().then(function (index) {
+      if (index && searchOverlay && !searchOverlay.hidden && searchInput && searchInput.value.trim()) {
+        renderSearchResults(searchInput.value);
+      }
+    }).catch(function (error) {
+      if (window.console && typeof console.warn === "function") {
+        console.warn("Fuzzy search unavailable:", error);
+      }
+    });
+  }
 
   function appendPastExamSearchIndex() {
     if (pastSearchLoaded) return;
@@ -5382,6 +5502,7 @@
     const subjectNames = { macro: "總體經濟學", investment: "投資學", accounting: "會計學", law: "證券法規" };
     data.forEach(function (question) {
       searchState.index.push({
+        id: "past-" + question.id,
         type: "考古",
         typeClass: "",
         title: String(question.stem || "").slice(0, 90),
@@ -5399,6 +5520,10 @@
 
   function buildSearchIndex() {
     const index = [];
+    fuzzyState.index = null;
+    fuzzyState.status = "idle";
+    fuzzyState.promise = null;
+    fuzzyState.generation += 1;
 
     allChapters.forEach(function (chapter) {
       index.push({
@@ -5407,6 +5532,7 @@
         title: chapterLabel(chapter) + " " + chapter.title,
         sub: chapter.subjectName + (chapter.partTitle ? " · " + chapter.partTitle : "") + " · " + chapter.sections.length + " " + subjectUnitLabel({ id: chapter.subjectId }),
         text: chapter.title + " " + chapter.summary,
+        href: "#/chapter/" + chapter.id,
         chapterId: chapter.id,
         sectionIndex: null
       });
@@ -5418,6 +5544,7 @@
           title: sectionDisplayTitle(section),
           sub: chapter.subjectName + " · " + chapterLabel(chapter) + " " + chapter.title,
           text: sectionDisplayTitle(section) + " " + section.body.join(" ") + (section.table ? " " + section.table.title + " " + section.table.columns.join(" ") + " " + section.table.rows.map(function (row) { return row.join(" "); }).join(" ") : ""),
+          href: "#/chapter/" + chapter.id + "?section=" + (sectionIndex + 1),
           chapterId: chapter.id,
           sectionIndex: sectionIndex + 1
         });
@@ -5429,6 +5556,7 @@
             title: term[0],
             sub: chapter.title + " · " + sectionDisplayTitle(section),
             text: term[1],
+            href: "#/chapter/" + chapter.id + "?section=" + (sectionIndex + 1),
             chapterId: chapter.id,
             sectionIndex: sectionIndex + 1
           });
@@ -5450,7 +5578,12 @@
       });
     });
 
-    searchState.index = index.map(function (entry) {
+    searchState.fuzzyDocuments = index.map(function (entry, entryIndex) {
+      return Object.assign({}, entry, {
+        id: "core-" + entryIndex
+      });
+    });
+    searchState.index = searchState.fuzzyDocuments.map(function (entry) {
       return Object.assign({}, entry, {
         nTitle: normalize(entry.title),
         nSub: normalize(entry.sub),
@@ -5527,24 +5660,55 @@
       return;
     }
 
-    const results = performSearch(trimmed);
+    const exactResults = performSearch(trimmed);
+    const canFuzzy = trimmed.length >= 2;
+    if (canFuzzy && exactResults.length < 3 && fuzzyState.status === "idle") {
+      warmFuzzySearch();
+    }
+
+    let fuzzyResults = [];
+    if (canFuzzy && exactResults.length < 3 && fuzzyState.index) {
+      const exactIds = new Set(exactResults.map(function (result) { return result.id; }).filter(Boolean));
+      const limit = Math.max(0, 24 - exactResults.length);
+      fuzzyResults = performFuzzySearch(trimmed, limit).filter(function (result) {
+        return !result.id || !exactIds.has(result.id);
+      });
+    }
+
+    const results = exactResults.concat(fuzzyResults);
     searchState.results = results;
     searchState.active = results.length ? 0 : -1;
 
     if (!results.length) {
-      searchResults.innerHTML = '<div class="search-empty">找不到「' + escapeHtml(trimmed) + '」相關的章節或名詞。<br>試試較短的關鍵字，例如 GDP、利率、匯率。</div>';
+      const loading = canFuzzy && (fuzzyState.status === "loading" || fuzzyState.status === "idle");
+      searchResults.innerHTML = '<div class="search-empty">找不到「' + escapeHtml(trimmed) + '」相關的章節或名詞。<br>試試較短的關鍵字，例如 GDP、利率、匯率。' +
+        (loading ? '<br><span class="search-fuzzy-loading">正在建立模糊搜尋…</span>' : "") + "</div>";
       return;
     }
 
-    searchResults.innerHTML = results.map(function (result, index) {
+    let resultIndex = 0;
+    function renderResult(result) {
+      const active = resultIndex === 0 ? " is-active" : "";
+      resultIndex += 1;
       return [
-        '<a class="search-result' + (index === 0 ? " is-active" : "") + '" href="' + searchHref(result) + '">',
+        '<a class="search-result' + active + '" href="' + searchHref(result) + '">',
         '  <span class="result-type ' + escapeHtml(result.typeClass) + '">' + escapeHtml(result.type) + "</span>",
         "  <span><strong>" + escapeHtml(result.title) + "</strong><small>" + escapeHtml(result.sub) + "</small></span>",
         '  <span class="result-arrow" aria-hidden="true">→</span>',
         "</a>"
       ].join("");
-    }).join("");
+    }
+
+    const exactMarkup = exactResults.map(renderResult).join("");
+    const fuzzyMarkup = fuzzyResults.map(renderResult).join("");
+    const fuzzyLabel = fuzzyResults.length
+      ? '<div class="search-group-label">' + (exactResults.length ? "相似結果（模糊搜尋）" : "找不到完全符合，以下是相似結果") + "</div>"
+      : "";
+    const loadingNote = !fuzzyResults.length && canFuzzy && exactResults.length < 3 &&
+      (fuzzyState.status === "loading" || fuzzyState.status === "idle")
+      ? '<div class="search-fuzzy-loading">正在建立模糊搜尋…</div>'
+      : "";
+    searchResults.innerHTML = exactMarkup + fuzzyLabel + fuzzyMarkup + loadingNote;
   }
 
   function moveSearchActive(delta) {
@@ -5568,6 +5732,7 @@
     if (searchPastLoadButton && pastSearchLoaded) searchPastLoadButton.hidden = true;
     searchInput.value = "";
     renderSearchResults("");
+    warmFuzzySearch();
     window.setTimeout(function () {
       searchInput.focus();
     }, 40);

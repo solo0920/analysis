@@ -4317,6 +4317,13 @@ a.landing-item:hover {
   text-transform: uppercase;
 }
 
+.search-fuzzy-loading {
+  margin: 8px 4px 0;
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
+
 /* ----------------------------- Footer / toast ----------------------------- */
 
 .site-footer {

@@ -2197,6 +2197,13 @@ check(["apple", "google", "microsoft", "amazon", "meta", "netflix", "nvidia", "t
 const appSource = read("site/assets/app.js");
 check(appSource.indexOf('data-mermaid-view="svg"') !== -1 && appSource.indexOf('data-mermaid-view="mmd"') !== -1, "圖表切換按鈕應為 SVG／MMD");
 check(appSource.indexOf("data-mermaid-code-toggle") !== -1 && appSource.indexOf("data-mermaid-code-panel") !== -1, "模型圖缺少 MMD 程式碼面板");
+check(bootstrapSource.indexOf("__ASSET_BASE__") !== -1, "bootstrap 未暴露資產基底路徑");
+const miniSearchBundlePath = path.join(siteDir, "assets", "vendor", "minisearch.min.js");
+check(fs.existsSync(miniSearchBundlePath), "找不到 MiniSearch vendor bundle");
+if (fs.existsSync(miniSearchBundlePath)) {
+  check(fs.readFileSync(miniSearchBundlePath, "utf8").indexOf("window.MiniSearch") !== -1, "MiniSearch vendor bundle 未暴露 window.MiniSearch");
+}
+check(appSource.indexOf("vendor/minisearch.min.js") !== -1 && appSource.indexOf("ensureFuzzySearch") !== -1 && appSource.indexOf("performFuzzySearch") !== -1, "快速搜尋未接上 MiniSearch 模糊補位");
 check(labSource.indexOf("data-mermaid-code-toggle") !== -1 && stylesSource.indexOf(".diagram-code-panel") !== -1, "MMD 程式碼面板的樣式或互動未載入");
 const staticBuilderSource = read("site/scripts/build-static-landing-pages.js");
 check(staticBuilderSource.indexOf("analyst-site-style") !== -1, "靜態頁產生器未同步全站風格");

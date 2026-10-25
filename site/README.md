@@ -60,6 +60,7 @@ site/
 │   ├── build-static-landing-pages.js # 產生 82 個靜態頁與 83 個 URL 的 sitemap
 │   ├── build-mermaid-sources.js # 由 .mmd／manifest 產生 assets/diagrams-mermaid.js
 │   ├── build-mermaid-static.mjs # 為新推導圖產生靜態 SVG fallback（需 npm）
+│   ├── build-minisearch-bundle.mjs # 重建 MiniSearch 瀏覽器 bundle（需 npm）
 │   ├── build-pele-bundle.mjs   # 重建樹搖後的 Pele flowchart vendor bundle（需 npm）
 │   └── verify-nobel-api.js     # 諾貝爾官方 API 年份與得主比對（需網路）
 └── assets/
@@ -108,6 +109,8 @@ site/
     ├── mermaid-lab.js          # SVG／MMD 切換、Pele 延遲載入、全站風格與 .mmd 下載
     ├── vendor/pele-flow.min.js # 樹搖後的 Pele flowchart bundle（約 58 KB gzip）
     ├── vendor/pele-LICENSE.txt # Pele MIT 授權
+    ├── vendor/minisearch.min.js # 第一次開啟搜尋時才載入的 MiniSearch（約 6 KB gzip）
+    ├── vendor/minisearch-LICENSE.txt # MiniSearch MIT 授權
     └── katex/                  # KaTeX 0.19.0 的 JS、CSS、字型與授權
 ```
 
@@ -187,6 +190,16 @@ Repository 的 Pages Source 已設為 **GitHub Actions**；若之後重新建立
 - 科技品牌靈感風格參考 [getdesign.md](https://getdesign.md/claude/design-md) 的 DESIGN.md 分析方式與各品牌公開網站的視覺語彙，只取配色、字體氣質、圓角與密度，不使用商標或Logo；不代表任何公司官方。
 - 只有 `pele/core` 與 `pele/diagrams/flowchart` 被打包，約 58 KB gzip；全量 Pele 約 264 KB gzip。
 - 限制：`classDef fill:var(--...)` 會讓 Pele 解析失敗，因此 `.mmd` 內使用固定色 fallback 的 `classDef`，網站再以 `!important` 的 CSS 變數覆寫。連續函數曲線、精確座標與 T 字帳／速查表仍保留原格式。
+
+## 快速搜尋（MiniSearch 第一階段）
+
+- 精確搜尋仍由 `app.js` 的 `performSearch()` 負責：正規化字串、對章節／單元／名詞／考前猜題做線性掃描與欄位評分。
+- MiniSearch 只作為第二層模糊補位：精確結果少於 3 筆且查詢長度 ≥ 2 時才啟用；精確結果優先，模糊結果另外標示「相似結果（模糊搜尋）」。
+- MiniSearch 只在第一次開啟搜尋面板時才動態載入 `assets/vendor/minisearch.min.js`，不影響首頁初始載入。
+- 第一階段只索引核心 1,919 筆（章節、單元、名詞、考前猜題）；3,710 題考古題仍使用精確搜尋，不納入模糊索引。
+- 參數：`prefix: true`、`fuzzy: 0.2`、`combineWith: "AND"`、`boost: { title: 2, sub: 1.2 }`；結果上限 24 筆。
+- 索引在第一次開啟搜尋時建立（核心索引約 42ms）；重建 MiniSearch bundle 可用 `node site/scripts/build-minisearch-bundle.mjs`（需網路與 npm）。
+- 若 MiniSearch 載入或建立失敗，精確搜尋仍可正常使用，不會阻斷搜尋面板。
 
 ## 內容結構
 
@@ -305,7 +318,7 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 - 全站中文以臺灣繁體中文為準；英文只保留得主姓名、專有名詞、公式符號、縮寫與技術名稱。內容異動後以 `s2t` 字元掃描或人工複查確認沒有新增簡體字。
 - 跨模型初審結果記錄在 `documents/content_review_checklist.md` 與 `documents/reviews/`；模型只作輔助，官方公告與正式教材仍是最終依據。
 
-目前 `validate-content.js` 執行 157,031 項檢查，失敗數為 0（含四個科目章節界線、網站內容不得再出現「第 X 篇」、投資學比例公式綁定、66 條投資學核心公式與 50 種技術分析指標的欄位、優先級、章節連結與 KaTeX 實編譯、119 個 KaTeX 公式綁定與 2,933 個行內公式／200 個區塊公式實編譯、效率市場比較表欄列結構、28 張總體既有章節圖、9 張投資學既有教學圖、7 張會計學教學圖與 5 張 Mermaid 推導圖、學派演進圖的模型／諾貝爾綁定、法規全文資料綁定、3,710 題選擇題與逐選項解析、348 題計算／申論題與題意檢核、107–115 年章節解題（347 節次、601 例題）、15 個總經時事（12 個主題含 26 條公式；20 則 TOP 20 摘要整合、8 大主題、5 題申論）與參考資料、97 題組／118 個部分單一題庫（74 個題組對應主題公式）、21 組多部分題組、38 條整合公式、2 組敏感度分析、13 個章節進階補給、14 個法規深度補給與 15 張法規速讀卡、73 章出處分布與繁體中文守門檢查）。
+目前 `validate-content.js` 執行 157,035 項檢查，失敗數為 0（含四個科目章節界線、網站內容不得再出現「第 X 篇」、投資學比例公式綁定、66 條投資學核心公式與 50 種技術分析指標的欄位、優先級、章節連結與 KaTeX 實編譯、119 個 KaTeX 公式綁定與 2,933 個行內公式／200 個區塊公式實編譯、效率市場比較表欄列結構、28 張總體既有章節圖、9 張投資學既有教學圖、7 張會計學教學圖與 5 張 Mermaid 推導圖、學派演進圖的模型／諾貝爾綁定、法規全文資料綁定、3,710 題選擇題與逐選項解析、348 題計算／申論題與題意檢核、107–115 年章節解題（347 節次、601 例題）、15 個總經時事（12 個主題含 26 條公式；20 則 TOP 20 摘要整合、8 大主題、5 題申論）與參考資料、97 題組／118 個部分單一題庫（74 個題組對應主題公式）、21 組多部分題組、38 條整合公式、2 組敏感度分析、13 個章節進階補給、14 個法規深度補給與 15 張法規速讀卡、73 章出處分布與繁體中文守門檢查）。
 
 諾貝爾年表的年份與得主另以 `site/scripts/verify-nobel-api.js` 對照官方 API；2026-10-20 執行結果為 58 屆、0 筆不一致。此檢查需要網路，不列入離線驗證；2025、2026 屆公式已對照官方科學背景，2019–2020 屆公式與學說方向、2021 LATE 公式與 2022–2024 學說方向亦已核對（2019、2020 網站公式為概念式），2019–2026 代表原始論文書目已核對；2019–2026 每年至少一篇代表論文完成全文抽查（2026 為 Hall；Woodford 2003 專書未逐條）；其餘屆公式、全文、學說摘述與模型圖仍待原始文獻逐條核對。
 

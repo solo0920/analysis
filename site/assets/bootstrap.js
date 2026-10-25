@@ -41,6 +41,7 @@
     const src = script && script.getAttribute("src") ? script.getAttribute("src") : "assets/bootstrap.js";
     return src.replace(/bootstrap\.js(?:\?.*)?$/, "");
   })();
+  window.__ASSET_BASE__ = basePath;
 
   function routeParts() {
     return (location.hash || "").replace(/^#/, "").split("?")[0].split("/").filter(Boolean);
