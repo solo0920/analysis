@@ -1,0 +1,44 @@
+flowchart TD
+  accTitle: 杜邦分析：三階段與五階段 ROE 拆解
+  accDescr: 三階段杜邦把 ROE 拆成淨利率、總資產週轉率與權益乘數；五階段再把淨利率拆成稅負負擔、利息負擔與 EBIT 利潤率，並保留總資產週轉率與權益乘數。
+
+  ROE["權益報酬率 ROE<br/>稅後淨利 ÷ 平均股東權益"]:::outcome
+
+  subgraph THREE["三階段杜邦"]
+    direction LR
+    NPM["淨利率<br/>稅後淨利 ÷ 營業收入"]
+    TAT["總資產週轉率<br/>營業收入 ÷ 平均總資產"]
+    EM["權益乘數<br/>平均總資產 ÷ 平均股東權益"]
+  end
+
+  ROE --> NPM
+  ROE --> TAT
+  ROE --> EM
+
+  subgraph FIVE["五階段杜邦"]
+    direction LR
+    TAX["稅負負擔<br/>稅後淨利 ÷ 稅前淨利"]
+    INT["利息負擔<br/>稅前淨利 ÷ EBIT"]
+    EBITM["EBIT 利潤率<br/>EBIT ÷ 營業收入"]
+    TAT2["總資產週轉率<br/>營業收入 ÷ 平均總資產"]
+    EM2["權益乘數<br/>平均總資產 ÷ 平均股東權益"]
+  end
+
+  NPM --> TAX
+  NPM --> INT
+  NPM --> EBITM
+
+  THREE_FORMULA["三階段：ROE = 淨利率 × 總資產週轉率 × 權益乘數"]:::accent
+  NPM --> THREE_FORMULA
+  TAT --> THREE_FORMULA
+  EM --> THREE_FORMULA
+
+  FIVE_FORMULA["五階段：ROE = 稅負負擔 × 利息負擔<br/>× EBIT 利潤率 × 總資產週轉率 × 權益乘數"]:::accent
+  TAX --> FIVE_FORMULA
+  INT --> FIVE_FORMULA
+  EBITM --> FIVE_FORMULA
+  TAT2 --> FIVE_FORMULA
+  EM2 --> FIVE_FORMULA
+
+  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px
+  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px

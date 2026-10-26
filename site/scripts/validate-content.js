@@ -2171,8 +2171,8 @@ const mermaidManifestEntries = Array.isArray(mermaidManifest.diagrams) ? mermaid
 const mermaidExistingDiagrams = Object.assign({}, diagrams, investmentDiagrams, accountingDiagrams);
 const mermaidKeys = Object.keys(mermaidDiagrams);
 const mermaidNewEntries = mermaidManifestEntries.filter(function (entry) { return entry && entry.createDiagram; });
-check(mermaidManifestEntries.length === 15, "Mermaid 圖表應有 15 張（目前 " + mermaidManifestEntries.length + " 張）");
-check(mermaidNewEntries.length === 5, "Mermaid 新推導圖應有 5 張（目前 " + mermaidNewEntries.length + " 張）");
+check(mermaidManifestEntries.length === 16, "Mermaid 圖表應有 16 張（目前 " + mermaidManifestEntries.length + " 張）");
+check(mermaidNewEntries.length === 6, "Mermaid 新推導圖應有 6 張（目前 " + mermaidNewEntries.length + " 張）");
 check(mermaidKeys.length === mermaidManifestEntries.length, "Mermaid 產生檔數量與 manifest 不一致（manifest " + mermaidManifestEntries.length + "、產生 " + mermaidKeys.length + "）");
 mermaidManifestEntries.forEach(function (entry) {
   check(Boolean(entry && entry.key && entry.file), "Mermaid manifest 項目缺少 key 或 file");
@@ -2250,9 +2250,10 @@ if (fs.existsSync(peleBundlePath)) {
 
 const mermaidNewMacroCount = mermaidNewEntries.filter(function (entry) { return entry.subject === "macro"; }).length;
 const mermaidNewInvestmentCount = mermaidNewEntries.filter(function (entry) { return entry.subject === "investment"; }).length;
+const mermaidNewAccountingCount = mermaidNewEntries.filter(function (entry) { return entry.subject === "accounting"; }).length;
 const totalMacroDiagrams = diagramKeys.length + mermaidNewMacroCount;
 const totalInvestmentDiagrams = investmentDiagramKeys.length + mermaidNewInvestmentCount;
-const totalAccountingDiagrams = accountingDiagramKeys.length;
+const totalAccountingDiagrams = accountingDiagramKeys.length + mermaidNewAccountingCount;
 const totalChapterDiagrams = totalMacroDiagrams + totalInvestmentDiagrams + totalAccountingDiagrams;
 
 console.log("科目：" + content.subjects.length);

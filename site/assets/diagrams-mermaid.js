@@ -481,6 +481,84 @@ window.MERMAID_DIAGRAMS = {
       ]
     ],
     "source": "flowchart TD\n  accTitle: Black–Scholes 推導流程\n  accDescr: 從無套利與連續交易假設出發，以 Itô 引理建立 Black–Scholes 偏微分方程，轉為風險中立期望，得到 d₁、d₂ 與封閉解，最後延伸到 Greeks。\n\n  ASSUME[\"假設<br/>無套利、連續交易<br/>常數波動率、無摩擦\"]:::accent\n  ITO[\"Itô 引理<br/>dS、dC 的隨機微分\"]\n  PDE[\"Black–Scholes PDE<br/>∂C/∂t + ½σ²S² ∂²C/∂S²<br/>+ rS ∂C/∂S − rC = 0\"]\n  RISK[\"風險中立定價<br/>C = e⁻ʳᵀ E[max(S(T) − K, 0)]\"]\n  D1D2[\"d₁、d₂<br/>d₁ = [ln(S₀/K) + (r + ½σ²)T] ÷ (σ√T)<br/>d₂ = d₁ − σ√T\"]\n  BS[\"Black–Scholes 公式<br/>C = S₀N(d₁) − K e⁻ʳᵀ N(d₂)\"]:::outcome\n  GREEKS[\"Greeks 與敏感度<br/>Delta、Gamma、Vega、Theta、Rho\"]\n\n  ASSUME --> ITO --> PDE --> RISK --> D1D2 --> BS --> GREEKS\n\n  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px\n  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px\n"
+  },
+  "accounting-15#2": {
+    "key": "accounting-15#2",
+    "file": "accounting-dupont.mmd",
+    "slug": "accounting-dupont",
+    "order": 18,
+    "subject": "accounting",
+    "subjectName": "會計學",
+    "chapterId": "accounting-15",
+    "chapterTitle": "財務報表分析",
+    "section": 2,
+    "sectionTitle": "第3節 杜邦分析",
+    "shortTitle": "杜邦三階段／五階段",
+    "note": "三階段 ROE 拆解，以及淨利率再拆成稅負負擔、利息負擔與 EBIT 利潤率。",
+    "createDiagram": true,
+    "generatedSvg": true,
+    "title": "杜邦分析：三階段與五階段 ROE 拆解",
+    "caption": "三階段杜邦分析把 ROE 拆成淨利率、總資產週轉率與權益乘數；五階段再把淨利率拆成稅負負擔、利息負擔與 EBIT 利潤率，並保留總資產週轉率與權益乘數。",
+    "variables": [
+      [
+        "ROE",
+        "權益報酬率",
+        "稅後淨利 ÷ 平均股東權益。"
+      ],
+      [
+        "NPM",
+        "淨利率",
+        "稅後淨利 ÷ 營業收入。"
+      ],
+      [
+        "TAT",
+        "總資產週轉率",
+        "營業收入 ÷ 平均總資產。"
+      ],
+      [
+        "EM",
+        "權益乘數",
+        "平均總資產 ÷ 平均股東權益。"
+      ],
+      [
+        "Tax",
+        "稅負負擔",
+        "稅後淨利 ÷ 稅前淨利。"
+      ],
+      [
+        "Int",
+        "利息負擔",
+        "稅前淨利 ÷ EBIT。"
+      ],
+      [
+        "EBIT margin",
+        "EBIT 利潤率",
+        "EBIT ÷ 營業收入。"
+      ]
+    ],
+    "parameters": [
+      [
+        "3-step",
+        "三階段杜邦",
+        "ROE = 淨利率 × 總資產週轉率 × 權益乘數。"
+      ],
+      [
+        "5-step",
+        "五階段杜邦",
+        "ROE = 稅負負擔 × 利息負擔 × EBIT 利潤率 × 總資產週轉率 × 權益乘數。"
+      ],
+      [
+        "Average",
+        "平均餘額",
+        "資產與股東權益通常採用期初、期末平均。"
+      ],
+      [
+        "Period",
+        "同期間",
+        "分子、分母的期間與單位要一致。"
+      ]
+    ],
+    "source": "flowchart TD\n  accTitle: 杜邦分析：三階段與五階段 ROE 拆解\n  accDescr: 三階段杜邦把 ROE 拆成淨利率、總資產週轉率與權益乘數；五階段再把淨利率拆成稅負負擔、利息負擔與 EBIT 利潤率，並保留總資產週轉率與權益乘數。\n\n  ROE[\"權益報酬率 ROE<br/>稅後淨利 ÷ 平均股東權益\"]:::outcome\n\n  subgraph THREE[\"三階段杜邦\"]\n    direction LR\n    NPM[\"淨利率<br/>稅後淨利 ÷ 營業收入\"]\n    TAT[\"總資產週轉率<br/>營業收入 ÷ 平均總資產\"]\n    EM[\"權益乘數<br/>平均總資產 ÷ 平均股東權益\"]\n  end\n\n  ROE --> NPM\n  ROE --> TAT\n  ROE --> EM\n\n  subgraph FIVE[\"五階段杜邦\"]\n    direction LR\n    TAX[\"稅負負擔<br/>稅後淨利 ÷ 稅前淨利\"]\n    INT[\"利息負擔<br/>稅前淨利 ÷ EBIT\"]\n    EBITM[\"EBIT 利潤率<br/>EBIT ÷ 營業收入\"]\n    TAT2[\"總資產週轉率<br/>營業收入 ÷ 平均總資產\"]\n    EM2[\"權益乘數<br/>平均總資產 ÷ 平均股東權益\"]\n  end\n\n  NPM --> TAX\n  NPM --> INT\n  NPM --> EBITM\n\n  THREE_FORMULA[\"三階段：ROE = 淨利率 × 總資產週轉率 × 權益乘數\"]:::accent\n  NPM --> THREE_FORMULA\n  TAT --> THREE_FORMULA\n  EM --> THREE_FORMULA\n\n  FIVE_FORMULA[\"五階段：ROE = 稅負負擔 × 利息負擔<br/>× EBIT 利潤率 × 總資產週轉率 × 權益乘數\"]:::accent\n  TAX --> FIVE_FORMULA\n  INT --> FIVE_FORMULA\n  EBITM --> FIVE_FORMULA\n  TAT2 --> FIVE_FORMULA\n  EM2 --> FIVE_FORMULA\n\n  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px\n  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px\n"
   }
 };
 
