@@ -1141,7 +1141,7 @@
     return examSolutionSectionMap.get(chapter.id + "::" + sectionIndex) || null;
   }
 
-  function renderSolutionExample(example, index) {
+  function renderSolutionExample(example, index, chapter, section) {
     const question = examQuestionMap.get(example.questionId);
     if (!question) {
       return "";
@@ -1151,48 +1151,49 @@
     const sessionLabel = session.label || (question.year + " 年第 " + question.session + " 次");
     const kind = question.kind || (isChoice ? "選擇題" : "計算／申論");
     const steps = Array.isArray(example.steps) ? example.steps : [];
-    const correctOptions = isChoice
-      ? question.answer.map(function (letter) {
-          const optionIndex = "ABCD".indexOf(letter);
-          return optionIndex >= 0 && question.options[optionIndex] ? letter + "：" + question.options[optionIndex] : letter;
-        }).join("；")
-      : "";
-    const options = isChoice
-      ? '<ol class="worked-example-options">' + question.options.map(function (text, optionIndex) {
-          const letter = "ABCD"[optionIndex];
-          const correct = question.answer.indexOf(letter) !== -1;
-          return '<li' + (correct ? ' class="is-correct"' : "") + '><span class="worked-example-letter">' + letter + '</span><span>' + renderInlineMath(text) + '</span></li>';
-        }).join("") + "</ol>"
-      : "";
-    const referenceAnswer = !isChoice && Array.isArray(question.answer) && question.answer.length
-      ? '<details class="worked-example-reference"><summary>完整參考解答（本站）</summary><div class="worked-example-reference-body">' + question.answer.map(function (text) {
-          return '<div class="written-answer-block">' + renderWrittenAnswer(text) + "</div>";
-        }).join("") + "</div></details>"
-      : "";
     const questionLink = isChoice
       ? "#/past-exams?question=" + encodeURIComponent(question.id)
       : "#/past-exams/written?question=" + encodeURIComponent(question.id);
+    const options = isChoice
+      ? '<ol class="law-question-options">' + question.options.map(function (text, optionIndex) {
+          const letter = "ABCD"[optionIndex];
+          return '<li data-law-option="' + letter + '"><span class="law-question-letter">' + letter + '</span><span class="law-option-text">' + renderInlineMath(text) + '</span><span class="law-option-feedback" hidden></span></li>';
+        }).join("") + "</ol>"
+      : "";
+    const answerParts = [];
+    if (!isChoice && Array.isArray(question.answer) && question.answer.length) {
+      answerParts.push(renderLawAnswerBody({ question: question }));
+    }
+    if (steps.length) {
+      answerParts.push('<div class="worked-example-steps"><h4>解題步驟</h4><ol>' + steps.map(function (step) {
+        return "<li>" + renderWrittenAnswer(step) + "</li>";
+      }).join("") + "</ol></div>");
+    }
+    if (example.takeaway) {
+      answerParts.push('<div class="worked-example-note"><strong>帶走這一句</strong><p>' + renderWrittenAnswer(example.takeaway) + "</p></div>");
+    }
+    if (example.trap) {
+      answerParts.push('<div class="worked-example-trap"><strong>易錯點</strong><p>' + renderWrittenAnswer(example.trap) + "</p></div>");
+    }
+    const context = section ? "本節：" + sectionDisplayTitle(section) : "";
     return [
-      '<details class="worked-example"' + (index === 0 ? " open" : "") + ">",
-      '  <summary class="worked-example-summary">',
-      '    <span class="worked-example-number">例 ' + (index + 1) + "</span>",
-      '    <span class="worked-example-title">' + escapeHtml(sessionLabel) + " · 第 " + question.number + " 題</span>",
-      '    <span class="worked-example-kind">' + escapeHtml(kind) + "</span>",
+      '<details class="law-question" id="solution-' + escapeHtml(question.id) + '">',
+      '  <summary class="law-question-summary">',
+      '    <span class="law-question-meta">' + escapeHtml(sessionLabel + " · 第 " + question.number + " 題 · " + kind) + "</span>",
       "  </summary>",
-      '  <div class="worked-example-body">',
-      '    <p class="worked-example-stem">' + renderInlineMath(question.stem) + "</p>",
+      '  <div class="law-question-body">',
+      context ? '    <p class="law-question-refs">' + escapeHtml(context) + "</p>" : "",
+      '    <div class="law-question-full-stem">' + renderInlineMath(question.stem) + "</div>",
       options,
-      isChoice ? '    <p class="worked-example-answer"><strong>答案</strong> ' + escapeHtml(correctOptions) + "</p>" : "",
-      isChoice ? renderPastExamAnalysis(question) : "",
-      steps.length
-        ? '    <div class="worked-example-steps"><h4>解題步驟</h4><ol>' + steps.map(function (step) {
-            return "<li>" + renderWrittenAnswer(step) + "</li>";
-          }).join("") + "</ol></div>"
-        : "",
-      example.takeaway ? '    <div class="worked-example-note"><strong>帶走這一句</strong><p>' + renderWrittenAnswer(example.takeaway) + "</p></div>" : "",
-      example.trap ? '    <div class="worked-example-trap"><strong>易錯點</strong><p>' + renderWrittenAnswer(example.trap) + "</p></div>" : "",
-      referenceAnswer,
-      '    <div class="worked-example-footer"><a class="text-link" href="' + questionLink + '">在題庫中開啟題目 →</a><span>' + escapeHtml(question.note || "本站參考解答（非官方）") + "</span></div>",
+      '    <p class="law-question-hint">' + (isChoice ? "點開下方「完整參考解答」查看答案與選項解析。" : "點開下方「完整參考解答」查看參考解答與解題步驟。") + "</p>",
+      '    <details class="law-answer" data-law-answer-question="' + escapeHtml(question.id) + '" data-law-answer-kind="' + (isChoice ? "choice" : "written") + '"' + (isChoice ? "" : ' data-law-answer-state="loaded"') + ">",
+      "      <summary>完整參考解答</summary>",
+      answerParts.length ? '      <div class="law-answer-body">' + answerParts.join("") + "</div>" : "",
+      "    </details>",
+      '    <div class="law-question-footer">',
+      '      <a class="text-link" href="' + questionLink + '">在題庫中開啟題目 →</a>',
+      '      <span>' + escapeHtml(question.note || "本站參考解答（非官方）") + "</span>",
+      "    </div>",
       "  </div>",
       "</details>"
     ].join("");
@@ -1210,6 +1211,7 @@
     if (!solution.focus && !strategies.length && !examples.length) {
       return "";
     }
+    const section = chapter.sections[Number(sectionIndex) - 1];
     return [
       '<div class="section-solutions">',
       '  <div class="subheading">解題方法</div>',
@@ -1220,7 +1222,9 @@
           }).join("") + "</ol>"
         : "",
       examples.length
-        ? '  <div class="subheading">考古題解題</div><div class="worked-examples">' + examples.map(renderSolutionExample).join("") + "</div>"
+        ? '  <div class="subheading">考古題解題</div><div class="law-question-list">' + examples.map(function (example, index) {
+            return renderSolutionExample(example, index, chapter, section);
+          }).join("") + "</div>"
         : "",
       "</div>"
     ].join("");
@@ -2514,6 +2518,10 @@
       : "此選項與題意不符；本題官方答案為 " + question.answer.join("、") + "。";
   }
 
+  function stripOptionVerdict(text) {
+    return String(text == null ? "" : text).replace(/^(正解|非正解)[。：:\s]*/, "");
+  }
+
   function renderPastExamAnalysis(question, lawMode) {
     if (!Array.isArray(question.options) || !question.options.length) {
       return "";
@@ -2528,9 +2536,9 @@
     const items = question.options.map(function (text, index) {
       const letter = "ABCD"[index];
       const correct = question.answer.indexOf(letter) !== -1;
-      const analysis = explanation && explanation.options && explanation.options[letter]
+      const analysis = stripOptionVerdict(explanation && explanation.options && explanation.options[letter]
         ? explanation.options[letter]
-        : fallbackOptionAnalysis(question, letter);
+        : fallbackOptionAnalysis(question, letter));
       return [
         '<li class="' + (correct ? "is-correct" : "") + '">',
         '  <span class="past-exam-analysis-letter">' + letter + "</span>",
@@ -5032,9 +5040,9 @@
       option.classList.toggle("is-correct", correct);
       const feedback = option.querySelector(".law-option-feedback");
       if (!feedback) return;
-      const text = explanation && explanation.options && explanation.options[letter]
+      const text = stripOptionVerdict(explanation && explanation.options && explanation.options[letter]
         ? explanation.options[letter]
-        : fallbackOptionAnalysis(question, letter);
+        : fallbackOptionAnalysis(question, letter));
       feedback.innerHTML = "<strong>" + (correct ? "正解" : "非正解") + "</strong> " + renderInlineMath(text);
       feedback.hidden = false;
     });

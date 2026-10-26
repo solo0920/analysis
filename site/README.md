@@ -510,6 +510,8 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 
 2026-10-27 統一 SEO 正式網域並在部署前驗證：首頁、82 個靜態頁、Sitemap、robots.txt、llms.txt、Open Graph 與 JSON-LD 的絕對網址由 `https://solo0920.github.io/analysis` 改為 `https://analysis.ragdemo.win`；首頁 JSON-LD 的四科目 URL 改指 `/subjects/.../` 靜態頁。`build-static-landing-pages.js` 的 `UPDATED` 改為自動判斷（工作樹有變更時用當天，否則用最近一次 `site/` commit 日期），Sitemap lastmod 目前為 2026-10-27。`site/404.html` 的導回根目錄邏輯改依 hostname 判斷 GitHub Pages 子路徑或自訂網域根目錄。新增 `site/scripts/validate-seo.js`，檢查 83 個靜態頁的 canonical／og:url 自指、JSON-LD 可解析、Sitemap URL 與頁面完全一致、robots.txt／llms.txt／首頁無 GitHub Pages 網域；`.github/workflows/pages.yml` 在部署前執行所有 JS／MJS 的 `node --check`、`validate-content.js` 與 `validate-seo.js`，失敗即停止。實測 SEO 603 項、失敗 0；內容驗證 157,470 項、失敗 0；Lighthouse 首頁 mobile 88（LCP 3.6s、CLS 0、TBT 0）、desktop 100，accessibility／SEO／best-practices 皆 100。另確認自訂網域 `/robots.txt`、`/sitemap.xml`、`/chapters/investment-14/`、`/subjects/investment/` 對 Googlebot 均 200；自訂網域未知路徑目前回傳空 404 body，需在 Cloudflare 設定 404 fallback。
 
+2026-10-27 將非 法規章節的「考古題解題」改為法規題卡格式：`renderSolutionExample()` 由 `worked-example` 卡改為 `law-question` 結構，摘要只顯示「場次 · 題號 · 題型」，預設收合；題幹、選項、提示、完整參考解答與頁尾連結比照法規章節。選擇題沿用 `law-answer` 的按需載入與原位選項解析；申論／計算題的參考解答、解題步驟、帶走這一句與易錯點放在 `law-answer-body`。`section-solutions` 容器改為與 `law-article-questions` 相同的邊框、圓角與 `surface-2` 背景；`stripOptionVerdict()` 移除選項解析開頭重複的「正解／非正解」。實測 macro-02（8＋3 題）、law-01 在 390px／1280px、深淺主題：題卡預設收合、選擇題展開後原位顯示 4 項解析與正解高亮、申論題顯示完整解答與解題步驟、0 水平溢出、axe 0 violations；52 章非 法規（排除解題卡重複計數）0 失敗；驗證器 157,470 項、失敗 0。
+
 ## 更新流程
 
 1. 先更新 `documents/` 下的來源目錄。

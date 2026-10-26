@@ -8798,13 +8798,11 @@ a.landing-item:hover {
   min-width: 0;
   max-width: 100%;
   margin-top: 24px;
-  padding: 20px;
+  padding: 14px 16px;
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background:
-    linear-gradient(135deg, rgba(15, 92, 92, 0.06), transparent 45%),
-    var(--surface);
-  box-shadow: var(--shadow-sm);
+  border-radius: 10px;
+  background: var(--surface-2);
+  box-shadow: none;
 }
 
 .section-solutions .subheading {
