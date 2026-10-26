@@ -11,7 +11,7 @@
   --surface-2: #faf6ee;
   --ink: #182426;
   --ink-soft: #334246;
-  --muted: #667477;
+  --muted: #5b686b;
   --line: #ded6c8;
   --line-strong: #c9bfae;
   --accent: #0f5c5c;
@@ -20,7 +20,7 @@
   --on-accent: #ffffff;
   --on-accent-hover: #ffffff;
   --on-danger: #ffffff;
-  --gold: #9a6020;
+  --gold: #945a1c;
   --gold-soft: #f5ead8;
   --danger: #9a3f35;
   --success: #2f7d4f;
@@ -1112,9 +1112,9 @@ a.landing-item:hover {
 }
 
 .subject-investment {
-  --subject-color: #9a5b2b;
+  --subject-color: #945522;
   --subject-soft: #f3e8da;
-  --accent: #9a5b2b;
+  --accent: #945522;
   --accent-ink: #713f1d;
   --accent-soft: #f3e8da;
 }
@@ -1667,8 +1667,14 @@ a.landing-item:hover {
 .formula-library-table .ratio-math {
   display: inline-block;
   max-width: 100%;
-  overflow-x: auto;
+  overflow: visible;
   scrollbar-width: none;
+}
+
+.formula-library-table .ratio-math.is-scrollable {
+  overflow-x: auto;
+  overflow-y: clip;
+  overflow-clip-margin: 6px;
 }
 
 .formula-library-table .ratio-math::-webkit-scrollbar {
@@ -1955,6 +1961,8 @@ a.landing-item:hover {
 .option-formula {
   min-width: 0;
   overflow-x: auto;
+  overflow-y: clip;
+  overflow-clip-margin: 6px;
   padding: 9px 10px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -2669,9 +2677,15 @@ a.landing-item:hover {
 .inline-math:not(.is-display) {
   display: inline-block;
   max-width: 100%;
+  overflow-x: visible;
+  vertical-align: middle;
+}
+
+/* 只有真正超出容器的公式才成為可捲動區域；1–2px 的次像素誤差不再產生
+   無法鍵盤操作、卻又被 axe 視為 scroll container 的假性熱區。 */
+.inline-math:not(.is-display).is-scrollable {
   overflow-x: auto;
   scrollbar-width: none;
-  vertical-align: middle;
 }
 
 .inline-math:not(.is-display)::-webkit-scrollbar {
@@ -2681,6 +2695,29 @@ a.landing-item:hover {
 .inline-math.is-display {
   display: block;
   margin: 0.5em 0;
+}
+
+/* 可橫向捲動的公式與表格在鍵盤聚焦時要有清楚的視覺提示。 */
+.inline-math.is-scrollable:focus-visible,
+.forecast-table-wrap.is-scrollable:focus-visible,
+.ratio-table-wrap.is-scrollable:focus-visible,
+.priority-table-wrap.is-scrollable:focus-visible,
+.written-table-wrap.is-scrollable:focus-visible,
+.written-answer-table-wrap.is-scrollable:focus-visible,
+.diagram-canvas.is-scrollable:focus-visible,
+.diagram-table.is-scrollable:focus-visible,
+.diagram-formula.is-scrollable:focus-visible,
+.option-formula.is-scrollable:focus-visible,
+.macro-current-formula-math.is-scrollable:focus-visible,
+.forecast-formula-math.is-scrollable:focus-visible,
+.written-stem-formula.is-scrollable:focus-visible,
+.nobel-year-canvas.is-scrollable:focus-visible,
+.formula-library-table .ratio-math.is-scrollable:focus-visible,
+.written-answer-table.is-scrollable:focus-visible,
+.diagram-code-panel pre.is-scrollable:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .formula-katex .katex-display {
@@ -2854,6 +2891,8 @@ a.landing-item:hover {
   border-radius: 8px;
   background: var(--bg-deep);
   overflow-x: auto;
+  overflow-y: clip;
+  overflow-clip-margin: 6px;
 }
 
 .diagram-formula-label {
@@ -6887,9 +6926,15 @@ a.landing-item:hover {
   max-width: 100%;
   margin-top: 5px;
   overflow-x: auto;
+  overflow-y: clip;
+  overflow-clip-margin: 6px;
   color: var(--ink);
   font-size: 0.95rem;
-  scrollbar-width: thin;
+  scrollbar-width: none;
+}
+
+.macro-current-formula-math::-webkit-scrollbar {
+  display: none;
 }
 
 .macro-current-formula-math .katex-display {
@@ -7816,9 +7861,17 @@ a.landing-item:hover {
   display: block;
   max-width: 100%;
   overflow-x: auto;
+  /* 上下標造成的 2–4px 垂直溢出不該長出捲軸，否則捲軸溝會壓縮寬度，
+     讓公式看起來多出橫向溢出。clip margin 保留字形的上下緣。 */
+  overflow-y: clip;
+  overflow-clip-margin: 6px;
   color: var(--ink-soft);
   font-size: 0.9rem;
-  scrollbar-width: thin;
+  scrollbar-width: none;
+}
+
+.forecast-formula-math::-webkit-scrollbar {
+  display: none;
 }
 
 .forecast-formula-list small {

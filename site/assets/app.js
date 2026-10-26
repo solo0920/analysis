@@ -5213,6 +5213,219 @@
     setMetaContent('meta[name="twitter:title"]', title);
   }
 
+  /* ---------------------- scrollable regions ---------------------- */
+  /* KaTeX 的 inline-block 會讓 1–2px 的次像素誤差也變成 scroll container。
+     這裡只把真正超出容器的公式／表格標成可捲動區域，並補上鍵盤焦點與名稱。 */
+
+  const SCROLL_REGION_SELECTOR = [
+    ".forecast-table-wrap",
+    ".ratio-table-wrap",
+    ".priority-table-wrap",
+    ".written-table-wrap",
+    ".written-answer-table-wrap",
+    ".diagram-canvas",
+    ".diagram-table",
+    ".diagram-formula",
+    ".option-formula",
+    ".macro-current-formula-math",
+    ".forecast-formula-math",
+    ".written-stem-formula",
+    ".nobel-year-canvas",
+    ".formula-library-table .ratio-math",
+    ".written-answer-table",
+    ".diagram-code-panel pre",
+    ".formula"
+  ].join(",");
+
+  let scrollRegionFrame = 0;
+  let scrollRegionObserver = null;
+  const scrollRegionOriginals = new WeakMap();
+
+  function cleanScrollRegionText(value) {
+    return String(value == null ? "" : value)
+      .replace(/[\u200B-\u200D\uFEFF]/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function truncateScrollRegionText(value, limit) {
+    const text = cleanScrollRegionText(value);
+    if (!text) return "";
+    return text.length > limit ? text.slice(0, limit - 1) + "…" : text;
+  }
+
+  function nearestScrollRegionHeading(el) {
+    let node = el;
+    while (node && node !== main) {
+      if (node.matches && node.matches("figure, section, article, details, .forecast-sensitivity-card")) {
+        const heading = node.querySelector("figcaption, h2, h3, h4, summary");
+        if (heading) {
+          const text = truncateScrollRegionText(heading.textContent, 90);
+          if (text) return text;
+        }
+      }
+      node = node.parentElement;
+    }
+    return "";
+  }
+
+  function scrollRegionLabel(el) {
+    const existing = cleanScrollRegionText(el.getAttribute("aria-label"));
+    if (existing) return existing;
+
+    if (el.classList.contains("inline-math")) {
+      const rendered = el.querySelector(".katex-html");
+      const text = truncateScrollRegionText(rendered ? rendered.textContent : el.textContent, 100);
+      return "可橫向捲動的公式" + (text ? "：" + text : "");
+    }
+
+    if (el.matches("pre")) {
+      return "可橫向捲動的程式碼";
+    }
+
+    if (el.matches(".diagram-canvas, .diagram-formula, .nobel-year-canvas")) {
+      const text = nearestScrollRegionHeading(el);
+      return "可橫向捲動的圖表" + (text ? "：" + text : "");
+    }
+
+    if (el.matches(".formula-library-table .ratio-math")) {
+      const rendered = el.querySelector(".katex-html");
+      const text = truncateScrollRegionText(rendered ? rendered.textContent : el.textContent, 100);
+      return "可橫向捲動的公式" + (text ? "：" + text : "");
+    }
+
+    const table = el.matches("table") ? el : el.querySelector("table");
+    if (table) {
+      const caption = table.querySelector("caption");
+      const text = caption ? truncateScrollRegionText(caption.textContent, 90) : nearestScrollRegionHeading(el);
+      return "可橫向捲動的表格" + (text ? "：" + text : "");
+    }
+
+    const text = nearestScrollRegionHeading(el);
+    return "可橫向捲動的內容" + (text ? "：" + text : "");
+  }
+
+  function hasFocusableScrollRegionChild(el) {
+    const nodes = el.querySelectorAll('a[href], button, input, select, textarea, summary, [tabindex]:not([tabindex="-1"])');
+    for (let index = 0; index < nodes.length; index += 1) {
+      if (!nodes[index].closest('[aria-hidden="true"], [inert]')) return true;
+    }
+    return false;
+  }
+
+  function markScrollRegion(el, label) {
+    if (!scrollRegionOriginals.has(el)) {
+      scrollRegionOriginals.set(el, {
+        tabindex: el.getAttribute("tabindex"),
+        role: el.getAttribute("role"),
+        ariaLabel: el.getAttribute("aria-label")
+      });
+    }
+    const original = scrollRegionOriginals.get(el);
+    el.classList.add("is-scrollable");
+    el.setAttribute("data-scroll-region", "true");
+    if (original.tabindex == null && !el.hasAttribute("tabindex")) el.setAttribute("tabindex", "0");
+    if (original.role == null && !el.hasAttribute("role")) el.setAttribute("role", "group");
+    if (original.ariaLabel == null) el.setAttribute("aria-label", label);
+  }
+
+  function clearScrollRegion(el) {
+    el.classList.remove("is-scrollable");
+    if (!el.hasAttribute("data-scroll-region")) return;
+    el.removeAttribute("data-scroll-region");
+    const original = scrollRegionOriginals.get(el);
+    scrollRegionOriginals.delete(el);
+    if (!original) return;
+    if (original.tabindex == null) el.removeAttribute("tabindex");
+    else el.setAttribute("tabindex", original.tabindex);
+    if (original.role == null) el.removeAttribute("role");
+    else el.setAttribute("role", original.role);
+    if (original.ariaLabel == null) el.removeAttribute("aria-label");
+    else el.setAttribute("aria-label", original.ariaLabel);
+  }
+
+  function refreshScrollableRegions() {
+    if (!main) return;
+
+    const mathNodes = Array.prototype.slice.call(main.querySelectorAll(".inline-math:not(.is-display)"));
+    const regionNodes = Array.prototype.slice.call(main.querySelectorAll(SCROLL_REGION_SELECTOR));
+    mathNodes.forEach(clearScrollRegion);
+    regionNodes.forEach(clearScrollRegion);
+
+    const scrollableMath = mathNodes.filter(function (el) {
+      if (el.closest('[aria-hidden="true"], [inert], details:not([open])')) return false;
+      const katex = el.querySelector(".katex");
+      const overflow = katex
+        ? katex.getBoundingClientRect().width - el.clientWidth
+        : el.scrollWidth - el.clientWidth;
+      return overflow > (katex ? 0.5 : 2);
+    });
+
+    const scrollableRegions = regionNodes.filter(function (el) {
+      if (el.closest('[aria-hidden="true"], [inert], details:not([open])')) return false;
+      if (el.matches(".formula-library-table .ratio-math")) {
+        const katex = el.querySelector(".katex");
+        const overflow = katex
+          ? katex.getBoundingClientRect().width - el.clientWidth
+          : el.scrollWidth - el.clientWidth;
+        return overflow > 2;
+      }
+      const style = window.getComputedStyle(el);
+      const canScrollX = style.overflowX === "auto" || style.overflowX === "scroll";
+      const canScrollY = style.overflowY === "auto" || style.overflowY === "scroll";
+      /* 公式容器的垂直 overflow 多半是 KaTeX 上下標的次像素誤差，不應因此
+         多出 Tab stop；真正需要垂直捲動的只有程式碼區塊。 */
+      const checkVertical = el.matches("pre");
+      return (canScrollX && el.scrollWidth - el.clientWidth > 2) ||
+        (checkVertical && canScrollY && el.scrollHeight - el.clientHeight > 2);
+    });
+
+    scrollableMath.forEach(function (el) {
+      markScrollRegion(el, scrollRegionLabel(el));
+    });
+    scrollableRegions.forEach(function (el) {
+      if (hasFocusableScrollRegionChild(el)) return;
+      markScrollRegion(el, scrollRegionLabel(el));
+    });
+  }
+
+  function scheduleScrollRegionRefresh() {
+    if (scrollRegionFrame) return;
+    scrollRegionFrame = window.requestAnimationFrame(function () {
+      scrollRegionFrame = 0;
+      refreshScrollableRegions();
+    });
+  }
+
+  function setupScrollRegionObservers() {
+    if (scrollRegionObserver || !main) return;
+    if (window.MutationObserver) {
+      scrollRegionObserver = new MutationObserver(function () {
+        scheduleScrollRegionRefresh();
+      });
+      scrollRegionObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["data-theme", "data-site-style"]
+      });
+      scrollRegionObserver.observe(main, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["open", "hidden"]
+      });
+    }
+    document.addEventListener("toggle", scheduleScrollRegionRefresh, true);
+    window.addEventListener("resize", scheduleScrollRegionRefresh, { passive: true });
+    if (document.fonts && document.fonts.ready && typeof document.fonts.ready.then === "function") {
+      document.fonts.ready.then(scheduleScrollRegionRefresh).catch(function () {
+        /* 字型載入失敗時仍保留目前的量測結果。 */
+      });
+    }
+    if (document.fonts && typeof document.fonts.addEventListener === "function") {
+      document.fonts.addEventListener("loadingdone", scheduleScrollRegionRefresh);
+    }
+  }
+
   function render() {
     const route = parseRoute();
     let html = "";
@@ -5277,6 +5490,7 @@
       window.MermaidLab.reset();
     }
     main.innerHTML = html;
+    refreshScrollableRegions();
     document.title = title;
     updatePageMeta(route, title);
     updateNav(route);
@@ -6204,6 +6418,7 @@
   function init() {
     buildSearchIndex();
     bindEvents();
+    setupScrollRegionObservers();
     updateThemeButton();
     render();
     updateReadingProgress();

@@ -207,8 +207,9 @@ Repository 的 Pages Source 已設為 **GitHub Actions**；若之後重新建立
 ## 無障礙與主題對比
 
 - 深淺主題以 `--on-accent`、`--on-accent-hover`、`--on-danger` 決定 accent／danger 底色上的文字；Meta、Anthropic、NVIDIA 淺色與 Netflix 深色另有品牌 override，避免淺色強調色配白字或深色強調色配深字。
-- 20 種風格 × 淺色／深色 × accent／hover／danger 共 120 組文字對比實測皆 ≥ 4.5:1；淺色 `--gold` 由 `#a86d27` 調整為 `#9a6020`。
-- 抽查的靜態章節頁與首頁在 1280px／390px、深淺主題的 axe（WCAG A／AA）掃描為 0 violations；互動版 `#/past-exams` 亦為 0。既有互動版長行內公式在 `#/chapter/investment-09` 與 `#/exam-forecast` 仍有 `scrollable-region-focusable` 註記，非本輪修改範圍。
+- 20 種風格 × 淺色／深色 × accent／hover／danger 共 120 組文字對比實測皆 ≥ 4.5:1；淺色 paper 的 `--muted` 調整為 `#5b686b`、`--gold` 調整為 `#945a1c`，投資學 accent 調整為 `#945522`，讓小字在 tinted surfaces 也 ≥ 4.5:1。
+- 互動版長行內公式只在實際超出容器時才成為可捲動區域；1–2px 的次像素誤差不再建立 scroll container。可捲動的公式、表格與圖表會動態加上 `tabindex="0"`、`role="group"` 與可讀的 `aria-label`，並有 `:focus-visible` 外框；關閉的 `<details>` 內公式待開啟後才標記。`.forecast-formula-math` 等公式容器以 `overflow-y: clip`／`overflow-clip-margin` 避免垂直捲軸溝壓縮寬度，造成假性橫向溢出。
+- axe 4.10.2：靜態章節頁 `investment-09` 與首頁在 1280px／390px、深淺主題皆 0 violations；互動版 `#/chapter/investment-09`、`#/exam-forecast` 在 1280px／390px、深淺主題與 `file://` 也皆為 0，且所有可捲動區域都有 `tabindex`，未產生多餘 Tab stop。
 - 390px 靜態頁 164 個頁面狀態 0 水平溢出；`file://` 開啟時 KaTeX 字型正常載入。
 
 ## 內容結構
@@ -473,6 +474,8 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 2026-10-23 將考古題練習庫與申論題頁拆開，並把選擇題再依年度拆分：`/past-exams` 預設只載入最新年度 115 年（約 1.56 MB JS），切換年度時載入對應年度分包；選擇全部年度才載入完整 3,710 題（約 3.31 MB）。`/past-exams/written` 只載入 348 題申論題與版型（約 1.89 MB）。逐選項解析仍維持第一次看答案時才載入。390px／1280px 與 `file://` QA 通過；驗證器 154,272 項、失敗 0。
 
 2026-10-26 修正三項 P0：靜態章節頁公式改以建置時 KaTeX 渲染顯式 `\(...\)`，混合中英公式、名詞與考試重點改用 HTML 上下標或 Unicode 上下標，82 個靜態頁與首頁共 83 頁可見文字與 metadata／JSON-LD 掃描 0 個原始 LaTeX、`^`、`_`；深色主題新增 `--on-accent`、`--on-accent-hover`、`--on-danger`，20 種風格 × 深淺主題 × accent／hover／danger 共 120 組對比 0 失敗，淺色 `--gold` 調整為 `#9a6020`；搜尋面板加入背景 `inert`、Tab／Shift+Tab focus trap、Esc 關閉後焦點回到 `#search-open` 與 `aria-expanded` 同步。axe 4.10.2 掃描靜態章節頁 `investment-09` 深淺主題 1280px／390px、`/chapters/` 深色 390px、首頁深色 1280px 與互動版 `#/past-exams` 深色 1280px／390px 均 0 violations；390px 靜態頁 164 個頁面狀態 0 水平溢出、2,712 個站內連結 0 斷鏈、`file://` KaTeX 字型正常；驗證器 157,257 項、失敗 0。既有互動版長行內公式的 `scrollable-region-focusable` 註記仍待後續處理。
+
+2026-10-26 修正互動版殘留的 `scrollable-region-focusable`：`.inline-math` 預設 `overflow-x: visible`，只有實際內容超出容器的公式才加 `.is-scrollable` 與 `overflow-x: auto`；1–2px 次像素誤差不再產生無法鍵盤操作的假性 scroll container。可捲動公式／表格／圖表動態取得 `tabindex="0"`、`role="group"` 與依內容或鄰近標題產生的 `aria-label`，並以 `:focus-visible` 顯示 2px accent 外框；關閉的 `<details>` 內公式在開啟後由 `toggle` 事件重新量測。`.forecast-formula-math`、`.macro-current-formula-math`、`.diagram-formula`、`.option-formula`、`.formula-library-table .ratio-math` 加上 `overflow-y: clip` 與 `overflow-clip-margin: 6px`，避免 2–4px 的上下標溢出觸發 11–15px 垂直捲軸溝，進而壓縮寬度而被 axe 誤判為橫向可捲動。淺色 paper 的 `--muted`、`--gold` 與投資學 accent 同步調整為 `#5b686b`、`#945a1c`、`#945522`。實測 `#/chapter/investment-09` 與 `#/exam-forecast` 在 1280px／390px、深淺主題、`file://` 與重複 axe 執行皆 0 violations；390px 僅 4 個（investment-09）／5 個（exam-forecast）真正可捲動區域取得焦點，無多餘 Tab stop；鍵盤 ArrowRight 可捲動聚焦公式，表格／圖表容器可聚焦；關閉 details 時不標記、開啟後才標記。靜態 `investment-09` 與首頁深淺主題 1280px／390px 仍為 0 violations，390px 164 個頁面狀態 0 水平溢出，2,711 個站內連結 0 斷鏈，`file://` KaTeX 正常，驗證器 157,257 項、失敗 0，20 種風格 × 深淺 × accent／hover／danger 120 組對比 0 失敗。
 
 ## 更新流程
 
