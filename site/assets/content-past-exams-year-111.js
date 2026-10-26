@@ -8008,7 +8008,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["111"] = {
       "year": 111,
       "session": 3,
       "subject": "law",
-      "sourceId": "law-21",
+      "sourceId": "law-02",
       "number": 16,
       "stem": "因應公司法第22 條之 1 之修正並促進公司資訊透明及落實洗錢防制作為，公司自民國 107 年 11 月 1 日起應依法於「公司負責人及主要股東資訊申報平臺」申報負責人及主要股東資訊，其有變動者，並應於變動後多少日內為之？",
       "options": [
@@ -8021,12 +8021,13 @@ window.PAST_EXAMS_YEAR_BUNDLES["111"] = {
         "A"
       ],
       "sourceIds": [
-        "law-21"
+        "law-02"
       ],
       "sourceRefs": [
         {
-          "chapterId": "law-21",
-          "sectionIndex": 1
+          "chapterId": "law-02",
+          "sectionIndex": 4,
+          "articleNo": "22-1"
         }
       ]
     },

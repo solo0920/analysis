@@ -4367,7 +4367,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["108"] = {
       "year": 108,
       "session": 2,
       "subject": "law",
-      "sourceId": "law-01",
+      "sourceId": "law-03",
       "number": 7,
       "stem": "依發行人募集與發行有價證券處理準則之規定，上市或上櫃公司辦理現金增資發行新股，且未經依證券交易法第 139 條第 2 項規定限制其上市買賣，應提撥發行新股總額之多少比例，以時價對外公開發行？",
       "options": [
@@ -4380,12 +4380,13 @@ window.PAST_EXAMS_YEAR_BUNDLES["108"] = {
         "B"
       ],
       "sourceIds": [
-        "law-01"
+        "law-03"
       ],
       "sourceRefs": [
         {
-          "chapterId": "law-01",
-          "sectionIndex": 1
+          "chapterId": "law-03",
+          "sectionIndex": 3,
+          "articleNo": "17"
         }
       ]
     },
@@ -11731,7 +11732,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["108"] = {
       "year": 108,
       "session": 4,
       "subject": "law",
-      "sourceId": "law-21",
+      "sourceId": "law-02",
       "number": 15,
       "stem": "為因應國際洗錢防制評鑑，依據我國公司法之規定，請問下列何人並不需要每年定期申報其姓名或名稱、國籍、出生年月日或設立登記之年月日、身分證明文件號碼、持股數或出資額及其他中央主管機關指定之事項？",
       "options": [
@@ -11744,12 +11745,13 @@ window.PAST_EXAMS_YEAR_BUNDLES["108"] = {
         "C"
       ],
       "sourceIds": [
-        "law-21"
+        "law-02"
       ],
       "sourceRefs": [
         {
-          "chapterId": "law-21",
-          "sectionIndex": 1
+          "chapterId": "law-02",
+          "sectionIndex": 4,
+          "articleNo": "22-1"
         }
       ]
     },

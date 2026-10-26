@@ -1273,12 +1273,29 @@ content.subjects.forEach(function (subject) {
     pastExamChapterMap[chapter.id] = { chapter: chapter, subjectId: subject.id };
   });
 });
+function normalizeLawArticleNo(value) {
+  return String(value == null ? "" : value)
+    .replace(/^第\s*/, "")
+    .replace(/\s*條$/, "")
+    .replace(/\s*之\s*/g, "-")
+    .replace(/\s+/g, "");
+}
+const pastExamLawArticleSets = {};
+Object.keys(lawArticles).forEach(function (chapterId) {
+  const articleSet = new Set();
+  (lawArticles[chapterId].official || []).forEach(function (source) {
+    (source.articles || []).forEach(function (article) {
+      if (article.type === "article") articleSet.add(normalizeLawArticleNo(article.no));
+    });
+  });
+  pastExamLawArticleSets[chapterId] = articleSet;
+});
 const pastExamExpectedChapterTotals = {
   // law
-  "law-01": 199, "law-02": 226, "law-03": 164, "law-04": 46, "law-05": 29, "law-06": 7,
+  "law-01": 196, "law-02": 228, "law-03": 168, "law-04": 46, "law-05": 29, "law-06": 7,
   "law-07": 20, "law-08": 21, "law-09": 12, "law-10": 15, "law-11": 53, "law-12": 31,
   "law-13": 85, "law-14": 4, "law-15": 9, "law-16": 14, "law-17": 14, "law-18": 15,
-  "law-19": 21, "law-20": 9, "law-21": 3,
+  "law-19": 21, "law-20": 9, "law-21": 0,
   // investment
   "investment-01": 4, "investment-02": 14, "investment-03": 92, "investment-04": 107, "investment-05": 98, "investment-06": 21,
   "investment-07": 169, "investment-08": 102, "investment-09": 78, "investment-10": 107, "investment-11": 65, "investment-13": 14,
@@ -1373,6 +1390,10 @@ pastExamQuestions.forEach(function (question) {
   sourceRefs.forEach(function (ref) {
     const refInfo = pastExamChapterMap[ref.chapterId];
     check(Boolean(refInfo) && refInfo.subjectId === question.subject && Number.isInteger(ref.sectionIndex) && ref.sectionIndex >= 1 && ref.sectionIndex <= refInfo.chapter.sections.length, "考古題題目節次出處錯誤：" + question.id + " / " + ref.chapterId + "#" + ref.sectionIndex);
+    if (ref.articleNo) {
+      const articleSet = pastExamLawArticleSets[ref.chapterId];
+      check(Boolean(articleSet) && articleSet.has(normalizeLawArticleNo(ref.articleNo)), "考古題題目條號出處不存在：" + question.id + " / " + ref.chapterId + " 第" + ref.articleNo + "條");
+    }
   });
   check(Number.isInteger(question.number) && question.number >= 1, "考古題題號錯誤：" + question.id);
   if (session) {
@@ -1452,7 +1473,7 @@ Object.keys(pastExamExpectedYearTotals).forEach(function (year) {
   check(pastExamYearTotals[year] === pastExamExpectedYearTotals[year], "考古題年度總題數錯誤：" + year + "（" + pastExamYearTotals[year] + "）");
 });
 Object.keys(pastExamExpectedChapterTotals).forEach(function (chapterId) {
-  check(pastExamChapterTotals[chapterId] === pastExamExpectedChapterTotals[chapterId], "考古題章節出處題數錯誤：" + chapterId + "（" + (pastExamChapterTotals[chapterId] || 0) + "）");
+  check((pastExamChapterTotals[chapterId] || 0) === pastExamExpectedChapterTotals[chapterId], "考古題章節出處題數錯誤：" + chapterId + "（" + (pastExamChapterTotals[chapterId] || 0) + "）");
 });
 
 [
@@ -1708,7 +1729,7 @@ const solutionExpectedByYear = {
   112: { sections: 35, examples: 48, written: 36 },
   111: { sections: 27, examples: 48, written: 36 },
   110: { sections: 29, examples: 48, written: 36 },
-  109: { sections: 33, examples: 60, written: 48 },
+  109: { sections: 32, examples: 60, written: 48 },
   108: { sections: 30, examples: 60, written: 48 },
   107: { sections: 33, examples: 60, written: 48 }
 };
@@ -1939,7 +1960,7 @@ Object.keys(lazyPastStats.practice.years || {}).forEach(function (year) {
   check(yearData.questions.every(function (question) { return question.year === Number(year); }), "考古題年度分包混入其他年度：" + year);
 });
 check(Object.keys(lazyPastStats.practice.chapters || {}).length === 73, "延遲載入用考古題統計應涵蓋 73 章");
-check(Object.keys(lazyPastStats.written.chapters || {}).length === 58, "延遲載入用考古題統計應涵蓋 58 個申論章節");
+check(Object.keys(lazyPastStats.written.chapters || {}).length === 55, "延遲載入用考古題統計應涵蓋 55 個申論章節");
 ["macro", "investment", "accounting", "law"].forEach(function (subject) {
   check(lazyPastStats.practice.subjects[subject] === { macro: 994, investment: 924, accounting: 882, law: 910 }[subject], "延遲載入用考古題統計科目數錯誤：" + subject);
   check(lazyPastStats.written.subjects[subject] === 87, "延遲載入用申論題統計科目數錯誤：" + subject);

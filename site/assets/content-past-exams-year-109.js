@@ -4758,7 +4758,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["109"] = {
       "year": 109,
       "session": 2,
       "subject": "law",
-      "sourceId": "law-21",
+      "sourceId": "law-02",
       "number": 12,
       "stem": "依民國 107 年公司法新修正與配合洗錢防制政策，公司應何時定期申報董事、監察人、經理人及持有已發行股份總數 10%股東的個人資料至主管機關建置或指定之資訊平台？",
       "options": [
@@ -4771,12 +4771,13 @@ window.PAST_EXAMS_YEAR_BUNDLES["109"] = {
         "A"
       ],
       "sourceIds": [
-        "law-21"
+        "law-02"
       ],
       "sourceRefs": [
         {
-          "chapterId": "law-21",
-          "sectionIndex": 1
+          "chapterId": "law-02",
+          "sectionIndex": 4,
+          "articleNo": "22-1"
         }
       ]
     },

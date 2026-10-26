@@ -4384,7 +4384,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["107"] = {
       "year": 107,
       "session": 2,
       "subject": "law",
-      "sourceId": "law-01",
+      "sourceId": "law-03",
       "number": 8,
       "stem": "依發行人募集與發行有價證券處理準則之規定，發行人申報募集與發行有價證券，自所檢附最近期財務報告資產負債表日至申報生效前，發生證券交易法第36 條第 2 項第 2 款規定對股東權益或證券價格有重大影響之事項，依規定於事實發生日起幾日內公告並向金管會申報？",
       "options": [
@@ -4397,12 +4397,13 @@ window.PAST_EXAMS_YEAR_BUNDLES["107"] = {
         "A"
       ],
       "sourceIds": [
-        "law-01"
+        "law-03"
       ],
       "sourceRefs": [
         {
-          "chapterId": "law-01",
-          "sectionIndex": 1
+          "chapterId": "law-03",
+          "sectionIndex": 2,
+          "articleNo": "5"
         }
       ]
     },

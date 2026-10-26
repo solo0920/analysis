@@ -4800,7 +4800,7 @@
     return aliases;
   }
 
-  function lawQuestionArticleRefs(question, officialSources) {
+  function lawQuestionArticleRefs(question, officialSources, chapterId) {
     const text = [
       question.stem,
       ...(Array.isArray(question.options) ? question.options : []),
@@ -4820,6 +4820,26 @@
         aliases: lawSourceAliases(source.name)
       };
     });
+    const explicitRefs = [];
+    (question.sourceRefs || []).forEach(function (ref) {
+      if (!chapterId || ref.chapterId !== chapterId || !ref.articleNo) return;
+      const no = normalizeLawArticleNo(ref.articleNo);
+      const source = sources.find(function (candidate) {
+        if (!candidate.articleSet.has(no)) return false;
+        if (!ref.sourceName) return true;
+        return candidate.aliases.some(function (alias) {
+          return ref.sourceName === alias || ref.sourceName.endsWith(alias) || alias.endsWith(ref.sourceName);
+        });
+      });
+      if (!source) return;
+      const key = source.index + ":" + no;
+      if (!explicitRefs.some(function (item) { return item.sourceIndex + ":" + item.no === key; })) {
+        explicitRefs.push({ no: no, sourceIndex: source.index, sourceName: source.name });
+      }
+    });
+    if (explicitRefs.length) {
+      return explicitRefs;
+    }
     const refs = [];
     const pattern = /第\s*(\d+(?:\s*-\s*\d+)?)\s*條(?:之\s*(\d+))?/g;
     let match;
@@ -4886,7 +4906,7 @@
       entries.push({ question: question, kind: "written" });
     });
     entries.forEach(function (entry) {
-      const refs = lawQuestionArticleRefs(entry.question, official);
+      const refs = lawQuestionArticleRefs(entry.question, official, chapter.id);
       const inChapter = refs.filter(function (ref) {
         return articleSet.has(ref.sourceIndex + ":" + ref.no);
       });

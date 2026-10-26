@@ -1231,7 +1231,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["114"] = {
       "year": 114,
       "session": 1,
       "subject": "law",
-      "sourceId": "law-01",
+      "sourceId": "law-03",
       "number": 23,
       "stem": "依發行人募集與發行有價證券處理準則之規定，上市或上櫃公司辦理現金增資發行新股，且未經依證券交易法第 139 條第 2 項規定限制其上市買賣，應提撥發行新股總額之多少比例，以時價對外公開發行？",
       "options": [
@@ -1244,12 +1244,13 @@ window.PAST_EXAMS_YEAR_BUNDLES["114"] = {
         "B"
       ],
       "sourceIds": [
-        "law-01"
+        "law-03"
       ],
       "sourceRefs": [
         {
-          "chapterId": "law-01",
-          "sectionIndex": 1
+          "chapterId": "law-03",
+          "sectionIndex": 3,
+          "articleNo": "17"
         }
       ]
     },
@@ -8246,7 +8247,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["114"] = {
       "year": 114,
       "session": 3,
       "subject": "law",
-      "sourceId": "law-02",
+      "sourceId": "law-03",
       "number": 18,
       "stem": "依據發行人募集與發行有價證券處理準則，首次辦理股票公開發行之公司，曾依公司法第二百四十八條規定私募普通公司債者，自該私募普通公司債交付日起滿幾年後，得併同股票辦理首次公開發行？",
       "options": [
@@ -8259,12 +8260,13 @@ window.PAST_EXAMS_YEAR_BUNDLES["114"] = {
         "C"
       ],
       "sourceIds": [
-        "law-02"
+        "law-03"
       ],
       "sourceRefs": [
         {
-          "chapterId": "law-02",
-          "sectionIndex": 1
+          "chapterId": "law-03",
+          "sectionIndex": 2,
+          "articleNo": "66"
         }
       ]
     },

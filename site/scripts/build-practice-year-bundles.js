@@ -15,6 +15,21 @@ function load(file, key) {
 }
 const past = load("content-past-exams.js", "PAST_EXAMS");
 const written = load("content-past-exams-written.js", "PAST_EXAMS_WRITTEN");
+const contentContext = { window: {} };
+vm.createContext(contentContext);
+[
+  "content-macro.js", "content-macro-2.js", "content-macro-3.js",
+  "content-investment.js", "content-accounting.js", "content-accounting-2.js",
+  "content-law.js", "content-chapter-supplements.js", "content-law-deepdive.js",
+  "content-law-deepdive-2.js", "content-law-quickread.js", "content.js"
+].forEach(function (file) {
+  vm.runInContext(fs.readFileSync(path.join(assetsDir, file), "utf8"), contentContext, { filename: file });
+});
+const content = contentContext.window.EXAM_CONTENT;
+const allChapters = [];
+(content.subjects || []).forEach(function (subject) {
+  (subject.chapters || []).forEach(function (chapter) { allChapters.push(chapter); });
+});
 const years = Array.from(new Set((past.sessions || []).map(function (session) { return session.year; }))).sort(function (a, b) { return a - b; });
 const latestYear = years[years.length - 1];
 
@@ -52,6 +67,9 @@ const practice = {
   yearStats.count += 1;
   yearStats.subjects[question.subject] = (yearStats.subjects[question.subject] || 0) + 1;
   yearStats.sessions[question.sessionId] = (yearStats.sessions[question.sessionId] || 0) + 1;
+});
+allChapters.forEach(function (chapter) {
+  practice.chapters[chapter.id] = practice.chapters[chapter.id] || { count: 0, sessions: {} };
 });
 const writtenStats = { total: written.questions.length, subjects: {}, chapters: {} };
 (written.questions || []).forEach(function (question) {
