@@ -1127,10 +1127,10 @@
     });
     sortLawQuestionEntries(entries);
     return [
-      '<div class="law-article-questions">',
-      '  <div class="law-article-question-head"><span>相關考古題</span><span>' + entries.length + " 題</span></div>",
+      '<details class="law-article-questions">',
+      '  <summary class="law-article-question-head"><span>相關考古題</span><span>' + entries.length + " 題</span></summary>",
       renderLawQuestionList(entries, chapter, { anchors: new Map() }),
-      "</div>"
+      "</details>"
     ].join("");
   }
 
@@ -5089,10 +5089,10 @@
         '  <div class="law-article-no">' + escapeHtml(article.no) + "</div>",
         '  <div class="law-article-text">' + escapeHtml(article.text).replace(/\r?\n/g, "<br>") + "</div>",
         questions.length
-          ? '  <div class="law-article-questions">' +
-            '<div class="law-article-question-head"><span>相關考古題</span><span>' + questions.length + " 題</span></div>" +
+          ? '  <details class="law-article-questions">' +
+            '<summary class="law-article-question-head"><span>相關考古題</span><span>' + questions.length + " 題</span></summary>" +
             renderLawQuestionList(questions, chapter, articleData) +
-            "</div>"
+            "</details>"
           : "",
         "</article>"
       ].join("");
@@ -5180,10 +5180,10 @@
       '<section class="section-block chapter-written-questions" id="section-written">',
       '  <div class="section-kicker">考古題</div>',
       "  <h2>本章申論／計算題</h2>",
-      '  <div class="law-article-questions">',
-      '    <div class="law-article-question-head"><span>相關考古題</span><span>' + entries.length + " 題</span></div>",
+      '  <details class="law-article-questions">',
+      '    <summary class="law-article-question-head"><span>相關考古題</span><span>' + entries.length + " 題</span></summary>",
       renderLawQuestionList(entries, chapter, { anchors: new Map() }),
-      "  </div>",
+      "  </details>",
       "</section>"
     ].join("");
   }

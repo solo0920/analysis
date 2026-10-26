@@ -4099,14 +4099,37 @@ a.landing-item:hover {
 }
 
 .law-article-question-head {
-  display: flex;
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
   color: var(--muted);
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.04em;
+  cursor: pointer;
+  list-style: none;
+}
+
+.law-article-question-head::-webkit-details-marker {
+  display: none;
+}
+
+.law-article-question-head::before {
+  content: "▸";
+  color: var(--accent);
+  font-size: 0.78rem;
+  line-height: 1;
+}
+
+.law-article-questions[open] > .law-article-question-head::before {
+  content: "▾";
+}
+
+.law-article-question-head:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 .law-article-question-head span:last-child {
