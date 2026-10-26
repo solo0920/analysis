@@ -34,9 +34,7 @@
   const practiceChapterStats = new Map();
   const practiceSectionQuestions = new Map();
   const practiceSubjectQuestionTotals = new Map();
-  const writtenQuestionMap = new Map();
   const writtenChapterStats = new Map();
-  const writtenSectionQuestions = new Map();
   const writtenSubjectQuestionTotals = new Map();
   const lawQuestionMap = new Map();
 
@@ -176,9 +174,7 @@
     practiceChapterStats.clear();
     practiceSectionQuestions.clear();
     practiceSubjectQuestionTotals.clear();
-    writtenQuestionMap.clear();
     writtenChapterStats.clear();
-    writtenSectionQuestions.clear();
     writtenSubjectQuestionTotals.clear();
     lawQuestionMap.clear();
     subjectMap.clear();
@@ -227,7 +223,6 @@
     });
     writtenQuestions.forEach(function (question) {
       examQuestionMap.set(question.id, question);
-      writtenQuestionMap.set(question.id, question);
       writtenSubjectQuestionTotals.set(question.subject, (writtenSubjectQuestionTotals.get(question.subject) || 0) + 1);
       const sourceIds = Array.isArray(question.sourceIds) && question.sourceIds.length
         ? Array.from(new Set(question.sourceIds))
@@ -305,22 +300,6 @@
         }
       });
     });
-    examSolutionSectionMap.forEach(function (entry, sectionKey) {
-      const normalizedKey = sectionKey.replace("::", "#");
-      entry.examples.forEach(function (example) {
-        const question = writtenQuestionMap.get(example.questionId);
-        if (!question) {
-          return;
-        }
-        const list = writtenSectionQuestions.get(normalizedKey) || [];
-        if (list.some(function (item) { return item.id === question.id; })) {
-          return;
-        }
-        list.push(question);
-        writtenSectionQuestions.set(normalizedKey, list);
-      });
-    });
-
     if (content && Array.isArray(content.subjects)) {
       content.subjects.forEach(function (subject) {
         subject.chapters.forEach(function (chapter, index) {
@@ -1120,61 +1099,33 @@
     return chapter ? formulas[chapter.id + "::" + section.title] || null : null;
   }
 
-  function renderSectionExamSources(chapter, sectionIndex) {
-    if (!chapter) {
-      return "";
-    }
-    if (chapter.subjectId === "law") {
+  /* 題目卡元件：法規章節依條號排列，其他科目依節次排列，共用同一種收合與解答互動。 */
+  function renderSectionQuestionBank(chapter, sectionIndex) {
+    if (!chapter || chapter.subjectId === "law") {
       return "";
     }
     const key = chapter.id + "#" + sectionIndex;
-    const sortQuestions = function (a, b) {
-      return (a.year - b.year) || (a.session - b.session) || (a.number - b.number);
-    };
-    const choiceList = (practiceSectionQuestions.get(key) || []).slice().sort(sortQuestions);
-    const writtenList = (writtenSectionQuestions.get(key) || []).slice().sort(sortQuestions);
-    if (!choiceList.length && !writtenList.length) {
+    const seen = new Set();
+    const entries = [];
+    (practiceSectionQuestions.get(key) || []).forEach(function (question) {
+      if (seen.has(question.id)) return;
+      const refs = Array.isArray(question.sourceRefs) ? question.sourceRefs : [];
+      const primary = refs.find(function (ref) {
+        return ref.chapterId === chapter.id && ref.sectionIndex;
+      });
+      if (!primary || Number(primary.sectionIndex) !== Number(sectionIndex)) return;
+      seen.add(question.id);
+      entries.push({ question: question, kind: "choice", refs: [] });
+    });
+    if (!entries.length) {
       return "";
     }
-    const choiceSeen = new Set();
-    const choiceLinks = choiceList.filter(function (question) {
-      if (choiceSeen.has(question.id)) {
-        return false;
-      }
-      choiceSeen.add(question.id);
-      return true;
-    }).map(function (question) {
-      const session = practiceSessionMap.get(question.sessionId) || {};
-      return '<a class="section-exam-link" href="#/past-exams?question=' + encodeURIComponent(question.id) + '">' +
-        '<span>' + escapeHtml(session.label || question.sessionId) + '</span>' +
-        '<strong>第 ' + question.number + ' 題</strong></a>';
-    }).join("");
-    const writtenSeen = new Set();
-    const writtenLinks = writtenList.filter(function (question) {
-      if (writtenSeen.has(question.id)) {
-        return false;
-      }
-      writtenSeen.add(question.id);
-      return true;
-    }).map(function (question) {
-      const session = practiceSessionMap.get(question.sessionId) || {};
-      return '<a class="section-exam-link is-written" href="#/past-exams/written?question=' + encodeURIComponent(question.id) + '">' +
-        '<span>' + escapeHtml(session.label || question.sessionId) + '</span>' +
-        '<strong>第 ' + question.number + ' 題 · 申論</strong></a>';
-    }).join("");
-    const subjectId = chapter.subjectId;
-    const choiceRate = practicePercentText(choiceList.length, practiceSubjectQuestionCount(subjectId));
-    const writtenRate = practicePercentText(writtenList.length, writtenSubjectQuestionCount(subjectId));
+    sortLawQuestionEntries(entries);
     return [
-      '<div class="section-exam-sources">',
-      '  <div class="section-exam-head">',
-      "    <strong>本節出處題目</strong>",
-      '    <div class="section-exam-stats">',
-      "      <span>選擇題 <strong>" + choiceList.length + "</strong> 題 頻率 <strong>" + choiceRate + "</strong></span>",
-      "      <span>申論題 <strong>" + writtenList.length + "</strong> 題 頻率 <strong>" + writtenRate + "</strong></span>",
-      "    </div>",
-      "  </div>",
-      '  <div class="section-exam-links">' + choiceLinks + writtenLinks + "</div>",
+      '<div class="section-question-bank">',
+      '  <div class="section-question-head"><strong>本節考古題</strong><span>' + entries.length + " 題</span></div>",
+      '  <p class="section-question-note">題目預設收合；點選題目展開，再點「完整參考解答」查看答案。</p>',
+      renderLawQuestionList(entries, chapter, { anchors: new Map() }),
       "</div>"
     ].join("");
   }
@@ -1381,7 +1332,7 @@
       }).join("") + "</ul>",
       "  </div>",
       section.memory ? '  <div class="memory-card"><span class="memory-label">記憶</span><p>' + renderInlineMath(section.memory) + "</p></div>" : "",
-      renderSectionExamSources(chapter, index + 1),
+      renderSectionQuestionBank(chapter, index + 1),
       "</section>"
     ].join("");
   }
@@ -2381,7 +2332,7 @@
     const lawOfficial = lawData && Array.isArray(lawData.official) ? lawData.official : [];
     const examNote = chapter.subjectId === "law"
       ? "以 107–115 年選擇題與計算／申論題的章節出處統計；頻率分別以該科選擇題數與申論題數為分母；跨章節題目會重複計入各章。題目已依條號列在下方「" + (lawOfficial.length ? "法條與考古題" : "本章考古題") + "」，可直接展開題目與完整參考解答。"
-      : "以 107–115 年選擇題與計算／申論題的章節出處統計；頻率分別以該科選擇題數與申論題數為分母；跨章節題目會重複計入各章。題目已依節次列在本章各節的「本節出處題目」，可直接點選進入該題。";
+      : "以 107–115 年選擇題與計算／申論題的章節出處統計；頻率分別以該科選擇題數與申論題數為分母；跨章節題目會重複計入各章。選擇題已列於各節「本節考古題」，申論／計算題列於本章「本章申論／計算題」；題目預設收合，點選後展開，再點「完整參考解答」查看答案。";
     return [
       '<section class="chapter-exam-sources" id="chapter-exam-sources" aria-labelledby="chapter-exam-sources-heading">',
       '  <div class="chapter-exam-sources-head">',
@@ -5181,6 +5132,26 @@
     ].join("");
   }
 
+  function renderChapterWrittenQuestions(chapter) {
+    if (!chapter || chapter.subjectId === "law" || !writtenQuestions.length) {
+      return "";
+    }
+    const entries = writtenQuestions.map(function (question) {
+      return { question: question, kind: "written", refs: [] };
+    });
+    sortLawQuestionEntries(entries);
+    return [
+      '<section class="section-block chapter-written-questions" id="section-written">',
+      '  <div class="section-kicker">考古題</div>',
+      "  <h2>本章申論／計算題</h2>",
+      '  <div class="section-question-bank">',
+      '    <p class="section-question-note">共 ' + entries.length + " 題；題目預設收合，點選題目展開，再點「完整參考解答」查看答案。</p>",
+      renderLawQuestionList(entries, chapter, { anchors: new Map() }),
+      "  </div>",
+      "</section>"
+    ].join("");
+  }
+
   function renderChapter(chapter) {
     const subject = getSubject(chapter.subjectId);
     if (!subject) {
@@ -5213,7 +5184,15 @@
         "</li>"
       ].join("");
     });
-    const tocItems = lawToc.concat(sectionToc).join("");
+    const writtenToc = chapter.subjectId !== "law" && writtenQuestions.length ? [
+      "<li>",
+      '<a href="#/chapter/' + escapeHtml(chapter.id) + '?section=written"',
+      ' data-scroll-to="section-written"',
+      ' data-chapter-id="' + escapeHtml(chapter.id) + '"',
+      ' data-section="written">本章申論／計算題</a>',
+      "</li>"
+    ] : [];
+    const tocItems = lawToc.concat(sectionToc, writtenToc).join("");
 
     return [
       '<div class="page ' + escapeHtml(subject.colorClass) + '">',
@@ -5248,6 +5227,7 @@
       chapter.sections.map(function (section, index) {
         return renderSection(section, index, subject, chapter);
       }).join(""),
+      renderChapterWrittenQuestions(chapter),
       renderChapterRefs(chapter),
       renderChapterNav(chapter),
       '      <div class="chapter-actions">',

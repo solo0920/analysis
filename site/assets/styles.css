@@ -9004,102 +9004,55 @@ a.landing-item:hover {
   }
 }
 
-/* ----------------------------- section-level exam sources ----------------------------- */
-.section-exam-sources {
+/* ----------------------------- section-level question bank ----------------------------- */
+.section-question-bank {
   margin-top: 18px;
-  padding: 14px 16px;
+  padding: 12px 14px;
   border: 1px solid var(--line);
   border-left: 3px solid var(--accent);
-  border-radius: 8px;
+  border-radius: 10px;
   background: var(--surface-2);
 }
 
-.section-exam-head {
+.section-question-head {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 9px;
-  color: var(--muted);
-  font-size: 0.78rem;
-}
-
-.section-exam-head strong {
   color: var(--ink);
-  font-size: 0.82rem;
+  font-size: 0.84rem;
+  font-weight: 800;
 }
 
-.section-exam-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2px 12px;
-  color: var(--muted);
-  font-size: 0.74rem;
-  line-height: 1.5;
-  text-align: right;
-}
-
-.section-exam-stats strong {
-  color: var(--ink);
+.section-question-head span {
+  color: var(--accent-ink);
   font-family: var(--font-mono);
-  font-size: 0.78rem;
-}
-
-.section-exam-link.is-written {
-  border-style: dashed;
-}
-
-.section-exam-link.is-written strong {
-  color: var(--gold);
-}
-
-.section-exam-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.section-exam-link {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 5px;
-  padding: 4px 8px;
-  border: 1px solid var(--line);
-  border-radius: 7px;
-  background: var(--surface);
-  color: var(--ink-soft);
-  font-size: 0.72rem;
-  line-height: 1.45;
-  text-decoration: none;
-  transition: border-color 150ms ease, color 150ms ease;
-}
-
-.section-exam-link:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.section-exam-link strong {
-  color: var(--accent);
+  font-size: 0.76rem;
   font-weight: 700;
 }
 
+.section-question-note {
+  margin: 4px 0 2px;
+  color: var(--muted);
+  font-size: 0.74rem;
+  line-height: 1.6;
+}
+
+.section-question-bank .law-question-list {
+  margin-top: 4px;
+}
+
+.chapter-written-questions .section-question-bank {
+  margin-top: 10px;
+}
+
 @media (max-width: 520px) {
-  .section-exam-sources {
-    padding: 12px;
+  .section-question-bank {
+    padding: 10px;
   }
 
-  .section-exam-head {
+  .section-question-head {
     flex-wrap: wrap;
-  }
-
-  .section-exam-stats {
-    width: 100%;
-    text-align: left;
-  }
-
-  .section-exam-link {
-    max-width: 100%;
   }
 }
 
