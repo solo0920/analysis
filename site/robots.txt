@@ -13,4 +13,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://solo0920.github.io/analysis/sitemap.xml
+Sitemap: https://analysis.ragdemo.win/sitemap.xml

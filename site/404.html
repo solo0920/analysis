@@ -17,9 +17,10 @@
         document.documentElement.dataset.theme = "light";
       }
 
-      var parts = location.pathname.split("/").filter(Boolean);
-      var root = parts.length > 1 ? "/" + parts[0] + "/" : "/";
-      if (/^https?:$/.test(location.protocol) && location.pathname !== root) {
+      var path = location.pathname;
+      var isGitHubPages = location.hostname === "solo0920.github.io" && (path === "/analysis" || path.indexOf("/analysis/") === 0);
+      var root = isGitHubPages ? "/analysis/" : "/";
+      if (/^https?:$/.test(location.protocol) && path !== root && path !== root.replace(/\/$/, "")) {
         location.replace(root + location.hash);
       }
     })();

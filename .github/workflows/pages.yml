@@ -29,6 +29,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build static landing pages
+        run: node site/scripts/build-static-landing-pages.js
+
+      - name: Validate content, JavaScript and SEO
+        run: |
+          find site \( -name '*.js' -o -name '*.mjs' \) -type f -print0 | xargs -0 -n1 node --check
+          node site/scripts/validate-content.js
+          node site/scripts/validate-seo.js
+
       - name: Setup Pages
         uses: actions/configure-pages@v6
 

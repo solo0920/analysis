@@ -57,6 +57,7 @@ site/
 │   ├── build-law-article-bundles.js   # 產生法規章節全文分包
 │   ├── build-past-search-index.js     # 產生 3,710 題考古題搜尋索引
 │   ├── validate-content.js     # 章節界線、來源引用、模型圖與內容結構驗證
+│   ├── validate-seo.js         # canonical、OG、JSON-LD、Sitemap、robots.txt 與 llms.txt 驗證
 │   ├── build-static-landing-pages.js # 產生 82 個靜態頁與 83 個 URL 的 sitemap
 │   ├── build-mermaid-sources.js # 由 .mmd／manifest 產生 assets/diagrams-mermaid.js
 │   ├── build-mermaid-static.mjs # 為新推導圖產生靜態 SVG fallback（需 npm）
@@ -143,9 +144,9 @@ python3 -m http.server 8765 --directory site
 
 ## GitHub Pages
 
-線上網站：<https://solo0920.github.io/analysis/>
+線上網站：<https://analysis.ragdemo.win/>（GitHub Pages 原站：<https://solo0920.github.io/analysis/>）
 
-`.github/workflows/pages.yml` 會在推送 `main` 時將 `site/` 上傳為 Pages artifact，再以 `actions/deploy-pages` 發佈。`site/.nojekyll` 停用 Jekyll 處理，`site/404.html` 會將未知路徑導回站點根目錄；所有資產使用相對路徑，可直接在 `/analysis/` 子路徑下運作。
+`.github/workflows/pages.yml` 會在推送 `main` 時先執行所有 JavaScript 的 `node --check`、`validate-content.js` 與 `validate-seo.js`，通過後才將 `site/` 上傳為 Pages artifact，再以 `actions/deploy-pages` 發佈；任一驗證失敗即停止部署。`site/.nojekyll` 停用 Jekyll 處理，`site/404.html` 會依 GitHub Pages 子路徑或自訂網域根目錄將未知路徑導回站點首頁；所有資產使用相對路徑，可直接在 `/analysis/` 子路徑下運作。
 
 Repository 的 Pages Source 已設為 **GitHub Actions**；若之後重新建立 Pages，請在 Repository Settings → Pages 將 Source 設為 **GitHub Actions**。
 
@@ -308,9 +309,12 @@ ExamSolutionData[] {
 
 ```bash
 node site/scripts/validate-content.js
+node site/scripts/validate-seo.js
 for f in site/assets/*.js; do node --check "$f"; done
 node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份與得主
 ```
+
+`validate-seo.js` 會確認首頁、83 個靜態頁、Sitemap、robots.txt、llms.txt 與 JSON-LD 都使用正式網域 `https://analysis.ragdemo.win`，每個靜態頁的 canonical／og:url 指向自身，Sitemap URL 與實際頁面完全一致，且沒有殘留 GitHub Pages 網域。GitHub Actions 的 `pages.yml` 會在部署前執行 JavaScript 語法檢查、`validate-content.js` 與 `validate-seo.js`，任一失敗即停止部署。
 
 `validate-content.js` 會比對三份來源目錄的章號、章名、Part、順序、節次與頁碼，並檢查：
 
@@ -504,11 +508,13 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 
 2026-10-27 將 accounting-15 第3節杜邦分析完整複製到 investment-14 學習重點 3，並新增杜邦 Mermaid 圖：investment-14 保留原「盈餘品質」段落、名詞與考試重點，DuPont 主體（3 段正文、4 個子區塊、三階段／五階段 boxed KaTeX、三階段分析重點表、三階段與五階段比較表、記憶口訣）與 accounting-15 一致；合併後 investment-14 第3單元有 3 段正文、4 個子區塊、12 個名詞、7 個考試重點，memory 保留「現金沒進來，盈餘要打問號」。比率公式表的 `dupont-roe` 改綁「學習重點 2：財務比率分析」，避免與第3單元重複。新增 `site/diagrams/mermaid/accounting-dupont.mmd` 與 manifest `accounting-15#2`（slug `accounting-dupont`、section 3、order 18），以 `build-mermaid-static.mjs` 產生 `site/diagrams/mermaid/static/accounting-dupont.svg`（531×1154）；Mermaid lab 顯示三階段／五階段、稅負負擔、利息負擔、EBIT 利潤率等節點。`styles.css` 的大型杜邦公式樣式同時套用 `[data-chapter-id="accounting-15"]` 與 `[data-chapter-id="investment-14"]` 的 `#section-3`。實測 investment-14／accounting-15 第3單元在 390px／1280px、深淺主題：4 個子區塊、2 個公式區塊、2 張內容表、0 `.katex-error`、0 水平溢出、axe 0 violations；investment-14 12 個名詞、accounting-15 7 個名詞。Mermaid lab `accounting-dupont` 在 390px／1280px、深淺主題 axe 0 violations、0 水平溢出、單獨載入 0 console errors。驗證器 157,470 項、失敗 0；全站名詞卡 1,531 張；章節教學圖 49 張（總體 29、投資 13、會計 7；含 6 張 Mermaid 新推導圖）；Mermaid 16 張。
 
+2026-10-27 統一 SEO 正式網域並在部署前驗證：首頁、82 個靜態頁、Sitemap、robots.txt、llms.txt、Open Graph 與 JSON-LD 的絕對網址由 `https://solo0920.github.io/analysis` 改為 `https://analysis.ragdemo.win`；首頁 JSON-LD 的四科目 URL 改指 `/subjects/.../` 靜態頁。`build-static-landing-pages.js` 的 `UPDATED` 改為自動判斷（工作樹有變更時用當天，否則用最近一次 `site/` commit 日期），Sitemap lastmod 目前為 2026-10-27。`site/404.html` 的導回根目錄邏輯改依 hostname 判斷 GitHub Pages 子路徑或自訂網域根目錄。新增 `site/scripts/validate-seo.js`，檢查 83 個靜態頁的 canonical／og:url 自指、JSON-LD 可解析、Sitemap URL 與頁面完全一致、robots.txt／llms.txt／首頁無 GitHub Pages 網域；`.github/workflows/pages.yml` 在部署前執行所有 JS／MJS 的 `node --check`、`validate-content.js` 與 `validate-seo.js`，失敗即停止。實測 SEO 603 項、失敗 0；內容驗證 157,470 項、失敗 0；Lighthouse 首頁 mobile 88（LCP 3.6s、CLS 0、TBT 0）、desktop 100，accessibility／SEO／best-practices 皆 100。另確認自訂網域 `/robots.txt`、`/sitemap.xml`、`/chapters/investment-14/`、`/subjects/investment/` 對 Googlebot 均 200；自訂網域未知路徑目前回傳空 404 body，需在 Cloudflare 設定 404 fallback。
+
 ## 更新流程
 
 1. 先更新 `documents/` 下的來源目錄。
 2. 修改對應的 `site/assets/content-*.js`；不要用另一個科目的章節補洞。模型圖變更則修改 `site/assets/diagrams-macro*.js`、`diagrams-investment.js` 或 `diagrams-accounting.js`，確認 `sectionTitle` 仍與節次相符。學派演進圖修改 `content-macro-evolution.js`；模型名稱與諾貝爾資料仍分別以 `diagrams-macro*.js`、`content-nobel.js` 為單一來源。諾貝爾年表修改 `content-nobel.js`，圖組修改 `diagrams-nobel.js`，維持 58 屆資料與 17 組模型的對應。
-3. 執行 `node site/scripts/validate-content.js`，確認差異都已被處理；再用 `node --check` 檢查所有 JavaScript。
+3. 執行 `node site/scripts/validate-content.js` 與 `node site/scripts/validate-seo.js`，確認內容與網址差異都已被處理；再用 `node --check` 檢查所有 JavaScript。
 4. 用瀏覽器檢查首頁、四個科目頁（含每章「選擇題 N 題 · 頻率 X%」與「申論題 N 題 · 頻率 X%」；總體含第 11–13 章與學派演進圖）、至少一個含模型圖的總體章、`#/models/macro`、`#/models/macro?model=<anchor>` 的模型卡跳轉與高亮、`#/macro/evolution`（舊網址 `#/subject/macro?evolution=1` 仍可開啟）、`#/nobel`、`?group=`／`?year=`／`?table=`／`?models=` 跳轉、搜尋入口（含會計名詞）、`#/sources`、`#/past-exams` 的年度／科目／次別篩選與作答、`#/past-exams/written` 的年度／科目／次別篩選、`#/investment/formulas` 的公式總表、`#/investment/technical` 的技術分析 50 指標、`#/chapter/investment-14` 的綁定公式，會計第 14、15、23 章，以及證券法規章節；章節頁另檢查選擇題展開解答後在原選項顯示正解與說明。
 5. 若修改模型圖，確認總覽頁與原章節顯示相同內容；可暫時修改記憶體中的 `MACRO_DIAGRAMS`、`INVESTMENT_DIAGRAMS`、`ACCOUNTING_DIAGRAMS` 或 `NOBEL_DIAGRAMS`，切換路由檢查資料綁定。諾貝爾頁是 `NOBEL_DATA`／`NOBEL_DIAGRAMS` 的唯一呈現頁；模型總覽不重複列諾貝爾模型。
 6. 在桌機與 390px 寬度檢查頁面沒有水平溢出；諾貝爾頁為 17 組模型，每組在桌機左右 1:1、900px 以下為單欄，模型圖可在圖表區內滑動；年份下拉可切換所屬模型並捲動，屆別晶片只切換屆別資料；並以 `file://` 開啟確認可閱讀。

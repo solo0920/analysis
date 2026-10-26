@@ -5,12 +5,51 @@
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
+const { execFileSync } = require("child_process");
 
 const siteDir = path.resolve(__dirname, "..");
+const repoDir = path.resolve(siteDir, "..");
 const assetsDir = path.join(siteDir, "assets");
 const katex = require(path.join(assetsDir, "katex", "katex.min.js"));
-const BASE_URL = "https://solo0920.github.io/analysis";
-const UPDATED = "2026-10-24";
+const BASE_URL = "https://analysis.ragdemo.win";
+
+function localDate() {
+  const now = new Date();
+  return [
+    now.getFullYear(),
+    String(now.getMonth() + 1).padStart(2, "0"),
+    String(now.getDate()).padStart(2, "0")
+  ].join("-");
+}
+
+function resolveUpdated() {
+  if (process.env.SITE_UPDATED && /^\d{4}-\d{2}-\d{2}$/.test(process.env.SITE_UPDATED)) {
+    return process.env.SITE_UPDATED;
+  }
+  try {
+    const dirty = execFileSync("git", ["status", "--porcelain", "--", "site"], {
+      cwd: repoDir,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"]
+    }).trim();
+    if (dirty) {
+      return localDate();
+    }
+    const committed = execFileSync("git", ["log", "-1", "--format=%cs", "--", "site"], {
+      cwd: repoDir,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"]
+    }).trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(committed)) {
+      return committed;
+    }
+  } catch (error) {
+    /* 沒有 git 或不在 repository 時，退回建置當天。 */
+  }
+  return localDate();
+}
+
+const UPDATED = resolveUpdated();
 
 function loadWindow(files) {
   const context = { window: {} };
