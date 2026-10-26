@@ -4181,11 +4181,40 @@ a.landing-item:hover {
   font-weight: 800;
 }
 
+.law-question-options li.is-correct {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.law-question-options li.is-correct .law-question-letter {
+  color: var(--ink);
+}
+
+.law-option-text {
+  min-width: 0;
+}
+
+.law-option-feedback {
+  grid-column: 2;
+  margin-top: 2px;
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.law-option-feedback[hidden] {
+  display: none;
+}
+
+.law-option-feedback strong {
+  margin-right: 4px;
+  color: var(--ink);
+}
+
 .law-question-hint,
-.law-answer-note,
-.law-answer-loading {
+.law-answer-note {
   margin: 8px 0 0;
-  color: var(--muted);
+  color: var(--ink-soft);
   font-size: 0.74rem;
   line-height: 1.6;
 }
@@ -4222,13 +4251,6 @@ a.landing-item:hover {
 .law-answer-body {
   padding: 8px 0 10px;
   border-top: 1px solid var(--line);
-}
-
-.law-answer-line {
-  margin: 0 0 8px;
-  color: var(--ink);
-  font-size: 0.84rem;
-  line-height: 1.7;
 }
 
 .law-question-footer {

@@ -4935,22 +4935,8 @@
     }).join("");
   }
 
-  function renderLawAnswerInitial(entry) {
-    if (entry.kind === "written") {
-      return '<p class="law-answer-note">本站參考解答（非官方）</p>' + renderLawWrittenAnswer(entry.question);
-    }
-    return '<p class="law-answer-line"><strong>答案</strong> ' +
-      escapeHtml(practiceAnswerText(entry.question.answer)) +
-      '</p><p class="law-answer-note">展開後載入完整選項解析。</p>';
-  }
-
   function renderLawAnswerBody(entry) {
-    if (entry.kind === "written") {
-      return '<p class="law-answer-note">本站參考解答（非官方）</p>' + renderLawWrittenAnswer(entry.question);
-    }
-    return '<p class="law-answer-line"><strong>答案</strong> ' +
-      escapeHtml(practiceAnswerText(entry.question.answer)) +
-      "</p>" + renderPastExamAnalysis(entry.question, true);
+    return '<p class="law-answer-note">本站參考解答（非官方）</p>' + renderLawWrittenAnswer(entry.question);
   }
 
   function renderLawQuestion(entry, chapter, articleData) {
@@ -4965,10 +4951,10 @@
     const contextLine = refLinks
       ? "相關條文：" + refLinks
       : (entry.context ? escapeHtml(entry.context) : "");
-    const answerLoaded = !isChoice || !!window.PAST_EXAM_EXPLANATIONS;
     const options = isChoice && Array.isArray(question.options)
       ? '<ol class="law-question-options">' + question.options.map(function (text, index) {
-          return '<li><span class="law-question-letter">' + "ABCD"[index] + '</span><span>' + renderInlineMath(text) + "</span></li>";
+          const letter = "ABCD"[index];
+          return '<li data-law-option="' + letter + '"><span class="law-question-letter">' + letter + '</span><span class="law-option-text">' + renderInlineMath(text) + '</span><span class="law-option-feedback" hidden></span></li>';
         }).join("") + "</ol>"
       : "";
     return [
@@ -4981,9 +4967,9 @@
       '    <div class="law-question-full-stem">' + renderInlineMath(question.stem) + "</div>",
       options,
       isChoice ? '    <p class="law-question-hint">點開下方「完整參考解答」查看答案與選項解析。</p>' : "",
-      '    <details class="law-answer" data-law-answer-question="' + escapeHtml(question.id) + '" data-law-answer-kind="' + (isChoice ? "choice" : "written") + '"' + (answerLoaded ? ' data-law-answer-state="loaded"' : "") + ">",
+      '    <details class="law-answer" data-law-answer-question="' + escapeHtml(question.id) + '" data-law-answer-kind="' + (isChoice ? "choice" : "written") + '"' + (isChoice ? "" : ' data-law-answer-state="loaded"') + ">",
       "      <summary>完整參考解答</summary>",
-      '      <div class="law-answer-body">' + (answerLoaded ? renderLawAnswerBody(entry) : renderLawAnswerInitial(entry)) + "</div>",
+      isChoice ? "" : '      <div class="law-answer-body">' + renderLawAnswerBody(entry) + "</div>",
       "    </details>",
       '    <div class="law-question-footer">',
       entry.showQuestionLink === false ? "" : '      <a class="text-link" href="' + escapeHtml(lawQuestionLink(entry)) + '">在題庫中開啟題目 →</a>',
@@ -5016,26 +5002,48 @@
     ].join("");
   }
 
+  function annotateLawChoiceOptions(details, question) {
+    const card = details.closest(".law-question");
+    if (!card) return;
+    const explanation = pastExamExplanationFor(question);
+    card.querySelectorAll(".law-question-options li[data-law-option]").forEach(function (option) {
+      const letter = option.getAttribute("data-law-option");
+      const correct = question.answer.indexOf(letter) !== -1;
+      option.classList.toggle("is-correct", correct);
+      const feedback = option.querySelector(".law-option-feedback");
+      if (!feedback) return;
+      const text = explanation && explanation.options && explanation.options[letter]
+        ? explanation.options[letter]
+        : fallbackOptionAnalysis(question, letter);
+      feedback.innerHTML = "<strong>" + (correct ? "正解" : "非正解") + "</strong> " + renderInlineMath(text);
+      feedback.hidden = false;
+    });
+    const summary = details.querySelector("summary");
+    if (summary) summary.textContent = practiceAnswerText(question.answer);
+    const hint = card.querySelector(".law-question-hint");
+    if (hint) hint.textContent = "已顯示答案與選項解析。";
+  }
+
   function hydrateLawAnswer(details) {
     if (!details || details.dataset.lawAnswerState === "loaded" || details.dataset.lawAnswerState === "loading") {
       return;
     }
     const entry = lawQuestionMap.get(details.dataset.lawAnswerQuestion || "");
     if (!entry) return;
-    const body = details.querySelector(".law-answer-body");
-    if (!body) return;
-    if (entry.kind === "written" || window.PAST_EXAM_EXPLANATIONS) {
-      body.innerHTML = renderLawAnswerBody(entry);
+    if (entry.kind === "written") return;
+    if (window.PAST_EXAM_EXPLANATIONS) {
+      annotateLawChoiceOptions(details, entry.question);
       details.dataset.lawAnswerState = "loaded";
       return;
     }
     details.dataset.lawAnswerState = "loading";
-    body.innerHTML = renderLawAnswerInitial(entry) + '<p class="law-answer-loading">完整解析載入中…</p>';
+    const summary = details.querySelector("summary");
+    if (summary) summary.textContent = "解析載入中…";
     ensurePastExamExplanations().then(function () {
-      body.innerHTML = renderLawAnswerBody(entry);
+      annotateLawChoiceOptions(details, entry.question);
       details.dataset.lawAnswerState = "loaded";
     }).catch(function () {
-      body.innerHTML = '<p class="law-answer-note">完整解析載入失敗；以下為官方答案與基本說明。</p>' + renderLawAnswerBody(entry);
+      annotateLawChoiceOptions(details, entry.question);
       details.dataset.lawAnswerState = "loaded";
     });
   }

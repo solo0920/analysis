@@ -295,6 +295,12 @@ function formatNumber(value) {
   return String(Number(value) || 0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+function percentText(count, total) {
+  const value = Number(count) || 0;
+  const base = Number(total) || 0;
+  return (base ? (value / base) * 100 : 0).toFixed(1) + "%";
+}
+
 function subjectStats(subject) {
   let sections = 0;
   let terms = 0;
@@ -559,11 +565,13 @@ function subjectPage(subject, slug) {
   ];
   const chapters = (subject.chapters || []).map(function (chapter) {
     const chapterStats = subjectStats({ chapters: [chapter] });
+    const chapterPractice = Number(((stats.practice.chapters || {})[chapter.id] || {}).count) || 0;
+    const chapterWritten = Number(((stats.written.chapters || {})[chapter.id] || {}).count) || 0;
     return [
       '<article class="landing-chapter">',
       '  <div class="landing-chapter-head"><span>' + escapeHtml(String(chapter.number || "").padStart(2, "0")) + "</span><h3>" + escapeHtml(cleanText(chapter.title)) + "</h3></div>",
       "  <p>" + escapeHtml(cleanText(chapter.summary || "")) + "</p>",
-      '  <div class="landing-chapter-meta"><span>' + chapterStats.sections + " 節</span><span>" + chapterStats.terms + ' 個名詞</span><a href="' + chapterHref("../../chapters/", chapter.id) + '">閱讀章節 →</a></div>',
+      '  <div class="landing-chapter-meta"><span>' + chapterStats.sections + " 節</span><span>" + chapterStats.terms + ' 個名詞</span><span>選擇題 ' + formatNumber(chapterPractice) + " 題 · 頻率 " + percentText(chapterPractice, questions) + '</span><span>申論題 ' + formatNumber(chapterWritten) + " 題 · 頻率 " + percentText(chapterWritten, written) + '</span><a href="' + chapterHref("../../chapters/", chapter.id) + '">閱讀章節 →</a></div>',
       "</article>"
     ].join("");
   }).join("");

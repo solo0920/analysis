@@ -216,7 +216,8 @@ Repository 的 Pages Source 已設為 **GitHub Actions**；若之後重新建立
 
 - 法規章節把「法條與考古題」放在章節重點之前，依官方條號排序；每條之後列出題目或解答明確引用該條的考古題。
 - 總體經濟、投資學與會計學章節在每一節末尾加入「相關考古題」，列出該節的選擇題；章末加入「本章申論／計算題」，列出該章所有申論與計算題。這 52 章共 3,019 題選擇題與 340 題申論／計算題，全部使用與法規相同的 `law-article-questions` 題目卡；題目卡本身不連到考古題練習頁。
-- 題目預設收合，收合時只顯示「場次 · 題號 · 題型」；第一次點選才展開相關條文（法規）或完整題幹與選項，題目下方再點「完整參考解答」才會展開答案。選擇題的逐選項解析按需載入，申論／計算題直接顯示本站參考解答。
+- 題目預設收合，收合時只顯示「場次 · 題號 · 題型」；第一次點選才展開相關條文（法規）或完整題幹與選項，題目下方再點「完整參考解答」才會顯示答案。選擇題的解答會直接在原選項標示「正解／非正解」與逐選項說明，解答 summary 同步顯示官方答案，不再於下方重複建立選項列表；逐選項解析仍按需載入。申論／計算題直接顯示本站參考解答。
+- 四個科目首頁（互動版與靜態版）在每章卡顯示「選擇題 N 題 · 頻率 X%」與「申論題 N 題 · 頻率 X%」；頻率分別以該科選擇題總數與申論題總數為分母。靜態科目頁由 `build-static-landing-pages.js` 依 `PAST_EXAM_STATS` 產生。
 - 法規章節未明確引用本章條號的題目集中在「本章其他考古題」，同樣預設收合；沒有逐條全文的自律規範章節（如 law-14–18、law-20、law-21）以「本章考古題」呈現。
 - 非法規章節的「本章申論／計算題」會出現在章節導覽最後一項；題目卡本身不連到考古題練習頁，所有題目與解答都在章節內展開。章節上方的「前往考古題練習庫」仍是獨立入口。條文引用以全國法規資料庫版本為準，題目與解答的條號對應僅供複習定位。
 
@@ -491,12 +492,14 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 
 2026-10-26 全站預設風格改為 **Apple**：`index.html`、靜態落地頁建置腳本、`mermaid-lab.js` 的預設值與靜態 HTML 的初始 `data-site-style` 都改為 `apple`；仍優先讀取 `analyst-site-style` 與舊鍵 `analyst-pele-style`，既有使用者選擇不被覆寫。Apple 淺色 token 同步調整 `--muted`、`--accent`、`--gold` 為 `#68686d`、`#0066cc`、`#b84300`，讓 muted／accent／gold 在白色、`#f5f5f7`、`#ececee`、accent-soft 與 gold-soft 上皆 ≥ 4.5:1；`.breadcrumb span` 不再對目前頁面套用 0.55 透明度，只有分隔線變淡。重新產生 82 個靜態落地頁，`theme-color` 改為 `#f5f5f7`。實測首頁、law-01、`#/exam-forecast`、靜態 investment-09 在 1280px／390px、深淺主題與預設 Apple 下 axe 0 violations；Apple 淺色 accent／hover／danger 仍在 120 組對比中 0 失敗；390px 164 個靜態頁面狀態 0 水平溢出；驗證器 157,260 項、失敗 0。
 
+2026-10-26 補回四個科目首頁的每章考古題統計，並把選擇題解答改為原位標示：`build-static-landing-pages.js` 新增 `percentText()`，四個靜態科目頁的每章卡加入「選擇題 N 題 · 頻率 X%」與「申論題 N 題 · 頻率 X%」，頻率以該科選擇題／申論題總數為分母；互動版科目頁原有的 `.chapter-exam-stat` 維持不變。選擇題展開「完整參考解答」後，`annotateLawChoiceOptions()` 直接在原 `li[data-law-option]` 顯示 `.law-option-feedback`，正確選項加 `.is-correct`，解答 summary 改為官方答案，不再建立 `.law-answer-body` 或 `.past-exam-analysis` 選項列表；申論／計算題仍以 `.law-answer-body` 顯示完整參考解答。靜態科目頁四頁共 13／16／23／21 章、26／32／46／42 組統計，390px 淺色與 1280px 深色 axe 0 violations、0 水平溢出；互動版四科統計亦為 26／32／46／42 組。選擇題原位解析實測 law-01、macro-01、macro-10、investment-09、accounting-01 與 21 個法規章節、52 個非法規章節：初始 0 個選項說明、0 個解答 body，展開後 summary 顯示官方答案、1 個以上正解高亮、4 項原位說明、0 個重複選項列表；多答案題 CD／BD／BC 與 A–D 均給分共 6 題正常；`file://` 正常；390px／1280px、深淺主題 axe 0 violations；20 種風格 × 深淺主題的選擇題解答元素（正解標籤、選項字母、說明、提示、解答 summary）對比皆 ≥ 4.5:1、axe 0 violations；`.law-question-hint`／`.law-answer-note` 改以 `--ink-soft` 顯示；驗證器 157,260 項、失敗 0。
+
 ## 更新流程
 
 1. 先更新 `documents/` 下的來源目錄。
 2. 修改對應的 `site/assets/content-*.js`；不要用另一個科目的章節補洞。模型圖變更則修改 `site/assets/diagrams-macro*.js`、`diagrams-investment.js` 或 `diagrams-accounting.js`，確認 `sectionTitle` 仍與節次相符。學派演進圖修改 `content-macro-evolution.js`；模型名稱與諾貝爾資料仍分別以 `diagrams-macro*.js`、`content-nobel.js` 為單一來源。諾貝爾年表修改 `content-nobel.js`，圖組修改 `diagrams-nobel.js`，維持 58 屆資料與 17 組模型的對應。
 3. 執行 `node site/scripts/validate-content.js`，確認差異都已被處理；再用 `node --check` 檢查所有 JavaScript。
-4. 用瀏覽器檢查首頁、四個科目頁（總體含第 11–13 章與學派演進圖）、至少一個含模型圖的總體章、`#/models/macro`、`#/models/macro?model=<anchor>` 的模型卡跳轉與高亮、`#/macro/evolution`（舊網址 `#/subject/macro?evolution=1` 仍可開啟）、`#/nobel`、`?group=`／`?year=`／`?table=`／`?models=` 跳轉、搜尋入口（含會計名詞）、`#/sources`、`#/past-exams` 的年度／科目／次別篩選與作答、`#/past-exams/written` 的年度／科目／次別篩選、`#/investment/formulas` 的公式總表、`#/investment/technical` 的技術分析 50 指標、`#/chapter/investment-14` 的綁定公式，會計第 14、15、23 章，以及證券法規章節。
+4. 用瀏覽器檢查首頁、四個科目頁（含每章「選擇題 N 題 · 頻率 X%」與「申論題 N 題 · 頻率 X%」；總體含第 11–13 章與學派演進圖）、至少一個含模型圖的總體章、`#/models/macro`、`#/models/macro?model=<anchor>` 的模型卡跳轉與高亮、`#/macro/evolution`（舊網址 `#/subject/macro?evolution=1` 仍可開啟）、`#/nobel`、`?group=`／`?year=`／`?table=`／`?models=` 跳轉、搜尋入口（含會計名詞）、`#/sources`、`#/past-exams` 的年度／科目／次別篩選與作答、`#/past-exams/written` 的年度／科目／次別篩選、`#/investment/formulas` 的公式總表、`#/investment/technical` 的技術分析 50 指標、`#/chapter/investment-14` 的綁定公式，會計第 14、15、23 章，以及證券法規章節；章節頁另檢查選擇題展開解答後在原選項顯示正解與說明。
 5. 若修改模型圖，確認總覽頁與原章節顯示相同內容；可暫時修改記憶體中的 `MACRO_DIAGRAMS`、`INVESTMENT_DIAGRAMS`、`ACCOUNTING_DIAGRAMS` 或 `NOBEL_DIAGRAMS`，切換路由檢查資料綁定。諾貝爾頁是 `NOBEL_DATA`／`NOBEL_DIAGRAMS` 的唯一呈現頁；模型總覽不重複列諾貝爾模型。
 6. 在桌機與 390px 寬度檢查頁面沒有水平溢出；諾貝爾頁為 17 組模型，每組在桌機左右 1:1、900px 以下為單欄，模型圖可在圖表區內滑動；年份下拉可切換所屬模型並捲動，屆別晶片只切換屆別資料；並以 `file://` 開啟確認可閱讀。
 7. 若修改公式或模型圖，依 `SOURCES.md` 與 `documents/content_review_checklist.md` 記錄校對結果；29 條投資／總體公式與 21 張既有總體模型圖已完成公開教材核對；新增國民所得會計帳流程圖、NFIA 觀念圖、投資學 14 張教學圖（含 4 張 MMD 推導圖）與會計學 7 張教學圖為教學示意，尚未逐條教材核對；其他屆諾貝爾原始文獻與會計各章例題未逐題重算前保持「待查」。
