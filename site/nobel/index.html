@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-Hant-TW" data-site-style="paper">
+<html lang="zh-Hant-TW" data-site-style="apple">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +7,7 @@
   <meta name="description" content="1969–2026 年 58 屆諾貝爾經濟學獎、17 組代表模型與屆別切換；收錄得主、主要理論、公式與 2026 Hall／Woodford。">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <meta name="author" content="分析師備考站">
-  <meta name="theme-color" content="#0f5c5c">
+  <meta name="theme-color" content="#f5f5f7">
   <link rel="canonical" href="https://solo0920.github.io/analysis/nobel/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="zh_TW">
@@ -31,13 +31,13 @@
     (function () {
       try {
         var saved = localStorage.getItem("analyst-theme");
-        var siteStyle = localStorage.getItem("analyst-site-style");
+        var siteStyle = localStorage.getItem("analyst-site-style") || localStorage.getItem("analyst-pele-style");
         var dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
         document.documentElement.dataset.theme = saved || (dark ? "dark" : "light");
-        document.documentElement.dataset.siteStyle = siteStyle || "paper";
+        document.documentElement.dataset.siteStyle = siteStyle || "apple";
       } catch (error) {
         document.documentElement.dataset.theme = "light";
-        document.documentElement.dataset.siteStyle = "paper";
+        document.documentElement.dataset.siteStyle = "apple";
       }
     })();
   </script>

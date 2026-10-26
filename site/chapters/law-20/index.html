@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-Hant-TW" data-site-style="paper">
+<html lang="zh-Hant-TW" data-site-style="apple">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +7,7 @@
   <meta name="description" content="證券交易相關法規與實務 第 20 章 證券投資信託事業及證券投資顧問事業從事證券投資分析業務人員行為準則：掌握證券投資分析人員的獨立、客觀、資料來源、利益揭露與報告規範。 含名詞、考試重點、公式與考古題。">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <meta name="author" content="分析師備考站">
-  <meta name="theme-color" content="#0f5c5c">
+  <meta name="theme-color" content="#f5f5f7">
   <link rel="canonical" href="https://solo0920.github.io/analysis/chapters/law-20/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="zh_TW">
@@ -31,13 +31,13 @@
     (function () {
       try {
         var saved = localStorage.getItem("analyst-theme");
-        var siteStyle = localStorage.getItem("analyst-site-style");
+        var siteStyle = localStorage.getItem("analyst-site-style") || localStorage.getItem("analyst-pele-style");
         var dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
         document.documentElement.dataset.theme = saved || (dark ? "dark" : "light");
-        document.documentElement.dataset.siteStyle = siteStyle || "paper";
+        document.documentElement.dataset.siteStyle = siteStyle || "apple";
       } catch (error) {
         document.documentElement.dataset.theme = "light";
-        document.documentElement.dataset.siteStyle = "paper";
+        document.documentElement.dataset.siteStyle = "apple";
       }
     })();
   </script>

@@ -2182,7 +2182,7 @@ const bootstrapSource = read("site/assets/bootstrap.js");
 check(bootstrapSource.indexOf("diagrams-mermaid.js") !== -1 && bootstrapSource.indexOf("diagrams-mermaid-static.js") !== -1 && bootstrapSource.indexOf("mermaid-lab.js") !== -1, "bootstrap 未載入 Mermaid 圖表資料或執行檔");
 const indexSource = read("site/index.html");
 check(indexSource.indexOf('id="pele-style-toggle"') !== -1 && indexSource.indexOf('id="pele-style-menu"') !== -1, "index.html 缺少右上角全站風格切換器");
-check(indexSource.indexOf('data-site-style="paper"') !== -1 && indexSource.indexOf("analyst-site-style") !== -1, "index.html 缺少全站風格初始化");
+check(indexSource.indexOf('data-site-style="apple"') !== -1 && indexSource.indexOf("analyst-site-style") !== -1, "index.html 缺少全站風格初始化或預設不是 Apple");
 const stylesSource = read("site/assets/styles.css");
 ["blueprint", "mono", "contrast", "forest", "ocean", "sunset", "sakura", "terminal", "lavender", "apple", "google", "microsoft", "amazon", "meta", "netflix", "nvidia", "tesla", "openai", "anthropic"].forEach(function (style) {
   check(stylesSource.indexOf('[data-site-style="' + style + '"]') !== -1, "styles.css 缺少全站風格：" + style);
@@ -2191,6 +2191,7 @@ const styleOptionCount = (indexSource.match(/data-pele-style-option="/g) || []).
 check(styleOptionCount === 20, "全站風格選單應有 20 種（目前 " + styleOptionCount + " 種）");
 const labSource = read("site/assets/mermaid-lab.js");
 check(labSource.indexOf("data-site-style") !== -1 && labSource.indexOf("analyst-site-style") !== -1, "mermaid-lab.js 未同步全站風格");
+check(labSource.indexOf('const DEFAULT_STYLE = "apple"') !== -1, "mermaid-lab.js 預設風格不是 Apple");
 check(["apple", "google", "microsoft", "amazon", "meta", "netflix", "nvidia", "tesla", "openai", "anthropic"].every(function (style) {
   return labSource.indexOf(style + ": { label:") !== -1;
 }), "mermaid-lab.js 缺少科技品牌風格");
@@ -2207,7 +2208,10 @@ check(appSource.indexOf("vendor/minisearch.min.js") !== -1 && appSource.indexOf(
 check(labSource.indexOf("data-mermaid-code-toggle") !== -1 && stylesSource.indexOf(".diagram-code-panel") !== -1, "MMD 程式碼面板的樣式或互動未載入");
 const staticBuilderSource = read("site/scripts/build-static-landing-pages.js");
 check(staticBuilderSource.indexOf("analyst-site-style") !== -1, "靜態頁產生器未同步全站風格");
-check(read("site/chapters/accounting-01/index.html").indexOf("analyst-site-style") !== -1, "靜態章節頁未套用全站風格初始化");
+check(staticBuilderSource.indexOf('data-site-style="apple"') !== -1, "靜態頁產生器預設風格不是 Apple");
+const staticSampleSource = read("site/chapters/accounting-01/index.html");
+check(staticSampleSource.indexOf("analyst-site-style") !== -1, "靜態章節頁未套用全站風格初始化");
+check(staticSampleSource.indexOf('data-site-style="apple"') !== -1, "靜態章節頁預設風格不是 Apple");
 const peleBundlePath = path.join(siteDir, "assets", "vendor", "pele-flow.min.js");
 check(fs.existsSync(peleBundlePath), "找不到 Pele vendor bundle");
 if (fs.existsSync(peleBundlePath)) {

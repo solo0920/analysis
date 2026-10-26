@@ -2297,6 +2297,10 @@ a.landing-item:hover {
 }
 
 .breadcrumb span {
+  opacity: 1;
+}
+
+.breadcrumb span:not(:last-child) {
   opacity: 0.55;
 }
 
@@ -4057,6 +4061,254 @@ a.landing-item:hover {
   white-space: pre-wrap;
 }
 
+.law-article-questions {
+  grid-column: 1 / -1;
+  min-width: 0;
+  margin-top: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-2);
+}
+
+.law-article-question-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.law-article-question-head span:last-child {
+  color: var(--accent-ink);
+  font-family: var(--font-mono);
+}
+
+.law-question {
+  border-top: 1px solid var(--line);
+}
+
+.law-question:first-child {
+  border-top: 0;
+}
+
+.law-question-summary {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr);
+  gap: 2px 8px;
+  padding: 10px 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.law-question-summary::-webkit-details-marker,
+.law-answer > summary::-webkit-details-marker,
+.law-other-questions > summary::-webkit-details-marker {
+  display: none;
+}
+
+.law-question-summary::before {
+  content: "▸";
+  grid-row: 1 / span 2;
+  color: var(--accent);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.law-question[open] > .law-question-summary::before {
+  content: "▾";
+}
+
+.law-question-meta {
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.law-question-stem {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 0.84rem;
+  line-height: 1.65;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.law-question-body {
+  margin: 0 0 10px 22px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+}
+
+.law-question-refs {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.law-question-refs a {
+  color: var(--accent-ink);
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
+}
+
+.law-question-full-stem {
+  color: var(--ink);
+  font-size: 0.88rem;
+  line-height: 1.9;
+}
+
+.law-question-options {
+  display: grid;
+  gap: 6px;
+  margin: 10px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.law-question-options li {
+  display: grid;
+  grid-template-columns: 1.4em minmax(0, 1fr);
+  gap: 6px;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink-soft);
+  font-size: 0.84rem;
+  line-height: 1.7;
+}
+
+.law-question-letter {
+  color: var(--accent-ink);
+  font-family: var(--font-mono);
+  font-weight: 800;
+}
+
+.law-question-hint,
+.law-answer-note,
+.law-answer-loading {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.74rem;
+  line-height: 1.6;
+}
+
+.law-answer {
+  margin-top: 10px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.law-answer > summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 0;
+  color: var(--accent-ink);
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+  list-style: none;
+}
+
+.law-answer > summary::before {
+  content: "＋";
+  font-family: var(--font-mono);
+}
+
+.law-answer[open] > summary::before {
+  content: "－";
+}
+
+.law-answer-body {
+  padding: 8px 0 10px;
+  border-top: 1px solid var(--line);
+}
+
+.law-answer-line {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-size: 0.84rem;
+  line-height: 1.7;
+}
+
+.law-question-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.law-other-questions {
+  margin-top: 18px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-2);
+}
+
+.law-other-questions > summary {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  padding: 12px 0;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  list-style: none;
+}
+
+.law-other-questions > summary::before {
+  content: "▸";
+  color: var(--accent);
+  font-size: 0.82rem;
+}
+
+.law-other-questions[open] > summary::before {
+  content: "▾";
+}
+
+.law-other-questions > summary span:last-child {
+  color: var(--accent-ink);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+}
+
+.law-other-questions-body {
+  padding: 10px 0 12px;
+  border-top: 1px solid var(--line);
+}
+
+.law-other-note {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.74rem;
+  line-height: 1.6;
+}
+
+.law-question-summary:focus-visible,
+.law-answer > summary:focus-visible,
+.law-other-questions > summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 .law-empty-note {
   margin: 12px 0;
   color: var(--muted);
@@ -5163,6 +5415,27 @@ a.landing-item:hover {
 
   .law-article-text {
     font-size: 0.86rem;
+  }
+
+  .law-article-questions {
+    padding: 8px;
+  }
+
+  .law-question-summary {
+    grid-template-columns: 12px minmax(0, 1fr);
+    gap: 2px 6px;
+  }
+
+  .law-question-stem {
+    -webkit-line-clamp: 3;
+  }
+
+  .law-question-body {
+    margin-left: 0;
+  }
+
+  .law-other-questions {
+    padding: 0 10px;
   }
 
   .law-external-card {
@@ -8880,13 +9153,23 @@ a.landing-item:hover {
 .written-answer-math:not(.is-display) {
   display: inline-block;
   max-width: 100%;
-  overflow-x: auto;
+  overflow-x: visible;
   scrollbar-width: none;
   vertical-align: middle;
 }
 
+.written-answer-math:not(.is-display).is-scrollable {
+  overflow-x: auto;
+}
+
 .written-answer-math:not(.is-display)::-webkit-scrollbar {
   display: none;
+}
+
+.written-answer-math.is-scrollable:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .written-answer p {
@@ -10358,13 +10641,13 @@ html.is-routing body {
   --surface-2: #f5f5f7;
   --ink: #1d1d1f;
   --ink-soft: #424245;
-  --muted: #6e6e73;
+  --muted: #68686d;
   --line: #d2d2d7;
   --line-strong: #b0b0b5;
-  --accent: #0071e3;
+  --accent: #0066cc;
   --accent-ink: #005bb5;
   --accent-soft: #e8f2ff;
-  --gold: #bf4800;
+  --gold: #b84300;
   --gold-soft: #fff0e5;
   --danger: #d70015;
   --success: #008009;
@@ -10375,7 +10658,7 @@ html.is-routing body {
   --radius: 18px;
   --radius-lg: 28px;
   --font-serif: "SF Pro Display", "Noto Sans TC", "PingFang TC", sans-serif;
-  --style-accent: #0071e3;
+  --style-accent: #0066cc;
   --style-accent-ink: #005bb5;
   --style-accent-soft: #e8f2ff;
 }
@@ -10396,7 +10679,7 @@ html.is-routing body {
   --accent-soft: #0a2a4a;
   --gold: #ff9f0a;
   --gold-soft: #3a2608;
-  --danger: #ff453a;
+  --danger: #ff6961;
   --success: #30d158;
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.30);
   --shadow-md: 0 18px 48px rgba(0, 0, 0, 0.42);

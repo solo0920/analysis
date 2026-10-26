@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-Hant-TW" data-site-style="paper">
+<html lang="zh-Hant-TW" data-site-style="apple">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +7,7 @@
   <meta name="description" content="證券投資分析人員考試備考站：總體經濟學、投資學、會計學與證券法規的章節筆記、名詞、KaTeX 公式、1,507 條法規、107–115 年 3,710 題考古題與考前猜題。">
   <meta name="author" content="分析師備考站">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-  <meta name="theme-color" content="#0f5c5c">
+  <meta name="theme-color" content="#f5f5f7">
   <link rel="canonical" href="https://solo0920.github.io/analysis/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="zh_TW">
@@ -32,13 +32,13 @@
     (function () {
       try {
         var saved = localStorage.getItem("analyst-theme");
-        var siteStyle = localStorage.getItem("analyst-site-style");
+        var siteStyle = localStorage.getItem("analyst-site-style") || localStorage.getItem("analyst-pele-style");
         var dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
         document.documentElement.dataset.theme = saved || (dark ? "dark" : "light");
-        document.documentElement.dataset.siteStyle = siteStyle || "paper";
+        document.documentElement.dataset.siteStyle = siteStyle || "apple";
       } catch (e) {
         document.documentElement.dataset.theme = "light";
-        document.documentElement.dataset.siteStyle = "paper";
+        document.documentElement.dataset.siteStyle = "apple";
       }
     })();
   </script>
@@ -232,7 +232,7 @@
           </div>
           <p class="pele-style-group-label">經典風格</p>
           <div class="pele-style-options" role="group" aria-label="經典全站風格">
-            <button type="button" data-pele-style-option="paper" aria-pressed="true">
+            <button type="button" data-pele-style-option="paper" aria-pressed="false">
               <span class="pele-style-swatch is-paper" aria-hidden="true"></span>
               <span><strong>紙感</strong><small>沿用網站色票</small></span>
             </button>
@@ -275,7 +275,7 @@
           </div>
           <p class="pele-style-group-label">科技品牌靈感</p>
           <div class="pele-style-options" role="group" aria-label="科技品牌靈感風格">
-            <button type="button" data-pele-style-option="apple" aria-pressed="false">
+            <button type="button" data-pele-style-option="apple" aria-pressed="true">
               <span class="pele-style-swatch is-apple" aria-hidden="true"></span>
               <span><strong>Apple</strong><small>極簡白、藍色重點</small></span>
             </button>

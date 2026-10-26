@@ -8,7 +8,7 @@
 
   const STYLE_KEY = "analyst-pele-style";
   const SITE_STYLE_KEY = "analyst-site-style";
-  const DEFAULT_STYLE = "paper";
+  const DEFAULT_STYLE = "apple";
   const STYLES = {
     paper: { label: "紙感", note: "沿用網站色票" },
     blueprint: { label: "藍圖", note: "深藍網格與等寬字" },

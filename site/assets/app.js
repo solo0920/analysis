@@ -38,6 +38,7 @@
   const writtenChapterStats = new Map();
   const writtenSectionQuestions = new Map();
   const writtenSubjectQuestionTotals = new Map();
+  const lawQuestionMap = new Map();
 
   const main = document.getElementById("main");
   const header = document.querySelector(".site-header");
@@ -179,6 +180,7 @@
     writtenChapterStats.clear();
     writtenSectionQuestions.clear();
     writtenSubjectQuestionTotals.clear();
+    lawQuestionMap.clear();
     subjectMap.clear();
     chapterMap.clear();
     allChapters.length = 0;
@@ -242,6 +244,10 @@
     });
     practiceQuestions.forEach(function (question) {
       examQuestionMap.set(question.id, question);
+      lawQuestionMap.set(question.id, { question: question, kind: "choice" });
+    });
+    writtenQuestions.forEach(function (question) {
+      lawQuestionMap.set(question.id, { question: question, kind: "written" });
     });
     if (pastExamStats && pastExamStats.practice) {
       Object.keys(pastExamStats.practice.subjects || {}).forEach(function (subjectId) {
@@ -1116,6 +1122,9 @@
 
   function renderSectionExamSources(chapter, sectionIndex) {
     if (!chapter) {
+      return "";
+    }
+    if (chapter.subjectId === "law") {
       return "";
     }
     const key = chapter.id + "#" + sectionIndex;
@@ -2368,6 +2377,11 @@
     const writtenStats = writtenChapterStatsFor(chapter.id);
     const choiceRate = practicePercentText(choiceStats.count, practiceSubjectQuestionCount(chapter.subjectId));
     const writtenRate = practicePercentText(writtenStats.count, writtenSubjectQuestionCount(chapter.subjectId));
+    const lawData = chapter.subjectId === "law" ? getLawArticleData(chapter.id) : null;
+    const lawOfficial = lawData && Array.isArray(lawData.official) ? lawData.official : [];
+    const examNote = chapter.subjectId === "law"
+      ? "以 107–115 年選擇題與計算／申論題的章節出處統計；頻率分別以該科選擇題數與申論題數為分母；跨章節題目會重複計入各章。題目已依條號列在下方「" + (lawOfficial.length ? "法條與考古題" : "本章考古題") + "」，可直接展開題目與完整參考解答。"
+      : "以 107–115 年選擇題與計算／申論題的章節出處統計；頻率分別以該科選擇題數與申論題數為分母；跨章節題目會重複計入各章。題目已依節次列在本章各節的「本節出處題目」，可直接點選進入該題。";
     return [
       '<section class="chapter-exam-sources" id="chapter-exam-sources" aria-labelledby="chapter-exam-sources-heading">',
       '  <div class="chapter-exam-sources-head">',
@@ -2380,7 +2394,7 @@
       '      <div class="chapter-exam-total"><strong>' + writtenStats.count + "</strong><span>申論題 · " + writtenRate + "</span></div>",
       "    </div>",
       "  </div>",
-      "  <p class=\"chapter-exam-note\">以 107–115 年選擇題與計算／申論題的章節出處統計；頻率分別以該科選擇題數與申論題數為分母；跨章節題目會重複計入各章。題目已依節次列在本章各節的「本節出處題目」，可直接點選進入該題。</p>",
+      '  <p class="chapter-exam-note">' + escapeHtml(examNote) + "</p>",
       '  <a class="text-link" href="#/past-exams">前往考古題練習庫 →</a>',
       "</section>"
     ].join("");
@@ -2545,7 +2559,7 @@
       : "此選項與題意不符；本題官方答案為 " + question.answer.join("、") + "。";
   }
 
-  function renderPastExamAnalysis(question) {
+  function renderPastExamAnalysis(question, lawMode) {
     if (!Array.isArray(question.options) || !question.options.length) {
       return "";
     }
@@ -2553,7 +2567,7 @@
     const summary = explanation && explanation.summary
       ? explanation.summary
       : "本題官方答案為 " + question.answer.join("、") + "。";
-    const explanationNotice = explanation
+    const explanationNotice = explanation || lawMode
       ? ""
       : '<div class="past-exam-analysis-notice"><span>完整解析尚未載入；目前先顯示官方答案與基本說明。</span><button class="btn btn-small" type="button" data-practice-load-explanations>載入完整解析</button></div>';
     const items = question.options.map(function (text, index) {
@@ -4810,19 +4824,300 @@
       : String(value || "");
   }
 
-  function renderLawSource(source) {
+  function normalizeLawArticleNo(value) {
+    return String(value == null ? "" : value)
+      .replace(/^第\s*/, "")
+      .replace(/\s*條$/, "")
+      .replace(/\s*之\s*/g, "-")
+      .replace(/\s+/g, "");
+  }
+
+  function lawArticleAnchor(chapterId, sourceIndex, articleNo) {
+    return "law-" + chapterId + "-" + sourceIndex + "-" + String(articleNo).replace(/[^0-9A-Za-z-]/g, "");
+  }
+
+  function lawSourceAliases(sourceName) {
+    const aliases = [sourceName];
+    if (sourceName === "證券交易法") aliases.push("證交法");
+    if (sourceName === "證券交易法施行細則") aliases.push("證交法施行細則");
+    if (sourceName === "證券投資信託及顧問法") aliases.push("投信投顧法");
+    if (sourceName === "發行人募集與發行有價證券處理準則") aliases.push("募集發行準則", "募集與發行準則");
+    return aliases;
+  }
+
+  function lawQuestionArticleRefs(question, officialSources) {
+    const text = [
+      question.stem,
+      ...(Array.isArray(question.options) ? question.options : []),
+      ...(Array.isArray(question.answer) ? question.answer : []),
+      question.note || ""
+    ].join(" ");
+    const sources = (officialSources || []).map(function (source, index) {
+      const articleSet = new Set((source.articles || []).filter(function (article) {
+        return article.type === "article";
+      }).map(function (article) {
+        return normalizeLawArticleNo(article.no);
+      }));
+      return {
+        name: source.name,
+        index: index,
+        articleSet: articleSet,
+        aliases: lawSourceAliases(source.name)
+      };
+    });
+    const refs = [];
+    const pattern = /第\s*(\d+(?:\s*-\s*\d+)?)\s*條(?:之\s*(\d+))?/g;
+    let match;
+    while ((match = pattern.exec(text))) {
+      let no = match[1].replace(/\s/g, "");
+      if (match[2]) no += "-" + match[2];
+      const prefix = text.slice(Math.max(0, match.index - 36), match.index);
+      const lawMatches = Array.from(prefix.matchAll(/([\u4e00-\u9fff]{3,30}(?:法|細則|準則|辦法|規則|公約|規範|守則|條例))/g));
+      const mentionedLaw = lawMatches.length ? lawMatches[lawMatches.length - 1][1] : "";
+      const genericLaw = /^(本法|本辦法|本準則|本規則|本細則|本公約|本規範|本守則|該法|該辦法|該準則|該規則|該細則|該公約|該規範|該守則)$/.test(mentionedLaw);
+      let source = null;
+      if (mentionedLaw && !genericLaw) {
+        source = sources.find(function (candidate) {
+          return candidate.aliases.some(function (alias) {
+            return mentionedLaw === alias || mentionedLaw.endsWith(alias) || alias.endsWith(mentionedLaw);
+          });
+        }) || null;
+        if (!source) continue;
+      } else {
+        source = sources.find(function (candidate) {
+          return candidate.articleSet.has(no);
+        }) || null;
+        if (!source) continue;
+      }
+      const refKey = source.index + ":" + no;
+      if (!refs.some(function (ref) { return ref.sourceIndex + ":" + ref.no === refKey; })) {
+        refs.push({ no: no, sourceIndex: source.index, sourceName: source.name });
+      }
+    }
+    return refs;
+  }
+
+  function sortLawQuestionEntries(entries) {
+    entries.sort(function (a, b) {
+      return (b.question.year - a.question.year) ||
+        (b.question.session - a.question.session) ||
+        (a.question.number - b.question.number) ||
+        String(a.question.id).localeCompare(String(b.question.id));
+    });
+    return entries;
+  }
+
+  function lawArticleQuestionMap(chapter) {
+    const data = getLawArticleData(chapter.id);
+    const official = data && Array.isArray(data.official) ? data.official : [];
+    const articleSet = new Set();
+    const anchors = new Map();
+    official.forEach(function (source, sourceIndex) {
+      (source.articles || []).forEach(function (article) {
+        if (article.type !== "article") return;
+        const no = normalizeLawArticleNo(article.no);
+        const key = sourceIndex + ":" + no;
+        articleSet.add(key);
+        anchors.set(key, lawArticleAnchor(chapter.id, sourceIndex, no));
+      });
+    });
+    const map = new Map();
+    const other = [];
+    const entries = [];
+    practiceQuestions.forEach(function (question) {
+      entries.push({ question: question, kind: "choice" });
+    });
+    writtenQuestions.forEach(function (question) {
+      entries.push({ question: question, kind: "written" });
+    });
+    entries.forEach(function (entry) {
+      const refs = lawQuestionArticleRefs(entry.question, official);
+      const inChapter = refs.filter(function (ref) {
+        return articleSet.has(ref.sourceIndex + ":" + ref.no);
+      });
+      if (inChapter.length) {
+        const primary = inChapter[0].sourceIndex + ":" + inChapter[0].no;
+        if (!map.has(primary)) map.set(primary, []);
+        map.get(primary).push(Object.assign({}, entry, { refs: inChapter }));
+      } else {
+        other.push(Object.assign({}, entry, { refs: [] }));
+      }
+    });
+    map.forEach(function (entriesForArticle) {
+      sortLawQuestionEntries(entriesForArticle);
+    });
+    sortLawQuestionEntries(other);
+    return {
+      map: map,
+      other: other,
+      anchors: anchors,
+      total: entries.length,
+      mapped: entries.length - other.length,
+      articleSet: articleSet
+    };
+  }
+
+  function lawQuestionPreview(question) {
+    const text = String(question.stem || "")
+      .replace(/\\\([\s\S]*?\\\)/g, "〔公式〕")
+      .replace(/\\\[[\s\S]*?\\\]/g, "〔公式〕")
+      .replace(/\s+/g, " ")
+      .trim();
+    return text.length > 110 ? text.slice(0, 109) + "…" : text;
+  }
+
+  function lawQuestionMeta(entry) {
+    const question = entry.question;
+    const session = practiceSessionMap.get(question.sessionId) || {};
+    const sessionLabel = session.label || (question.year + " 年第 " + question.session + " 次");
+    const kind = entry.kind === "written" ? (question.kind || "申論題") : "選擇題";
+    return sessionLabel + " · 第 " + question.number + " 題 · " + kind;
+  }
+
+  function lawQuestionLink(entry) {
+    const id = encodeURIComponent(entry.question.id);
+    return entry.kind === "written" ? "#/past-exams/written?question=" + id : "#/past-exams?question=" + id;
+  }
+
+  function renderLawWrittenAnswer(question) {
+    const answers = Array.isArray(question.answer) ? question.answer : [];
+    if (!answers.length) {
+      return '<p class="law-answer-note">目前沒有參考解答。</p>';
+    }
+    return answers.map(function (text) {
+      return '<div class="written-answer-block">' + renderWrittenAnswer(text) + "</div>";
+    }).join("");
+  }
+
+  function renderLawAnswerInitial(entry) {
+    if (entry.kind === "written") {
+      return '<p class="law-answer-note">本站參考解答（非官方）</p>' + renderLawWrittenAnswer(entry.question);
+    }
+    return '<p class="law-answer-line"><strong>答案</strong> ' +
+      escapeHtml(practiceAnswerText(entry.question.answer)) +
+      '</p><p class="law-answer-note">展開後載入完整選項解析。</p>';
+  }
+
+  function renderLawAnswerBody(entry) {
+    if (entry.kind === "written") {
+      return '<p class="law-answer-note">本站參考解答（非官方）</p>' + renderLawWrittenAnswer(entry.question);
+    }
+    return '<p class="law-answer-line"><strong>答案</strong> ' +
+      escapeHtml(practiceAnswerText(entry.question.answer)) +
+      "</p>" + renderPastExamAnalysis(entry.question, true);
+  }
+
+  function renderLawQuestion(entry, chapter, articleData) {
+    const question = entry.question;
+    const isChoice = entry.kind === "choice";
+    const refs = Array.isArray(entry.refs) ? entry.refs : [];
+    const refLinks = refs.map(function (ref) {
+      const anchor = articleData.anchors.get(ref.sourceIndex + ":" + ref.no);
+      const label = "第" + ref.no + "條";
+      return anchor ? '<a href="#' + escapeHtml(anchor) + '">' + escapeHtml(label) + "</a>" : escapeHtml(label);
+    }).join("、");
+    const answerLoaded = !isChoice || !!window.PAST_EXAM_EXPLANATIONS;
+    const options = isChoice && Array.isArray(question.options)
+      ? '<ol class="law-question-options">' + question.options.map(function (text, index) {
+          return '<li><span class="law-question-letter">' + "ABCD"[index] + '</span><span>' + renderInlineMath(text) + "</span></li>";
+        }).join("") + "</ol>"
+      : "";
+    return [
+      '<details class="law-question" id="law-question-' + escapeHtml(question.id) + '">',
+      '  <summary class="law-question-summary">',
+      '    <span class="law-question-meta">' + escapeHtml(lawQuestionMeta(entry)) + "</span>",
+      '    <span class="law-question-stem">' + escapeHtml(lawQuestionPreview(question)) + "</span>",
+      "  </summary>",
+      '  <div class="law-question-body">',
+      refLinks ? '    <p class="law-question-refs">相關條文：' + refLinks + "</p>" : "",
+      '    <div class="law-question-full-stem">' + renderInlineMath(question.stem) + "</div>",
+      options,
+      isChoice ? '    <p class="law-question-hint">點開下方「完整參考解答」查看答案與選項解析。</p>' : "",
+      '    <details class="law-answer" data-law-answer-question="' + escapeHtml(question.id) + '" data-law-answer-kind="' + (isChoice ? "choice" : "written") + '"' + (answerLoaded ? ' data-law-answer-state="loaded"' : "") + ">",
+      "      <summary>完整參考解答</summary>",
+      '      <div class="law-answer-body">' + (answerLoaded ? renderLawAnswerBody(entry) : renderLawAnswerInitial(entry)) + "</div>",
+      "    </details>",
+      '    <div class="law-question-footer">',
+      '      <a class="text-link" href="' + escapeHtml(lawQuestionLink(entry)) + '">在題庫中開啟題目 →</a>',
+      "      <span>" + escapeHtml(question.note || "本站參考解答（非官方）") + "</span>",
+      "    </div>",
+      "  </div>",
+      "</details>"
+    ].join("");
+  }
+
+  function renderLawQuestionList(entries, chapter, articleData) {
+    return '<div class="law-question-list">' + entries.map(function (entry) {
+      return renderLawQuestion(entry, chapter, articleData);
+    }).join("") + "</div>";
+  }
+
+  function renderLawOtherQuestions(entries, chapter, articleData, options) {
+    if (!entries.length) return "";
+    const noOfficial = options && options.noOfficial;
+    return [
+      '<details class="law-other-questions">',
+      '  <summary><span>本章其他考古題</span><span>' + entries.length + " 題</span></summary>",
+      '  <div class="law-other-questions-body">',
+      '    <p class="law-other-note">' + (noOfficial
+        ? "本章沒有逐條全文，以下列出本章考古題。"
+        : "題目或解答未明確引用本章條號，集中列在這裡；仍可展開題目與完整參考解答。") + "</p>",
+      renderLawQuestionList(entries, chapter, articleData),
+      "  </div>",
+      "</details>"
+    ].join("");
+  }
+
+  function hydrateLawAnswer(details) {
+    if (!details || details.dataset.lawAnswerState === "loaded" || details.dataset.lawAnswerState === "loading") {
+      return;
+    }
+    const entry = lawQuestionMap.get(details.dataset.lawAnswerQuestion || "");
+    if (!entry) return;
+    const body = details.querySelector(".law-answer-body");
+    if (!body) return;
+    if (entry.kind === "written" || window.PAST_EXAM_EXPLANATIONS) {
+      body.innerHTML = renderLawAnswerBody(entry);
+      details.dataset.lawAnswerState = "loaded";
+      return;
+    }
+    details.dataset.lawAnswerState = "loading";
+    body.innerHTML = renderLawAnswerInitial(entry) + '<p class="law-answer-loading">完整解析載入中…</p>';
+    ensurePastExamExplanations().then(function () {
+      body.innerHTML = renderLawAnswerBody(entry);
+      details.dataset.lawAnswerState = "loaded";
+    }).catch(function () {
+      body.innerHTML = '<p class="law-answer-note">完整解析載入失敗；以下為官方答案與基本說明。</p>' + renderLawAnswerBody(entry);
+      details.dataset.lawAnswerState = "loaded";
+    });
+  }
+
+  function renderLawSource(source, sourceIndex, chapter, articleData) {
     const articles = Array.isArray(source.articles) ? source.articles : [];
     const articleCount = articles.filter(function (article) {
       return article.type === "article";
     }).length;
+    const sourceQuestionCount = articles.reduce(function (total, article) {
+      if (article.type !== "article") return total;
+      return total + (articleData.map.get(sourceIndex + ":" + normalizeLawArticleNo(article.no)) || []).length;
+    }, 0);
     const rows = articles.map(function (article) {
       if (article.type === "heading") {
         return '<h3 class="law-chapter-heading">' + escapeHtml(article.text) + "</h3>";
       }
+      const no = normalizeLawArticleNo(article.no);
+      const questions = articleData.map.get(sourceIndex + ":" + no) || [];
+      const anchor = lawArticleAnchor(chapter.id, sourceIndex, no);
       return [
-        '<article class="law-article">',
+        '<article class="law-article" id="' + escapeHtml(anchor) + '">',
         '  <div class="law-article-no">' + escapeHtml(article.no) + "</div>",
         '  <div class="law-article-text">' + escapeHtml(article.text).replace(/\r?\n/g, "<br>") + "</div>",
+        questions.length
+          ? '  <div class="law-article-questions">' +
+            '<div class="law-article-question-head"><span>相關考古題</span><span>' + questions.length + " 題</span></div>" +
+            renderLawQuestionList(questions, chapter, articleData) +
+            "</div>"
+          : "",
         "</article>"
       ].join("");
     }).join("");
@@ -4832,7 +5127,7 @@
       '  <div class="law-source-head">',
       '    <span class="law-source-badge">官方全文</span>',
       '    <span class="law-source-title">' + escapeHtml(source.name) + "</span>",
-      '    <span class="law-source-count">' + articleCount + " 條</span>",
+      '    <span class="law-source-count">' + articleCount + " 條" + (sourceQuestionCount ? " · " + sourceQuestionCount + " 題" : "") + "</span>",
       "  </div>",
       '  <div class="law-source-body">',
       '    <div class="law-source-meta">',
@@ -4860,31 +5155,38 @@
   }
 
   function renderLawArticles(chapter) {
+    if (chapter.subjectId !== "law") {
+      return "";
+    }
     const data = getLawArticleData(chapter.id);
-    if (!data) {
+    const official = data && Array.isArray(data.official) ? data.official : [];
+    const external = data && Array.isArray(data.external) ? data.external : [];
+    const articleData = lawArticleQuestionMap(chapter);
+    if (!official.length && !external.length && !articleData.total) {
       return "";
     }
 
-    const official = Array.isArray(data.official) ? data.official : [];
-    const external = Array.isArray(data.external) ? data.external : [];
-    if (!official.length && !external.length) {
-      return "";
-    }
-
-    const heading = official.length ? "法規全文" : "法規全文與官方連結";
-    const note = official.length
-      ? "以下條文由全國法規資料庫 Open API 匯入（資料更新 2026-10-08，含「（刪除）」條文列），依條號順序直接顯示；條文以官方網站最新公告為準。"
-      : "本頁屬於公會自律規範或概括法規，依本站資料政策提供官方查詢連結與複習摘要，不逐條轉錄；實際內容以主管機關與公會最新公告為準。";
+    const hasOfficial = official.length > 0;
+    const heading = hasOfficial ? "本章重點：法條與考古題" : "本章考古題";
+    const kicker = hasOfficial ? "依法條排序" : "考古題";
+    const note = hasOfficial
+      ? "以下依官方條號排序；題目預設收合，點選題目展開，再點「完整參考解答」查看答案與解析。題目或解答明確引用本章條號者列於該條之後；其餘 " + articleData.other.length + " 題集中在本章其他考古題。條文由全國法規資料庫 Open API 匯入（資料更新 2026-10-08，含「（刪除）」條文列），以官方網站最新公告為準。"
+      : "本章屬於自律規範或概括法規，沒有逐條全文；以下題目預設收合，點選後展開，再點「完整參考解答」查看答案與解析。實際內容以主管機關與公會最新公告為準。";
 
     return [
       '<section class="section-block law-fulltext" id="section-fulltext">',
-      '  <div class="section-kicker">法規全文</div>',
-      "  <h2>" + heading + "</h2>",
+      '  <div class="section-kicker">' + escapeHtml(kicker) + "</div>",
+      "  <h2>" + escapeHtml(heading) + "</h2>",
       '  <p class="law-fulltext-note">' + escapeHtml(note) + "</p>",
-      '  <div class="law-source-list">' + official.map(renderLawSource).join("") + "</div>",
+      official.length
+        ? '  <div class="law-source-list">' + official.map(function (source, sourceIndex) {
+            return renderLawSource(source, sourceIndex, chapter, articleData);
+          }).join("") + "</div>"
+        : "",
       external.length
         ? '  <div class="law-external-list">' + external.map(renderLawExternal).join("") + "</div>"
         : "",
+      renderLawOtherQuestions(articleData.other, chapter, articleData, { noOfficial: !hasOfficial }),
       "</section>"
     ].join("");
   }
@@ -4896,7 +5198,20 @@
     }
 
     const done = progress.has(chapter.id);
-    const tocItems = chapter.sections.map(function (section, index) {
+    const lawData = getLawArticleData(chapter.id);
+    const lawOfficial = lawData && Array.isArray(lawData.official) ? lawData.official : [];
+    const lawExternal = lawData && Array.isArray(lawData.external) ? lawData.external : [];
+    const hasLawStudy = chapter.subjectId === "law" &&
+      (lawOfficial.length || lawExternal.length || practiceQuestions.length || writtenQuestions.length);
+    const lawToc = hasLawStudy ? [
+      "<li>",
+      '<a href="#/chapter/' + escapeHtml(chapter.id) + '?section=fulltext"',
+      ' data-scroll-to="section-fulltext"',
+      ' data-chapter-id="' + escapeHtml(chapter.id) + '"',
+      ' data-section="fulltext">' + (lawOfficial.length ? "法條與考古題" : "本章考古題") + "</a>",
+      "</li>"
+    ] : [];
+    const sectionToc = chapter.sections.map(function (section, index) {
       return [
         "<li>",
         '<a href="#/chapter/' + escapeHtml(chapter.id) + "?section=" + (index + 1) + '"',
@@ -4907,14 +5222,8 @@
         "</a>",
         "</li>"
       ].join("");
-    }).concat(getLawArticleData(chapter.id) ? [
-      "<li>",
-      '<a href="#/chapter/' + escapeHtml(chapter.id) + '?section=fulltext"',
-      ' data-scroll-to="section-fulltext"',
-      ' data-chapter-id="' + escapeHtml(chapter.id) + '"',
-      ' data-section="fulltext">法規全文</a>',
-      "</li>"
-    ] : []).join("");
+    });
+    const tocItems = lawToc.concat(sectionToc).join("");
 
     return [
       '<div class="page ' + escapeHtml(subject.colorClass) + '">',
@@ -4945,10 +5254,10 @@
       chapter.note
         ? '      <div class="notice chapter-note"><strong>單元說明：</strong>' + escapeHtml(chapter.note) + "</div>"
         : "",
+      renderLawArticles(chapter),
       chapter.sections.map(function (section, index) {
         return renderSection(section, index, subject, chapter);
       }).join(""),
-      renderLawArticles(chapter),
       renderChapterRefs(chapter),
       renderChapterNav(chapter),
       '      <div class="chapter-actions">',
@@ -5273,7 +5582,7 @@
     const existing = cleanScrollRegionText(el.getAttribute("aria-label"));
     if (existing) return existing;
 
-    if (el.classList.contains("inline-math")) {
+    if (el.classList.contains("inline-math") || el.classList.contains("written-answer-math")) {
       const rendered = el.querySelector(".katex-html");
       const text = truncateScrollRegionText(rendered ? rendered.textContent : el.textContent, 100);
       return "可橫向捲動的公式" + (text ? "：" + text : "");
@@ -5347,7 +5656,7 @@
   function refreshScrollableRegions() {
     if (!main) return;
 
-    const mathNodes = Array.prototype.slice.call(main.querySelectorAll(".inline-math:not(.is-display)"));
+    const mathNodes = Array.prototype.slice.call(main.querySelectorAll(".inline-math:not(.is-display), .written-answer-math:not(.is-display)"));
     const regionNodes = Array.prototype.slice.call(main.querySelectorAll(SCROLL_REGION_SELECTOR));
     mathNodes.forEach(clearScrollRegion);
     regionNodes.forEach(clearScrollRegion);
@@ -6188,6 +6497,13 @@
 
     window.addEventListener("scroll", updateReadingProgress, { passive: true });
     window.addEventListener("resize", updateReadingProgress);
+
+    document.addEventListener("toggle", function (event) {
+      const details = event.target;
+      if (details && details.classList && details.classList.contains("law-answer") && details.open) {
+        hydrateLawAnswer(details);
+      }
+    }, true);
 
     if (themeToggle) {
       themeToggle.addEventListener("click", toggleTheme);

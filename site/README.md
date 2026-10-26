@@ -184,7 +184,7 @@ Repository 的 Pages Source 已設為 **GitHub Actions**；若之後重新建立
   - 5 張新推導圖：`macro-06#0-2` 總體模型地圖、`investment-05#1-2` CAPM／SML、`investment-07#2-2` 債券利率風險、`investment-09#0` 選擇權定價地圖、`investment-09#3-2` Black–Scholes 推導。
 - 原章節與模型總覽的既有圖仍以 SVG 為預設；切到「MMD」時才載入 Pele 並即時 render。新推導圖的 SVG 版是建置時產生的靜態 Pele SVG，MMD 版則是執行時 Pele 重排。
 - `.mmd` 母檔與 manifest 在 `site/diagrams/mermaid/`；修改後執行 `node site/scripts/build-mermaid-sources.js` 產生 `site/assets/diagrams-mermaid.js`。新推導圖的靜態 SVG 用 `node site/scripts/build-mermaid-static.mjs` 產生（需網路與 npm）。Pele bundle 可用 `node site/scripts/build-pele-bundle.mjs` 重建（需網路與 npm；網站執行時不需要 npm）。
-- 右上角 **◈** 是全站風格切換器：紙感、藍圖、極簡、高對比、森林、海洋、夕陽、櫻花、終端機、薰衣草，以及 Apple、Google、Microsoft、Amazon、Meta、Netflix、NVIDIA、Tesla、OpenAI、Anthropic 十種科技品牌靈感風格。切換時會設定 `data-site-style` 同步套用全站 CSS，並注入 `<style id="pele-style-runtime">`；destroy 既有 Pele 實例後重新 mount。選擇會存在 `localStorage` 的 `analyst-site-style`（舊鍵 `analyst-pele-style` 仍可讀取）。`styles.css` 內含十九種非預設風格的 light／dark 變體；靜態落地頁也會在 `<head>` 讀取同一個鍵，導覽到靜態頁時仍維持風格。
+- 右上角 **◈** 是全站風格切換器：紙感、藍圖、極簡、高對比、森林、海洋、夕陽、櫻花、終端機、薰衣草，以及 Apple、Google、Microsoft、Amazon、Meta、Netflix、NVIDIA、Tesla、OpenAI、Anthropic 十種科技品牌靈感風格；**預設為 Apple**。切換時會設定 `data-site-style` 同步套用全站 CSS，並注入 `<style id="pele-style-runtime">`；destroy 既有 Pele 實例後重新 mount。選擇會存在 `localStorage` 的 `analyst-site-style`（舊鍵 `analyst-pele-style` 仍可讀取）。`styles.css` 內含其餘十九種非預設風格的 light／dark 變體；靜態落地頁也會在 `<head>` 讀取同一個鍵，導覽到靜態頁時仍維持風格。
 - 31 張量化曲線圖、1 張 BS 公式概念圖與 1 張速查表以原生 SVG／表格呈現，並以 33 組「相關圖表」連到對應的 MMD 地圖或總覽（總體模型、CAPM／SML、債券風險、選擇權定價、BS 推導、會計循環）。
 - `investment-09#3-3` 是原生 SVG 的 BS 公式概念圖：以常態分配曲線、陰影與 callout 拆解 `S₀N(d₁)` 現貨項、`Ke^{-rT}N(d₂)` 履約成本項，以及 `N(−d₂)`／`N(−d₁)` 的賣權對應項；圖下另連到 `investment-bs-derivation` MMD 推導圖。
 - 公式顯示原則：SVG 內用原生 `<tspan>` 上標或 Unicode 上下標；頁面文字公式以 `\(...\)` 交 KaTeX 排版。全站可見文字掃描不含 raw `^` 或 LaTeX 反斜線。
@@ -211,6 +211,13 @@ Repository 的 Pages Source 已設為 **GitHub Actions**；若之後重新建立
 - 互動版長行內公式只在實際超出容器時才成為可捲動區域；1–2px 的次像素誤差不再建立 scroll container。可捲動的公式、表格與圖表會動態加上 `tabindex="0"`、`role="group"` 與可讀的 `aria-label`，並有 `:focus-visible` 外框；關閉的 `<details>` 內公式待開啟後才標記。`.forecast-formula-math` 等公式容器以 `overflow-y: clip`／`overflow-clip-margin` 避免垂直捲軸溝壓縮寬度，造成假性橫向溢出。
 - axe 4.10.2：靜態章節頁 `investment-09` 與首頁在 1280px／390px、深淺主題皆 0 violations；互動版 `#/chapter/investment-09`、`#/exam-forecast` 在 1280px／390px、深淺主題與 `file://` 也皆為 0，且所有可捲動區域都有 `tabindex`，未產生多餘 Tab stop。
 - 390px 靜態頁 164 個頁面狀態 0 水平溢出；`file://` 開啟時 KaTeX 字型正常載入。
+
+### 法規章節：法條與考古題
+
+- 法規章節把「法條與考古題」放在章節重點之前，依官方條號排序；每條之後列出題目或解答明確引用該條的考古題。
+- 題目預設收合；第一次點選展開題目與選項，題目下方再點「完整參考解答」才會展開答案。選擇題的逐選項解析按需載入，申論／計算題直接顯示本站參考解答。
+- 未明確引用本章條號的題目集中在「本章其他考古題」，同樣預設收合；沒有逐條全文的自律規範章節（如 law-14–18、law-20、law-21）以「本章考古題」呈現。
+- 每題保留「在題庫中開啟題目」連結；條文引用以全國法規資料庫版本為準，題目與解答的條號對應僅供複習定位。
 
 ## 內容結構
 
@@ -329,7 +336,7 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 - 全站中文以臺灣繁體中文為準；英文只保留得主姓名、專有名詞、公式符號、縮寫與技術名稱。內容異動後以 `s2t` 字元掃描或人工複查確認沒有新增簡體字。
 - 跨模型初審結果記錄在 `documents/content_review_checklist.md` 與 `documents/reviews/`；模型只作輔助，官方公告與正式教材仍是最終依據。
 
-目前 `validate-content.js` 執行 157,257 項檢查，失敗數為 0（含四個科目章節界線、網站內容不得再出現「第 X 篇」、投資學比例公式綁定、66 條投資學核心公式與 50 種技術分析指標的欄位、優先級、章節連結與 KaTeX 實編譯、119 個 KaTeX 公式綁定與 2,933 個行內公式／200 個區塊公式實編譯、效率市場比較表欄列結構、28 張總體既有章節圖、10 張投資學既有教學圖、7 張會計學教學圖與 5 張 Mermaid 推導圖、學派演進圖的模型／諾貝爾綁定、法規全文資料綁定、3,710 題選擇題與逐選項解析、348 題計算／申論題與題意檢核、107–115 年章節解題（347 節次、601 例題）、15 個總經時事（12 個主題含 26 條公式；20 則 TOP 20 摘要整合、8 大主題、5 題申論）與參考資料、97 題組／118 個部分單一題庫（74 個題組對應主題公式）、21 組多部分題組、38 條整合公式、2 組敏感度分析、13 個章節進階補給、14 個法規深度補給與 15 張法規速讀卡、73 章出處分布與繁體中文守門檢查）。
+目前 `validate-content.js` 執行 157,260 項檢查，失敗數為 0（含四個科目章節界線、網站內容不得再出現「第 X 篇」、投資學比例公式綁定、66 條投資學核心公式與 50 種技術分析指標的欄位、優先級、章節連結與 KaTeX 實編譯、119 個 KaTeX 公式綁定與 2,933 個行內公式／200 個區塊公式實編譯、效率市場比較表欄列結構、28 張總體既有章節圖、10 張投資學既有教學圖、7 張會計學教學圖與 5 張 Mermaid 推導圖、學派演進圖的模型／諾貝爾綁定、法規全文資料綁定、3,710 題選擇題與逐選項解析、348 題計算／申論題與題意檢核、107–115 年章節解題（347 節次、601 例題）、15 個總經時事（12 個主題含 26 條公式；20 則 TOP 20 摘要整合、8 大主題、5 題申論）與參考資料、97 題組／118 個部分單一題庫（74 個題組對應主題公式）、21 組多部分題組、38 條整合公式、2 組敏感度分析、13 個章節進階補給、14 個法規深度補給與 15 張法規速讀卡、73 章出處分布與繁體中文守門檢查）。
 
 諾貝爾年表的年份與得主另以 `site/scripts/verify-nobel-api.js` 對照官方 API；2026-10-20 執行結果為 58 屆、0 筆不一致。此檢查需要網路，不列入離線驗證；2025、2026 屆公式已對照官方科學背景，2019–2020 屆公式與學說方向、2021 LATE 公式與 2022–2024 學說方向亦已核對（2019、2020 網站公式為概念式），2019–2026 代表原始論文書目已核對；2019–2026 每年至少一篇代表論文完成全文抽查（2026 為 Hall；Woodford 2003 專書未逐條）；其餘屆公式、全文、學說摘述與模型圖仍待原始文獻逐條核對。
 
@@ -476,6 +483,10 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 2026-10-26 修正三項 P0：靜態章節頁公式改以建置時 KaTeX 渲染顯式 `\(...\)`，混合中英公式、名詞與考試重點改用 HTML 上下標或 Unicode 上下標，82 個靜態頁與首頁共 83 頁可見文字與 metadata／JSON-LD 掃描 0 個原始 LaTeX、`^`、`_`；深色主題新增 `--on-accent`、`--on-accent-hover`、`--on-danger`，20 種風格 × 深淺主題 × accent／hover／danger 共 120 組對比 0 失敗，淺色 `--gold` 調整為 `#9a6020`；搜尋面板加入背景 `inert`、Tab／Shift+Tab focus trap、Esc 關閉後焦點回到 `#search-open` 與 `aria-expanded` 同步。axe 4.10.2 掃描靜態章節頁 `investment-09` 深淺主題 1280px／390px、`/chapters/` 深色 390px、首頁深色 1280px 與互動版 `#/past-exams` 深色 1280px／390px 均 0 violations；390px 靜態頁 164 個頁面狀態 0 水平溢出、2,712 個站內連結 0 斷鏈、`file://` KaTeX 字型正常；驗證器 157,257 項、失敗 0。既有互動版長行內公式的 `scrollable-region-focusable` 註記仍待後續處理。
 
 2026-10-26 修正互動版殘留的 `scrollable-region-focusable`：`.inline-math` 預設 `overflow-x: visible`，只有實際內容超出容器的公式才加 `.is-scrollable` 與 `overflow-x: auto`；1–2px 次像素誤差不再產生無法鍵盤操作的假性 scroll container。可捲動公式／表格／圖表動態取得 `tabindex="0"`、`role="group"` 與依內容或鄰近標題產生的 `aria-label`，並以 `:focus-visible` 顯示 2px accent 外框；關閉的 `<details>` 內公式在開啟後由 `toggle` 事件重新量測。`.forecast-formula-math`、`.macro-current-formula-math`、`.diagram-formula`、`.option-formula`、`.formula-library-table .ratio-math` 加上 `overflow-y: clip` 與 `overflow-clip-margin: 6px`，避免 2–4px 的上下標溢出觸發 11–15px 垂直捲軸溝，進而壓縮寬度而被 axe 誤判為橫向可捲動。淺色 paper 的 `--muted`、`--gold` 與投資學 accent 同步調整為 `#5b686b`、`#945a1c`、`#945522`。實測 `#/chapter/investment-09` 與 `#/exam-forecast` 在 1280px／390px、深淺主題、`file://` 與重複 axe 執行皆 0 violations；390px 僅 4 個（investment-09）／5 個（exam-forecast）真正可捲動區域取得焦點，無多餘 Tab stop；鍵盤 ArrowRight 可捲動聚焦公式，表格／圖表容器可聚焦；關閉 details 時不標記、開啟後才標記。靜態 `investment-09` 與首頁深淺主題 1280px／390px 仍為 0 violations，390px 164 個頁面狀態 0 水平溢出，2,711 個站內連結 0 斷鏈，`file://` KaTeX 正常，驗證器 157,257 項、失敗 0，20 種風格 × 深淺 × accent／hover／danger 120 組對比 0 失敗。
+
+2026-10-26 法規章節改為「法條與考古題」：章節重點先依官方條號排序，題目或解答明確引用該條者掛在該條之後；題目與「完整參考解答」皆使用巢狀 `<details>`，預設收合，第一次展開題目、第二次展開解答。選擇題的逐選項解析在展開解答時按需載入 `PAST_EXAM_EXPLANATIONS`；申論／計算題直接顯示章節資料中的完整參考解答。未明確引用本章條號的題目集中在「本章其他考古題」；沒有逐條全文的 law-14–18、law-20、law-21 以「本章考古題」呈現。條號對應會辨識「證券交易法／證交法／證券交易法施行細則／公司法」等前綴，避免把施行細則或公司法的條號掛到證交法同號條文；每題另顯示相關條文連結與「在題庫中開啟題目」。實測 law-01／law-02／law-03／law-14／law-21 在 1280px／390px、深淺主題 axe 0 violations，預設 0 個展開題目、0 個展開解答，390px 0 水平溢出；law-01 共 228 題（56 題掛載、172 題其他）、law-02 279 題（53／226）、law-03 172 題（9／163）；law-01 的 109Q3 題正確掛在施行細則第 5 條並連到證交法第 36 條。
+
+2026-10-26 全站預設風格改為 **Apple**：`index.html`、靜態落地頁建置腳本、`mermaid-lab.js` 的預設值與靜態 HTML 的初始 `data-site-style` 都改為 `apple`；仍優先讀取 `analyst-site-style` 與舊鍵 `analyst-pele-style`，既有使用者選擇不被覆寫。Apple 淺色 token 同步調整 `--muted`、`--accent`、`--gold` 為 `#68686d`、`#0066cc`、`#b84300`，讓 muted／accent／gold 在白色、`#f5f5f7`、`#ececee`、accent-soft 與 gold-soft 上皆 ≥ 4.5:1；`.breadcrumb span` 不再對目前頁面套用 0.55 透明度，只有分隔線變淡。重新產生 82 個靜態落地頁，`theme-color` 改為 `#f5f5f7`。實測首頁、law-01、`#/exam-forecast`、靜態 investment-09 在 1280px／390px、深淺主題與預設 Apple 下 axe 0 violations；Apple 淺色 accent／hover／danger 仍在 120 組對比中 0 失敗；390px 164 個靜態頁面狀態 0 水平溢出；驗證器 157,260 項、失敗 0。
 
 ## 更新流程
 
