@@ -123,7 +123,7 @@ site/
 - `robots.txt` 允許一般搜尋與主要 AI 爬蟲（GPTBot、ClaudeBot、Google-Extended、CCBot），並指向 `sitemap.xml`。
 - `sitemap.xml` 列出站點入口、4 個科目頁、章節索引、73 個章節頁與考古題、考前猜題、總經時事、諾貝爾等頁面，共 83 個實體 URL；`llms.txt` 提供 AI 搜尋／LLM 可讀的站點摘要、主要入口、內容範圍與資料界線。
 - 靜態頁由 `scripts/build-static-landing-pages.js` 從現有內容資料產生：4 個科目頁、`/chapters/` 索引、73 個章節頁與 4 個專題頁，共 82 頁。每頁有真實路徑、self canonical、title／description、OG／Twitter、`LearningResource`／`BreadcrumbList`／`FAQPage` JSON-LD、章節或主題清單，並連回互動版。首頁頁尾也連到這些靜態入口。
-- 章節頁包含章節摘要、各節導讀、名詞速查、考試重點、公式、考古題題數、上一章／下一章與回互動版章節的 CTA。
+- 章節頁包含章節摘要、各節導讀、名詞速查、考試重點、公式、考古題題數、上一章／下一章與回互動版章節的 CTA。公式以建置時 KaTeX 渲染顯式 `\(...\)`；混合中英公式字串以 HTML `<sup>`／`<sub>` 呈現，名詞、考試重點與摘要以 Unicode 上下標轉換，靜態頁不顯示原始 LaTeX、`^` 或 `_`。
 - `index.html` 的 `<main>` 內建無 JavaScript 的靜態摘要與連結；啟用 JavaScript 後由 app 取代，兼顧無 JS 使用者與不執行 JavaScript 的爬蟲。
 - `render()` 會依路由更新 `document.title`、meta description、og:title／og:description 與 twitter:title／twitter:description；章節頁會帶入章名與科目。
 - 限制：本站互動頁使用 hash routing，`#/...` 不會變成獨立的實體 URL；搜尋引擎主要索引站點入口、4 個科目頁、`/chapters/` 索引與 73 個章節頁。`sitemap.xml` 只列實體路徑，不列 fragment URL，避免產生不存在的頁面。
@@ -202,6 +202,14 @@ Repository 的 Pages Source 已設為 **GitHub Actions**；若之後重新建立
 - 參數：`prefix: true`、`fuzzy: 0.2`、`combineWith: "AND"`、`boost: { title: 2, sub: 1.2 }`；結果上限 24 筆。
 - 索引在第一次開啟搜尋時建立（核心索引約 42ms）；重建 MiniSearch bundle 可用 `node site/scripts/build-minisearch-bundle.mjs`（需網路與 npm）。
 - 若 MiniSearch 載入或建立失敗，精確搜尋仍可正常使用，不會阻斷搜尋面板。
+- 搜尋面板有 focus trap：開啟時背景 header／main／footer 設為 `inert`，Tab 與 Shift+Tab 只在 dialog 內循環；按 Esc 或關閉鈕後，焦點回到 `#search-open`，並同步 `aria-expanded`。`#search-open` 具 `aria-haspopup="dialog"`、`aria-controls="search-overlay"`。
+
+## 無障礙與主題對比
+
+- 深淺主題以 `--on-accent`、`--on-accent-hover`、`--on-danger` 決定 accent／danger 底色上的文字；Meta、Anthropic、NVIDIA 淺色與 Netflix 深色另有品牌 override，避免淺色強調色配白字或深色強調色配深字。
+- 20 種風格 × 淺色／深色 × accent／hover／danger 共 120 組文字對比實測皆 ≥ 4.5:1；淺色 `--gold` 由 `#a86d27` 調整為 `#9a6020`。
+- 抽查的靜態章節頁與首頁在 1280px／390px、深淺主題的 axe（WCAG A／AA）掃描為 0 violations；互動版 `#/past-exams` 亦為 0。既有互動版長行內公式在 `#/chapter/investment-09` 與 `#/exam-forecast` 仍有 `scrollable-region-focusable` 註記，非本輪修改範圍。
+- 390px 靜態頁 164 個頁面狀態 0 水平溢出；`file://` 開啟時 KaTeX 字型正常載入。
 
 ## 內容結構
 
@@ -463,6 +471,8 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 2026-10-23 完成跨 bundle 原地切換：`bootstrap.js` 在 hash 變更時只載入缺少的 bundle，載入後呼叫 `app.js` 的 `__softRefreshApp()` 重新 hydrate；章節資料以 `CHAPTER_DATA`、年度資料以 `PAST_EXAMS_YEAR_BUNDLES` 註冊，切回已載入的章節或年度仍使用正確資料；全站搜尋可按需載入 3,710 題考古題索引（約 1.5 MB），搜尋結果可直接跳到對應年度題目；考前猜題以 `seriesId` 標記 7 組中度重複題系列；會計科目頁加入 IFRS 18／19 版本查核與金管會連結。390px／1280px 與 `file://` 0 頁面水平溢出、0 console errors、0 `.katex-error`；實測首頁→章節→法規→年度→全部年度→申論題→考前猜題→首頁，`Page.loadEventFired` 僅 1 次；首頁與考前猜題 4 個 JS 請求／約 1.19 MB，年度練習約 1.40 MB，全部年度約 3.15 MB，法規章節約 1.61 MB，申論題頁約 1.74 MB；驗證器 154,272 項、失敗 0。
 
 2026-10-23 將考古題練習庫與申論題頁拆開，並把選擇題再依年度拆分：`/past-exams` 預設只載入最新年度 115 年（約 1.56 MB JS），切換年度時載入對應年度分包；選擇全部年度才載入完整 3,710 題（約 3.31 MB）。`/past-exams/written` 只載入 348 題申論題與版型（約 1.89 MB）。逐選項解析仍維持第一次看答案時才載入。390px／1280px 與 `file://` QA 通過；驗證器 154,272 項、失敗 0。
+
+2026-10-26 修正三項 P0：靜態章節頁公式改以建置時 KaTeX 渲染顯式 `\(...\)`，混合中英公式、名詞與考試重點改用 HTML 上下標或 Unicode 上下標，82 個靜態頁與首頁共 83 頁可見文字與 metadata／JSON-LD 掃描 0 個原始 LaTeX、`^`、`_`；深色主題新增 `--on-accent`、`--on-accent-hover`、`--on-danger`，20 種風格 × 深淺主題 × accent／hover／danger 共 120 組對比 0 失敗，淺色 `--gold` 調整為 `#9a6020`；搜尋面板加入背景 `inert`、Tab／Shift+Tab focus trap、Esc 關閉後焦點回到 `#search-open` 與 `aria-expanded` 同步。axe 4.10.2 掃描靜態章節頁 `investment-09` 深淺主題 1280px／390px、`/chapters/` 深色 390px、首頁深色 1280px 與互動版 `#/past-exams` 深色 1280px／390px 均 0 violations；390px 靜態頁 164 個頁面狀態 0 水平溢出、2,712 個站內連結 0 斷鏈、`file://` KaTeX 字型正常；驗證器 157,257 項、失敗 0。既有互動版長行內公式的 `scrollable-region-focusable` 註記仍待後續處理。
 
 ## 更新流程
 

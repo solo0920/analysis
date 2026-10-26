@@ -8,6 +8,7 @@ const vm = require("vm");
 
 const siteDir = path.resolve(__dirname, "..");
 const assetsDir = path.join(siteDir, "assets");
+const katex = require(path.join(assetsDir, "katex", "katex.min.js"));
 const BASE_URL = "https://solo0920.github.io/analysis";
 const UPDATED = "2026-10-24";
 
@@ -40,12 +41,245 @@ function escapeHtml(value) {
     .replace(/"/g, "&quot;");
 }
 
+const SUPERSCRIPT_CHARS = {
+  "0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴", "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹",
+  "+": "⁺", "−": "⁻", "-": "⁻", "=": "⁼", "(": "⁽", ")": "⁾",
+  α: "ᵅ", β: "ᵝ", γ: "ᵞ", δ: "ᵟ", ε: "ᵋ", θ: "ᶿ", φ: "ᵠ", χ: "ᵡ",
+  a: "ᵃ", b: "ᵇ", c: "ᶜ", d: "ᵈ", e: "ᵉ", f: "ᶠ", g: "ᵍ", h: "ʰ", i: "ⁱ", j: "ʲ", k: "ᵏ", l: "ˡ", m: "ᵐ", n: "ⁿ", o: "ᵒ", p: "ᵖ", r: "ʳ", s: "ˢ", t: "ᵗ", u: "ᵘ", v: "ᵛ", w: "ʷ", x: "ˣ", y: "ʸ", z: "ᶻ",
+  A: "ᴬ", B: "ᴮ", D: "ᴰ", E: "ᴱ", G: "ᴳ", H: "ᴴ", I: "ᴵ", J: "ᴶ", K: "ᴷ", L: "ᴸ", M: "ᴹ", N: "ᴺ", O: "ᴼ", P: "ᴾ", R: "ᴿ", T: "ᵀ", U: "ᵁ", V: "ⱽ", W: "ᵂ"
+};
+
+const SUBSCRIPT_CHARS = {
+  "0": "₀", "1": "₁", "2": "₂", "3": "₃", "4": "₄", "5": "₅", "6": "₆", "7": "₇", "8": "₈", "9": "₉",
+  "+": "₊", "−": "₋", "-": "₋", "=": "₌", "(": "₍", ")": "₎",
+  a: "ₐ", e: "ₑ", h: "ₕ", i: "ᵢ", j: "ⱼ", k: "ₖ", l: "ₗ", m: "ₘ", n: "ₙ", o: "ₒ", p: "ₚ", r: "ᵣ", s: "ₛ", t: "ₜ", u: "ᵤ", v: "ᵥ", x: "ₓ"
+};
+
+const LATEX_SYMBOLS = {
+  Delta: "Δ",
+  delta: "δ",
+  sigma: "σ",
+  phi: "φ",
+  pi: "π",
+  partial: "∂",
+  sum: "Σ",
+  prod: "Π",
+  times: "×",
+  cdot: "·",
+  approx: "≈",
+  le: "≤",
+  leq: "≤",
+  ge: "≥",
+  geq: "≥",
+  ne: "≠",
+  neq: "≠",
+  pm: "±",
+  infty: "∞",
+  rightarrow: "→",
+  Rightarrow: "⇒",
+  ln: "ln",
+  log: "log",
+  exp: "exp",
+  max: "max",
+  min: "min",
+  left: "",
+  right: "",
+  quad: " ",
+  qquad: " "
+};
+
+function readGroup(value, start) {
+  if (value[start] !== "{") {
+    return null;
+  }
+  let depth = 0;
+  for (let index = start; index < value.length; index += 1) {
+    if (value[index] === "{") {
+      depth += 1;
+    } else if (value[index] === "}") {
+      depth -= 1;
+      if (depth === 0) {
+        return { content: value.slice(start + 1, index), end: index + 1 };
+      }
+    }
+  }
+  return null;
+}
+
+function expandLatexGroups(value) {
+  let text = String(value == null ? "" : value);
+  let guard = 0;
+  while (guard < 100) {
+    guard += 1;
+    const match = /\\(dfrac|frac|sqrt|text|mathrm|operatorname|textbf|textit)\b/.exec(text);
+    if (!match) {
+      break;
+    }
+    const start = match.index;
+    let cursor = start + match[0].length;
+    while (cursor < text.length && /\s/.test(text[cursor])) {
+      cursor += 1;
+    }
+    const first = readGroup(text, cursor);
+    if (!first) {
+      text = text.slice(0, start) + text.slice(cursor);
+      continue;
+    }
+    if (match[1] === "frac" || match[1] === "dfrac") {
+      let secondStart = first.end;
+      while (secondStart < text.length && /\s/.test(text[secondStart])) {
+        secondStart += 1;
+      }
+      const second = readGroup(text, secondStart);
+      if (!second) {
+        text = text.slice(0, start) + text.slice(first.end);
+        continue;
+      }
+      text = text.slice(0, start) +
+        "(" + expandLatexGroups(first.content) + ")/(" + expandLatexGroups(second.content) + ")" +
+        text.slice(second.end);
+    } else if (match[1] === "sqrt") {
+      text = text.slice(0, start) + "√(" + expandLatexGroups(first.content) + ")" + text.slice(first.end);
+    } else {
+      text = text.slice(0, start) + first.content + text.slice(first.end);
+    }
+  }
+  return text;
+}
+
+function latexToPlain(value) {
+  let text = String(value == null ? "" : value);
+  text = text.replace(/\\\(([\s\S]*?)\\\)/g, function (match, inner) {
+    return " " + latexToPlain(inner) + " ";
+  });
+  text = text.replace(/\\\[([\s\S]*?)\\\]/g, function (match, inner) {
+    return " " + latexToPlain(inner) + " ";
+  });
+  text = expandLatexGroups(text);
+  text = text.replace(/\\([A-Za-z]+)/g, function (match, command) {
+    return Object.prototype.hasOwnProperty.call(LATEX_SYMBOLS, command) ? LATEX_SYMBOLS[command] : "";
+  });
+  text = text.replace(/\\([%$&_#{}])/g, "$1");
+  text = text.replace(/\\[,;! ]/g, " ");
+  return text.replace(/\\/g, "").replace(/[{}]/g, "");
+}
+
+function scriptText(value, map, kind) {
+  const chars = Array.from(value);
+  if (chars.length && chars.every(function (char) { return Boolean(map[char]); })) {
+    return chars.map(function (char) { return map[char]; }).join("");
+  }
+  return kind === "sup" ? "的(" + value + ")次方" : "(" + value + ")";
+}
+
+function applyPlainScripts(value) {
+  return value
+    .replace(/(^|[^A-Za-z])e\^\(([^()]*)\)/g, function (match, before, content) {
+      return before + "exp(" + content + ")";
+    })
+    .replace(/(^|[^A-Za-z])e\^\{([^{}]+)\}/g, function (match, before, content) {
+      return before + "exp(" + content + ")";
+    })
+    .replace(/(^|[^A-Za-z])e\^([A-Za-z0-9+\-−]+)/g, function (match, before, content) {
+      return before + "exp(" + content + ")";
+    })
+    .replace(/([A-Za-z0-9α-ωΑ-Ω₀-₉\)）\]])\^\(([^()]*)\)/g, function (match, base, content) {
+      return base + scriptText(content, SUPERSCRIPT_CHARS, "sup");
+    })
+    .replace(/([A-Za-z0-9α-ωΑ-Ω₀-₉\)）\]])\^\{([^{}]+)\}/g, function (match, base, content) {
+      return base + scriptText(content, SUPERSCRIPT_CHARS, "sup");
+    })
+    .replace(/([A-Za-z0-9α-ωΑ-Ω₀-₉\)）\]])\^([A-Za-z0-9α-ωΑ-Ω+\-−]+)/g, function (match, base, content) {
+      return base + scriptText(content, SUPERSCRIPT_CHARS, "sup");
+    })
+    .replace(/([A-Za-z0-9α-ωΑ-Ω₀-₉])\_\(([^()]*)\)/g, function (match, base, content) {
+      return base + scriptText(content, SUBSCRIPT_CHARS, "sub");
+    })
+    .replace(/([A-Za-z0-9α-ωΑ-Ω₀-₉])\_\{([^{}]+)\}/g, function (match, base, content) {
+      return base + scriptText(content, SUBSCRIPT_CHARS, "sub");
+    })
+    .replace(/([A-Za-z0-9α-ωΑ-Ω₀-₉])\_([A-Za-z0-9]+)/g, function (match, base, content) {
+      return base + scriptText(content, SUBSCRIPT_CHARS, "sub");
+    });
+}
+
 function cleanText(value) {
-  return String(value == null ? "" : value)
-    .replace(/\\\(|\\\)|\\\[|\\\]/g, "")
+  return applyPlainScripts(latexToPlain(value))
     .replace(/\*\*/g, "")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function renderKatex(latex, displayMode) {
+  try {
+    return katex.renderToString(String(latex == null ? "" : latex), {
+      displayMode: Boolean(displayMode),
+      throwOnError: false,
+      strict: "ignore",
+      trust: false
+    });
+  } catch (error) {
+    return '<span class="katex-fallback">' + escapeHtml(latex) + "</span>";
+  }
+}
+
+function renderPlainSegment(value) {
+  return escapeHtml(value)
+    .replace(/([A-Za-z0-9α-ωΑ-Ω₀-₉\)）\]])\^\(([^()]*)\)/g, function (match, base, content) {
+      return base + "<sup>" + content + "</sup>";
+    })
+    .replace(/([A-Za-z0-9α-ωΑ-Ω₀-₉\)）\]])\^\{([^{}]+)\}/g, function (match, base, content) {
+      return base + "<sup>" + content + "</sup>";
+    })
+    .replace(/([A-Za-z0-9α-ωΑ-Ω₀-₉\)）\]])\^([A-Za-z0-9α-ωΑ-Ω+\-−]+)/g, function (match, base, content) {
+      return base + "<sup>" + content + "</sup>";
+    })
+    .replace(/([A-Za-z0-9α-ωΑ-Ω₀-₉])\_\(([^()]*)\)/g, function (match, base, content) {
+      return base + "<sub>" + content + "</sub>";
+    })
+    .replace(/([A-Za-z0-9α-ωΑ-Ω₀-₉])\_\{([^{}]+)\}/g, function (match, base, content) {
+      return base + "<sub>" + content + "</sub>";
+    })
+    .replace(/([A-Za-z0-9α-ωΑ-Ω₀-₉])\_([A-Za-z0-9]+)/g, function (match, base, content) {
+      return base + "<sub>" + content + "</sub>";
+    })
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+}
+
+function renderRichText(value) {
+  const text = String(value == null ? "" : value);
+  let output = "";
+  let cursor = 0;
+  while (cursor < text.length) {
+    const inlineStart = text.indexOf("\\(", cursor);
+    const displayStart = text.indexOf("\\[", cursor);
+    let start = -1;
+    let closing = "";
+    let displayMode = false;
+    if (inlineStart !== -1 && (displayStart === -1 || inlineStart < displayStart)) {
+      start = inlineStart;
+      closing = "\\)";
+    } else if (displayStart !== -1) {
+      start = displayStart;
+      closing = "\\]";
+      displayMode = true;
+    }
+    if (start === -1) {
+      output += renderPlainSegment(text.slice(cursor));
+      break;
+    }
+    output += renderPlainSegment(text.slice(cursor, start));
+    const end = text.indexOf(closing, start + 2);
+    if (end === -1) {
+      output += renderPlainSegment(text.slice(start));
+      break;
+    }
+    output += '<span class="inline-math' + (displayMode ? " is-display" : "") + '">' +
+      renderKatex(text.slice(start + 2, end), displayMode) +
+      "</span>";
+    cursor = end + 2;
+  }
+  return output;
 }
 
 function truncateText(value, maxLength) {
@@ -253,6 +487,7 @@ function pageHtml(options) {
     '  <meta name="twitter:title" content="' + escapeHtml(options.title) + '">',
     '  <meta name="twitter:description" content="' + escapeHtml(options.description) + '">',
     '  <meta name="twitter:image" content="' + BASE_URL + '/assets/og-cover.png">',
+    '  <link rel="stylesheet" href="' + assetPrefix + 'assets/katex/katex.min.css">',
     '  <link rel="stylesheet" href="' + assetPrefix + 'assets/styles.css">',
     '  <link rel="icon" href="' + assetPrefix + 'assets/favicon.svg" type="image/svg+xml">',
     "  <script>",
@@ -639,7 +874,7 @@ function chapterPage(subject, slug, chapter, index) {
       }
     });
     if (cleanText(section.formula)) {
-      formulas.push(cleanText(section.formula));
+      formulas.push(String(section.formula));
     }
   });
   const practice = Number((stats.practice.chapters || {})[chapter.id] && (stats.practice.chapters || {})[chapter.id].count) || 0;
@@ -682,13 +917,13 @@ function chapterPage(subject, slug, chapter, index) {
     ].join("");
   }).join("");
   const termCards = terms.map(function (term) {
-    return '<div class="landing-term"><strong>' + escapeHtml(cleanText(term[0])) + "</strong><p>" + escapeHtml(cleanText(term[1])) + "</p></div>";
+    return '<div class="landing-term"><strong>' + renderRichText(term[0]) + "</strong><p>" + renderRichText(term[1]) + "</p></div>";
   }).join("");
   const pointItems = points.map(function (point) {
-    return "<li>" + escapeHtml(cleanText(point)) + "</li>";
+    return "<li>" + renderRichText(point) + "</li>";
   }).join("");
   const formulaItems = Array.from(new Set(formulas)).map(function (formula) {
-    return "<li><code>" + escapeHtml(formula) + "</code></li>";
+    return '<li><span class="landing-formula-text">' + renderRichText(formula) + "</span></li>";
   }).join("");
   const pager = [
     '<nav class="landing-pager" aria-label="章節導覽">',

@@ -17,7 +17,10 @@
   --accent: #0f5c5c;
   --accent-ink: #0a4444;
   --accent-soft: #e3efeb;
-  --gold: #a86d27;
+  --on-accent: #ffffff;
+  --on-accent-hover: #ffffff;
+  --on-danger: #ffffff;
+  --gold: #9a6020;
   --gold-soft: #f5ead8;
   --danger: #9a3f35;
   --success: #2f7d4f;
@@ -48,6 +51,9 @@
   --accent: #66c9ba;
   --accent-ink: #8ce0d2;
   --accent-soft: #17302e;
+  --on-accent: #0d1618;
+  --on-accent-hover: #0d1618;
+  --on-danger: #0d1618;
   --gold: #e1b06a;
   --gold-soft: #33261a;
   --danger: #e28b7f;
@@ -99,7 +105,7 @@ body {
 
 ::selection {
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 img,
@@ -706,11 +712,32 @@ a.landing-item:hover {
   line-height: 1.9;
 }
 
-.landing-formula-list code {
+.landing-formula-list .landing-formula-text {
   color: var(--accent-ink);
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  line-height: 1.8;
   overflow-wrap: anywhere;
+}
+
+.landing-page sup,
+.landing-page sub {
+  line-height: 0;
+}
+
+.landing-page .inline-math {
+  max-width: 100%;
+}
+
+.landing-page .inline-math:not(.is-display) {
+  display: inline-block;
+  overflow-x: visible;
+  vertical-align: middle;
+}
+
+.landing-page .inline-math.is-display {
+  display: block;
+  margin: 0.5em 0;
 }
 
 .landing-note {
@@ -948,20 +975,12 @@ a.landing-item:hover {
 .btn-primary {
   border-color: var(--accent);
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 .btn-primary:hover {
   background: var(--accent-ink);
-  color: #fff;
-}
-
-[data-theme="dark"] .btn-primary {
-  color: #0d1618;
-}
-
-[data-theme="dark"] .btn-primary:hover {
-  color: #0d1618;
+  color: var(--on-accent-hover);
 }
 
 .btn-ghost {
@@ -5890,11 +5909,7 @@ a.landing-item:hover {
 .past-exam-chip.is-active {
   border-color: var(--accent);
   background: var(--accent);
-  color: #fff;
-}
-
-[data-theme="dark"] .past-exam-chip.is-active {
-  color: #0d1618;
+  color: var(--on-accent);
 }
 
 .past-exam-session-tools {
@@ -6172,7 +6187,7 @@ a.landing-item:hover {
 .past-exam-option.is-selected .past-exam-option-letter {
   border-color: var(--accent);
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 .past-exam-option.is-correct .past-exam-option-letter {
@@ -6184,7 +6199,7 @@ a.landing-item:hover {
 .past-exam-option.is-wrong .past-exam-option-letter {
   border-color: var(--danger);
   background: var(--danger);
-  color: #fff;
+  color: var(--on-danger);
 }
 
 .past-exam-option-text {
@@ -7274,7 +7289,7 @@ a.landing-item:hover {
 .forecast-tab.is-active {
   border-color: var(--accent);
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 .forecast-directions {
@@ -11009,7 +11024,7 @@ html.is-routing body {
 /* 深色風格的淺色強調色，選取文字改用深色 */
 [data-site-style]:not([data-site-style="paper"])[data-theme="dark"] ::selection {
   background: var(--accent);
-  color: #081a2b;
+  color: var(--on-accent);
 }
 
 @media (max-width: 360px) {
@@ -11018,19 +11033,23 @@ html.is-routing body {
   }
 }
 
-/* 品牌風格按鈕的可讀性微調 */
-[data-site-style="nvidia"][data-theme="light"] .btn-primary {
-  color: #0d1618;
+/* 品牌強調色的文字對比 */
+[data-site-style="meta"][data-theme="light"],
+[data-site-style="anthropic"][data-theme="light"] {
+  --on-accent: #000000;
+  --on-accent-hover: #ffffff;
 }
 
-[data-site-style="nvidia"][data-theme="light"] .btn-primary:hover {
-  color: #ffffff;
+[data-site-style="meta"][data-theme="light"] {
+  --on-danger: #0d1618;
 }
 
-[data-site-style="netflix"][data-theme="dark"] .btn-primary {
-  color: #ffffff;
+[data-site-style="nvidia"][data-theme="light"] {
+  --on-accent: #0d1618;
+  --on-accent-hover: #ffffff;
 }
 
-[data-site-style="netflix"][data-theme="dark"] .btn-primary:hover {
-  color: #0d1618;
+[data-site-style="netflix"][data-theme="dark"] {
+  --on-accent: #ffffff;
+  --on-accent-hover: #0d1618;
 }

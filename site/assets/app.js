@@ -380,6 +380,7 @@
     results: [],
     active: -1
   };
+  let searchReturnFocus = null;
   const fuzzyState = {
     index: null,
     status: "idle",
@@ -5742,12 +5743,49 @@
     links[searchState.active].scrollIntoView({ block: "nearest" });
   }
 
+  function setSearchBackgroundInert(enabled) {
+    Array.from(document.body.children).forEach(function (element) {
+      if (element === searchOverlay || /^(SCRIPT|STYLE|LINK|META)$/.test(element.tagName)) {
+        return;
+      }
+      if (enabled) {
+        if (!element.hasAttribute("inert")) {
+          element.dataset.searchInert = "true";
+          element.setAttribute("inert", "");
+        }
+      } else if (element.dataset.searchInert === "true") {
+        element.removeAttribute("inert");
+        delete element.dataset.searchInert;
+      }
+    });
+  }
+
+  function searchFocusableElements() {
+    if (!searchOverlay) {
+      return [];
+    }
+    const selector = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    return Array.from(searchOverlay.querySelectorAll(selector)).filter(function (element) {
+      return !element.hidden && element.getClientRects().length > 0;
+    });
+  }
+
   function openSearch() {
     if (!searchOverlay || !searchInput) {
       return;
     }
+    if (!searchOverlay.hidden) {
+      searchInput.focus();
+      return;
+    }
+    const activeElement = document.activeElement;
+    searchReturnFocus = activeElement && activeElement !== document.body && typeof activeElement.focus === "function"
+      ? activeElement
+      : searchOpenButton;
     searchOverlay.hidden = false;
+    setSearchBackgroundInert(true);
     document.body.classList.add("search-open");
+    if (searchOpenButton) searchOpenButton.setAttribute("aria-expanded", "true");
     if (searchPastLoadButton && pastSearchLoaded) searchPastLoadButton.hidden = true;
     searchInput.value = "";
     renderSearchResults("");
@@ -5758,16 +5796,27 @@
   }
 
   function closeSearch() {
-    if (!searchOverlay || !searchInput) {
+    if (!searchOverlay || !searchInput || searchOverlay.hidden) {
       return;
     }
     searchOverlay.hidden = true;
+    setSearchBackgroundInert(false);
     document.body.classList.remove("search-open");
+    if (searchOpenButton) searchOpenButton.setAttribute("aria-expanded", "false");
     searchInput.value = "";
     searchState.results = [];
     searchState.active = -1;
     if (searchResults) {
       searchResults.innerHTML = "";
+    }
+    const focusTarget = searchReturnFocus && document.contains(searchReturnFocus) ? searchReturnFocus : searchOpenButton;
+    searchReturnFocus = null;
+    if (focusTarget) {
+      try {
+        focusTarget.focus({ preventScroll: true });
+      } catch (error) {
+        focusTarget.focus();
+      }
     }
   }
 
@@ -6017,6 +6066,26 @@
       const target = event.target;
       const typing = target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable);
       const isSearchOpen = searchOverlay && !searchOverlay.hidden;
+
+      if (isSearchOpen && event.key === "Tab") {
+        const focusables = searchFocusableElements();
+        if (!focusables.length) {
+          event.preventDefault();
+          return;
+        }
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        const active = document.activeElement;
+        if (event.shiftKey) {
+          if (active === first || !searchOverlay.contains(active)) {
+            event.preventDefault();
+            last.focus();
+          }
+        } else if (active === last || !searchOverlay.contains(active)) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
 
       if (event.key === "Escape") {
         if (isSearchOpen) {
