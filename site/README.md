@@ -215,7 +215,7 @@ Repository 的 Pages Source 已設為 **GitHub Actions**；若之後重新建立
 ### 法規章節：法條與考古題
 
 - 法規章節把「法條與考古題」放在章節重點之前，依官方條號排序；每條之後列出題目或解答明確引用該條的考古題。
-- 題目預設收合；第一次點選展開題目與選項，題目下方再點「完整參考解答」才會展開答案。選擇題的逐選項解析按需載入，申論／計算題直接顯示本站參考解答。
+- 題目預設收合，收合時只顯示「場次 · 題號 · 題型」；第一次點選才展開相關條文、完整題幹與選項，題目下方再點「完整參考解答」才會展開答案。選擇題的逐選項解析按需載入，申論／計算題直接顯示本站參考解答。
 - 未明確引用本章條號的題目集中在「本章其他考古題」，同樣預設收合；沒有逐條全文的自律規範章節（如 law-14–18、law-20、law-21）以「本章考古題」呈現。
 - 每題保留「在題庫中開啟題目」連結；條文引用以全國法規資料庫版本為準，題目與解答的條號對應僅供複習定位。
 
@@ -484,7 +484,7 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 
 2026-10-26 修正互動版殘留的 `scrollable-region-focusable`：`.inline-math` 預設 `overflow-x: visible`，只有實際內容超出容器的公式才加 `.is-scrollable` 與 `overflow-x: auto`；1–2px 次像素誤差不再產生無法鍵盤操作的假性 scroll container。可捲動公式／表格／圖表動態取得 `tabindex="0"`、`role="group"` 與依內容或鄰近標題產生的 `aria-label`，並以 `:focus-visible` 顯示 2px accent 外框；關閉的 `<details>` 內公式在開啟後由 `toggle` 事件重新量測。`.forecast-formula-math`、`.macro-current-formula-math`、`.diagram-formula`、`.option-formula`、`.formula-library-table .ratio-math` 加上 `overflow-y: clip` 與 `overflow-clip-margin: 6px`，避免 2–4px 的上下標溢出觸發 11–15px 垂直捲軸溝，進而壓縮寬度而被 axe 誤判為橫向可捲動。淺色 paper 的 `--muted`、`--gold` 與投資學 accent 同步調整為 `#5b686b`、`#945a1c`、`#945522`。實測 `#/chapter/investment-09` 與 `#/exam-forecast` 在 1280px／390px、深淺主題、`file://` 與重複 axe 執行皆 0 violations；390px 僅 4 個（investment-09）／5 個（exam-forecast）真正可捲動區域取得焦點，無多餘 Tab stop；鍵盤 ArrowRight 可捲動聚焦公式，表格／圖表容器可聚焦；關閉 details 時不標記、開啟後才標記。靜態 `investment-09` 與首頁深淺主題 1280px／390px 仍為 0 violations，390px 164 個頁面狀態 0 水平溢出，2,711 個站內連結 0 斷鏈，`file://` KaTeX 正常，驗證器 157,257 項、失敗 0，20 種風格 × 深淺 × accent／hover／danger 120 組對比 0 失敗。
 
-2026-10-26 法規章節改為「法條與考古題」：章節重點先依官方條號排序，題目或解答明確引用該條者掛在該條之後；題目與「完整參考解答」皆使用巢狀 `<details>`，預設收合，第一次展開題目、第二次展開解答。選擇題的逐選項解析在展開解答時按需載入 `PAST_EXAM_EXPLANATIONS`；申論／計算題直接顯示章節資料中的完整參考解答。未明確引用本章條號的題目集中在「本章其他考古題」；沒有逐條全文的 law-14–18、law-20、law-21 以「本章考古題」呈現。條號對應會辨識「證券交易法／證交法／證券交易法施行細則／公司法」等前綴，避免把施行細則或公司法的條號掛到證交法同號條文；每題另顯示相關條文連結與「在題庫中開啟題目」。實測 law-01／law-02／law-03／law-14／law-21 在 1280px／390px、深淺主題 axe 0 violations，預設 0 個展開題目、0 個展開解答，390px 0 水平溢出；law-01 共 228 題（56 題掛載、172 題其他）、law-02 279 題（53／226）、law-03 172 題（9／163）；law-01 的 109Q3 題正確掛在施行細則第 5 條並連到證交法第 36 條。
+2026-10-26 法規章節改為「法條與考古題」：章節重點先依官方條號排序，題目或解答明確引用該條者掛在該條之後；題目與「完整參考解答」皆使用巢狀 `<details>`，預設收合，收合時 summary 只保留「場次 · 題號 · 題型」，第一次展開題目才顯示相關條文與完整題幹，第二次展開解答。選擇題的逐選項解析在展開解答時按需載入 `PAST_EXAM_EXPLANATIONS`；申論／計算題直接顯示章節資料中的完整參考解答。未明確引用本章條號的題目集中在「本章其他考古題」；沒有逐條全文的 law-14–18、law-20、law-21 以「本章考古題」呈現。條號對應會辨識「證券交易法／證交法／證券交易法施行細則／公司法」等前綴，避免把施行細則或公司法的條號掛到證交法同號條文；每題另顯示相關條文連結與「在題庫中開啟題目」。實測 law-01／law-02／law-03／law-14／law-21 在 1280px／390px、深淺主題 axe 0 violations，預設 0 個展開題目、0 個展開解答，390px 0 水平溢出；law-01 共 228 題（56 題掛載、172 題其他）、law-02 279 題（53／226）、law-03 172 題（9／163）；law-01 的 109Q3 題正確掛在施行細則第 5 條並連到證交法第 36 條。
 
 2026-10-26 全站預設風格改為 **Apple**：`index.html`、靜態落地頁建置腳本、`mermaid-lab.js` 的預設值與靜態 HTML 的初始 `data-site-style` 都改為 `apple`；仍優先讀取 `analyst-site-style` 與舊鍵 `analyst-pele-style`，既有使用者選擇不被覆寫。Apple 淺色 token 同步調整 `--muted`、`--accent`、`--gold` 為 `#68686d`、`#0066cc`、`#b84300`，讓 muted／accent／gold 在白色、`#f5f5f7`、`#ececee`、accent-soft 與 gold-soft 上皆 ≥ 4.5:1；`.breadcrumb span` 不再對目前頁面套用 0.55 透明度，只有分隔線變淡。重新產生 82 個靜態落地頁，`theme-color` 改為 `#f5f5f7`。實測首頁、law-01、`#/exam-forecast`、靜態 investment-09 在 1280px／390px、深淺主題與預設 Apple 下 axe 0 violations；Apple 淺色 accent／hover／danger 仍在 120 組對比中 0 失敗；390px 164 個靜態頁面狀態 0 水平溢出；驗證器 157,260 項、失敗 0。
 

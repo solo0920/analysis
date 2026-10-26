@@ -4957,15 +4957,6 @@
     };
   }
 
-  function lawQuestionPreview(question) {
-    const text = String(question.stem || "")
-      .replace(/\\\([\s\S]*?\\\)/g, "〔公式〕")
-      .replace(/\\\[[\s\S]*?\\\]/g, "〔公式〕")
-      .replace(/\s+/g, " ")
-      .trim();
-    return text.length > 110 ? text.slice(0, 109) + "…" : text;
-  }
-
   function lawQuestionMeta(entry) {
     const question = entry.question;
     const session = practiceSessionMap.get(question.sessionId) || {};
@@ -5026,7 +5017,6 @@
       '<details class="law-question" id="law-question-' + escapeHtml(question.id) + '">',
       '  <summary class="law-question-summary">',
       '    <span class="law-question-meta">' + escapeHtml(lawQuestionMeta(entry)) + "</span>",
-      '    <span class="law-question-stem">' + escapeHtml(lawQuestionPreview(question)) + "</span>",
       "  </summary>",
       '  <div class="law-question-body">',
       refLinks ? '    <p class="law-question-refs">相關條文：' + refLinks + "</p>" : "",

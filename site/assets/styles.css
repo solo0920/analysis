@@ -4098,7 +4098,7 @@ a.landing-item:hover {
 .law-question-summary {
   display: grid;
   grid-template-columns: 14px minmax(0, 1fr);
-  gap: 2px 8px;
+  gap: 8px;
   padding: 10px 0;
   cursor: pointer;
   list-style: none;
@@ -4112,7 +4112,7 @@ a.landing-item:hover {
 
 .law-question-summary::before {
   content: "▸";
-  grid-row: 1 / span 2;
+  grid-row: 1;
   color: var(--accent);
   font-size: 0.82rem;
   line-height: 1.5;
@@ -4123,20 +4123,10 @@ a.landing-item:hover {
 }
 
 .law-question-meta {
-  color: var(--muted);
-  font-size: 0.7rem;
-  font-weight: 700;
-  line-height: 1.5;
-}
-
-.law-question-stem {
-  display: -webkit-box;
-  overflow: hidden;
   color: var(--ink);
-  font-size: 0.84rem;
-  line-height: 1.65;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.6;
 }
 
 .law-question-body {
@@ -5423,11 +5413,7 @@ a.landing-item:hover {
 
   .law-question-summary {
     grid-template-columns: 12px minmax(0, 1fr);
-    gap: 2px 6px;
-  }
-
-  .law-question-stem {
-    -webkit-line-clamp: 3;
+    gap: 6px;
   }
 
   .law-question-body {
