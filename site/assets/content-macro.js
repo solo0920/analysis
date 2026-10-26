@@ -110,6 +110,50 @@ window.MACRO_SUBJECT = {
             "同一邏輯也可用於數量指數：拉氏數量指數 \\(Q_L=\\dfrac{\\sum p_0 q_t}{\\sum p_0 q_0}\\times100\\)；帕氏數量指數 \\(Q_P=\\dfrac{\\sum p_t q_t}{\\sum p_t q_0}\\times100\\)。由物價指數計算通膨率為 \\(\\pi_t=\\dfrac{I_t-I_{t-1}}{I_{t-1}}\\times100\\%\\)。",
             "經濟成長率通常以實質 GDP 的年度成長率衡量，而不是名目 GDP。這樣才能排除物價上漲造成的虛增。通貨膨脹率則是物價指數的百分比變動，不是指數本身的水準。"
           ],
+          "subsections": [
+            {
+              "title": "一、實質 GDP（Real GDP）",
+              "body": [
+                "以基期價格 × 當期生產數量計算所有最終商品與服務的價值。",
+                "\\(P_0\\)：基期價格；\\(Q_t\\)：本期生產數量。"
+              ],
+              "formula": "\\boxed{RGDP_t=\\sum(P_0\\times Q_t)}"
+            },
+            {
+              "title": "二、GDP 平減指數（GDP Deflator）",
+              "body": [
+                "GDP 平減指數是名目 GDP 與實質 GDP 的比率，再乘以 100。",
+                "\\(NGDP_t\\)：本期名目 GDP；\\(RGDP_t\\)：本期實質 GDP。",
+                "名目 GDP 則以本期價格乘以本期數量計算："
+              ],
+              "formula": "\\begin{gathered}\\boxed{D_t=\\dfrac{NGDP_t}{RGDP_t}\\times100}\\\\[6pt]\\boxed{NGDP_t=\\sum(P_t\\times Q_t)}\\end{gathered}"
+            },
+            {
+              "title": "三、三個公式比較",
+              "body": [
+                "三個公式的差異整理如下："
+              ],
+              "table": {
+                "title": "名目 GDP、實質 GDP 與 GDP 平減指數",
+                "columns": ["項目", "計算方式"],
+                "rows": [
+                  ["名目 GDP", "本期價格 × 本期數量"],
+                  ["實質 GDP", "基期價格 × 本期數量"],
+                  ["GDP 平減指數", "名目 GDP ÷ 實質 GDP × 100"]
+                ]
+              }
+            },
+            {
+              "title": "四、證券分析人員考試記憶技巧",
+              "body": [
+                "名目 GDP：價格跟著當期走，數量也用當期。",
+                "實質 GDP：價格固定在基期，數量用當期。",
+                "GDP 平減指數：名目 GDP 除以實質 GDP，再乘以 100。",
+                "若題目要求計算實質經濟成長率，則使用："
+              ],
+              "formula": "\\boxed{g=\\dfrac{RGDP_t-RGDP_{t-1}}{RGDP_{t-1}}\\times100\\%}"
+            }
+          ],
           "terms": [
             [
               "消費者物價指數（CPI）",
