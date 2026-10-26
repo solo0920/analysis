@@ -9005,55 +9005,8 @@ a.landing-item:hover {
 }
 
 /* ----------------------------- section-level question bank ----------------------------- */
-.section-question-bank {
+.section-block > .law-article-questions {
   margin-top: 18px;
-  padding: 12px 14px;
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--accent);
-  border-radius: 10px;
-  background: var(--surface-2);
-}
-
-.section-question-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  color: var(--ink);
-  font-size: 0.84rem;
-  font-weight: 800;
-}
-
-.section-question-head span {
-  color: var(--accent-ink);
-  font-family: var(--font-mono);
-  font-size: 0.76rem;
-  font-weight: 700;
-}
-
-.section-question-note {
-  margin: 4px 0 2px;
-  color: var(--muted);
-  font-size: 0.74rem;
-  line-height: 1.6;
-}
-
-.section-question-bank .law-question-list {
-  margin-top: 4px;
-}
-
-.chapter-written-questions .section-question-bank {
-  margin-top: 10px;
-}
-
-@media (max-width: 520px) {
-  .section-question-bank {
-    padding: 10px;
-  }
-
-  .section-question-head {
-    flex-wrap: wrap;
-  }
 }
 
 .written-answer-math {

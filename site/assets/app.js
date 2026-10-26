@@ -1115,16 +1115,20 @@
       });
       if (!primary || Number(primary.sectionIndex) !== Number(sectionIndex)) return;
       seen.add(question.id);
-      entries.push({ question: question, kind: "choice", refs: [] });
+      entries.push({ question: question, kind: "choice", refs: [], showQuestionLink: false });
     });
     if (!entries.length) {
       return "";
     }
+    const section = chapter.sections[Number(sectionIndex) - 1];
+    const context = section ? "本節：" + sectionDisplayTitle(section) : "";
+    entries.forEach(function (entry) {
+      entry.context = context;
+    });
     sortLawQuestionEntries(entries);
     return [
-      '<div class="section-question-bank">',
-      '  <div class="section-question-head"><strong>本節考古題</strong><span>' + entries.length + " 題</span></div>",
-      '  <p class="section-question-note">題目預設收合；點選題目展開，再點「完整參考解答」查看答案。</p>',
+      '<div class="law-article-questions">',
+      '  <div class="law-article-question-head"><span>相關考古題</span><span>' + entries.length + " 題</span></div>",
       renderLawQuestionList(entries, chapter, { anchors: new Map() }),
       "</div>"
     ].join("");
@@ -2332,7 +2336,7 @@
     const lawOfficial = lawData && Array.isArray(lawData.official) ? lawData.official : [];
     const examNote = chapter.subjectId === "law"
       ? "以 107–115 年選擇題與計算／申論題的章節出處統計；頻率分別以該科選擇題數與申論題數為分母；跨章節題目會重複計入各章。題目已依條號列在下方「" + (lawOfficial.length ? "法條與考古題" : "本章考古題") + "」，可直接展開題目與完整參考解答。"
-      : "以 107–115 年選擇題與計算／申論題的章節出處統計；頻率分別以該科選擇題數與申論題數為分母；跨章節題目會重複計入各章。選擇題已列於各節「本節考古題」，申論／計算題列於本章「本章申論／計算題」；題目預設收合，點選後展開，再點「完整參考解答」查看答案。";
+      : "以 107–115 年選擇題與計算／申論題的章節出處統計；頻率分別以該科選擇題數與申論題數為分母；跨章節題目會重複計入各章。選擇題已列於各節「相關考古題」，申論／計算題列於本章「本章申論／計算題」；題目預設收合，點選後展開，再點「完整參考解答」查看答案。";
     return [
       '<section class="chapter-exam-sources" id="chapter-exam-sources" aria-labelledby="chapter-exam-sources-heading">',
       '  <div class="chapter-exam-sources-head">',
@@ -4958,6 +4962,9 @@
       const label = "第" + ref.no + "條";
       return anchor ? '<a href="#' + escapeHtml(anchor) + '">' + escapeHtml(label) + "</a>" : escapeHtml(label);
     }).join("、");
+    const contextLine = refLinks
+      ? "相關條文：" + refLinks
+      : (entry.context ? escapeHtml(entry.context) : "");
     const answerLoaded = !isChoice || !!window.PAST_EXAM_EXPLANATIONS;
     const options = isChoice && Array.isArray(question.options)
       ? '<ol class="law-question-options">' + question.options.map(function (text, index) {
@@ -4970,7 +4977,7 @@
       '    <span class="law-question-meta">' + escapeHtml(lawQuestionMeta(entry)) + "</span>",
       "  </summary>",
       '  <div class="law-question-body">',
-      refLinks ? '    <p class="law-question-refs">相關條文：' + refLinks + "</p>" : "",
+      contextLine ? '    <p class="law-question-refs">' + contextLine + "</p>" : "",
       '    <div class="law-question-full-stem">' + renderInlineMath(question.stem) + "</div>",
       options,
       isChoice ? '    <p class="law-question-hint">點開下方「完整參考解答」查看答案與選項解析。</p>' : "",
@@ -4979,7 +4986,7 @@
       '      <div class="law-answer-body">' + (answerLoaded ? renderLawAnswerBody(entry) : renderLawAnswerInitial(entry)) + "</div>",
       "    </details>",
       '    <div class="law-question-footer">',
-      '      <a class="text-link" href="' + escapeHtml(lawQuestionLink(entry)) + '">在題庫中開啟題目 →</a>',
+      entry.showQuestionLink === false ? "" : '      <a class="text-link" href="' + escapeHtml(lawQuestionLink(entry)) + '">在題庫中開啟題目 →</a>',
       "      <span>" + escapeHtml(question.note || "本站參考解答（非官方）") + "</span>",
       "    </div>",
       "  </div>",
@@ -5136,16 +5143,17 @@
     if (!chapter || chapter.subjectId === "law" || !writtenQuestions.length) {
       return "";
     }
+    const context = "本章：" + chapter.title;
     const entries = writtenQuestions.map(function (question) {
-      return { question: question, kind: "written", refs: [] };
+      return { question: question, kind: "written", refs: [], showQuestionLink: false, context: context };
     });
     sortLawQuestionEntries(entries);
     return [
       '<section class="section-block chapter-written-questions" id="section-written">',
       '  <div class="section-kicker">考古題</div>',
       "  <h2>本章申論／計算題</h2>",
-      '  <div class="section-question-bank">',
-      '    <p class="section-question-note">共 ' + entries.length + " 題；題目預設收合，點選題目展開，再點「完整參考解答」查看答案。</p>",
+      '  <div class="law-article-questions">',
+      '    <div class="law-article-question-head"><span>相關考古題</span><span>' + entries.length + " 題</span></div>",
       renderLawQuestionList(entries, chapter, { anchors: new Map() }),
       "  </div>",
       "</section>"
