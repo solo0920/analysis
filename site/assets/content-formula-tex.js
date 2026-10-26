@@ -93,7 +93,6 @@ C-P=S_0-Ke^{-rT}
   "investment-10::學習重點 3：避險與交易策略": { tex: String.raw`\text{避險契約數}\approx \frac{(\beta_{\text{目標}}-\beta_{\text{現貨}})\times\text{現貨部位價值}}{\text{每口期貨契約價值}}`, note: "負值代表賣出期貨；全數避險至 β目標 = 0、期貨 β ≈ 1 時，賣出契約數為 β現貨 × 現貨部位價值 ÷ 每口期貨契約價值。" },
   "investment-11::學習重點 1：交換契約": { tex: String.raw`\text{利率交換淨現金流}\approx(\text{浮動利率}-\text{固定利率})\times\text{名目本金}`, note: "" },
 
-  "investment-14::學習重點 3：杜邦分析與盈餘品質": { tex: String.raw`ROE=\text{淨利率}\times\text{總資產週轉率}\times\text{權益乘數}`, note: "" },
   "investment-15::學習重點 2：常用技術指標": { tex: String.raw`\begin{gathered}MA_n=\frac{P_t+P_{t-1}+\cdots+P_{t-n+1}}{n}\\RSI=100-\frac{100}{1+RS},\quad RS=\frac{\text{平均漲幅}}{\text{平均跌幅}}\end{gathered}`, note: "" },
   "investment-17::學習重點 1：報酬率與績效衡量": { tex: String.raw`\text{超額報酬}=\text{投資組合報酬}-\text{基準報酬}`, note: "" },
 
@@ -150,7 +149,8 @@ C-P=S_0-Ke^{-rT}
 
   "accounting-14::第1節 財務報表與一般公認會計原則": { tex: String.raw`\text{資產}=\text{負債}+\text{權益}`, note: "" },
   "accounting-15::第1節 財務報表分析之基本觀念及方法": { tex: String.raw`\text{共同比}=\frac{\text{各項目}}{\text{基準項目}}\times 100\%`, note: "" },
-  "accounting-15::第2節 比率分析": { tex: String.raw`\begin{gathered}ROE=\text{淨利率}\times\text{總資產週轉率}\times\text{權益乘數}\\\text{權益乘數}=\frac{\text{總資產}}{\text{股東權益}}\end{gathered}`, note: "" },
+  "accounting-15::第2節 比率分析": { tex: String.raw`\begin{gathered}\text{流動比率}=\frac{\text{流動資產}}{\text{流動負債}}\\\text{速動比率}=\frac{\text{速動資產}}{\text{流動負債}}\end{gathered}`, note: "" },
+  "accounting-15::第3節 杜邦分析": { tex: String.raw`\begin{gathered}\text{三階段：ROE}=\text{淨利率}\times\text{總資產週轉率}\\\times\text{權益乘數}\\\text{五階段：ROE}=\text{稅負負擔}\times\text{利息負擔}\\\times\text{EBIT 利潤率}\times\text{總資產週轉率}\times\text{權益乘數}\end{gathered}`, note: "三階段快速判斷報酬來源；五階段進一步區分稅負、利息與 EBIT 利潤率。資產與股東權益通常採用平均餘額。" },
 
   "accounting-16::學習重點 1：銷售百分比法與外部融資需求": { tex: String.raw`\text{外部融資需求}=\text{預估資產增加}-\text{自發性負債增加}-\text{保留盈餘增加}`, note: "" },
   "accounting-16::學習重點 2：預測報表與情境分析": { tex: String.raw`\text{保留盈餘增加}=\text{預估淨利}\times(1-\text{股利支付率})`, note: "" },

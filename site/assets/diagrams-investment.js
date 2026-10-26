@@ -405,50 +405,107 @@ window.INVESTMENT_DIAGRAMS = {
   },
   "investment-14#2": {
     sectionTitle: "學習重點 3：杜邦分析與盈餘品質",
-    title: "杜邦分析：ROE 的三因子分解",
-    caption: "杜邦分析把 ROE 拆成淨利率、總資產週轉率與權益乘數，分別代表獲利能力、資產效率與財務槓桿。同樣的 ROE 可能有完全不同的來源與風險。",
+    title: "杜邦分析：三階段與五階段 ROE 拆解",
+    caption: "三階段杜邦分析把 ROE 拆成淨利率、總資產週轉率與權益乘數；五階段再把淨利率拆成稅負負擔、利息負擔與 EBIT 利潤率，適合判斷報酬來源與風險。",
     svg: `
-<svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-inv-dupont-title" xmlns="http://www.w3.org/2000/svg">
-  <title id="dg-inv-dupont-title">杜邦分析：ROE 的三因子分解</title>
-  <rect class="dg-box" x="220" y="28" width="200" height="62" rx="10"></rect>
-  <text class="dg-label" x="320" y="54" text-anchor="middle">ROE</text>
-  <text class="dg-label-sm" x="320" y="76" text-anchor="middle">稅後淨利 ÷ 平均權益</text>
-  <line class="dg-axis" x1="320" y1="90" x2="320" y2="120"></line>
-  <line class="dg-axis" x1="115" y1="120" x2="525" y2="120"></line>
-  <line class="dg-axis" x1="115" y1="120" x2="115" y2="155"></line>
-  <line class="dg-axis" x1="320" y1="120" x2="320" y2="155"></line>
-  <line class="dg-axis" x1="525" y1="120" x2="525" y2="155"></line>
-  <rect class="dg-panel" x="20" y="155" width="190" height="105" rx="10"></rect>
-  <rect class="dg-panel" x="225" y="155" width="190" height="105" rx="10"></rect>
-  <rect class="dg-panel" x="430" y="155" width="190" height="105" rx="10"></rect>
-  <text class="dg-label" x="115" y="182" text-anchor="middle">淨利率</text>
-  <text class="dg-label-sm" x="115" y="208" text-anchor="middle">稅後淨利 ÷ 營業收入</text>
-  <text class="dg-label-sm" x="115" y="236" text-anchor="middle">獲利能力</text>
-  <text class="dg-label" x="320" y="182" text-anchor="middle">總資產週轉率</text>
-  <text class="dg-label-sm" x="320" y="208" text-anchor="middle">營業收入 ÷ 平均總資產</text>
-  <text class="dg-label-sm" x="320" y="236" text-anchor="middle">資產效率</text>
-  <text class="dg-label" x="525" y="182" text-anchor="middle">權益乘數</text>
-  <text class="dg-label-sm" x="525" y="208" text-anchor="middle">平均總資產 ÷ 平均權益</text>
-  <text class="dg-label-sm" x="525" y="236" text-anchor="middle">財務槓桿</text>
-  <text class="dg-label" x="320" y="302" text-anchor="middle">ROE ＝ 淨利率 × 總資產週轉率 × 權益乘數</text>
-  <text class="dg-label-sm" x="320" y="328" text-anchor="middle">高 ROE 可能來自高槓桿；要拆解來源，不能只看結果。</text>
+<svg viewBox="0 0 640 580" role="img" aria-labelledby="dg-inv-dupont-title dg-inv-dupont-desc" style="max-width:640px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-inv-dupont-title">杜邦分析：三階段與五階段 ROE 拆解</title>
+  <desc id="dg-inv-dupont-desc">上方為三階段杜邦分析，將 ROE 拆成淨利率、總資產週轉率與權益乘數；下方為五階段杜邦分析，再拆成稅負負擔、利息負擔、EBIT 利潤率、總資產週轉率與權益乘數。</desc>
+  <defs>
+    <marker id="dg-inv-dupont-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="dg-arrow-head" d="M0,0 L10,5 L0,10 z"></path>
+    </marker>
+  </defs>
+
+  <text class="dg-label dg-label-strong" x="320" y="20" text-anchor="middle">杜邦分析 DuPont Analysis</text>
+  <text class="dg-label-xs" x="320" y="40" text-anchor="middle">把 ROE 拆成獲利、效率與槓桿；五階段再拆分稅負、利息與 EBIT 利潤率</text>
+
+  <text class="dg-label-xs dg-label-adjust" x="320" y="66" text-anchor="middle" font-size="11">三階段 Three-Step DuPont</text>
+  <rect class="dg-box dg-box-accent" x="250" y="78" width="140" height="44" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="320" y="96" text-anchor="middle" font-size="13">權益報酬率 ROE</text>
+  <text class="dg-label-xs" x="320" y="112" text-anchor="middle" font-size="9">Return on Equity</text>
+
+  <path class="dg-arrow" d="M320 122 V144 H125 V170" marker-end="url(#dg-inv-dupont-arrow)"></path>
+  <line class="dg-arrow" x1="320" y1="122" x2="320" y2="170" marker-end="url(#dg-inv-dupont-arrow)"></line>
+  <path class="dg-arrow" d="M320 122 V144 H515 V170" marker-end="url(#dg-inv-dupont-arrow)"></path>
+
+  <rect class="dg-box" x="35" y="170" width="180" height="64" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="125" y="190" text-anchor="middle" font-size="13">淨利率</text>
+  <text class="dg-label-xs" x="125" y="205" text-anchor="middle" font-size="9">Net Profit Margin</text>
+  <text class="dg-label-xs" x="125" y="220" text-anchor="middle" font-size="9">NI ÷ Revenue</text>
+
+  <rect class="dg-box" x="230" y="170" width="180" height="64" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="320" y="190" text-anchor="middle" font-size="13">總資產週轉率</text>
+  <text class="dg-label-xs" x="320" y="205" text-anchor="middle" font-size="9">Asset Turnover</text>
+  <text class="dg-label-xs" x="320" y="220" text-anchor="middle" font-size="9">Revenue ÷ Avg. Assets</text>
+
+  <rect class="dg-box" x="425" y="170" width="180" height="64" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="515" y="190" text-anchor="middle" font-size="13">權益乘數</text>
+  <text class="dg-label-xs" x="515" y="205" text-anchor="middle" font-size="9">Equity Multiplier</text>
+  <text class="dg-label-xs" x="515" y="220" text-anchor="middle" font-size="9">Avg. Assets ÷ Avg. Equity</text>
+
+  <text class="dg-label-xs dg-label-adjust" x="320" y="272" text-anchor="middle" font-size="11">五階段 Five-Step DuPont</text>
+  <rect class="dg-box dg-box-accent" x="250" y="290" width="140" height="44" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="320" y="308" text-anchor="middle" font-size="13">權益報酬率 ROE</text>
+  <text class="dg-label-xs" x="320" y="324" text-anchor="middle" font-size="9">Return on Equity</text>
+
+  <line class="dg-arrow" x1="320" y1="334" x2="320" y2="354"></line>
+  <line class="dg-guide" x1="76" y1="354" x2="564" y2="354"></line>
+  <line class="dg-arrow" x1="76" y1="354" x2="76" y2="388" marker-end="url(#dg-inv-dupont-arrow)"></line>
+  <line class="dg-arrow" x1="198" y1="354" x2="198" y2="388" marker-end="url(#dg-inv-dupont-arrow)"></line>
+  <line class="dg-arrow" x1="320" y1="354" x2="320" y2="388" marker-end="url(#dg-inv-dupont-arrow)"></line>
+  <line class="dg-arrow" x1="442" y1="354" x2="442" y2="388" marker-end="url(#dg-inv-dupont-arrow)"></line>
+  <line class="dg-arrow" x1="564" y1="354" x2="564" y2="388" marker-end="url(#dg-inv-dupont-arrow)"></line>
+
+  <rect class="dg-box" x="20" y="388" width="112" height="72" rx="9"></rect>
+  <text class="dg-label dg-label-strong" x="76" y="408" text-anchor="middle" font-size="12">稅負負擔</text>
+  <text class="dg-label-xs" x="76" y="422" text-anchor="middle" font-size="8.5">Tax Burden</text>
+  <text class="dg-label-xs" x="76" y="438" text-anchor="middle" font-size="8.5">NI ÷ EBT</text>
+
+  <rect class="dg-box" x="142" y="388" width="112" height="72" rx="9"></rect>
+  <text class="dg-label dg-label-strong" x="198" y="408" text-anchor="middle" font-size="12">利息負擔</text>
+  <text class="dg-label-xs" x="198" y="422" text-anchor="middle" font-size="8.5">Interest Burden</text>
+  <text class="dg-label-xs" x="198" y="438" text-anchor="middle" font-size="8.5">EBT ÷ EBIT</text>
+
+  <rect class="dg-box" x="264" y="388" width="112" height="72" rx="9"></rect>
+  <text class="dg-label dg-label-strong" x="320" y="408" text-anchor="middle" font-size="12">EBIT 利潤率</text>
+  <text class="dg-label-xs" x="320" y="422" text-anchor="middle" font-size="8.5">EBIT Margin</text>
+  <text class="dg-label-xs" x="320" y="438" text-anchor="middle" font-size="8.5">EBIT ÷ Revenue</text>
+
+  <rect class="dg-box" x="386" y="388" width="112" height="72" rx="9"></rect>
+  <text class="dg-label dg-label-strong" x="442" y="408" text-anchor="middle" font-size="12">總資產週轉率</text>
+  <text class="dg-label-xs" x="442" y="422" text-anchor="middle" font-size="8.5">Asset Turnover</text>
+  <text class="dg-label-xs" x="442" y="438" text-anchor="middle" font-size="8.5">Revenue ÷ Avg. Assets</text>
+
+  <rect class="dg-box" x="508" y="388" width="112" height="72" rx="9"></rect>
+  <text class="dg-label dg-label-strong" x="564" y="408" text-anchor="middle" font-size="12">權益乘數</text>
+  <text class="dg-label-xs" x="564" y="422" text-anchor="middle" font-size="8.5">Equity Multiplier</text>
+  <text class="dg-label-xs" x="564" y="438" text-anchor="middle" font-size="8.5">Avg. Assets ÷ Avg. Equity</text>
+
+  <rect class="dg-panel" x="30" y="490" width="580" height="70" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="320" y="512" text-anchor="middle" font-size="10.5">三階段：ROE = 淨利率 × 總資產週轉率 × 權益乘數</text>
+  <text class="dg-label dg-label-strong" x="320" y="530" text-anchor="middle" font-size="10.5">五階段：ROE = 稅負負擔 × 利息負擔 × EBIT 利潤率 × 總資產週轉率 × 權益乘數</text>
+  <text class="dg-label-xs" x="320" y="548" text-anchor="middle" font-size="9">三階段快速判斷報酬來源；五階段再拆稅負、利息與 EBIT 利潤率。</text>
 </svg>`,
     variables: [
       ["ROE", "股東權益報酬率", "稅後淨利除以平均權益。"],
-      ["PM", "淨利率", "稅後淨利除以營業收入，衡量獲利能力。"],
-      ["ATO", "總資產週轉率", "營業收入除以平均總資產，衡量資產效率。"],
+      ["NPM", "淨利率", "稅後淨利除以營業收入，衡量獲利能力。"],
+      ["AT", "總資產週轉率", "營業收入除以平均總資產，衡量資產效率。"],
       ["EM", "權益乘數", "平均總資產除以平均權益，衡量財務槓桿。"],
-      ["NI", "稅後淨利", "損益表的最終獲利。"],
-      ["Sales", "營業收入", "損益表的營業收入淨額。"],
-      ["Assets", "平均總資產", "資產負債表期初與期末的平均。"],
-      ["Equity", "平均權益", "資產負債表期初與期末的平均。"]
+      ["Tax", "稅負負擔", "稅後淨利除以稅前淨利，反映所得稅的影響。"],
+      ["Int", "利息負擔", "稅前淨利除以 EBIT，反映利息等非營業項目的影響。"],
+      ["EBIT margin", "EBIT 利潤率", "EBIT 除以營業收入，衡量扣除利息與所得稅前的獲利能力。"],
+      ["Five-step", "五階段杜邦", "把三階段中的淨利率再拆成稅負負擔、利息負擔與 EBIT 利潤率。"]
     ],
     parameters: [
-      ["T", "所得稅率", "影響稅後淨利與淨利率。"],
-      ["I", "利息費用", "影響稅後淨利，但不直接進入杜邦三因子。"],
-      ["g", "營收成長率", "影響週轉率與獲利能力的永續性。"]
+      ["3-step", "三階段杜邦", "ROE = 淨利率 × 總資產週轉率 × 權益乘數。"],
+      ["5-step", "五階段杜邦", "ROE = 稅負負擔 × 利息負擔 × EBIT 利潤率 × 總資產週轉率 × 權益乘數。"],
+      ["Average", "平均餘額", "資產與股東權益通常採用期初、期末平均。"],
+      ["Period", "同期間", "分子、分母的期間與單位要一致。"],
+      ["Leverage", "槓桿效果", "權益乘數上升可推高 ROE，但也提高財務風險。"],
+      ["Quality", "報酬品質", "ROE 上升可能來自本業改善、效率提升或槓桿，需進一步拆解。"]
     ],
-    note: "杜邦分析不是只看 ROE 高低，而是拆解報酬來源；高 ROE 可能來自高槓桿，未必是經營效率好。分析時要搭配現金流量與盈餘品質。"
+    note: "三階段適合快速判斷 ROE 的來源；五階段進一步區分稅負、利息及營業獲利對 ROE 的影響。高 ROE 可能來自高槓桿，分析時要搭配現金流量與盈餘品質。"
   },
   "investment-15#2": {
     sectionTitle: "學習重點 3：型態分析與風險控制",

@@ -201,8 +201,8 @@ window.MERMAID_DIAGRAMS = {
     "note": "損益表主要結轉路徑，以及本期淨利連到的三項報酬率。",
     "source": "flowchart TD\n  accTitle: 從營業收入到本期淨利與財務比率\n  accDescr: 營業收入依序減銷貨成本、營業費用、營業外收支與所得稅，得到毛利、營業利益、稅前淨利與本期淨利；本期淨利再連到淨利率、總資產報酬率與權益報酬率。\n\n  R[\"營業收入<br/>Revenue\"]:::accent --> GP[\"毛利<br/>Gross Profit\"]\n  COGS[\"− 銷貨成本<br/>COGS\"] -.-> GP\n  GP --> OI[\"營業利益<br/>Operating Income\"]\n  OPEX[\"− 營業費用<br/>Operating Expenses\"] -.-> OI\n  OI --> EBT[\"稅前淨利<br/>EBT\"]\n  NONOP[\"± 營業外收支<br/>Non-operating\"] -.-> EBT\n  EBT --> NI[\"本期淨利<br/>Net Income\"]:::outcome\n  TAX[\"− 所得稅<br/>Income Tax\"] -.-> NI\n  NI --> PM[\"淨利率<br/>NI ÷ Revenue\"]\n  NI --> ROA[\"總資產報酬率<br/>NI ÷ Total Assets\"]\n  NI --> ROE[\"權益報酬率<br/>NI ÷ Equity\"]\n\n  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px\n  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px\n"
   },
-  "accounting-15#1": {
-    "key": "accounting-15#1",
+  "accounting-15#2": {
+    "key": "accounting-15#2",
     "file": "accounting-dupont.mmd",
     "slug": "accounting-dupont",
     "order": 11,
@@ -210,11 +210,11 @@ window.MERMAID_DIAGRAMS = {
     "subjectName": "會計學",
     "chapterId": "accounting-15",
     "chapterTitle": "財務報表分析",
-    "section": 1,
-    "sectionTitle": "第2節 比率分析",
+    "section": 2,
+    "sectionTitle": "第3節 杜邦分析",
     "shortTitle": "杜邦三階段／五階段",
-    "note": "三階段 ROE 拆解，以及淨利率再拆成稅務效率、利息負擔與本業獲利。",
-    "source": "flowchart TD\n  accTitle: 杜邦分析：三階段與五階段 ROE 拆解\n  accDescr: 三階段杜邦把 ROE 拆成淨利率、總資產週轉率與權益乘數；五階段再把淨利率拆成稅務效率、利息負擔與本業獲利。\n\n  ROE[\"權益報酬率 ROE<br/>NI ÷ 平均權益\"]:::outcome\n  NPM[\"淨利率<br/>NI ÷ 營業收入\"]\n  TAT[\"總資產週轉率<br/>營業收入 ÷ 平均總資產\"]\n  EM[\"權益乘數<br/>平均總資產 ÷ 平均權益\"]\n\n  ROE --> NPM\n  ROE --> TAT\n  ROE --> EM\n\n  subgraph FIVE[\"五階段：淨利率再拆解\"]\n    direction LR\n    TAX[\"稅務效率<br/>NI ÷ EBT\"]\n    INT[\"利息負擔<br/>EBT ÷ EBIT\"]\n    EBITM[\"本業獲利<br/>EBIT ÷ 營業收入\"]\n  end\n\n  NPM --> TAX\n  NPM --> INT\n  NPM --> EBITM\n\n  FORMULA[\"ROE = 稅務效率 × 利息負擔<br/>× 本業獲利 × 資產效率 × 財務槓桿\"]:::accent\n  TAX --> FORMULA\n  INT --> FORMULA\n  EBITM --> FORMULA\n  TAT --> FORMULA\n  EM --> FORMULA\n\n  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px\n  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px\n"
+    "note": "三階段 ROE 拆解，以及淨利率再拆成稅負負擔、利息負擔與 EBIT 利潤率。",
+    "source": "flowchart TD\n  accTitle: 杜邦分析：三階段與五階段 ROE 拆解\n  accDescr: 三階段杜邦把 ROE 拆成淨利率、總資產週轉率與權益乘數；五階段再把淨利率拆成稅負負擔、利息負擔與 EBIT 利潤率。\n\n  ROE[\"權益報酬率 ROE<br/>NI ÷ 平均權益\"]:::outcome\n  NPM[\"淨利率<br/>NI ÷ 營業收入\"]\n  TAT[\"總資產週轉率<br/>營業收入 ÷ 平均總資產\"]\n  EM[\"權益乘數<br/>平均總資產 ÷ 平均權益\"]\n\n  ROE --> NPM\n  ROE --> TAT\n  ROE --> EM\n\n  subgraph FIVE[\"五階段：淨利率再拆解\"]\n    direction LR\n    TAX[\"稅負負擔<br/>NI ÷ EBT\"]\n    INT[\"利息負擔<br/>EBT ÷ EBIT\"]\n    EBITM[\"EBIT 利潤率<br/>EBIT ÷ 營業收入\"]\n  end\n\n  NPM --> TAX\n  NPM --> INT\n  NPM --> EBITM\n\n  FORMULA[\"ROE = 稅負負擔 × 利息負擔<br/>× EBIT 利潤率 × 總資產週轉率 × 權益乘數\"]:::accent\n  TAX --> FORMULA\n  INT --> FORMULA\n  EBITM --> FORMULA\n  TAT --> FORMULA\n  EM --> FORMULA\n\n  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px\n  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px\n"
   },
   "accounting-23#1": {
     "key": "accounting-23#1",
@@ -508,9 +508,9 @@ window.MERMAID_DIAGRAMS = {
     "chapterTitle": "財務分析",
     "section": 2,
     "sectionTitle": "學習重點 3：杜邦分析與盈餘品質",
-    "shortTitle": "杜邦分析",
-    "note": "把 ROE 拆成淨利率、總資產週轉率與權益乘數三個來源。",
-    "source": "flowchart TD\n  accTitle: 杜邦分析：ROE 的三因子分解\n  accDescr: 權益報酬率拆成淨利率、總資產週轉率與權益乘數，分別代表獲利能力、資產效率與財務槓桿；再往下列出三項比率的計算方式。\n\n  ROE[\"權益報酬率 ROE<br/>NI ÷ 平均權益\"]:::outcome\n  ROE --> NPM[\"淨利率<br/>NI ÷ 營業收入\"]\n  ROE --> TAT[\"總資產週轉率<br/>營業收入 ÷ 平均總資產\"]\n  ROE --> EM[\"權益乘數<br/>平均總資產 ÷ 平均權益\"]\n  NPM --> P1[\"獲利能力\"]\n  TAT --> P2[\"資產效率\"]\n  EM --> P3[\"財務槓桿\"]\n  P1 --> D1[\"稅後淨利<br/>÷ 營業收入\"]\n  P2 --> D2[\"營業收入<br/>÷ 平均總資產\"]\n  P3 --> D3[\"平均總資產<br/>÷ 平均權益\"]\n\n  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px\n"
+    "shortTitle": "杜邦三階段／五階段",
+    "note": "三階段 ROE 拆解，以及淨利率再拆成稅負負擔、利息負擔與 EBIT 利潤率。",
+    "source": "flowchart TD\n  accTitle: 杜邦分析：三階段與五階段 ROE 拆解\n  accDescr: 三階段杜邦把 ROE 拆成淨利率、總資產週轉率與權益乘數；五階段再把淨利率拆成稅負負擔、利息負擔與 EBIT 利潤率。\n\n  ROE[\"權益報酬率 ROE<br/>NI ÷ 平均權益\"]:::outcome\n  NPM[\"淨利率<br/>NI ÷ 營業收入\"]\n  TAT[\"總資產週轉率<br/>營業收入 ÷ 平均總資產\"]\n  EM[\"權益乘數<br/>平均總資產 ÷ 平均權益\"]\n\n  ROE --> NPM\n  ROE --> TAT\n  ROE --> EM\n\n  subgraph FIVE[\"五階段：淨利率再拆解\"]\n    direction LR\n    TAX[\"稅負負擔<br/>NI ÷ EBT\"]\n    INT[\"利息負擔<br/>EBT ÷ EBIT\"]\n    EBITM[\"EBIT 利潤率<br/>EBIT ÷ 營業收入\"]\n  end\n\n  NPM --> TAX\n  NPM --> INT\n  NPM --> EBITM\n\n  FORMULA[\"ROE = 稅負負擔 × 利息負擔<br/>× EBIT 利潤率 × 總資產週轉率 × 權益乘數\"]:::accent\n  TAX --> FORMULA\n  INT --> FORMULA\n  EBITM --> FORMULA\n  TAT --> FORMULA\n  EM --> FORMULA\n\n  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px\n  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px\n"
   }
 };
 

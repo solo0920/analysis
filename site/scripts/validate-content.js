@@ -522,7 +522,7 @@ const accountingExpectedSections = accountingSource.chapters.reduce(function (su
   return sum + Math.max(chapter.sections.length, 2);
 }, 0);
 check(accountingExplicitSourceSections === 41, "會計學來源應有 41 個具名節次");
-const accountingSupplementalSections = 1;
+const accountingSupplementalSections = 2;
 check(accountingSections === accountingExpectedSections + accountingSupplementalSections, "會計學學習單元數應與來源節次及補充單元一致（預期 " + (accountingExpectedSections + accountingSupplementalSections) + "）");
 
 accountingSource.chapters.forEach(function (expected, index) {
@@ -539,9 +539,10 @@ accountingSource.chapters.forEach(function (expected, index) {
   check(actual.page === "P. " + expected.page, "會計學第 " + expected.number + " 章頁碼不符：" + actual.page);
 
   if (expected.sections.length > 0) {
+    const expectedSectionCount = expected.sections.length + (expected.number === 15 ? 1 : 0);
     check(
-      actual.sections.length === expected.sections.length,
-      "會計學第 " + expected.number + " 章節次數應與來源一致（" + expected.sections.length + "）"
+      actual.sections.length === expectedSectionCount,
+      "會計學第 " + expected.number + " 章節次數應與來源一致（" + expectedSectionCount + "）"
     );
     expected.sections.forEach(function (sourceSection, sectionIndex) {
       const actualSection = actual.sections[sectionIndex];
@@ -551,6 +552,13 @@ accountingSource.chapters.forEach(function (expected, index) {
         "會計學第 " + expected.number + " 章第 " + sourceSection.number + " 節名稱不符"
       );
     });
+    if (expected.number === 15) {
+      const supplement = actual.sections[expected.sections.length];
+      check(
+        Boolean(supplement) && normalizeAccountingTitle(supplement.title) === normalizeAccountingTitle("第3節 杜邦分析"),
+        "會計學第 15 章應有第3節杜邦分析補充節"
+      );
+    }
   } else {
     const supplementalCount = expected.number === 19 ? 3 : 2;
     check(actual.sections.length === supplementalCount, "會計學第 " + expected.number + " 章應有 " + supplementalCount + " 個補充學習重點");
@@ -2277,4 +2285,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log("驗證通過：總體經濟學（13 章、56 節）、投資學（16 章、58 個重點）、會計學（23 章、64 個單元）、證券法規（21 章、52 節、1,507 條官方全文）、" + totalChapterDiagrams + " 張章節教學圖（總體 " + totalMacroDiagrams + "、投資 " + totalInvestmentDiagrams + "、會計 " + totalAccountingDiagrams + "；含 " + mermaidNewEntries.length + " 張 Mermaid 新推導圖）、119 個 KaTeX 公式、諾貝爾年表（1969–2026）與 107–115 年 3,710 題考古題練習庫結構一致。");
+console.log("驗證通過：總體經濟學（13 章、56 節）、投資學（16 章、58 個重點）、會計學（23 章、65 個單元）、證券法規（21 章、52 節、1,507 條官方全文）、" + totalChapterDiagrams + " 張章節教學圖（總體 " + totalMacroDiagrams + "、投資 " + totalInvestmentDiagrams + "、會計 " + totalAccountingDiagrams + "；含 " + mermaidNewEntries.length + " 張 Mermaid 新推導圖）、119 個 KaTeX 公式、諾貝爾年表（1969–2026）與 107–115 年 3,710 題考古題練習庫結構一致。");

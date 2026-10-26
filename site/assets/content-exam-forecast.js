@@ -1867,14 +1867,14 @@ window.EXAM_FORECAST = {
       "topic": "財務分析",
       "type": "杜邦分析",
       "priority": "最高",
-      "title": "五因子杜邦拆解與資本支出影響",
+      "title": "五階段杜邦拆解與資本支出影響",
       "scenario": "台美半導體權值股進行大規模資本支出，營收、淨利、EBIT、總資產、股東權益與利息費用變動。",
       "ask": [
-        "寫出五因子杜邦公式並拆解 ROE。",
-        "高資本支出如何影響資產週轉率與營業利益率？",
+        "寫出五階段杜邦公式並拆解 ROE。",
+        "高資本支出如何影響總資產週轉率與 EBIT 利潤率？",
         "比較舉債擴廠對 ROE 的淨效果。"
       ],
-      "focus": "ROE=(NI/EBT)(EBT/EBIT)(EBIT/Sales)(Sales/Assets)(Assets/Equity)。資本支出初期增加資產、折舊與利息，壓低週轉率與利潤率；若產能利用率與營收跟不上，ROE 可能下降。",
+      "focus": "ROE=(NI/EBT)(EBT/EBIT)(EBIT/Sales)(Sales/Assets)(Assets/Equity)，分別是稅負負擔、利息負擔、EBIT 利潤率、總資產週轉率與權益乘數。資本支出初期增加資產、折舊與利息，壓低週轉率與利潤率；若產能利用率與營收跟不上，ROE 可能下降。",
       "chapters": [
         "investment-14",
         "investment-13"
@@ -3989,9 +3989,9 @@ window.EXAM_FORECAST = {
         "note": "每股價值=(EV−淨負債)/流通股數；終值占比越高，估值越敏感。"
       },
       {
-        "name": "五因子杜邦",
+        "name": "五階段杜邦",
         "latex": "ROE=\\frac{NI}{EBT}\\times\\frac{EBT}{EBIT}\\times\\frac{EBIT}{Sales}\\times\\frac{Sales}{Assets}\\times\\frac{Assets}{Equity}",
-        "note": "分別代表稅負、利息、營業利益率、資產週轉與權益乘數。"
+        "note": "分別代表稅負負擔、利息負擔、EBIT 利潤率、總資產週轉率與權益乘數。"
       },
       {
         "name": "PEG",
@@ -4320,7 +4320,7 @@ window.EXAM_FORECAST.topicFormulas = {
   "資產配置": ["投資組合變異數", "風險平價"],
   "風險管理": ["參數式 VaR", "CVaR"],
   "績效評估": ["績效指標"],
-  "財務分析": ["五因子杜邦", "EVA"],
+  "財務分析": ["五階段杜邦", "EVA"],
   "應收與存貨": [
     {
       "name": "應收帳款淨額",

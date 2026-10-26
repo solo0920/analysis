@@ -278,19 +278,19 @@ Object.assign(window.ACCOUNTING_DIAGRAMS, {
       ["Shares", "股數 Shares", "EPS 分母用加權平均流通在外股數；BVPS 分母通常用期末流通在外股數。"],
       ["Same period", "同一期間 Same period", "比率的分子、分母期間與單位要一致，否則會誤導。"],
       ["Retention", "保留盈餘率 Retention ratio", "(NI − 股利) ÷ NI；與股利支付率合計為 1。"],
-      ["DuPont", "杜邦分析 DuPont analysis", "把 ROE 拆成淨利率、資產週轉率與權益乘數，進一步追蹤報酬來源。"]
+      ["DuPont", "杜邦分析 DuPont analysis", "把 ROE 拆成淨利率、總資產週轉率與權益乘數；五階段再拆稅負、利息與 EBIT 利潤率。"]
     ],
     note: "本圖把損益表的主要結轉路徑與常見比率放在同一張圖。比率只表示關係，必須搭配產業特性、會計政策、同期比較與附註解讀；P/E、P/B 需要市價，EPS 與 BVPS 的股數定義也不同。"
   },
-  "accounting-15#1": {
-    sectionTitle: "第2節 比率分析",
+  "accounting-15#2": {
+    sectionTitle: "第3節 杜邦分析",
     kicker: "教學流程圖",
     title: "杜邦分析：三階段與五階段 ROE 拆解",
-    caption: "三階段杜邦分析把權益報酬率拆成淨利率、總資產週轉率與權益乘數，分別代表獲利能力、資產使用效率與財務槓桿。五階段版本再把淨利率拆成稅務效率與利息負擔，適合比較稅負、利息與本業獲利對 ROE 的影響。",
+    caption: "三階段杜邦分析把權益報酬率拆成淨利率、總資產週轉率與權益乘數，分別代表獲利能力、資產使用效率與財務槓桿。五階段版本再把淨利率拆成稅負負擔、利息負擔與 EBIT 利潤率，適合比較稅負、利息與營業獲利對 ROE 的影響。",
     svg: `
 <svg viewBox="0 0 640 580" role="img" aria-labelledby="dg-acc-dupont-title dg-acc-dupont-desc" style="max-width:640px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
   <title id="dg-acc-dupont-title">杜邦分析圖</title>
-  <desc id="dg-acc-dupont-desc">上方為三階段杜邦分析，將 ROE 拆成淨利率、總資產週轉率與權益乘數；下方為五階段杜邦分析，再拆成稅務效率、利息負擔、本業獲利能力、資產使用效率與財務槓桿。</desc>
+  <desc id="dg-acc-dupont-desc">上方為三階段杜邦分析，將 ROE 拆成淨利率、總資產週轉率與權益乘數；下方為五階段杜邦分析，再拆成稅負負擔、利息負擔、EBIT 利潤率、總資產週轉率與權益乘數。</desc>
   <defs>
     <marker id="dg-acc-dupont-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path class="dg-arrow-head" d="M0,0 L10,5 L0,10 z"></path>
@@ -298,7 +298,7 @@ Object.assign(window.ACCOUNTING_DIAGRAMS, {
   </defs>
 
   <text class="dg-label dg-label-strong" x="320" y="20" text-anchor="middle">杜邦分析 DuPont Analysis</text>
-  <text class="dg-label-xs" x="320" y="40" text-anchor="middle">把 ROE 拆成獲利、效率與槓桿；五階段再拆分稅務與利息負擔</text>
+  <text class="dg-label-xs" x="320" y="40" text-anchor="middle">把 ROE 拆成獲利、效率與槓桿；五階段再拆分稅負、利息與 EBIT 利潤率</text>
 
   <text class="dg-label-xs dg-label-adjust" x="320" y="66" text-anchor="middle" font-size="11">三階段 Three-Step DuPont</text>
   <rect class="dg-box dg-box-accent" x="250" y="78" width="140" height="44" rx="10"></rect>
@@ -338,7 +338,7 @@ Object.assign(window.ACCOUNTING_DIAGRAMS, {
   <line class="dg-arrow" x1="564" y1="354" x2="564" y2="388" marker-end="url(#dg-acc-dupont-arrow)"></line>
 
   <rect class="dg-box" x="20" y="388" width="112" height="72" rx="9"></rect>
-  <text class="dg-label dg-label-strong" x="76" y="408" text-anchor="middle" font-size="12">稅務效率</text>
+  <text class="dg-label dg-label-strong" x="76" y="408" text-anchor="middle" font-size="12">稅負負擔</text>
   <text class="dg-label-xs" x="76" y="422" text-anchor="middle" font-size="8.5">Tax Burden</text>
   <text class="dg-label-xs" x="76" y="438" text-anchor="middle" font-size="8.5">NI ÷ EBT</text>
 
@@ -348,44 +348,44 @@ Object.assign(window.ACCOUNTING_DIAGRAMS, {
   <text class="dg-label-xs" x="198" y="438" text-anchor="middle" font-size="8.5">EBT ÷ EBIT</text>
 
   <rect class="dg-box" x="264" y="388" width="112" height="72" rx="9"></rect>
-  <text class="dg-label dg-label-strong" x="320" y="408" text-anchor="middle" font-size="12">本業獲利</text>
+  <text class="dg-label dg-label-strong" x="320" y="408" text-anchor="middle" font-size="12">EBIT 利潤率</text>
   <text class="dg-label-xs" x="320" y="422" text-anchor="middle" font-size="8.5">EBIT Margin</text>
   <text class="dg-label-xs" x="320" y="438" text-anchor="middle" font-size="8.5">EBIT ÷ Revenue</text>
 
   <rect class="dg-box" x="386" y="388" width="112" height="72" rx="9"></rect>
-  <text class="dg-label dg-label-strong" x="442" y="408" text-anchor="middle" font-size="12">資產效率</text>
+  <text class="dg-label dg-label-strong" x="442" y="408" text-anchor="middle" font-size="12">總資產週轉率</text>
   <text class="dg-label-xs" x="442" y="422" text-anchor="middle" font-size="8.5">Asset Turnover</text>
-  <text class="dg-label-xs" x="442" y="438" text-anchor="middle" font-size="8.5">Revenue ÷ Assets</text>
+  <text class="dg-label-xs" x="442" y="438" text-anchor="middle" font-size="8.5">Revenue ÷ Avg. Assets</text>
 
   <rect class="dg-box" x="508" y="388" width="112" height="72" rx="9"></rect>
-  <text class="dg-label dg-label-strong" x="564" y="408" text-anchor="middle" font-size="12">財務槓桿</text>
+  <text class="dg-label dg-label-strong" x="564" y="408" text-anchor="middle" font-size="12">權益乘數</text>
   <text class="dg-label-xs" x="564" y="422" text-anchor="middle" font-size="8.5">Equity Multiplier</text>
-  <text class="dg-label-xs" x="564" y="438" text-anchor="middle" font-size="8.5">Assets ÷ Equity</text>
+  <text class="dg-label-xs" x="564" y="438" text-anchor="middle" font-size="8.5">Avg. Assets ÷ Avg. Equity</text>
 
   <rect class="dg-panel" x="30" y="490" width="580" height="70" rx="10"></rect>
   <text class="dg-label dg-label-strong" x="320" y="512" text-anchor="middle" font-size="10.5">三階段：ROE = 淨利率 × 總資產週轉率 × 權益乘數</text>
-  <text class="dg-label dg-label-strong" x="320" y="530" text-anchor="middle" font-size="10.5">五階段：ROE = 稅務效率 × 利息負擔 × 本業獲利 × 資產效率 × 財務槓桿</text>
-  <text class="dg-label-xs" x="320" y="548" text-anchor="middle" font-size="9">三階段快速判斷報酬來源；五階段再拆稅務與利息負擔。</text>
+  <text class="dg-label dg-label-strong" x="320" y="530" text-anchor="middle" font-size="10.5">五階段：ROE = 稅負負擔 × 利息負擔 × EBIT 利潤率 × 總資產週轉率 × 權益乘數</text>
+  <text class="dg-label-xs" x="320" y="548" text-anchor="middle" font-size="9">三階段快速判斷報酬來源；五階段再拆稅負、利息與 EBIT 利潤率。</text>
 </svg>`,
     variables: [
       ["ROE", "權益報酬率 Return on Equity", "本期淨利 ÷ 平均股東權益，衡量普通股股東的報酬。"],
-      ["NPM", "淨利率 Net Profit Margin", "NI ÷ 營業收入，代表每一元營收留下的淨利。"],
+      ["NPM", "淨利率 Net Profit Margin", "稅後淨利 ÷ 營業收入，代表每一元營收留下的淨利。"],
       ["AT", "總資產週轉率 Asset Turnover", "營業收入 ÷ 平均總資產，代表資產創造營收的效率。"],
       ["EM", "權益乘數 Equity Multiplier", "平均總資產 ÷ 平均股東權益，代表財務槓桿。"],
-      ["Tax", "稅務效率 Tax Burden", "NI ÷ EBT；越接近 1 表示稅負越輕。"],
-      ["Int", "利息負擔 Interest Burden", "EBT ÷ EBIT；越接近 1 表示利息負擔越輕。"],
-      ["EBIT margin", "本業獲利能力 EBIT Margin", "EBIT ÷ 營業收入。"],
-      ["Five-step", "五階段杜邦 Five-Step DuPont", "把三階段中的淨利率再拆成稅務效率、利息負擔與本業獲利。"]
+      ["Tax", "稅負負擔 Tax Burden", "稅後淨利 ÷ 稅前淨利；反映所得稅對稅後獲利的影響。"],
+      ["Int", "利息負擔 Interest Burden", "稅前淨利 ÷ EBIT；利息費用愈高，比率通常愈低。"],
+      ["EBIT margin", "EBIT 利潤率 EBIT Margin", "EBIT ÷ 營業收入；衡量扣除利息與所得稅前的獲利能力。"],
+      ["Five-step", "五階段杜邦 Five-Step DuPont", "把三階段中的淨利率再拆成稅負負擔、利息負擔與 EBIT 利潤率。"]
     ],
     parameters: [
       ["3-step", "三階段杜邦 Three-step DuPont", "ROE = 淨利率 × 總資產週轉率 × 權益乘數。"],
-      ["5-step", "五階段杜邦 Five-step DuPont", "ROE = 稅務效率 × 利息負擔 × 本業獲利 × 資產效率 × 財務槓桿。"],
-      ["Average", "平均餘額 Average balance", "AT、EM 與 ROE 的分母通常用期初、期末平均。"],
+      ["5-step", "五階段杜邦 Five-step DuPont", "ROE = 稅負負擔 × 利息負擔 × EBIT 利潤率 × 總資產週轉率 × 權益乘數。"],
+      ["Average", "平均餘額 Average balance", "資產與股東權益通常採用期初、期末平均。"],
       ["Period", "同期間 Same period", "分子、分母的期間與單位要一致。"],
-      ["Leverage", "槓桿效果 Leverage effect", "EM 上升可推高 ROE，但也提高財務風險。"],
+      ["Leverage", "槓桿效果 Leverage effect", "權益乘數上升可推高 ROE，但也提高財務風險。"],
       ["Quality", "報酬品質 Quality of return", "ROE 上升可能來自本業改善、效率提升或槓桿，需進一步拆解。"]
     ],
-    note: "三階段杜邦是考試最常用的版本；五階段版本將稅務效率與利息負擔獨立出來。ROE 上升不一定是本業改善，也可能是資產週轉率提高或財務槓桿上升，必須搭配現金流量與風險一起解讀。"
+    note: "三階段適合快速判斷 ROE 的來源；五階段進一步區分稅負、利息及營業獲利對 ROE 的影響。作答時注意一致的會計口徑，資產與股東權益通常採用平均餘額。"
   },
   "accounting-23#1": {
     sectionTitle: "學習重點 2：跨報表整合與考前檢查",

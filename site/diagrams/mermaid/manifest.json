@@ -193,7 +193,7 @@
       "note": "損益表主要結轉路徑，以及本期淨利連到的三項報酬率。"
     },
     {
-      "key": "accounting-15#1",
+      "key": "accounting-15#2",
       "file": "accounting-dupont.mmd",
       "slug": "accounting-dupont",
       "order": 11,
@@ -201,10 +201,10 @@
       "subjectName": "會計學",
       "chapterId": "accounting-15",
       "chapterTitle": "財務報表分析",
-      "section": 1,
-      "sectionTitle": "第2節 比率分析",
+      "section": 2,
+      "sectionTitle": "第3節 杜邦分析",
       "shortTitle": "杜邦三階段／五階段",
-      "note": "三階段 ROE 拆解，以及淨利率再拆成稅務效率、利息負擔與本業獲利。"
+      "note": "三階段 ROE 拆解，以及淨利率再拆成稅負負擔、利息負擔與 EBIT 利潤率。"
     },
     {
       "key": "accounting-23#1",
@@ -493,8 +493,8 @@
       "chapterTitle": "財務分析",
       "section": 2,
       "sectionTitle": "學習重點 3：杜邦分析與盈餘品質",
-      "shortTitle": "杜邦分析",
-      "note": "把 ROE 拆成淨利率、總資產週轉率與權益乘數三個來源。"
+      "shortTitle": "杜邦三階段／五階段",
+      "note": "三階段 ROE 拆解，以及淨利率再拆成稅負負擔、利息負擔與 EBIT 利潤率。"
     }
   ],
   "related": {
