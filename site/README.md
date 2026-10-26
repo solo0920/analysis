@@ -94,7 +94,7 @@ site/
     ├── content-exam-forecast.js # 單一題庫：97 題組／118 個部分、level／topic／type、38 條整合公式與敏感度
     ├── content-exam-forecast-answers.js # 118 個部分完整參考解答
     ├── content-core-bundle.js  # 核心科目資料合併／minified bundle（建置產生）
-    ├── content-past-exam-search.js # 3,710 題考古題搜尋索引（按需載入，約 1.5 MB）
+    ├── content-past-exam-search.js # 3,710 題考古題搜尋索引（按需載入；原始約 1.5 MB，壓縮後約 350 KB）
     ├── bootstrap.js            # 路由分包載入器與跨 bundle 原地重整；首頁核心 1.19 MB
     ├── content-chapter-supplements.js # 13 個章節進階補給（總體 6、投資 5、法規 2）
     ├── diagrams-macro.js       # 總體模型圖：第 1、2、5 章
