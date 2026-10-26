@@ -274,7 +274,7 @@ window.ACCOUNTING_SUBJECT.chapters.push(
           "資產與股東權益通常採用平均餘額，分子分母的期間與會計口徑要一致。"
         ],
         memory: "三階段：利、轉、槓；五階段：稅、息、營、轉、槓。",
-        formula: "三階段：ROE = 淨利率 × 總資產週轉率 × 權益乘數；五階段：ROE = 稅負負擔 × 利息負擔 × EBIT 利潤率 × 總資產週轉率 × 權益乘數"
+        formula: ""
       }
     ]
   },

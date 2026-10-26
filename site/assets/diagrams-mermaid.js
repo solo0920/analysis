@@ -201,21 +201,6 @@ window.MERMAID_DIAGRAMS = {
     "note": "損益表主要結轉路徑，以及本期淨利連到的三項報酬率。",
     "source": "flowchart TD\n  accTitle: 從營業收入到本期淨利與財務比率\n  accDescr: 營業收入依序減銷貨成本、營業費用、營業外收支與所得稅，得到毛利、營業利益、稅前淨利與本期淨利；本期淨利再連到淨利率、總資產報酬率與權益報酬率。\n\n  R[\"營業收入<br/>Revenue\"]:::accent --> GP[\"毛利<br/>Gross Profit\"]\n  COGS[\"− 銷貨成本<br/>COGS\"] -.-> GP\n  GP --> OI[\"營業利益<br/>Operating Income\"]\n  OPEX[\"− 營業費用<br/>Operating Expenses\"] -.-> OI\n  OI --> EBT[\"稅前淨利<br/>EBT\"]\n  NONOP[\"± 營業外收支<br/>Non-operating\"] -.-> EBT\n  EBT --> NI[\"本期淨利<br/>Net Income\"]:::outcome\n  TAX[\"− 所得稅<br/>Income Tax\"] -.-> NI\n  NI --> PM[\"淨利率<br/>NI ÷ Revenue\"]\n  NI --> ROA[\"總資產報酬率<br/>NI ÷ Total Assets\"]\n  NI --> ROE[\"權益報酬率<br/>NI ÷ Equity\"]\n\n  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px\n  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px\n"
   },
-  "accounting-15#2": {
-    "key": "accounting-15#2",
-    "file": "accounting-dupont.mmd",
-    "slug": "accounting-dupont",
-    "order": 11,
-    "subject": "accounting",
-    "subjectName": "會計學",
-    "chapterId": "accounting-15",
-    "chapterTitle": "財務報表分析",
-    "section": 2,
-    "sectionTitle": "第3節 杜邦分析",
-    "shortTitle": "杜邦三階段／五階段",
-    "note": "三階段 ROE 拆解，以及淨利率再拆成稅負負擔、利息負擔與 EBIT 利潤率。",
-    "source": "flowchart TD\n  accTitle: 杜邦分析：三階段與五階段 ROE 拆解\n  accDescr: 三階段杜邦把 ROE 拆成淨利率、總資產週轉率與權益乘數；五階段再把淨利率拆成稅負負擔、利息負擔與 EBIT 利潤率。\n\n  ROE[\"權益報酬率 ROE<br/>NI ÷ 平均權益\"]:::outcome\n  NPM[\"淨利率<br/>NI ÷ 營業收入\"]\n  TAT[\"總資產週轉率<br/>營業收入 ÷ 平均總資產\"]\n  EM[\"權益乘數<br/>平均總資產 ÷ 平均權益\"]\n\n  ROE --> NPM\n  ROE --> TAT\n  ROE --> EM\n\n  subgraph FIVE[\"五階段：淨利率再拆解\"]\n    direction LR\n    TAX[\"稅負負擔<br/>NI ÷ EBT\"]\n    INT[\"利息負擔<br/>EBT ÷ EBIT\"]\n    EBITM[\"EBIT 利潤率<br/>EBIT ÷ 營業收入\"]\n  end\n\n  NPM --> TAX\n  NPM --> INT\n  NPM --> EBITM\n\n  FORMULA[\"ROE = 稅負負擔 × 利息負擔<br/>× EBIT 利潤率 × 總資產週轉率 × 權益乘數\"]:::accent\n  TAX --> FORMULA\n  INT --> FORMULA\n  EBITM --> FORMULA\n  TAT --> FORMULA\n  EM --> FORMULA\n\n  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px\n  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px\n"
-  },
   "accounting-23#1": {
     "key": "accounting-23#1",
     "file": "accounting-four-statements.mmd",
@@ -496,21 +481,6 @@ window.MERMAID_DIAGRAMS = {
       ]
     ],
     "source": "flowchart TD\n  accTitle: Black–Scholes 推導流程\n  accDescr: 從無套利與連續交易假設出發，以 Itô 引理建立 Black–Scholes 偏微分方程，轉為風險中立期望，得到 d₁、d₂ 與封閉解，最後延伸到 Greeks。\n\n  ASSUME[\"假設<br/>無套利、連續交易<br/>常數波動率、無摩擦\"]:::accent\n  ITO[\"Itô 引理<br/>dS、dC 的隨機微分\"]\n  PDE[\"Black–Scholes PDE<br/>∂C/∂t + ½σ²S² ∂²C/∂S²<br/>+ rS ∂C/∂S − rC = 0\"]\n  RISK[\"風險中立定價<br/>C = e⁻ʳᵀ E[max(S(T) − K, 0)]\"]\n  D1D2[\"d₁、d₂<br/>d₁ = [ln(S₀/K) + (r + ½σ²)T] ÷ (σ√T)<br/>d₂ = d₁ − σ√T\"]\n  BS[\"Black–Scholes 公式<br/>C = S₀N(d₁) − K e⁻ʳᵀ N(d₂)\"]:::outcome\n  GREEKS[\"Greeks 與敏感度<br/>Delta、Gamma、Vega、Theta、Rho\"]\n\n  ASSUME --> ITO --> PDE --> RISK --> D1D2 --> BS --> GREEKS\n\n  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px\n  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px\n"
-  },
-  "investment-14#2": {
-    "key": "investment-14#2",
-    "file": "investment-dupont.mmd",
-    "slug": "investment-dupont",
-    "order": 17,
-    "subject": "investment",
-    "subjectName": "投資學",
-    "chapterId": "investment-14",
-    "chapterTitle": "財務分析",
-    "section": 2,
-    "sectionTitle": "學習重點 3：杜邦分析與盈餘品質",
-    "shortTitle": "杜邦三階段／五階段",
-    "note": "三階段 ROE 拆解，以及淨利率再拆成稅負負擔、利息負擔與 EBIT 利潤率。",
-    "source": "flowchart TD\n  accTitle: 杜邦分析：三階段與五階段 ROE 拆解\n  accDescr: 三階段杜邦把 ROE 拆成淨利率、總資產週轉率與權益乘數；五階段再把淨利率拆成稅負負擔、利息負擔與 EBIT 利潤率。\n\n  ROE[\"權益報酬率 ROE<br/>NI ÷ 平均權益\"]:::outcome\n  NPM[\"淨利率<br/>NI ÷ 營業收入\"]\n  TAT[\"總資產週轉率<br/>營業收入 ÷ 平均總資產\"]\n  EM[\"權益乘數<br/>平均總資產 ÷ 平均權益\"]\n\n  ROE --> NPM\n  ROE --> TAT\n  ROE --> EM\n\n  subgraph FIVE[\"五階段：淨利率再拆解\"]\n    direction LR\n    TAX[\"稅負負擔<br/>NI ÷ EBT\"]\n    INT[\"利息負擔<br/>EBT ÷ EBIT\"]\n    EBITM[\"EBIT 利潤率<br/>EBIT ÷ 營業收入\"]\n  end\n\n  NPM --> TAX\n  NPM --> INT\n  NPM --> EBITM\n\n  FORMULA[\"ROE = 稅負負擔 × 利息負擔<br/>× EBIT 利潤率 × 總資產週轉率 × 權益乘數\"]:::accent\n  TAX --> FORMULA\n  INT --> FORMULA\n  EBITM --> FORMULA\n  TAT --> FORMULA\n  EM --> FORMULA\n\n  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px\n  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px\n"
   }
 };
 

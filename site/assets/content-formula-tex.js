@@ -150,7 +150,6 @@ C-P=S_0-Ke^{-rT}
   "accounting-14::第1節 財務報表與一般公認會計原則": { tex: String.raw`\text{資產}=\text{負債}+\text{權益}`, note: "" },
   "accounting-15::第1節 財務報表分析之基本觀念及方法": { tex: String.raw`\text{共同比}=\frac{\text{各項目}}{\text{基準項目}}\times 100\%`, note: "" },
   "accounting-15::第2節 比率分析": { tex: String.raw`\begin{gathered}\text{流動比率}=\frac{\text{流動資產}}{\text{流動負債}}\\\text{速動比率}=\frac{\text{速動資產}}{\text{流動負債}}\end{gathered}`, note: "" },
-  "accounting-15::第3節 杜邦分析": { tex: String.raw`\begin{gathered}\text{三階段：ROE}=\text{淨利率}\times\text{總資產週轉率}\\\times\text{權益乘數}\\\text{五階段：ROE}=\text{稅負負擔}\times\text{利息負擔}\\\times\text{EBIT 利潤率}\times\text{總資產週轉率}\times\text{權益乘數}\end{gathered}`, note: "三階段快速判斷報酬來源；五階段進一步區分稅負、利息與 EBIT 利潤率。資產與股東權益通常採用平均餘額。" },
 
   "accounting-16::學習重點 1：銷售百分比法與外部融資需求": { tex: String.raw`\text{外部融資需求}=\text{預估資產增加}-\text{自發性負債增加}-\text{保留盈餘增加}`, note: "" },
   "accounting-16::學習重點 2：預測報表與情境分析": { tex: String.raw`\text{保留盈餘增加}=\text{預估淨利}\times(1-\text{股利支付率})`, note: "" },

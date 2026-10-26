@@ -646,8 +646,8 @@ content.subjects.forEach(function (subject) {
 const formulaTexKeys = Object.keys(formulaTex);
 const formulaTexKeySet = new Set(formulaTexKeys);
 const formulaSectionKeySet = new Set(formulaSections.map(function (entry) { return entry.key; }));
-check(formulaSections.length === 119, "全站應有 119 個含公式的學習單元（目前 " + formulaSections.length + " 個）");
-check(formulaTexKeys.length === 119, "KaTeX 公式資料應有 119 筆（目前 " + formulaTexKeys.length + " 筆）");
+check(formulaSections.length === 118, "全站應有 118 個含公式的學習單元（目前 " + formulaSections.length + " 個）");
+check(formulaTexKeys.length === 118, "KaTeX 公式資料應有 118 筆（目前 " + formulaTexKeys.length + " 筆）");
 check(formulaSections.every(function (entry) { return formulaTexKeySet.has(entry.key); }), "每個含公式的學習單元都應有 KaTeX 公式");
 check(formulaTexKeys.every(function (key) { return formulaSectionKeySet.has(key); }), "KaTeX 公式資料不得有對應不到學習單元的項目");
 check(formulaTexKeys.every(function (key) {
@@ -936,7 +936,7 @@ diagramKeys.forEach(function (key) {
 
 /* 投資學教學圖表：與總體模型圖共用相同的 SVG 結構與無障礙檢查。 */
 const investmentDiagramKeys = Object.keys(investmentDiagrams);
-check(investmentDiagramKeys.length >= 10, "投資學教學圖應至少 10 張（目前 " + investmentDiagramKeys.length + " 張）");
+check(investmentDiagramKeys.length >= 9, "投資學教學圖應至少 9 張（目前 " + investmentDiagramKeys.length + " 張）");
 
 const rawInvestmentKeys = [];
 investmentDiagramFiles.forEach(function (file) {
@@ -2171,7 +2171,7 @@ const mermaidManifestEntries = Array.isArray(mermaidManifest.diagrams) ? mermaid
 const mermaidExistingDiagrams = Object.assign({}, diagrams, investmentDiagrams, accountingDiagrams);
 const mermaidKeys = Object.keys(mermaidDiagrams);
 const mermaidNewEntries = mermaidManifestEntries.filter(function (entry) { return entry && entry.createDiagram; });
-check(mermaidManifestEntries.length === 17, "Mermaid 圖表應有 17 張（目前 " + mermaidManifestEntries.length + " 張）");
+check(mermaidManifestEntries.length === 15, "Mermaid 圖表應有 15 張（目前 " + mermaidManifestEntries.length + " 張）");
 check(mermaidNewEntries.length === 5, "Mermaid 新推導圖應有 5 張（目前 " + mermaidNewEntries.length + " 張）");
 check(mermaidKeys.length === mermaidManifestEntries.length, "Mermaid 產生檔數量與 manifest 不一致（manifest " + mermaidManifestEntries.length + "、產生 " + mermaidKeys.length + "）");
 mermaidManifestEntries.forEach(function (entry) {
@@ -2285,4 +2285,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log("驗證通過：總體經濟學（13 章、56 節）、投資學（16 章、58 個重點）、會計學（23 章、65 個單元）、證券法規（21 章、52 節、1,507 條官方全文）、" + totalChapterDiagrams + " 張章節教學圖（總體 " + totalMacroDiagrams + "、投資 " + totalInvestmentDiagrams + "、會計 " + totalAccountingDiagrams + "；含 " + mermaidNewEntries.length + " 張 Mermaid 新推導圖）、119 個 KaTeX 公式、諾貝爾年表（1969–2026）與 107–115 年 3,710 題考古題練習庫結構一致。");
+console.log("驗證通過：總體經濟學（13 章、56 節）、投資學（16 章、58 個重點）、會計學（23 章、65 個單元）、證券法規（21 章、52 節、1,507 條官方全文）、" + totalChapterDiagrams + " 張章節教學圖（總體 " + totalMacroDiagrams + "、投資 " + totalInvestmentDiagrams + "、會計 " + totalAccountingDiagrams + "；含 " + mermaidNewEntries.length + " 張 Mermaid 新推導圖）、118 個 KaTeX 公式、諾貝爾年表（1969–2026）與 107–115 年 3,710 題考古題練習庫結構一致。");

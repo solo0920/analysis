@@ -193,20 +193,6 @@
       "note": "損益表主要結轉路徑，以及本期淨利連到的三項報酬率。"
     },
     {
-      "key": "accounting-15#2",
-      "file": "accounting-dupont.mmd",
-      "slug": "accounting-dupont",
-      "order": 11,
-      "subject": "accounting",
-      "subjectName": "會計學",
-      "chapterId": "accounting-15",
-      "chapterTitle": "財務報表分析",
-      "section": 2,
-      "sectionTitle": "第3節 杜邦分析",
-      "shortTitle": "杜邦三階段／五階段",
-      "note": "三階段 ROE 拆解，以及淨利率再拆成稅負負擔、利息負擔與 EBIT 利潤率。"
-    },
-    {
       "key": "accounting-23#1",
       "file": "accounting-four-statements.mmd",
       "slug": "accounting-four-statements",
@@ -481,20 +467,6 @@
           "Delta、Gamma、Vega、Theta、Rho。"
         ]
       ]
-    },
-    {
-      "key": "investment-14#2",
-      "file": "investment-dupont.mmd",
-      "slug": "investment-dupont",
-      "order": 17,
-      "subject": "investment",
-      "subjectName": "投資學",
-      "chapterId": "investment-14",
-      "chapterTitle": "財務分析",
-      "section": 2,
-      "sectionTitle": "學習重點 3：杜邦分析與盈餘品質",
-      "shortTitle": "杜邦三階段／五階段",
-      "note": "三階段 ROE 拆解，以及淨利率再拆成稅負負擔、利息負擔與 EBIT 利潤率。"
     }
   ],
   "related": {

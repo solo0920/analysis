@@ -2639,6 +2639,33 @@ a.landing-item:hover {
   margin-top: 12px;
 }
 
+/* 杜邦分析：讓三階段／五階段公式像教材公式圖一樣放大、置中，
+   \boxed 本身已提供外框，因此移除容器的第二層框線與 KEY FORMULA 標籤。 */
+[data-chapter-id="accounting-15"] #section-3 .section-subsection .formula-katex {
+  padding: 18px 8px;
+  border: 0;
+  background: transparent;
+  font-size: 1.3rem;
+}
+
+[data-chapter-id="accounting-15"] #section-3 .section-subsection .formula-katex::before {
+  content: none;
+}
+
+[data-chapter-id="accounting-15"] #section-3 .section-subsection .formula-katex .katex {
+  font-size: 1.1em;
+}
+
+@media (max-width: 520px) {
+  [data-chapter-id="accounting-15"] #section-3 .section-subsection .formula-katex {
+    font-size: 1.12rem;
+  }
+
+  [data-chapter-id="accounting-15"] #section-3 .section-subsection .formula-katex .katex-display {
+    text-align: left;
+  }
+}
+
 .formula {
   display: block;
   margin-top: 16px;

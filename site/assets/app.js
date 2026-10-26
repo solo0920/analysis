@@ -5231,7 +5231,7 @@
     const tocItems = lawToc.concat(sectionToc, writtenToc).join("");
 
     return [
-      '<div class="page ' + escapeHtml(subject.colorClass) + '">',
+      '<div class="page ' + escapeHtml(subject.colorClass) + '" data-chapter-id="' + escapeHtml(chapter.id) + '">',
       '  <nav class="breadcrumb" aria-label="麵包屑">',
       '    <a href="#/">首頁</a><span>/</span>',
       '    <a href="#/subject/' + escapeHtml(subject.id) + '">' + escapeHtml(subject.name) + "</a><span>/</span>",
