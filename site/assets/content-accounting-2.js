@@ -228,7 +228,7 @@ window.ACCOUNTING_SUBJECT.chapters.push(
               String.raw`⑤ 權益乘數（Equity Multiplier）：\(\dfrac{平均總資產}{平均股東權益}\)，衡量財務槓桿對股東權益報酬率的影響。`,
               "其中 EBIT 為息稅前利益（Earnings Before Interest and Taxes）。五者相乘等於 ROE。"
             ],
-            formula: String.raw`\boxed{ROE=\frac{稅後淨利}{稅前淨利}\times\frac{稅前淨利}{EBIT}\times\frac{EBIT}{營業收入}\times\frac{營業收入}{平均總資產}\times\frac{平均總資產}{平均股東權益}}`
+            formula: String.raw`\boxed{ROE=\underbrace{\frac{稅後淨利}{稅前淨利}}_{\text{稅負負擔}}\times\underbrace{\frac{稅前淨利}{EBIT}}_{\text{利息負擔}}\times\underbrace{\frac{EBIT}{營業收入}}_{\text{EBIT 利潤率}}\times\underbrace{\frac{營業收入}{平均總資產}}_{\text{總資產週轉率}}\times\underbrace{\frac{平均總資產}{平均股東權益}}_{\text{權益乘數}}}`
           },
           {
             title: "三、三階段與五階段比較",
