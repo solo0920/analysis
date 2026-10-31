@@ -49,3 +49,16 @@ for f in site/assets/*.js; do node --check "$f"; done
 ```
 
 `validate-content.js` 目前執行 5,245 項檢查、失敗 0。諾貝爾年表的年份與得主可另外執行 `node site/scripts/verify-nobel-api.js` 對照官方 API（需要網路）。
+
+## 授權
+
+本專案的程式碼、網站版面、建置腳本與驗證腳本採用 [MIT License](LICENSE)，著作權人為 Solomon Lee。
+
+MIT 授權僅涵蓋本專案自行撰寫的程式與文件。下列內容不在此授權範圍內，仍屬原權利人或各自來源所有：
+
+- 歷屆考古題、官方試題與解答：著作權屬原命題／公告單位。
+- 法規條文與主管機關公告：依全國法規資料庫與各機關規定使用。
+- 第三方套件與素材（KaTeX、MiniSearch、Pele 等）：依其隨附授權（見 `site/vendor/` 內的 LICENSE 檔）。
+- 各教科書、來源教材的引用與整理：著作權屬原作者與出版商。
+
+轉載、商業使用或大量重製上述內容前，請自行確認來源授權。
