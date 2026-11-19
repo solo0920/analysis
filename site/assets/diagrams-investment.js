@@ -451,6 +451,7 @@ Object.assign(window.INVESTMENT_DIAGRAMS, {
     sectionTitle: "學習重點 2：風險的種類與衡量",
     kicker: "題庫導向圖解",
     title: "VaR 與最大回撤：尾端損失與淨值路徑",
+    formula: String.raw`VaR_{\alpha}=V_0 z_{\alpha}\sigma\sqrt{t},\qquad MDD=\max_t\frac{P_t-\max_{s\le t}P_s}{\max_{s\le t}P_s}`,
     caption: "左圖為報酬常態分配，陰影尾端對應給定信賴水準下的 VaR；右圖為淨值路徑，最大回撤是從歷史高點到隨後低點的最大跌幅。VaR 衡量單期尾端損失，最大回撤衡量實際路徑的痛苦程度，兩者不能互相取代。",
     svg: `
 <svg viewBox="0 0 720 370" role="img" aria-labelledby="dg-var-title dg-var-desc" xmlns="http://www.w3.org/2000/svg">
@@ -496,6 +497,7 @@ Object.assign(window.INVESTMENT_DIAGRAMS, {
     sectionTitle: "學習重點 1：債券價格與現金流",
     kicker: "題庫導向圖解",
     title: "債券現金流時間軸與應計利息",
+    formula: String.raw`P=\sum_{t=1}^{n}\frac{C}{(1+y)^t}+\frac{F}{(1+y)^n},\qquad AI=C\times\frac{t}{T}`,
     caption: "時間軸上的短條代表每期票息 C，最後一期加上面額 F。若投資人在兩個付息日之間買進，賣方已累積的利息要由買方補償，稱為應計利息 AI；清洗價格是不含 AI 的報價，全價則是實際交割金額。",
     svg: `
 <svg viewBox="0 0 640 330" role="img" aria-labelledby="dg-bondcf-title dg-bondcf-desc" xmlns="http://www.w3.org/2000/svg">
@@ -546,6 +548,7 @@ Object.assign(window.INVESTMENT_DIAGRAMS, {
     sectionTitle: "學習重點 2：股票評價",
     kicker: "題庫導向圖解",
     title: "DDM 與 P/E 評價架構：從 EPS 到合理價",
+    formula: String.raw`P_0=\frac{D_1}{r-g},\qquad \frac{P}{E}=\frac{payout}{r-g}`,
     caption: "左側從 EPS 與股利發放率得到 D1，再用必要報酬率 r 與成長率 g 折現為 P0；右側把 P/E 拆成 payout ÷ (r − g)。同一組假設下，DDM 與 P/E 應得到一致的合理價；若市價隱含的 P/E 更高，代表市場對成長或風險的假設更樂觀。",
     svg: `
 <svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-ddm-title dg-ddm-desc" xmlns="http://www.w3.org/2000/svg">
@@ -599,6 +602,7 @@ Object.assign(window.INVESTMENT_DIAGRAMS, {
     sectionTitle: "學習重點 2：期貨價格與基差",
     kicker: "題庫導向圖解",
     title: "期貨價格與基差收斂",
+    formula: String.raw`F_0=S_0e^{(r-q)T},\qquad \text{基差}=S-F`,
     caption: "上圖為現貨價格 S 與期貨價格 F 的路徑；期貨價格反映持有成本，通常高於現貨（正價差）。下圖為基差 = S − F，隨到期日接近而收斂至 0；避險者承擔的是收斂路徑不確定的基差風險。",
     svg: `
 <svg viewBox="0 0 640 400" role="img" aria-labelledby="dg-basis-title dg-basis-desc" xmlns="http://www.w3.org/2000/svg">
@@ -644,6 +648,7 @@ Object.assign(window.INVESTMENT_DIAGRAMS, {
     sectionTitle: "學習重點 3：避險與交易策略",
     kicker: "題庫導向圖解",
     title: "指數期貨避險：β 調整與契約數",
+    formula: String.raw`N=\frac{(\beta^*-\beta)V}{F\times \text{乘數}}`,
     caption: "先用現貨部位價值 V、現貨 Beta 與目標 Beta 算出需要調整的系統風險，再除以每口期貨契約價值（期貨價格 × 乘數），得到契約數 N。N 為負代表賣出期貨；把 Beta 降到 0 就是全數避險。",
     svg: `
 <svg viewBox="0 0 640 330" role="img" aria-labelledby="dg-betahedge-title dg-betahedge-desc" xmlns="http://www.w3.org/2000/svg">
@@ -692,6 +697,7 @@ Object.assign(window.INVESTMENT_DIAGRAMS, {
     sectionTitle: "學習重點 2：權證、可轉換公司債與結構型商品",
     kicker: "題庫導向圖解",
     title: "可轉債拆解：純債券＋買權",
+    formula: String.raw`CV=P_S\times\frac{F}{K},\qquad \text{轉換溢價}=\frac{P_{CB}}{CV}-1`,
     caption: "可轉換公司債可拆成純債券與買權：純債券提供票息與面額，買權讓持有人按轉換價格換成股票。轉換價值 = 股價 × 面額 ÷ 轉換價格；可轉債市價高於轉換價值時為溢價，低於時為折價。",
     svg: `
 <svg viewBox="0 0 640 340" role="img" aria-labelledby="dg-cb-title dg-cb-desc" xmlns="http://www.w3.org/2000/svg">

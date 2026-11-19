@@ -153,7 +153,7 @@
       {
         title: "進階專題：Fama-French 五因子與風險平價",
         body: [
-          "Fama-French 五因子模型將超額報酬拆成市場、規模（SMB）、價值（HML）、獲利能力（RMW）與投資風格（CMA）：R_i − R_f = α + β_m(R_m − R_f) + β_SMB SMB + β_HML HML + β_RMW RMW + β_CMA CMA + ε。α 是模型未解釋的異常報酬；因子載荷可正可負，不能只看名稱就判斷風格。",
+          "Fama-French 五因子模型將超額報酬拆成市場、規模（SMB）、價值（HML）、獲利能力（RMW）與投資風格（CMA）：\\(R_i-R_f=\\alpha+\\beta_m(R_m-R_f)+\\beta_{SMB}SMB+\\beta_{HML}HML+\\beta_{RMW}RMW+\\beta_{CMA}CMA+\\varepsilon\\)。α 是模型未解釋的異常報酬；因子載荷可正可負，不能只看名稱就判斷風格。",
           "風險平價不是資金平均，而是風險貢獻平均：w_i × ∂σ_p/∂w_i = σ_p/N。低波動資產需要較高資金權重，甚至使用槓桿；股票、長債、TIPS、商品與黃金的配置，對應成長高／低、通膨高／低四個象限。當股債相關性轉正時，傳統 60/40 的避險效果下降，風險平價的槓桿與相關性假設也要重新檢查。"
         ],
         terms: [

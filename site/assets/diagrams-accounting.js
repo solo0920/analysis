@@ -781,6 +781,7 @@ Object.assign(window.ACCOUNTING_DIAGRAMS, {
     sectionTitle: "第2節 現金流量表之編製",
     kicker: "教學流程圖",
     title: "現金流量表三分類：營業、投資與籌資",
+    formula: String.raw`CFO+CFI+CFF+\text{期初現金}=\text{期末現金}`,
     caption: "現金流量表把特定期間的現金收支分成營業活動、投資活動與籌資活動三大類。三類淨現金流量加上期初現金，等於期末現金；期末現金必須與資產負債表的現金及約當現金一致。",
     svg: `
 <svg viewBox="0 0 640 400" role="img" aria-labelledby="dg-acct-cf-title dg-acct-cf-desc" xmlns="http://www.w3.org/2000/svg">
@@ -838,6 +839,7 @@ Object.assign(window.ACCOUNTING_DIAGRAMS, {
     sectionTitle: "第3節 不動產、廠房及設備之處分",
     kicker: "教學流程圖",
     title: "不動產、廠房及設備：資本化、減損與處分",
+    formula: String.raw`\text{帳面金額}=\text{成本}-\text{累計折舊}-\text{減損}`,
     caption: "取得資產時先判斷支出是否資本化；持有期間提折舊並測試減損；處分時先更新折舊，再比較售價與帳面金額，認列處分利益或損失。",
     svg: `
 <svg viewBox="0 0 640 400" role="img" aria-labelledby="dg-acct-ppe-title dg-acct-ppe-desc" xmlns="http://www.w3.org/2000/svg">

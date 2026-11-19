@@ -1323,7 +1323,7 @@
       '  <div class="subheading">名詞速查</div>',
       renderTerms(section.terms),
       formulaTex
-        ? '  <div class="formula formula-katex" role="note">' + renderKatex(formulaTex, true) + (formulaEntry && formulaEntry.note ? '<p class="formula-note">' + escapeHtml(formulaEntry.note) + "</p>" : "") + "</div>"
+        ? '  <div class="formula formula-katex" role="note">' + renderKatex(formulaTex, true) + (formulaEntry && formulaEntry.note ? '<p class="formula-note">' + renderInlineMath(formulaEntry.note) + "</p>" : "") + "</div>"
         : section.formula
           ? '  <div class="formula" role="note">' + escapeHtml(section.formula) + "</div>"
           : linkedRatio
