@@ -905,6 +905,7 @@ function nobelPage() {
 }
 
 function chapterPage(subject, slug, chapter, index) {
+  const formulaTex = data.FORMULA_TEX || {};
   const sections = Array.isArray(chapter.sections) ? chapter.sections : [];
   const terms = [];
   const termKeys = new Set();
@@ -925,7 +926,11 @@ function chapterPage(subject, slug, chapter, index) {
         points.push(point);
       }
     });
-    if (cleanText(section.formula)) {
+    const texEntry = formulaTex[chapter.id + "::" + section.title];
+    const tex = typeof texEntry === "string" ? texEntry : texEntry && texEntry.tex;
+    if (tex) {
+      formulas.push("\\(" + tex + "\\)");
+    } else if (cleanText(section.formula)) {
       formulas.push(String(section.formula));
     }
   });
