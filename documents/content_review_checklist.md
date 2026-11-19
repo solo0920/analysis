@@ -35,7 +35,7 @@
 | 模型圖與教學流程圖在窄螢幕可在區塊內水平滑動 | ☑ 通過 | 390px 實測頁面無水平溢出，且顯示滑動提示 |
 | 總體經濟模型總覽頁 | ☑ 通過 | `#/models/macro` 依 13 章分組、28 張章節圖（含 1 張教學流程圖、1 張 NFIA 觀念圖與 5 張學派模型）；沒有模型的章節仍列出 |
 | 會計學教學流程圖掛在正確章節與節次 | ☑ 通過 | 7 張（6 張原生 SVG：`accounting-14#0`、`accounting-14#0-2`、`accounting-14#0-3`、`accounting-14#0-4`、`accounting-15#0`、`accounting-23#1`；另 1 張 Mermaid `accounting-15#2` 杜邦圖）；同一節次允許多張圖，`chapterId#sectionIndex` 與 `sectionTitle` 一致；杜邦分析另以 KaTeX 公式與 Mermaid 圖呈現 |
-| 章節教學圖總數 | ☑ 通過 | 59 張（總體 33、投資 19、會計 7；含 6 張 Mermaid 新推導圖） |
+| 章節教學圖總數 | ☑ 通過 | 61 張（總體 33、投資 19、會計 9；含 6 張 Mermaid 新推導圖） |
 | 模型總覽與章節頁共用同一份模型資料 | ☑ 通過 | 兩邊皆讀取 `window.MACRO_DIAGRAMS`；修改後重新載入同步 |
 | 諾貝爾年表 58 屆、1969–2026 完整出現 | ☑ 通過 | 2026 屆已納入；58 屆年份與得主已對照諾貝爾獎官方 API，0 筆不一致 |
 | 17 組諾貝爾模型與年表映射 | ☑ 通過 | `nobel-01`–`nobel-17` 均有圖；2026 屆對應 `nobel-17`，無缺圖或孤兒圖 |
@@ -191,7 +191,7 @@
 | 四大財務報表連結 | ☑ 通過 | NI→保留盈餘→權益→資產負債表；資產負債表現金＝現金流量表期末現金；CFO 由 NI 調整非現金項目與營運資金變動 |
 | SVG 結構與可及性 | ☑ 通過 | `dg-acc-fin-*`、`dg-acc-dupont-*`、`dg-acc-stmt-*` 唯一 ID；`viewBox`、`role="img"`、`aria-labelledby`、`<title>`、`<desc>`；無外部圖片、腳本或連結 |
 | 變數與參數表 | ☑ 通過 | 三張圖合計 25 個變數、20 個參數；accounting-15 兩張圖 32 列、accounting-23 一張圖 13 列；皆為 `[符號, 名稱, 說明]`，符號不重複 |
-| 名詞卡補充 | ☑ 通過 | accounting-15 第3節新增杜邦相關名詞卡、accounting-23#1 新增 1 張權益變動表；全站名詞卡 1,648 |
+| 名詞卡補充 | ☑ 通過 | accounting-15 第3節新增杜邦相關名詞卡、accounting-23#1 新增 1 張權益變動表；全站名詞卡 1,669 |
 | 窄螢幕與離線 | ☑ 通過 | 1280px／390px、深淺主題與 `file://` 均可讀；390px 頁面無水平溢出，圖表區可水平滑動（client 334／scroll 476）；0 console errors、0 `.katex-error` |
 | 教材核對 | 教學示意 | 依 `documents/accounting_contents.md` 與本站會計章節概念整理，未逐條對照特定教材；不列入 21 張既有模型圖的「通過（教材）」 |
 
@@ -252,6 +252,7 @@
 
 | 日期 | 科目／章 | 模型與版本 | 主要爭點 | 官方來源結論 | 後續動作 |
 | --- | --- | --- | --- | --- | --- |
+| 2026-11-19 | 會計／法規題庫導向補充 | 驗證腳本＋Chrome CDP＋390px／1280px 深淺主題＋axe | 會計 4 節、法規 2 節；8 個小節、21 個名詞條目；會計 2 張教學流程圖 | 6 個 target 章節在 390px／1280px、深淺主題 0 `.katex-error`、0 頁面水平溢出、0 空圖、axe 0 violations；驗證器 160,122 項、失敗 0；名詞卡 1,669；章節教學圖 61（總體 33、投資 19、會計 9） | 通過；內容為題庫導向複習整理，圖形為教學示意 |
 | 2026-11-19 | 總體／投資題庫導向補充 | 驗證腳本＋Chrome CDP＋390px／1280px 深淺主題＋axe | 高頻章節的計算例題、比較表、圖表；34 個小節、151 個名詞條目；macro 4 張、investment 6 張新圖；靜態頁第一則補充摘要 | 29 個節次載入補充；16 個 target 章節在 390px／1280px、深淺主題 0 `.katex-error`、0 頁面水平溢出、0 空圖、axe 0 violations；驗證器 159,651 項、失敗 0；名詞卡 1,648；章節教學圖 59（總體 33、投資 19、會計 7） | 通過；內容為題庫導向複習整理，公式與圖形為教學示意 |
 | 2026-10-20 | 投資／總體公式 29 條 | GPT-6 Luna／Gemini 4 Argon Contributor／Claude Haiku 5.5；公開教材與官方輔助來源 | 數學形式、符號定義、期間單位與經濟意義 | 三家模型均同意；另完成 29 條公開教材逐條核對（#27 BIS CIP、#28 SEC NAV 另經官方交叉核對） | 通過（教材）29/29；網站 formula 已補假設；見第二節與 review 第 3 節 |
 | 2026-10-20 | 總體模型圖 21 張 | GPT-6 Luna／Gemini 4 Argon Contributor／Claude Haiku 5.5 | 曲線方向、移動方向、變數／參數、圖說一致性 | 多數同意；B1、B4、B10、B15、B21 有建議或不同意 | 已修正 B1、B4、B10、B15、B21；其後完成 21 張公開教材核對，全部「通過（教材）」，見 review 第 5 節 |
@@ -453,6 +454,7 @@
 - [x] 2026-10-26 修正法規考古題章節歸屬：新增 `sourceRefs[].articleNo`，`lawQuestionArticleRefs()` 優先採用明確條號，避免題幹引用其他法條時被誤掛。7 題選擇題移至實際法源：107Q2-law-08→law-03 第 5 條；108Q2-law-07、114Q1-law-23→law-03 第 17 條；114Q3-law-18→law-03 第 66 條；108Q4-law-15、109Q2-law-12、111Q3-law-16→law-02 第 22-1 條。17 題計算／申論題移除 law-21、law-05、law-06、law-17、law-08、law-11、law-12 等無關交叉掛載，單純考證交法者移至 law-01；解題範例同步移轉。law-01 第 139 條已無題目，law-03 第 5／17／66 條與 law-02 第 22-1 條顯示正確題目；law-21 僅保留 4 個官方外部連結。修正後 law-01 196 選擇＋37 申論、law-02 228＋49、law-03 168＋3、law-21 0＋0；法規總數仍 910＋87。21 個法規章節在 390px／1280px、深淺主題 axe 0 violations、390px 0 水平溢出；`file://` 正常；驗證器 157,243 項、失敗 0。非 法規 2,800 題相似度掃描未發現明確錯置。
 - [x] 2026-10-26 重寫杜邦分析內容：accounting-15 新增「第3節 杜邦分析」，三階段為淨利率 × 總資產週轉率 × 權益乘數；五階段為稅負負擔 × 利息負擔 × EBIT 利潤率 × 總資產週轉率 × 權益乘數。兩式皆以大型 boxed KaTeX 呈現，五階段五個分數下方皆有稅負負擔、利息負擔、EBIT 利潤率、總資產週轉率、權益乘數五個 underbrace 標籤。新增三階段分析重點表、三階段與五階段比較表、考試口訣（利、轉、槓／稅、息、營、轉、槓）；investment-14 學習重點 3 同步改寫，FORMULA_TEX、投資學比率公式表、考前猜題與解答、章節補充、accounting_contents.md 全部改用新口徑。移除杜邦流程圖 SVG（`accounting-15#2`／`investment-14#2`）與 Mermaid（`accounting-dupont`／`investment-dupont`），改以三階段／五階段 KaTeX 公式為主要呈現；五階段標籤統一為稅負負擔、利息負擔、EBIT 利潤率、總資產週轉率、權益乘數；長公式在手機可在區塊內滑動。accounting-15／investment-14 在 390px／1280px、深淺主題 axe 0 violations、0 水平溢出、0 `.katex-error`；`file://` 正常；驗證器 157,369 項、失敗 0；會計學 65 個單元、全站 231 個單元、1,528 張名詞卡；KaTeX 公式 118 筆、章節教學圖 48 張（投資 13、會計 6）、Mermaid 15 張。
 - [x] 2026-10-27 將全站章節「相關考古題」改為外層可收合：`renderSectionQuestionBank()`、`renderLawSource()`、`renderChapterWrittenQuestions()` 由 `<div class="law-article-questions">` 改為 `<details class="law-article-questions">`，標題改為 `<summary class="law-article-question-head">`。預設只顯示「相關考古題 N 題」一行，點擊後才展開原本的題目列表；題目卡本身仍是巢狀 details。法規條文下的相關考古題、非 法規各節的相關考古題與章末「本章申論／計算題」全部套用。實測 accounting-15（14／84／15 題）、law-01（29 個區塊）、macro-01（6 個）、investment-09（4 個）、accounting-01（7 個）、law-02（36 個）：預設 0 個展開、summary 只有一行、點擊後列表正常展開；390px／1280px、深淺主題 axe 0 violations、0 水平溢出；驗證器 157,369 項、失敗 0。
+- [x] 2026-11-19 題庫導向補充 accounting／law：同一份 `content-exam-gap-supplements.js` 在 accounting 4 節與 law 2 節追加 8 個小節、21 個名詞條目；accounting 補現金流量表三分類、直接法／間接法、利息股利分類、營業週期、資本化／減損／處分、預期信用損失／應收處分／票據貼現、公司債有效利率與提前贖回；law 補全權委託契約／保管／報告／終止流程、全權委託／投顧／基金三架構比較、股東會與董事會決議門檻。新增 2 張會計教學流程圖（`accounting-13#1`、`accounting-03#2`），含 `kicker: "教學流程圖"`、`desc`、流程節點／會計基礎表與示意提醒。6 個 target 章節在 390px／1280px、深淺主題 0 `.katex-error`、0 頁面水平溢出、0 空圖、axe 0 violations；驗證器 160,122 項、失敗 0；全站名詞卡 1,669 張；章節教學圖 61 張（總體 33、投資 19、會計 9）。
 - [x] 2026-11-19 題庫導向補充 macro／investment：新增 `content-exam-gap-supplements.js`，在 29 個既有節次掛載 34 個小節與 151 個名詞條目（淨增 112 張名詞卡），不新增章節、不改變節次索引。macro 補央行資產負債表與貨幣基數、FOMC／我國央行、操作／中間／最終目標、銀行資產負債表、完整貨幣乘數、泰勒法則／QTM、準備金走廊／QT、通膨類型與國際費雪、Okun 法則與犧牲比率、匯率報價與利率平價、J 曲線／三元悖論、期限結構計算、金融工具地圖、債券應計利息、股票評價與基金 NAV；investment 補算術／幾何報酬、VaR 與最大回撤、CAL 槓桿、SML／CML／Alpha、債券價格與 YTM、期限結構、DDM／P/E／FCFE、除息除權／TDR／融資、期貨基差、避險比率與保證金、可轉債／權證、衍生品風險、ETF／ETN、Sharpe／Treynor／Jensen α。新增 10 張 inline SVG 題庫導向圖（macro 4、investment 6），全部含 `sectionTitle`、`title`、`caption`、`variables`、`parameters`、`note`，macro 另含 KaTeX 模型式；SVG 使用 `viewBox`、`role="img"`、`aria-labelledby`、`title` 與唯一 ID。靜態章節頁新增第一則補充小節摘要。16 個 target 章節在 390px／1280px、深淺主題 0 `.katex-error`、0 頁面水平溢出、0 空圖、axe 0 violations；驗證器 159,651 項、失敗 0；全站名詞卡 1,648 張；章節教學圖 59 張（總體 33、投資 19、會計 7）。
 - [x] 2026-10-27 依兩張圖補上 GDP 公式與比較：macro-01 第4節新增「一、實質 GDP（Real GDP）」「二、GDP 平減指數（GDP Deflator）」「三、三個公式比較」「四、證券分析人員考試記憶技巧」4 個子區塊；以 boxed KaTeX 呈現 `RGDP_t=\sum(P_0\times Q_t)`、`D_t=NGDP_t/RGDP_t×100`、`NGDP_t=\sum(P_t\times Q_t)`、`g=(RGDP_t-RGDP_{t-1})/RGDP_{t-1}×100%`，並加入 P0／Qt／NGDPt／RGDPt 名詞卡、三個公式比較表與記憶技巧。實測 macro-01 第4節在 390px／1280px、深淺主題：4 個子區塊、3 個公式區塊、1 張比較表、0 `.katex-error`、0 水平溢出、axe 0 violations；驗證器 157,567 項、失敗 0（3,143 個行內公式）；全站名詞卡 1,536 張；靜態頁已重建。
 - [x] 2026-10-27 補上實質 GDP 的獨立定義：macro-01 第1節將原本合併的「名目 GDP 與實質 GDP」名詞卡拆成「名目 GDP」「實質 GDP」兩張，正文新增實質 GDP = 名目 GDP ÷（GDP 平減指數 ÷ 100）與比較不同年度應使用實質 GDP 的說明，考試重點新增「名目 GDP 成長可能只是物價上漲」。靜態頁重建後 macro-01 第1節顯示 5 張名詞卡（含獨立「實質 GDP」），390px／1280px、深淺主題 0 水平溢出、axe 0 violations、0 `.katex-error`；全站名詞卡 1,532 張；驗證器 157,483 項、失敗 0（3,135 個行內公式）。

@@ -775,3 +775,114 @@ Object.assign(window.ACCOUNTING_DIAGRAMS, {
     note: "本圖為教學示意，交易例示採簡化數字。實務上分錄還需記錄日期、摘要、憑證編號與稅務處理；折舊與應計薪資屬期末調整分錄，不是平時交易。不同企業的會計資訊系統可能合併部分步驟，但借貸平衡、過帳與報表勾稽的基本邏輯不變。"
   }
 });
+
+Object.assign(window.ACCOUNTING_DIAGRAMS, {
+  "accounting-13#1": {
+    sectionTitle: "第2節 現金流量表之編製",
+    kicker: "教學流程圖",
+    title: "現金流量表三分類：營業、投資與籌資",
+    caption: "現金流量表把特定期間的現金收支分成營業活動、投資活動與籌資活動三大類。三類淨現金流量加上期初現金，等於期末現金；期末現金必須與資產負債表的現金及約當現金一致。",
+    svg: `
+<svg viewBox="0 0 640 400" role="img" aria-labelledby="dg-acct-cf-title dg-acct-cf-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-acct-cf-title">現金流量表三分類流程</title>
+  <desc id="dg-acct-cf-desc">現金流量表分為營業活動、投資活動與籌資活動；三類現金流量加期初現金等於期末現金。</desc>
+  <defs>
+    <marker id="dg-acct-cf-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="dg-arrow-head" d="M0,0 L10,5 L0,10 z"></path>
+    </marker>
+  </defs>
+  <rect class="dg-box dg-box-accent" x="180" y="24" width="280" height="56" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="320" y="48" text-anchor="middle">現金流量表</text>
+  <text class="dg-label-xs" x="320" y="68" text-anchor="middle">特定期間的現金收支</text>
+  <line class="dg-arrow" x1="230" y1="80" x2="110" y2="130" marker-end="url(#dg-acct-cf-arrow)"></line>
+  <line class="dg-arrow" x1="320" y1="80" x2="320" y2="130" marker-end="url(#dg-acct-cf-arrow)"></line>
+  <line class="dg-arrow" x1="410" y1="80" x2="530" y2="130" marker-end="url(#dg-acct-cf-arrow)"></line>
+  <rect class="dg-box" x="20" y="130" width="180" height="110" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="110" y="156" text-anchor="middle">營業活動</text>
+  <text class="dg-label-xs" x="110" y="178" text-anchor="middle">主要收入來源</text>
+  <text class="dg-label-xs" x="110" y="200" text-anchor="middle">收取貨款、支付供應商</text>
+  <text class="dg-label-xs" x="110" y="222" text-anchor="middle">CFO</text>
+  <rect class="dg-box" x="230" y="130" width="180" height="110" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="320" y="156" text-anchor="middle">投資活動</text>
+  <text class="dg-label-xs" x="320" y="178" text-anchor="middle">長期資產與投資</text>
+  <text class="dg-label-xs" x="320" y="200" text-anchor="middle">購置設備、處分資產</text>
+  <text class="dg-label-xs" x="320" y="222" text-anchor="middle">CFI</text>
+  <rect class="dg-box" x="440" y="130" width="180" height="110" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="530" y="156" text-anchor="middle">籌資活動</text>
+  <text class="dg-label-xs" x="530" y="178" text-anchor="middle">權益與借款</text>
+  <text class="dg-label-xs" x="530" y="200" text-anchor="middle">發行股票、償還借款</text>
+  <text class="dg-label-xs" x="530" y="222" text-anchor="middle">CFF</text>
+  <line class="dg-arrow" x1="110" y1="240" x2="320" y2="290" marker-end="url(#dg-acct-cf-arrow)"></line>
+  <line class="dg-arrow" x1="320" y1="240" x2="320" y2="290" marker-end="url(#dg-acct-cf-arrow)"></line>
+  <line class="dg-arrow" x1="530" y1="240" x2="320" y2="290" marker-end="url(#dg-acct-cf-arrow)"></line>
+  <rect class="dg-box dg-box-outcome" x="90" y="290" width="460" height="60" rx="10"></rect>
+  <text class="dg-label" x="320" y="316" text-anchor="middle">期初現金 + CFO + CFI + CFF = 期末現金</text>
+  <text class="dg-label-xs" x="320" y="338" text-anchor="middle">期末現金應與資產負債表的現金及約當現金一致</text>
+  <text class="dg-label-xs" x="320" y="382" text-anchor="middle">非現金交易（如以股票換資產）不列入現金流量表，但應附註揭露</text>
+</svg>`,
+    variables: [
+      ["CFO", "營業活動現金流量", "主要收入來源相關的現金收支。"],
+      ["CFI", "投資活動現金流量", "長期資產、投資與處分相關的現金收支。"],
+      ["CFF", "籌資活動現金流量", "權益、借款與股利相關的現金收支。"],
+      ["期末現金", "現金及約當現金", "期初現金加三類淨現金流量。"]
+    ],
+    parameters: [
+      ["分類原則", "依交易性質", "同一交易可能因企業政策而分類不同。"],
+      ["非現金交易", "不列入現金流量表", "以股票換資產、債務轉增資等要附註揭露。"],
+      ["一致性", "跨期一致", "利息與股利分類須依政策一致處理。"]
+    ],
+    note: "本圖為教學流程示意，未列舉所有科目；實務分類仍依 IAS 7、企業會計政策與題目指定。"
+  },
+
+  "accounting-03#2": {
+    sectionTitle: "第3節 不動產、廠房及設備之處分",
+    kicker: "教學流程圖",
+    title: "不動產、廠房及設備：資本化、減損與處分",
+    caption: "取得資產時先判斷支出是否資本化；持有期間提折舊並測試減損；處分時先更新折舊，再比較售價與帳面金額，認列處分利益或損失。",
+    svg: `
+<svg viewBox="0 0 640 400" role="img" aria-labelledby="dg-acct-ppe-title dg-acct-ppe-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-acct-ppe-title">不動產、廠房及設備的資本化、減損與處分</title>
+  <desc id="dg-acct-ppe-desc">取得成本經資本化判斷後，持有期間提折舊與減損，處分時比較售價與帳面金額認列損益。</desc>
+  <defs>
+    <marker id="dg-acct-ppe-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="dg-arrow-head" d="M0,0 L10,5 L0,10 z"></path>
+    </marker>
+  </defs>
+  <rect class="dg-box" x="220" y="24" width="200" height="56" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="320" y="48" text-anchor="middle">取得成本</text>
+  <text class="dg-label-xs" x="320" y="68" text-anchor="middle">購買價格＋直接可歸屬成本</text>
+  <line class="dg-arrow" x1="320" y1="80" x2="320" y2="118" marker-end="url(#dg-acct-ppe-arrow)"></line>
+  <rect class="dg-box dg-box-accent" x="180" y="118" width="280" height="64" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="320" y="142" text-anchor="middle">資本化？</text>
+  <text class="dg-label-xs" x="320" y="162" text-anchor="middle">直接可歸屬、產生未來效益 → 資本化</text>
+  <line class="dg-arrow" x1="220" y1="182" x2="110" y2="222" marker-end="url(#dg-acct-ppe-arrow)"></line>
+  <text class="dg-label-xs" x="110" y="210" text-anchor="middle">否</text>
+  <rect class="dg-box" x="20" y="222" width="180" height="58" rx="10"></rect>
+  <text class="dg-label-sm" x="110" y="246" text-anchor="middle">當期費用</text>
+  <text class="dg-label-xs" x="110" y="266" text-anchor="middle">訓練、廣告、非必要支出</text>
+  <line class="dg-arrow" x1="420" y1="182" x2="530" y2="222" marker-end="url(#dg-acct-ppe-arrow)"></line>
+  <text class="dg-label-xs" x="530" y="210" text-anchor="middle">是</text>
+  <rect class="dg-box" x="440" y="222" width="180" height="58" rx="10"></rect>
+  <text class="dg-label-sm" x="530" y="246" text-anchor="middle">資產成本</text>
+  <text class="dg-label-xs" x="530" y="266" text-anchor="middle">折舊、減損、重估價</text>
+  <line class="dg-arrow" x1="530" y1="280" x2="530" y2="318" marker-end="url(#dg-acct-ppe-arrow)"></line>
+  <rect class="dg-box dg-box-outcome" x="330" y="318" width="290" height="58" rx="10"></rect>
+  <text class="dg-label-sm" x="475" y="342" text-anchor="middle">處分：售價 − 帳面金額</text>
+  <text class="dg-label-xs" x="475" y="362" text-anchor="middle">正數為利益、負數為損失</text>
+  <text class="dg-label-xs" x="120" y="342" text-anchor="middle">帳面金額 = 成本 − 累計折舊 − 減損</text>
+</svg>`,
+    variables: [
+      ["成本", "資產取得成本", "購買價格加直接可歸屬支出。"],
+      ["累計折舊", "已分攤成本", "依耐用年限與折舊方法累積。"],
+      ["減損", "帳面金額超過可回收金額", "認列減損損失，商譽不得迴轉。"],
+      ["帳面金額", "成本減累計折舊與減損", "處分損益的比較基礎。"],
+      ["售價", "處分價款", "扣除處分費用後與帳面金額比較。"]
+    ],
+    parameters: [
+      ["耐用年限", "折舊期間", "影響每期折舊與帳面金額。"],
+      ["可回收金額", "公允價值減出售成本與使用價值較高者", "減損測試的門檻。"],
+      ["商業實質", "非貨幣性資產交換", "具商業實質按公允價值，否則按帳面金額。"]
+    ],
+    note: "本圖為教學流程示意；實際資本化條件、減損測試與重估價仍依 IFRS 與企業會計政策。"
+  }
+});

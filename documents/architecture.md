@@ -195,7 +195,7 @@ sequenceDiagram
 | `window.CHAPTER_DATA` | `content-chapter-data-*.js` | 各章考古題／申論題／解題 |
 | `window.PAST_EXAM_SEARCH_INDEX` | `content-past-exam-search.js` | 3,710 題考古題搜尋索引（按需） |
 | `window.LAW_ARTICLES` | `content-law-articles-*.js` | 法規全文；章節分包載入時合併 |
-| （載入時追加） | `content-exam-gap-supplements.js` | 在 29 個既有節次追加 34 個補充小節與名詞；不新增章節、不改 `chapterId#sectionIndex` |
+| （載入時追加） | `content-exam-gap-supplements.js` | 在 35 個既有節次追加 42 個補充小節與名詞；不新增章節、不改 `chapterId#sectionIndex` |
 
 單一來源規則：
 
