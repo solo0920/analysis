@@ -184,7 +184,7 @@ sequenceDiagram
 | `window.INVESTMENT_OPTION_PRIORITIES` | `content-investment.js` | 7 項選擇權評價優先順序與 30 條公式 |
 | `window.INVESTMENT_FORMULA_LIBRARY` | `content-investment-formulas.js` | 10 類 66 條投資學核心公式 |
 | `window.INVESTMENT_TECHNICAL_INDICATORS` | `content-investment-technical.js` | 5 類 50 種技術分析指標 |
-| `window.MACRO_DIAGRAMS` | `diagrams-macro*.js` | 28 張總體章節模型圖（含 1 張教學流程圖、1 張 NFIA 觀念圖與 5 張學派模型補充），鍵為 `chapterId#sectionIndex` |
+| `window.MACRO_DIAGRAMS` | `diagrams-macro*.js` | 32 張總體章節模型圖（含 1 張教學流程圖、1 張 NFIA 觀念圖、5 張學派模型補充與 4 張題庫導向圖），鍵為 `chapterId#sectionIndex` |
 | `window.MACRO_EVOLUTION` | `content-macro-evolution.js` | 6 階段、10 節點、模型錨點與諾貝爾年份 |
 | `window.MACRO_CURRENT_EVENTS` | `content-macro-current.js` | 15 個總經時事、12 個主題公式（26 條）、20 則 TOP 20 摘要整合、8 大主題、5 題申論與官方參考資料 |
 | `window.NOBEL_DATA` | `content-nobel.js` | 58 屆諾貝爾年表、17 個圖組 |
@@ -195,6 +195,7 @@ sequenceDiagram
 | `window.CHAPTER_DATA` | `content-chapter-data-*.js` | 各章考古題／申論題／解題 |
 | `window.PAST_EXAM_SEARCH_INDEX` | `content-past-exam-search.js` | 3,710 題考古題搜尋索引（按需） |
 | `window.LAW_ARTICLES` | `content-law-articles-*.js` | 法規全文；章節分包載入時合併 |
+| （載入時追加） | `content-exam-gap-supplements.js` | 在 29 個既有節次追加 34 個補充小節與名詞；不新增章節、不改 `chapterId#sectionIndex` |
 
 單一來源規則：
 

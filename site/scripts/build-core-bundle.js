@@ -11,7 +11,7 @@ const files = [
   "content-macro.js", "content-macro-2.js", "content-macro-3.js",
   "content-investment.js", "content-investment-formulas.js", "content-investment-technical.js",
   "content-accounting.js", "content-accounting-2.js", "content-law.js",
-  "content-chapter-supplements.js", "content-law-deepdive.js", "content-law-deepdive-2.js",
+  "content-chapter-supplements.js", "content-exam-gap-supplements.js", "content-law-deepdive.js", "content-law-deepdive-2.js",
   "content-law-quickread.js", "content-formula-tex.js", "content.js",
   "content-exam-forecast.js", "content-exam-forecast-answers.js", "content-past-exam-stats.js"
 ];

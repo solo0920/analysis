@@ -3157,7 +3157,9 @@ a.landing-item:hover {
 }
 
 .models-jump a.is-empty {
-  opacity: 0.62;
+  color: var(--ink-soft);
+  border-style: dashed;
+  background: var(--surface-2);
 }
 
 .models-list {

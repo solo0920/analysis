@@ -211,3 +211,215 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "本圖為到期價值，不是損益；買方損益還須扣除權利金，賣方則收取權利金但承擔較大風險。波動率與到期時間影響的是到期前的選擇權價格，不是到期價值。"
   }
 });
+
+Object.assign(window.MACRO_DIAGRAMS, {
+  "macro-04#0": {
+    sectionTitle: "第1節 中央銀行",
+    kicker: "題庫導向圖解",
+    title: "準備金市場：公開市場買進使供給右移、利率下降",
+    formula: String.raw`B=C+R,\qquad M=m\times B`,
+    caption: "縱軸為短期利率 i，橫軸為準備金數量 R。準備金需求 D 向下；央行公開市場買進債券使準備金供給由 S0 右移到 S1，均衡由 E0 移到 E1，短期利率由 i0 降到 i1。貨幣基數 B 等於通貨 C 加準備金 R。",
+    svg: `
+<svg viewBox="0 0 640 380" role="img" aria-labelledby="dg-cbres-title dg-cbres-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-cbres-title">準備金市場：公開市場買進使供給右移、利率下降</title>
+  <desc id="dg-cbres-desc">準備金需求向下，供給由 S0 右移到 S1，均衡利率由 i0 下降到 i1；貨幣基數等於通貨加準備金。</desc>
+  <defs>
+    <marker id="dg-cbres-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="dg-arrow-head" d="M0,0 L10,5 L0,10 z"></path>
+    </marker>
+  </defs>
+  <line class="dg-axis" x1="70" y1="330" x2="610" y2="330"></line>
+  <line class="dg-axis" x1="70" y1="330" x2="70" y2="40"></line>
+  <text class="dg-label-sm" x="610" y="352" text-anchor="end">準備金 R</text>
+  <text class="dg-label-sm" x="62" y="34" text-anchor="end">利率 i</text>
+  <path class="dg-curve" d="M120 127 L560 273"></path>
+  <line class="dg-curve-alt" x1="310" y1="90" x2="310" y2="320"></line>
+  <line class="dg-curve-soft" x1="430" y1="90" x2="430" y2="320"></line>
+  <circle class="dg-point" cx="310" cy="190" r="5"></circle>
+  <circle class="dg-point" cx="430" cy="230" r="5"></circle>
+  <line class="dg-guide" x1="70" y1="190" x2="310" y2="190"></line>
+  <line class="dg-guide" x1="70" y1="230" x2="430" y2="230"></line>
+  <line class="dg-guide" x1="310" y1="190" x2="310" y2="330"></line>
+  <line class="dg-guide" x1="430" y1="230" x2="430" y2="330"></line>
+  <text class="dg-label-sm" x="64" y="194" text-anchor="end">i0</text>
+  <text class="dg-label-sm" x="64" y="234" text-anchor="end">i1</text>
+  <text class="dg-label-sm" x="310" y="348" text-anchor="middle">R0</text>
+  <text class="dg-label-sm" x="430" y="348" text-anchor="middle">R1</text>
+  <text class="dg-label-sm" x="545" y="258">D</text>
+  <text class="dg-label-sm" x="318" y="84">S0</text>
+  <text class="dg-label-sm" x="438" y="84">S1</text>
+  <text class="dg-label-sm" x="250" y="180" text-anchor="end">E0</text>
+  <text class="dg-label-sm" x="442" y="246">E1</text>
+  <text class="dg-label-xs" x="320" y="26" text-anchor="middle">公開市場買進 → 準備金供給增加 → 短期利率下降</text>
+  <text class="dg-label-xs" x="80" y="366">貨幣基數 B = 通貨 C + 準備金 R；準備金增加使 B 增加。</text>
+</svg>`,
+    variables: [
+      ["i", "短期利率", "縱軸；準備金市場的價格。"],
+      ["R", "準備金數量", "橫軸；銀行體系的準備金餘額。"],
+      ["D", "準備金需求", "與利率反向；交易、清算與法定準備需求。"],
+      ["S", "準備金供給", "由央行資產買賣決定；公開市場買進使供給右移。"],
+      ["B", "貨幣基數", "通貨 C 加準備金 R；央行負債的一部分。"]
+    ],
+    parameters: [
+      ["rr", "法定準備率", "提高 rr 會增加準備金需求。"],
+      ["公開市場操作", "央行買賣債券", "買進增加準備金，賣出減少準備金。"],
+      ["m", "貨幣乘數", "貨幣供給 M = m × B；m 由制度與行為決定。"]
+    ],
+    note: "本圖為概念示意，未按實際準備金供需數值繪製；公開市場買進同時增加央行資產與負債，實際利率效果還取決於準備金需求彈性與沖銷操作。"
+  },
+
+  "macro-05#4": {
+    sectionTitle: "進階專題：泰勒法則、QTM 與準備金走廊",
+    kicker: "題庫導向圖解",
+    title: "準備金走廊與 QT：供給左移使短期利率向 IORB 靠攏",
+    formula: String.raw`i_{ONRRP}\le i_{EFFR}\le i_{IORB}`,
+    caption: "縱軸為政策利率，橫軸為準備金。準備金需求 D 向下；供給原為 S0，QT 使供給左移到 S1，均衡由 E0 移到 E1，短期利率上升。ON RRP 形成下限、IORB 形成銀行準備金報酬的參考上限；準備金充裕時，利率主要由走廊引導。",
+    svg: `
+<svg viewBox="0 0 640 380" role="img" aria-labelledby="dg-rescorr-title dg-rescorr-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-rescorr-title">準備金走廊與 QT：供給左移使短期利率上升</title>
+  <desc id="dg-rescorr-desc">準備金需求向下，供給由 S0 左移到 S1，均衡利率由 i0 上升到 i1；ON RRP 是下限，IORB 是銀行準備金報酬參考。</desc>
+  <line class="dg-axis" x1="70" y1="330" x2="610" y2="330"></line>
+  <line class="dg-axis" x1="70" y1="330" x2="70" y2="40"></line>
+  <text class="dg-label-sm" x="610" y="352" text-anchor="end">準備金 R</text>
+  <text class="dg-label-sm" x="62" y="34" text-anchor="end">政策利率 i</text>
+  <path class="dg-curve" d="M130 105 L560 280"></path>
+  <line class="dg-curve-alt" x1="360" y1="95" x2="360" y2="320"></line>
+  <line class="dg-curve-soft" x1="250" y1="95" x2="250" y2="320"></line>
+  <line class="dg-guide" x1="70" y1="300" x2="610" y2="300"></line>
+  <line class="dg-guide" x1="70" y1="130" x2="610" y2="130"></line>
+  <circle class="dg-point" cx="360" cy="205" r="5"></circle>
+  <circle class="dg-point" cx="250" cy="174" r="5"></circle>
+  <line class="dg-guide" x1="70" y1="205" x2="360" y2="205"></line>
+  <line class="dg-guide" x1="70" y1="174" x2="250" y2="174"></line>
+  <text class="dg-label-sm" x="360" y="222" text-anchor="middle">E0</text>
+  <text class="dg-label-sm" x="238" y="166" text-anchor="end">E1</text>
+  <text class="dg-label-sm" x="368" y="89">S0</text>
+  <text class="dg-label-sm" x="258" y="89">S1（QT）</text>
+  <text class="dg-label-sm" x="540" y="292" text-anchor="end">ON RRP 下限</text>
+  <text class="dg-label-sm" x="540" y="122" text-anchor="end">IORB 參考</text>
+  <text class="dg-label-sm" x="64" y="209" text-anchor="end">i0</text>
+  <text class="dg-label-sm" x="64" y="178" text-anchor="end">i1</text>
+  <text class="dg-label-xs" x="320" y="26" text-anchor="middle">QT：準備金供給左移 → 短期利率上升 → 向走廊上限靠攏</text>
+  <text class="dg-label-xs" x="80" y="366">準備金充裕時，利率由 IORB／ON RRP 走廊引導；供給數量不是唯一指標。</text>
+</svg>`,
+    variables: [
+      ["i", "短期政策利率", "縱軸；有效聯邦資金利率或同業拆借利率。"],
+      ["R", "準備金數量", "橫軸；銀行體系準備金。"],
+      ["D", "準備金需求", "向下；準備金愈多，邊際流動性價值愈低。"],
+      ["S", "準備金供給", "由央行資產與 QT 決定。"],
+      ["E", "均衡點", "準備金供需交點，決定短期利率。"]
+    ],
+    parameters: [
+      ["IORB", "準備金報酬", "銀行保留準備金的機會成本參考。"],
+      ["ON RRP", "隔夜逆回購利率", "貨幣市場資金的下限。"],
+      ["QT", "量化緊縮", "縮減央行資產負債表，供給左移。"]
+    ],
+    note: "本圖為概念示意；走廊上下限的相對位置、EFFR 與 SOFR 的實際交易區間，會隨制度、準備金豐裕程度與回購市場摩擦變動。"
+  },
+
+  "macro-10#6": {
+    sectionTitle: "進階專題：REER、J 曲線與三元悖論",
+    kicker: "題庫導向圖解",
+    title: "J 曲線：貶值後貿易餘額先惡化、後改善",
+    formula: String.raw`|\varepsilon_X|+|\varepsilon_M|>1`,
+    caption: "橫軸為時間，縱軸為貿易餘額。本國貨幣貶值後，短期因進口成本上升、契約與價格調整不完全，貿易餘額先惡化；若馬歇爾-勒納條件成立，出口與進口替代效果逐漸顯現，貿易餘額之後改善，形成 J 字形。",
+    svg: `
+<svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-jcurve-title dg-jcurve-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-jcurve-title">J 曲線：貶值後貿易餘額先惡化後改善</title>
+  <desc id="dg-jcurve-desc">橫軸為時間，縱軸為貿易餘額；貶值後曲線先下降至短期低點，再上升並轉為順差。</desc>
+  <line class="dg-axis" x1="70" y1="300" x2="610" y2="300"></line>
+  <line class="dg-axis" x1="70" y1="300" x2="70" y2="40"></line>
+  <line class="dg-guide" x1="70" y1="190" x2="610" y2="190"></line>
+  <text class="dg-label-sm" x="610" y="324" text-anchor="end">時間 t</text>
+  <text class="dg-label-sm" x="62" y="34" text-anchor="end">貿易餘額 TB</text>
+  <text class="dg-label-sm" x="80" y="182">0</text>
+  <path class="dg-curve" d="M100 190 C 150 205 180 270 235 278 C 310 288 390 210 470 150 C 520 116 560 105 590 100"></path>
+  <circle class="dg-point" cx="235" cy="278" r="5"></circle>
+  <circle class="dg-point" cx="470" cy="150" r="5"></circle>
+  <line class="dg-guide" x1="235" y1="278" x2="235" y2="300"></line>
+  <line class="dg-guide" x1="470" y1="150" x2="470" y2="300"></line>
+  <text class="dg-label-sm" x="235" y="322" text-anchor="middle">短期低點</text>
+  <text class="dg-label-sm" x="470" y="322" text-anchor="middle">長期改善</text>
+  <text class="dg-label-sm" x="120" y="176">貶值</text>
+  <text class="dg-label-sm" x="300" y="250">貿易餘額惡化</text>
+  <text class="dg-label-sm" x="480" y="130">轉為順差</text>
+  <text class="dg-label-xs" x="320" y="26" text-anchor="middle">J 曲線成立的前提：出口與進口需求彈性合計大於 1</text>
+</svg>`,
+    variables: [
+      ["TB", "貿易餘額", "出口減進口；縱軸。"],
+      ["t", "時間", "橫軸；貶值後的效果隨時間展開。"],
+      ["E", "匯率", "貶值使出口競爭力上升、進口成本上升。"],
+      ["εX、εM", "出口與進口需求彈性", "決定貶值能否改善貿易餘額。"]
+    ],
+    parameters: [
+      ["馬歇爾-勒納條件", "|εX| + |εM| > 1", "彈性足夠時，貶值長期改善貿易餘額。"],
+      ["調整期間", "契約與價格調整速度", "調整越慢，J 曲線的低點越深、越晚改善。"],
+      ["其他條件", "所得、供給鏈、貿易政策", "會使 J 曲線路徑偏離標準形狀。"]
+    ],
+    note: "本圖為概念示意，未按實際時間與金額繪製；J 曲線不是每國、每次貶值都會出現，若彈性不足或供給鏈受阻，貿易餘額可能持續惡化。"
+  },
+
+  "macro-13#0": {
+    sectionTitle: "第1節 貨幣市場與資本市場比較整理",
+    kicker: "題庫導向圖解",
+    title: "金融工具地圖：貨幣市場、資本市場與衍生品",
+    formula: String.raw`\text{金融市場}=\text{貨幣市場}+\text{資本市場}+\text{衍生品市場}`,
+    caption: "金融市場依期限與工具性質分成三塊：貨幣市場交易一年以下短期工具，資本市場交易一年以上或無到期日證券，衍生品市場交易價值取決於標的資產的契約。箭頭表示資金與風險的流動，不是唯一分類方式。",
+    svg: `
+<svg viewBox="0 0 640 400" role="img" aria-labelledby="dg-finmap-title dg-finmap-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-finmap-title">金融工具地圖：貨幣市場、資本市場與衍生品</title>
+  <desc id="dg-finmap-desc">金融市場分成貨幣市場、資本市場與衍生品市場；各自列出代表性工具與主要功能。</desc>
+  <defs>
+    <marker id="dg-finmap-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="dg-arrow-head" d="M0,0 L10,5 L0,10 z"></path>
+    </marker>
+  </defs>
+  <rect class="dg-box dg-box-accent" x="190" y="24" width="260" height="58" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="320" y="50" text-anchor="middle">金融市場</text>
+  <text class="dg-label-xs" x="320" y="70" text-anchor="middle">資金供給者 ↔ 資金需求者</text>
+  <line class="dg-arrow" x1="250" y1="84" x2="120" y2="130" marker-end="url(#dg-finmap-arrow)"></line>
+  <line class="dg-arrow" x1="320" y1="84" x2="320" y2="130" marker-end="url(#dg-finmap-arrow)"></line>
+  <line class="dg-arrow" x1="390" y1="84" x2="520" y2="130" marker-end="url(#dg-finmap-arrow)"></line>
+  <rect class="dg-box" x="20" y="130" width="190" height="220" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="115" y="158" text-anchor="middle">貨幣市場</text>
+  <text class="dg-label-xs" x="115" y="178" text-anchor="middle">一年以下</text>
+  <text class="dg-label-sm" x="36" y="208">國庫券</text>
+  <text class="dg-label-sm" x="36" y="234">商業本票 CP</text>
+  <text class="dg-label-sm" x="36" y="260">銀行承兌匯票 BA</text>
+  <text class="dg-label-sm" x="36" y="286">可轉讓定存單 NCD</text>
+  <text class="dg-label-sm" x="36" y="312">附買回交易 RP</text>
+  <text class="dg-label-xs" x="36" y="338">功能：短期資金調度</text>
+  <rect class="dg-box" x="225" y="130" width="190" height="220" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="320" y="158" text-anchor="middle">資本市場</text>
+  <text class="dg-label-xs" x="320" y="178" text-anchor="middle">一年以上或無到期日</text>
+  <text class="dg-label-sm" x="241" y="208">政府公債</text>
+  <text class="dg-label-sm" x="241" y="234">公司債</text>
+  <text class="dg-label-sm" x="241" y="260">股票</text>
+  <text class="dg-label-sm" x="241" y="286">共同基金／ETF</text>
+  <text class="dg-label-sm" x="241" y="312">可轉換公司債</text>
+  <text class="dg-label-xs" x="241" y="338">功能：長期籌資與投資</text>
+  <rect class="dg-box" x="430" y="130" width="190" height="220" rx="10"></rect>
+  <text class="dg-label dg-label-strong" x="525" y="158" text-anchor="middle">衍生品市場</text>
+  <text class="dg-label-xs" x="525" y="178" text-anchor="middle">價值取決於標的</text>
+  <text class="dg-label-sm" x="446" y="208">遠期契約</text>
+  <text class="dg-label-sm" x="446" y="234">期貨契約</text>
+  <text class="dg-label-sm" x="446" y="260">選擇權</text>
+  <text class="dg-label-sm" x="446" y="286">交換契約</text>
+  <text class="dg-label-sm" x="446" y="312">結構型商品</text>
+  <text class="dg-label-xs" x="446" y="338">功能：避險、投機、套利</text>
+  <text class="dg-label-xs" x="320" y="384" text-anchor="middle">初級市場：新發行；次級市場：已發行證券交易</text>
+</svg>`,
+    variables: [
+      ["期限", "工具到期期間", "一年以下為貨幣市場，一年以上或無到期日為資本市場。"],
+      ["工具", "交易標的", "短期票券、債券、股票、基金或衍生契約。"],
+      ["風險", "主要風險型態", "利率、信用、權益價格、流動性與交易對手風險。"],
+      ["市場", "初級或次級", "初級市場籌資，次級市場提供流動性。"]
+    ],
+    parameters: [
+      ["市場區隔", "依期限與功能分類", "同一工具可能跨市場，分類要看主要性質。"],
+      ["流動性", "變現能力", "貨幣市場流動性通常較高。"],
+      ["監理", "主管機關與規則", "不同工具適用不同法規與揭露要求。"]
+    ],
+    note: "本圖為概念分類，不是官方統計分類；ETF、可轉債與結構型商品可能同時具有多種性質，考試時要看題目問的是期限、現金流或風險。"
+  }
+});

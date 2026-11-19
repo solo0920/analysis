@@ -907,12 +907,17 @@ function nobelPage() {
 function chapterPage(subject, slug, chapter, index) {
   const sections = Array.isArray(chapter.sections) ? chapter.sections : [];
   const terms = [];
+  const termKeys = new Set();
   const points = [];
   const formulas = [];
   sections.forEach(function (section) {
     (Array.isArray(section.terms) ? section.terms : []).forEach(function (term) {
       if (Array.isArray(term) && term[0]) {
-        terms.push(term);
+        const key = cleanText(term[0]);
+        if (!termKeys.has(key)) {
+          termKeys.add(key);
+          terms.push(term);
+        }
       }
     });
     (Array.isArray(section.points) ? section.points : []).forEach(function (point) {
@@ -955,10 +960,16 @@ function chapterPage(subject, slug, chapter, index) {
     "</nav>"
   ].join("");
   const sectionCards = sections.map(function (section, sectionIndex) {
+    const firstSub = Array.isArray(section.subsections) ? section.subsections[0] : null;
+    const subNote = firstSub ? [
+      '  <p class="landing-subsection-note"><strong>' + escapeHtml(truncateText(cleanText(firstSub.title || ""), 80)) + '：</strong>' +
+        escapeHtml(truncateText((firstSub.body || [])[0] || "", 180)) + "</p>"
+    ].join("") : "";
     return [
       '<article class="landing-chapter">',
       '  <div class="landing-chapter-head"><span>第 ' + (sectionIndex + 1) + ' 節</span><h3>' + escapeHtml(sectionTitleText(section.title)) + "</h3></div>",
       "  <p>" + escapeHtml(truncateText((section.body || [])[0] || "", 180)) + "</p>",
+      subNote,
       '  <div class="landing-chapter-meta"><span>' + (Array.isArray(section.terms) ? section.terms.length : 0) + ' 個名詞</span><a href="' + rootHref(2, "#/chapter/" + chapter.id + "?section=" + (sectionIndex + 1)) + '">閱讀本節 →</a></div>',
       "</article>"
     ].join("");
