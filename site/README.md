@@ -147,7 +147,7 @@ python3 -m http.server 8765 --directory site
 
 線上網站：<https://analysis.ragdemo.win/>（GitHub Pages 原站：<https://solo0920.github.io/analysis/>）
 
-`.github/workflows/pages.yml` 會在推送 `main` 時先執行所有 JavaScript 的 `node --check`、`validate-content.js` 與 `validate-seo.js`，通過後才將 `site/` 上傳為 Pages artifact，再以 `actions/deploy-pages` 發佈；任一驗證失敗即停止部署。`site/.nojekyll` 停用 Jekyll 處理，`site/404.html` 會依 GitHub Pages 子路徑或自訂網域根目錄將未知路徑導回站點首頁；所有資產使用相對路徑，可直接在 `/analysis/` 子路徑下運作。
+`.github/workflows/pages.yml` 會在推送 `main` 時先執行 `bash site/scripts/verify.sh`：建置核心 bundle 與靜態頁，並以 `xargs -P 4` 平行檢查 JavaScript 語法與內容，再驗證 SEO；通過後才將 `site/` 上傳為 Pages artifact，再以 `actions/deploy-pages` 發佈。任一驗證失敗即停止部署。`site/.nojekyll` 停用 Jekyll 處理，`site/404.html` 會依 GitHub Pages 子路徑或自訂網域根目錄將未知路徑導回站點首頁；所有資產使用相對路徑，可直接在 `/analysis/` 子路徑下運作。
 
 Repository 的 Pages Source 已設為 **GitHub Actions**；若之後重新建立 Pages，請在 Repository Settings → Pages 將 Source 設為 **GitHub Actions**。
 
@@ -309,11 +309,11 @@ ExamSolutionData[] {
 ## 驗證
 
 ```bash
-node site/scripts/validate-content.js
-node site/scripts/validate-seo.js
-for f in site/assets/*.js; do node --check "$f"; done
+bash site/scripts/verify.sh             # 建置＋JS 語法／內容平行檢查＋SEO
 node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份與得主
 ```
+
+`verify.sh` 以 `xargs -P 4` 平行執行 170 個 JS／MJS 檔的 `node --check`，同時執行內容驗證；本機完整流程由約 22 秒降至約 6.4 秒（單獨 `node --check` 由約 19.7 秒降至約 5.2 秒）。若只想檢查個別項目，仍可直接執行 `validate-content.js`、`validate-seo.js` 或 `node --check <file>`。
 
 `validate-seo.js` 會確認首頁、83 個靜態頁、Sitemap、robots.txt、llms.txt 與 JSON-LD 都使用正式網域 `https://analysis.ragdemo.win`，每個靜態頁的 canonical／og:url 指向自身，Sitemap URL 與實際頁面完全一致，且沒有殘留 GitHub Pages 網域。GitHub Actions 的 `pages.yml` 會在部署前執行 JavaScript 語法檢查、`validate-content.js` 與 `validate-seo.js`，任一失敗即停止部署。
 
@@ -539,7 +539,7 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 
 1. 先更新 `documents/` 下的來源目錄。
 2. 修改對應的 `site/assets/content-*.js`；不要用另一個科目的章節補洞。模型圖變更則修改 `site/assets/diagrams-macro*.js`、`diagrams-investment.js` 或 `diagrams-accounting.js`，確認 `sectionTitle` 仍與節次相符。學派演進圖修改 `content-macro-evolution.js`；模型名稱與諾貝爾資料仍分別以 `diagrams-macro*.js`、`content-nobel.js` 為單一來源。諾貝爾年表修改 `content-nobel.js`，圖組修改 `diagrams-nobel.js`，維持 58 屆資料與 17 組模型的對應。
-3. 執行 `node site/scripts/validate-content.js` 與 `node site/scripts/validate-seo.js`，確認內容與網址差異都已被處理；再用 `node --check` 檢查所有 JavaScript。
+3. 執行 `bash site/scripts/verify.sh`，一次完成核心 bundle／靜態頁建置、JavaScript 語法與內容平行檢查、SEO 驗證；確認內容與網址差異都已被處理。
 4. 用瀏覽器檢查首頁、四個科目頁（含每章「選擇題 N 題 · 頻率 X%」與「申論題 N 題 · 頻率 X%」；總體含第 11–13 章與學派演進圖）、至少一個含模型圖的總體章、`#/models/macro`、`#/models/macro?model=<anchor>` 的模型卡跳轉與高亮、`#/macro/evolution`（舊網址 `#/subject/macro?evolution=1` 仍可開啟）、`#/nobel`、`?group=`／`?year=`／`?table=`／`?models=` 跳轉、搜尋入口（含會計名詞）、`#/sources`、`#/past-exams` 的年度／科目／次別篩選與作答、`#/past-exams/written` 的年度／科目／次別篩選、`#/investment/formulas` 的公式總表、`#/investment/technical` 的技術分析 50 指標、`#/chapter/investment-14` 的綁定公式，會計第 14、15、23 章，以及證券法規章節；章節頁另檢查選擇題展開解答後在原選項顯示正解與說明。
 5. 若修改模型圖，確認總覽頁與原章節顯示相同內容；可暫時修改記憶體中的 `MACRO_DIAGRAMS`、`INVESTMENT_DIAGRAMS`、`ACCOUNTING_DIAGRAMS` 或 `NOBEL_DIAGRAMS`，切換路由檢查資料綁定。諾貝爾頁是 `NOBEL_DATA`／`NOBEL_DIAGRAMS` 的唯一呈現頁；模型總覽不重複列諾貝爾模型。
 6. 在桌機與 390px 寬度檢查頁面沒有水平溢出；諾貝爾頁為 17 組模型，每組在桌機左右 1:1、900px 以下為單欄，模型圖可在圖表區內滑動；年份下拉可切換所屬模型並捲動，屆別晶片只切換屆別資料；並以 `file://` 開啟確認可閱讀。

@@ -34,14 +34,8 @@ jobs:
         with:
           node-version: 22
 
-      - name: Build static landing pages
-        run: node site/scripts/build-static-landing-pages.js
-
-      - name: Validate content, JavaScript and SEO
-        run: |
-          find site \( -name '*.js' -o -name '*.mjs' \) -type f -print0 | xargs -0 -n1 node --check
-          node site/scripts/validate-content.js
-          node site/scripts/validate-seo.js
+      - name: Build and validate site
+        run: bash site/scripts/verify.sh
 
       - name: Setup Pages
         uses: actions/configure-pages@v6
@@ -53,7 +47,7 @@ jobs:
           include-hidden-files: true
 
       - name: Wait for artifact metadata
-        run: sleep 15
+        run: sleep 5
 
       - name: Deploy to GitHub Pages
         id: deployment
