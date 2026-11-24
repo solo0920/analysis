@@ -226,6 +226,76 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "本圖為教學示意，數值不代表實際統計。GNP 與 GNI 在多數教材同義，臺灣官方近年多用 GNI；圖中的所得面 GDP 以要素所得、折舊與間接稅淨額的簡化架構表示。"
   },
 
+  "macro-01#4": {
+    sectionTitle: "第5節 國民所得做為經濟福利指標的問題",
+    kicker: "所得分配圖",
+    title: "洛侖士曲線與吉尼係數：A、B 面積與分配不均",
+    formula: String.raw`G=\frac{A}{A+B}=1-2B`,
+    caption: "橫軸為累積家戶比例，家戶由低所得排到高所得；縱軸為累積所得比例。45 度線是完全平等線，實線是以 2023 年五等分位資料繪製的洛侖士曲線。45 度線與曲線之間的面積 A 越大，分配越不均；曲線下面積 B 與 A 合計為 0.5，吉尼係數 \\(G=\\dfrac{A}{A+B}=1-2B\\)。",
+    svg: `
+<svg viewBox="0 0 640 440" role="img" aria-labelledby="dg-lorenz-title dg-lorenz-desc" style="max-width:640px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-lorenz-title">洛侖士曲線、A/B 面積與吉尼係數</title>
+  <desc id="dg-lorenz-desc">橫軸為累積家戶比例，縱軸為累積所得比例。45 度線為完全平等線，實線為 2023 年五等分位資料的洛侖士曲線。45 度線與曲線之間的面積 A 越大，吉尼係數越大；曲線下面積 B 與 A 合計為 0.5，吉尼係數等於 A 除以 A 加 B。</desc>
+  <line class="dg-axis" x1="80" y1="320" x2="592" y2="320"></line>
+  <line class="dg-axis" x1="80" y1="320" x2="80" y2="52"></line>
+  <text class="dg-label" x="330" y="368" text-anchor="middle">累積家戶比例 p（由低所得排到高所得）</text>
+  <text class="dg-label" x="88" y="42">累積所得比例 L(p)</text>
+
+  <text class="dg-label-xs" x="80" y="340" text-anchor="middle">0</text>
+  <text class="dg-label-xs" x="180" y="340" text-anchor="middle">20%</text>
+  <text class="dg-label-xs" x="280" y="340" text-anchor="middle">40%</text>
+  <text class="dg-label-xs" x="380" y="340" text-anchor="middle">60%</text>
+  <text class="dg-label-xs" x="480" y="340" text-anchor="middle">80%</text>
+  <text class="dg-label-xs" x="580" y="340" text-anchor="middle">100%</text>
+
+  <text class="dg-label-xs" x="68" y="324" text-anchor="end">0</text>
+  <text class="dg-label-xs" x="68" y="272" text-anchor="end">20%</text>
+  <text class="dg-label-xs" x="68" y="220" text-anchor="end">40%</text>
+  <text class="dg-label-xs" x="68" y="168" text-anchor="end">60%</text>
+  <text class="dg-label-xs" x="68" y="116" text-anchor="end">80%</text>
+  <text class="dg-label-xs" x="68" y="64" text-anchor="end">100%</text>
+
+  <path class="dg-area-gold" d="M80,320 L180,305.34 L280,275.77 L380,233.06 L480,174.82 L580,60 L580,320 Z"></path>
+  <path class="dg-area-accent" d="M80,320 L580,60 L480,174.82 L380,233.06 L280,275.77 L180,305.34 Z"></path>
+
+  <line class="dg-curve-soft" x1="80" y1="320" x2="580" y2="60"></line>
+  <path class="dg-curve" d="M80,320 L180,305.34 L280,275.77 L380,233.06 L480,174.82 L580,60"></path>
+
+  <circle class="dg-point" cx="180" cy="305.34" r="3.2"></circle>
+  <circle class="dg-point" cx="280" cy="275.77" r="3.2"></circle>
+  <circle class="dg-point" cx="380" cy="233.06" r="3.2"></circle>
+  <circle class="dg-point" cx="480" cy="174.82" r="3.2"></circle>
+
+  <line class="dg-guide" x1="80" y1="305.34" x2="180" y2="305.34"></line>
+  <line class="dg-guide" x1="180" y1="305.34" x2="180" y2="320"></line>
+  <text class="dg-label-xs" x="188" y="300">5.64%</text>
+
+  <text class="dg-label" x="350" y="215" text-anchor="middle">A</text>
+  <text class="dg-label-xs" x="350" y="232" text-anchor="middle">45° 線與曲線之間</text>
+  <text class="dg-label" x="310" y="298" text-anchor="middle">B</text>
+  <text class="dg-label-xs" x="310" y="313" text-anchor="middle">曲線下面積</text>
+
+  <line class="dg-curve" x1="390" y1="400" x2="420" y2="400"></line>
+  <text class="dg-label-xs" x="428" y="404">洛侖士曲線（2023）</text>
+  <line class="dg-curve-soft" x1="390" y1="418" x2="420" y2="418"></line>
+  <text class="dg-label-xs" x="428" y="422">45° 完全平等線</text>
+</svg>`,
+    variables: [
+      ["p", "累積家戶比例", "橫軸；家戶由低所得到高所得排序，0 到 1（或 0% 到 100%）。"],
+      ["L(p)", "累積所得比例", "縱軸；所得最低 p 比例家戶的所得占全體所得的比例。"],
+      ["A", "不均面積", "45 度線與洛侖士曲線之間；A 越大，分配越不均。"],
+      ["B", "曲線下面積", "洛侖士曲線與橫軸之間；\\(A+B\\) 為 45 度線下三角形面積 0.5。"],
+      ["G", "吉尼係數", "\\(G=\\dfrac{A}{A+B}=1-2B\\)，介於 0 與 1；0 為完全平等，1 為完全不等。"]
+    ],
+    parameters: [
+      ["2023 年資料", "五等分位", "累積所得份額為 0、5.64、17.01、33.44、55.84、100（%）。"],
+      ["所得分配", "曲線位置", "曲線越靠近 45 度線，分配越平等；越遠越不均。"],
+      ["曲線交叉", "判斷限制", "兩條洛侖士曲線交叉時，不能只憑圖形判定何者較不均。"],
+      ["戶內人口", "每人所得", "比較生活水準時，戶數相同不等於每人相同，需按人口調整。"]
+    ],
+    note: "本圖以 2023 年五等分位累積所得份額繪製，採折線連接；A、B 為面積概念，實際數值以完整分戶資料計算。吉尼係數也可用五等分位梯形法近似。"
+  },
+
   "macro-02#0": {
     sectionTitle: "第1節 均衡所得之決定",
     title: "簡單凱因斯模型：總支出線與45度線決定均衡所得",
