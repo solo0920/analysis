@@ -184,7 +184,7 @@ sequenceDiagram
 | `window.INVESTMENT_OPTION_PRIORITIES` | `content-investment.js` | 7 項選擇權評價優先順序與 30 條公式 |
 | `window.INVESTMENT_FORMULA_LIBRARY` | `content-investment-formulas.js` | 10 類 66 條投資學核心公式 |
 | `window.INVESTMENT_TECHNICAL_INDICATORS` | `content-investment-technical.js` | 5 類 50 種技術分析指標 |
-| `window.MACRO_DIAGRAMS` | `diagrams-macro*.js` | 32 張總體章節模型圖（含 1 張教學流程圖、1 張 NFIA 觀念圖、5 張學派模型補充與 4 張題庫導向圖），鍵為 `chapterId#sectionIndex` |
+| `window.MACRO_DIAGRAMS` | `diagrams-macro*.js` | 34 張總體章節模型圖（含 1 張教學流程圖、1 張 NFIA 觀念圖、1 張洛侖士曲線圖、5 張學派模型補充與 4 張題庫導向圖），鍵為 `chapterId#sectionIndex` |
 | `window.MACRO_EVOLUTION` | `content-macro-evolution.js` | 6 階段、10 節點、模型錨點與諾貝爾年份 |
 | `window.MACRO_CURRENT_EVENTS` | `content-macro-current.js` | 15 個總經時事、12 個主題公式（26 條）、20 則 TOP 20 摘要整合、8 大主題、5 題申論與官方參考資料 |
 | `window.NOBEL_DATA` | `content-nobel.js` | 58 屆諾貝爾年表、17 個圖組 |
@@ -205,6 +205,16 @@ sequenceDiagram
 - 投資學比例公式與選擇權公式各自只有一份資料，章節頁與科目頁共用。
 - 驗證腳本以 Node `vm` 載入同一批 `site/assets/*.js`，不維護第二套內容模型。
 - 模組化資料維持「單一來源」：年度與章節分包只是同一份完整題庫的切片；搜尋索引由完整題庫產生，不改寫題目。
+
+### 5.1 SVG 曲線繪製規範
+
+- **理論曲線**：有明確函數或教科書曲線時，以解析路徑或 cubic Bézier 近似；不得任意以離散資料插值取代已知的理論曲線。
+- **離散資料曲線**：先保留原始資料點；需要平滑時採單調三次插值（PCHIP，Fritsch–Carlson 斜率），再轉為 cubic Bézier 控制點。不得使用會過衝的一般 cubic spline 或 Catmull–Rom 直接平滑，除非圖說明確標示並經複核。
+- **面積填色**：A/B 等面積路徑沿用同一條曲線的控制點，只在端點補垂直線與底線；不得另畫折線近似曲線邊界。
+- **座標比例**：0–100% 雙軸與 45° 參考線使用 1:1 正方形繪圖區；SVG 的 45° 線 `dx=dy`，軸線可延伸但資料區必須等長。
+- **資料誠實**：平滑是視覺插值，圖說與 `note` 必須說明不代表未觀測的中間值；原始資料點以圓點保留。
+- **可及性**：延續 `viewBox`、`role="img"`、`aria-labelledby`、`<title>`／`<desc>` 與唯一 ID。
+- **目前實作**：`macro-01#4` 洛侖士曲線以 2023 年五等分位累積點做 PCHIP 平滑，A/B 面積與曲線共用 cubic Bézier 路徑，繪圖區 340×340。
 
 ## 6. 驗證與開發工具
 
