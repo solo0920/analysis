@@ -741,6 +741,7 @@ check(macro.parts.map(function (part) { return part.number; }).join(",") === "1,
 const allChapters = content.subjects.reduce(function (all, subject) {
   return all.concat(subject.chapters);
 }, []);
+const subsectionDiagramKeys = new Set();
 const chapterIds = allChapters.map(function (chapter) { return chapter.id; });
 check(new Set(chapterIds).size === chapterIds.length, "章節 ID 不得重複");
 
@@ -789,6 +790,17 @@ allChapters.forEach(function (chapter) {
     }
     (section.subsections || []).forEach(function (sub, subIndex) {
       const label = chapter.id + " 第 " + (index + 1) + " 單元補充 " + (subIndex + 1);
+      if (sub.diagramKey) {
+        const diagramKey = sub.diagramKey;
+        check(typeof diagramKey === "string" && diagramKey.length > 0, label + " diagramKey 為空");
+        check(Boolean(diagrams[diagramKey]), label + " diagramKey 指向不存在的模型圖：" + diagramKey);
+        if (typeof diagramKey === "string" && diagrams[diagramKey]) {
+          check(diagrams[diagramKey].sectionTitle === section.title, label + " diagramKey 節次標題不符：" + diagramKey);
+          check(diagramKey.indexOf(chapter.id + "#" + index) === 0, label + " diagramKey 不屬於本章節：" + diagramKey);
+        }
+        check(!subsectionDiagramKeys.has(diagramKey), label + " diagramKey 重複綁定：" + diagramKey);
+        subsectionDiagramKeys.add(diagramKey);
+      }
       check(typeof sub.title === "string" && sub.title.trim().length > 0, label + "缺少標題");
       check(Array.isArray(sub.body) && sub.body.length > 0, label + "缺少正文");
       (sub.body || []).forEach(function (text, paragraphIndex) {

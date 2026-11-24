@@ -282,7 +282,8 @@ window.MACRO_SUBJECT = {
                 "例：五等分位累積所得份額為 0、7.07、19.89、37.36、60.77、100（%），換算比例後以梯形法可得 \\(G\\approx0.2996\\)；若另一年為 0、5.64、17.01、33.44、55.84、100（%），則 \\(G\\approx0.3523\\)，表示後者分配較不平均。",
                 "洛侖士曲線若交叉，單看圖形無法判定何者較不均，需計算吉尼係數或使用其他所得分配指標。"
               ],
-              formula: "\\begin{gathered}\\boxed{G=\\dfrac{A}{A+B}=1-2\\int_0^1 L(p)\\,dp}\\\\[6pt]\\boxed{G\\approx1-\\sum_{i=1}^{n}(x_i-x_{i-1})(L_i+L_{i-1})}\\end{gathered}"
+              formula: "\\begin{gathered}\\boxed{G=\\dfrac{A}{A+B}=1-2\\int_0^1 L(p)\\,dp}\\\\[6pt]\\boxed{G\\approx1-\\sum_{i=1}^{n}(x_i-x_{i-1})(L_i+L_{i-1})}\\end{gathered}",
+              diagramKey: "macro-01#4"
             },
             {
               title: "二、戶數五等分位法",

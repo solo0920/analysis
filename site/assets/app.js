@@ -622,7 +622,7 @@
       }
       return 0;
     }).map(function (key) {
-      return diagrams[key];
+      return Object.assign({ key: key }, diagrams[key]);
     });
   }
 
@@ -1280,6 +1280,7 @@
     }
     return '<div class="section-subsections">' + subsections.map(function (sub, index) {
       const body = Array.isArray(sub.body) ? sub.body : [];
+      const diagram = sub.diagramKey ? diagrams[sub.diagramKey] : null;
       return [
         '<section class="section-subsection">',
         '  <h3 class="section-subsection-title">' + escapeHtml(sub.title || "補充 " + (index + 1)) + "</h3>",
@@ -1288,6 +1289,7 @@
         }).join("") + "</div>" : "",
         sub.table ? renderSectionTable(sub.table) : "",
         sub.formula ? '  <div class="formula formula-katex" role="note">' + renderKatex(sub.formula, true) + "</div>" : "",
+        diagram ? renderDiagram(diagram) : "",
         "</section>"
       ].join("");
     }).join("") + "</div>";
@@ -1297,7 +1299,16 @@
     const sectionId = "section-" + (index + 1);
     const focus = isFocusSection(subject, section);
     const kicker = focus ? "學習重點 " : "";
-    const sectionDiagrams = chapter ? getDiagrams(chapter.id, index) : [];
+    const subsectionDiagramKeys = new Set(
+      (Array.isArray(section.subsections) ? section.subsections : [])
+        .map(function (sub) { return sub.diagramKey; })
+        .filter(Boolean)
+    );
+    const sectionDiagrams = chapter
+      ? getDiagrams(chapter.id, index).filter(function (diagram) {
+          return !subsectionDiagramKeys.has(diagram.key);
+        })
+      : [];
     const formulaEntry = chapter ? formulaTexFor(chapter, section) : null;
     const formulaTex = typeof formulaEntry === "string" ? formulaEntry : (formulaEntry && formulaEntry.tex ? formulaEntry.tex : "");
     const ratioFormulas = chapter && subject.id === "investment"
