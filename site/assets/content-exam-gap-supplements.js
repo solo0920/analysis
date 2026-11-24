@@ -1294,3 +1294,34 @@
   window.EXAM_GAP_SUPPLEMENTS = Object.assign(window.EXAM_GAP_SUPPLEMENTS || {}, additions);
   window.EXAM_GAP_SUPPLEMENT_WARNINGS = (window.EXAM_GAP_SUPPLEMENT_WARNINGS || []).concat(warnings);
 })();
+
+/* URE 專題：把保留盈餘在 PI 推導中的角色獨立說明，避免只出現在名詞卡。 */
+(function () {
+  const additions = {
+    "macro-01#2": {
+      subsections: [
+        {
+          title: "URE 與 PI：保留盈餘為什麼要扣除？",
+          body: [
+            "未分配盈餘 URE 是公司稅後保留、未發給股東的盈餘。它不是家計單位實際收到的所得，因此在從 NI 推到 PI 時要扣除。",
+            "例：NI = 850、CIT = 50、URE = 30、SSC = 40、TR = 80、INT = 10，則 PI = 850 − 50 − 30 − 40 + 80 + 10 = 820。若 URE 增加 10，其他條件不變，PI 會減少 10。",
+            "URE 不是費用、也不是稅；它是公司盈餘的保留。考試常把 URE 與 CIT、SSC 一起考，三者都是 NI 到 PI 的扣項；TR 與 INT 則是加項。"
+          ],
+          formula: String.raw`PI=NI-CIT-URE-SSC+TR+INT`
+        }
+      ]
+    }
+  };
+  const subjects = [window.MACRO_SUBJECT].filter(Boolean);
+  const chapter = subjects[0] && subjects[0].chapters.find(function (item) { return item.id === "macro-01"; });
+  const section = chapter && chapter.sections[2];
+  if (section) {
+    section.subsections = section.subsections || [];
+    additions["macro-01#2"].subsections.forEach(function (sub) {
+      if (!section.subsections.some(function (existing) { return existing.title === sub.title; })) {
+        section.subsections.push(sub);
+      }
+    });
+  }
+  window.EXAM_GAP_SUPPLEMENTS = Object.assign(window.EXAM_GAP_SUPPLEMENTS || {}, additions);
+})();

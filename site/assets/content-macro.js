@@ -79,7 +79,7 @@ window.MACRO_SUBJECT = {
             ["間接稅淨額（Net Indirect Taxes, NIT）", "間接稅減補貼：\\(NIT = T_i - S_u\\)；從市場價格的 NNP 轉為要素成本的 NI 時扣除。"],
             ["個人所得（Personal Income, PI）", "家計單位在收到個人直接稅前的所得：\\(PI = NI - CIT - URE - SSC + TR + INT\\)。"],
             ["營利事業所得稅（Corporate Income Tax, CIT）", "公司利潤先繳給政府的稅；計算 PI 時從 NI 扣除，因為它不是家計單位可收到的所得。"],
-            ["未分配盈餘（Undistributed Corporate Profits／Retained Earnings, URE）", "公司保留下來、未發給股東的利潤；計算 PI 時扣除。"],
+            ["未分配盈餘（Undistributed Corporate Profits／Retained Earnings, URE）", "公司保留下來、未發給股東的利潤；計算 PI 時扣除：\\(PI = NI - CIT - URE - SSC + TR + INT\\)。"],
             ["社會安全捐（Social Security Contributions, SSC）", "受僱者與雇主繳交的社會安全制度費用；計算 PI 時扣除。"],
             ["移轉支付（Transfer Payments, TR）", "政府或企業無對價給付給個人的款項，如社會福利、失業救濟；不計入 GDP／NI，但計入 PI。"],
             ["淨利息（Net Interest, INT）", "家計單位收到的利息與支付的利息淨額（含政府公債利息等）；計算 PI 時加回。"],
