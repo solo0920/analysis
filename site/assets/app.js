@@ -3557,6 +3557,10 @@
     tex = tex.replace(/√\(([^()]*)\)/g, "\\sqrt{$1}").replace(/√([A-Za-z0-9.]+)/g, "\\sqrt{$1}");
     tex = tex.replace(/\^\(([^()]*)\)/g, "^{$1}").replace(/\^(\\(?:[A-Za-z]+)|[A-Za-z0-9.]+)/g, "^{$1}");
     tex = tex.replace(/_\(([^()]*)\)/g, "_{$1}");
+    // 填空題的連續底線不是下標；轉成可視底線，避免 KaTeX 解析失敗。
+    tex = tex.replace(/_{2,}/g, function (run) {
+      return "\\underline{\\hspace{" + (run.length * 0.45).toFixed(1) + "em}}";
+    });
     tex = tex.replace(/%/g, "\\%").replace(/\$/g, "\\$").replace(/&/g, "\\&").replace(/#/g, "\\#");
     tex = tex.replace(/([\u3400-\u9fff\u3000-\u303f\uff00-\uffef]+)/g, function (chunk) {
       return "\\text{" + escapeTexText(chunk) + "}";

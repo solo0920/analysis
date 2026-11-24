@@ -515,6 +515,8 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 
 2026-10-27 補上實質 GDP 的獨立定義：macro-01 第1節將原本合併的「名目 GDP 與實質 GDP」名詞卡拆成「名目 GDP」「實質 GDP」兩張，正文新增實質 GDP = 名目 GDP ÷（GDP 平減指數 ÷ 100）與比較不同年度應使用實質 GDP 的說明，考試重點新增「名目 GDP 成長可能只是物價上漲」。全站名詞卡 1,532 張；驗證器 157,483 項、失敗 0（3,135 個行內公式）；macro-01 390px／1280px、深淺主題 0 水平溢出、axe 0、0 `.katex-error`。
 
+2026-11-24 修正填空題 KaTeX fallback：`clauseToTex()` 將 2 個以上連續底線轉為 `\underline{\hspace{...}}`，避免 `\text{則}_____...` 被 KaTeX 解析失敗而顯示原始 LaTeX；實測 114Q1-macro-03、107Q1-macro-02 在 390px／1280px 均 0 `.katex-fallback`、0 `.katex-error`、0 頁面水平溢出。
+
 2026-11-24 補上名目所得與實質所得：`macro-01` 第4節 CPI 子區塊新增 \\(\\text{實質所得}_t=\\dfrac{\\text{名目所得}_t}{CPI_t}\\times100\\)、\\(\\text{名目所得}_t=\\text{實質所得}_t\\times\\dfrac{CPI_t}{100}\\)、名目所得 50,000／CPI 108 → 實質所得約 46,296 的數例，以及 \\(1+g_n=(1+g_r)(1+\\pi)\\)、\\(g_r\\approx g_n-\\pi\\) 的成長率關係；CPI 公式區塊改為 CPI、通膨率、實質所得三個 boxed 公式，名詞卡新增名目所得與實質所得。390px／1280px：3 個 boxed 公式、0 `.katex-error`、0 水平溢出。驗證器 160,549 項、失敗 0；名詞卡 1,682 張。
 
 2026-11-24 補上通貨膨脹率：`macro-01` 第4節 CPI 子區塊新增通膨率公式 \\(\\pi_t=\\dfrac{CPI_t-CPI_{t-1}}{CPI_{t-1}}\\times100\\%\\)、去年 CPI 105／今年 108 → 年通膨率約 2.86% 的數例，以及「CPI 108 是相對基期上漲 8%，不是今年通膨率」的區分；CPI 公式區塊改為 CPI 與通膨率兩個 boxed 公式，考試重點新增 CPI 水準與年通膨率的差異。390px／1280px、深淺主題：6 個子區塊、7 個公式區塊、2 張表、0 `.katex-error`、0 水平溢出、axe 0 violations。驗證器 160,499 項、失敗 0；名詞卡 1,680 張。
