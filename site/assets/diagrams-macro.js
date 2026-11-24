@@ -231,54 +231,54 @@ Object.assign(window.MACRO_DIAGRAMS, {
     kicker: "所得分配圖",
     title: "洛侖士曲線與吉尼係數：A、B 面積與分配不均",
     formula: String.raw`G=\frac{A}{A+B}=1-2B`,
-    caption: "橫軸為累積家戶比例，家戶由低所得排到高所得；縱軸為累積所得比例。45 度線是完全平等線，實線是以 2023 年五等分位資料繪製的洛侖士曲線。45 度線與曲線之間的面積 A 越大，分配越不均；曲線下面積 B 與 A 合計為 0.5，吉尼係數 \\(G=\\dfrac{A}{A+B}=1-2B\\)。",
+    caption: "橫軸為累積家戶比例，家戶由低所得排到高所得；縱軸為累積所得比例，兩軸的 100% 長度相同。45 度線是完全平等線，實線是以 2023 年五等分位資料繪製的洛侖士曲線。45 度線與曲線之間的面積 A 越大，分配越不均；曲線下面積 B 與 A 合計為 0.5，吉尼係數 \\(G=\\dfrac{A}{A+B}=1-2B\\)。",
     svg: `
-<svg viewBox="0 0 640 440" role="img" aria-labelledby="dg-lorenz-title dg-lorenz-desc" style="max-width:640px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 640 480" role="img" aria-labelledby="dg-lorenz-title dg-lorenz-desc" style="max-width:640px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
   <title id="dg-lorenz-title">洛侖士曲線、A/B 面積與吉尼係數</title>
-  <desc id="dg-lorenz-desc">橫軸為累積家戶比例，縱軸為累積所得比例。45 度線為完全平等線，實線為 2023 年五等分位資料的洛侖士曲線。45 度線與曲線之間的面積 A 越大，吉尼係數越大；曲線下面積 B 與 A 合計為 0.5，吉尼係數等於 A 除以 A 加 B。</desc>
-  <line class="dg-axis" x1="80" y1="320" x2="592" y2="320"></line>
-  <line class="dg-axis" x1="80" y1="320" x2="80" y2="52"></line>
-  <text class="dg-label" x="330" y="368" text-anchor="middle">累積家戶比例 p（由低所得排到高所得）</text>
-  <text class="dg-label" x="88" y="42">累積所得比例 L(p)</text>
+  <desc id="dg-lorenz-desc">橫軸為累積家戶比例，縱軸為累積所得比例，兩軸的 100% 長度相同。45 度線為完全平等線，實線為 2023 年五等分位資料的洛侖士曲線。45 度線與曲線之間的面積 A 越大，吉尼係數越大；曲線下面積 B 與 A 合計為 0.5，吉尼係數等於 A 除以 A 加 B。</desc>
+  <line class="dg-axis" x1="90" y1="420" x2="442" y2="420"></line>
+  <line class="dg-axis" x1="90" y1="420" x2="90" y2="70"></line>
+  <text class="dg-label" x="260" y="470" text-anchor="middle">累積家戶比例 p（由低所得排到高所得）</text>
+  <text class="dg-label" x="98" y="60">累積所得比例 L(p)</text>
 
-  <text class="dg-label-xs" x="80" y="340" text-anchor="middle">0</text>
-  <text class="dg-label-xs" x="180" y="340" text-anchor="middle">20%</text>
-  <text class="dg-label-xs" x="280" y="340" text-anchor="middle">40%</text>
-  <text class="dg-label-xs" x="380" y="340" text-anchor="middle">60%</text>
-  <text class="dg-label-xs" x="480" y="340" text-anchor="middle">80%</text>
-  <text class="dg-label-xs" x="580" y="340" text-anchor="middle">100%</text>
+  <text class="dg-label-xs" x="90" y="440" text-anchor="middle">0</text>
+  <text class="dg-label-xs" x="158" y="440" text-anchor="middle">20%</text>
+  <text class="dg-label-xs" x="226" y="440" text-anchor="middle">40%</text>
+  <text class="dg-label-xs" x="294" y="440" text-anchor="middle">60%</text>
+  <text class="dg-label-xs" x="362" y="440" text-anchor="middle">80%</text>
+  <text class="dg-label-xs" x="430" y="440" text-anchor="middle">100%</text>
 
-  <text class="dg-label-xs" x="68" y="324" text-anchor="end">0</text>
-  <text class="dg-label-xs" x="68" y="272" text-anchor="end">20%</text>
-  <text class="dg-label-xs" x="68" y="220" text-anchor="end">40%</text>
-  <text class="dg-label-xs" x="68" y="168" text-anchor="end">60%</text>
-  <text class="dg-label-xs" x="68" y="116" text-anchor="end">80%</text>
-  <text class="dg-label-xs" x="68" y="64" text-anchor="end">100%</text>
+  <text class="dg-label-xs" x="78" y="424" text-anchor="end">0</text>
+  <text class="dg-label-xs" x="78" y="356" text-anchor="end">20%</text>
+  <text class="dg-label-xs" x="78" y="288" text-anchor="end">40%</text>
+  <text class="dg-label-xs" x="78" y="220" text-anchor="end">60%</text>
+  <text class="dg-label-xs" x="78" y="152" text-anchor="end">80%</text>
+  <text class="dg-label-xs" x="78" y="84" text-anchor="end">100%</text>
 
-  <path class="dg-area-gold" d="M80,320 L180,305.34 L280,275.77 L380,233.06 L480,174.82 L580,60 L580,320 Z"></path>
-  <path class="dg-area-accent" d="M80,320 L580,60 L480,174.82 L380,233.06 L280,275.77 L180,305.34 Z"></path>
+  <path class="dg-area-gold" d="M90,420 L158,400.82 L226,362.17 L294,306.30 L362,230.14 L430,80 L430,420 Z"></path>
+  <path class="dg-area-accent" d="M90,420 L430,80 L362,230.14 L294,306.30 L226,362.17 L158,400.82 Z"></path>
 
-  <line class="dg-curve-soft" x1="80" y1="320" x2="580" y2="60"></line>
-  <path class="dg-curve" d="M80,320 L180,305.34 L280,275.77 L380,233.06 L480,174.82 L580,60"></path>
+  <line class="dg-curve-soft" x1="90" y1="420" x2="430" y2="80"></line>
+  <path class="dg-curve" d="M90,420 L158,400.82 L226,362.17 L294,306.30 L362,230.14 L430,80"></path>
 
-  <circle class="dg-point" cx="180" cy="305.34" r="3.2"></circle>
-  <circle class="dg-point" cx="280" cy="275.77" r="3.2"></circle>
-  <circle class="dg-point" cx="380" cy="233.06" r="3.2"></circle>
-  <circle class="dg-point" cx="480" cy="174.82" r="3.2"></circle>
+  <circle class="dg-point" cx="158" cy="400.82" r="3.2"></circle>
+  <circle class="dg-point" cx="226" cy="362.17" r="3.2"></circle>
+  <circle class="dg-point" cx="294" cy="306.30" r="3.2"></circle>
+  <circle class="dg-point" cx="362" cy="230.14" r="3.2"></circle>
 
-  <line class="dg-guide" x1="80" y1="305.34" x2="180" y2="305.34"></line>
-  <line class="dg-guide" x1="180" y1="305.34" x2="180" y2="320"></line>
-  <text class="dg-label-xs" x="188" y="300">5.64%</text>
+  <line class="dg-guide" x1="90" y1="400.82" x2="158" y2="400.82"></line>
+  <line class="dg-guide" x1="158" y1="400.82" x2="158" y2="420"></line>
+  <text class="dg-label-xs" x="166" y="396">5.64%</text>
 
-  <text class="dg-label" x="350" y="215" text-anchor="middle">A</text>
-  <text class="dg-label-xs" x="350" y="232" text-anchor="middle">45° 線與曲線之間</text>
-  <text class="dg-label" x="310" y="298" text-anchor="middle">B</text>
-  <text class="dg-label-xs" x="310" y="313" text-anchor="middle">曲線下面積</text>
+  <text class="dg-label" x="260" y="300" text-anchor="middle">A</text>
+  <text class="dg-label" x="320" y="370" text-anchor="middle">B</text>
+  <text class="dg-label-xs" x="320" y="386" text-anchor="middle">曲線下面積</text>
 
-  <line class="dg-curve" x1="390" y1="400" x2="420" y2="400"></line>
-  <text class="dg-label-xs" x="428" y="404">洛侖士曲線（2023）</text>
-  <line class="dg-curve-soft" x1="390" y1="418" x2="420" y2="418"></line>
-  <text class="dg-label-xs" x="428" y="422">45° 完全平等線</text>
+  <text class="dg-label-xs" x="460" y="150">圖例</text>
+  <line class="dg-curve" x1="460" y1="180" x2="490" y2="180"></line>
+  <text class="dg-label-xs" x="498" y="184">洛侖士曲線（2023）</text>
+  <line class="dg-curve-soft" x1="460" y1="205" x2="490" y2="205"></line>
+  <text class="dg-label-xs" x="498" y="209">45° 完全平等線</text>
 </svg>`,
     variables: [
       ["p", "累積家戶比例", "橫軸；家戶由低所得到高所得排序，0 到 1（或 0% 到 100%）。"],
