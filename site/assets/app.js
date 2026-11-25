@@ -365,7 +365,7 @@
   let reviewLoaded = false;
   let reviewStorageMode = "idb";
   let reviewDbPromise = null;
-  const reviewState = { selectedKey: "" };
+  const reviewState = { selectedKey: "", subject: "all" };
 
   const searchOverlay = document.getElementById("search-overlay");
   const searchOpenButton = document.getElementById("search-open");
@@ -964,6 +964,7 @@
     });
     if (isReviewRoute()) {
       reviewState.selectedKey = "";
+      reviewState.subject = "all";
       render();
     }
   }
@@ -974,6 +975,12 @@
       event.preventDefault();
       event.stopPropagation();
       toggleReviewItem(toggle.dataset.reviewToggle);
+      return true;
+    }
+    const subjectTab = event.target.closest("[data-review-subject]");
+    if (subjectTab) {
+      event.preventDefault();
+      selectReviewSubject(subjectTab.dataset.reviewSubject);
       return true;
     }
     const select = event.target.closest("[data-review-select]");
@@ -1035,11 +1042,66 @@
     }
   }
 
+  const REVIEW_TAB_DEFS = [
+    { id: "all", label: "全部" },
+    { id: "macro", label: "總體經濟學" },
+    { id: "investment", label: "投資學" },
+    { id: "accounting", label: "會計學" },
+    { id: "law", label: "證券法規" }
+  ];
+
+  function reviewFilteredItems() {
+    if (reviewState.subject === "all") {
+      return reviewItems;
+    }
+    return reviewItems.filter(function (item) {
+      return item.subject === reviewState.subject;
+    });
+  }
+
+  function reviewTabCount(subjectId) {
+    if (subjectId === "all") {
+      return reviewItems.length;
+    }
+    return reviewItems.filter(function (item) {
+      return item.subject === subjectId;
+    }).length;
+  }
+
+  function renderReviewTabs() {
+    return [
+      '<nav class="review-subject-tabs" aria-label="複習題科目篩選">',
+      REVIEW_TAB_DEFS.map(function (tab) {
+        const active = tab.id === reviewState.subject;
+        return [
+          '<button class="review-subject-tab' + (active ? " is-active" : "") + '" type="button" data-review-subject="' + tab.id + '" aria-pressed="' + (active ? "true" : "false") + '">',
+          "  <span>" + escapeHtml(tab.label) + "</span>",
+          '  <span class="review-subject-tab-count">' + reviewTabCount(tab.id) + "</span>",
+          "</button>"
+        ].join("");
+      }).join(""),
+      "</nav>"
+    ].join("");
+  }
+
+  function selectReviewSubject(subjectId) {
+    if (!REVIEW_TAB_DEFS.some(function (tab) { return tab.id === subjectId; })) {
+      return;
+    }
+    reviewState.subject = subjectId;
+    const items = reviewFilteredItems();
+    if (!items.some(function (item) { return item.key === reviewState.selectedKey; })) {
+      reviewState.selectedKey = items.length ? items[0].key : "";
+    }
+    render();
+  }
+
   function reviewSelectedItem() {
     const queryKey = parseRoute().query.get("question") || "";
+    const items = reviewFilteredItems();
     const candidates = [reviewState.selectedKey, queryKey];
     for (let index = 0; index < candidates.length; index += 1) {
-      const match = reviewItems.find(function (item) { return item.key === candidates[index]; });
+      const match = items.find(function (item) { return item.key === candidates[index]; });
       if (match) {
         reviewState.selectedKey = match.key;
         if (queryKey && queryKey !== match.key) {
@@ -1052,8 +1114,8 @@
         return match;
       }
     }
-    reviewState.selectedKey = reviewItems.length ? reviewItems[0].key : "";
-    return reviewItems[0] || null;
+    reviewState.selectedKey = items.length ? items[0].key : "";
+    return items[0] || null;
   }
 
   function renderReviewChapterLinks(item) {
@@ -1173,23 +1235,24 @@
     ].join("");
   }
 
-  function renderReviewSidebar(selectedKey) {
+  function renderReviewSidebar(selectedKey, items) {
+    const list = Array.isArray(items) ? items : reviewItems;
     return [
       '<nav class="review-sidebar" aria-label="複習題清單">',
-      '  <div class="review-sidebar-head"><h2>題號</h2><span>' + reviewItems.length + " 題</span></div>",
-      '  <ul class="review-list">',
-      reviewItems.map(function (item) {
-        const active = item.key === selectedKey;
-        return [
-          "<li>",
-          '  <button class="review-list-item' + (active ? " is-active" : "") + '" type="button" data-review-select="' + escapeHtml(item.key) + '"' + (active ? ' aria-current="true"' : "") + ' title="' + escapeHtml(item.title || item.listLabel) + '">',
-          '    <span class="review-list-type">' + (item.type === "choice" ? "選" : item.type === "written" ? "申" : "猜") + "</span>",
-          '    <span class="review-list-label">' + escapeHtml(item.listLabel || item.title || "題目") + "</span>",
-          "  </button>",
-          "</li>"
-        ].join("");
-      }).join(""),
-      "  </ul>",
+      '  <div class="review-sidebar-head"><h2>題號</h2><span>' + list.length + " 題</span></div>",
+      list.length
+        ? '  <ul class="review-list">' + list.map(function (item) {
+          const active = item.key === selectedKey;
+          return [
+            "<li>",
+            '  <button class="review-list-item' + (active ? " is-active" : "") + '" type="button" data-review-select="' + escapeHtml(item.key) + '"' + (active ? ' aria-current="true"' : "") + ' title="' + escapeHtml(item.title || item.listLabel) + '">',
+            '    <span class="review-list-type">' + (item.type === "choice" ? "選" : item.type === "written" ? "申" : "猜") + "</span>",
+            '    <span class="review-list-label">' + escapeHtml(item.listLabel || item.title || "題目") + "</span>",
+            "  </button>",
+            "</li>"
+          ].join("");
+        }).join("") + "  </ul>"
+        : '  <div class="review-sidebar-empty">此科目尚無複習題</div>',
       "</nav>"
     ].join("");
   }
@@ -1249,13 +1312,15 @@
         "</div>"
       ].join("");
     }
-    const selected = reviewSelectedItem();
+    const filteredItems = reviewFilteredItems();
+    const selected = filteredItems.length ? reviewSelectedItem() : null;
     return [
       '<div class="page review-page">',
       renderReviewHero(),
+      renderReviewTabs(),
       '  <div class="review-layout">',
-      renderReviewSidebar(selected.key),
-      '    <section class="review-detail" id="review-detail" aria-live="polite">' + renderReviewDetail(selected) + "</section>",
+      renderReviewSidebar(selected ? selected.key : "", filteredItems),
+      '    <section class="review-detail" id="review-detail" aria-live="polite">' + (selected ? renderReviewDetail(selected) : '<div class="review-detail-empty"><p>此科目尚無複習題，切換其他科目，或到題庫按「加入複習題」。</p></div>') + "</section>",
       "  </div>",
       renderReviewStorageNote(),
       "</div>"
