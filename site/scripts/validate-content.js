@@ -1343,14 +1343,16 @@ pastSearchIndex.forEach(function (item, index) {
   check(!pastSearchIndexById.has(item.id), "考古題搜尋索引題目重複：" + item.id);
   pastSearchIndexById.set(item.id, item);
   check(typeof item.stem === "string" && item.stem.trim().length > 0, "考古題搜尋索引題幹為空：" + item.id);
-  check(!Object.prototype.hasOwnProperty.call(item, "options"), "考古題搜尋索引不應包含選項：" + item.id);
-  check(!Object.prototype.hasOwnProperty.call(item, "answer"), "考古題搜尋索引不應包含答案：" + item.id);
+  check(Array.isArray(item.options) && item.options.length === 4, "考古題搜尋索引選項應為四個：" + item.id);
+  check(Array.isArray(item.answer) && item.answer.length >= 1 && item.answer.length <= 4, "考古題搜尋索引答案數量錯誤：" + item.id);
 });
 pastExamQuestions.forEach(function (question) {
   const entry = pastSearchIndexById.get(question.id);
   check(Boolean(entry), "考古題搜尋索引缺少題目：" + question.id);
   if (entry) {
     check(entry.stem === question.stem, "考古題搜尋索引題幹不是全文：" + question.id);
+    check(JSON.stringify(entry.options) === JSON.stringify(question.options), "考古題搜尋索引選項與題庫不一致：" + question.id);
+    check(JSON.stringify(entry.answer) === JSON.stringify(question.answer), "考古題搜尋索引答案與題庫不一致：" + question.id);
   }
 });
 

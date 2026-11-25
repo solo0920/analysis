@@ -7001,10 +7001,13 @@
         title: result.title || "",
         sub: result.sub || "",
         href: result.href || "",
+        relevance: Number(result.score) || 0,
         fuzzy: true
       };
     }).filter(function (result) {
       return Boolean(result.href);
+    }).sort(function (a, b) {
+      return b.relevance - a.relevance;
     });
   }
 
@@ -7041,20 +7044,43 @@
     }
     const data = Array.isArray(window.PAST_EXAM_SEARCH_INDEX) ? window.PAST_EXAM_SEARCH_INDEX : [];
     const subjectNames = { macro: "總體經濟學", investment: "投資學", accounting: "會計學", law: "證券法規" };
+    const pastFuzzyDocuments = [];
     data.forEach(function (question) {
-      searchState.index.push({
+      const text = [String(question.stem || "")].concat(question.options || []).join(" ");
+      const entry = {
         id: "past-" + question.id,
         type: "考古",
         typeClass: "",
         title: String(question.stem || "").slice(0, 90),
         sub: (question.year || "") + " 年 · " + (subjectNames[question.subject] || question.subject) + " · 考古題",
-        text: String(question.stem || ""),
+        text: text,
+        options: question.options || [],
+        answer: question.answer || [],
         href: "#/past-exams?question=" + encodeURIComponent(question.id),
         nTitle: normalize(String(question.stem || "")),
         nSub: normalize((question.year || "") + " " + (subjectNames[question.subject] || question.subject)),
-        nText: normalize(String(question.stem || ""))
+        nText: normalize(text)
+      };
+      searchState.index.push(entry);
+      pastFuzzyDocuments.push({
+        id: entry.id,
+        type: entry.type,
+        typeClass: entry.typeClass,
+        title: entry.title,
+        sub: entry.sub,
+        text: entry.text,
+        href: entry.href
       });
     });
+    searchState.fuzzyDocuments = (searchState.fuzzyDocuments || []).concat(pastFuzzyDocuments);
+    if (fuzzyState.index) {
+      fuzzyState.index.addAll(pastFuzzyDocuments);
+    } else if (fuzzyState.status === "loading") {
+      fuzzyState.generation += 1;
+      fuzzyState.status = "idle";
+      fuzzyState.promise = null;
+      fuzzyState.index = null;
+    }
     pastSearchLoaded = true;
     pastSearchLoading = false;
     updatePastSearchStatus("", true);
@@ -7184,21 +7210,86 @@
     }
 
     return searchState.index.map(function (entry) {
-      let score = 99;
-      if (entry.nTitle.indexOf(normalizedQuery) !== -1) {
-        score = 0;
-      } else if (entry.nSub.indexOf(normalizedQuery) !== -1) {
-        score = 1;
-      } else if (entry.nText.indexOf(normalizedQuery) !== -1) {
-        score = 2;
+      const titleIndex = entry.nTitle.indexOf(normalizedQuery);
+      const subIndex = entry.nSub.indexOf(normalizedQuery);
+      const textIndex = entry.nText.indexOf(normalizedQuery);
+      if (titleIndex === -1 && subIndex === -1 && textIndex === -1) {
+        return null;
       }
+      let relevance = 0;
+      if (titleIndex !== -1) {
+        relevance = 1000 - Math.min(titleIndex, 200) - Math.min(entry.nTitle.length, 500) * 0.02;
+      } else if (subIndex !== -1) {
+        relevance = 700 - Math.min(subIndex, 200) - Math.min(entry.nSub.length, 500) * 0.02;
+      } else {
+        relevance = 400 - Math.min(textIndex, 200);
+      }
+      const occurrences = entry.nText.split(normalizedQuery).length - 1;
+      relevance += Math.min(occurrences, 8) * 2;
+      return { entry: entry, relevance: relevance };
+    }).filter(Boolean).sort(function (a, b) {
+      return b.relevance - a.relevance || a.entry.title.localeCompare(b.entry.title, "zh-Hant");
+    }).slice(0, 24).map(function (item) {
+      return Object.assign({}, item.entry, { relevance: item.relevance });
+    });
+  }
+
+  function characterBigrams(value) {
+    const text = normalize(value);
+    const grams = new Set();
+    if (!text) {
+      return grams;
+    }
+    if (text.length === 1) {
+      grams.add(text);
+      return grams;
+    }
+    for (let index = 0; index < text.length - 1; index += 1) {
+      grams.add(text.slice(index, index + 2));
+    }
+    return grams;
+  }
+
+  function characterFuzzyScore(queryGrams, value) {
+    if (!queryGrams.size) {
+      return 0;
+    }
+    const grams = characterBigrams(value);
+    if (!grams.size) {
+      return 0;
+    }
+    let overlap = 0;
+    queryGrams.forEach(function (gram) {
+      if (grams.has(gram)) {
+        overlap += 1;
+      }
+    });
+    const coverage = overlap / queryGrams.size;
+    const dice = (2 * overlap) / (queryGrams.size + grams.size);
+    return coverage * 0.75 + dice * 0.25;
+  }
+
+  function performCharacterFuzzySearch(query, limit) {
+    const normalizedQuery = normalize(query);
+    if (normalizedQuery.length < 3) {
+      return [];
+    }
+    const queryGrams = characterBigrams(normalizedQuery);
+    return searchState.index.map(function (entry) {
+      const titleScore = characterFuzzyScore(queryGrams, entry.nTitle);
+      const textScore = characterFuzzyScore(queryGrams, entry.nText);
+      const score = Math.max(titleScore, textScore * 0.95);
       return { entry: entry, score: score };
     }).filter(function (item) {
-      return item.score < 99;
+      return item.score >= 0.45;
     }).sort(function (a, b) {
-      return a.score - b.score || a.entry.title.localeCompare(b.entry.title, "zh-Hant");
-    }).slice(0, 24).map(function (item) {
-      return item.entry;
+      return b.score - a.score || a.entry.title.localeCompare(b.entry.title, "zh-Hant");
+    }).slice(0, limit || 6).map(function (item) {
+      return Object.assign({}, item.entry, {
+        relevance: 40 + item.score * 60,
+        fuzzy: true,
+        characterFuzzy: true
+      });
     });
   }
 
@@ -7243,16 +7334,25 @@
 
     const exactResults = performSearch(trimmed);
     const canFuzzy = trimmed.length >= 2;
-    if (canFuzzy && exactResults.length < 3 && fuzzyState.status === "idle") {
+    if (canFuzzy && fuzzyState.status === "idle") {
       warmFuzzySearch();
     }
 
+    const exactIds = new Set(exactResults.map(function (result) { return result.id; }).filter(Boolean));
+    const fuzzyLimit = Math.min(6, Math.max(0, 24 - exactResults.length));
     let fuzzyResults = [];
-    if (canFuzzy && exactResults.length < 3 && fuzzyState.index) {
-      const exactIds = new Set(exactResults.map(function (result) { return result.id; }).filter(Boolean));
-      const limit = Math.max(0, 24 - exactResults.length);
-      fuzzyResults = performFuzzySearch(trimmed, limit).filter(function (result) {
+    if (canFuzzy && fuzzyState.index) {
+      fuzzyResults = performFuzzySearch(trimmed, fuzzyLimit).filter(function (result) {
         return !result.id || !exactIds.has(result.id);
+      });
+    }
+    if (canFuzzy && exactResults.length < 3) {
+      const fuzzyIds = new Set(fuzzyResults.map(function (result) { return result.id; }).filter(Boolean));
+      const characterResults = performCharacterFuzzySearch(trimmed, fuzzyLimit).filter(function (result) {
+        return !exactIds.has(result.id) && !fuzzyIds.has(result.id);
+      });
+      fuzzyResults = fuzzyResults.concat(characterResults).sort(function (a, b) {
+        return (b.relevance || 0) - (a.relevance || 0);
       });
     }
 
@@ -7283,9 +7383,9 @@
     const exactMarkup = exactResults.map(renderResult).join("");
     const fuzzyMarkup = fuzzyResults.map(renderResult).join("");
     const fuzzyLabel = fuzzyResults.length
-      ? '<div class="search-group-label">' + (exactResults.length ? "相似結果（模糊搜尋）" : "找不到完全符合，以下是相似結果") + "</div>"
+      ? '<div class="search-group-label">' + (exactResults.length ? "相似結果（模糊搜尋 · 依相關度）" : "找不到完全符合，以下是相似結果（依相關度）") + "</div>"
       : "";
-    const loadingNote = !fuzzyResults.length && canFuzzy && exactResults.length < 3 &&
+    const loadingNote = !fuzzyResults.length && canFuzzy &&
       (fuzzyState.status === "loading" || fuzzyState.status === "idle")
       ? '<div class="search-fuzzy-loading">正在建立模糊搜尋…</div>'
       : "";
