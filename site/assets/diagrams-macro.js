@@ -359,47 +359,59 @@ Object.assign(window.MACRO_DIAGRAMS, {
 
   "macro-02#2": {
     sectionTitle: "第3節 節儉的矛盾",
+    kicker: "學派模型 · 凱因斯",
     title: "節儉的矛盾：自發儲蓄增加使總支出下移",
     formula: String.raw`S=-C_0+(1-MPC)Y,\qquad I=S`,
     caption: "家庭想多儲蓄會減少自發消費，使 AE 由 AE₀ 下移到 AE₁，均衡所得從 Y₀ 下降到 Y₁。所得下降後，實際儲蓄未必增加，甚至可能不變或減少，這就是節儉的矛盾。",
     svg: `
-<svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-thrift-title" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 640 480" role="img" aria-labelledby="dg-thrift-title dg-thrift-desc" style="max-width:640px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
   <title id="dg-thrift-title">節儉的矛盾示意圖</title>
+  <desc id="dg-thrift-desc">橫軸為實質所得 Y，縱軸為總支出 AE。45 度線 AE=Y 與總支出線 AE0 交於 E0，決定均衡所得 Y0；自發消費減少使總支出線下移到 AE1，均衡點移到 E1，均衡所得減少。</desc>
   <defs>
     <marker id="dg-thrift-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path class="dg-arrow-head" d="M0,0 L10,5 L0,10 z"></path>
     </marker>
   </defs>
-  <line class="dg-axis" x1="70" y1="300" x2="608" y2="300"></line>
-  <line class="dg-axis" x1="70" y1="300" x2="70" y2="32"></line>
-  <text class="dg-label" x="566" y="326">所得 Y</text>
-  <text class="dg-label" x="78" y="24">AE</text>
-  <line class="dg-curve-soft" x1="70" y1="300" x2="560" y2="60"></line>
-  <text class="dg-label-sm" x="452" y="84">45°：AE = Y</text>
-  <line class="dg-curve" x1="70" y1="210" x2="560" y2="130"></line>
-  <text class="dg-label" x="526" y="126">AE₀</text>
-  <line class="dg-curve-alt" x1="70" y1="245" x2="560" y2="165"></line>
-  <text class="dg-label" x="526" y="176">AE₁</text>
-  <line class="dg-arrow" x1="180" y1="192" x2="180" y2="227" marker-end="url(#dg-thrift-arrow)"></line>
-  <text class="dg-label-sm" x="190" y="216">自發消費↓</text>
-  <line class="dg-guide" x1="345.63" y1="165" x2="345.63" y2="300"></line>
-  <line class="dg-guide" x1="238.44" y1="217.5" x2="238.44" y2="300"></line>
-  <circle class="dg-point" cx="345.63" cy="165" r="4.5"></circle>
-  <text class="dg-label" x="352" y="152">E₀</text>
-  <circle class="dg-point" cx="238.44" cy="217.5" r="4.5"></circle>
-  <text class="dg-label" x="250" y="234">E₁</text>
-  <text class="dg-label-sm" x="332" y="320">Y₀</text>
-  <text class="dg-label-sm" x="224" y="320">Y₁</text>
+  <line class="dg-axis" x1="80" y1="420" x2="442" y2="420"></line>
+  <line class="dg-axis" x1="80" y1="420" x2="80" y2="70"></line>
+  <text class="dg-label" x="260" y="470" text-anchor="middle">實質所得 Y</text>
+  <text class="dg-label" x="88" y="60">總支出 AE</text>
+
+  <line class="dg-curve-soft" x1="80" y1="420" x2="420" y2="80"></line>
+  <line class="dg-curve" x1="80" y1="360" x2="420" y2="156"></line>
+  <text class="dg-label" x="428" y="162">AE₀</text>
+  <line class="dg-curve-alt" x1="80" y1="390" x2="420" y2="186"></line>
+  <text class="dg-label" x="428" y="192">AE₁</text>
+  <line class="dg-arrow" x1="320" y1="216" x2="320" y2="246" marker-end="url(#dg-thrift-arrow)"></line>
+
+  <line class="dg-guide" x1="230" y1="270" x2="230" y2="420"></line>
+  <line class="dg-guide" x1="155" y1="345" x2="155" y2="420"></line>
+  <circle class="dg-point" cx="230" cy="270" r="4.5"></circle>
+  <text class="dg-label" x="238" y="260">E₀</text>
+  <circle class="dg-point" cx="155" cy="345" r="4.5"></circle>
+  <text class="dg-label" x="163" y="335">E₁</text>
+  <text class="dg-label-sm" x="216" y="440">Y₀</text>
+  <text class="dg-label-sm" x="141" y="440">Y₁</text>
+
+  <text class="dg-label-xs" x="460" y="300">圖例</text>
+  <line class="dg-curve" x1="460" y1="330" x2="490" y2="330"></line>
+  <text class="dg-label-xs" x="498" y="334">總支出 AE₀</text>
+  <line class="dg-curve-alt" x1="460" y1="355" x2="490" y2="355"></line>
+  <text class="dg-label-xs" x="498" y="359">總支出 AE₁</text>
+  <line class="dg-curve-soft" x1="460" y1="380" x2="490" y2="380"></line>
+  <text class="dg-label-xs" x="498" y="384">45°：AE = Y</text>
+  <text class="dg-label-xs" x="460" y="405">箭頭：自發消費↓（儲蓄↑）</text>
 </svg>`,
     variables: [
-      ["Y", "實質所得", "均衡所得隨總支出移動。"],
-      ["AE", "總支出", "自發消費下降會使整條 AE 線下移。"],
-      ["S", "儲蓄", "S = Y − C；想增加儲蓄會先減少消費與所得。"]
+      ["Y", "實質所得", "橫軸；均衡所得隨總支出移動。"],
+      ["AE", "總支出", "縱軸；\\(AE=C+I+G+NX\\)。自發消費下降會使整條 AE 線下移。"],
+      ["S", "儲蓄", "\\(S=Y-C\\)；想增加儲蓄會先減少消費與所得。"],
+      ["45° 線", "均衡條件", "線上任一點 \\(AE=Y\\)；與總支出線的交點決定均衡所得。"]
     ],
     parameters: [
-      ["C₀", "自發消費", "所得為零時的消費水準；C₀ 下降使 AE 截距下降。"],
-      ["MPC", "邊際消費傾向", "AE 線斜率不變，因此是平行下移。"],
-      ["k", "乘數", "所得減少的幅度是自發支出減少量的 k 倍。"]
+      ["C₀", "自發消費", "所得為零時的消費水準；\\(C_0\\) 下降使 AE 截距下降。"],
+      ["MPC", "邊際消費傾向", "AE 線斜率為 MPC 且不變，因此是平行下移。"],
+      ["k", "乘數", "所得減少的幅度是自發支出減少量的 k 倍；\\(k=\\dfrac{1}{1-MPC}\\)。"]
     ],
     note: "節儉的矛盾成立於短期、價格固定且產能未充分使用的封閉經濟；長期或充分就業下，儲蓄增加可轉化為投資資金。"
   },
