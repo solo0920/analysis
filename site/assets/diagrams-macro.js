@@ -369,6 +369,80 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "本圖為 T_a=0 的簡單模型；消費函數 C=C_a+cY_d，A_a=C_a+I_a+G_a+NX_a。模型假設價格與利率固定、產能未充分使用，因此均衡所得由總支出決定，而不是由供給面決定。"
   },
 
+  "macro-02#1": {
+    sectionTitle: "第2節 政府收支與反景氣循環之財政政策",
+    kicker: "學派模型 · 李嘉圖等價",
+    title: "李嘉圖等價：減稅、公債與未來稅負",
+    formula: String.raw`G_1+\frac{G_2}{1+r}=T_1+\frac{T_2}{1+r}`,
+    caption: "政府第 1 期減稅 ΔT₁<0，以發行公債 B=−ΔT₁ 融通；第 2 期必須增稅 (1+r)B 償還本息。若家庭完全預見，會把減稅額儲蓄起來，持有公債並在未來繳稅，當期與未來消費 C₁、C₂ 不變。政府與家庭的跨期預算限制合併後，只有政府支出 G₁、G₂ 影響終身資源，稅負的時間點不影響消費。",
+    svg: `
+<svg viewBox="0 0 640 480" role="img" aria-labelledby="dg-ricardian-title dg-ricardian-desc" style="max-width:640px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-ricardian-title">李嘉圖等價：減稅、公債與未來稅負</title>
+  <desc id="dg-ricardian-desc">第1期政府減稅並發行公債，家庭把減稅額儲蓄起來持有公債；第2期政府增稅償還本息，家庭用儲蓄本息繳稅。若家庭完全預見，消費路徑不變。</desc>
+  <defs>
+    <marker id="dg-ricardian-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="dg-arrow-head" d="M0,0 L10,5 L0,10 z"></path>
+    </marker>
+  </defs>
+
+  <text class="dg-label-sm" x="170" y="34" text-anchor="middle">期 1（現在）</text>
+  <text class="dg-label-sm" x="470" y="34" text-anchor="middle">期 2（未來）</text>
+
+  <rect class="dg-panel" x="40" y="54" width="260" height="118" rx="10"></rect>
+  <text class="dg-label" x="170" y="82" text-anchor="middle">政府：減稅 ΔT₁ &lt; 0</text>
+  <text class="dg-label-xs" x="170" y="108" text-anchor="middle">發行公債 B = −ΔT₁</text>
+  <text class="dg-label-xs" x="170" y="132" text-anchor="middle">當期稅收 T₁ 下降</text>
+  <text class="dg-label-xs" x="170" y="154" text-anchor="middle">政府支出 G₁ 不變</text>
+
+  <line class="dg-arrow" x1="304" y1="113" x2="336" y2="113" marker-end="url(#dg-ricardian-arrow)"></line>
+  <text class="dg-label-xs" x="320" y="100" text-anchor="middle">未來稅</text>
+
+  <rect class="dg-panel" x="340" y="54" width="260" height="118" rx="10"></rect>
+  <text class="dg-label" x="470" y="82" text-anchor="middle">政府：未來增稅</text>
+  <text class="dg-label-xs" x="470" y="108" text-anchor="middle">稅收增加 (1+r)B</text>
+  <text class="dg-label-xs" x="470" y="132" text-anchor="middle">償還公債本息</text>
+  <text class="dg-label-xs" x="470" y="154" text-anchor="middle">政府支出 G₂ 不變</text>
+
+  <line class="dg-arrow" x1="170" y1="176" x2="170" y2="212" marker-end="url(#dg-ricardian-arrow)"></line>
+  <text class="dg-label-xs" x="180" y="198">家庭持有公債 B</text>
+
+  <rect class="dg-panel" x="40" y="212" width="260" height="118" rx="10"></rect>
+  <text class="dg-label" x="170" y="240" text-anchor="middle">家庭：儲蓄 −ΔT₁ = B</text>
+  <text class="dg-label-xs" x="170" y="266" text-anchor="middle">當期消費 C₁ 不變</text>
+  <text class="dg-label-xs" x="170" y="290" text-anchor="middle">把減稅存起來</text>
+  <text class="dg-label-xs" x="170" y="312" text-anchor="middle">形成未來繳稅財源</text>
+
+  <line class="dg-arrow" x1="304" y1="271" x2="336" y2="271" marker-end="url(#dg-ricardian-arrow)"></line>
+  <text class="dg-label-xs" x="320" y="258" text-anchor="middle">本息</text>
+
+  <rect class="dg-panel" x="340" y="212" width="260" height="118" rx="10"></rect>
+  <text class="dg-label" x="470" y="240" text-anchor="middle">家庭：用本息繳稅</text>
+  <text class="dg-label-xs" x="470" y="266" text-anchor="middle">支付 (1+r)B</text>
+  <text class="dg-label-xs" x="470" y="290" text-anchor="middle">未來消費 C₂ 不變</text>
+  <text class="dg-label-xs" x="470" y="312" text-anchor="middle">終身預算限制不變</text>
+
+  <rect class="dg-box dg-box-accent" x="40" y="360" width="560" height="96" rx="12"></rect>
+  <text class="dg-label dg-label-strong" x="320" y="388" text-anchor="middle">減稅不是淨財富增加</text>
+  <text class="dg-label-xs" x="320" y="414" text-anchor="middle">政府預算限制＋家庭預算限制 → 稅負時間點不影響 C₁、C₂</text>
+  <text class="dg-label-xs" x="320" y="438" text-anchor="middle">只有政府支出 G₁、G₂ 的現值影響終身資源</text>
+</svg>`,
+    variables: [
+      ["C_1", "第 1 期消費", "家庭在現在的消費；李嘉圖等價下不因減稅而增加。"],
+      ["C_2", "第 2 期消費", "家庭在未來的消費；與 C_1 的跨期配置不變。"],
+      ["T_1", "第 1 期定額稅", "政府現在課徵的稅；減稅時下降。"],
+      ["T_2", "第 2 期定額稅", "政府未來課徵的稅；發債後上升。"],
+      ["B", "第 1 期公債", "\\(B=-\\Delta T_1\\)；政府以借款替代現在稅收。"],
+      ["r", "利率", "政府與家庭借貸的折現率；未來本息為 \\((1+r)B\\)。"]
+    ],
+    parameters: [
+      ["ΔT_1", "第 1 期減稅", "\\(\\Delta T_1<0\\)；減稅造成公債 \\(B=-\\Delta T_1\\)。"],
+      ["G_1、G_2", "政府支出", "給定不變；政府預算限制為 \\(G_1+\\dfrac{G_2}{1+r}=T_1+\\dfrac{T_2}{1+r}\\)。"],
+      ["(1+r)B", "未來稅負", "第 2 期增稅償還公債本息。"],
+      ["成立條件", "李嘉圖等價", "完全預見、無流動性限制、定額稅、跨代利他、政府與家庭利率相同。"]
+    ],
+    note: "李嘉圖等價是基準模型，不是無條件成立。若家庭短視、借貸受限、稅負扭曲、世代交替但沒有遺產動機，或政府借款利率與家庭不同，減稅可能刺激當期消費。"
+  },
+
   "macro-02#2": {
     sectionTitle: "第3節 節儉的矛盾",
     kicker: "學派模型 · 凱因斯",
@@ -437,6 +511,129 @@ Object.assign(window.MACRO_DIAGRAMS, {
       ["k", "乘數", "所得減少的幅度是自發支出減少量的 k 倍；\\(k=\\dfrac{1}{1-c}\\)。"]
     ],
     note: "本圖為 T_a=0 的簡單模型；節儉的矛盾成立於短期、價格固定且產能未充分使用的封閉經濟。長期或充分就業下，儲蓄增加可轉化為投資資金。"
+  },
+
+  "macro-02#2-1": {
+    sectionTitle: "第3節 節儉的矛盾",
+    kicker: "租稅比較 · 自動穩定",
+    title: "定額稅與累進稅：AE 斜率與乘數",
+    formula: String.raw`AE_T=A_a-cT_a+cY,\qquad AE_t=A_a-cT_a+c(1-t)Y`,
+    caption: "定額稅下 AE 斜率為 c，乘數為 1/(1−c)；累進稅以邊際稅率 t 簡化，AE 斜率降為 c(1−t)，乘數為 1/[1−c(1−t)]，較定額稅小。相同自發支出下，累進稅的均衡所得較低；當自發消費下降時，累進稅會隨所得自動減少稅收，緩衝可支配所得與產出的跌幅，因此節儉的矛盾較弱。",
+    svg: `
+<svg viewBox="0 0 640 480" role="img" aria-labelledby="dg-tax-slope-title dg-tax-slope-desc" style="max-width:640px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-tax-slope-title">定額稅與累進稅的 AE 斜率比較</title>
+  <desc id="dg-tax-slope-desc">45度線與兩條總支出線。定額稅 AE 斜率為 c，累進稅 AE 斜率為 c(1-t)，較平坦，均衡所得較低。</desc>
+  <defs>
+    <marker id="dg-tax-slope-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="dg-arrow-head" d="M0,0 L10,5 L0,10 z"></path>
+    </marker>
+  </defs>
+  <line class="dg-axis" x1="80" y1="420" x2="442" y2="420"></line>
+  <line class="dg-axis" x1="80" y1="420" x2="80" y2="70"></line>
+  <text class="dg-label" x="260" y="470" text-anchor="middle">實質所得 Y</text>
+  <text class="dg-label" x="88" y="60">總支出 AE</text>
+  <text class="dg-label-xs" x="72" y="331" text-anchor="end">A_a−cT_a</text>
+
+  <line class="dg-curve-soft" x1="80" y1="420" x2="420" y2="80"></line>
+  <line class="dg-curve" x1="80" y1="340" x2="420" y2="136"></line>
+  <text class="dg-label-xs" x="428" y="142">AE_T</text>
+  <line class="dg-curve-alt" x1="80" y1="340" x2="420" y2="197.2"></line>
+  <text class="dg-label-xs" x="428" y="203">AE_t</text>
+
+  <line class="dg-guide" x1="280" y1="220" x2="280" y2="420"></line>
+  <line class="dg-guide" x1="218" y1="282" x2="218" y2="420"></line>
+  <circle class="dg-point" cx="280" cy="220" r="4.5"></circle>
+  <text class="dg-label" x="288" y="210">E_T</text>
+  <circle class="dg-point" cx="218" cy="282" r="4.5"></circle>
+  <text class="dg-label" x="226" y="272">E_t</text>
+  <text class="dg-label-sm" x="266" y="440">Y_T</text>
+  <text class="dg-label-sm" x="204" y="440">Y_t</text>
+
+  <text class="dg-label-xs" x="460" y="130">參數</text>
+  <text class="dg-label-xs" x="460" y="155">c：定額稅 AE 斜率</text>
+  <text class="dg-label-xs" x="460" y="180">c(1−t)：累進稅 AE 斜率</text>
+  <text class="dg-label-xs" x="460" y="205">T_a：定額稅</text>
+  <text class="dg-label-xs" x="460" y="230">k_T = 1/(1−c)</text>
+  <text class="dg-label-xs" x="460" y="255">k_t = 1/[1−c(1−t)]</text>
+
+  <text class="dg-label-xs" x="460" y="300">圖例</text>
+  <line class="dg-curve" x1="460" y1="330" x2="490" y2="330"></line>
+  <text class="dg-label-xs" x="498" y="334">定額稅 AE_T</text>
+  <line class="dg-curve-alt" x1="460" y1="355" x2="490" y2="355"></line>
+  <text class="dg-label-xs" x="498" y="359">累進稅 AE_t</text>
+  <line class="dg-curve-soft" x1="460" y1="380" x2="490" y2="380"></line>
+  <text class="dg-label-xs" x="498" y="384">45°：AE = Y</text>
+</svg>`,
+    variables: [
+      ["Y", "實質所得", "橫軸；兩條 AE 線與 45 度線的交點決定均衡所得。"],
+      ["AE", "總支出", "縱軸；\\(AE=C+I+G+NX\\)。"],
+      ["E_T", "定額稅均衡", "定額稅 AE_T 與 45 度線的交點。"],
+      ["E_t", "累進稅均衡", "累進稅 AE_t 與 45 度線的交點；所得較低。"],
+      ["45° 線", "均衡條件", "線上任一點 \\(AE=Y\\)。"]
+    ],
+    parameters: [
+      ["c", "邊際消費傾向", "\\(0<c<1\\)；定額稅下 AE 斜率。"],
+      ["t", "邊際稅率", "累進稅的簡化參數；AE 斜率為 \\(c(1-t)\\)。"],
+      ["T_a", "定額稅", "兩條 AE 線的共同截距調整項 \\(-cT_a\\)。"],
+      ["A_a", "自發支出", "\\(A_a=C_a+I_a+G_a+NX_a\\)。"],
+      ["k_T", "定額稅乘數", "\\(k_T=\\dfrac{1}{1-c}\\)。"],
+      ["k_t", "累進稅乘數", "\\(k_t=\\dfrac{1}{1-c(1-t)}\\)，較 k_T 小。"]
+    ],
+    note: "本圖以相同 A_a、T_a 比較兩種稅制；累進稅的邊際稅率 t 以固定值簡化，實際累進稅率隨所得級距上升。稅收自動隨所得變動，是累進稅穩定產出的重要機制。"
+  },
+
+  "macro-02#2-2": {
+    sectionTitle: "第3節 節儉的矛盾",
+    kicker: "教學圖 · 儲蓄與投資",
+    title: "超額儲蓄：國民儲蓄與國內投資的缺口",
+    formula: String.raw`ES=S-I,\qquad es=\frac{S-I}{Y}\times100\%=s-i`,
+    caption: "超額儲蓄 ES 是國民儲蓄 S 超過國內投資 I 的部分。圖中以 Y=100、S=32、I=22 的示意數值呈現：ES=10，超額儲蓄率 es=10%。超額儲蓄可貸出國外，開放經濟下對應經常帳順差；也可能反映國內投資不足、預防性儲蓄或資金外流。",
+    svg: `
+<svg viewBox="0 0 640 480" role="img" aria-labelledby="dg-excess-title dg-excess-desc" style="max-width:640px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-excess-title">超額儲蓄與超額儲蓄率</title>
+  <desc id="dg-excess-desc">以 GDP 100 為例，國民儲蓄 32、國內投資 22，超額儲蓄為 10，超額儲蓄率為 10%。</desc>
+
+  <line class="dg-axis" x1="100" y1="360" x2="540" y2="360"></line>
+  <line class="dg-axis" x1="100" y1="360" x2="100" y2="100"></line>
+  <text class="dg-label" x="320" y="398" text-anchor="middle">金額（GDP Y=100，示意）</text>
+
+  <rect x="120" y="140" width="320" height="60" rx="6" style="fill:var(--accent);fill-opacity:.28;stroke:var(--accent);stroke-width:1.5"></rect>
+  <text class="dg-label" x="132" y="176">國民儲蓄 S</text>
+  <text class="dg-label-sm" x="448" y="176">S=32</text>
+
+  <rect x="120" y="230" width="220" height="60" rx="6" style="fill:var(--gold);fill-opacity:.28;stroke:var(--gold);stroke-width:1.5"></rect>
+  <text class="dg-label" x="132" y="266">國內投資 I</text>
+  <text class="dg-label-sm" x="348" y="266">I=22</text>
+
+  <text class="dg-label-xs" x="120" y="382" text-anchor="middle">0</text>
+  <text class="dg-label-xs" x="220" y="382" text-anchor="middle">10</text>
+  <text class="dg-label-xs" x="320" y="382" text-anchor="middle">20</text>
+  <text class="dg-label-xs" x="420" y="382" text-anchor="middle">30</text>
+  <text class="dg-label-xs" x="520" y="382" text-anchor="middle">40</text>
+
+  <line class="dg-guide" x1="340" y1="210" x2="440" y2="210"></line>
+  <line class="dg-guide" x1="340" y1="202" x2="340" y2="218"></line>
+  <line class="dg-guide" x1="440" y1="202" x2="440" y2="218"></line>
+  <text class="dg-label-sm" x="390" y="198" text-anchor="middle">ES=10</text>
+
+  <rect class="dg-box dg-box-accent" x="40" y="414" width="560" height="56" rx="10"></rect>
+  <text class="dg-label-sm" x="320" y="438" text-anchor="middle">ES = S − I = 10</text>
+  <text class="dg-label-sm" x="320" y="458" text-anchor="middle">es = (S − I) ÷ Y × 100% = 10%</text>
+</svg>`,
+    variables: [
+      ["S", "國民儲蓄", "家計、企業與政府儲蓄合計；示意值 S=32。"],
+      ["I", "國內投資", "國內資本形成；示意值 I=22。"],
+      ["Y", "GDP", "所得與產出的衡量基礎；示意值 Y=100。"],
+      ["ES", "超額儲蓄", "\\(ES=S-I=10\\)；國民儲蓄超過國內投資的部分。"],
+      ["es", "超額儲蓄率", "\\(es=(S-I)/Y\\times100\\%=10\\%\\)；超額儲蓄占 GDP 的比例。"]
+    ],
+    parameters: [
+      ["s=S/Y", "儲蓄率", "示意值 32%。"],
+      ["i=I/Y", "投資率", "示意值 22%。"],
+      ["S>I", "超額儲蓄", "開放經濟下可貸出國外，對應經常帳順差。"],
+      ["示意值", "教學例", "數值為教學示意，實際以主計總處國民所得統計為準。"]
+    ],
+    note: "超額儲蓄不是浪費的同義詞；它可能代表國內投資不足、預防性儲蓄、資金外流或經常帳順差。分析時應同時看儲蓄率、投資率與資金運用去向。"
   },
 
   "macro-05#0": {
