@@ -18,7 +18,7 @@ PDI &= PI - T_p = C + S
 
   "macro-02::第1節 均衡所得之決定": { tex: String.raw`\begin{gathered}AE=A_a+[c(1-t)-m]Y\\A_a=C_a-cT_a+cTR_a+I_a+G_a+NX_a\\Y^*=\frac{A_a}{1-c(1-t)+m}\end{gathered}`, note: "C=C_a+cY_d，Y_d=Y-T_a-tY+TR_a，NX=NX_a-mY；T_a=TR_a=t=m=0 時 A_a=C_a+I_a+G_a+NX_a、Y=A_a/(1-c)。" },
   "macro-02::第2節 政府收支與反景氣循環之財政政策": { tex: String.raw`\begin{gathered}\text{政府支出乘數} = \frac{1}{1-c}\\\text{定額稅乘數} = -\frac{c}{1-c}\end{gathered}`, note: "" },
-  "macro-02::第3節 節儉的矛盾": { tex: String.raw`\begin{gathered}\text{定額稅 }Y=\frac{A_a}{1-c},\quad \text{累進稅 }Y=\frac{A_a}{1-c(1-t)}\\ES=S-I,\quad es=\frac{S-I}{Y}\times100\%\end{gathered}`, note: "A_a=C_a-cT_a+cTR_a+I_a+G_a+NX_a；開放經濟再加入進口傾向 m，乘數為 1/[1-c(1-t)+m]。" },
+  "macro-02::第3節 節儉的矛盾": { tex: String.raw`\begin{gathered}\text{兩部門：}Y^*=\frac{I_a-S_a}{1-c-e},\quad S^*=\frac{(1-c)I_a-eS_a}{1-c-e}\\\text{定額稅 }Y=\frac{A_a}{1-c},\quad \text{累進稅 }Y=\frac{A_a}{1-c(1-t)}\\ES=S-I,\quad es=\frac{S-I}{Y}\times100\%\end{gathered}`, note: "S=S_a+(1-c)Y，S_a=-C_a，I=I_a+eY；e>0 時節儉使總儲蓄下降；e=0 時 ΔS*=0、總儲蓄不變。A_a=C_a-cT_a+cTR_a+I_a+G_a+NX_a。" },
 
   "macro-03::第2節 貨幣供給定義與貨幣數量": { tex: String.raw`M_2=M_{1B}+\text{準貨幣}`, note: "" },
   "macro-04::第2節 銀行業之業務與經營": { tex: String.raw`\text{利差} \approx \text{放款利率} - \text{存款利率}`, note: "" },

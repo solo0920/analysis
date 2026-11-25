@@ -450,12 +450,12 @@ Object.assign(window.MACRO_DIAGRAMS, {
     sectionTitle: "第3節 節儉的矛盾",
     kicker: "學派模型 · 凱因斯",
     title: "節儉的矛盾：自發儲蓄增加使總支出下移",
-    formula: String.raw`S=-C_a+(1-c)Y_d,\qquad I=S`,
-    caption: "家庭想多儲蓄會減少自發消費 C_a，使自發支出 A_a 下降、AE 由 AE₀ 下移到 AE₁，均衡所得從 Y₀ 下降到 Y₁。所得下降後，實際儲蓄未必增加，甚至可能不變或減少，這就是節儉的矛盾。",
+    formula: String.raw`S=Y-C=S_a+(1-c)Y,\quad S_a=-C_a,\quad I=I_a+eY,\quad S=I`,
+    caption: "家庭想多儲蓄會減少自發消費 C_a、增加自發性儲蓄 S_a=-C_a，使 AE 由 AE₀ 下移到 AE₁，均衡所得從 Y₀ 下降到 Y₁。若投資具誘發性 I=I_a+eY（e>0），所得下降會使誘發性投資與儲蓄同步萎縮，最終總儲蓄反而減少；若投資固定（e=0），均衡所得下降，但總儲蓄維持不變。",
     svg: `
 <svg viewBox="0 0 640 480" role="img" aria-labelledby="dg-thrift-title dg-thrift-desc" style="max-width:640px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
   <title id="dg-thrift-title">節儉的矛盾示意圖</title>
-  <desc id="dg-thrift-desc">橫軸為實質所得 Y，縱軸為總支出 AE。45 度線 AE=Y 與總支出線 AE0 交於 E0，決定均衡所得 Y0；自發消費減少使總支出線下移到 AE1，均衡點移到 E1，均衡所得減少。</desc>
+  <desc id="dg-thrift-desc">橫軸為實質所得 Y，縱軸為總支出 AE。45 度線 AE=Y 與總支出線 AE0 交於 E0，決定均衡所得 Y0；自發消費減少使總支出線下移到 AE1，均衡點移到 E1，均衡所得減少。若投資具誘發性，最終總儲蓄可能反而減少。</desc>
   <defs>
     <marker id="dg-thrift-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path class="dg-arrow-head" d="M0,0 L10,5 L0,10 z"></path>
@@ -485,11 +485,12 @@ Object.assign(window.MACRO_DIAGRAMS, {
   <text class="dg-label-sm" x="141" y="440">Y₁</text>
 
   <text class="dg-label-xs" x="460" y="130">參數</text>
-  <text class="dg-label-xs" x="460" y="155">c：AE 斜率</text>
+  <text class="dg-label-xs" x="460" y="155">c+e：AE 斜率</text>
   <text class="dg-label-xs" x="460" y="180">C_a：自發消費</text>
-  <text class="dg-label-xs" x="460" y="205">A_a：自發支出</text>
-  <text class="dg-label-xs" x="460" y="230">k = 1/(1−c)</text>
+  <text class="dg-label-xs" x="460" y="205">e：邊際投資傾向</text>
+  <text class="dg-label-xs" x="460" y="230">k = 1/(1−c−e)</text>
   <text class="dg-label-xs" x="460" y="255">ΔY = kΔA_a</text>
+  <text class="dg-label-xs" x="460" y="280">S_a = −C_a</text>
 
   <text class="dg-label-xs" x="460" y="300">圖例</text>
   <line class="dg-curve" x1="460" y1="330" x2="490" y2="330"></line>
@@ -498,22 +499,24 @@ Object.assign(window.MACRO_DIAGRAMS, {
   <text class="dg-label-xs" x="498" y="359">總支出 AE₁</text>
   <line class="dg-curve-soft" x1="460" y1="380" x2="490" y2="380"></line>
   <text class="dg-label-xs" x="498" y="384">45°：AE = Y</text>
-  <text class="dg-label-xs" x="460" y="405">箭頭：C_a↓（儲蓄↑）</text>
+  <text class="dg-label-xs" x="460" y="405">箭頭：C_a↓（S_a↑）</text>
 </svg>`,
     variables: [
       ["Y", "實質所得", "橫軸；均衡所得隨總支出移動。"],
-      ["AE", "總支出", "縱軸；\\(AE=C+I+G+NX\\)。自發消費下降會使整條 AE 線下移。"],
-      ["Y_d", "可支配所得", "\\(Y_d=Y-T_a+TR_a\\)；消費取決於可支配所得。"],
-      ["S", "儲蓄", "\\(S=Y_d-C=-C_a+(1-c)Y_d\\)；想增加儲蓄會先減少消費與所得。"],
+      ["AE", "總支出", "縱軸；兩部門 \\(AE=C+I\\)。自發消費下降會使整條 AE 線下移。"],
+      ["S", "儲蓄", "\\(S=Y-C=S_a+(1-c)Y\\)，其中 \\(S_a=-C_a\\)。"],
+      ["I", "投資", "\\(I=I_a+eY\\)；e>0 為誘發性投資，e=0 為固定投資。"],
       ["45° 線", "均衡條件", "線上任一點 \\(AE=Y\\)；與總支出線的交點決定均衡所得。"]
     ],
     parameters: [
-      ["C_a", "自發消費", "消費函數 \\(C=C_a+cY_d\\) 的截距；\\(C_a\\) 下降使 AE 截距下降。"],
-      ["A_a", "完整自發支出", "\\(A_a=C_a-cT_a+cTR_a+I_a+G_a+NX_a\\)；\\(C_a\\) 下降使 \\(A_a\\) 下降、AE 下移。"],
-      ["c", "邊際消費傾向", "在 T_a=TR_a=t=m=0 的簡化圖中 AE 斜率為 c 且不變，因此是平行下移；完整模型斜率為 \\(c(1-t)-m\\)。"],
-      ["k", "乘數", "所得減少的幅度是自發支出減少量的 k 倍；簡化模型 \\(k=\\dfrac{1}{1-c}\\)。"]
+      ["C_a", "自發消費", "消費函數 \\(C=C_a+cY\\) 的截距；\\(C_a\\) 下降使 \\(S_a=-C_a\\) 上升、AE 下移。"],
+      ["c", "邊際消費傾向", "封閉兩部門 \\(0<c<1\\)；AE 斜率為 \\(c+e\\)，儲蓄線斜率為 \\(1-c\\)。"],
+      ["e", "邊際投資傾向", "\\(0<e<1-c\\)；e>0 時 \\(\\Delta S^*<0\\)，e=0 時 \\(\\Delta S^*=0\\)。"],
+      ["S_a", "自發性儲蓄", "\\(S_a=-C_a\\)；節儉使 \\(\\Delta S_a=-\\Delta C_a>0\\)。"],
+      ["k", "乘數", "\\(k=\\dfrac{1}{1-c-e}\\)；所得變動 \\(\\Delta Y=k\\Delta A_a\\)。"],
+      ["A_a", "兩部門自發支出", "\\(A_a=C_a+I_a\\)；完整四部門模型見圖 macro-02#0。"]
     ],
-    note: "本圖為 T_a=TR_a=0、t=m=0 的簡化模型；完整模型 A_a=C_a−cT_a+cTR_a+I_a+G_a+NX_a、斜率 c(1-t)-m。節儉的矛盾成立於短期、價格固定且產能未充分使用的封閉經濟。長期或充分就業下，儲蓄增加可轉化為投資資金。"
+    note: "本圖為封閉兩部門模型（G=NX=T=TR=0），I=I_a+eY。e>0 時，節儉使均衡所得下降，且最終總儲蓄 S* 反而減少；e=0 時，所得下降但 S*=I_a 維持不變。節儉的矛盾成立於短期、價格固定且產能未充分使用的封閉經濟；長期或充分就業下，儲蓄增加可轉化為投資資金。"
   },
 
   "macro-02#2-1": {
