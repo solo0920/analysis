@@ -7262,7 +7262,7 @@
 
     if (!results.length) {
       const loading = canFuzzy && (fuzzyState.status === "loading" || fuzzyState.status === "idle");
-      searchResults.innerHTML = '<div class="search-empty">找不到「' + escapeHtml(trimmed) + '」相關的章節或名詞。<br>試試較短的關鍵字，例如 GDP、利率、匯率。' +
+      searchResults.innerHTML = '<div class="search-empty">找不到「' + escapeHtml(trimmed) + '」相關的章節、名詞或考古題。<br>試試較短的關鍵字，例如 GDP、利率、匯率。' +
         (loading ? '<br><span class="search-fuzzy-loading">正在建立模糊搜尋…</span>' : "") + "</div>";
       return;
     }
