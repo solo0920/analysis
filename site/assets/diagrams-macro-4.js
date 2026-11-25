@@ -5,52 +5,105 @@ window.MACRO_DIAGRAMS = window.MACRO_DIAGRAMS || {};
 Object.assign(window.MACRO_DIAGRAMS, {
   "macro-09#2": {
     sectionTitle: "第3節 菲利浦曲線",
-    title: "菲利浦曲線：短期取捨與長期垂直",
+    title: "菲利浦曲線：短期取捨、預期上移與長期垂直",
     kicker: "學派模型 · 貨幣學派",
     formula: String.raw`\pi=\pi^e-\beta(u-u_n)+\varepsilon`,
-    caption: "短期菲利浦曲線 SRPC 為負斜率，失業率越低、通膨越高。預期通膨上升會使 SRPC 上移到 SRPC₁，同樣失業率下通膨更高。長期而言預期會調整到實際通膨，失業率回到自然失業率 uₙ，長期曲線 LRPC 為垂直線。",
+    caption: "短期菲利浦曲線 SRPC 為負斜率：失業率越低、通膨越高。圖中設 uₙ=5%、β=0.5、ε=0；SRPC₀ 對應 πᵉ=4%，SRPC₁ 對應 πᵉ=6%。E₀=(5%,4%)、E₁=(5%,6%) 在自然失業率上；A=(3%,5%)、B=(3%,7%) 顯示相同失業率下，預期通膨上升使 SRPC 整條上移。長期預期追上實際通膨後，失業率回到 uₙ，LRPC 為垂直線。",
     svg: `
-<svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-phillips-title" xmlns="http://www.w3.org/2000/svg">
-  <title id="dg-phillips-title">菲利浦曲線短期與長期圖</title>
+<svg viewBox="0 0 680 420" role="img" aria-labelledby="dg-phillips-title dg-phillips-desc" style="max-width:680px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-phillips-title">菲利浦曲線：短期取捨、預期上移與長期垂直線</title>
+  <desc id="dg-phillips-desc">橫軸為失業率 u（%），縱軸為通膨率 π（%）。短期菲利浦曲線 SRPC₀ 與 SRPC₁ 為負斜率平行線；預期通膨由 4% 升至 6% 使 SRPC 上移。E₀、E₁ 在自然失業率 uₙ=5% 上，A、B 在 u=3% 上。長期菲利浦曲線 LRPC 為 u=5% 的垂直線。</desc>
   <defs>
     <marker id="dg-phillips-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path class="dg-arrow-head" d="M0,0 L10,5 L0,10 z"></path>
     </marker>
   </defs>
-  <line class="dg-axis" x1="70" y1="300" x2="608" y2="300"></line>
-  <line class="dg-axis" x1="70" y1="300" x2="70" y2="32"></line>
-  <text class="dg-label" x="566" y="326">失業率 u</text>
-  <text class="dg-label" x="78" y="24">通膨率 π</text>
-  <line class="dg-curve" x1="110" y1="90" x2="560" y2="260"></line>
-  <text class="dg-label-sm" x="452" y="256">SRPC₀</text>
-  <line class="dg-curve-alt" x1="110" y1="60" x2="560" y2="230"></line>
-  <text class="dg-label-sm" x="452" y="226">SRPC₁</text>
-  <line class="dg-curve-soft" x1="340" y1="50" x2="340" y2="296"></line>
-  <text class="dg-label-sm" x="348" y="62">LRPC</text>
-  <line class="dg-arrow" x1="280" y1="154" x2="280" y2="124" marker-end="url(#dg-phillips-arrow)"></line>
-  <text class="dg-label-sm" x="290" y="148">πᵉ↑</text>
-  <circle class="dg-point" cx="280" cy="154" r="4"></circle>
-  <text class="dg-label-sm" x="248" y="146">A</text>
-  <circle class="dg-point" cx="280" cy="124" r="4"></circle>
-  <text class="dg-label-sm" x="288" y="120">B</text>
-  <circle class="dg-point" cx="340" cy="177" r="4.5"></circle>
-  <text class="dg-label-sm" x="348" y="172">E₀</text>
-  <circle class="dg-point" cx="340" cy="147" r="4.5"></circle>
-  <text class="dg-label-sm" x="348" y="142">E₁</text>
-  <text class="dg-label-sm" x="326" y="320">uₙ</text>
+  <rect class="dg-panel" x="16" y="16" width="648" height="388" rx="14"></rect>
+  <text class="dg-label" x="88" y="38">通膨率 π（%）</text>
+  <text class="dg-label" x="348" y="398" text-anchor="middle">失業率 u（%）</text>
+
+  <g class="dg-grid">
+    <line x1="88" y1="48" x2="88" y2="328"></line>
+    <line x1="140" y1="48" x2="140" y2="328"></line>
+    <line x1="192" y1="48" x2="192" y2="328"></line>
+    <line x1="244" y1="48" x2="244" y2="328"></line>
+    <line x1="296" y1="48" x2="296" y2="328"></line>
+    <line x1="348" y1="48" x2="348" y2="328"></line>
+    <line x1="400" y1="48" x2="400" y2="328"></line>
+    <line x1="452" y1="48" x2="452" y2="328"></line>
+    <line x1="504" y1="48" x2="504" y2="328"></line>
+    <line x1="556" y1="48" x2="556" y2="328"></line>
+    <line x1="608" y1="48" x2="608" y2="328"></line>
+    <line x1="88" y1="48" x2="608" y2="48"></line>
+    <line x1="88" y1="83" x2="608" y2="83"></line>
+    <line x1="88" y1="118" x2="608" y2="118"></line>
+    <line x1="88" y1="153" x2="608" y2="153"></line>
+    <line x1="88" y1="188" x2="608" y2="188"></line>
+    <line x1="88" y1="223" x2="608" y2="223"></line>
+    <line x1="88" y1="258" x2="608" y2="258"></line>
+    <line x1="88" y1="293" x2="608" y2="293"></line>
+    <line x1="88" y1="328" x2="608" y2="328"></line>
+  </g>
+
+  <line class="dg-axis" x1="88" y1="328" x2="608" y2="328"></line>
+  <line class="dg-axis" x1="88" y1="328" x2="88" y2="48"></line>
+
+  <text class="dg-label-xs" x="88" y="346" text-anchor="middle">0</text>
+  <text class="dg-label-xs" x="140" y="346" text-anchor="middle">1</text>
+  <text class="dg-label-xs" x="192" y="346" text-anchor="middle">2</text>
+  <text class="dg-label-xs" x="244" y="346" text-anchor="middle">3</text>
+  <text class="dg-label-xs" x="296" y="346" text-anchor="middle">4</text>
+  <text class="dg-label-xs" x="348" y="346" text-anchor="middle">5</text>
+  <text class="dg-label-xs" x="400" y="346" text-anchor="middle">6</text>
+  <text class="dg-label-xs" x="452" y="346" text-anchor="middle">7</text>
+  <text class="dg-label-xs" x="504" y="346" text-anchor="middle">8</text>
+  <text class="dg-label-xs" x="556" y="346" text-anchor="middle">9</text>
+  <text class="dg-label-xs" x="608" y="346" text-anchor="middle">10</text>
+
+  <text class="dg-label-xs" x="80" y="297" text-anchor="end">1</text>
+  <text class="dg-label-xs" x="80" y="262" text-anchor="end">2</text>
+  <text class="dg-label-xs" x="80" y="227" text-anchor="end">3</text>
+  <text class="dg-label-xs" x="80" y="192" text-anchor="end">4</text>
+  <text class="dg-label-xs" x="80" y="157" text-anchor="end">5</text>
+  <text class="dg-label-xs" x="80" y="122" text-anchor="end">6</text>
+  <text class="dg-label-xs" x="80" y="87" text-anchor="end">7</text>
+  <text class="dg-label-xs" x="80" y="52" text-anchor="end">8</text>
+
+  <line class="dg-curve-soft" x1="348" y1="48" x2="348" y2="328"></line>
+  <text class="dg-label-sm" x="356" y="62">LRPC：u = uₙ = 5%</text>
+
+  <line class="dg-curve" x1="88" y1="100.5" x2="608" y2="275.5"></line>
+  <text class="dg-label-sm" x="470" y="220">SRPC₀（πᵉ=4%）</text>
+
+  <line class="dg-curve-alt" x1="140" y1="48" x2="608" y2="205.5"></line>
+  <text class="dg-label-sm" x="470" y="150">SRPC₁（πᵉ=6%）</text>
+
+  <circle class="dg-point" cx="348" cy="188" r="4.5"></circle>
+  <text class="dg-label-sm" x="356" y="204">E₀（5, 4）</text>
+  <circle class="dg-point" cx="348" cy="118" r="4.5"></circle>
+  <text class="dg-label-sm" x="356" y="134">E₁（5, 6）</text>
+  <circle class="dg-point" cx="244" cy="153" r="4.5"></circle>
+  <text class="dg-label-sm" x="214" y="149" text-anchor="end">A（3, 5）</text>
+  <circle class="dg-point" cx="244" cy="83" r="4.5"></circle>
+  <text class="dg-label-sm" x="214" y="79" text-anchor="end">B（3, 7）</text>
+
+  <line class="dg-arrow" x1="420" y1="206" x2="420" y2="148" marker-end="url(#dg-phillips-arrow)"></line>
+  <text class="dg-label-sm" x="430" y="182">πᵉ 上升</text>
+
+  <text class="dg-label-xs" x="88" y="374">uₙ=5%、β=0.5、ε=0；πᵉ 由 4% 升至 6%</text>
 </svg>`,
     variables: [
-      ["π", "通膨率", "縱軸；物價上漲率。"],
-      ["u", "失業率", "橫軸；實際失業率。"],
-      ["πᵉ", "預期通膨率", "決定短期菲利浦曲線的位置。"],
-      ["uₙ", "自然失業率", "長期菲利浦曲線所在的失業率，也稱非加速通膨失業率。"]
+      ["\\(\\pi\\)", "通膨率", "縱軸；物價上漲率（%）。"],
+      ["\\(u\\)", "失業率", "橫軸；實際失業率（%）。"],
+      ["\\(\\pi^e\\)", "預期通膨率", "決定短期菲利浦曲線的位置；圖中由 4% 升至 6%。"],
+      ["\\(u_n\\)", "自然失業率", "長期菲利浦曲線所在的失業率；圖中為 5%。"]
     ],
     parameters: [
-      ["β", "通膨對失業的反應", "β 越大，短期曲線越陡。"],
-      ["ε", "供給衝擊", "油價等成本衝擊會使短期曲線移動。"],
-      ["預期調整", "長期調整機制", "預期通膨追上實際通膨後，失業率回到 uₙ。"]
+      ["\\(\\beta\\)", "通膨對失業的反應", "β 越大，短期曲線越陡；圖中 β=0.5。"],
+      ["\\(\\varepsilon\\)", "供給衝擊", "油價等成本衝擊會使短期曲線移動；圖中設 ε=0。"],
+      ["\\(\\pi^e\\) 變動", "預期調整", "預期通膨上升使 SRPC 整條上移，長期失業率仍回到 uₙ。"]
     ],
-    note: "短期政策可以在通膨與失業之間取捨；長期無法用通膨換取更低的失業率。停滯性通膨是供給衝擊使 SRPC 上移的結果。本圖只畫預期通膨上升造成的上移；實務上供給衝擊與預期變動可能同時發生。"
+    note: "圖為線性模型示意，不是離散資料插值；實際 SRPC 可能凸向原點，斜率也會隨制度與期間改變。圖中數值僅為教學示例。"
   },
 
   "macro-10#1": {
@@ -204,59 +257,147 @@ Object.assign(window.MACRO_DIAGRAMS, {
     sectionTitle: "第3節 菲利浦曲線",
     kicker: "學派模型 · 新凱因斯",
     title: "新凱因斯模型：NKPC 與 Taylor 規則",
-    caption: "新凱因斯菲利浦曲線（NKPC）把通膨連到預期通膨與產出缺口：π_t=βE_tπ_{t+1}+κy_t。價格黏性使產出缺口短期影響通膨；預期通膨上升會使 NKPC 上移。右圖的 Taylor 規則把政策利率連到通膨缺口與產出缺口，是央行以利率穩定通膨與產出的簡單回饋規則。兩者共同構成新凱因斯的三方程模型的核心。",
+    caption: "左圖 NKPC 以 β=1、κ=0.5、Eπ=2%（NKPC₀）與 3%（NKPC₁）繪製：π=βEπ+κy=Eπ+0.5y。預期通膨上升使整條線由 NKPC₀ 上移到 NKPC₁；A→B 顯示同一產出缺口 y=1% 下，通膨由 2.5% 升至 3.5%。右圖 Taylor 規則以 r*=1%、π*=2%、φπ=1.5、y=0 繪製：i=1+π+1.5(π−2)=2.5π−2；π*=2% 時 i*=3%。虛線為 φπ=−0.5 的較弱反應，實質利率隨通膨下降，不滿足 Taylor 原則。",
     formula: String.raw`\pi_t=\beta E_t\pi_{t+1}+\kappa y_t,\qquad i_t=r^*+\pi_t+\phi_\pi(\pi_t-\pi^*)+\phi_y y_t`,
     svg: `
-<svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-nkpc-title" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 680 420" role="img" aria-labelledby="dg-nkpc-title dg-nkpc-desc" style="max-width:680px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
   <title id="dg-nkpc-title">新凱因斯菲利浦曲線與 Taylor 規則</title>
-  <rect class="dg-panel" x="20" y="20" width="286" height="316" rx="14"></rect>
-  <rect class="dg-panel" x="334" y="20" width="286" height="316" rx="14"></rect>
-  <text class="dg-label" x="163" y="48" text-anchor="middle">NKPC：通膨與產出缺口</text>
-  <text class="dg-label" x="477" y="48" text-anchor="middle">Taylor 規則</text>
-  <line class="dg-axis" x1="56" y1="290" x2="284" y2="290"></line>
-  <line class="dg-axis" x1="56" y1="290" x2="56" y2="70"></line>
-  <text class="dg-label-sm" x="258" y="310">產出缺口 y</text>
-  <text class="dg-label-sm" x="34" y="84">通膨 π</text>
-  <line class="dg-curve" x1="70" y1="258" x2="270" y2="96"></line>
-  <line class="dg-curve-alt" x1="70" y1="222" x2="270" y2="70"></line>
-  <text class="dg-label-sm" x="240" y="96">NKPC</text>
-  <text class="dg-label-sm" x="238" y="68">NKPC₁</text>
-  <line class="dg-arrow" x1="180" y1="126" x2="180" y2="94"></line>
-  <text class="dg-label-sm" x="188" y="110">Eπ↑</text>
-  <circle class="dg-point" cx="170" cy="164" r="4"></circle>
-  <text class="dg-label-sm" x="178" y="158">A</text>
-  <line class="dg-axis" x1="370" y1="290" x2="598" y2="290"></line>
-  <line class="dg-axis" x1="370" y1="290" x2="370" y2="70"></line>
-  <text class="dg-label-sm" x="572" y="310">通膨 π</text>
-  <text class="dg-label-sm" x="348" y="84">政策利率 i</text>
-  <line class="dg-curve" x1="382" y1="250" x2="588" y2="90"></line>
-  <text class="dg-label-sm" x="548" y="84">Taylor rule</text>
-  <line class="dg-guide" x1="470" y1="190" x2="470" y2="290"></line>
-  <line class="dg-guide" x1="370" y1="190" x2="470" y2="190"></line>
-  <circle class="dg-point" cx="470" cy="190" r="4"></circle>
-  <text class="dg-label-sm" x="452" y="310">π*</text>
-  <text class="dg-label-sm" x="350" y="196">i*</text>
+  <desc id="dg-nkpc-desc">左圖為 NKPC：橫軸產出缺口 y，縱軸通膨率 π；預期通膨由 2% 升至 3% 使 NKPC 由 NKPC₀ 上移到 NKPC₁。右圖為 Taylor 規則：橫軸通膨率 π，縱軸政策利率 i；實線 φπ=1.5 通過 π*=2%、i*=3%，虛線 φπ=−0.5 為較弱反應。</desc>
+  <defs>
+    <marker id="dg-nkpc-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="dg-arrow-head" d="M0,0 L10,5 L0,10 z"></path>
+    </marker>
+  </defs>
+  <rect class="dg-panel" x="16" y="16" width="316" height="388" rx="14"></rect>
+  <rect class="dg-panel" x="348" y="16" width="316" height="388" rx="14"></rect>
+
+  <text class="dg-label" x="174" y="36" text-anchor="middle">NKPC：π = Eπ + κy</text>
+  <text class="dg-label" x="64" y="54">通膨率 π（%）</text>
+  <text class="dg-label" x="184" y="342" text-anchor="middle">產出缺口 y（%）</text>
+
+  <g class="dg-grid">
+    <line x1="64" y1="64" x2="64" y2="304"></line>
+    <line x1="104" y1="64" x2="104" y2="304"></line>
+    <line x1="144" y1="64" x2="144" y2="304"></line>
+    <line x1="184" y1="64" x2="184" y2="304"></line>
+    <line x1="224" y1="64" x2="224" y2="304"></line>
+    <line x1="264" y1="64" x2="264" y2="304"></line>
+    <line x1="304" y1="64" x2="304" y2="304"></line>
+    <line x1="64" y1="64" x2="304" y2="64"></line>
+    <line x1="64" y1="104" x2="304" y2="104"></line>
+    <line x1="64" y1="144" x2="304" y2="144"></line>
+    <line x1="64" y1="184" x2="304" y2="184"></line>
+    <line x1="64" y1="224" x2="304" y2="224"></line>
+    <line x1="64" y1="264" x2="304" y2="264"></line>
+    <line x1="64" y1="304" x2="304" y2="304"></line>
+  </g>
+
+  <line class="dg-axis" x1="64" y1="304" x2="304" y2="304"></line>
+  <line class="dg-axis" x1="64" y1="304" x2="64" y2="64"></line>
+
+  <text class="dg-label-xs" x="64" y="322" text-anchor="middle">-2</text>
+  <text class="dg-label-xs" x="104" y="322" text-anchor="middle">-1</text>
+  <text class="dg-label-xs" x="144" y="322" text-anchor="middle">0</text>
+  <text class="dg-label-xs" x="184" y="322" text-anchor="middle">1</text>
+  <text class="dg-label-xs" x="224" y="322" text-anchor="middle">2</text>
+  <text class="dg-label-xs" x="264" y="322" text-anchor="middle">3</text>
+  <text class="dg-label-xs" x="304" y="322" text-anchor="middle">4</text>
+
+  <text class="dg-label-xs" x="56" y="268" text-anchor="end">1</text>
+  <text class="dg-label-xs" x="56" y="228" text-anchor="end">2</text>
+  <text class="dg-label-xs" x="56" y="188" text-anchor="end">3</text>
+  <text class="dg-label-xs" x="56" y="148" text-anchor="end">4</text>
+  <text class="dg-label-xs" x="56" y="108" text-anchor="end">5</text>
+  <text class="dg-label-xs" x="56" y="68" text-anchor="end">6</text>
+
+  <line class="dg-curve" x1="64" y1="264" x2="304" y2="144"></line>
+  <line class="dg-curve-alt" x1="64" y1="224" x2="304" y2="104"></line>
+  <text class="dg-label-sm" x="240" y="215">NKPC₀</text>
+  <text class="dg-label-sm" x="240" y="118">NKPC₁</text>
+
+  <circle class="dg-point" cx="184" cy="204" r="4"></circle>
+  <text class="dg-label-sm" x="176" y="200" text-anchor="end">A</text>
+  <circle class="dg-point" cx="184" cy="164" r="4"></circle>
+  <text class="dg-label-sm" x="176" y="160" text-anchor="end">B</text>
+  <line class="dg-arrow" x1="184" y1="198" x2="184" y2="170" marker-end="url(#dg-nkpc-arrow)"></line>
+  <text class="dg-label-sm" x="194" y="186">Eπ↑</text>
+
+  <text class="dg-label-xs" x="64" y="368">κ=0.5；Eπ=2%→3%；y∈[−2,4]</text>
+
+  <text class="dg-label" x="506" y="36" text-anchor="middle">Taylor 規則</text>
+  <text class="dg-label" x="396" y="54">政策利率 i（%）</text>
+  <text class="dg-label" x="516" y="342" text-anchor="middle">通膨率 π（%）</text>
+
+  <g class="dg-grid">
+    <line x1="396" y1="64" x2="396" y2="304"></line>
+    <line x1="436" y1="64" x2="436" y2="304"></line>
+    <line x1="476" y1="64" x2="476" y2="304"></line>
+    <line x1="516" y1="64" x2="516" y2="304"></line>
+    <line x1="556" y1="64" x2="556" y2="304"></line>
+    <line x1="596" y1="64" x2="596" y2="304"></line>
+    <line x1="636" y1="64" x2="636" y2="304"></line>
+    <line x1="396" y1="64" x2="636" y2="64"></line>
+    <line x1="396" y1="94" x2="636" y2="94"></line>
+    <line x1="396" y1="124" x2="636" y2="124"></line>
+    <line x1="396" y1="154" x2="636" y2="154"></line>
+    <line x1="396" y1="184" x2="636" y2="184"></line>
+    <line x1="396" y1="214" x2="636" y2="214"></line>
+    <line x1="396" y1="244" x2="636" y2="244"></line>
+    <line x1="396" y1="274" x2="636" y2="274"></line>
+    <line x1="396" y1="304" x2="636" y2="304"></line>
+  </g>
+
+  <line class="dg-axis" x1="396" y1="304" x2="636" y2="304"></line>
+  <line class="dg-axis" x1="396" y1="304" x2="396" y2="64"></line>
+
+  <text class="dg-label-xs" x="396" y="322" text-anchor="middle">0</text>
+  <text class="dg-label-xs" x="436" y="322" text-anchor="middle">1</text>
+  <text class="dg-label-xs" x="476" y="322" text-anchor="middle">2</text>
+  <text class="dg-label-xs" x="516" y="322" text-anchor="middle">3</text>
+  <text class="dg-label-xs" x="556" y="322" text-anchor="middle">4</text>
+  <text class="dg-label-xs" x="596" y="322" text-anchor="middle">5</text>
+  <text class="dg-label-xs" x="636" y="322" text-anchor="middle">6</text>
+
+  <text class="dg-label-xs" x="388" y="278" text-anchor="end">1</text>
+  <text class="dg-label-xs" x="388" y="248" text-anchor="end">2</text>
+  <text class="dg-label-xs" x="388" y="218" text-anchor="end">3</text>
+  <text class="dg-label-xs" x="388" y="188" text-anchor="end">4</text>
+  <text class="dg-label-xs" x="388" y="158" text-anchor="end">5</text>
+  <text class="dg-label-xs" x="388" y="128" text-anchor="end">6</text>
+  <text class="dg-label-xs" x="388" y="98" text-anchor="end">7</text>
+  <text class="dg-label-xs" x="388" y="68" text-anchor="end">8</text>
+
+  <line class="dg-curve-soft" x1="396" y1="244" x2="636" y2="154"></line>
+  <line class="dg-curve" x1="428" y1="304" x2="556" y2="64"></line>
+  <line class="dg-curve" x1="404" y1="82" x2="430" y2="82"></line>
+  <text class="dg-label-sm" x="438" y="86">φπ=1.5</text>
+  <line class="dg-curve-soft" x1="404" y1="106" x2="430" y2="106"></line>
+  <text class="dg-label-sm" x="438" y="110">φπ=−0.5</text>
+
+  <line class="dg-guide" x1="476" y1="214" x2="476" y2="304"></line>
+  <line class="dg-guide" x1="396" y1="214" x2="476" y2="214"></line>
+  <circle class="dg-point" cx="476" cy="214" r="4.5"></circle>
+  <text class="dg-label-sm" x="484" y="230">E*</text>
+  <text class="dg-label-sm" x="484" y="292">π*=2%</text>
+  <text class="dg-label-sm" x="404" y="208">i*=3%</text>
+
+  <text class="dg-label-xs" x="396" y="368">r*=1%、π*=2%、y=0</text>
 </svg>`,
     variables: [
-      ["\\pi", "通膨率", "物價上漲率。"],
-      ["E_t\\pi_{t+1}", "預期通膨", "廠商與家計對下一期通膨的預期。"],
-      ["y", "產出缺口", "實際產出相對潛在產出的偏離。"],
-      ["i", "名目政策利率", "央行設定的短期利率。"],
-      ["r^*", "中性實質利率", "長期均衡的實質利率。"],
-      ["\\pi^*", "通膨目標", "央行的目標通膨率。"],
-      ["\\beta", "折現因子", "未來通膨在 NKPC 中的權重。"],
-      ["\\kappa", "菲利浦曲線斜率", "產出缺口對通膨的敏感度。"],
-      ["\\phi_\\pi", "通膨反應係數", "Taylor 規則對通膨缺口的反應。"],
-      ["\\phi_y", "產出反應係數", "Taylor 規則對產出缺口的反應。"]
+      ["\\(\\pi_t\\)", "當期通膨率", "NKPC 的左邊；物價上漲率。"],
+      ["\\(E_t\\pi_{t+1}\\)", "預期通膨", "廠商與家計對下一期通膨的預期。"],
+      ["\\(y_t\\)", "產出缺口", "實際產出相對潛在產出的偏離（%）。"],
+      ["\\(i_t\\)", "名目政策利率", "央行設定的短期利率。"],
+      ["\\(r^*\\)", "中性實質利率", "長期均衡的實質利率；圖中設 1%。"],
+      ["\\(\\pi^*\\)", "通膨目標", "央行的目標通膨率；圖中設 2%。"]
     ],
     parameters: [
-      ["價格黏性", "Calvo／菜單成本", "黏性越高，產出缺口對通膨的影響越強。"],
-      ["預期形成", "前瞻或後顧", "NKPC 強調前瞻預期。"],
-      ["政策反應", "\\phi_\\pi、\\phi_y", "係數越大，政策對缺口反應越強。"],
-      ["政策目標", "\\pi^*、r^*", "不同央行與期間可能不同。"],
-      ["模型封閉性", "三方程模型", "NKPC、IS 曲線與 Taylor 規則共同決定均衡。"]
+      ["\\(\\beta\\)", "折現因子", "未來通膨在 NKPC 中的權重；圖中設 β=1，故截距等於 Eπ。"],
+      ["\\(\\kappa\\)", "菲利浦曲線斜率", "產出缺口對通膨的敏感度；圖中設 0.5。"],
+      ["\\(\\phi_\\pi\\)", "通膨反應係數", "Taylor 規則對通膨缺口的反應；圖中實線 1.5、虛線 −0.5。"],
+      ["\\(\\phi_y\\)", "產出反應係數", "Taylor 規則對產出缺口的反應；圖中設 0。"]
     ],
-    note: "NKPC 是通膨方程式，不是單純的短期菲力浦曲線；Taylor 規則是政策反應函數，實際央行仍會考慮金融穩定、匯率與不確定性。"
+    note: "圖為線性模型示意，不是離散資料插值；NKPC 圖設 β=1 以簡化截距，實際 β<1 時截距為 βEπ。NKPC 的斜率與 Taylor 規則係數會隨模型設定與期間改變；實際央行也會考慮金融穩定、匯率與不確定性。"
   },
   "macro-10#1-2": {
     sectionTitle: "第2節 匯率之決定",

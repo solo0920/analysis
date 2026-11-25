@@ -3786,6 +3786,12 @@ a.landing-item:hover {
   stroke-width: 1.6;
 }
 
+.model-diagram svg .dg-grid {
+  stroke: var(--line);
+  stroke-width: 0.8;
+  opacity: 0.6;
+}
+
 .model-diagram svg .dg-curve {
   fill: none;
   stroke: var(--accent);
