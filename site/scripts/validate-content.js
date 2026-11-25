@@ -106,7 +106,7 @@ const mermaidFiles = ["diagrams-mermaid.js", "diagrams-mermaid-static.js"];
 function loadContent() {
   const context = { window: {} };
   vm.createContext(context);
-  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-investment-formulas.js", "content-investment-technical.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-chapter-supplements.js", "content-exam-gap-supplements.js", "content-law-deepdive.js", "content-law-deepdive-2.js", "content-law-quickread.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-macro-current.js", "content-exam-forecast.js", "content-exam-forecast-answers.js", "content-past-exam-stats.js", "content-past-exams-written.js", "content-written-layouts.js", "content-past-exams.js", "content-past-exams-explanations.js", "content-exam-solutions-115.js", "content-exam-solutions-114.js", "content-exam-solutions-113.js", "content-exam-solutions-112.js", "content-exam-solutions-111.js", "content-exam-solutions-110.js", "content-exam-solutions-109.js", "content-exam-solutions-108.js", "content-exam-solutions-107.js"].forEach(function (file) {
+  ["content-macro.js", "content-macro-2.js", "content-macro-3.js", "content-macro-evolution.js", "content-investment.js", "content-investment-formulas.js", "content-investment-technical.js", "content-accounting.js", "content-accounting-2.js", "content-law.js", "content-law-articles.js", "content-chapter-supplements.js", "content-exam-gap-supplements.js", "content-law-deepdive.js", "content-law-deepdive-2.js", "content-law-quickread.js", "content-formula-tex.js", "content.js", "content-nobel.js", "content-macro-current.js", "content-exam-forecast.js", "content-exam-forecast-answers.js", "content-past-exam-stats.js", "content-past-exams-written.js", "content-written-layouts.js", "content-past-exams.js", "content-past-exam-search.js", "content-past-exams-explanations.js", "content-exam-solutions-115.js", "content-exam-solutions-114.js", "content-exam-solutions-113.js", "content-exam-solutions-112.js", "content-exam-solutions-111.js", "content-exam-solutions-110.js", "content-exam-solutions-109.js", "content-exam-solutions-108.js", "content-exam-solutions-107.js"].forEach(function (file) {
     const fullPath = path.join(siteDir, "assets", file);
     vm.runInContext(fs.readFileSync(fullPath, "utf8"), context, { filename: file });
   });
@@ -132,6 +132,7 @@ function loadContent() {
     lawArticles: context.window.LAW_ARTICLES || {},
     formulaTex: context.window.FORMULA_TEX || {},
     pastExams: context.window.PAST_EXAMS || { meta: {}, subjects: [], sessions: [], questions: [] },
+    pastSearchIndex: Array.isArray(context.window.PAST_EXAM_SEARCH_INDEX) ? context.window.PAST_EXAM_SEARCH_INDEX : [],
     pastExamExplanations: context.window.PAST_EXAM_EXPLANATIONS || {},
     pastWritten: context.window.PAST_EXAMS_WRITTEN || { meta: {}, questions: [] },
     writtenLayouts: context.window.WRITTEN_LAYOUTS || {},
@@ -1330,6 +1331,29 @@ const pastExamExpectedChapterTotals = {
   "macro-07": 65, "macro-08": 56, "macro-09": 60, "macro-10": 164, "macro-11": 33, "macro-12": 190,
   "macro-13": 47,
 };
+const pastSearchIndex = loaded.pastSearchIndex || [];
+check(Array.isArray(pastSearchIndex), "考古題搜尋索引格式錯誤");
+check(pastSearchIndex.length === pastExamQuestions.length, "考古題搜尋索引應包含全部 3,710 題（目前 " + pastSearchIndex.length + " 題）");
+const pastSearchIndexById = new Map();
+pastSearchIndex.forEach(function (item, index) {
+  check(Boolean(item) && typeof item.id === "string" && item.id.length > 0, "考古題搜尋索引缺少題目 ID：" + (index + 1));
+  if (!item || typeof item.id !== "string") {
+    return;
+  }
+  check(!pastSearchIndexById.has(item.id), "考古題搜尋索引題目重複：" + item.id);
+  pastSearchIndexById.set(item.id, item);
+  check(typeof item.stem === "string" && item.stem.trim().length > 0, "考古題搜尋索引題幹為空：" + item.id);
+  check(!Object.prototype.hasOwnProperty.call(item, "options"), "考古題搜尋索引不應包含選項：" + item.id);
+  check(!Object.prototype.hasOwnProperty.call(item, "answer"), "考古題搜尋索引不應包含答案：" + item.id);
+});
+pastExamQuestions.forEach(function (question) {
+  const entry = pastSearchIndexById.get(question.id);
+  check(Boolean(entry), "考古題搜尋索引缺少題目：" + question.id);
+  if (entry) {
+    check(entry.stem === question.stem, "考古題搜尋索引題幹不是全文：" + question.id);
+  }
+});
+
 const pastExamChapterTotals = {};
 const pastExamSessionMap = {};
 const pastExamQuestionIds = new Set();

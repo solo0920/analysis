@@ -372,8 +372,9 @@
   const searchCloseButton = document.getElementById("search-close");
   const searchInput = document.getElementById("search-input");
   const searchResults = document.getElementById("search-results");
-  const searchPastLoadButton = document.getElementById("search-past-load");
+  const searchIndexStatus = document.getElementById("search-index-status");
   let pastSearchLoaded = false;
+  let pastSearchLoading = false;
   const toastElement = document.getElementById("toast");
 
   const searchState = {
@@ -7022,8 +7023,22 @@
     });
   }
 
+  function updatePastSearchStatus(message, hidden) {
+    if (!searchIndexStatus) {
+      return;
+    }
+    if (hidden) {
+      searchIndexStatus.hidden = true;
+      return;
+    }
+    searchIndexStatus.hidden = false;
+    searchIndexStatus.textContent = message;
+  }
+
   function appendPastExamSearchIndex() {
-    if (pastSearchLoaded) return;
+    if (pastSearchLoaded) {
+      return;
+    }
     const data = Array.isArray(window.PAST_EXAM_SEARCH_INDEX) ? window.PAST_EXAM_SEARCH_INDEX : [];
     const subjectNames = { macro: "總體經濟學", investment: "投資學", accounting: "會計學", law: "證券法規" };
     data.forEach(function (question) {
@@ -7033,15 +7048,55 @@
         typeClass: "",
         title: String(question.stem || "").slice(0, 90),
         sub: (question.year || "") + " 年 · " + (subjectNames[question.subject] || question.subject) + " · 考古題",
-        text: [question.stem].concat(question.options || []).join(" "),
+        text: String(question.stem || ""),
         href: "#/past-exams?question=" + encodeURIComponent(question.id),
         nTitle: normalize(String(question.stem || "")),
         nSub: normalize((question.year || "") + " " + (subjectNames[question.subject] || question.subject)),
-        nText: normalize([question.stem].concat(question.options || []).join(" "))
+        nText: normalize(String(question.stem || ""))
       });
     });
     pastSearchLoaded = true;
-    if (searchPastLoadButton) searchPastLoadButton.hidden = true;
+    pastSearchLoading = false;
+    updatePastSearchStatus("", true);
+    if (searchOverlay && !searchOverlay.hidden && searchInput && searchInput.value.trim()) {
+      renderSearchResults(searchInput.value);
+    }
+  }
+
+  function preloadPastExamSearchIndex() {
+    if (pastSearchLoaded || pastSearchLoading) {
+      return;
+    }
+    if (Array.isArray(window.PAST_EXAM_SEARCH_INDEX) && window.PAST_EXAM_SEARCH_INDEX.length) {
+      appendPastExamSearchIndex();
+      return;
+    }
+    if (typeof window.__loadPastSearch !== "function") {
+      updatePastSearchStatus("考古題索引尚未載入，請重新整理頁面。");
+      return;
+    }
+    pastSearchLoading = true;
+    updatePastSearchStatus("正在載入 3,710 題考古題索引…");
+    window.__loadPastSearch().then(function () {
+      appendPastExamSearchIndex();
+    }).catch(function (error) {
+      pastSearchLoading = false;
+      updatePastSearchStatus("考古題索引載入失敗，請重新整理頁面。");
+      if (window.console && typeof console.warn === "function") {
+        console.warn("考古題搜尋索引載入失敗：", error);
+      }
+    });
+  }
+
+  function schedulePastExamSearchPreload() {
+    const run = function () {
+      preloadPastExamSearchIndex();
+    };
+    if (typeof window.requestIdleCallback === "function") {
+      window.requestIdleCallback(run, { timeout: 2500 });
+    } else {
+      window.setTimeout(run, 400);
+    }
   }
 
   function buildSearchIndex() {
@@ -7292,9 +7347,9 @@
     setSearchBackgroundInert(true);
     document.body.classList.add("search-open");
     if (searchOpenButton) searchOpenButton.setAttribute("aria-expanded", "true");
-    if (searchPastLoadButton && pastSearchLoaded) searchPastLoadButton.hidden = true;
     searchInput.value = "";
     renderSearchResults("");
+    preloadPastExamSearchIndex();
     warmFuzzySearch();
     window.setTimeout(function () {
       searchInput.focus();
@@ -7542,23 +7597,6 @@
       });
     }
 
-    if (searchPastLoadButton) {
-      searchPastLoadButton.addEventListener("click", function () {
-        if (pastSearchLoaded) return;
-        searchPastLoadButton.disabled = true;
-        searchPastLoadButton.textContent = "考古題索引載入中…";
-        const load = typeof window.__loadPastSearch === "function" ? window.__loadPastSearch() : Promise.resolve();
-        load.then(function () {
-          appendPastExamSearchIndex();
-          searchPastLoadButton.textContent = "已載入考古題搜尋";
-          renderSearchResults(searchInput.value);
-        }).catch(function () {
-          searchPastLoadButton.disabled = false;
-          searchPastLoadButton.textContent = "考古題索引載入失敗，重試";
-        });
-      });
-    }
-
     if (searchResults) {
       searchResults.addEventListener("click", function (event) {
         const suggestion = event.target.closest("[data-query]");
@@ -7725,6 +7763,7 @@
     initReview();
     render();
     updateReadingProgress();
+    schedulePastExamSearchPreload();
   }
 
   if (document.readyState === "loading") {
