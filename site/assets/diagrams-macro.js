@@ -301,8 +301,8 @@ Object.assign(window.MACRO_DIAGRAMS, {
     sectionTitle: "第1節 均衡所得之決定",
     title: "凱因斯十字架：總支出線與 45 度線決定均衡所得",
     kicker: "學派模型 · 凱因斯",
-    formula: String.raw`Y=\frac{1}{1-c}A_a`,
-    caption: "凱因斯十字架以 45 度線代表 AE = Y。AE 線斜率為 c、截距為自發支出 A_a=C_a+I_a+G_a+NX_a（T_a=0）。AE₀ 與 45 度線交於 E₀，決定均衡所得 Y₀。政府支出或自發支出增加會使 AE 平行上移到 AE₁，均衡點移到 E₁，所得由 Y₀ 增加到 Y₁；增加幅度是自發支出變動量乘以乘數。",
+    formula: String.raw`AE=A_a+[c(1-t)-m]Y,\qquad Y^*=\frac{A_a}{1-c(1-t)+m}`,
+    caption: "凱因斯十字架以 45 度線代表 AE = Y。完整四部門模型 AE=A_a+[c(1-t)-m]Y，截距 A_a=C_a−cT_a+cTR_a+I_a+G_a+NX_a，斜率 c(1-t)-m。圖為 T_a=TR_a=0、t=m=0 的簡化情形，此時 A_a=C_a+I_a+G_a+NX_a、斜率為 c；AE₀ 與 45 度線交於 E₀，決定均衡所得 Y₀。政府支出或自發支出增加使 AE 平行上移到 AE₁，均衡點移到 E₁，所得由 Y₀ 增加到 Y₁；增加幅度是自發支出變動量乘以乘數。",
     svg: `
 <svg viewBox="0 0 640 480" role="img" aria-labelledby="dg-keynes-title dg-keynes-desc" style="max-width:640px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
   <title id="dg-keynes-title">凱因斯十字架均衡所得圖</title>
@@ -336,12 +336,12 @@ Object.assign(window.MACRO_DIAGRAMS, {
   <text class="dg-label-sm" x="366" y="440">Y₁</text>
 
   <text class="dg-label-xs" x="460" y="130">參數</text>
-  <text class="dg-label-xs" x="460" y="155">c：AE 斜率</text>
+  <text class="dg-label-xs" x="460" y="155">c：MPC（簡化斜率）</text>
   <text class="dg-label-xs" x="460" y="180">C_a：自發消費</text>
-  <text class="dg-label-xs" x="460" y="205">A_a：自發支出</text>
-  <text class="dg-label-xs" x="460" y="230">k = 1/(1−c)</text>
-  <text class="dg-label-xs" x="460" y="255">ΔY = kΔA_a</text>
-  <text class="dg-label-xs" x="460" y="280">T_a：定額稅</text>
+  <text class="dg-label-xs" x="460" y="205">A_a：完整自發支出</text>
+  <text class="dg-label-xs" x="460" y="230">k = 1/[1−c(1−t)+m]</text>
+  <text class="dg-label-xs" x="460" y="255">t、m：稅率、進口傾向</text>
+  <text class="dg-label-xs" x="460" y="280">T_a、TR_a：稅與移轉</text>
 
   <text class="dg-label-xs" x="460" y="300">圖例</text>
   <line class="dg-curve" x1="460" y1="330" x2="490" y2="330"></line>
@@ -355,18 +355,21 @@ Object.assign(window.MACRO_DIAGRAMS, {
     variables: [
       ["Y", "實質所得（產出）", "橫軸；均衡所得由 AE 與 45 度線的交點決定。"],
       ["AE", "總支出", "縱軸；\\(AE=C+I+G+NX\\)。"],
-      ["Y_d", "可支配所得", "\\(Y_d=Y-T_a\\)；消費取決於可支配所得。"],
+      ["Y_d", "可支配所得", "\\(Y_d=Y-T+TR\\)；若 \\(T=T_a+tY\\)、\\(TR=TR_a\\)，則 \\(Y_d=(1-t)Y-T_a+TR_a\\)。"],
       ["E", "均衡點", "AE 與 45 度線的交點，代表商品市場均衡。"],
       ["45° 線", "均衡條件", "線上任一點 \\(AE=Y\\)；與總支出線的交點決定均衡所得。"]
     ],
     parameters: [
       ["C_a", "自發消費", "消費函數 \\(C=C_a+cY_d\\) 的截距；所得為零時仍存在的消費。"],
-      ["c", "邊際消費傾向", "\\(0<c<1\\)，又稱 MPC。無比例稅、無進口的簡化模型中，AE 斜率為 c；若加入比例稅率 t 與邊際進口傾向 m，斜率為 \\(c(1-t)-m\\)。"],
-      ["A_a", "自發支出", "\\(A_a=C_a+I_a+G_a+NX_a\\)；決定 AE 截距。"],
-      ["k", "簡單乘數", "封閉經濟下 \\(k=\\dfrac{1}{1-c}\\)；所得變動 \\(\\Delta Y=k\\times\\Delta A_a\\)。"],
-      ["T_a", "定額稅", "可支配所得 \\(Y_d=Y-T_a\\)；有稅時均衡 \\(Y=\\dfrac{1}{1-c}(A_a-cT_a)\\)。"]
+      ["c", "邊際消費傾向", "\\(0<c<1\\)，又稱 MPC。完整模型 AE 斜率為 \\(c(1-t)-m\\)；t=m=0 的簡化圖中斜率為 c。"],
+      ["A_a", "完整自發支出", "\\(A_a=C_a-cT_a+cTR_a+I_a+G_a+NX_a\\)；決定完整模型 AE 截距。T_a=TR_a=0 時簡化為 \\(C_a+I_a+G_a+NX_a\\)。"],
+      ["t", "邊際稅率", "比例所得稅 \\(T=T_a+tY\\) 的斜率；使 AE 斜率由 c 降為 c(1-t)。"],
+      ["m", "邊際進口傾向", "進口 \\(M=M_a+mY\\) 隨所得增加的比例；使 AE 斜率再減少 m。"],
+      ["T_a", "定額稅", "稅制 \\(T=T_a+tY\\) 的定額部分；使可支配所得與 A_a 減少 \\(cT_a\\)。"],
+      ["\\(TR_a\\)", "定額移轉", "政府移轉性支付；使可支配所得增加 TR_a、AE 截距增加 \\(cTR_a\\)。"],
+      ["k", "開放經濟乘數", "\\(k=\\dfrac{1}{1-c(1-t)+m}\\)；所得變動 \\(\\Delta Y=k\\times\\Delta A_a\\)。"]
     ],
-    note: "本圖為 T_a=0 的簡單模型；消費函數 C=C_a+cY_d，A_a=C_a+I_a+G_a+NX_a。模型假設價格與利率固定、產能未充分使用，因此均衡所得由總支出決定，而不是由供給面決定。"
+    note: "本圖為 T_a=TR_a=0、t=m=0 的簡化情形；完整模型的 AE 截距為 A_a=C_a−cT_a+cTR_a+I_a+G_a+NX_a，斜率為 c(1-t)-m，乘數為 1/[1-c(1-t)+m]。模型假設價格與利率固定、產能未充分使用，因此均衡所得由總支出決定，而不是由供給面決定。"
   },
 
   "macro-02#1": {
@@ -500,25 +503,25 @@ Object.assign(window.MACRO_DIAGRAMS, {
     variables: [
       ["Y", "實質所得", "橫軸；均衡所得隨總支出移動。"],
       ["AE", "總支出", "縱軸；\\(AE=C+I+G+NX\\)。自發消費下降會使整條 AE 線下移。"],
-      ["Y_d", "可支配所得", "\\(Y_d=Y-T_a\\)；消費取決於可支配所得。"],
+      ["Y_d", "可支配所得", "\\(Y_d=Y-T_a+TR_a\\)；消費取決於可支配所得。"],
       ["S", "儲蓄", "\\(S=Y_d-C=-C_a+(1-c)Y_d\\)；想增加儲蓄會先減少消費與所得。"],
       ["45° 線", "均衡條件", "線上任一點 \\(AE=Y\\)；與總支出線的交點決定均衡所得。"]
     ],
     parameters: [
       ["C_a", "自發消費", "消費函數 \\(C=C_a+cY_d\\) 的截距；\\(C_a\\) 下降使 AE 截距下降。"],
-      ["A_a", "自發支出", "\\(A_a=C_a+I_a+G_a+NX_a\\)；\\(C_a\\) 下降使 \\(A_a\\) 下降、AE 下移。"],
-      ["c", "邊際消費傾向", "AE 線斜率為 c 且不變，因此是平行下移。"],
-      ["k", "乘數", "所得減少的幅度是自發支出減少量的 k 倍；\\(k=\\dfrac{1}{1-c}\\)。"]
+      ["A_a", "完整自發支出", "\\(A_a=C_a-cT_a+cTR_a+I_a+G_a+NX_a\\)；\\(C_a\\) 下降使 \\(A_a\\) 下降、AE 下移。"],
+      ["c", "邊際消費傾向", "在 T_a=TR_a=t=m=0 的簡化圖中 AE 斜率為 c 且不變，因此是平行下移；完整模型斜率為 \\(c(1-t)-m\\)。"],
+      ["k", "乘數", "所得減少的幅度是自發支出減少量的 k 倍；簡化模型 \\(k=\\dfrac{1}{1-c}\\)。"]
     ],
-    note: "本圖為 T_a=0 的簡單模型；節儉的矛盾成立於短期、價格固定且產能未充分使用的封閉經濟。長期或充分就業下，儲蓄增加可轉化為投資資金。"
+    note: "本圖為 T_a=TR_a=0、t=m=0 的簡化模型；完整模型 A_a=C_a−cT_a+cTR_a+I_a+G_a+NX_a、斜率 c(1-t)-m。節儉的矛盾成立於短期、價格固定且產能未充分使用的封閉經濟。長期或充分就業下，儲蓄增加可轉化為投資資金。"
   },
 
   "macro-02#2-1": {
     sectionTitle: "第3節 節儉的矛盾",
     kicker: "租稅比較 · 自動穩定",
     title: "定額稅與累進稅：AE 斜率與乘數",
-    formula: String.raw`AE_T=A_a-cT_a+cY,\qquad AE_t=A_a-cT_a+c(1-t)Y`,
-    caption: "定額稅下 AE 斜率為 c，乘數為 1/(1−c)；累進稅以邊際稅率 t 簡化，AE 斜率降為 c(1−t)，乘數為 1/[1−c(1−t)]，較定額稅小。相同自發支出下，累進稅的均衡所得較低；當自發消費下降時，累進稅會隨所得自動減少稅收，緩衝可支配所得與產出的跌幅，因此節儉的矛盾較弱。",
+    formula: String.raw`AE_T=A_a+cY,\qquad AE_t=A_a+c(1-t)Y`,
+    caption: "定額稅下 AE 截距為 A_a=C_a−cT_a+cTR_a+I_a+G_a+NX_a，斜率為 c，乘數為 1/(1−c)；累進稅以邊際稅率 t 簡化，截距同為 A_a，斜率降為 c(1−t)，乘數為 1/[1−c(1−t)]，較定額稅小。相同自發支出下，累進稅的均衡所得較低；當自發消費下降時，累進稅會隨所得自動減少稅收，緩衝可支配所得與產出的跌幅，因此節儉的矛盾較弱。",
     svg: `
 <svg viewBox="0 0 640 480" role="img" aria-labelledby="dg-tax-slope-title dg-tax-slope-desc" style="max-width:640px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
   <title id="dg-tax-slope-title">定額稅與累進稅的 AE 斜率比較</title>
@@ -532,7 +535,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   <line class="dg-axis" x1="80" y1="420" x2="80" y2="70"></line>
   <text class="dg-label" x="260" y="470" text-anchor="middle">實質所得 Y</text>
   <text class="dg-label" x="88" y="60">總支出 AE</text>
-  <text class="dg-label-xs" x="72" y="331" text-anchor="end">A_a−cT_a</text>
+  <text class="dg-label-xs" x="72" y="331" text-anchor="end">A_a</text>
 
   <line class="dg-curve-soft" x1="80" y1="420" x2="420" y2="80"></line>
   <line class="dg-curve" x1="80" y1="340" x2="420" y2="136"></line>
@@ -574,12 +577,12 @@ Object.assign(window.MACRO_DIAGRAMS, {
     parameters: [
       ["c", "邊際消費傾向", "\\(0<c<1\\)；定額稅下 AE 斜率。"],
       ["t", "邊際稅率", "累進稅的簡化參數；AE 斜率為 \\(c(1-t)\\)。"],
-      ["T_a", "定額稅", "兩條 AE 線的共同截距調整項 \\(-cT_a\\)。"],
-      ["A_a", "自發支出", "\\(A_a=C_a+I_a+G_a+NX_a\\)。"],
-      ["k_T", "定額稅乘數", "\\(k_T=\\dfrac{1}{1-c}\\)。"],
-      ["k_t", "累進稅乘數", "\\(k_t=\\dfrac{1}{1-c(1-t)}\\)，較 k_T 小。"]
+      ["T_a", "定額稅", "已併入完整自發支出 \\(A_a\\) 的 \\(-cT_a\\) 項；增加 T_a 會使 AE 截距下降。"],
+      ["A_a", "完整自發支出", "\\(A_a=C_a-cT_a+cTR_a+I_a+G_a+NX_a\\)；兩條 AE 線的共同截距。"],
+      ["k_G^{T_a}", "定額稅制政府支出乘數", "\\(k_G^{T_a}=\\dfrac{1}{1-c}\\)。"],
+      ["k_G^{t}", "累進稅制政府支出乘數", "\\(k_G^{t}=\\dfrac{1}{1-c(1-t)}\\)，較定額稅制小。"]
     ],
-    note: "本圖以相同 A_a、T_a 比較兩種稅制；累進稅的邊際稅率 t 以固定值簡化，實際累進稅率隨所得級距上升。稅收自動隨所得變動，是累進稅穩定產出的重要機制。"
+    note: "本圖以相同 A_a 比較兩種稅制；累進稅的邊際稅率 t 以固定值簡化，實際累進稅率隨所得級距上升。稅收自動隨所得變動，是累進稅穩定產出的重要機制。"
   },
 
   "macro-02#2-2": {

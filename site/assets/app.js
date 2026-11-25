@@ -2051,18 +2051,27 @@
     }
     const title = table.title || "比較表";
     const compact = Array.isArray(table.columns) && table.columns.length <= 2 ? " is-compact" : "";
+    const cellLabel = function (cell) {
+      return String(cell == null ? "" : cell)
+        .replace(/\\\[[\s\S]*?\\\]|\\\([\s\S]*?\\\)/g, " ")
+        .replace(/\u00a0/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    };
     return [
       '<div class="section-table">',
       '  <h3 class="section-table-title">' + escapeHtml(title) + "</h3>",
       '  <div class="ratio-table-wrap comparison-table-wrap">',
       '    <table class="ratio-table comparison-table' + compact + '" aria-label="' + escapeHtml(title) + '">',
       '      <thead><tr>' + table.columns.map(function (column) {
-        return '<th scope="col">' + escapeHtml(column) + "</th>";
+        const label = cellLabel(column);
+        return '<th scope="col"><span class="sr-only">' + escapeHtml(label) + '</span><span aria-hidden="true">' + renderInlineMath(column) + "</span></th>";
       }).join("") + "</tr></thead>",
       "      <tbody>" + table.rows.map(function (row) {
         return "<tr>" + row.map(function (cell, cellIndex) {
           if (cellIndex === 0) {
-            return '<th scope="row">' + renderInlineMath(cell) + "</th>";
+            const label = cellLabel(cell);
+            return '<th scope="row"><span class="sr-only">' + escapeHtml(label) + '</span><span aria-hidden="true">' + renderInlineMath(cell) + "</span></th>";
           }
           return '<td data-label="' + escapeHtml(table.columns[cellIndex] || "") + '">' + renderTableCell(cell) + "</td>";
         }).join("") + "</tr>";

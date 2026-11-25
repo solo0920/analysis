@@ -16,9 +16,9 @@ PDI &= PI - T_p = C + S
 \end{aligned}`, note: "NFIA＝國外要素所得淨額；D＝折舊（固定資本消耗）；NIT＝間接稅淨額（T_i 間接稅 − S_u 補貼）；CIT＝營利事業所得稅；URE＝未分配盈餘；SSC＝社會安全捐；TR＝移轉支付；INT＝淨利息；T_p＝個人直接稅。GNP 與 GNI 在多數教材同義。" },
   "macro-01::第4節 物價指數與經濟成長率": { tex: String.raw`\text{實質 GDP} = \frac{\text{名目 GDP}}{\text{GDP 平減指數}/100}`, note: "" },
 
-  "macro-02::第1節 均衡所得之決定": { tex: String.raw`Y = \frac{1}{1-c}(A_a-cT_a)`, note: "C=C_a+cY_d，Y_d=Y-T_a，A_a=C_a+I_a+G_a+NX_a；T_a=0 時 Y=A_a/(1-c)。" },
+  "macro-02::第1節 均衡所得之決定": { tex: String.raw`\begin{gathered}AE=A_a+[c(1-t)-m]Y\\A_a=C_a-cT_a+cTR_a+I_a+G_a+NX_a\\Y^*=\frac{A_a}{1-c(1-t)+m}\end{gathered}`, note: "C=C_a+cY_d，Y_d=Y-T_a-tY+TR_a，NX=NX_a-mY；T_a=TR_a=t=m=0 時 A_a=C_a+I_a+G_a+NX_a、Y=A_a/(1-c)。" },
   "macro-02::第2節 政府收支與反景氣循環之財政政策": { tex: String.raw`\begin{gathered}\text{政府支出乘數} = \frac{1}{1-c}\\\text{定額稅乘數} = -\frac{c}{1-c}\end{gathered}`, note: "" },
-  "macro-02::第3節 節儉的矛盾": { tex: String.raw`\begin{gathered}\text{定額稅 }Y=\frac{A_a-cT_a}{1-c},\quad \text{累進稅 }Y=\frac{A_a}{1-c(1-t)}\\ES=S-I,\quad es=\frac{S-I}{Y}\times100\%\end{gathered}`, note: "" },
+  "macro-02::第3節 節儉的矛盾": { tex: String.raw`\begin{gathered}\text{定額稅 }Y=\frac{A_a}{1-c},\quad \text{累進稅 }Y=\frac{A_a}{1-c(1-t)}\\ES=S-I,\quad es=\frac{S-I}{Y}\times100\%\end{gathered}`, note: "A_a=C_a-cT_a+cTR_a+I_a+G_a+NX_a；開放經濟再加入進口傾向 m，乘數為 1/[1-c(1-t)+m]。" },
 
   "macro-03::第2節 貨幣供給定義與貨幣數量": { tex: String.raw`M_2=M_{1B}+\text{準貨幣}`, note: "" },
   "macro-04::第2節 銀行業之業務與經營": { tex: String.raw`\text{利差} \approx \text{放款利率} - \text{存款利率}`, note: "" },
