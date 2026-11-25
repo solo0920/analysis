@@ -299,49 +299,60 @@ Object.assign(window.MACRO_DIAGRAMS, {
 
   "macro-02#0": {
     sectionTitle: "第1節 均衡所得之決定",
-    title: "簡單凱因斯模型：總支出線與45度線決定均衡所得",
+    title: "凱因斯十字架：總支出線與 45 度線決定均衡所得",
     kicker: "學派模型 · 凱因斯",
     formula: String.raw`Y=\frac{1}{1-MPC}A_0`,
-    caption: "45 度線代表 AE = Y。AE₀ 與 45 度線交於 E₀，決定均衡所得 Y₀。政府支出或自發支出增加會使 AE 平行上移到 AE₁，均衡點移到 E₁，所得由 Y₀ 增加到 Y₁；增加幅度是自發支出變動量乘以乘數。",
+    caption: "凱因斯十字架以 45 度線代表 AE = Y。AE₀ 與 45 度線交於 E₀，決定均衡所得 Y₀。政府支出或自發支出增加會使 AE 平行上移到 AE₁，均衡點移到 E₁，所得由 Y₀ 增加到 Y₁；增加幅度是自發支出變動量乘以乘數。",
     svg: `
-<svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-keynes-title" xmlns="http://www.w3.org/2000/svg">
-  <title id="dg-keynes-title">簡單凱因斯模型均衡所得圖</title>
+<svg viewBox="0 0 640 480" role="img" aria-labelledby="dg-keynes-title dg-keynes-desc" style="max-width:640px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
+  <title id="dg-keynes-title">凱因斯十字架均衡所得圖</title>
+  <desc id="dg-keynes-desc">橫軸為實質所得 Y，縱軸為總支出 AE。45 度線 AE=Y 與總支出線 AE0 交於 E0，決定均衡所得 Y0；自發支出增加使總支出線平行上移到 AE1，均衡點移到 E1，均衡所得增加。</desc>
   <defs>
     <marker id="dg-keynes-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path class="dg-arrow-head" d="M0,0 L10,5 L0,10 z"></path>
     </marker>
   </defs>
-  <line class="dg-axis" x1="70" y1="300" x2="608" y2="300"></line>
-  <line class="dg-axis" x1="70" y1="300" x2="70" y2="32"></line>
-  <text class="dg-label" x="566" y="326">所得 Y</text>
-  <text class="dg-label" x="78" y="24">AE</text>
-  <line class="dg-curve-soft" x1="70" y1="300" x2="560" y2="60"></line>
-  <text class="dg-label-sm" x="452" y="84">45°：AE = Y</text>
-  <line class="dg-curve" x1="70" y1="230" x2="560" y2="140"></line>
-  <text class="dg-label" x="526" y="136">AE₀</text>
-  <line class="dg-curve-alt" x1="70" y1="190" x2="560" y2="100"></line>
-  <text class="dg-label" x="526" y="96">AE₁</text>
-  <line class="dg-arrow" x1="200" y1="206" x2="200" y2="166" marker-end="url(#dg-keynes-arrow)"></line>
-  <text class="dg-label-sm" x="210" y="192">自發支出↑</text>
-  <line class="dg-guide" x1="298.67" y1="188" x2="298.67" y2="300"></line>
-  <line class="dg-guide" x1="429.33" y1="124" x2="429.33" y2="300"></line>
-  <circle class="dg-point" cx="298.67" cy="188" r="4.5"></circle>
-  <text class="dg-label" x="264" y="180">E₀</text>
-  <circle class="dg-point" cx="429.33" cy="124" r="4.5"></circle>
-  <text class="dg-label" x="438" y="110">E₁</text>
-  <text class="dg-label-sm" x="284" y="320">Y₀</text>
-  <text class="dg-label-sm" x="414" y="320">Y₁</text>
+  <line class="dg-axis" x1="80" y1="420" x2="442" y2="420"></line>
+  <line class="dg-axis" x1="80" y1="420" x2="80" y2="70"></line>
+  <text class="dg-label" x="260" y="470" text-anchor="middle">實質所得 Y</text>
+  <text class="dg-label" x="88" y="60">總支出 AE</text>
+
+  <line class="dg-curve-soft" x1="80" y1="420" x2="420" y2="80"></line>
+  <line class="dg-curve" x1="80" y1="340" x2="420" y2="136"></line>
+  <text class="dg-label" x="428" y="142">AE₀</text>
+  <line class="dg-curve-alt" x1="80" y1="300" x2="420" y2="96"></line>
+  <text class="dg-label" x="428" y="102">AE₁</text>
+  <line class="dg-arrow" x1="180" y1="280" x2="180" y2="240" marker-end="url(#dg-keynes-arrow)"></line>
+  <text class="dg-label-sm" x="190" y="266">自發支出↑</text>
+
+  <line class="dg-guide" x1="280" y1="220" x2="280" y2="420"></line>
+  <line class="dg-guide" x1="380" y1="120" x2="380" y2="420"></line>
+  <circle class="dg-point" cx="280" cy="220" r="4.5"></circle>
+  <text class="dg-label" x="258" y="210">E₀</text>
+  <circle class="dg-point" cx="380" cy="120" r="4.5"></circle>
+  <text class="dg-label" x="388" y="110">E₁</text>
+  <text class="dg-label-sm" x="266" y="440">Y₀</text>
+  <text class="dg-label-sm" x="366" y="440">Y₁</text>
+
+  <text class="dg-label-xs" x="460" y="300">圖例</text>
+  <line class="dg-curve" x1="460" y1="330" x2="490" y2="330"></line>
+  <text class="dg-label-xs" x="498" y="334">總支出 AE₀</text>
+  <line class="dg-curve-alt" x1="460" y1="355" x2="490" y2="355"></line>
+  <text class="dg-label-xs" x="498" y="359">總支出 AE₁</text>
+  <line class="dg-curve-soft" x1="460" y1="380" x2="490" y2="380"></line>
+  <text class="dg-label-xs" x="498" y="384">45°：AE = Y</text>
 </svg>`,
     variables: [
       ["Y", "實質所得（產出）", "橫軸；均衡所得由 AE 與 45 度線的交點決定。"],
-      ["AE", "總支出", "縱軸；AE = C + I + G + NX。"],
-      ["E", "均衡點", "AE 與 45 度線的交點，代表商品市場均衡。"]
+      ["AE", "總支出", "縱軸；\\(AE=C+I+G+NX\\)。"],
+      ["E", "均衡點", "AE 與 45 度線的交點，代表商品市場均衡。"],
+      ["45° 線", "均衡條件", "線上任一點 \\(AE=Y\\)；與總支出線的交點決定均衡所得。"]
     ],
     parameters: [
-      ["MPC", "邊際消費傾向", "0 < MPC < 1。無比例稅、無進口的簡化模型中，AE 斜率為 MPC；若加入比例稅率 t 與邊際進口傾向 MPM，斜率為 MPC(1 − t) − MPM。"],
-      ["A₀", "自發支出", "C₀ + I₀ + G₀ + NX₀；所得為零時仍存在的支出，決定 AE 截距。"],
-      ["k", "簡單乘數", "封閉經濟下 k = 1 ÷ (1 − MPC)；所得變動 ΔY = k × ΔA₀。"],
-      ["T", "租稅", "定額稅下可支配所得為 Y − T；減稅與增加自發支出效果類似。"]
+      ["MPC", "邊際消費傾向", "\\(0<MPC<1\\)。無比例稅、無進口的簡化模型中，AE 斜率為 MPC；若加入比例稅率 t 與邊際進口傾向 m，斜率為 \\(MPC(1-t)-m\\)。"],
+      ["A₀", "自發支出", "\\(C_0+I_0+G_0+NX_0\\)；所得為零時仍存在的支出，決定 AE 截距。"],
+      ["k", "簡單乘數", "封閉經濟下 \\(k=\\dfrac{1}{1-MPC}\\)；所得變動 \\(\\Delta Y=k\\times\\Delta A_0\\)。"],
+      ["T", "租稅", "定額稅下可支配所得為 \\(Y-T\\)；減稅與增加自發支出效果類似。"]
     ],
     note: "簡單凱因斯模型假設價格與利率固定、產能未充分使用，因此均衡所得由總支出決定，而不是由供給面決定。"
   },
