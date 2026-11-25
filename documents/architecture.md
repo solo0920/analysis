@@ -30,6 +30,7 @@ flowchart TB
     Styles["assets/styles.css<br/>響應式、明暗主題、列印"]
     Views["#main 渲染結果<br/>首頁／科目／章節／模型總覽／諾貝爾／來源"]
     Store[("localStorage<br/>analyst-prep-progress-v2<br/>analyst-theme")]
+    ReviewStore[("IndexedDB<br/>analyst-review-db")]
   end
 
   Sources["documents/*.md<br/>來源目錄與章節界線"]
@@ -66,6 +67,7 @@ flowchart TB
   Styles --> Views
   Katex --> App
   App <--> Store
+  App <--> ReviewStore
 
   Validate -.->|開發時讀取| Aggregate
   Validate -.->|讀取模型圖| MacroDiagrams
@@ -78,7 +80,7 @@ flowchart TB
   classDef data fill:#f7f1e3,stroke:#a67c00,color:#332;
   classDef source fill:#f4f4f4,stroke:#777,color:#222;
   classDef tooling fill:#f0eef8,stroke:#5b4b8a,color:#221;
-  class Shell,App,Views,Store client;
+  class Shell,App,Views,Store,ReviewStore client;
   class Macro,Evolution,Investment,Accounting,Law,LawArticles,Formula,Aggregate,MacroDiagrams,Nobel,NobelDiagrams data;
   class Sources,Official source;
   class Validate,Verify tooling;
@@ -148,6 +150,7 @@ sequenceDiagram
 | `#/nobel` | `renderNobelPage()` | `NOBEL_DATA`、`NOBEL_DIAGRAMS` |
 | `#/sources` | `renderSources()` | `EXAM_CONTENT.sources` |
 | `#/about` | `renderAbout()` | 靜態說明與 `localStorage` 進度 |
+| `#/review` | `renderReviewPage()` | `analyst-review-db`（IndexedDB）的複習題清單；全站題目卡加入按鈕 |
 
 深層連結由 `render()` 在寫入 `#main` 後處理：
 
@@ -268,6 +271,6 @@ flowchart LR
 - 執行時無建置步驟、無框架、無後端；分包檔由 Node 腳本事先產生，`file://` 可直接開啟。
 - 所有內容與 SVG 都內嵌在 JavaScript 或分包檔，執行時不 `fetch` 本地資料；跨 bundle 切換以動態 `<script>` 載入。
 - 只有外部來源連結與 `verify-nobel-api.js` 需要網路。
-- 進度與主題存在 `localStorage`；清除瀏覽器資料即重置。
+- 進度與主題存在 `localStorage`；複習題存在 IndexedDB `analyst-review-db`（`questions` store），IndexedDB 不可用時才退回 `localStorage`；清除瀏覽器資料即重置。
 - 模型圖是概念示意，不提供互動拖曳或數值模擬。
 - 官方公告與正式教材仍是最終依據；網站驗證通過不代表官方認證。

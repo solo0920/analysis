@@ -337,6 +337,16 @@
   const PROGRESS_KEY = "analyst-prep-progress-v2";
   const THEME_KEY = "analyst-theme";
   const PRACTICE_PROGRESS_KEY = "analyst-past-exam-progress-v1";
+  const REVIEW_DB_NAME = "analyst-review-db";
+  const REVIEW_DB_VERSION = 1;
+  const REVIEW_STORE_NAME = "questions";
+  const REVIEW_FALLBACK_KEY = "analyst-review-questions-v1";
+  const REVIEW_SUBJECTS = {
+    macro: { name: "總體經濟學", short: "總體", colorClass: "subject-macro" },
+    investment: { name: "投資學", short: "投資學", colorClass: "subject-investment" },
+    accounting: { name: "會計學", short: "會計", colorClass: "subject-accounting" },
+    law: { name: "證券法規", short: "證券法規", colorClass: "subject-law" }
+  };
 
   let progress = loadProgress();
   try {
@@ -349,6 +359,13 @@
   let toastTimer = null;
   let practiceState = null;
   let writtenState = null;
+  let reviewItems = [];
+  let reviewKeys = new Set();
+  let reviewReady = Promise.resolve();
+  let reviewLoaded = false;
+  let reviewStorageMode = "idb";
+  let reviewDbPromise = null;
+  const reviewState = { selectedKey: "" };
 
   const searchOverlay = document.getElementById("search-overlay");
   const searchOpenButton = document.getElementById("search-open");
@@ -460,6 +477,789 @@
     } catch (error) {
       /* localStorage may be disabled; progress still works for this page view. */
     }
+  }
+
+  /* --------------------------- review questions --------------------------- */
+
+  function reviewSubject(subjectId) {
+    const known = practiceSubjectMap.get(subjectId) || (typeof writtenSubjectEntry === "function" ? writtenSubjectEntry(subjectId) : null);
+    const fallback = REVIEW_SUBJECTS[subjectId] || { name: subjectId || "題目", short: subjectId || "題目", colorClass: "" };
+    return {
+      id: subjectId || "",
+      name: (known && known.name) || fallback.name,
+      short: (known && (known.short || known.name)) || fallback.short,
+      colorClass: (known && known.colorClass) || fallback.colorClass
+    };
+  }
+
+  function reviewSession(question) {
+    const known = practiceSessionMap.get(question.sessionId);
+    if (known && known.label) {
+      return known;
+    }
+    return {
+      id: question.sessionId,
+      label: question.year + " 年第 " + question.session + " 次",
+      shortLabel: question.year + " Q" + question.session
+    };
+  }
+
+  function reviewQuestionKey(question) {
+    return "exam::" + question.id;
+  }
+
+  function reviewForecastKey(group, part) {
+    return "forecast::" + group.id + (part ? "::" + part.id : "");
+  }
+
+  function reviewIntegratedKey(item) {
+    return "integrated::" + item.id;
+  }
+
+  function reviewChapterEntries(question) {
+    const sourceIds = Array.isArray(question && question.sourceIds) && question.sourceIds.length
+      ? Array.from(new Set(question.sourceIds))
+      : (question && question.sourceId ? [question.sourceId] : []);
+    return sourceIds.map(function (chapterId) {
+      const chapter = getChapter(chapterId);
+      return chapter ? { id: chapter.id, label: chapterLabel(chapter) + " " + chapter.title } : null;
+    }).filter(Boolean);
+  }
+
+  function reviewPlainText(value) {
+    return String(value == null ? "" : value)
+      .replace(/\\\[[\s\S]*?\\\]|\\\([\s\S]*?\\\)/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function reviewExplanation(question) {
+    const explanation = pastExamExplanationFor(question);
+    if (!explanation) {
+      return null;
+    }
+    return {
+      summary: explanation.summary || "",
+      options: explanation.options || {}
+    };
+  }
+
+  function buildExamReviewItem(question, kind) {
+    const isChoice = kind === "choice";
+    const subject = reviewSubject(question.subject);
+    const session = reviewSession(question);
+    const stem = String(question.stem == null ? "" : question.stem).trim();
+    const item = {
+      key: reviewQuestionKey(question),
+      type: isChoice ? "choice" : "written",
+      questionId: question.id,
+      subject: question.subject,
+      subjectLabel: subject.short,
+      colorClass: subject.colorClass,
+      sessionLabel: session.label,
+      sessionShort: session.shortLabel || "",
+      number: question.number,
+      kindLabel: isChoice ? "選擇題" : (question.kind || "計算／申論"),
+      listLabel: (session.shortLabel || session.label || "") + " " + subject.short + " 第" + question.number + "題",
+      sourceLabel: session.label + " · " + subject.short + " · 第 " + question.number + " 題",
+      title: reviewPlainText(stem).slice(0, 90),
+      stem: stem,
+      chapters: reviewChapterEntries(question),
+      url: isChoice
+        ? "#/past-exams?question=" + encodeURIComponent(question.id)
+        : "#/past-exams/written?question=" + encodeURIComponent(question.id),
+      addedAt: Date.now()
+    };
+    if (isChoice) {
+      item.options = (Array.isArray(question.options) ? question.options : []).map(function (text, index) {
+        return { letter: "ABCD"[index], text: text };
+      });
+      item.answer = Array.isArray(question.answer) ? question.answer.slice() : [];
+      item.answerText = practiceAnswerText(item.answer);
+      item.analysis = reviewExplanation(question);
+    } else {
+      item.stemHtml = renderWrittenStem(question);
+      item.answers = (Array.isArray(question.answer) ? question.answer : [String(question.answer || "")]).filter(Boolean);
+      item.note = question.note || "本站參考解答（非官方）";
+    }
+    return item;
+  }
+
+  function buildForecastReviewItem(group, part, partIndex) {
+    const source = part || group;
+    const subject = reviewSubject(group.subject);
+    const letter = part ? String.fromCharCode(65 + (partIndex || 0)) : "";
+    const numberLabel = String(group.number) + letter;
+    const answers = forecastAnswers[source.answerId || source.id];
+    return {
+      key: reviewForecastKey(group, part),
+      type: "forecast",
+      subtype: part ? "part" : "question",
+      subject: group.subject,
+      subjectLabel: subject.short,
+      colorClass: subject.colorClass,
+      number: group.number,
+      kindLabel: part ? "考前猜題 Part " + letter : "考前猜題",
+      listLabel: "考前 " + numberLabel + " · " + subject.short,
+      sourceLabel: "考前猜題 · " + (group.topic || "") + (part ? " · Part " + letter : ""),
+      title: source.title || group.title || "考前猜題",
+      stem: source.scenario || group.scenario || "",
+      asks: Array.isArray(source.ask) ? source.ask.slice() : [],
+      askLabel: "可能問法",
+      focus: source.focus || group.focus || "",
+      focusLabel: "作答方向",
+      answers: Array.isArray(answers) ? answers.slice() : [],
+      chapters: reviewChapterEntries(group),
+      note: "考前猜題參考解答（非官方）",
+      url: "#/exam-forecast?question=" + encodeURIComponent(source.id || group.id),
+      addedAt: Date.now()
+    };
+  }
+
+  function buildIntegratedReviewItem(integrated) {
+    return {
+      key: reviewIntegratedKey(integrated),
+      type: "forecast",
+      subtype: "integrated",
+      subject: "",
+      subjectLabel: "整合題",
+      colorClass: "",
+      number: integrated.number,
+      kindLabel: "考前猜題",
+      listLabel: "整合 " + padNumber(integrated.number),
+      sourceLabel: "考前猜題 · 跨章節整合題",
+      title: integrated.title || "整合題",
+      stem: "",
+      asks: Array.isArray(integrated.steps) ? integrated.steps.slice() : [],
+      askLabel: "解題步驟",
+      focus: integrated.why || "",
+      focusLabel: "為什麼重要",
+      answers: [],
+      chapters: [],
+      note: "考前猜題整合題",
+      url: "#/exam-forecast",
+      addedAt: Date.now()
+    };
+  }
+
+  function buildReviewItem(key) {
+    if (key.indexOf("exam::") === 0) {
+      const questionId = key.slice("exam::".length);
+      const question = examQuestionMap.get(questionId) || (lawQuestionMap.get(questionId) || {}).question;
+      if (!question) {
+        return null;
+      }
+      const isChoice = Array.isArray(question.options) && question.options.length > 0;
+      return buildExamReviewItem(question, isChoice ? "choice" : "written");
+    }
+    if (key.indexOf("forecast::") === 0) {
+      const pieces = key.split("::");
+      const group = (forecastData.questions || []).find(function (question) {
+        return question.id === pieces[1];
+      });
+      if (!group) {
+        return null;
+      }
+      if (!pieces[2]) {
+        return buildForecastReviewItem(group, null, -1);
+      }
+      const partIndex = (group.parts || []).findIndex(function (part) {
+        return part.id === pieces[2];
+      });
+      return partIndex < 0 ? null : buildForecastReviewItem(group, group.parts[partIndex], partIndex);
+    }
+    if (key.indexOf("integrated::") === 0) {
+      const integratedId = key.slice("integrated::".length);
+      const integrated = (forecastData.integrated || []).find(function (item) {
+        return item.id === integratedId;
+      });
+      return integrated ? buildIntegratedReviewItem(integrated) : null;
+    }
+    return null;
+  }
+
+  function reviewButtonHtml(key, extraClass) {
+    const added = reviewKeys.has(key);
+    const classes = ["review-add-btn"].concat(String(extraClass || "").split(/\s+/).filter(Boolean));
+    if (added) {
+      classes.push("is-added");
+    }
+    return '<button class="' + classes.join(" ") + '" type="button" data-review-toggle="' + escapeHtml(key) + '" aria-pressed="' + (added ? "true" : "false") + '" title="' + (added ? "從複習題移除" : "加入複習題") + '">' + (added ? "✓ 已加入複習題" : "＋ 加入複習題") + "</button>";
+  }
+
+  function refreshReviewButtons(root) {
+    (root || document).querySelectorAll("[data-review-toggle]").forEach(function (button) {
+      const added = reviewKeys.has(button.dataset.reviewToggle);
+      button.classList.toggle("is-added", added);
+      button.setAttribute("aria-pressed", added ? "true" : "false");
+      button.title = added ? "從複習題移除" : "加入複習題";
+      button.textContent = added ? "✓ 已加入複習題" : "＋ 加入複習題";
+    });
+  }
+
+  function reviewOpenDatabase() {
+    if (reviewDbPromise) {
+      return reviewDbPromise;
+    }
+    reviewDbPromise = new Promise(function (resolve, reject) {
+      if (!("indexedDB" in window) || !window.indexedDB) {
+        reject(new Error("IndexedDB 不可用"));
+        return;
+      }
+      let request;
+      try {
+        request = window.indexedDB.open(REVIEW_DB_NAME, REVIEW_DB_VERSION);
+      } catch (error) {
+        reject(error);
+        return;
+      }
+      request.onupgradeneeded = function () {
+        const db = request.result;
+        if (!db.objectStoreNames.contains(REVIEW_STORE_NAME)) {
+          const store = db.createObjectStore(REVIEW_STORE_NAME, { keyPath: "key" });
+          store.createIndex("addedAt", "addedAt", { unique: false });
+        }
+      };
+      request.onsuccess = function () {
+        const db = request.result;
+        db.onversionchange = function () {
+          db.close();
+        };
+        resolve(db);
+      };
+      request.onerror = function () {
+        reject(request.error || new Error("無法開啟複習題資料庫"));
+      };
+    });
+    return reviewDbPromise;
+  }
+
+  function reviewReadFromDatabase() {
+    return reviewOpenDatabase().then(function (db) {
+      return new Promise(function (resolve, reject) {
+        const tx = db.transaction(REVIEW_STORE_NAME, "readonly");
+        const request = tx.objectStore(REVIEW_STORE_NAME).getAll();
+        let rows = [];
+        request.onsuccess = function () {
+          rows = Array.isArray(request.result) ? request.result : [];
+        };
+        tx.oncomplete = function () {
+          resolve(rows);
+        };
+        tx.onerror = function () {
+          reject(tx.error || new Error("讀取複習題失敗"));
+        };
+        tx.onabort = function () {
+          reject(tx.error || new Error("讀取複習題中止"));
+        };
+      });
+    });
+  }
+
+  function reviewReadFallback() {
+    try {
+      const raw = window.localStorage.getItem(REVIEW_FALLBACK_KEY);
+      const rows = raw ? JSON.parse(raw) : [];
+      return Array.isArray(rows) ? rows : [];
+    } catch (error) {
+      return [];
+    }
+  }
+
+  function reviewWriteFallback() {
+    try {
+      window.localStorage.setItem(REVIEW_FALLBACK_KEY, JSON.stringify(reviewItems));
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function reviewWriteDatabase(mode, run) {
+    if (reviewStorageMode === "local") {
+      return Promise.resolve();
+    }
+    return reviewOpenDatabase().then(function (db) {
+      return new Promise(function (resolve, reject) {
+        const tx = db.transaction(REVIEW_STORE_NAME, mode);
+        try {
+          run(tx.objectStore(REVIEW_STORE_NAME));
+        } catch (error) {
+          try {
+            tx.abort();
+          } catch (abortError) {
+            /* ignore */
+          }
+          reject(error);
+          return;
+        }
+        tx.oncomplete = function () {
+          resolve();
+        };
+        tx.onerror = function () {
+          reject(tx.error || new Error("寫入複習題失敗"));
+        };
+        tx.onabort = function () {
+          reject(tx.error || new Error("寫入複習題中止"));
+        };
+      });
+    }).catch(function (error) {
+      reviewStorageMode = "local";
+      if (window.console && typeof console.warn === "function") {
+        console.warn("IndexedDB 寫入失敗，改用 localStorage：", error);
+      }
+      if (!reviewWriteFallback()) {
+        throw error;
+      }
+    });
+  }
+
+  function reviewPersistItem(item) {
+    if (reviewStorageMode === "local") {
+      if (!reviewWriteFallback()) {
+        return Promise.reject(new Error("複習題儲存失敗"));
+      }
+      return Promise.resolve();
+    }
+    return reviewWriteDatabase("readwrite", function (store) {
+      store.put(item);
+    });
+  }
+
+  function reviewPersistDelete(key) {
+    if (reviewStorageMode === "local") {
+      if (!reviewWriteFallback()) {
+        return Promise.reject(new Error("複習題移除失敗"));
+      }
+      return Promise.resolve();
+    }
+    return reviewWriteDatabase("readwrite", function (store) {
+      store.delete(key);
+    });
+  }
+
+  function reviewPersistClear() {
+    if (reviewStorageMode === "local") {
+      if (!reviewWriteFallback()) {
+        return Promise.reject(new Error("複習題清空失敗"));
+      }
+      return Promise.resolve();
+    }
+    return reviewWriteDatabase("readwrite", function (store) {
+      store.clear();
+    });
+  }
+
+  function loadReviewItems() {
+    return reviewReadFromDatabase().then(function (rows) {
+      reviewStorageMode = "idb";
+      return rows;
+    }).catch(function (error) {
+      reviewStorageMode = "local";
+      if (window.console && typeof console.warn === "function") {
+        console.warn("IndexedDB 複習題不可用，改用 localStorage：", error);
+      }
+      return reviewReadFallback();
+    });
+  }
+
+  function reviewLoadedItems(items) {
+    reviewItems = (Array.isArray(items) ? items : [])
+      .filter(function (item) { return item && item.key; })
+      .sort(function (a, b) { return (Number(b.addedAt) || 0) - (Number(a.addedAt) || 0); });
+    reviewKeys = new Set(reviewItems.map(function (item) { return item.key; }));
+    reviewLoaded = true;
+    refreshReviewButtons();
+    if (isReviewRoute()) {
+      render();
+    }
+  }
+
+  function initReview() {
+    reviewReady = loadReviewItems().then(reviewLoadedItems).catch(function (error) {
+      reviewLoaded = true;
+      if (window.console && typeof console.warn === "function") {
+        console.warn("複習題載入失敗：", error);
+      }
+      refreshReviewButtons();
+      if (isReviewRoute()) {
+        render();
+      }
+    });
+  }
+
+  function isReviewRoute() {
+    return parseRoute().parts[0] === "review";
+  }
+
+  function toggleReviewItem(key) {
+    if (!reviewLoaded) {
+      reviewReady.then(function () {
+        toggleReviewItem(key);
+      });
+      return;
+    }
+    if (reviewKeys.has(key)) {
+      removeReviewItem(key);
+      return;
+    }
+    const item = buildReviewItem(key);
+    if (!item) {
+      toast("找不到題目內容，請重新整理後再試");
+      return;
+    }
+    reviewItems.unshift(item);
+    reviewKeys.add(key);
+    refreshReviewButtons();
+    toast("已加入複習題");
+    reviewPersistItem(item).catch(function () {
+      reviewItems = reviewItems.filter(function (entry) { return entry.key !== key; });
+      reviewKeys.delete(key);
+      refreshReviewButtons();
+      toast("複習題儲存失敗，請確認瀏覽器儲存空間");
+    });
+  }
+
+  function removeReviewItem(key) {
+    const index = reviewItems.findIndex(function (item) { return item.key === key; });
+    if (index < 0) {
+      return;
+    }
+    const removed = reviewItems[index];
+    reviewItems.splice(index, 1);
+    reviewKeys.delete(key);
+    refreshReviewButtons();
+    toast("已從複習題移除");
+    reviewPersistDelete(key).catch(function () {
+      reviewItems.splice(index, 0, removed);
+      reviewKeys.add(key);
+      refreshReviewButtons();
+      toast("複習題移除失敗，請稍後再試");
+    });
+    if (isReviewRoute()) {
+      if (reviewState.selectedKey === key) {
+        reviewState.selectedKey = "";
+      }
+      render();
+    }
+  }
+
+  function clearReviewItems() {
+    if (!reviewItems.length) {
+      return;
+    }
+    if (!window.confirm("確定要清空全部複習題嗎？此動作無法復原。")) {
+      return;
+    }
+    const backup = reviewItems.slice();
+    reviewItems = [];
+    reviewKeys = new Set();
+    refreshReviewButtons();
+    toast("已清空複習題");
+    reviewPersistClear().catch(function () {
+      reviewItems = backup;
+      reviewKeys = new Set(backup.map(function (item) { return item.key; }));
+      refreshReviewButtons();
+      toast("複習題清空失敗，請稍後再試");
+    });
+    if (isReviewRoute()) {
+      reviewState.selectedKey = "";
+      render();
+    }
+  }
+
+  function handleReviewClick(event) {
+    const toggle = event.target.closest("[data-review-toggle]");
+    if (toggle) {
+      event.preventDefault();
+      event.stopPropagation();
+      toggleReviewItem(toggle.dataset.reviewToggle);
+      return true;
+    }
+    const select = event.target.closest("[data-review-select]");
+    if (select) {
+      event.preventDefault();
+      selectReviewItem(select.dataset.reviewSelect);
+      return true;
+    }
+    const remove = event.target.closest("[data-review-remove]");
+    if (remove) {
+      event.preventDefault();
+      removeReviewItem(remove.dataset.reviewRemove);
+      return true;
+    }
+    const clear = event.target.closest("[data-review-clear]");
+    if (clear) {
+      event.preventDefault();
+      clearReviewItems();
+      return true;
+    }
+    return false;
+  }
+
+  function updateReviewSelection(selectedKey) {
+    document.querySelectorAll("[data-review-select]").forEach(function (button) {
+      const active = button.dataset.reviewSelect === selectedKey;
+      button.classList.toggle("is-active", active);
+      if (active) {
+        button.setAttribute("aria-current", "true");
+      } else {
+        button.removeAttribute("aria-current");
+      }
+    });
+  }
+
+  function selectReviewItem(key) {
+    if (!reviewKeys.has(key)) {
+      return;
+    }
+    reviewState.selectedKey = key;
+    try {
+      window.history.replaceState(null, "", "#/review?question=" + encodeURIComponent(key));
+    } catch (error) {
+      /* file:// 可能限制 history；不影響本頁切換。 */
+    }
+    const detail = document.getElementById("review-detail");
+    const item = reviewItems.find(function (entry) { return entry.key === key; });
+    if (detail && item) {
+      detail.innerHTML = renderReviewDetail(item);
+      updateReviewSelection(key);
+      const heading = detail.querySelector("h2");
+      if (heading) {
+        heading.setAttribute("tabindex", "-1");
+        heading.focus({ preventScroll: true });
+      }
+      if (window.matchMedia && window.matchMedia("(max-width: 900px)").matches) {
+        detail.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  }
+
+  function reviewSelectedItem() {
+    const queryKey = parseRoute().query.get("question") || "";
+    const candidates = [reviewState.selectedKey, queryKey];
+    for (let index = 0; index < candidates.length; index += 1) {
+      const match = reviewItems.find(function (item) { return item.key === candidates[index]; });
+      if (match) {
+        reviewState.selectedKey = match.key;
+        if (queryKey && queryKey !== match.key) {
+          try {
+            window.history.replaceState(null, "", "#/review?question=" + encodeURIComponent(match.key));
+          } catch (error) {
+            /* file:// 可能限制 history；不影響本頁顯示。 */
+          }
+        }
+        return match;
+      }
+    }
+    reviewState.selectedKey = reviewItems.length ? reviewItems[0].key : "";
+    return reviewItems[0] || null;
+  }
+
+  function renderReviewChapterLinks(item) {
+    if (!Array.isArray(item.chapters) || !item.chapters.length) {
+      return "";
+    }
+    return [
+      '<div class="review-chapters">',
+      "  <span>相關章節</span>",
+      item.chapters.map(function (chapter) {
+        return '<a href="#/chapter/' + encodeURIComponent(chapter.id) + '">' + escapeHtml(chapter.label) + "</a>";
+      }).join('<span class="past-exam-origin-sep">、</span>'),
+      "</div>"
+    ].join("");
+  }
+
+  function renderReviewDetail(item) {
+    if (!item) {
+      return '<div class="review-detail-empty"><p>從左側選擇一個題號，右側會顯示題目內容。</p></div>';
+    }
+    const heading = item.type === "forecast" ? item.title : "第 " + item.number + " 題";
+    const meta = [
+      '<span class="past-exam-badge ' + escapeHtml(item.colorClass || "") + '">' + escapeHtml(item.subjectLabel || "題目") + "</span>",
+      '<span class="review-kind">' + escapeHtml(item.kindLabel || "題目") + "</span>",
+      '<span class="review-detail-source">' + escapeHtml(item.sourceLabel || "") + "</span>"
+    ].join("");
+    const body = [];
+    if (item.type === "choice") {
+      body.push('<div class="review-detail-stem">' + renderInlineMath(item.stem || "") + "</div>");
+      body.push('<ol class="review-option-list">' + (item.options || []).map(function (option) {
+        const correct = (item.answer || []).indexOf(option.letter) !== -1;
+        return [
+          '<li class="' + (correct ? "is-correct" : "") + '">',
+          '  <span class="review-option-letter">' + escapeHtml(option.letter) + "</span>",
+          '  <span class="review-option-text">' + renderInlineMath(option.text || "") + "</span>",
+          correct ? '  <span class="review-option-result">正解</span>' : "",
+          "</li>"
+        ].join("");
+      }).join("") + "</ol>");
+      body.push('<div class="review-answer-box"><span>官方答案</span><strong>' + escapeHtml(item.answerText || "—") + "</strong></div>");
+      if (item.analysis) {
+        const optionAnalysis = (item.options || []).map(function (option) {
+          const text = item.analysis.options ? item.analysis.options[option.letter] : "";
+          if (!text) {
+            return "";
+          }
+          return '<li><strong>' + escapeHtml(option.letter) + "</strong><span>" + renderInlineMath(stripOptionVerdict(text)) + "</span></li>";
+        }).filter(Boolean).join("");
+        body.push([
+          '<section class="review-analysis">',
+          "  <h3>選項分析</h3>",
+          item.analysis.summary ? "  <p>" + renderInlineMath(item.analysis.summary) + "</p>" : "",
+          optionAnalysis ? '  <ul>' + optionAnalysis + "</ul>" : "",
+          "</section>"
+        ].join(""));
+      } else {
+        body.push('<p class="review-analysis-hint">完整選項解析請回原題庫頁面查看。</p>');
+      }
+    } else if (item.type === "written") {
+      body.push('<div class="review-detail-stem written-stem-body">' + (item.stemHtml || renderInlineMath(item.stem || "")) + "</div>");
+      body.push([
+        '<details class="review-reference-answer" open>',
+        "  <summary>參考解答</summary>",
+        '  <div class="written-answer">' + (item.answers || []).map(function (answer) {
+          return '<div class="written-answer-block">' + renderWrittenAnswer(answer) + "</div>";
+        }).join("") + "</div>",
+        item.note ? '  <p class="review-answer-note">' + escapeHtml(item.note) + "</p>" : "",
+        "</details>"
+      ].join(""));
+    } else {
+      if (item.stem) {
+        body.push('<div class="review-detail-stem">' + renderInlineMath(item.stem) + "</div>");
+      }
+      if (item.asks && item.asks.length) {
+        body.push([
+          '<div class="review-ask">',
+          "  <h3>" + escapeHtml(item.askLabel || "可能問法") + "</h3>",
+          "  <ol>" + item.asks.map(function (ask) {
+            return "<li>" + renderInlineMath(ask) + "</li>";
+          }).join("") + "</ol>",
+          "</div>"
+        ].join(""));
+      }
+      if (item.focus) {
+        body.push([
+          '<div class="review-focus">',
+          "  <h3>" + escapeHtml(item.focusLabel || "作答方向") + "</h3>",
+          "  <p>" + renderInlineMath(item.focus) + "</p>",
+          "</div>"
+        ].join(""));
+      }
+      if (item.answers && item.answers.length) {
+        body.push([
+          '<details class="review-reference-answer" open>',
+          "  <summary>完整參考解答</summary>",
+          '  <div class="forecast-answer-body">' + item.answers.map(function (answer) {
+            return "<p>" + renderInlineMath(answer) + "</p>";
+          }).join("") + "</div>",
+          item.note ? '  <p class="review-answer-note">' + escapeHtml(item.note) + "</p>" : "",
+          "</details>"
+        ].join(""));
+      }
+    }
+    body.push(renderReviewChapterLinks(item));
+    return [
+      '<article class="review-detail-card">',
+      '  <header class="review-detail-head">',
+      '    <div class="review-detail-meta">' + meta + "</div>",
+      "    <h2>" + escapeHtml(heading) + "</h2>",
+      "  </header>",
+      '  <div class="review-detail-body">' + body.join("") + "</div>",
+      '  <footer class="review-detail-footer">',
+      '    <a class="text-link" href="' + escapeHtml(item.url || "#/past-exams") + '">在原頁面開啟題目 →</a>',
+      '    <button class="btn btn-small review-remove-btn" type="button" data-review-remove="' + escapeHtml(item.key) + '">移除複習題</button>',
+      "  </footer>",
+      "</article>"
+    ].join("");
+  }
+
+  function renderReviewSidebar(selectedKey) {
+    return [
+      '<nav class="review-sidebar" aria-label="複習題清單">',
+      '  <div class="review-sidebar-head"><h2>題號</h2><span>' + reviewItems.length + " 題</span></div>",
+      '  <ul class="review-list">',
+      reviewItems.map(function (item) {
+        const active = item.key === selectedKey;
+        return [
+          "<li>",
+          '  <button class="review-list-item' + (active ? " is-active" : "") + '" type="button" data-review-select="' + escapeHtml(item.key) + '"' + (active ? ' aria-current="true"' : "") + ' title="' + escapeHtml(item.title || item.listLabel) + '">',
+          '    <span class="review-list-type">' + (item.type === "choice" ? "選" : item.type === "written" ? "申" : "猜") + "</span>",
+          '    <span class="review-list-label">' + escapeHtml(item.listLabel || item.title || "題目") + "</span>",
+          "  </button>",
+          "</li>"
+        ].join("");
+      }).join(""),
+      "  </ul>",
+      "</nav>"
+    ].join("");
+  }
+
+  function renderReviewHero() {
+    return [
+      '<section class="review-hero">',
+      '  <div class="review-hero-copy">',
+      '    <p class="eyebrow">個人複習清單 · 只存在此瀏覽器</p>',
+      "    <h1>複習題</h1>",
+      '    <p class="lede">從全站選擇題、計算／申論題與考前猜題按「加入複習題」，在這裡集中複習。左側列出已記錄的題號，點選後在右側查看題目、選項與參考解答。</p>',
+      "  </div>",
+      '  <div class="review-hero-side">',
+      '    <div class="review-stat"><strong>' + reviewItems.length + "</strong><span>題</span></div>",
+      '    <button class="btn btn-small" type="button" data-review-clear' + (reviewItems.length ? "" : " disabled") + ">清空複習題</button>",
+      "  </div>",
+      "</section>"
+    ].join("");
+  }
+
+  function renderReviewStorageNote() {
+    return '<p class="review-storage-note">' + (reviewStorageMode === "local"
+      ? "此瀏覽器未提供可用的 IndexedDB，複習題暫存在 localStorage，仍只留在本機。"
+      : "複習題儲存在此瀏覽器的 IndexedDB（" + REVIEW_DB_NAME + "），不會上傳；清除瀏覽器資料會一併清除。") + "</p>";
+  }
+
+  function renderReviewPage() {
+    if (!reviewLoaded) {
+      return [
+        '<div class="page review-page">',
+        renderReviewHero(),
+        '  <div class="review-loading" role="status">正在讀取複習題…</div>',
+        "</div>"
+      ].join("");
+    }
+    if (!reviewItems.length) {
+      if (parseRoute().query.get("question")) {
+        try {
+          window.history.replaceState(null, "", "#/review");
+        } catch (error) {
+          /* file:// 可能限制 history；不影響本頁顯示。 */
+        }
+      }
+      return [
+        '<div class="page review-page">',
+        renderReviewHero(),
+        '  <section class="review-empty">',
+        "    <h2>還沒有複習題</h2>",
+        "    <p>到考古題練習、計算／申論題或考前猜題，按題目旁的「加入複習題」，題目就會出現在這裡。</p>",
+        '    <div class="review-empty-links">',
+        '      <a class="btn btn-primary" href="#/past-exams">選擇題練習</a>',
+        '      <a class="btn" href="#/past-exams/written">計算／申論題</a>',
+        '      <a class="btn" href="#/exam-forecast">考前猜題</a>',
+        "    </div>",
+        "  </section>",
+        renderReviewStorageNote(),
+        "</div>"
+      ].join("");
+    }
+    const selected = reviewSelectedItem();
+    return [
+      '<div class="page review-page">',
+      renderReviewHero(),
+      '  <div class="review-layout">',
+      renderReviewSidebar(selected.key),
+      '    <section class="review-detail" id="review-detail" aria-live="polite">' + renderReviewDetail(selected) + "</section>",
+      "  </div>",
+      renderReviewStorageNote(),
+      "</div>"
+    ].join("");
   }
 
   function subjectProgress(subject) {
@@ -1192,6 +1992,7 @@
       "    </details>",
       '    <div class="law-question-footer">',
       '      <a class="text-link" href="' + questionLink + '">在題庫中開啟題目 →</a>',
+      reviewButtonHtml(reviewQuestionKey(question)),
       '      <span>' + escapeHtml(question.note || "本站參考解答（非官方）") + "</span>",
       "    </div>",
       "  </div>",
@@ -2595,6 +3396,7 @@
       '<button class="btn" type="button" data-practice-prev ' + (practiceState.index === 0 ? "disabled" : "") + ">上一題</button>",
       revealed ? '<button class="btn btn-small" type="button" data-practice-retry>重新作答</button>' : "",
       revealed && nextDisabled ? '<button class="btn btn-small" type="button" data-practice-restart>回到第一題</button>' : "",
+      reviewButtonHtml(reviewQuestionKey(question)),
       '<button class="btn btn-small" type="button" data-practice-reset-range>清除本範圍紀錄</button>'
     ].join("");
 
@@ -2653,6 +3455,7 @@
       revealed ? renderPastExamAnalysis(question) : "",
       '  <div class="past-exam-browse-actions">',
       '    <button class="btn btn-small" type="button" data-practice-reveal="' + escapeHtml(question.id) + '">' + (revealed ? "收起答案" : "顯示答案") + "</button>",
+      reviewButtonHtml(reviewQuestionKey(question)),
       renderPracticeSourceLinks(session, true),
       "  </div>",
       "</article>"
@@ -3004,6 +3807,7 @@
           }).join("") + "</ul></div>",
           '        <div class="forecast-focus"><strong>作答方向</strong><p>' + renderInlineMath(part.focus || "") + "</p></div>",
           renderForecastAnswerBlock(part.answerId || part.id),
+          '        <div class="forecast-review-action">' + reviewButtonHtml(reviewForecastKey(question, part)) + "</div>",
           "      </article>"
         ].join("");
       }).join(""),
@@ -3054,6 +3858,7 @@
       renderForecastQuestionFormulas(question),
       (question.scoring || question.trap) ? '    <div class="forecast-exam-tip"><div><strong>得分關鍵</strong><p>' + renderInlineMath(question.scoring || "") + '</p></div><div><strong>易錯點</strong><p>' + renderInlineMath(question.trap || "") + "</p></div></div>" : "",
       renderForecastAnswerBlock(question.answerId || question.id),
+      '    <div class="forecast-review-action">' + reviewButtonHtml(reviewForecastKey(question, null)) + "</div>",
       "  </div>",
       "</details>"
     ].join("");
@@ -3288,6 +4093,7 @@
               return "<li>" + renderInlineMath(step) + "</li>";
             }).join("") + "</ol>",
             '  <p class="forecast-why"><strong>為什麼優先</strong> ' + renderInlineMath(item.why || "") + "</p>",
+            '  <div class="forecast-review-action">' + reviewButtonHtml(reviewIntegratedKey(item)) + "</div>",
             "</article>"
           ].join("");
         }).join("") + "</div>",
@@ -3767,16 +4573,32 @@
     const columns = Array.isArray(block.columns) ? block.columns : [];
     const rows = Array.isArray(block.rows) ? block.rows : [];
     const compact = columns.length <= 2 ? " is-compact" : "";
+    const cellLabel = function (cell) {
+      return String(cell == null ? "" : cell)
+        .replace(/\\\[[\s\S]*?\\\]|\\\([\s\S]*?\\\)/g, " ")
+        .replace(/\u00a0/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    };
     const head = columns.length
       ? '<thead><tr>' + columns.map(function (cell) {
-        return '<th scope="col">' + renderInlineMath(cell) + '</th>';
+        const label = cellLabel(cell);
+        return label
+          ? '<th scope="col"><span class="sr-only">' + escapeHtml(label) + '</span><span aria-hidden="true">' + renderInlineMath(cell) + '</span></th>'
+          : '<td></td>';
       }).join("") + '</tr></thead>'
       : "";
     const body = rows.map(function (row) {
       return '<tr>' + row.map(function (cell, index) {
-        const tag = block.rowHeader && index === 0 ? "th" : "td";
+        const label = cellLabel(cell);
+        const isRowHeader = block.rowHeader && index === 0 && label;
+        const tag = isRowHeader ? "th" : "td";
         const scope = tag === "th" ? ' scope="row"' : "";
-        return '<' + tag + scope + '>' + renderInlineMath(cell == null ? "" : cell) + '</' + tag + '>';
+        const content = renderInlineMath(cell == null ? "" : cell);
+        const inner = isRowHeader
+          ? '<span class="sr-only">' + escapeHtml(label) + '</span><span aria-hidden="true">' + content + '</span>'
+          : content;
+        return '<' + tag + scope + '>' + inner + '</' + tag + '>';
       }).join("") + '</tr>';
     }).join("");
     return [
@@ -3845,6 +4667,7 @@
       renderPracticeQuestionOrigin(question, session),
       '  <div class="written-actions">',
       '    <button class="btn btn-small" type="button" data-written-toggle="' + escapeHtml(question.id) + '">' + (open ? "收起解答" : "顯示參考解答") + '</button>',
+      reviewButtonHtml(reviewQuestionKey(question)),
       session.questionUrl ? '    <a class="text-link" href="' + escapeHtml(session.questionUrl) + '" target="_blank" rel="noopener noreferrer">原始試題 PDF →</a>' : "",
       '  </div>',
       open ? '  <div class="written-answer">' + answers.map(function (text) {
@@ -5016,6 +5839,7 @@
       "    </details>",
       '    <div class="law-question-footer">',
       entry.showQuestionLink === false ? "" : '      <a class="text-link" href="' + escapeHtml(lawQuestionLink(entry)) + '">在題庫中開啟題目 →</a>',
+      reviewButtonHtml(reviewQuestionKey(question)),
       "      <span>" + escapeHtml(question.note || "本站參考解答（非官方）") + "</span>",
       "    </div>",
       "  </div>",
@@ -5355,6 +6179,7 @@
       "      <li>讀完一個單元，只看「考試重點」與「一句話記憶」，測試自己能否回想。</li>",
       "      <li>把公式抄一次，確認每個符號的意義與適用條件。</li>",
       "      <li>用「總體經濟模型總覽」跨章比較模型；需要完整說明時，再回到所屬章節。</li>",
+      "      <li>把常錯或想再看一次的題目按「加入複習題」，到「複習題」頁集中複習；左側題號一行一題，點選後在右側看題目與解答。</li>",
       "      <li>完成一章後按「標記本章完成」，回頭看科目進度。</li>",
       "    </ol>",
       "    <h2>內容製作與校對</h2>",
@@ -5372,7 +6197,7 @@
       "      <li>若發現錯誤，請以主管機關公告與正式教材為最終依據。</li>",
       "    </ul>",
       "    <h2>進度與隱私</h2>",
-      "    <p>章節完成進度與考古題作答紀錄只儲存在瀏覽器的 localStorage，不會傳送到任何伺服器。清除瀏覽器資料，或按下方按鈕，即可重置。</p>",
+      "    <p>章節完成進度與考古題作答紀錄只儲存在瀏覽器的 localStorage；「複習題」清單儲存在瀏覽器 IndexedDB（<code>analyst-review-db</code>），都不會傳送到任何伺服器。清除瀏覽器資料、到「複習題」按清空，或按下方按鈕，即可重置。</p>",
       '    <p><button class="btn btn-small" type="button" data-action="reset-progress">清除章節進度</button> <button class="btn btn-small" type="button" data-action="reset-practice-progress">清除考古題紀錄</button></p>',
       "    <h2>免責聲明</h2>",
       "    <p>" + escapeHtml(content.meta.disclaimer) + "</p>",
@@ -5401,6 +6226,7 @@
       law: false,
       "past-exams": route.parts[0] === "past-exams",
       "exam-forecast": route.parts[0] === "exam-forecast",
+      review: route.parts[0] === "review",
       "mermaid-lab": route.parts[0] === "lab" && route.parts[1] === "mermaid",
       sources: route.parts[0] === "sources",
       about: route.parts[0] === "about"
@@ -5525,6 +6351,9 @@
     }
     if (parts[0] === "exam-forecast") {
       return "2026 年 12 月四科 97 題組／118 個部分考前猜題，含完整解答、38 條整合公式與敏感度分析。";
+    }
+    if (parts[0] === "review") {
+      return "複習題：從考古題、計算／申論題與考前猜題加入的個人題目清單，儲存在瀏覽器 IndexedDB，可快速查看題目與參考解答。";
     }
     if (parts[0] === "sources") {
       return "29 個資料來源、官方連結、版本與查核紀錄。";
@@ -5813,6 +6642,9 @@
       const forecastLabel = { macro: "總體經濟學", investment: "投資學", accounting: "會計學", law: "證券法規" }[forecastSubject];
       html = renderExamForecastPage(forecastSubject);
       title = (forecastLabel || "2026 年 12 月") + "考前猜題｜" + examBrand;
+    } else if (route.parts[0] === "review") {
+      html = renderReviewPage();
+      title = "複習題｜" + examBrand;
     } else if (route.parts[0] === "sources") {
       html = renderSources();
       title = "資料來源｜" + examBrand;
@@ -5829,6 +6661,7 @@
     }
     main.innerHTML = html;
     refreshScrollableRegions();
+    refreshReviewButtons(main);
     document.title = title;
     updatePageMeta(route, title);
     updateNav(route);
@@ -6662,6 +7495,9 @@
     });
 
     main.addEventListener("click", function (event) {
+      if (handleReviewClick(event)) {
+        return;
+      }
       if (handleNobelClick(event)) {
         return;
       }
@@ -6765,6 +7601,7 @@
     bindEvents();
     setupScrollRegionObservers();
     updateThemeButton();
+    initReview();
     render();
     updateReadingProgress();
   }

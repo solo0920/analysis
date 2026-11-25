@@ -11,6 +11,7 @@
 | 會計學 | `documents/accounting_toc.md` | 第 1–23 章，共 41 個具名節次 | 有列節名的章節照原節名呈現；未列節名的章節以「學習重點」標示。財務分析圖表內容另參考 `documents/accounting_contents.md` |
 | 證券交易相關法規與實務 | `documents/ExamScope.md`、`documents/securities_law_contents.md`、全國法規資料庫 Open API | 21 章、52 節 | 14 頁提供官方逐條全文（15 部法規、1,507 條）；7 頁以自律規範或主管機關連結與摘要呈現 |
 | 歷屆考古題練習庫 | 證基會歷屆試題下載、公開題庫鏡像 | 107–115 年、29 次考試、3,710 題選擇題＋107–115 年 348 題計算／申論題 | 選擇題可依年度／科目／次別篩選；每題在公布答案後顯示逐選項參考解析；計算／申論題可依年度／科目／次別篩選，附完整參考解答並完成題意檢核；每題標示章節出處與考試次別，科目頁顯示各章出題次數與頻率；解題過程另整合進各科對應章節。 |
+| 複習題清單 | 使用者在本機加入的題目 | 全站選擇題、計算／申論題、考前猜題與章節題目卡 | 每題旁有「加入複習題」按鈕；`#/review` 左側以一行一題列出已記錄題號，右側顯示題目、選項、答案與參考解答；清單存於瀏覽器 IndexedDB（`analyst-review-db`），不送到後端。 |
 | 近二年總經時事 | 公開官方資料與 114–115 年試題 | 15 個國際金融與臺灣政策主題 | 美國對等關稅、Fed FOMC 與利率、全球物價、公債市場穩定、黃金、安倍三箭、加密貨幣監理、美元穩定幣、CBDC、AI、歐債、臺灣貨幣政策；12 個主題另附 KaTeX 公式與官方參考資料。20 則美國重大經濟新聞 TOP 20 摘要已整合至對應主題卡，另有 8 大優先主題與 5 題綜合申論。 |
 | 2026 年 12 月考前猜題 | 官方資料、歷屆命題邏輯與時事 | 總體 34、投資 33、會計 15、法規 15；97 題組／118 個部分；6 組整合 | 依 2026-10-23 資訊整理的單一題庫模擬猜題；同主題重複題已整併為 21 組多部分題組；含 118 個部分完整參考解答、38 條整合公式、2 組敏感度分析、8 項時事指標與準備順序；非官方題目。 |
 
@@ -175,6 +176,7 @@ Repository 的 Pages Source 已設為 **GitHub Actions**；若之後重新建立
 - `#/past-exams/written`：107–115 年計算／申論題（348 題；可依年度／科目／次別篩選；全部完整參考解答）
 - `#/macro-current`：近二年重要國際金融時事與臺灣總經政策（15 個主題；12 個主題含 KaTeX 公式；20 則美國重大經濟新聞摘要已整合至主題卡，另有 8 大主題與 5 題綜合申論；入口與麵包屑皆在考前猜題下）
 - `#/exam-forecast`：2026 年 12 月四科單一題庫（97 題組／118 個部分、74 個題組含「本題公式」、21 組多部分題組、6 組整合、38 條整合公式、2 組敏感度；分頁只有全部／總體／投資／會計／法規；標題下方有「近二年時事 · 總經政策」入口卡片）
+- `#/review`：複習題（IndexedDB；左側一行一題的題號清單、右側題目與參考解答；`?question=` 可直接選題）
 - `#/chapter/<id>`：章節內容
 - `#/sources`：資料來源
 - `#/about`：使用說明與進度重置
@@ -284,6 +286,7 @@ ExamSolutionData[] {
 - 考古題資料集中於 `site/assets/content-past-exams.js` 的 `window.PAST_EXAMS`；年度分包另註冊 `window.PAST_EXAMS_YEAR_BUNDLES`，章節分包註冊 `window.CHAPTER_DATA`，切換年度或章節時由 `app.js` 重新 hydrate，不整頁重新載入；`answer` 是官方可接受答案的字母陣列，例如 `["B", "C"]` 代表 B、C 均給分，`["A", "B", "C", "D"]` 代表 A–D 均給分。練習時選到任一個官方可接受答案都算答對。逐選項解析另存於 `content-past-exams-explanations.js` 的 `window.PAST_EXAM_EXPLANATIONS`，以題目 id 為鍵；練習模式按「看答案」、瀏覽模式按「顯示答案」後顯示，官方答案仍以 `PAST_EXAMS.answer` 為準。解析由官方答案、題幹與章節內容整理，部分批次以自動化工具輔助產生並經結構與抽樣檢核，屬本站參考解析，不是官方公告。
 - 章節解題資料集中於 `site/assets/content-exam-solutions-107.js`–`-115.js` 的 `window.EXAM_SOLUTIONS`，依年度載入（115→107）；章節頁再由 `CHAPTER_DATA` 取得當前章節的解題，避免切換章節後被其他章節覆寫；`app.js` 以 `chapterId::sectionIndex` 聚合各年資料，`strategies` 去重、`focus` 保留第一筆；`examples` 只存 `questionId`、解題步驟、學習重點與常見錯誤（`trap`），題幹與答案仍由既有題庫提供。計算／申論例題標示「本站參考解答（非官方）」，代表選擇題則連結官方答案。
 - 考古題練習進度存在 `localStorage` 的 `analyst-past-exam-progress-v1`，只記錄每題最後一次選擇的字母；不記錄個資、不送到後端。切換年度、科目、次別或搜尋時，練習與瀏覽模式會保留，按「開始練習」才切回練習模式並跳到目前範圍第一題未作答的題目。
+- 複習題存在瀏覽器 IndexedDB 的 `analyst-review-db` 資料庫、`questions` 物件倉庫，以題目 key（`exam::<id>`、`forecast::<題組>::<部分>`、`integrated::<id>`）為主鍵，存題幹、選項、答案、參考解答與來源；只留在本機、不送到後端。IndexedDB 不可用時才退回 `localStorage` 的 `analyst-review-questions-v1`。<code>#/review</code> 左側只列題號（CSS `white-space: nowrap`＋ellipsis，一行一題），右側顯示完整題目內容。
 - `terms` 是 `[名詞, 定義]` 陣列。
 - `table` 可省略；有值時為 `{ title, columns, rows, note }`，在正文後渲染為比較表。桌面版保留表格，390px 改為卡片堆疊；`columns` 與每一列的長度必須一致，表格標題與內容也會併入搜尋索引。
 - `formula` 可為空字串；非空時由 `content-formula-tex.js` 的 KaTeX 公式資料渲染。
@@ -545,6 +548,8 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 
 2026-11-24 補上 WPI：`macro-01` 第4節新增「四、躉售物價指數（WPI）」子區塊，說明 WPI 衡量原料、中間財與最終財在批發階段的價格，採固定基期交易量權數的拉氏公式 `\(WPI_t=\dfrac{\sum p_t q_0}{\sum p_0 q_0}\times100\)`；WPI 只含財貨、不含勞務，台灣舊制由國產內銷、出口與進口加權，通常領先 CPI 但傳導不完全；並說明 2023 年 1 月起停編、改看 PPI（國產出廠價、不含進口）。原「四個公式比較」改為「五個公式比較」，表內新增 WPI 列；記憶技巧新增 WPI／CPI／PPI 對照，名詞卡新增 WPI 與 PPI。macro-01 第4節在 390px／1280px、深淺主題：6 個子區塊、6 個公式區塊、1 張五列比較表、0 `.katex-error`、0 水平溢出、axe 0 violations。驗證器 160,211 項、失敗 0；名詞卡 1,671 張。
 
+2026-11-25 新增複習題：Header 加入「複習題」（`#/review`），全站題目卡加入「加入複習題」按鈕，涵蓋考古題練習／瀏覽、348 題計算／申論、考前猜題 97 題組（118 個部分）、6 組整合題與章節解題／法規題目卡。清單存於 IndexedDB `analyst-review-db`（`questions` store），以 `exam::<id>`、`forecast::<組>::<部分>`、`integrated::<id>` 為主鍵；IndexedDB 不可用時才退回 `localStorage`。`#/review` 左側以一行一題列出題號（`white-space: nowrap`＋ellipsis），右側顯示題幹、選項、官方答案、選項解析、參考解答與原頁連結；`?question=` 可直接選題。390px／1280px、深淺主題：列表維持一行、0 `.katex-error`、0 水平溢出、axe 0 violations；實測加入／移除／清空、重新載入後保留、直接連結與 `file://`。驗證器 161,098 項、失敗 0。
+
 2026-11-24 補上 CPI：`macro-01` 第4節新增「三、消費者物價指數（CPI）」子區塊，說明固定消費籃、拉氏公式 `\(CPI_t=\dfrac{\sum p_t q_0}{\sum p_0 q_0}\times100\)`、基期籃 1,000／當期 1,080 → CPI 108、通膨 8% 的數例，以及 CPI 與 GDP 平減指數的範圍差異（CPI 含進口消費品、不含投資財與政府支出；GDP 平減指數涵蓋國內生產最終財貨、不含進口）。原「三個公式比較」改為「四個公式比較」，表內新增 CPI 列；記憶技巧新增 CPI 與 GDP 平減指數的對照。macro-01 第4節在 390px／1280px、深淺主題：5 個子區塊、5 個公式區塊、1 張四列比較表、0 `.katex-error`、0 水平溢出、axe 0 violations。驗證器 160,169 項、失敗 0。
 
 2026-11-24 補上 URE 專題：`macro-01` 第3節新增「URE 與 PI：保留盈餘為什麼要扣除？」小節，說明 URE 是公司稅後保留、未分配給股東的盈餘，從 NI 推到 PI 時扣除，並以 NI 850、CIT 50、URE 30、SSC 40、TR 80、INT 10 → PI 820 的數例呈現；URE 名詞卡同步補上 `\(PI = NI - CIT - URE - SSC + TR + INT\)`。macro-01 在 390px／1280px、深淺主題：6 節、5 個子區塊、2 個公式區塊、0 `.katex-error`、0 水平溢出、axe 0 violations；靜態頁同步。驗證器 160,140 項、失敗 0。
@@ -575,7 +580,7 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 - 模型圖是概念示意，用於理解曲線方向與移動，不提供互動拖曳、數值模擬或實證估計。
 - 模型總覽頁是唯讀聚合視圖，不是另一份內容或線上編輯器；更新來源仍是 `diagrams-macro*.js`，變更後重新載入即可在章節頁與總覽頁看到同步結果。
 - 窄螢幕下模型圖保留最小寬度，可在圖表區塊內水平滑動，並顯示「圖表較寬」提示；頁面本身不會水平溢出。
-- 章節進度存在 `localStorage`，鍵名為 `analyst-prep-progress-v2`；考古題作答存在 `analyst-past-exam-progress-v1`；主題鍵名為 `analyst-theme`；全站風格鍵名為 `analyst-site-style`。投資學章節已重建，因此不使用舊版 `v1` 章節進度，避免舊章節 ID 對應到新章節。
+- 章節進度存在 `localStorage`，鍵名為 `analyst-prep-progress-v2`；考古題作答存在 `analyst-past-exam-progress-v1`；複習題存在 IndexedDB 的 `analyst-review-db`（不可用時退回 `analyst-review-questions-v1`）；主題鍵名為 `analyst-theme`；全站風格鍵名為 `analyst-site-style`。投資學章節已重建，因此不使用舊版 `v1` 章節進度，避免舊章節 ID 對應到新章節。
 - 不做即時行情、會員或後端同步；考古題練習是靜態題庫，答案與得分只存在瀏覽器，換裝置不會同步。
 - 考古題收錄 107–115 年選擇題；107–108 年解答由使用者提供的逐題轉錄檔匯入，並與公開解答 PDF 及原始 JPG 解答抽查核對。計算／申論題提供本站參考解答（非官方）並整合進各科章節；不提供自動評分，也不宣稱解答為官方答案。
 - 諾貝爾年表以使用者提供的《諾貝爾經濟學獎歷年學說》為表格來源；58 屆年份與得主已於 2026-10-20 對照諾貝爾獎官方 API（0 筆不一致），2026 屆官方公告為 Hall 與 Woodford「for microeconomic foundations of macroeconomic stabilisation」。2019–2020 屆公式與學說方向、2021 LATE 公式與 2022–2024 學說方向已對照官方科學背景（2019、2020 網站公式為概念式），2025 屆公式已依官方科學背景修正，2026 屆公式與學說已對照官方 popular information 與科學背景；2019–2026 代表原始論文書目已核對；2019–2026 每年至少一篇代表論文完成全文抽查（2026 為 Hall；Woodford 2003 專書未逐條），其他屆公式、全文、學說摘述與模型圖仍待原始文獻逐條核對，未完成前不宣稱所有公式經官方認證。
