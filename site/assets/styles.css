@@ -11576,6 +11576,9 @@ html.is-routing body {
 }
 
 .review-list li {
+  display: flex;
+  align-items: center;
+  gap: 2px;
   margin: 0;
   padding: 0;
 }
@@ -11583,8 +11586,10 @@ html.is-routing body {
 .review-list-item {
   display: flex;
   align-items: center;
+  flex: 1 1 auto;
   gap: 9px;
-  width: 100%;
+  width: auto;
+  min-width: 0;
   min-height: 38px;
   padding: 7px 9px;
   border: 1px solid transparent;
@@ -11632,6 +11637,53 @@ html.is-routing body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.review-list-remove {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 130ms ease, visibility 130ms ease, background 130ms ease, border-color 130ms ease, color 130ms ease;
+}
+
+.review-list-row:hover .review-list-remove,
+.review-list-row:focus-within .review-list-remove {
+  opacity: 1;
+  visibility: visible;
+}
+
+.review-list-remove:hover {
+  border-color: var(--danger, #a33a2c);
+  background: var(--surface-2);
+  color: var(--danger, #a33a2c);
+}
+
+.review-list-remove:focus-visible,
+.review-list-remove:focus {
+  opacity: 1;
+  visibility: visible;
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+@media (hover: none) {
+  .review-list-remove {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 .review-detail {
@@ -11973,6 +12025,10 @@ html.is-routing body {
     max-height: 46vh;
   }
 
+  .review-list-remove {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 @media (max-width: 560px) {

@@ -1244,11 +1244,12 @@
         ? '  <ul class="review-list">' + list.map(function (item) {
           const active = item.key === selectedKey;
           return [
-            "<li>",
+            '<li class="review-list-row">',
             '  <button class="review-list-item' + (active ? " is-active" : "") + '" type="button" data-review-select="' + escapeHtml(item.key) + '"' + (active ? ' aria-current="true"' : "") + ' title="' + escapeHtml(item.title || item.listLabel) + '">',
             '    <span class="review-list-type">' + (item.type === "choice" ? "選" : item.type === "written" ? "申" : "猜") + "</span>",
             '    <span class="review-list-label">' + escapeHtml(item.listLabel || item.title || "題目") + "</span>",
             "  </button>",
+            '  <button class="review-list-remove" type="button" data-review-remove="' + escapeHtml(item.key) + '" aria-label="移除複習題：' + escapeHtml(item.listLabel || item.title || "題目") + '" title="移除複習題">×</button>',
             "</li>"
           ].join("");
         }).join("") + "  </ul>"
