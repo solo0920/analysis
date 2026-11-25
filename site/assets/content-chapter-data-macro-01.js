@@ -606,6 +606,34 @@ window.CHAPTER_DATA["macro-01"] = {
   ],
   "questions": [
     {
+      "id": "107Q3-macro-09",
+      "sessionId": "107Q3",
+      "year": 107,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-01",
+      "number": 9,
+      "stem": "下列何者為存量之概念：",
+      "options": [
+        "國民所得",
+        "國際收支",
+        "投資",
+        "貨幣供給"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-01"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-01",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
       "id": "107Q3-macro-10",
       "sessionId": "107Q3",
       "year": 107,
@@ -630,34 +658,6 @@ window.CHAPTER_DATA["macro-01"] = {
         {
           "chapterId": "macro-01",
           "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "107Q3-macro-12",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-01",
-      "number": 12,
-      "stem": "自發性儲蓄提高的結果，將造成國民所得的減少，此一現象謂之：",
-      "options": [
-        "儲蓄是一種美德",
-        "節儉的代價",
-        "投資的陷阱",
-        "節儉的矛盾"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-01"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-01",
-          "sectionIndex": 5
         }
       ]
     },
@@ -742,6 +742,34 @@ window.CHAPTER_DATA["macro-01"] = {
         {
           "chapterId": "macro-01",
           "sectionIndex": 4
+        }
+      ]
+    },
+    {
+      "id": "108Q1-macro-25",
+      "sessionId": "108Q1",
+      "year": 108,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-01",
+      "number": 25,
+      "stem": "投資淨額不包括下列哪一項？",
+      "options": [
+        "建築物",
+        "機器設備",
+        "存貨",
+        "折舊"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-01"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-01",
+          "sectionIndex": 2
         }
       ]
     },
@@ -886,22 +914,22 @@ window.CHAPTER_DATA["macro-01"] = {
       ]
     },
     {
-      "id": "108Q3-macro-11",
+      "id": "108Q3-macro-02",
       "sessionId": "108Q3",
       "year": 108,
       "session": 3,
       "subject": "macro",
       "sourceId": "macro-01",
-      "number": 11,
-      "stem": "下列哪一項會造成國民所得的減少？",
+      "number": 2,
+      "stem": "政府的消費支出不包含下列何者？",
       "options": [
-        "出口增加",
-        "進口增加",
-        "投資增加",
-        "減稅"
+        "政府對各種產品的購買",
+        "軍人的薪水",
+        "移轉性支付",
+        "公、教人員薪津"
       ],
       "answer": [
-        "B"
+        "C"
       ],
       "sourceIds": [
         "macro-01"
@@ -909,7 +937,7 @@ window.CHAPTER_DATA["macro-01"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-01",
-          "sectionIndex": 2
+          "sectionIndex": 3
         }
       ]
     },
@@ -942,6 +970,62 @@ window.CHAPTER_DATA["macro-01"] = {
       ]
     },
     {
+      "id": "108Q4-macro-01",
+      "sessionId": "108Q4",
+      "year": 108,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-01",
+      "number": 1,
+      "stem": "失業津貼應計入？",
+      "options": [
+        "民間消費",
+        "固定資本形成",
+        "政府最終消費支出",
+        "移轉性支出"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-01"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-01",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "108Q4-macro-04",
+      "sessionId": "108Q4",
+      "year": 108,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-01",
+      "number": 4,
+      "stem": "國民購買汽機車輪胎是屬於？",
+      "options": [
+        "耐久財消費",
+        "半耐久財消費",
+        "非耐久財消費",
+        "投資"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-01"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-01",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
       "id": "108Q4-macro-07",
       "sessionId": "108Q4",
       "year": 108,
@@ -966,6 +1050,34 @@ window.CHAPTER_DATA["macro-01"] = {
         {
           "chapterId": "macro-01",
           "sectionIndex": 4
+        }
+      ]
+    },
+    {
+      "id": "108Q4-macro-11",
+      "sessionId": "108Q4",
+      "year": 108,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-01",
+      "number": 11,
+      "stem": "對於一般民眾有以低價商品與服務，來替代漲價商品與服務的可能性，根據此現象下列何者有誤？",
+      "options": [
+        "高估實際物價膨脹",
+        "低估實際物價膨脹",
+        "可以叫做替代偏差",
+        "此為經濟理性選擇"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-01"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-01",
+          "sectionIndex": 1
         }
       ]
     },
@@ -1026,22 +1138,22 @@ window.CHAPTER_DATA["macro-01"] = {
       ]
     },
     {
-      "id": "109Q1-macro-25",
+      "id": "109Q1-macro-13",
       "sessionId": "109Q1",
       "year": 109,
       "session": 1,
       "subject": "macro",
       "sourceId": "macro-01",
-      "number": 25,
-      "stem": "一般而言，當消費者物價指數連跌兩季，商品價格與成本普遍下降，將意味著經濟體系發生何種狀況？",
+      "number": 13,
+      "stem": "有關消費者物價指數 CPI 可能高估體系通膨水準的說法，何者錯誤？",
       "options": [
-        "通貨膨脹",
-        "通貨緊縮",
-        "政府財政困難",
-        "民間消費增加"
+        "未考慮衡量商品品質變化的問題",
+        "忽略消費者以便宜商品消費的替代問題",
+        "忽略衡量勞務品質變化的問題",
+        "忽略政府調整負擔社會安全利益的問題"
       ],
       "answer": [
-        "B"
+        "D"
       ],
       "sourceIds": [
         "macro-01"
@@ -1078,34 +1190,6 @@ window.CHAPTER_DATA["macro-01"] = {
         {
           "chapterId": "macro-01",
           "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "109Q2-macro-30",
-      "sessionId": "109Q2",
-      "year": 109,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-01",
-      "number": 30,
-      "stem": "一般而言，稅率越高與地下經濟活動規模越大：",
-      "options": [
-        "現金比率將越大，貨幣供給乘數會下降，貨幣供給會減少",
-        "現金比率將越大，貨幣供給乘數會上升，貨幣供給會增加",
-        "現金比率將越小，貨幣供給乘數會下降，貨幣供給會減少",
-        "現金比率將越小，貨幣供給乘數會上升，貨幣供給會增加"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-01"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-01",
-          "sectionIndex": 5
         }
       ]
     },
@@ -1278,34 +1362,6 @@ window.CHAPTER_DATA["macro-01"] = {
       ]
     },
     {
-      "id": "109Q4-macro-33",
-      "sessionId": "109Q4",
-      "year": 109,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-01",
-      "number": 33,
-      "stem": "下列哪項指標是和企業經營與投資熱絡程度有直接關係？",
-      "options": [
-        "PMI",
-        "CPI",
-        "GDP",
-        "M1B"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-01"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-01",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
       "id": "110Q1-macro-18",
       "sessionId": "110Q1",
       "year": 110,
@@ -1446,6 +1502,34 @@ window.CHAPTER_DATA["macro-01"] = {
       ]
     },
     {
+      "id": "111Q2-macro-19",
+      "sessionId": "111Q2",
+      "year": 111,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-01",
+      "number": 19,
+      "stem": "在國內生產毛額支出面中，消費主要與有關、投資水準主要與有關，淨出口主要與有關。",
+      "options": [
+        "利率、物價、匯率",
+        "匯率、利率、物價",
+        "物價、利率、匯率",
+        "利率、匯率、物價"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-01"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-01",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
       "id": "111Q3-macro-12",
       "sessionId": "111Q3",
       "year": 111,
@@ -1462,6 +1546,62 @@ window.CHAPTER_DATA["macro-01"] = {
       ],
       "answer": [
         "A"
+      ],
+      "sourceIds": [
+        "macro-01"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-01",
+          "sectionIndex": 4
+        }
+      ]
+    },
+    {
+      "id": "112Q2-macro-25",
+      "sessionId": "112Q2",
+      "year": 112,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-01",
+      "number": 25,
+      "stem": "有一年戰亂，全國人民躲進防空洞，無法從事任何生產，而人民的消費與政府支出都是消耗之前年度的存貨，該年度人民消費 500 單位、政府支出 300 單位，沒有任何投資與進出口，根據 Y=C+I+G+X-M 公式，該年度的國民所得為多少？",
+      "options": [
+        "0",
+        "300",
+        "500",
+        "800"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-01"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-01",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "112Q2-macro-28",
+      "sessionId": "112Q2",
+      "year": 112,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-01",
+      "number": 28,
+      "stem": "下列何者現象反映了貧富差距擴大？I.吉尼係數上升、II.薪資佔全體要素所得比重上升、III.薪資成長率低於經濟成長率",
+      "options": [
+        "僅 I",
+        "I 與 II",
+        "I 與 III",
+        "I、II 與 III"
+      ],
+      "answer": [
+        "C"
       ],
       "sourceIds": [
         "macro-01"
@@ -1498,6 +1638,35 @@ window.CHAPTER_DATA["macro-01"] = {
         {
           "chapterId": "macro-01",
           "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "112Q3-macro-11",
+      "sessionId": "112Q3",
+      "year": 112,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-01",
+      "number": 11,
+      "stem": "所得重分配哲學中哪一個學派的主張認為政府的目標是使社會上每一個人效用的加總極大化？",
+      "options": [
+        "效用主義學派(Utilitarianism)",
+        "自由主義學派(Liberalism)",
+        "自由意志主義學派(Libertarianism)",
+        "理性預期學派(Rational Expectationism)"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-01"
+      ],
+      "eventId": "taiwan-policy-2025",
+      "sourceRefs": [
+        {
+          "chapterId": "macro-01",
+          "sectionIndex": 3
         }
       ]
     },
@@ -1558,34 +1727,6 @@ window.CHAPTER_DATA["macro-01"] = {
       ]
     },
     {
-      "id": "113Q1-macro-04",
-      "sessionId": "113Q1",
-      "year": 113,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-01",
-      "number": 4,
-      "stem": "一般而言，當消費者物價指數連跌兩季，商品價格與成本普遍下降，表示此經濟體發生何種狀況？",
-      "options": [
-        "通貨膨脹",
-        "通貨緊縮",
-        "政府財政困難",
-        "民間消費增加"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-01"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-01",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
       "id": "113Q1-macro-06",
       "sessionId": "113Q1",
       "year": 113,
@@ -1610,6 +1751,90 @@ window.CHAPTER_DATA["macro-01"] = {
         {
           "chapterId": "macro-01",
           "sectionIndex": 4
+        }
+      ]
+    },
+    {
+      "id": "113Q1-macro-22",
+      "sessionId": "113Q1",
+      "year": 113,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-01",
+      "number": 22,
+      "stem": "台灣主計總處公布的經濟成長率資料，下列描述何者有誤?",
+      "options": [
+        "yoy 的季成長率為原實質 GDP 對上年同季之成長率",
+        "saqr 為經季節調整後實質 GDP 對上季增率未予標準化為年率",
+        "saar 為經季節調整後實質 GDP 對上季增率折成年化",
+        "季調數列或非季調數列計算之年經濟成長率不同"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-01"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-01",
+          "sectionIndex": 4
+        }
+      ]
+    },
+    {
+      "id": "113Q2-macro-07",
+      "sessionId": "113Q2",
+      "year": 113,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-01",
+      "number": 7,
+      "stem": "政府的消費支出不包含下列何者？",
+      "options": [
+        "政府對各種產品的購買",
+        "軍人的薪水",
+        "移轉性支付",
+        "公、教人員薪津"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-01"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-01",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "113Q3-macro-06",
+      "sessionId": "113Q3",
+      "year": 113,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-01",
+      "number": 6,
+      "stem": "公務員退休金應計入？",
+      "options": [
+        "民間消費",
+        "固定資本形成",
+        "政府最終消費支出",
+        "移轉性支出"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-01"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-01",
+          "sectionIndex": 3
         }
       ]
     },
@@ -1642,27 +1867,26 @@ window.CHAPTER_DATA["macro-01"] = {
       ]
     },
     {
-      "id": "114Q1-macro-12",
+      "id": "114Q1-macro-16",
       "sessionId": "114Q1",
       "year": 114,
       "session": 1,
       "subject": "macro",
       "sourceId": "macro-01",
-      "number": 12,
-      "stem": "廠商決定是否聘雇員工的考量點是：",
+      "number": 16,
+      "stem": "課稅所產生的分配扭曲，進而造成的傷害：",
       "options": [
-        "名目工資等於邊際勞動生產力 (marginal product of labor)",
-        "實質工資等於邊際勞動生產收入(marginal revenue product of labor)",
-        "名目工資等於邊際勞動生產收入(marginal revenue product of labor)",
-        "實質工資等於邊際資本生產力(marginal revenue product of capital)"
+        "隨著稅率增加而等比例增加",
+        "當稅率穩定時較低，當稅率變化較大時則較高",
+        "當稅率穩定時較高，稅率變化大時較低",
+        "此傷害造成的損失，等於稅率的平方根"
       ],
       "answer": [
-        "C"
+        "B"
       ],
       "sourceIds": [
         "macro-01"
       ],
-      "eventId": "taiwan-policy-2025",
       "sourceRefs": [
         {
           "chapterId": "macro-01",
@@ -1723,6 +1947,34 @@ window.CHAPTER_DATA["macro-01"] = {
         {
           "chapterId": "macro-01",
           "sectionIndex": 4
+        }
+      ]
+    },
+    {
+      "id": "114Q2-macro-06",
+      "sessionId": "114Q2",
+      "year": 114,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-01",
+      "number": 6,
+      "stem": "對於一般民眾有以低價商品與服務，來替代漲價商品與服務的可能性，根據此現象下列何者有誤？",
+      "options": [
+        "高估實際物價膨脹",
+        "低估實際物價膨脹",
+        "可以叫做替代偏差",
+        "此為經濟理性選擇"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-01"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-01",
+          "sectionIndex": 1
         }
       ]
     },
@@ -1811,19 +2063,19 @@ window.CHAPTER_DATA["macro-01"] = {
       ]
     },
     {
-      "id": "114Q3-macro-10",
-      "sessionId": "114Q3",
-      "year": 114,
-      "session": 3,
+      "id": "115Q1-macro-04",
+      "sessionId": "115Q1",
+      "year": 115,
+      "session": 1,
       "subject": "macro",
       "sourceId": "macro-01",
-      "number": 10,
-      "stem": "下列何者為我國重要計畫：5+2 產業創新計畫中，所包含之產業類別?",
+      "number": 4,
+      "stem": "下列何者不算政府支出 G（就 GDP 支出面分類）？",
       "options": [
-        "國防產業",
-        "綠能產業",
-        "生醫產業",
-        "以上皆是"
+        "政府支付警察薪資",
+        "政府蓋捷運",
+        "政府採購疫苗",
+        "政府發放社福補助"
       ],
       "answer": [
         "D"
@@ -1834,35 +2086,7 @@ window.CHAPTER_DATA["macro-01"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-01",
-          "sectionIndex": 5
-        }
-      ]
-    },
-    {
-      "id": "114Q3-macro-11",
-      "sessionId": "114Q3",
-      "year": 114,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-01",
-      "number": 11,
-      "stem": "下列何者非我國製造業採購經理人指數所涵蓋之內容?",
-      "options": [
-        "生產數量",
-        "存貨",
-        "人力平均雇用薪資",
-        "新增訂單數量"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-01"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-01",
-          "sectionIndex": 4
+          "sectionIndex": 1
         }
       ]
     },
@@ -1984,7 +2208,7 @@ window.CHAPTER_DATA["macro-01"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-10",
+      "sourceId": "macro-01",
       "number": 21,
       "stem": "在國內生產毛額的計算中，臺灣下列哪一項的占比最大？",
       "options": [
@@ -1997,50 +2221,12 @@ window.CHAPTER_DATA["macro-01"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-10",
         "macro-01"
       ],
       "sourceRefs": [
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 5
-        },
         {
           "chapterId": "macro-01",
           "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "115Q2-macro-22",
-      "sessionId": "115Q2",
-      "year": 115,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 22,
-      "stem": "美國的哪一個總經數據在每個月第一個星期五公布？",
-      "options": [
-        "工業生產指數",
-        "非農就業數據",
-        "採購經理人指數",
-        "消費者物價指數"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-09",
-        "macro-01"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-01",
-          "sectionIndex": 4
         }
       ]
     },
@@ -2238,7 +2424,11 @@ window.CHAPTER_DATA["macro-01"] = {
           "C：民間消費支出；I：國內資本形成毛額（投資）；G：政府消費支出。",
           "X−M：商品與服務的淨出口；進口要扣除，因為已包含在 C、I、G 中。",
           "外匯存底是中央銀行持有的國外資產，不是最終產品支出，不列入 GDP。",
-          "政府移轉支付（如社福補助）不是政府消費，也不列入 GDP。"
+          "政府移轉支付（如社福補助）不是政府消費，也不列入 GDP。",
+          "政府支付警察薪資、蓋捷運、採購疫苗都是政府消費或投資，計入 G。",
+          "政府發放社福補助是移轉支付，不是政府購買最終產品，不計入 G。",
+          "反景氣循環財政政策：衰退時增加支出或減稅，過熱時減少支出或增稅。",
+          "自動穩定器（如失業救濟、累進稅）會隨景氣自動調節，無需立法。"
         ],
         "examples": [
           {
@@ -2251,6 +2441,17 @@ window.CHAPTER_DATA["macro-01"] = {
             ],
             "takeaway": "GDP 支出面只算最終產品與服務的支出；外匯存底不是支出。",
             "trap": "把外匯存底當成政府投資或出口；它是資產持有，不是 GDP 組成。"
+          },
+          {
+            "questionId": "115Q1-macro-04",
+            "steps": [
+              "政府支付警察薪資：政府購買勞務，計入 G。",
+              "政府蓋捷運：政府投資基礎建設，計入 G。",
+              "政府採購疫苗：政府購買商品，計入 G。",
+              "政府發放社福補助：是移轉支付，沒有對應的最終產品生產，不計入 G。答案D。"
+            ],
+            "takeaway": "G 只算政府購買最終產品與服務；移轉支付不是 G。",
+            "trap": "把社福補助當成政府支出而計入 GDP；它只是所得重分配。"
           }
         ]
       },

@@ -624,17 +624,12 @@ window.CHAPTER_DATA["macro-09"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-09",
-        "macro-05"
+        "macro-09"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-09",
           "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
         }
       ]
     },
@@ -667,118 +662,6 @@ window.CHAPTER_DATA["macro-09"] = {
       ]
     },
     {
-      "id": "107Q2-macro-05",
-      "sessionId": "107Q2",
-      "year": 107,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 5,
-      "stem": "假使投資人需要 4.5%的實質報酬率，且通貨膨脹率為 5%，該投資人需要多少的名目報酬率：",
-      "options": [
-        "9.73%",
-        "9.2%",
-        "10.5%",
-        "9%"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "107Q2-macro-10",
-      "sessionId": "107Q2",
-      "year": 107,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 10,
-      "stem": "假設債券提供投資人 13%的名目年報酬率，通貨膨脹率為 4%。那實質報酬為：",
-      "options": [
-        "15%",
-        "7.73%",
-        "7%",
-        "8.65%"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "107Q2-macro-11",
-      "sessionId": "107Q2",
-      "year": 107,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 11,
-      "stem": "若實際的通貨膨脹率高於預期，則實際的實質利率水準將會比預期的實質利率：",
-      "options": [
-        "高",
-        "相同",
-        "低",
-        "不一定，還要考慮其他因素才能確定"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "107Q2-macro-27",
-      "sessionId": "107Q2",
-      "year": 107,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 27,
-      "stem": "造成停滯性通貨膨脹的原因可能是下列哪一項？",
-      "options": [
-        "央行提高貨幣供給",
-        "石油價格劇烈上漲",
-        "政府提高各項政府支出",
-        "廠商生產之技術進步"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
       "id": "107Q2-macro-28",
       "sessionId": "107Q2",
       "year": 107,
@@ -807,34 +690,6 @@ window.CHAPTER_DATA["macro-09"] = {
       ]
     },
     {
-      "id": "107Q3-macro-05",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 5,
-      "stem": "如果美國的預期通貨膨脹率為 3%而日本為6%，則根據國際費雪效果，你預期美國與日本的實質利率關係將為何？",
-      "options": [
-        "日本的實質利率將會低於美國的實質利率 3%",
-        "日本的名目利率將會低於美國的名目利率 3%",
-        "日本的名目利率將會高於美國的實質利率 3%以上",
-        "兩國的實質利率會相等"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
       "id": "107Q3-macro-13",
       "sessionId": "107Q3",
       "year": 107,
@@ -856,95 +711,6 @@ window.CHAPTER_DATA["macro-09"] = {
         "macro-09"
       ],
       "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "107Q3-macro-16",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 16,
-      "stem": "停滯性通貨膨脹(stagflation)發生在：",
-      "options": [
-        "總合供給曲線左移時",
-        "總合供給曲線右移時",
-        "總合需求曲線左移時",
-        "總合需求曲線右移時"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "107Q3-macro-19",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 19,
-      "stem": "如果總產出低於自然產出水準，政策激進派(activist)會建議政府：",
-      "options": [
-        "使總合需求曲線往右移動來消除高失業率",
-        "使總合需求曲線往左移動來消除高失業率",
-        "提高總合供給來消除通貨膨脹",
-        "什麼都不要做"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "107Q4-macro-10",
-      "sessionId": "107Q4",
-      "year": 107,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 10,
-      "stem": "若勞動市場已達自然就業，則總需求增加在長期將導致：",
-      "options": [
-        "產出增加",
-        "物價上升",
-        "產出減少",
-        "物價下跌"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-07",
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 2
-        },
         {
           "chapterId": "macro-09",
           "sectionIndex": 2
@@ -980,62 +746,6 @@ window.CHAPTER_DATA["macro-09"] = {
       ]
     },
     {
-      "id": "107Q4-macro-27",
-      "sessionId": "107Q4",
-      "year": 107,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 27,
-      "stem": "依據費雪方程式，假設非洲某國的實質利率為每年 20%，實際通膨率為 15%，預期通膨率為 22%。試問該國的名目利率為何？",
-      "options": [
-        "2%",
-        "35%",
-        "37%",
-        "42%"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-01",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 1,
-      "stem": "造成停滯性通貨膨脹的原因可能是下列哪一項？",
-      "options": [
-        "央行提高貨幣供給",
-        "政府提高各項政府支出",
-        "廠商生產之技術進步",
-        "石油價格劇烈上漲"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
       "id": "108Q1-macro-11",
       "sessionId": "108Q1",
       "year": 108,
@@ -1060,62 +770,6 @@ window.CHAPTER_DATA["macro-09"] = {
         {
           "chapterId": "macro-09",
           "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-16",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 16,
-      "stem": "「需求拉升」與「成本推動」的通貨膨脹，對物價水準及產出的影響方向為？",
-      "options": [
-        "對物價的影響方向不同，對所得的影響方向相同",
-        "對物價的影響方向相同，對所得的影響方向不同",
-        "對物價與所得的影響方向均相同",
-        "對物價與所得的影響方向均不同"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-22",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 22,
-      "stem": "假設債券提供投資人13%的名目年報酬率，通貨膨脹率為 4%。那實質報酬為：",
-      "options": [
-        "15.00%",
-        "7.73%",
-        "7.00%",
-        "8.65%"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
         }
       ]
     },
@@ -1204,34 +858,6 @@ window.CHAPTER_DATA["macro-09"] = {
       ]
     },
     {
-      "id": "108Q1-macro-34",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 34,
-      "stem": "假設投資的風險均等。若名目利率在美國為10%，在荷蘭為26%，而預期通貨膨脹率各為5%和19%，你傾向投資哪裡？為什麼？",
-      "options": [
-        "投資荷蘭，因為名目利率較高",
-        "投資美國，因為實質利率高出 1.1%",
-        "投資荷蘭，因為實質利率高出 1.12%",
-        "投資美國，因為實質利率高出 0.1%"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
       "id": "108Q2-macro-10",
       "sessionId": "108Q2",
       "year": 108,
@@ -1260,34 +886,6 @@ window.CHAPTER_DATA["macro-09"] = {
       ]
     },
     {
-      "id": "108Q2-macro-33",
-      "sessionId": "108Q2",
-      "year": 108,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 33,
-      "stem": "當預期通貨膨脹率上升時，在其他條件不變之下，對債券的需求將_______，對債券的供給將 ________，而利率將________。",
-      "options": [
-        "增加；減少；下降",
-        "減少；增加；上升",
-        "增加；減少；上升",
-        "減少；增加；下降"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
       "id": "108Q3-macro-07",
       "sessionId": "108Q3",
       "year": 108,
@@ -1301,39 +899,6 @@ window.CHAPTER_DATA["macro-09"] = {
         "高報酬率",
         "強勢貨幣",
         "弱勢貨幣"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-09",
-        "macro-12"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-12",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "108Q3-macro-12",
-      "sessionId": "108Q3",
-      "year": 108,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 12,
-      "stem": "假設銀行存款一年的名目率為 10%，且一年後實際的通貨膨脹率為 20%，則精算存款一年的實質利率最接近？",
-      "options": [
-        "0",
-        "-10%",
-        "10%",
-        "-8.30%"
       ],
       "answer": [
         "D"
@@ -1405,67 +970,6 @@ window.CHAPTER_DATA["macro-09"] = {
       ]
     },
     {
-      "id": "108Q4-macro-01",
-      "sessionId": "108Q4",
-      "year": 108,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 1,
-      "stem": "失業津貼應計入？",
-      "options": [
-        "民間消費",
-        "固定資本形成",
-        "政府最終消費支出",
-        "移轉性支出"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-09",
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 1
-        },
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q4-macro-11",
-      "sessionId": "108Q4",
-      "year": 108,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 11,
-      "stem": "對於一般民眾有以低價商品與服務，來替代漲價商品與服務的可能性，根據此現象下列何者有誤？",
-      "options": [
-        "高估實際物價膨脹",
-        "低估實際物價膨脹",
-        "可以叫做替代偏差",
-        "此為經濟理性選擇"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
       "id": "108Q4-macro-20",
       "sessionId": "108Q4",
       "year": 108,
@@ -1494,34 +998,6 @@ window.CHAPTER_DATA["macro-09"] = {
       ]
     },
     {
-      "id": "108Q4-macro-22",
-      "sessionId": "108Q4",
-      "year": 108,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 22,
-      "stem": "下列哪項指標是衡量企業經營與投資活動的熱絡程度？",
-      "options": [
-        "生產者物價指數",
-        "經理人採購指數",
-        "消費者信心指數",
-        "波羅地海綜合指數"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
       "id": "108Q4-macro-25",
       "sessionId": "108Q4",
       "year": 108,
@@ -1546,34 +1022,6 @@ window.CHAPTER_DATA["macro-09"] = {
         {
           "chapterId": "macro-09",
           "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "108Q4-macro-27",
-      "sessionId": "108Q4",
-      "year": 108,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 27,
-      "stem": "關於經濟循環中的擴張階段，下列敘述何者正確？",
-      "options": [
-        "利潤減少",
-        "失業率上升",
-        "利率上升",
-        "物價下跌"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
         }
       ]
     },
@@ -1639,7 +1087,7 @@ window.CHAPTER_DATA["macro-09"] = {
       "year": 109,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-07",
+      "sourceId": "macro-09",
       "number": 2,
       "stem": "某國勞動市場的實質工資出現上漲現象，將會導致何種結果？",
       "options": [
@@ -1652,14 +1100,9 @@ window.CHAPTER_DATA["macro-09"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-07",
         "macro-09"
       ],
       "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        },
         {
           "chapterId": "macro-09",
           "sectionIndex": 2
@@ -1723,50 +1166,22 @@ window.CHAPTER_DATA["macro-09"] = {
       ]
     },
     {
-      "id": "109Q1-macro-13",
+      "id": "109Q1-macro-25",
       "sessionId": "109Q1",
       "year": 109,
       "session": 1,
       "subject": "macro",
       "sourceId": "macro-09",
-      "number": 13,
-      "stem": "有關消費者物價指數 CPI 可能高估體系通膨水準的說法，何者錯誤？",
+      "number": 25,
+      "stem": "一般而言，當消費者物價指數連跌兩季，商品價格與成本普遍下降，將意味著經濟體系發生何種狀況？",
       "options": [
-        "未考慮衡量商品品質變化的問題",
-        "忽略消費者以便宜商品消費的替代問題",
-        "忽略衡量勞務品質變化的問題",
-        "忽略政府調整負擔社會安全利益的問題"
+        "通貨膨脹",
+        "通貨緊縮",
+        "政府財政困難",
+        "民間消費增加"
       ],
       "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "109Q1-macro-14",
-      "sessionId": "109Q1",
-      "year": 109,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 14,
-      "stem": "某國債券的名目報酬率為 10%，研究機構公布的實際通膨率是 3%，預期通縮率是 1%，而該國的所得稅率為20%。試問投資人獲取的稅後實質報酬率為何？",
-      "options": [
-        "5%",
-        "7%",
-        "9%",
-        "8.8%"
-      ],
-      "answer": [
-        "C"
+        "B"
       ],
       "sourceIds": [
         "macro-09"
@@ -1797,17 +1212,12 @@ window.CHAPTER_DATA["macro-09"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-09",
-        "macro-05"
+        "macro-09"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-09",
           "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 3
         }
       ]
     },
@@ -1892,62 +1302,6 @@ window.CHAPTER_DATA["macro-09"] = {
         {
           "chapterId": "macro-09",
           "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "109Q3-macro-24",
-      "sessionId": "109Q3",
-      "year": 109,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 24,
-      "stem": "名目利率等於實質利率加上預期的通貨膨脹率，此稱為__________。",
-      "options": [
-        "費雪方程式",
-        "交易方程式",
-        "凱因斯方程式",
-        "馬歇爾方程式"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "109Q3-macro-25",
-      "sessionId": "109Q3",
-      "year": 109,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 25,
-      "stem": "停滯性通貨膨脹 (stagflation)，是總合供給曲線向移動造成的，會造成物價而產出水準。",
-      "options": [
-        "左邊；上漲；減少",
-        "左邊；上漲；增加",
-        "右邊；上漲；減少",
-        "右邊；下降；減少"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
         }
       ]
     },
@@ -2064,62 +1418,6 @@ window.CHAPTER_DATA["macro-09"] = {
       ]
     },
     {
-      "id": "110Q1-macro-08",
-      "sessionId": "110Q1",
-      "year": 110,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 8,
-      "stem": "假設銀行存款一年的名目率為 10%，且一年後實際的通貨膨脹率為 20%，則精算存款一年的實質利率最接近？",
-      "options": [
-        "0",
-        "-10%",
-        "10%",
-        "-8.3%"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "110Q1-macro-17",
-      "sessionId": "110Q1",
-      "year": 110,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 17,
-      "stem": "新冠肺炎引爆龐大失業潮，某國政府發行公債融通紓困支出，何者可能發生？",
-      "options": [
-        "公債價格上漲",
-        "貿易餘額出現逆差",
-        "自然失業率下降",
-        "實質工資上漲"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
       "id": "110Q1-macro-19",
       "sessionId": "110Q1",
       "year": 110,
@@ -2176,6 +1474,34 @@ window.CHAPTER_DATA["macro-09"] = {
       ]
     },
     {
+      "id": "110Q1-macro-24",
+      "sessionId": "110Q1",
+      "year": 110,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-09",
+      "number": 24,
+      "stem": "某國政府檢視國內 Phillips 曲線變動的原因，何者正確？",
+      "options": [
+        "IS-LM 兩條曲線同時右移，將會引起 Phillips 曲線右移",
+        "油價狂飆將會引起 Phillips 曲線左移",
+        "政府的權衡性政策無法移動長期 Phillips 曲線，僅能改變通膨率而已",
+        "通訊網路技術進步促使該國沿著既定的 Phillips 曲線向右下方移動"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-09"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-09",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
       "id": "110Q1-macro-34",
       "sessionId": "110Q1",
       "year": 110,
@@ -2194,16 +1520,11 @@ window.CHAPTER_DATA["macro-09"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-09",
-        "macro-02"
+        "macro-09"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-09",
-          "sectionIndex": 1
-        },
-        {
-          "chapterId": "macro-02",
           "sectionIndex": 1
         }
       ]
@@ -2377,103 +1698,19 @@ window.CHAPTER_DATA["macro-09"] = {
       ]
     },
     {
-      "id": "111Q2-macro-01",
-      "sessionId": "111Q2",
+      "id": "111Q1-macro-28",
+      "sessionId": "111Q1",
       "year": 111,
-      "session": 2,
+      "session": 1,
       "subject": "macro",
       "sourceId": "macro-09",
-      "number": 1,
-      "stem": "若是美國的預期通貨膨脹率明顯低於德國的預期通貨膨脹率，你認為將會發生什麼事？",
+      "number": 28,
+      "stem": "菲力普曲線 (Phillip Curve) 指出當勞動市場_________時，生產成本會_________而使得總合供給曲線向右移動。",
       "options": [
-        "€/＄的預期即期匯率會下降",
-        "€/＄的即期匯率會上升",
-        "美元對歐元匯率會貶值",
-        "美元對歐元匯率會升值"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "111Q2-macro-09",
-      "sessionId": "111Q2",
-      "year": 111,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 9,
-      "stem": "請問若在美國投資基金可以獲得 7.5%的報酬率，則預期在荷蘭可得多少報酬率？假設美國國內物價膨脹率為 4%，荷蘭國內為 8%",
-      "options": [
-        "11.63%",
-        "4.29%",
-        "11.00%",
-        "3.50%"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "111Q2-macro-18",
-      "sessionId": "111Q2",
-      "year": 111,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 18,
-      "stem": "下列何者是造成停滯性通貨膨脹的主要因素？",
-      "options": [
-        "政府擴大財政支出",
-        "出口衰退",
-        "能源與原物料進口價格上揚",
-        "央行採取寬鬆性貨幣政策"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "111Q2-macro-20",
-      "sessionId": "111Q2",
-      "year": 111,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 20,
-      "stem": "在景氣指標中，外銷訂單動向指數是屬於指標，失業率是屬於指標、非農業部門就業率是屬於指標。",
-      "options": [
-        "領先、落後、同時",
-        "領先、落後、落後",
-        "同時、落後、同時",
-        "領先、同時、同時"
+        "寬鬆；下降",
+        "寬鬆；上升",
+        "緊縮；上升",
+        "緊縮；下降"
       ],
       "answer": [
         "A"
@@ -2535,39 +1772,6 @@ window.CHAPTER_DATA["macro-09"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-09",
-        "macro-12"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-12",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "111Q3-macro-25",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 25,
-      "stem": "假設實質利率為 4% ，通貨膨脹率為 3%。如果貨幣供給上升 10%，而產出、實質利率、期待的通貨膨脹率不變，則物價水準上升多少？",
-      "options": [
-        "3%",
-        "4%",
-        "7%",
-        "10%"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
         "macro-09"
       ],
       "sourceRefs": [
@@ -2594,34 +1798,6 @@ window.CHAPTER_DATA["macro-09"] = {
       ],
       "answer": [
         "A"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "111Q3-macro-30",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 30,
-      "stem": "當政策改變，民眾的行為也隨之改變，因此過去歷史資料顯示總體經濟變數之間的關聯是無法長久存在的。這樣的理論稱為：",
-      "options": [
-        "飛利浦曲線",
-        "政策無關性假說",
-        "遲滯現象",
-        "盧卡斯批判（Lucas critique）"
-      ],
-      "answer": [
-        "D"
       ],
       "sourceIds": [
         "macro-09"
@@ -2662,34 +1838,6 @@ window.CHAPTER_DATA["macro-09"] = {
       ]
     },
     {
-      "id": "112Q1-macro-02",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 2,
-      "stem": "在其他條件不變的情形下，如果經濟體系是處於高利率及高失業率的情況，以 IS-LM 的架構分析，代表此時的________政策過於________。",
-      "options": [
-        "財政；寬鬆",
-        "財政；緊縮",
-        "貨幣；寬鬆",
-        "貨幣；緊縮"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
       "id": "112Q1-macro-14",
       "sessionId": "112Q1",
       "year": 112,
@@ -2703,67 +1851,6 @@ window.CHAPTER_DATA["macro-09"] = {
         "低、高",
         "高、低",
         "高、高"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "112Q1-macro-15",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 15,
-      "stem": "停滯性通貨膨脹，是總合________曲線向________移動造成的，會使物價________而產出水準 ________。",
-      "options": [
-        "供給；右邊；上漲；增加",
-        "供給；左邊；上漲；減少",
-        "需求；右邊；上漲；增加",
-        "需求；左邊；下降；減少"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-09",
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "112Q1-macro-31",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 31,
-      "stem": "利用泰勒法則，當均衡實質聯邦資金利率是 2%，產出缺口是-3%，目標通貨膨脹是 2%，本期實際通貨膨脹率是 6%，那麼目標聯邦資金率應該是 _________。",
-      "options": [
-        "4%",
-        "5.5%",
-        "6.5%",
-        "8.5%"
       ],
       "answer": [
         "D"
@@ -2803,34 +1890,6 @@ window.CHAPTER_DATA["macro-09"] = {
         {
           "chapterId": "macro-09",
           "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "112Q3-macro-17",
-      "sessionId": "112Q3",
-      "year": 112,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 17,
-      "stem": "假設沒有通貨膨脹，名目利率為0.03。表示現階段一單位的消費，同等於 ____單位的未來消費。",
-      "options": [
-        "0.97",
-        "1.03",
-        "0.03",
-        "-0.03"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
         }
       ]
     },
@@ -2879,6 +1938,34 @@ window.CHAPTER_DATA["macro-09"] = {
       ],
       "answer": [
         "A"
+      ],
+      "sourceIds": [
+        "macro-09"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-09",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "113Q1-macro-04",
+      "sessionId": "113Q1",
+      "year": 113,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-09",
+      "number": 4,
+      "stem": "一般而言，當消費者物價指數連跌兩季，商品價格與成本普遍下降，表示此經濟體發生何種狀況？",
+      "options": [
+        "通貨膨脹",
+        "通貨緊縮",
+        "政府財政困難",
+        "民間消費增加"
+      ],
+      "answer": [
+        "B"
       ],
       "sourceIds": [
         "macro-09"
@@ -2947,58 +2034,31 @@ window.CHAPTER_DATA["macro-09"] = {
       ]
     },
     {
-      "id": "113Q2-macro-27",
-      "sessionId": "113Q2",
-      "year": 113,
-      "session": 2,
+      "id": "114Q1-macro-12",
+      "sessionId": "114Q1",
+      "year": 114,
+      "session": 1,
       "subject": "macro",
       "sourceId": "macro-09",
-      "number": 27,
-      "stem": "當預期通貨膨脹率提高時，在其他條件不變之下，對債券的需求將_______，對債券的供給將 ________，因而利率將________。",
+      "number": 12,
+      "stem": "廠商決定是否聘雇員工的考量點是：",
       "options": [
-        "增加；減少；下降",
-        "減少；增加；提高",
-        "增加；增加；提高",
-        "減少；減少；下降"
+        "名目工資等於邊際勞動生產力 (marginal product of labor)",
+        "實質工資等於邊際勞動生產收入(marginal revenue product of labor)",
+        "名目工資等於邊際勞動生產收入(marginal revenue product of labor)",
+        "實質工資等於邊際資本生產力(marginal revenue product of capital)"
       ],
       "answer": [
-        "B"
+        "C"
       ],
       "sourceIds": [
         "macro-09"
       ],
+      "eventId": "taiwan-policy-2025",
       "sourceRefs": [
         {
           "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "113Q3-macro-16",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 16,
-      "stem": "如果通貨膨脹率過高，中央銀行可能會採取什麼措施來控制通貨膨脹？",
-      "options": [
-        "降低利率",
-        "增加政府支出",
-        "降低稅收",
-        "提高利率"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
+          "sectionIndex": 1
         }
       ]
     },
@@ -3027,118 +2087,6 @@ window.CHAPTER_DATA["macro-09"] = {
         {
           "chapterId": "macro-09",
           "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "114Q2-macro-06",
-      "sessionId": "114Q2",
-      "year": 114,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 6,
-      "stem": "對於一般民眾有以低價商品與服務，來替代漲價商品與服務的可能性，根據此現象下列何者有誤？",
-      "options": [
-        "高估實際物價膨脹",
-        "低估實際物價膨脹",
-        "可以叫做替代偏差",
-        "此為經濟理性選擇"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "114Q2-macro-13",
-      "sessionId": "114Q2",
-      "year": 114,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 13,
-      "stem": "下列何者是造成停滯性通貨膨脹的主要因素？",
-      "options": [
-        "政府擴大財政支出",
-        "出口衰退",
-        "能源與原物料進口價格上揚",
-        "央行採取寬鬆性貨幣政策"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "114Q3-macro-18",
-      "sessionId": "114Q3",
-      "year": 114,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 18,
-      "stem": "在其他條件不變之下，通貨膨脹被預期升高時，債券市場中對債券的需求將_______，債券的供給將________，而利率將________。",
-      "options": [
-        "減少；減少；上升",
-        "增加；減少；下降",
-        "減少；增加；上升",
-        "減少；增加；下降"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "114Q3-macro-22",
-      "sessionId": "114Q3",
-      "year": 114,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 22,
-      "stem": "以下敘述何者錯誤？",
-      "options": [
-        "其他條件不變下，本國通貨膨脹將使本國貨幣升值",
-        "盧卡斯 (Lucas) 的供給方程式指出失業率和自然失業率中間的差距受「不可預期通貨膨脹」的影響",
-        "能源危機造成的物價上漲是來自於總合供給面的波動",
-        "無法透過資產分散 (diversification) 而消失的風險稱為系統性風險"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
         }
       ]
     },
@@ -3217,17 +2165,12 @@ window.CHAPTER_DATA["macro-09"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-09",
-        "macro-12"
+        "macro-09"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-09",
           "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-12",
-          "sectionIndex": 1
         }
       ]
     },
@@ -3250,17 +2193,12 @@ window.CHAPTER_DATA["macro-09"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-09",
-        "macro-12"
+        "macro-09"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-09",
           "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-12",
-          "sectionIndex": 1
         }
       ]
     },
@@ -3283,51 +2221,12 @@ window.CHAPTER_DATA["macro-09"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-09",
-        "macro-01"
+        "macro-09"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-09",
           "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-01",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "115Q2-macro-24",
-      "sessionId": "115Q2",
-      "year": 115,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 24,
-      "stem": "哪一位美國聯準會主席在位時的經濟狀況被形容為金髮女郎的經濟？",
-      "options": [
-        "班·柏南奇(Ben Bernanke)",
-        "珍娜特·葉倫(Janet Yellen)",
-        "傑洛姆·鮑爾(Jerome Powell)",
-        "艾倫·葛林斯潘(Alan Greenspan)"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-04",
-        "macro-09"
-      ],
-      "eventId": "fed-2025",
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        },
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 3
         }
       ]
     },
@@ -3562,27 +2461,6 @@ window.CHAPTER_DATA["macro-09"] = {
             ],
             "takeaway": "預期與未預期的差別，在於長期Phillips曲線是否垂直；長期貨幣中立。",
             "trap": "把短期產出增加當成永久效果；長期只有物價變動。"
-          }
-        ]
-      },
-      "macro-09::2": {
-        "focus": "停滯性通膨是「物價上升＋產出下降＋失業上升」同時出現，通常來自供給面衝擊。解題時先分需求拉動與成本推動，再看供給衝擊如何使AD-AS與Phillips曲線移動。",
-        "strategies": [
-          "成本推動型通膨：能源、原物料、工資上漲使AS左移，物價上升、產出下降。",
-          "需求拉動型通膨：AD右移，短期物價與產出同向上升，失業下降。",
-          "停滯性通膨的菲利浦曲線會向右上方移動，政策面臨「抗通膨」與「救失業」的取捨。"
-        ],
-        "examples": [
-          {
-            "questionId": "114Q2-macro-13",
-            "steps": [
-              "停滯性通膨的主要特徵是供給面衝擊：能源與原物料進口價格上揚，使生產成本上升、AS左移。",
-              "AS左移造成物價上升、產出下降、失業上升，形成停滯性通膨。",
-              "政府擴大支出或央行寬鬆屬於需求面政策，可能使物價更高，不是主要原因。",
-              "答案C。"
-            ],
-            "takeaway": "停滯性通膨看供給面；能源與原物料價格是典型成本推動因素。",
-            "trap": "把財政擴張或貨幣寬鬆當成停滯性通膨的主因；那是需求拉動。"
           }
         ]
       }

@@ -634,6 +634,62 @@ window.CHAPTER_DATA["macro-07"] = {
       ]
     },
     {
+      "id": "107Q2-macro-27",
+      "sessionId": "107Q2",
+      "year": 107,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 27,
+      "stem": "造成停滯性通貨膨脹的原因可能是下列哪一項？",
+      "options": [
+        "央行提高貨幣供給",
+        "石油價格劇烈上漲",
+        "政府提高各項政府支出",
+        "廠商生產之技術進步"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "107Q3-macro-01",
+      "sessionId": "107Q3",
+      "year": 107,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 1,
+      "stem": "賽依(J. B. Say)所提出賽依法則(Say's Law)是？",
+      "options": [
+        "供給創造其自身的需求",
+        "需求創造其自身的供給",
+        "供給創造其自身的供給",
+        "需求創造其自身的需求"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
       "id": "107Q3-macro-03",
       "sessionId": "107Q3",
       "year": 107,
@@ -690,6 +746,34 @@ window.CHAPTER_DATA["macro-07"] = {
       ]
     },
     {
+      "id": "107Q3-macro-16",
+      "sessionId": "107Q3",
+      "year": 107,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 16,
+      "stem": "停滯性通貨膨脹(stagflation)發生在：",
+      "options": [
+        "總合供給曲線左移時",
+        "總合供給曲線右移時",
+        "總合需求曲線左移時",
+        "總合需求曲線右移時"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
       "id": "107Q3-macro-18",
       "sessionId": "107Q3",
       "year": 107,
@@ -718,6 +802,34 @@ window.CHAPTER_DATA["macro-07"] = {
       ]
     },
     {
+      "id": "107Q3-macro-19",
+      "sessionId": "107Q3",
+      "year": 107,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 19,
+      "stem": "如果總產出低於自然產出水準，政策激進派(activist)會建議政府：",
+      "options": [
+        "使總合需求曲線往右移動來消除高失業率",
+        "使總合需求曲線往左移動來消除高失業率",
+        "提高總合供給來消除通貨膨脹",
+        "什麼都不要做"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
       "id": "107Q4-macro-10",
       "sessionId": "107Q4",
       "year": 107,
@@ -736,17 +848,40 @@ window.CHAPTER_DATA["macro-07"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-07",
-        "macro-09"
+        "macro-07"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-07",
           "sectionIndex": 2
-        },
+        }
+      ]
+    },
+    {
+      "id": "107Q4-macro-15",
+      "sessionId": "107Q4",
+      "year": 107,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 15,
+      "stem": "體系存在皮古效果(Pigou Effect)將對經濟活動釀成影響，何者正確？",
+      "options": [
+        "體系利率下降，將吸引消費者增加當期消費",
+        "體系物價上升，將帶動消費者的實質財富增加",
+        "體系物價下跌，將誘使廠商減少投資",
+        "皮古效果出現，有助於擴大體系總需求的物價彈性"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
         {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
+          "chapterId": "macro-07",
+          "sectionIndex": 3
         }
       ]
     },
@@ -807,6 +942,62 @@ window.CHAPTER_DATA["macro-07"] = {
       ]
     },
     {
+      "id": "108Q1-macro-01",
+      "sessionId": "108Q1",
+      "year": 108,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 1,
+      "stem": "造成停滯性通貨膨脹的原因可能是下列哪一項？",
+      "options": [
+        "央行提高貨幣供給",
+        "政府提高各項政府支出",
+        "廠商生產之技術進步",
+        "石油價格劇烈上漲"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "108Q1-macro-14",
+      "sessionId": "108Q1",
+      "year": 108,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 14,
+      "stem": "所謂貨幣中立性(Neutrality)係指，貨幣供給變動時：",
+      "options": [
+        "對物價水準及實質產出均沒有影響",
+        "只引起物價水準變動，對實質產出則沒有影響",
+        "只引起實質產出變動，對物價水準則沒有影響",
+        "引起實質產出的變動，對利率則沒有影響"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
       "id": "108Q1-macro-15",
       "sessionId": "108Q1",
       "year": 108,
@@ -831,6 +1022,90 @@ window.CHAPTER_DATA["macro-07"] = {
         {
           "chapterId": "macro-07",
           "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "108Q1-macro-16",
+      "sessionId": "108Q1",
+      "year": 108,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 16,
+      "stem": "「需求拉升」與「成本推動」的通貨膨脹，對物價水準及產出的影響方向為？",
+      "options": [
+        "對物價的影響方向不同，對所得的影響方向相同",
+        "對物價的影響方向相同，對所得的影響方向不同",
+        "對物價與所得的影響方向均相同",
+        "對物價與所得的影響方向均不同"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "108Q1-macro-35",
+      "sessionId": "108Q1",
+      "year": 108,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 35,
+      "stem": "下述何者認為，政策決定者若假定經濟體系為一穩定關係，則政策評估會出錯？",
+      "options": [
+        "貨幣學派(Monetarist)",
+        "路卡斯評論(Lucas Critique)",
+        "公共選擇理論(Public Choice Theory)",
+        "新興凱因斯理論(New Keynesian Theory)"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "108Q2-macro-14",
+      "sessionId": "108Q2",
+      "year": 108,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 14,
+      "stem": "下述何者認為，政策決定者若假定經濟體系為一穩定關係，則政策評估會出錯？",
+      "options": [
+        "貨幣學派(Monetarist)",
+        "路卡斯評論(Lucas Critique)",
+        "公共選擇理論(Public Choice Theory)",
+        "新興凱因斯理論(New Keynesian Theory)"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 3
         }
       ]
     },
@@ -863,39 +1138,6 @@ window.CHAPTER_DATA["macro-07"] = {
       ]
     },
     {
-      "id": "109Q1-macro-02",
-      "sessionId": "109Q1",
-      "year": 109,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 2,
-      "stem": "某國勞動市場的實質工資出現上漲現象，將會導致何種結果？",
-      "options": [
-        "勞動需求曲線將會左移",
-        "勞動供給曲線將會右移",
-        "勞動雇用數量將會增加",
-        "廠商將沿著勞動需求曲線來減少雇用勞動數量"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-07",
-        "macro-09"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        },
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
       "id": "109Q1-macro-04",
       "sessionId": "109Q1",
       "year": 109,
@@ -924,6 +1166,34 @@ window.CHAPTER_DATA["macro-07"] = {
       ]
     },
     {
+      "id": "109Q1-macro-20",
+      "sessionId": "109Q1",
+      "year": 109,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 20,
+      "stem": "在貨幣中立性的假設下，央行增加名目貨幣供給，將會造成何種結果？",
+      "options": [
+        "僅會影響實質產出，但不影響物價",
+        "物價將與貨幣供給等比例增加",
+        "實質產出將與貨幣供給等比例增加",
+        "實質利率上漲將等於貨幣供給增加率"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
       "id": "109Q1-macro-27",
       "sessionId": "109Q1",
       "year": 109,
@@ -940,6 +1210,34 @@ window.CHAPTER_DATA["macro-07"] = {
       ],
       "answer": [
         "D"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "109Q2-macro-33",
+      "sessionId": "109Q2",
+      "year": 109,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 33,
+      "stem": "商品價格下跌將使本國商品的競爭力上升，使本國的出口增加、進口減少，亦即出口淨額增加，這種效果稱為：",
+      "options": [
+        "跨期替代效果",
+        "國際替代效果",
+        "實質財富效果",
+        "所得效果"
+      ],
+      "answer": [
+        "B"
       ],
       "sourceIds": [
         "macro-07"
@@ -976,6 +1274,34 @@ window.CHAPTER_DATA["macro-07"] = {
         {
           "chapterId": "macro-07",
           "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "109Q2-macro-35",
+      "sessionId": "109Q2",
+      "year": 109,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 35,
+      "stem": "物價水準變動對實質財富的影響之效果，稱為：",
+      "options": [
+        "凱因斯效果（Keynes Effect）",
+        "實質餘額效果（Real Balance Effect）",
+        "皮古效果（Pigou Effect）",
+        "流動性效果（Liquidity Effect）"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 3
         }
       ]
     },
@@ -1032,6 +1358,34 @@ window.CHAPTER_DATA["macro-07"] = {
         {
           "chapterId": "macro-07",
           "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "109Q3-macro-25",
+      "sessionId": "109Q3",
+      "year": 109,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 25,
+      "stem": "停滯性通貨膨脹 (stagflation)，是總合供給曲線向移動造成的，會造成物價而產出水準。",
+      "options": [
+        "左邊；上漲；減少",
+        "左邊；上漲；增加",
+        "右邊；上漲；減少",
+        "右邊；下降；減少"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
         }
       ]
     },
@@ -1110,17 +1464,12 @@ window.CHAPTER_DATA["macro-07"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-07",
-        "macro-05"
+        "macro-07"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-07",
           "sectionIndex": 3
-        },
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 2
         }
       ]
     },
@@ -1265,22 +1614,50 @@ window.CHAPTER_DATA["macro-07"] = {
       ]
     },
     {
-      "id": "111Q1-macro-01",
-      "sessionId": "111Q1",
-      "year": 111,
-      "session": 1,
+      "id": "110Q3-macro-09",
+      "sessionId": "110Q3",
+      "year": 110,
+      "session": 3,
       "subject": "macro",
       "sourceId": "macro-07",
-      "number": 1,
-      "stem": "其他條件不變下，若總合產出在 IS 線右上方，代表商品市場出現超額_______，因此產出會 _______。",
+      "number": 9,
+      "stem": "生產要素短期具有何特性？",
       "options": [
-        "供給；下降",
-        "供給；增加",
-        "需求；下降",
-        "需求；增加"
+        "僵固性",
+        "不可逆性",
+        "嚴謹性",
+        "彈性"
       ],
       "answer": [
         "A"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "110Q3-macro-14",
+      "sessionId": "110Q3",
+      "year": 110,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 14,
+      "stem": "2017 年諾貝爾得主塞勒(Richard H. Thaler)，針對個人決策心理分析進行相關研究，進而開創經濟學新領域？",
+      "options": [
+        "政治經濟學",
+        "行為經濟學",
+        "實驗經濟學",
+        "教育經濟學"
+      ],
+      "answer": [
+        "B"
       ],
       "sourceIds": [
         "macro-07"
@@ -1349,22 +1726,22 @@ window.CHAPTER_DATA["macro-07"] = {
       ]
     },
     {
-      "id": "111Q1-macro-28",
-      "sessionId": "111Q1",
+      "id": "111Q2-macro-14",
+      "sessionId": "111Q2",
       "year": 111,
-      "session": 1,
+      "session": 2,
       "subject": "macro",
       "sourceId": "macro-07",
-      "number": 28,
-      "stem": "菲力普曲線 (Phillip Curve) 指出當勞動市場_________時，生產成本會_________而使得總合供給曲線向右移動。",
+      "number": 14,
+      "stem": "2017 年諾貝爾得主賽勒(Richard H.Thaler)，針對個人決策心理分析進行相關研究，進而開創經濟學新領域？",
       "options": [
-        "寬鬆；下降",
-        "寬鬆；上升",
-        "緊縮；上升",
-        "緊縮；下降"
+        "政治經濟學",
+        "行為經濟學",
+        "實驗經濟學",
+        "教育經濟學"
       ],
       "answer": [
-        "A"
+        "B"
       ],
       "sourceIds": [
         "macro-07"
@@ -1401,6 +1778,62 @@ window.CHAPTER_DATA["macro-07"] = {
         {
           "chapterId": "macro-07",
           "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "111Q2-macro-18",
+      "sessionId": "111Q2",
+      "year": 111,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 18,
+      "stem": "下列何者是造成停滯性通貨膨脹的主要因素？",
+      "options": [
+        "政府擴大財政支出",
+        "出口衰退",
+        "能源與原物料進口價格上揚",
+        "央行採取寬鬆性貨幣政策"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "111Q3-macro-30",
+      "sessionId": "111Q3",
+      "year": 111,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 30,
+      "stem": "當政策改變，民眾的行為也隨之改變，因此過去歷史資料顯示總體經濟變數之間的關聯是無法長久存在的。這樣的理論稱為：",
+      "options": [
+        "飛利浦曲線",
+        "政策無關性假說",
+        "遲滯現象",
+        "盧卡斯批判（Lucas critique）"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 3
         }
       ]
     },
@@ -1466,7 +1899,7 @@ window.CHAPTER_DATA["macro-07"] = {
       "year": 112,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-09",
+      "sourceId": "macro-07",
       "number": 15,
       "stem": "停滯性通貨膨脹，是總合________曲線向________移動造成的，會使物價________而產出水準 ________。",
       "options": [
@@ -1479,14 +1912,9 @@ window.CHAPTER_DATA["macro-07"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-09",
         "macro-07"
       ],
       "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 2
-        },
         {
           "chapterId": "macro-07",
           "sectionIndex": 2
@@ -1518,34 +1946,6 @@ window.CHAPTER_DATA["macro-07"] = {
         {
           "chapterId": "macro-07",
           "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "112Q2-macro-10",
-      "sessionId": "112Q2",
-      "year": 112,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 10,
-      "stem": "若名目所得 10 兆，貨幣供給 2 兆，依據古典學派之貨幣數量學說，則流通速度(velocity)為 _____。",
-      "options": [
-        "2",
-        "5",
-        "10",
-        "40"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 3
         }
       ]
     },
@@ -1662,63 +2062,6 @@ window.CHAPTER_DATA["macro-07"] = {
       ]
     },
     {
-      "id": "112Q3-macro-11",
-      "sessionId": "112Q3",
-      "year": 112,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 11,
-      "stem": "所得重分配哲學中哪一個學派的主張認為政府的目標是使社會上每一個人效用的加總極大化？",
-      "options": [
-        "效用主義學派(Utilitarianism)",
-        "自由主義學派(Liberalism)",
-        "自由意志主義學派(Libertarianism)",
-        "理性預期學派(Rational Expectationism)"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "eventId": "taiwan-policy-2025",
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "113Q1-macro-08",
-      "sessionId": "113Q1",
-      "year": 113,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 8,
-      "stem": "「創造性的毀滅過程」是哪一位經濟學家的主張？",
-      "options": [
-        "熊彼德(J.A. Schumpeter)",
-        "基蘭德(F. Kydland)",
-        "盧卡斯(R. Lucas)",
-        "貝克(G. Becker)"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
       "id": "113Q2-macro-01",
       "sessionId": "113Q2",
       "year": 113,
@@ -1747,6 +2090,34 @@ window.CHAPTER_DATA["macro-07"] = {
       ]
     },
     {
+      "id": "113Q3-macro-08",
+      "sessionId": "113Q3",
+      "year": 113,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 8,
+      "stem": "根據凱因斯的總合供需模型，實質工資率和景氣波動有：",
+      "options": [
+        "正向關係",
+        "反向關係",
+        "兩者不相關",
+        "不一定"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
       "id": "113Q3-macro-11",
       "sessionId": "113Q3",
       "year": 113,
@@ -1763,34 +2134,6 @@ window.CHAPTER_DATA["macro-07"] = {
       ],
       "answer": [
         "C"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q3-macro-12",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 12,
-      "stem": "其他條件不變下，若總合產出在 IS 線右上方，代表商品市場出現超額_______，因此產出會 _______。",
-      "options": [
-        "供給；下降",
-        "供給；增加",
-        "需求；下降",
-        "需求；增加"
-      ],
-      "answer": [
-        "A"
       ],
       "sourceIds": [
         "macro-07"
@@ -1915,35 +2258,30 @@ window.CHAPTER_DATA["macro-07"] = {
       ]
     },
     {
-      "id": "114Q2-macro-25",
+      "id": "114Q2-macro-13",
       "sessionId": "114Q2",
       "year": 114,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-07",
-      "number": 25,
-      "stem": "有關供應鏈的描述下列何者有誤？",
+      "number": 13,
+      "stem": "下列何者是造成停滯性通貨膨脹的主要因素？",
       "options": [
-        "全球化講究供應鏈安全",
-        "全球化拉長供應鏈",
-        "疫情縮短供應鏈",
-        "短鏈革命注重供應鏈安全"
+        "政府擴大財政支出",
+        "出口衰退",
+        "能源與原物料進口價格上揚",
+        "央行採取寬鬆性貨幣政策"
       ],
       "answer": [
-        "A"
+        "C"
       ],
       "sourceIds": [
-        "macro-07",
-        "macro-08"
+        "macro-07"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-07",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 2
+          "sectionIndex": 1
         }
       ]
     },
@@ -1969,39 +2307,6 @@ window.CHAPTER_DATA["macro-07"] = {
         "macro-07"
       ],
       "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "114Q3-macro-08",
-      "sessionId": "114Q3",
-      "year": 114,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 8,
-      "stem": "在其他條件不變的情形下，中央銀行購買政府債券會導致：",
-      "options": [
-        "總需求增加",
-        "總需求減少",
-        "總供給增加",
-        "總供給減少"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-04",
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        },
         {
           "chapterId": "macro-07",
           "sectionIndex": 2
@@ -2055,17 +2360,12 @@ window.CHAPTER_DATA["macro-07"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-07",
-        "macro-10"
+        "macro-07"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-07",
           "sectionIndex": 3
-        },
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 4
         }
       ]
     },
@@ -2267,6 +2567,33 @@ window.CHAPTER_DATA["macro-07"] = {
             ],
             "takeaway": "古典學派批評財政政策的核心是排擠效果。",
             "trap": "把古典學派與凱因斯學派對財政政策的立場對調。"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "year": 114,
+    "label": "114 年",
+    "sections": {
+      "macro-07::2": {
+        "focus": "停滯性通膨是「物價上升＋產出下降＋失業上升」同時出現，通常來自供給面衝擊。解題時先分需求拉動與成本推動，再看供給衝擊如何使AD-AS與Phillips曲線移動。",
+        "strategies": [
+          "成本推動型通膨：能源、原物料、工資上漲使AS左移，物價上升、產出下降。",
+          "需求拉動型通膨：AD右移，短期物價與產出同向上升，失業下降。",
+          "停滯性通膨的菲利浦曲線會向右上方移動，政策面臨「抗通膨」與「救失業」的取捨。"
+        ],
+        "examples": [
+          {
+            "questionId": "114Q2-macro-13",
+            "steps": [
+              "停滯性通膨的主要特徵是供給面衝擊：能源與原物料進口價格上揚，使生產成本上升、AS左移。",
+              "AS左移造成物價上升、產出下降、失業上升，形成停滯性通膨。",
+              "政府擴大支出或央行寬鬆屬於需求面政策，可能使物價更高，不是主要原因。",
+              "答案C。"
+            ],
+            "takeaway": "停滯性通膨看供給面；能源與原物料價格是典型成本推動因素。",
+            "trap": "把財政擴張或貨幣寬鬆當成停滯性通膨的主因；那是需求拉動。"
           }
         ]
       }

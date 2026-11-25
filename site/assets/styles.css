@@ -11932,3 +11932,138 @@ html.is-routing body {
     justify-content: flex-start;
   }
 }
+
+/* ---------------------- macro exam distribution ---------------------- */
+
+.macro-exam-distribution {
+  margin: 24px 0 6px;
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.macro-exam-distribution .section-heading {
+  margin: 0 0 18px;
+}
+
+.macro-exam-distribution-total {
+  flex-shrink: 0;
+  align-self: flex-start;
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.macro-exam-distribution-list {
+  display: grid;
+  gap: 7px;
+}
+
+.macro-exam-distribution-row {
+  display: grid;
+  grid-template-columns: minmax(180px, 1.35fr) minmax(100px, 2fr) 58px 54px;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.macro-exam-distribution-row:hover {
+  border-color: var(--line);
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.macro-exam-distribution-name {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  min-width: 0;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.macro-exam-distribution-num {
+  flex: 0 0 auto;
+  color: var(--subject-color, var(--accent));
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.macro-exam-distribution-bar {
+  display: block;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--bg-deep);
+}
+
+.macro-exam-distribution-bar i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--subject-color, var(--accent)), var(--accent));
+}
+
+.macro-exam-distribution-count,
+.macro-exam-distribution-percent {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.macro-exam-distribution-percent {
+  color: var(--ink-soft);
+  font-weight: 700;
+}
+
+.macro-exam-distribution-note {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 700px) {
+  .macro-exam-distribution {
+    padding: 18px 16px;
+  }
+
+  .macro-exam-distribution-row {
+    grid-template-columns: minmax(0, 1fr) 56px 50px;
+    gap: 7px 10px;
+  }
+
+  .macro-exam-distribution-bar {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    height: 6px;
+  }
+
+  .macro-exam-distribution-count,
+  .macro-exam-distribution-percent {
+    grid-row: 1;
+  }
+
+  .macro-exam-distribution-count {
+    grid-column: 2;
+  }
+
+  .macro-exam-distribution-percent {
+    grid-column: 3;
+  }
+}

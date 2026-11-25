@@ -634,19 +634,47 @@ window.CHAPTER_DATA["macro-02"] = {
       ]
     },
     {
-      "id": "107Q2-macro-06",
-      "sessionId": "107Q2",
+      "id": "107Q3-macro-11",
+      "sessionId": "107Q3",
       "year": 107,
-      "session": 2,
+      "session": 3,
       "subject": "macro",
       "sourceId": "macro-02",
-      "number": 6,
-      "stem": "若央行採取釘住利率的貨幣政策，當政府支出________時，央行會增加貨幣供給以避免利率________。",
+      "number": 11,
+      "stem": "當平均儲蓄傾向為 0.4 時，平均消費傾向為：",
       "options": [
-        "減少；上升",
-        "減少；下降",
-        "增加；下降",
-        "增加；上升"
+        "0.5",
+        "0.6",
+        "0.8",
+        "0.9"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-02"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-02",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "107Q3-macro-12",
+      "sessionId": "107Q3",
+      "year": 107,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-02",
+      "number": 12,
+      "stem": "自發性儲蓄提高的結果，將造成國民所得的減少，此一現象謂之：",
+      "options": [
+        "儲蓄是一種美德",
+        "節儉的代價",
+        "投資的陷阱",
+        "節儉的矛盾"
       ],
       "answer": [
         "D"
@@ -657,35 +685,7 @@ window.CHAPTER_DATA["macro-02"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-02",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "107Q2-macro-30",
-      "sessionId": "107Q2",
-      "year": 107,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-02",
-      "number": 30,
-      "stem": "當貨幣供給量不變，政府支出增加，導致利率上升，但民間投資減少的現象，稱為：",
-      "options": [
-        "排擠效果",
-        "實質餘額效果",
-        "信用分配效果",
-        "流動性效果"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 2
+          "sectionIndex": 3
         }
       ]
     },
@@ -774,62 +774,6 @@ window.CHAPTER_DATA["macro-02"] = {
       ]
     },
     {
-      "id": "107Q4-macro-20",
-      "sessionId": "107Q4",
-      "year": 107,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-02",
-      "number": 20,
-      "stem": "有關排拉入效果(Pulling-In Effect)的敘述，何者正確？",
-      "options": [
-        "政府支出與民間支出彼此存在互補關係",
-        "政府支出增加將會帶動進口減少",
-        "政府支出增加將會替代民間消費支出",
-        "政府支出增加將會導致租稅減少"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "107Q4-macro-26",
-      "sessionId": "107Q4",
-      "year": 107,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-02",
-      "number": 26,
-      "stem": "某一開放體系 Y = C + I + G + X - IM，C = 100 + 0.9Y，G = 200，I = 100，X = 50， IM = 50 +0.1Y。當該體系達成均衡時，何者正確？",
-      "options": [
-        "均衡所得為 1,000",
-        "均衡所得為 2,000",
-        "均衡所得為 2,500",
-        "均衡所得為 4,000"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
       "id": "107Q4-macro-29",
       "sessionId": "107Q4",
       "year": 107,
@@ -848,16 +792,11 @@ window.CHAPTER_DATA["macro-02"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-02",
-        "macro-05"
+        "macro-02"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-02",
-          "sectionIndex": 3
-        },
-        {
-          "chapterId": "macro-05",
           "sectionIndex": 3
         }
       ]
@@ -919,34 +858,6 @@ window.CHAPTER_DATA["macro-02"] = {
       ]
     },
     {
-      "id": "108Q1-macro-26",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-02",
-      "number": 26,
-      "stem": "根據加速原理，趨緩的所得增加率將透過加速原理造成投資減少，而使：",
-      "options": [
-        "所得減少",
-        "投資再增加",
-        "利率上升",
-        "物價上漲"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
       "id": "108Q2-macro-17",
       "sessionId": "108Q2",
       "year": 108,
@@ -971,34 +882,6 @@ window.CHAPTER_DATA["macro-02"] = {
         {
           "chapterId": "macro-02",
           "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "108Q3-macro-02",
-      "sessionId": "108Q3",
-      "year": 108,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-02",
-      "number": 2,
-      "stem": "政府的消費支出不包含下列何者？",
-      "options": [
-        "政府對各種產品的購買",
-        "軍人的薪水",
-        "移轉性支付",
-        "公、教人員薪津"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 2
         }
       ]
     },
@@ -1031,35 +914,30 @@ window.CHAPTER_DATA["macro-02"] = {
       ]
     },
     {
-      "id": "108Q4-macro-01",
-      "sessionId": "108Q4",
+      "id": "108Q3-macro-11",
+      "sessionId": "108Q3",
       "year": 108,
-      "session": 4,
+      "session": 3,
       "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 1,
-      "stem": "失業津貼應計入？",
+      "sourceId": "macro-02",
+      "number": 11,
+      "stem": "下列哪一項會造成國民所得的減少？",
       "options": [
-        "民間消費",
-        "固定資本形成",
-        "政府最終消費支出",
-        "移轉性支出"
+        "出口增加",
+        "進口增加",
+        "投資增加",
+        "減稅"
       ],
       "answer": [
-        "D"
+        "B"
       ],
       "sourceIds": [
-        "macro-09",
         "macro-02"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-09",
-          "sectionIndex": 1
-        },
-        {
           "chapterId": "macro-02",
-          "sectionIndex": 2
+          "sectionIndex": 1
         }
       ]
     },
@@ -1148,34 +1026,6 @@ window.CHAPTER_DATA["macro-02"] = {
       ]
     },
     {
-      "id": "108Q4-macro-34",
-      "sessionId": "108Q4",
-      "year": 108,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-02",
-      "number": 34,
-      "stem": "當景氣出現了藍燈，下列何者是政府不應該採取之應對政策？",
-      "options": [
-        "增加政府支出",
-        "提高稅率",
-        "公開市場上買入債券",
-        "調降法定準備率"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
       "id": "108Q4-macro-35",
       "sessionId": "108Q4",
       "year": 108,
@@ -1204,39 +1054,6 @@ window.CHAPTER_DATA["macro-02"] = {
       ]
     },
     {
-      "id": "109Q1-macro-05",
-      "sessionId": "109Q1",
-      "year": 109,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 5,
-      "stem": "Keynesians 學派認為體系出現景氣循環波動的主要來源是：",
-      "options": [
-        "總需求衝擊",
-        "生產力衝擊",
-        "油價衝擊",
-        "消費者信心衝擊"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-08",
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
       "id": "109Q1-macro-12",
       "sessionId": "109Q1",
       "year": 109,
@@ -1253,6 +1070,34 @@ window.CHAPTER_DATA["macro-02"] = {
       ],
       "answer": [
         "B"
+      ],
+      "sourceIds": [
+        "macro-02"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-02",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "109Q1-macro-15",
+      "sessionId": "109Q1",
+      "year": 109,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-02",
+      "number": 15,
+      "stem": "「李嘉圖等值理論」(Ricardian equivalence theory)指出政府減稅釀成預算赤字，將會產生何種結果？",
+      "options": [
+        "釀成通貨膨脹",
+        "促使經常帳出現赤字",
+        "推動利率上漲",
+        "對消費並無影響"
+      ],
+      "answer": [
+        "D"
       ],
       "sourceIds": [
         "macro-02"
@@ -1321,34 +1166,6 @@ window.CHAPTER_DATA["macro-02"] = {
       ]
     },
     {
-      "id": "109Q2-macro-05",
-      "sessionId": "109Q2",
-      "year": 109,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-02",
-      "number": 5,
-      "stem": "若央行採取釘住利率的貨幣政策，當政府支出______時，央行會增加貨幣供給以避免利率 ______。",
-      "options": [
-        "減少；上升",
-        "減少；下降",
-        "增加；下降",
-        "增加；上升"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
       "id": "109Q2-macro-07",
       "sessionId": "109Q2",
       "year": 109,
@@ -1373,67 +1190,6 @@ window.CHAPTER_DATA["macro-02"] = {
         {
           "chapterId": "macro-02",
           "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "109Q2-macro-35",
-      "sessionId": "109Q2",
-      "year": 109,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-02",
-      "number": 35,
-      "stem": "物價水準變動對實質財富的影響之效果，稱為：",
-      "options": [
-        "凱因斯效果（Keynes Effect）",
-        "實質餘額效果（Real Balance Effect）",
-        "皮古效果（Pigou Effect）",
-        "流動性效果（Liquidity Effect）"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "109Q3-macro-26",
-      "sessionId": "109Q3",
-      "year": 109,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 26,
-      "stem": "在景氣衰退時期，企業投資獲利機會_________使得債券供給 ________，另外，債券需求因人們財富水準減少而 ______。",
-      "options": [
-        "減少；增加；減少",
-        "增加；減少；減少",
-        "減少；減少；增加",
-        "減少；減少；減少"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-13",
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        },
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 2
         }
       ]
     },
@@ -1550,67 +1306,6 @@ window.CHAPTER_DATA["macro-02"] = {
       ]
     },
     {
-      "id": "110Q1-macro-34",
-      "sessionId": "110Q1",
-      "year": 110,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-09",
-      "number": 34,
-      "stem": "半導體產業的勞動邊際產量函數為 \\(MPN=A(400-N)\\)，\\(A=2\\) 是生產力係數，\\(N\\) 是投入生產的工時。假設每單位晶元的價格是 $3、貨幣工資是 $18，該產業雇用的工時為何？",
-      "options": [
-        "57",
-        "107",
-        "197",
-        "397"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-09",
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 1
-        },
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "110Q2-macro-09",
-      "sessionId": "110Q2",
-      "year": 110,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-02",
-      "number": 9,
-      "stem": "如果產出調整至自然產出水準的速度愈________，且政策實行後到產生實質效果的時差愈 ________，則愈有利於主張積極政策者(Activists)之論點。",
-      "options": [
-        "慢；短",
-        "慢；長",
-        "快；短",
-        "快；長"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
       "id": "110Q2-macro-11",
       "sessionId": "110Q2",
       "year": 110,
@@ -1639,34 +1334,6 @@ window.CHAPTER_DATA["macro-02"] = {
       ]
     },
     {
-      "id": "110Q2-macro-24",
-      "sessionId": "110Q2",
-      "year": 110,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-02",
-      "number": 24,
-      "stem": "假設商品市場為:y＝c(y－t(y))＋i(r)＋g，貨幣市場為: ，假設，請計算政府支出乘數為何？",
-      "options": [
-        "2.275",
-        "1.275",
-        "1.575",
-        "2.575"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
       "id": "110Q2-macro-27",
       "sessionId": "110Q2",
       "year": 110,
@@ -1691,6 +1358,34 @@ window.CHAPTER_DATA["macro-02"] = {
         {
           "chapterId": "macro-02",
           "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "110Q2-macro-30",
+      "sessionId": "110Q2",
+      "year": 110,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-02",
+      "number": 30,
+      "stem": "當總支出超過總產出時，非計劃性存貨會，導致產出水準。",
+      "options": [
+        "減少；減少",
+        "減少；增加",
+        "增加；減少",
+        "增加；增加"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-02"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-02",
+          "sectionIndex": 1
         }
       ]
     },
@@ -1751,34 +1446,6 @@ window.CHAPTER_DATA["macro-02"] = {
       ]
     },
     {
-      "id": "110Q3-macro-09",
-      "sessionId": "110Q3",
-      "year": 110,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-02",
-      "number": 9,
-      "stem": "生產要素短期具有何特性？",
-      "options": [
-        "僵固性",
-        "不可逆性",
-        "嚴謹性",
-        "彈性"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
       "id": "111Q2-macro-15",
       "sessionId": "111Q2",
       "year": 111,
@@ -1803,34 +1470,6 @@ window.CHAPTER_DATA["macro-02"] = {
         {
           "chapterId": "macro-02",
           "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "111Q2-macro-21",
-      "sessionId": "111Q2",
-      "year": 111,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-02",
-      "number": 21,
-      "stem": "12 月聖誕節是一年中景氣較旺的月份，請按照籌備聖誕節的相關經濟活動由領先到落後排序。甲.餐飲、乙.訂單、丙.加班生產、丁.銷售、戊.配送鋪貨。",
-      "options": [
-        "甲乙丙丁戊",
-        "乙丙戊丁甲",
-        "乙戊丙丁甲",
-        "乙丙丁甲戊"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 3
         }
       ]
     },
@@ -1891,22 +1530,22 @@ window.CHAPTER_DATA["macro-02"] = {
       ]
     },
     {
-      "id": "111Q3-macro-16",
+      "id": "111Q3-macro-27",
       "sessionId": "111Q3",
       "year": 111,
       "session": 3,
       "subject": "macro",
       "sourceId": "macro-02",
-      "number": 16,
-      "stem": "在凱因斯模型中，如果央行訂定了實質利率的目標，以致IS 曲線往左移動，而央行希望不影響產出，則",
+      "number": 27,
+      "stem": "政府的預算赤字，主要等於下列何者？",
       "options": [
-        "稅率上升",
-        "貨幣供給下降",
-        "實質利率下降",
-        "稅率下降"
+        "預算編列 – 稅收",
+        "政府購買 + 移轉性支付 + 淨利息 – 稅收",
+        "預算編列 + 淨利息 – 稅收",
+        "政府購買 + 移轉性支付 – 稅收"
       ],
       "answer": [
-        "C"
+        "D"
       ],
       "sourceIds": [
         "macro-02"
@@ -1914,7 +1553,7 @@ window.CHAPTER_DATA["macro-02"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-02",
-          "sectionIndex": 1
+          "sectionIndex": 2
         }
       ]
     },
@@ -2031,67 +1670,6 @@ window.CHAPTER_DATA["macro-02"] = {
       ]
     },
     {
-      "id": "112Q2-macro-25",
-      "sessionId": "112Q2",
-      "year": 112,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-02",
-      "number": 25,
-      "stem": "有一年戰亂，全國人民躲進防空洞，無法從事任何生產，而人民的消費與政府支出都是消耗之前年度的存貨，該年度人民消費 500 單位、政府支出 300 單位，沒有任何投資與進出口，根據 Y=C+I+G+X-M 公式，該年度的國民所得為多少？",
-      "options": [
-        "0",
-        "300",
-        "500",
-        "800"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "112Q2-macro-28",
-      "sessionId": "112Q2",
-      "year": 112,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 28,
-      "stem": "下列何者現象反映了貧富差距擴大？I.吉尼係數上升、II.薪資佔全體要素所得比重上升、III.薪資成長率低於經濟成長率",
-      "options": [
-        "僅 I",
-        "I 與 II",
-        "I 與 III",
-        "I、II 與 III"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-08",
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 1
-        },
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
       "id": "113Q1-macro-02",
       "sessionId": "113Q1",
       "year": 113,
@@ -2120,47 +1698,19 @@ window.CHAPTER_DATA["macro-02"] = {
       ]
     },
     {
-      "id": "113Q2-macro-07",
-      "sessionId": "113Q2",
+      "id": "113Q1-macro-18",
+      "sessionId": "113Q1",
       "year": 113,
-      "session": 2,
+      "session": 1,
       "subject": "macro",
       "sourceId": "macro-02",
-      "number": 7,
-      "stem": "政府的消費支出不包含下列何者？",
+      "number": 18,
+      "stem": "2024 年年初美國國債，最接近哪一個數字？",
       "options": [
-        "政府對各種產品的購買",
-        "軍人的薪水",
-        "移轉性支付",
-        "公、教人員薪津"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "113Q3-macro-06",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-02",
-      "number": 6,
-      "stem": "公務員退休金應計入？",
-      "options": [
-        "民間消費",
-        "固定資本形成",
-        "政府最終消費支出",
-        "移轉性支出"
+        "28 兆美元",
+        "30 兆美元",
+        "32 兆美元",
+        "34 兆美元"
       ],
       "answer": [
         "D"
@@ -2168,34 +1718,7 @@ window.CHAPTER_DATA["macro-02"] = {
       "sourceIds": [
         "macro-02"
       ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "113Q3-macro-08",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-02",
-      "number": 8,
-      "stem": "根據凱因斯的總合供需模型，實質工資率和景氣波動有：",
-      "options": [
-        "正向關係",
-        "反向關係",
-        "兩者不相關",
-        "不一定"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-02"
-      ],
+      "eventId": "us-debt-gold",
       "sourceRefs": [
         {
           "chapterId": "macro-02",
@@ -2288,67 +1811,6 @@ window.CHAPTER_DATA["macro-02"] = {
       ]
     },
     {
-      "id": "113Q3-macro-26",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-02",
-      "number": 26,
-      "stem": "已知消費函數 C=100+0.75Y，投資函數Ｉ=200−25i，政府支出 G=150，稅收 T=50。請問該經濟的 IS 曲線方程式是什麼？",
-      "options": [
-        "Y=1650−100i",
-        "Y=1600−50i",
-        "Y=700−25i",
-        "Y=500−75i"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "113Q3-macro-27",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-06",
-      "number": 27,
-      "stem": "所謂的排擠效果是指：",
-      "options": [
-        "政府支出增加導致物價上升，造成民間消費減少",
-        "政府支出增加導致貨幣升值，造成出口減少",
-        "政府支出增加導致貨幣數量減少，導致民間投資減少",
-        "政府支出增加導致利率上升，造成民間投資減少"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-06",
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-06",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
       "id": "113Q3-macro-34",
       "sessionId": "113Q3",
       "year": 113,
@@ -2362,6 +1824,90 @@ window.CHAPTER_DATA["macro-02"] = {
         "本期消費一定增加",
         "未來消費一定減少",
         "未來消費一定增加"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-02"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-02",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "114Q1-macro-01",
+      "sessionId": "114Q1",
+      "year": 114,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-02",
+      "number": 1,
+      "stem": "假設實質利率對於儲蓄的替代效果小於所得效果，則實質利率的下降，對於債權人(lender)的影響為：消費______，儲蓄______。",
+      "options": [
+        "下降；下降",
+        "下降；上升",
+        "上升；上升",
+        "上升；下降"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-02"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-02",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "114Q1-macro-04",
+      "sessionId": "114Q1",
+      "year": 114,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-02",
+      "number": 4,
+      "stem": "級距性的所得稅 (progressive income tax)是一種經濟體系自動穩定的機制(automatic stabilizer)，會隨著政府的預算赤字或預算盈餘而做出自動的調節，其原因為：",
+      "options": [
+        "儘管處於負債狀況，民眾仍會需要繳交所得稅",
+        "當產出成長時，較高的所得稅率會自動被課徵，而向下調整花費的額度",
+        "當產出成長時，邊際花費額度會增加，而所得稅的徵收降低",
+        "選項(A)(B)(C)皆非"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-02"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-02",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "114Q1-macro-08",
+      "sessionId": "114Q1",
+      "year": 114,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-02",
+      "number": 8,
+      "stem": "當一個國家的經濟情況進入衰退時，下列何者為自動穩定機制(automatic stabilizer)的範例？",
+      "options": [
+        "更多的人符合領取失業救濟金的資格",
+        "與景氣循環相關的廠商，其股票價格降低",
+        "國會或立法機構啟動經濟刺激方案",
+        "央行採取利率調整的機制"
       ],
       "answer": [
         "A"
@@ -2401,34 +1947,6 @@ window.CHAPTER_DATA["macro-02"] = {
         {
           "chapterId": "macro-02",
           "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "114Q1-macro-16",
-      "sessionId": "114Q1",
-      "year": 114,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-02",
-      "number": 16,
-      "stem": "課稅所產生的分配扭曲，進而造成的傷害：",
-      "options": [
-        "隨著稅率增加而等比例增加",
-        "當稅率穩定時較低，當稅率變化較大時則較高",
-        "當稅率穩定時較高，稅率變化大時較低",
-        "此傷害造成的損失，等於稅率的平方根"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 2
         }
       ]
     },
@@ -2545,60 +2063,27 @@ window.CHAPTER_DATA["macro-02"] = {
       ]
     },
     {
-      "id": "114Q2-macro-20",
-      "sessionId": "114Q2",
-      "year": 114,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-10",
-      "number": 20,
-      "stem": "2025 年 4 月宣布的對等關稅中，哪一個國家對美國的貿易基本上是零關稅，但卻仍然被美國課高達 31%的對等關稅？",
-      "options": [
-        "印度",
-        "加拿大",
-        "英國",
-        "瑞士"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-10",
-        "macro-02"
-      ],
-      "eventId": "tariffs-2025",
-      "sourceRefs": [
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 5
-        },
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "114Q2-macro-35",
+      "id": "114Q2-macro-21",
       "sessionId": "114Q2",
       "year": 114,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-02",
-      "number": 35,
-      "stem": "國際貿易中的比較利益定律 (law of comparative advantage)是由哪位經濟學家提出？",
+      "number": 21,
+      "stem": "2025 年 3 月 29 日美國財政部的官網出現的國家債務跟下列哪一個數字最接近？",
       "options": [
-        "李嘉圖",
-        "亞當斯密",
-        "凱因斯",
-        "馬歇爾"
+        "30 兆",
+        "33 兆",
+        "36 兆",
+        "39 兆"
       ],
       "answer": [
-        "A"
+        "C"
       ],
       "sourceIds": [
         "macro-02"
       ],
+      "eventId": "us-debt-gold",
       "sourceRefs": [
         {
           "chapterId": "macro-02",
@@ -2631,34 +2116,6 @@ window.CHAPTER_DATA["macro-02"] = {
         {
           "chapterId": "macro-02",
           "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "115Q1-macro-04",
-      "sessionId": "115Q1",
-      "year": 115,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-02",
-      "number": 4,
-      "stem": "下列何者不算政府支出 G（就 GDP 支出面分類）？",
-      "options": [
-        "政府支付警察薪資",
-        "政府蓋捷運",
-        "政府採購疫苗",
-        "政府發放社福補助"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 2
         }
       ]
     },
@@ -2719,39 +2176,6 @@ window.CHAPTER_DATA["macro-02"] = {
       ]
     },
     {
-      "id": "115Q1-macro-10",
-      "sessionId": "115Q1",
-      "year": 115,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 10,
-      "stem": "根據 Jones 與 Tonetti（2020）的研究，下列何者最能描述「資料（data）」在 AI 經濟學中的重要特性？",
-      "options": [
-        "資料具有強烈的排他性",
-        "資料具有非競爭性（nonrivalry）",
-        "資料必須一次性消耗",
-        "資料與生產效率無關"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05",
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
       "id": "115Q2-macro-01",
       "sessionId": "115Q2",
       "year": 115,
@@ -2780,60 +2204,27 @@ window.CHAPTER_DATA["macro-02"] = {
       ]
     },
     {
-      "id": "115Q2-macro-05",
+      "id": "115Q2-macro-18",
       "sessionId": "115Q2",
       "year": 115,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-02",
-      "number": 5,
-      "stem": "12 月聖誕節是一年中景氣較旺的月份，請按照籌備聖誕節的相關經濟活動由領先到落後排序。甲.餐飲、乙.訂單、丙.加班生產、丁.銷售、戊.配送鋪貨",
+      "number": 18,
+      "stem": "2026 年的年中美國國債，最接近哪一個數字？",
       "options": [
-        "甲、乙、丙、丁、戊",
-        "乙、丙、戊、丁、甲",
-        "乙、戊、丙、丁、甲",
-        "乙、丙、丁、甲、戊"
+        "25 兆美元",
+        "30 兆美元",
+        "35 兆美元",
+        "40 兆美元"
       ],
       "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-02",
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "115Q2-macro-25",
-      "sessionId": "115Q2",
-      "year": 115,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-02",
-      "number": 25,
-      "stem": "下列有關 2024 年川普政府宣布對某國計算的對等關稅描述何者有誤？",
-      "options": [
-        "要促使調整到兩國的互相實質關稅稅率相同",
-        "分子是有關美國來自某國的貿易逆差",
-        "分母是有關美國來自某國的貿易總輸入",
-        "美國來自某國的進口金額與出口金額相若，稅率就會很小"
-      ],
-      "answer": [
-        "A"
+        "D"
       ],
       "sourceIds": [
         "macro-02"
       ],
-      "eventId": "tariffs-2025",
+      "eventId": "us-debt-gold",
       "sourceRefs": [
         {
           "chapterId": "macro-02",
@@ -3165,28 +2556,6 @@ window.CHAPTER_DATA["macro-02"] = {
             ],
             "takeaway": "簡單凱因斯的核心假設是「物價固定、產出由需求決定」。",
             "trap": "把古典學派的物價靈活調整套到簡單凱因斯模型。"
-          }
-        ]
-      },
-      "macro-02::2": {
-        "focus": "政府支出與財政政策題，先分「政府消費/投資」與「移轉支付」。GDP 的 G 只含政府對最終產品與服務的支出，不含移轉支付。",
-        "strategies": [
-          "政府支付警察薪資、蓋捷運、採購疫苗都是政府消費或投資，計入 G。",
-          "政府發放社福補助是移轉支付，不是政府購買最終產品，不計入 G。",
-          "反景氣循環財政政策：衰退時增加支出或減稅，過熱時減少支出或增稅。",
-          "自動穩定器（如失業救濟、累進稅）會隨景氣自動調節，無需立法。"
-        ],
-        "examples": [
-          {
-            "questionId": "115Q1-macro-04",
-            "steps": [
-              "政府支付警察薪資：政府購買勞務，計入 G。",
-              "政府蓋捷運：政府投資基礎建設，計入 G。",
-              "政府採購疫苗：政府購買商品，計入 G。",
-              "政府發放社福補助：是移轉支付，沒有對應的最終產品生產，不計入 G。答案D。"
-            ],
-            "takeaway": "G 只算政府購買最終產品與服務；移轉支付不是 G。",
-            "trap": "把社福補助當成政府支出而計入 GDP；它只是所得重分配。"
           }
         ]
       }

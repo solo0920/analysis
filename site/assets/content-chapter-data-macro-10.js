@@ -1027,6 +1027,34 @@ window.CHAPTER_DATA["macro-10"] = {
       ]
     },
     {
+      "id": "107Q3-macro-05",
+      "sessionId": "107Q3",
+      "year": 107,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-10",
+      "number": 5,
+      "stem": "如果美國的預期通貨膨脹率為 3%而日本為6%，則根據國際費雪效果，你預期美國與日本的實質利率關係將為何？",
+      "options": [
+        "日本的實質利率將會低於美國的實質利率 3%",
+        "日本的名目利率將會低於美國的名目利率 3%",
+        "日本的名目利率將會高於美國的實質利率 3%以上",
+        "兩國的實質利率會相等"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-10"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-10",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
       "id": "107Q3-macro-34",
       "sessionId": "107Q3",
       "year": 107,
@@ -1040,6 +1068,34 @@ window.CHAPTER_DATA["macro-10"] = {
         "貶值 3%",
         "升值 3.5%",
         "貶值 3.5%"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-10"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-10",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "107Q4-macro-05",
+      "sessionId": "107Q4",
+      "year": 107,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-10",
+      "number": 5,
+      "stem": "若國際費雪效果成立，國家之間不同的名目利率將反應在？",
+      "options": [
+        "實質利率",
+        "預期通貨膨脹率",
+        "預期經濟成長率",
+        "購買力平價"
       ],
       "answer": [
         "B"
@@ -1083,6 +1139,34 @@ window.CHAPTER_DATA["macro-10"] = {
       ]
     },
     {
+      "id": "107Q4-macro-26",
+      "sessionId": "107Q4",
+      "year": 107,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-10",
+      "number": 26,
+      "stem": "某一開放體系 Y = C + I + G + X - IM，C = 100 + 0.9Y，G = 200，I = 100，X = 50， IM = 50 +0.1Y。當該體系達成均衡時，何者正確？",
+      "options": [
+        "均衡所得為 1,000",
+        "均衡所得為 2,000",
+        "均衡所得為 2,500",
+        "均衡所得為 4,000"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-10"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-10",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
       "id": "107Q4-macro-28",
       "sessionId": "107Q4",
       "year": 107,
@@ -1107,72 +1191,6 @@ window.CHAPTER_DATA["macro-10"] = {
         {
           "chapterId": "macro-10",
           "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "107Q4-macro-33",
-      "sessionId": "107Q4",
-      "year": 107,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 33,
-      "stem": "有關央行從事公開市場操作，何者錯誤？",
-      "options": [
-        "央行從事動態公開市場操作，追求穩定貨幣供給",
-        "央行進行公開市場操作，將具有可逆性",
-        "央行在外匯市場買賣美元，追求穩定匯率水準",
-        "央行透過公開市場操作，影響銀行準備與準備貨幣餘額"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05",
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        },
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-14",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 14,
-      "stem": "所謂貨幣中立性(Neutrality)係指，貨幣供給變動時：",
-      "options": [
-        "對物價水準及實質產出均沒有影響",
-        "只引起物價水準變動，對實質產出則沒有影響",
-        "只引起實質產出變動，對物價水準則沒有影響",
-        "引起實質產出的變動，對利率則沒有影響"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-03",
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 1
         }
       ]
     },
@@ -1258,34 +1276,6 @@ window.CHAPTER_DATA["macro-10"] = {
         {
           "chapterId": "macro-10",
           "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "108Q2-macro-06",
-      "sessionId": "108Q2",
-      "year": 108,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-10",
-      "number": 6,
-      "stem": "政府採行緊縮性財政政策，利用增稅或減少政府支出來抑制總合需求，此時的政府預算盈餘將增加或預算赤字獲得改善，於是借貸市場需求力道減緩，實質利率因此下跌。實質利率下探反而會刺激消費與投資的增加，這將抵銷部份緊縮性財政政策的效果，此稱為？",
-      "options": [
-        "實質餘額效果",
-        "替代效果",
-        "擠出效果",
-        "擠入效果"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 5
         }
       ]
     },
@@ -1426,39 +1416,6 @@ window.CHAPTER_DATA["macro-10"] = {
         {
           "chapterId": "macro-10",
           "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q3-macro-28",
-      "sessionId": "108Q3",
-      "year": 108,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-06",
-      "number": 28,
-      "stem": "若經濟體處於「投資陷阱」，則下列敘述何者為正確：",
-      "options": [
-        "財政政策有效，貨幣政策無效",
-        "財政政策無效，貨幣政策有效",
-        "貨幣政策較財政政策有效",
-        "財政政策與貨幣政策均無效"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-06",
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-06",
-          "sectionIndex": 3
-        },
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 4
         }
       ]
     },
@@ -1604,34 +1561,6 @@ window.CHAPTER_DATA["macro-10"] = {
       ]
     },
     {
-      "id": "108Q4-macro-02",
-      "sessionId": "108Q4",
-      "year": 108,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-10",
-      "number": 2,
-      "stem": "在什麼情況下，通貨對活期存款的比率會上升？",
-      "options": [
-        "稅率愈高，地下經濟活動愈猖獗",
-        "耐久財和金融資產交易量增加",
-        "電子貨幣快速發展",
-        "選項(A)(B)(C)皆是"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
       "id": "108Q4-macro-06",
       "sessionId": "108Q4",
       "year": 108,
@@ -1660,35 +1589,30 @@ window.CHAPTER_DATA["macro-10"] = {
       ]
     },
     {
-      "id": "108Q4-macro-23",
+      "id": "108Q4-macro-09",
       "sessionId": "108Q4",
       "year": 108,
       "session": 4,
       "subject": "macro",
       "sourceId": "macro-10",
-      "number": 23,
-      "stem": "下列哪一項對台灣股市而言是利多消息？",
+      "number": 9,
+      "stem": "投資國外債券的報酬率之計算為下列何者之相乘積：",
       "options": [
-        "M1B 成長率大於 M2 成長率",
-        "央行宣布調高存款準備率",
-        "殖利率曲線為負斜率",
-        "美國聯準會宣布調升利率"
+        "匯率變動率與債券價格變動率",
+        "匯率變動幅度與價格變動幅度",
+        "匯率變動率與物價變動率",
+        "匯率變動幅度與物價變動幅度"
       ],
       "answer": [
         "A"
       ],
       "sourceIds": [
-        "macro-10",
-        "macro-12"
+        "macro-10"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-10",
-          "sectionIndex": 5
-        },
-        {
-          "chapterId": "macro-12",
-          "sectionIndex": 5
+          "sectionIndex": 1
         }
       ]
     },
@@ -1745,34 +1669,6 @@ window.CHAPTER_DATA["macro-10"] = {
         {
           "chapterId": "macro-10",
           "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "109Q1-macro-15",
-      "sessionId": "109Q1",
-      "year": 109,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-10",
-      "number": 15,
-      "stem": "「李嘉圖等值理論」(Ricardian equivalence theory)指出政府減稅釀成預算赤字，將會產生何種結果？",
-      "options": [
-        "釀成通貨膨脹",
-        "促使經常帳出現赤字",
-        "推動利率上漲",
-        "對消費並無影響"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 2
         }
       ]
     },
@@ -2170,34 +2066,6 @@ window.CHAPTER_DATA["macro-10"] = {
       ]
     },
     {
-      "id": "109Q2-macro-33",
-      "sessionId": "109Q2",
-      "year": 109,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-10",
-      "number": 33,
-      "stem": "商品價格下跌將使本國商品的競爭力上升，使本國的出口增加、進口減少，亦即出口淨額增加，這種效果稱為：",
-      "options": [
-        "跨期替代效果",
-        "國際替代效果",
-        "實質財富效果",
-        "所得效果"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
       "id": "109Q3-macro-03",
       "sessionId": "109Q3",
       "year": 109,
@@ -2282,6 +2150,34 @@ window.CHAPTER_DATA["macro-10"] = {
       ]
     },
     {
+      "id": "109Q3-macro-14",
+      "sessionId": "109Q3",
+      "year": 109,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-10",
+      "number": 14,
+      "stem": "如果歐元計價的資產，利率為 7%，美元計價的為 5%，且預期美元會升值 4%，則對投資者而言，以美元計價的：",
+      "options": [
+        "美元資產預期報酬率為 3%",
+        "歐元資產預期報酬率為 1%",
+        "美元資產預期報酬率為 1%",
+        "歐元資產預期報酬率為 3%"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-10"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-10",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
       "id": "109Q4-macro-03",
       "sessionId": "109Q4",
       "year": 109,
@@ -2306,34 +2202,6 @@ window.CHAPTER_DATA["macro-10"] = {
         {
           "chapterId": "macro-10",
           "sectionIndex": 5
-        }
-      ]
-    },
-    {
-      "id": "109Q4-macro-13",
-      "sessionId": "109Q4",
-      "year": 109,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-10",
-      "number": 13,
-      "stem": "政府採行緊縮性財政政策，利用增稅或減少政府支出來抑制總合需求，此時的政府預算盈餘將增加或預算赤字獲得改善，於是借貸市場需求力道減緩，實質利率因此下跌。實質利率下探反而會刺激消費與投資的增加，這將抵銷部份緊縮性財政政策的效果，此稱為:",
-      "options": [
-        "實質餘額效果",
-        "替代效果",
-        "擠出效果",
-        "擠入效果"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 1
         }
       ]
     },
@@ -2455,7 +2323,7 @@ window.CHAPTER_DATA["macro-10"] = {
       "year": 110,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-13",
+      "sourceId": "macro-10",
       "number": 9,
       "stem": "未來欲買外匯，使用遠期契約避險之缺點為：",
       "options": [
@@ -2466,39 +2334,6 @@ window.CHAPTER_DATA["macro-10"] = {
       ],
       "answer": [
         "C"
-      ],
-      "sourceIds": [
-        "macro-13",
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 5
-        },
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "110Q1-macro-10",
-      "sessionId": "110Q1",
-      "year": 110,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-10",
-      "number": 10,
-      "stem": "哪一位經濟學家提出交易方程式所說明「一手交錢，一手交貨」之結果，使得每筆交易必定導致與成交值相等之貨幣易手？",
-      "options": [
-        "費雪(Fisher)",
-        "弗利曼(Friedman)",
-        "盧卡斯(Lucas)",
-        "普列斯卡(Prescott)"
-      ],
-      "answer": [
-        "A"
       ],
       "sourceIds": [
         "macro-10"
@@ -2536,6 +2371,34 @@ window.CHAPTER_DATA["macro-10"] = {
         {
           "chapterId": "macro-10",
           "sectionIndex": 6
+        }
+      ]
+    },
+    {
+      "id": "110Q1-macro-17",
+      "sessionId": "110Q1",
+      "year": 110,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-10",
+      "number": 17,
+      "stem": "新冠肺炎引爆龐大失業潮，某國政府發行公債融通紓困支出，何者可能發生？",
+      "options": [
+        "公債價格上漲",
+        "貿易餘額出現逆差",
+        "自然失業率下降",
+        "實質工資上漲"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-10"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-10",
+          "sectionIndex": 5
         }
       ]
     },
@@ -2792,6 +2655,34 @@ window.CHAPTER_DATA["macro-10"] = {
       ]
     },
     {
+      "id": "110Q2-macro-19",
+      "sessionId": "110Q2",
+      "year": 110,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-10",
+      "number": 19,
+      "stem": "因新冠肺炎發生，美國聯邦準備理事會宣布即將實施量化寬鬆貨幣政策時，臺幣相對美元通常會：",
+      "options": [
+        "升值",
+        "貶值",
+        "不變",
+        "先貶值再升值"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-10"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-10",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
       "id": "110Q2-macro-21",
       "sessionId": "110Q2",
       "year": 110,
@@ -2821,6 +2712,34 @@ window.CHAPTER_DATA["macro-10"] = {
       ]
     },
     {
+      "id": "110Q2-macro-22",
+      "sessionId": "110Q2",
+      "year": 110,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-10",
+      "number": 22,
+      "stem": "當中央銀行減少貨幣供給，會使得這國家的通貨：",
+      "options": [
+        "在短期升值的比長期多",
+        "在長期升值的比短期多",
+        "在短期貶值的比長期多",
+        "在長期貶值的比短期多"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-10"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-10",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
       "id": "110Q3-macro-02",
       "sessionId": "110Q3",
       "year": 110,
@@ -2839,16 +2758,11 @@ window.CHAPTER_DATA["macro-10"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-10",
-        "macro-03"
+        "macro-10"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-10",
-          "sectionIndex": 1
-        },
-        {
-          "chapterId": "macro-03",
           "sectionIndex": 1
         }
       ]
@@ -2906,39 +2820,6 @@ window.CHAPTER_DATA["macro-10"] = {
         {
           "chapterId": "macro-10",
           "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "110Q3-macro-28",
-      "sessionId": "110Q3",
-      "year": 110,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-06",
-      "number": 28,
-      "stem": "若經濟體處於「投資陷阱」 ，則下列敘述何者為正確：",
-      "options": [
-        "財政政策有效，貨幣政策無效",
-        "財政政策無效，貨幣政策有效",
-        "貨幣政策較財政政策有效",
-        "財政政策與貨幣政策均無效"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-06",
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-06",
-          "sectionIndex": 3
-        },
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 4
         }
       ]
     },
@@ -3084,72 +2965,6 @@ window.CHAPTER_DATA["macro-10"] = {
       ]
     },
     {
-      "id": "111Q1-macro-16",
-      "sessionId": "111Q1",
-      "year": 111,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 16,
-      "stem": "下列哪一個對「錢」的敘述最接近經濟學家所定義的貨幣？",
-      "options": [
-        "郭台銘很有錢",
-        "小美打算在暑假期間打工賺很多錢",
-        "阿仁希望準備足夠的錢出國去旅行",
-        "今天賣的股票賺了不少錢"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-03",
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "111Q1-macro-20",
-      "sessionId": "111Q1",
-      "year": 111,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-12",
-      "number": 20,
-      "stem": "以下敘述何者正確？",
-      "options": [
-        "利率的期限貼水 (Term Premium) 可能為正值或負值",
-        "購買力平價 (PPP) 可以充分解釋兩國匯率",
-        "其他條件不變下，本國通貨膨脹將使本國貨幣升值",
-        "無法透過資產分散 (Diversification) 而消失的風險稱為系統性風險"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-12",
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-12",
-          "sectionIndex": 1
-        },
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
       "id": "111Q1-macro-33",
       "sessionId": "111Q1",
       "year": 111,
@@ -3191,6 +3006,34 @@ window.CHAPTER_DATA["macro-10"] = {
         "降低；減少",
         "降低；增加",
         "上升；減少"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-10"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-10",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "111Q2-macro-01",
+      "sessionId": "111Q2",
+      "year": 111,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-10",
+      "number": 1,
+      "stem": "若是美國的預期通貨膨脹率明顯低於德國的預期通貨膨脹率，你認為將會發生什麼事？",
+      "options": [
+        "€/＄的預期即期匯率會下降",
+        "€/＄的即期匯率會上升",
+        "美元對歐元匯率會貶值",
+        "美元對歐元匯率會升值"
       ],
       "answer": [
         "D"
@@ -3264,22 +3107,50 @@ window.CHAPTER_DATA["macro-10"] = {
       ]
     },
     {
-      "id": "111Q2-macro-19",
+      "id": "111Q2-macro-07",
       "sessionId": "111Q2",
       "year": 111,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-10",
-      "number": 19,
-      "stem": "在國內生產毛額支出面中，消費主要與有關、投資水準主要與有關，淨出口主要與有關。",
+      "number": 7,
+      "stem": "下列何者不是美國投資者投資國外債券的原因？",
       "options": [
-        "利率、物價、匯率",
-        "匯率、利率、物價",
-        "物價、利率、匯率",
-        "利率、匯率、物價"
+        "分散風險",
+        "較低的交易成本",
+        "報酬較國內債券高",
+        "國內外債券相關係數不為 1"
       ],
       "answer": [
-        "C"
+        "B"
+      ],
+      "sourceIds": [
+        "macro-10"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-10",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "111Q2-macro-09",
+      "sessionId": "111Q2",
+      "year": 111,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-10",
+      "number": 9,
+      "stem": "請問若在美國投資基金可以獲得 7.5%的報酬率，則預期在荷蘭可得多少報酬率？假設美國國內物價膨脹率為 4%，荷蘭國內為 8%",
+      "options": [
+        "11.63%",
+        "4.29%",
+        "11.00%",
+        "3.50%"
+      ],
+      "answer": [
+        "A"
       ],
       "sourceIds": [
         "macro-10"
@@ -3297,7 +3168,7 @@ window.CHAPTER_DATA["macro-10"] = {
       "year": 111,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-12",
+      "sourceId": "macro-10",
       "number": 22,
       "stem": "2022 年上半年美元指數上升，下列何者因素不是造成美元升值的原因？",
       "options": [
@@ -3310,14 +3181,9 @@ window.CHAPTER_DATA["macro-10"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-12",
         "macro-10"
       ],
       "sourceRefs": [
-        {
-          "chapterId": "macro-12",
-          "sectionIndex": 2
-        },
         {
           "chapterId": "macro-10",
           "sectionIndex": 2
@@ -3349,39 +3215,6 @@ window.CHAPTER_DATA["macro-10"] = {
         {
           "chapterId": "macro-10",
           "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "111Q3-macro-05",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-10",
-      "number": 5,
-      "stem": "根據傳統的利率管道，擴張性貨幣政策使得利率下跌，因此會提高________的支出，進而影響經濟體系的總支出。",
-      "options": [
-        "固定投資",
-        "政府支出",
-        "非耐久財消費",
-        "淨出口"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-10",
-        "macro-12"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-12",
-          "sectionIndex": 1
         }
       ]
     },
@@ -3498,34 +3331,6 @@ window.CHAPTER_DATA["macro-10"] = {
       ]
     },
     {
-      "id": "111Q3-macro-27",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-10",
-      "number": 27,
-      "stem": "政府的預算赤字，主要等於下列何者？",
-      "options": [
-        "預算編列 – 稅收",
-        "政府購買 + 移轉性支付 + 淨利息 – 稅收",
-        "預算編列 + 淨利息 – 稅收",
-        "政府購買 + 移轉性支付 – 稅收"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
       "id": "111Q3-macro-32",
       "sessionId": "111Q3",
       "year": 111,
@@ -3606,34 +3411,6 @@ window.CHAPTER_DATA["macro-10"] = {
         {
           "chapterId": "macro-10",
           "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "112Q1-macro-01",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-10",
-      "number": 1,
-      "stem": "企業醜聞（如美國的恩隆案）會減少投資及總支出，是因為這些醜聞________，所以銀行會減少廠商的可貸資金。",
-      "options": [
-        "造成銀行倒閉",
-        "導致本國貨幣貶值",
-        "迫使央行提高利率",
-        "使得逆選擇與道德風險問題更惡化"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 6
         }
       ]
     },
@@ -3834,35 +3611,30 @@ window.CHAPTER_DATA["macro-10"] = {
       ]
     },
     {
-      "id": "112Q2-macro-21",
+      "id": "112Q2-macro-35",
       "sessionId": "112Q2",
       "year": 112,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 21,
-      "stem": "下列何種存款的變化與景氣波動最有關連性？",
+      "sourceId": "macro-10",
+      "number": 35,
+      "stem": "甲國生產一台電腦需要 10 個人日，乙國則需要 8 個人日；甲國生產一瓶酒需要 3 個人日，乙國則需要 1 個人日，請問下列敘述何者為非？",
       "options": [
-        "定期存款",
-        "郵政儲金",
-        "外匯存款",
-        "活期存款"
+        "乙國生產電腦有絕對優勢",
+        "乙國生產電腦有相對優勢",
+        "乙國生產酒有絕對優勢",
+        "乙國生產酒有相對優勢"
       ],
       "answer": [
-        "D"
+        "B"
       ],
       "sourceIds": [
-        "macro-04",
         "macro-10"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-04",
-          "sectionIndex": 2
-        },
-        {
           "chapterId": "macro-10",
-          "sectionIndex": 4
+          "sectionIndex": 1
         }
       ]
     },
@@ -3979,39 +3751,6 @@ window.CHAPTER_DATA["macro-10"] = {
       ]
     },
     {
-      "id": "112Q3-macro-15",
-      "sessionId": "112Q3",
-      "year": 112,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-10",
-      "number": 15,
-      "stem": "當資本額度增加，但資本的邊際產出不變，則產出與資本的關係圖中，其圖形會是：",
-      "options": [
-        "正斜率的直線",
-        "水平的直線",
-        "垂直的直線",
-        "正斜率，但斜率隨著資本額度增加而遞減"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-10",
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 5
-        },
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
       "id": "113Q1-macro-13",
       "sessionId": "113Q1",
       "year": 113,
@@ -4030,52 +3769,13 @@ window.CHAPTER_DATA["macro-10"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-10",
-        "macro-05"
+        "macro-10"
       ],
       "eventId": "euro-crisis-2025",
       "sourceRefs": [
         {
           "chapterId": "macro-10",
           "sectionIndex": 4
-        },
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "113Q1-macro-16",
-      "sessionId": "113Q1",
-      "year": 113,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 16,
-      "stem": "美國聯邦公開市場委員會由幾位成員組成？他們透過投票左右利率決議。",
-      "options": [
-        "10 位",
-        "11 位",
-        "12 位",
-        "13 位"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-04",
-        "macro-10"
-      ],
-      "eventId": "fed-2025",
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        },
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 2
         }
       ]
     },
@@ -4249,6 +3949,34 @@ window.CHAPTER_DATA["macro-10"] = {
       ]
     },
     {
+      "id": "113Q2-macro-18",
+      "sessionId": "113Q2",
+      "year": 113,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-10",
+      "number": 18,
+      "stem": "中央銀行賣出本國通貨以買進國外資產，使得：",
+      "options": [
+        "國際準備減少",
+        "本國通貨貶值",
+        "貨幣供給減少",
+        "本國利率上升"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-10"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-10",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
       "id": "113Q2-macro-21",
       "sessionId": "113Q2",
       "year": 113,
@@ -4277,39 +4005,6 @@ window.CHAPTER_DATA["macro-10"] = {
       ]
     },
     {
-      "id": "113Q2-macro-32",
-      "sessionId": "113Q2",
-      "year": 113,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-10",
-      "number": 32,
-      "stem": "若銀行面臨放款壞帳 10 億元，在壞帳打銷後：",
-      "options": [
-        "放款額增加 10 億元",
-        "存款額減少 10 億元",
-        "準備金減少 10 億元",
-        "資本額減少 10 億元"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-10",
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 3
-        },
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
       "id": "113Q3-macro-01",
       "sessionId": "113Q3",
       "year": 113,
@@ -4334,62 +4029,6 @@ window.CHAPTER_DATA["macro-10"] = {
         {
           "chapterId": "macro-10",
           "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "113Q3-macro-05",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-10",
-      "number": 5,
-      "stem": "在什麼情況下，通貨對活期存款的比率會上升？",
-      "options": [
-        "稅率愈高，地下經濟活動愈猖獗",
-        "耐久財和金融資產交易量增加",
-        "電子貨幣快速發展",
-        "選項(A)(B)(C)皆正確"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q3-macro-17",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-10",
-      "number": 17,
-      "stem": "隱含波動率主要是透過何種價格計算而得？",
-      "options": [
-        "選擇權價格",
-        "股票價格",
-        "匯率",
-        "債券價格"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 2
         }
       ]
     },
@@ -4440,17 +4079,12 @@ window.CHAPTER_DATA["macro-10"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-10",
-        "macro-05"
+        "macro-10"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-10",
           "sectionIndex": 5
-        },
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
         }
       ]
     },
@@ -4507,34 +4141,6 @@ window.CHAPTER_DATA["macro-10"] = {
         {
           "chapterId": "macro-10",
           "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "114Q1-macro-04",
-      "sessionId": "114Q1",
-      "year": 114,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-10",
-      "number": 4,
-      "stem": "級距性的所得稅 (progressive income tax)是一種經濟體系自動穩定的機制(automatic stabilizer)，會隨著政府的預算赤字或預算盈餘而做出自動的調節，其原因為：",
-      "options": [
-        "儘管處於負債狀況，民眾仍會需要繳交所得稅",
-        "當產出成長時，較高的所得稅率會自動被課徵，而向下調整花費的額度",
-        "當產出成長時，邊際花費額度會增加，而所得稅的徵收降低",
-        "選項(A)(B)(C)皆非"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 5
         }
       ]
     },
@@ -4877,6 +4483,35 @@ window.CHAPTER_DATA["macro-10"] = {
       ]
     },
     {
+      "id": "114Q2-macro-19",
+      "sessionId": "114Q2",
+      "year": 114,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-10",
+      "number": 19,
+      "stem": "批評對等關稅實施後引起金融市場震盪，把美國搞成第三世界國家的是哪一位諾貝爾經濟學獎的得主？",
+      "options": [
+        "克魯曼",
+        "格蘭哲",
+        "托賓",
+        "凱因斯"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-10"
+      ],
+      "eventId": "tariffs-2025",
+      "sourceRefs": [
+        {
+          "chapterId": "macro-10",
+          "sectionIndex": 6
+        }
+      ]
+    },
+    {
       "id": "114Q2-macro-20",
       "sessionId": "114Q2",
       "year": 114,
@@ -4895,18 +4530,41 @@ window.CHAPTER_DATA["macro-10"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-10",
-        "macro-02"
+        "macro-10"
       ],
       "eventId": "tariffs-2025",
       "sourceRefs": [
         {
           "chapterId": "macro-10",
           "sectionIndex": 5
-        },
+        }
+      ]
+    },
+    {
+      "id": "114Q2-macro-22",
+      "sessionId": "114Q2",
+      "year": 114,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-10",
+      "number": 22,
+      "stem": "海湖莊園協議是源自美國白宮經濟顧問委員會主席米蘭的哪一個報告？",
+      "options": [
+        "《重組全球貿易體系的使用者指南》",
+        "《重組全球貨幣體系的使用者指南》",
+        "《重組全球戰略體系的使用者指南》",
+        "《重組全球民主體系的使用者指南》"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-10"
+      ],
+      "sourceRefs": [
         {
-          "chapterId": "macro-02",
-          "sectionIndex": 1
+          "chapterId": "macro-10",
+          "sectionIndex": 5
         }
       ]
     },
@@ -4968,12 +4626,40 @@ window.CHAPTER_DATA["macro-10"] = {
       ]
     },
     {
+      "id": "114Q2-macro-25",
+      "sessionId": "114Q2",
+      "year": 114,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-10",
+      "number": 25,
+      "stem": "有關供應鏈的描述下列何者有誤？",
+      "options": [
+        "全球化講究供應鏈安全",
+        "全球化拉長供應鏈",
+        "疫情縮短供應鏈",
+        "短鏈革命注重供應鏈安全"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-10"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-10",
+          "sectionIndex": 6
+        }
+      ]
+    },
+    {
       "id": "114Q2-macro-26",
       "sessionId": "114Q2",
       "year": 114,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-11",
+      "sourceId": "macro-10",
       "number": 26,
       "stem": "由中國人民銀行開發，為其成員銀行或市場主體進行跨境人民幣支付與貿易提供清算和結算的支付系統，稱為什麼？",
       "options": [
@@ -4986,14 +4672,9 @@ window.CHAPTER_DATA["macro-10"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-11",
         "macro-10"
       ],
       "sourceRefs": [
-        {
-          "chapterId": "macro-11",
-          "sectionIndex": 1
-        },
         {
           "chapterId": "macro-10",
           "sectionIndex": 2
@@ -5058,22 +4739,22 @@ window.CHAPTER_DATA["macro-10"] = {
       ]
     },
     {
-      "id": "114Q2-macro-32",
+      "id": "114Q2-macro-35",
       "sessionId": "114Q2",
       "year": 114,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-10",
-      "number": 32,
-      "stem": "國際貨幣基金會(IMF)2022 年 5 月 11 日，宣佈調整特別提款權(SDRs) 權重，是將人民幣權重由 10.92%上調至 12.28%，也成為權重排名的第幾？",
+      "number": 35,
+      "stem": "國際貿易中的比較利益定律 (law of comparative advantage)是由哪位經濟學家提出？",
       "options": [
-        "第一",
-        "第二",
-        "第三",
-        "第四"
+        "李嘉圖",
+        "亞當斯密",
+        "凱因斯",
+        "馬歇爾"
       ],
       "answer": [
-        "C"
+        "A"
       ],
       "sourceIds": [
         "macro-10"
@@ -5081,35 +4762,7 @@ window.CHAPTER_DATA["macro-10"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-10",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "114Q3-macro-03",
-      "sessionId": "114Q3",
-      "year": 114,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-10",
-      "number": 3,
-      "stem": "企業醜聞（如美國的恩隆案）會減少投資及總支出，是因為這些醜聞________，所以銀行會減少廠商的可貸資金。",
-      "options": [
-        "造成銀行倒閉",
-        "導致本國貨幣貶值",
-        "迫使央行提高利率",
-        "使得逆選擇與道德風險問題更惡化"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 6
+          "sectionIndex": 5
         }
       ]
     },
@@ -5130,6 +4783,34 @@ window.CHAPTER_DATA["macro-10"] = {
       ],
       "answer": [
         "C"
+      ],
+      "sourceIds": [
+        "macro-10"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-10",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "114Q3-macro-22",
+      "sessionId": "114Q3",
+      "year": 114,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-10",
+      "number": 22,
+      "stem": "以下敘述何者錯誤？",
+      "options": [
+        "其他條件不變下，本國通貨膨脹將使本國貨幣升值",
+        "盧卡斯 (Lucas) 的供給方程式指出失業率和自然失業率中間的差距受「不可預期通貨膨脹」的影響",
+        "能源危機造成的物價上漲是來自於總合供給面的波動",
+        "無法透過資產分散 (diversification) 而消失的風險稱為系統性風險"
+      ],
+      "answer": [
+        "A"
       ],
       "sourceIds": [
         "macro-10"
@@ -5226,39 +4907,6 @@ window.CHAPTER_DATA["macro-10"] = {
       ]
     },
     {
-      "id": "115Q1-macro-02",
-      "sessionId": "115Q1",
-      "year": 115,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 2,
-      "stem": "古典學派對財政政策的主要批評為：",
-      "options": [
-        "政府支出過低",
-        "排擠效果",
-        "通貨膨脹過低",
-        "匯率波動"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-07",
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 3
-        },
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
       "id": "115Q1-macro-14",
       "sessionId": "115Q1",
       "year": 115,
@@ -5277,17 +4925,40 @@ window.CHAPTER_DATA["macro-10"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-10",
-        "macro-12"
+        "macro-10"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-10",
           "sectionIndex": 1
-        },
+        }
+      ]
+    },
+    {
+      "id": "115Q1-macro-22",
+      "sessionId": "115Q1",
+      "year": 115,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-10",
+      "number": 22,
+      "stem": "若國際費雪效果成立，國家之間不同的名目利率將反應在：",
+      "options": [
+        "實質利率",
+        "預期通貨膨脹率",
+        "預期經濟成長率",
+        "購買力平價"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-10"
+      ],
+      "sourceRefs": [
         {
-          "chapterId": "macro-12",
-          "sectionIndex": 1
+          "chapterId": "macro-10",
+          "sectionIndex": 2
         }
       ]
     },
@@ -5517,64 +5188,31 @@ window.CHAPTER_DATA["macro-10"] = {
       ]
     },
     {
-      "id": "115Q2-macro-21",
+      "id": "115Q2-macro-25",
       "sessionId": "115Q2",
       "year": 115,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-10",
-      "number": 21,
-      "stem": "在國內生產毛額的計算中，臺灣下列哪一項的占比最大？",
+      "number": 25,
+      "stem": "下列有關 2024 年川普政府宣布對某國計算的對等關稅描述何者有誤？",
       "options": [
-        "民間消費",
-        "政府支出",
-        "投資",
-        "淨出口"
+        "要促使調整到兩國的互相實質關稅稅率相同",
+        "分子是有關美國來自某國的貿易逆差",
+        "分母是有關美國來自某國的貿易總輸入",
+        "美國來自某國的進口金額與出口金額相若，稅率就會很小"
       ],
       "answer": [
         "A"
       ],
       "sourceIds": [
-        "macro-10",
-        "macro-01"
+        "macro-10"
       ],
+      "eventId": "tariffs-2025",
       "sourceRefs": [
         {
           "chapterId": "macro-10",
           "sectionIndex": 5
-        },
-        {
-          "chapterId": "macro-01",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "115Q2-macro-23",
-      "sessionId": "115Q2",
-      "year": 115,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-10",
-      "number": 23,
-      "stem": "當今美國聯準會主席是哪一位？",
-      "options": [
-        "班·柏南奇(Ben Bernanke)",
-        "珍娜特·葉倫(Janet Yellen)",
-        "傑洛姆·鮑爾(Jerome Powell)",
-        "凱文·華許(Kevin Warsh)"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-10"
-      ],
-      "eventId": "fed-2025",
-      "sourceRefs": [
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 2
         }
       ]
     }

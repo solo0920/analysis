@@ -662,19 +662,47 @@ window.CHAPTER_DATA["macro-11"] = {
       ]
     },
     {
-      "id": "107Q4-macro-32",
-      "sessionId": "107Q4",
+      "id": "107Q3-macro-02",
+      "sessionId": "107Q3",
       "year": 107,
-      "session": 4,
+      "session": 3,
       "subject": "macro",
       "sourceId": "macro-11",
-      "number": 32,
-      "stem": "央行調高法定準備率，將對金融體系造成何種衝擊？",
+      "number": 2,
+      "stem": "「財團法人金融消費評議中心」是依什麼法律規定設立之爭議處理機構？",
       "options": [
-        "央行發行的準備貨幣減少，將會釀成金融體系緊縮",
-        "銀行將增加持有超額準備，進而擴張貨幣供給",
-        "貨幣乘數下降，進而釀成金融體系緊縮",
-        "貨幣乘數上升，進而擴大貨幣供給"
+        "公司法",
+        "金融消費者保護法",
+        "證券交易法",
+        "證券投資人及期貨交易人保護法"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-11"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-11",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "107Q3-macro-27",
+      "sessionId": "107Q3",
+      "year": 107,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-11",
+      "number": 27,
+      "stem": "風險分散 (diversification) 的概念和以下哪一個說法最接近？",
+      "options": [
+        "天下沒有白吃的午餐",
+        "早起的鳥兒有蟲吃",
+        "不要把所有雞蛋放在同一個籃子裡",
+        "要怎麼收穫，就怎麼栽"
       ],
       "answer": [
         "C"
@@ -686,39 +714,6 @@ window.CHAPTER_DATA["macro-11"] = {
         {
           "chapterId": "macro-11",
           "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-31",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 31,
-      "stem": "RTC 法案是指下列哪個法案？",
-      "options": [
-        "金融控股公司法",
-        "金融重建基金設置及管理條例",
-        "外匯管理法",
-        "票券金融管理法"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13",
-        "macro-11"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-11",
-          "sectionIndex": 3
         }
       ]
     },
@@ -744,39 +739,6 @@ window.CHAPTER_DATA["macro-11"] = {
         "macro-11"
       ],
       "sourceRefs": [
-        {
-          "chapterId": "macro-11",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q2-macro-28",
-      "sessionId": "108Q2",
-      "year": 108,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 28,
-      "stem": "台灣的大公司到美國發行的股權憑證稱為？",
-      "options": [
-        "台灣存託憑證 (TDR)",
-        "美國存託憑證 (ADR)",
-        "全球存託憑證 (GDR)",
-        "國際存託憑證 (IDR)"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13",
-        "macro-11"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        },
         {
           "chapterId": "macro-11",
           "sectionIndex": 2
@@ -840,6 +802,34 @@ window.CHAPTER_DATA["macro-11"] = {
       ]
     },
     {
+      "id": "109Q3-macro-18",
+      "sessionId": "109Q3",
+      "year": 109,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-11",
+      "number": 18,
+      "stem": "貸者（Borrower）較借錢給人者（Lender）對於投資計畫的報酬和風險有較多的資訊，兩方在資訊上的差異稱為__________，而且容易造成_________問題。",
+      "options": [
+        "逆選擇；風險分享",
+        "資訊不對稱；逆選擇",
+        "逆選擇；道德危險",
+        "資訊不對稱；風險分享"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-11"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-11",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
       "id": "109Q3-macro-19",
       "sessionId": "109Q3",
       "year": 109,
@@ -868,32 +858,83 @@ window.CHAPTER_DATA["macro-11"] = {
       ]
     },
     {
-      "id": "109Q3-macro-21",
-      "sessionId": "109Q3",
+      "id": "109Q4-macro-02",
+      "sessionId": "109Q4",
       "year": 109,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-11",
+      "number": 2,
+      "stem": "下述哪一項不是屬於金融創新下的產物？",
+      "options": [
+        "住宅抵押貸款擔保債券",
+        "變動利率之放款",
+        "抵押擔保之放款",
+        "選項(A)(B)(C)皆是"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-11"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-11",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "109Q4-macro-32",
+      "sessionId": "109Q4",
+      "year": 109,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-11",
+      "number": 32,
+      "stem": "降低利率是個利多消息，但是有時候會發生央行宣布降息時股市不漲反跌，以下哪些因素是可能原因？甲、訊息已經提前反應，乙、降息幅度不如預期，丙、市場延遲反應。",
+      "options": [
+        "甲",
+        "乙",
+        "甲、乙",
+        "甲、乙、丙"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-11"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-11",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "110Q3-macro-17",
+      "sessionId": "110Q3",
+      "year": 110,
       "session": 3,
       "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 21,
-      "stem": "臺灣的大公司到美國發行的股權憑證稱為：",
+      "sourceId": "macro-11",
+      "number": 17,
+      "stem": "在我國，有價證券上市的審查係哪一單位之職責？",
       "options": [
-        "臺灣存託憑證",
-        "美國存託憑證",
-        "全球存託憑證",
-        "國際存託憑證"
+        "金融監督管理委員會",
+        "證券交易所",
+        "中央銀行",
+        "財政部"
       ],
       "answer": [
         "B"
       ],
       "sourceIds": [
-        "macro-13",
         "macro-11"
       ],
       "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 4
-        },
         {
           "chapterId": "macro-11",
           "sectionIndex": 2
@@ -957,6 +998,119 @@ window.CHAPTER_DATA["macro-11"] = {
       ]
     },
     {
+      "id": "111Q1-macro-11",
+      "sessionId": "111Q1",
+      "year": 111,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-11",
+      "number": 11,
+      "stem": "下列有關財團法人金融消費評議中心的敘述，何者有誤？",
+      "options": [
+        "藉此建立金融消費爭議處理機制",
+        "強化金融紀律讓消費者各項金融投資保本",
+        "增進金融消費者對市場之信心",
+        "促進金融市場健全發展之立法目標"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-11"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-11",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "111Q1-macro-19",
+      "sessionId": "111Q1",
+      "year": 111,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-11",
+      "number": 19,
+      "stem": "借貸雙方在交易相關資訊上的差異稱為__________，因此在交易之前容易有_________問題，在交易完成後也可能有_________問題。",
+      "options": [
+        "資訊不對稱；逆選擇；風險分享",
+        "逆選擇；資訊不對稱；道德危險",
+        "資訊不對稱；道德危險；逆選擇",
+        "資訊不對稱；逆選擇；道德危險"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-11"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-11",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "111Q2-macro-08",
+      "sessionId": "111Q2",
+      "year": 111,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-11",
+      "number": 8,
+      "stem": "下列有關財團法人金融消費評議中心的敘述何者有誤？",
+      "options": [
+        "藉此建立金融消費爭議處理機制",
+        "強化金融紀律讓消費者各項金融投資保本",
+        "增進金融消費者對市場之信心",
+        "促進金融市場健全發展之立法目標"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-11"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-11",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "111Q2-macro-35",
+      "sessionId": "111Q2",
+      "year": 111,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-11",
+      "number": 35,
+      "stem": "金管會推動綠色金融行動 2.0 中有八大推動面向包括，促進發展金融商品或服務深化發展、國際鏈結與誘因機制、授信、投資、人才培育、 、 、 。",
+      "options": [
+        "金融科技、公司治理、風險管理",
+        "資訊揭露、公司治理、地方發展",
+        "資訊揭露、審慎監理、資本市場籌資",
+        "金融資安、公司治理、風險管理"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-11"
+      ],
+      "eventId": "taiwan-policy-2025",
+      "sourceRefs": [
+        {
+          "chapterId": "macro-11",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
       "id": "111Q3-macro-20",
       "sessionId": "111Q3",
       "year": 111,
@@ -975,16 +1129,39 @@ window.CHAPTER_DATA["macro-11"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-11",
-        "macro-12"
+        "macro-11"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-11",
           "sectionIndex": 3
-        },
+        }
+      ]
+    },
+    {
+      "id": "112Q1-macro-01",
+      "sessionId": "112Q1",
+      "year": 112,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-11",
+      "number": 1,
+      "stem": "企業醜聞（如美國的恩隆案）會減少投資及總支出，是因為這些醜聞________，所以銀行會減少廠商的可貸資金。",
+      "options": [
+        "造成銀行倒閉",
+        "導致本國貨幣貶值",
+        "迫使央行提高利率",
+        "使得逆選擇與道德風險問題更惡化"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-11"
+      ],
+      "sourceRefs": [
         {
-          "chapterId": "macro-12",
+          "chapterId": "macro-11",
           "sectionIndex": 3
         }
       ]
@@ -1018,91 +1195,30 @@ window.CHAPTER_DATA["macro-11"] = {
       ]
     },
     {
-      "id": "112Q1-macro-35",
+      "id": "112Q1-macro-27",
       "sessionId": "112Q1",
       "year": 112,
       "session": 1,
       "subject": "macro",
       "sourceId": "macro-11",
-      "number": 35,
-      "stem": "外商銀行在台灣分行的設立，依規定在申請前一年於全世界銀行資本額或資產排名須居幾名以內？",
+      "number": 27,
+      "stem": "給定下列 11 個機構：中央銀行、商業銀行、信用合作社、郵政儲金匯業局、農會信用部、信託投資公司、保險公司、退休基金、票券金融公司、證券金融公司及期貨交易所。關於前述機構之分類，以下何者正確？",
       "options": [
-        "100",
-        "300",
-        "500",
-        "1,000"
+        "屬於存款貨幣機構的有 3 個",
+        "屬於間接金融機構的有 6 個",
+        "屬於直接金融機構的有 4 個",
+        "屬於存款機構的有 6 個"
       ],
       "answer": [
-        "C"
+        "A"
       ],
       "sourceIds": [
         "macro-11"
       ],
       "sourceRefs": [
-        {
-          "chapterId": "macro-11",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "112Q2-macro-01",
-      "sessionId": "112Q2",
-      "year": 112,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 1,
-      "stem": "通常，債券交換之目的為：",
-      "options": [
-        "提高債券組合的評等來增加報酬",
-        "降低債券組合的評等來增加報酬",
-        "利用債券市場短暫的錯誤定價",
-        "避開傳統債券市場到店頭市場交易"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-13",
-        "macro-11"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        },
         {
           "chapterId": "macro-11",
           "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "112Q3-macro-02",
-      "sessionId": "112Q3",
-      "year": 112,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-11",
-      "number": 2,
-      "stem": "寶島債是由我國哪一個單位掛牌買賣？",
-      "options": [
-        "財政部",
-        "證券交易所",
-        "臺灣銀行",
-        "證券櫃檯買賣中心"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-11"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-11",
-          "sectionIndex": 2
         }
       ]
     },
@@ -1112,7 +1228,7 @@ window.CHAPTER_DATA["macro-11"] = {
       "year": 113,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-04",
+      "sourceId": "macro-11",
       "number": 33,
       "stem": "有關伊斯蘭金融業經營模式的描述，下列何者有誤？",
       "options": [
@@ -1125,14 +1241,9 @@ window.CHAPTER_DATA["macro-11"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-04",
         "macro-11"
       ],
       "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 2
-        },
         {
           "chapterId": "macro-11",
           "sectionIndex": 3
@@ -1197,27 +1308,26 @@ window.CHAPTER_DATA["macro-11"] = {
       ]
     },
     {
-      "id": "114Q2-macro-19",
-      "sessionId": "114Q2",
-      "year": 114,
-      "session": 2,
+      "id": "113Q3-macro-07",
+      "sessionId": "113Q3",
+      "year": 113,
+      "session": 3,
       "subject": "macro",
       "sourceId": "macro-11",
-      "number": 19,
-      "stem": "批評對等關稅實施後引起金融市場震盪，把美國搞成第三世界國家的是哪一位諾貝爾經濟學獎的得主？",
+      "number": 7,
+      "stem": "下列有關財團法人金融消費評議中心的敘述何者有誤？",
       "options": [
-        "克魯曼",
-        "格蘭哲",
-        "托賓",
-        "凱因斯"
+        "藉此建立金融消費爭議處理機制",
+        "強化金融紀律讓消費者各項金融投資保本",
+        "促進金融市場健全發展之立法目標",
+        "增進金融消費者對市場之信心"
       ],
       "answer": [
-        "A"
+        "B"
       ],
       "sourceIds": [
         "macro-11"
       ],
-      "eventId": "tariffs-2025",
       "sourceRefs": [
         {
           "chapterId": "macro-11",
@@ -1226,67 +1336,57 @@ window.CHAPTER_DATA["macro-11"] = {
       ]
     },
     {
-      "id": "114Q2-macro-22",
-      "sessionId": "114Q2",
-      "year": 114,
-      "session": 2,
+      "id": "113Q3-macro-13",
+      "sessionId": "113Q3",
+      "year": 113,
+      "session": 3,
       "subject": "macro",
       "sourceId": "macro-11",
-      "number": 22,
-      "stem": "海湖莊園協議是源自美國白宮經濟顧問委員會主席米蘭的哪一個報告？",
+      "number": 13,
+      "stem": "借貸雙方在交易相關資訊上的差異稱為__________，因此在交易之前容易有_________問題，在交易完成後也可能有_________問題。",
       "options": [
-        "《重組全球貿易體系的使用者指南》",
-        "《重組全球貨幣體系的使用者指南》",
-        "《重組全球戰略體系的使用者指南》",
-        "《重組全球民主體系的使用者指南》"
+        "資訊不對稱；逆選擇；風險分享",
+        "逆選擇；資訊不對稱；道德危險",
+        "資訊不對稱；道德危險；逆選擇",
+        "資訊不對稱；逆選擇；道德危險"
       ],
       "answer": [
-        "A"
+        "D"
       ],
       "sourceIds": [
-        "macro-11",
-        "macro-13"
+        "macro-11"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-11",
           "sectionIndex": 1
-        },
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 2
         }
       ]
     },
     {
-      "id": "114Q2-macro-26",
+      "id": "114Q2-macro-14",
       "sessionId": "114Q2",
       "year": 114,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-11",
-      "number": 26,
-      "stem": "由中國人民銀行開發，為其成員銀行或市場主體進行跨境人民幣支付與貿易提供清算和結算的支付系統，稱為什麼？",
+      "number": 14,
+      "stem": "下列有關財團法人金融消費評議中心的敘述何者有誤？",
       "options": [
-        "SUR",
-        "INTEX",
-        "CIPS",
-        "SWIFT"
+        "藉此建立金融消費爭議處理機制",
+        "強化金融紀律讓消費者各項金融投資保本",
+        "促進金融市場健全發展之立法目標",
+        "增進金融消費者對市場之信心"
       ],
       "answer": [
-        "C"
+        "B"
       ],
       "sourceIds": [
-        "macro-11",
-        "macro-10"
+        "macro-11"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-11",
-          "sectionIndex": 1
-        },
-        {
-          "chapterId": "macro-10",
           "sectionIndex": 2
         }
       ]
@@ -1320,22 +1420,22 @@ window.CHAPTER_DATA["macro-11"] = {
       ]
     },
     {
-      "id": "114Q3-macro-33",
+      "id": "114Q3-macro-03",
       "sessionId": "114Q3",
       "year": 114,
       "session": 3,
       "subject": "macro",
       "sourceId": "macro-11",
-      "number": 33,
-      "stem": "臺灣的鴻海公司到美國發行的股權憑證稱為",
+      "number": 3,
+      "stem": "企業醜聞（如美國的恩隆案）會減少投資及總支出，是因為這些醜聞________，所以銀行會減少廠商的可貸資金。",
       "options": [
-        "臺灣存託憑證 (TDR)",
-        "美國存託憑證 (ADR)",
-        "全球存託憑證 (GDR)",
-        "國際存託憑證 (IDR)"
+        "造成銀行倒閉",
+        "導致本國貨幣貶值",
+        "迫使央行提高利率",
+        "使得逆選擇與道德風險問題更惡化"
       ],
       "answer": [
-        "B"
+        "D"
       ],
       "sourceIds": [
         "macro-11"
@@ -1343,7 +1443,7 @@ window.CHAPTER_DATA["macro-11"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-11",
-          "sectionIndex": 2
+          "sectionIndex": 3
         }
       ]
     },

@@ -634,39 +634,6 @@ window.CHAPTER_DATA["macro-03"] = {
       ]
     },
     {
-      "id": "107Q1-macro-20",
-      "sessionId": "107Q1",
-      "year": 107,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 20,
-      "stem": "流動性偏好函數為：L(i,y) = y/5 - 50i。式中，L 代表實質貨幣餘額，y 代表實質所得，而 i 代表名目利率。假設 y = 5000，i = 10，則貨幣流通速度為：",
-      "options": [
-        "0.1",
-        "0.5",
-        "10",
-        "0.75"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05",
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
       "id": "107Q2-macro-15",
       "sessionId": "107Q2",
       "year": 107,
@@ -807,63 +774,6 @@ window.CHAPTER_DATA["macro-03"] = {
       ]
     },
     {
-      "id": "107Q3-macro-35",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 35,
-      "stem": "給定資料，以下選項何者有誤？大眾持有之通貨 300 銀行準備 500 支票存款 1,500 定期存款 2,000",
-      "options": [
-        "貨幣基數＝800",
-        "M1A＝1,800",
-        "M1A 乘數＝2.25",
-        "M2 乘數＝5"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "107Q4-macro-08",
-      "sessionId": "107Q4",
-      "year": 107,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 8,
-      "stem": "經由許多條方程式來表示貨幣及財政政策傳遞管道的模型，稱之為________。",
-      "options": [
-        "縮減式模型(Reduced-Form Model)",
-        "中間選民模型(Median-Voter Model)",
-        "直接模型(Direct-Model)",
-        "結構式模型(Structural Model)"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "eventId": "taiwan-monetary-2025",
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
       "id": "107Q4-macro-31",
       "sessionId": "107Q4",
       "year": 107,
@@ -943,39 +853,6 @@ window.CHAPTER_DATA["macro-03"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-03",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-14",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 14,
-      "stem": "所謂貨幣中立性(Neutrality)係指，貨幣供給變動時：",
-      "options": [
-        "對物價水準及實質產出均沒有影響",
-        "只引起物價水準變動，對實質產出則沒有影響",
-        "只引起實質產出變動，對物價水準則沒有影響",
-        "引起實質產出的變動，對利率則沒有影響"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-03",
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-10",
           "sectionIndex": 1
         }
       ]
@@ -1065,34 +942,6 @@ window.CHAPTER_DATA["macro-03"] = {
       ]
     },
     {
-      "id": "108Q2-macro-32",
-      "sessionId": "108Q2",
-      "year": 108,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 32,
-      "stem": "中了彩券 1 億元，支付方式為每年給付 500 萬元，給付 20 年。現在說中 1 億元的說法忽略了什麼觀念？",
-      "options": [
-        "通貨緊縮",
-        "物價變動",
-        "景氣變化",
-        "將未來金額折現"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
       "id": "108Q4-macro-32",
       "sessionId": "108Q4",
       "year": 108,
@@ -1142,39 +991,6 @@ window.CHAPTER_DATA["macro-03"] = {
         "macro-03"
       ],
       "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "109Q1-macro-10",
-      "sessionId": "109Q1",
-      "year": 109,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 10,
-      "stem": "體系內貨幣需求函數為 \\(M^d/P=1,000+0.2y-1,000i\\)，假設物價 \\(P=200\\)、產出 \\(y=2,000\\)，而利率 \\(i=10\\%\\)，則貨幣流通速度為何？",
-      "options": [
-        "0.65",
-        "0.75",
-        "1.33",
-        "1.54"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05",
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 2
-        },
         {
           "chapterId": "macro-03",
           "sectionIndex": 2
@@ -1266,68 +1082,58 @@ window.CHAPTER_DATA["macro-03"] = {
       ]
     },
     {
-      "id": "110Q1-macro-31",
-      "sessionId": "110Q1",
-      "year": 110,
-      "session": 1,
+      "id": "109Q4-macro-26",
+      "sessionId": "109Q4",
+      "year": 109,
+      "session": 4,
       "subject": "macro",
       "sourceId": "macro-03",
-      "number": 31,
-      "stem": "某國央行經研處檢視 M1A 乘數發生變化的原因，何者正確？",
+      "number": 26,
+      "stem": "下列哪項存款比較能衡量自然人金融活動熱絡程度？",
       "options": [
-        "準備貨幣擴張",
-        "跨國資金持續進入股市",
-        "銀行吸收存款增加",
-        "銀行放款困難"
+        "通貨",
+        "支票存款",
+        "活期存款",
+        "活期儲蓄存款"
       ],
       "answer": [
         "D"
       ],
       "sourceIds": [
-        "macro-03",
-        "macro-05"
+        "macro-03"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-03",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-05",
           "sectionIndex": 1
         }
       ]
     },
     {
-      "id": "110Q3-macro-02",
-      "sessionId": "110Q3",
+      "id": "110Q1-macro-10",
+      "sessionId": "110Q1",
       "year": 110,
-      "session": 3,
+      "session": 1,
       "subject": "macro",
-      "sourceId": "macro-10",
-      "number": 2,
-      "stem": "若歐元兌美元的匯率為€2.05/＄，則",
+      "sourceId": "macro-03",
+      "number": 10,
+      "stem": "哪一位經濟學家提出交易方程式所說明「一手交錢，一手交貨」之結果，使得每筆交易必定導致與成交值相等之貨幣易手？",
       "options": [
-        "每歐元等於 2.05 美元",
-        "每歐元約等於 49 美分",
-        "每歐元值超過 1 美元",
-        "美元在升值狀態"
+        "費雪(Fisher)",
+        "弗利曼(Friedman)",
+        "盧卡斯(Lucas)",
+        "普列斯卡(Prescott)"
       ],
       "answer": [
-        "B"
+        "A"
       ],
       "sourceIds": [
-        "macro-10",
         "macro-03"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-10",
-          "sectionIndex": 1
-        },
-        {
           "chapterId": "macro-03",
-          "sectionIndex": 1
+          "sectionIndex": 2
         }
       ]
     },
@@ -1378,17 +1184,12 @@ window.CHAPTER_DATA["macro-03"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-03",
-        "macro-10"
+        "macro-03"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-03",
           "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 1
         }
       ]
     },
@@ -1421,6 +1222,90 @@ window.CHAPTER_DATA["macro-03"] = {
       ]
     },
     {
+      "id": "111Q1-macro-23",
+      "sessionId": "111Q1",
+      "year": 111,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 23,
+      "stem": "下列哪一項不被包括在「存款貨幣」當中？",
+      "options": [
+        "活期儲蓄存款",
+        "支票存款",
+        "活期存款",
+        "定期存款"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "111Q2-macro-29",
+      "sessionId": "111Q2",
+      "year": 111,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 29,
+      "stem": "下列哪項存款比較能衡量日常小額交易的熱絡程度？",
+      "options": [
+        "通貨",
+        "支票存款",
+        "活期存款",
+        "活期儲蓄存款"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "111Q3-macro-08",
+      "sessionId": "111Q3",
+      "year": 111,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 8,
+      "stem": "下述哪一項是屬於內在貨幣(Inside Money)？",
+      "options": [
+        "通貨淨額",
+        "準備貨幣",
+        "銀行存款",
+        "選項(A)(B)(C)皆是"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
       "id": "111Q3-macro-17",
       "sessionId": "111Q3",
       "year": 111,
@@ -1449,32 +1334,55 @@ window.CHAPTER_DATA["macro-03"] = {
       ]
     },
     {
-      "id": "111Q3-macro-23",
+      "id": "111Q3-macro-24",
       "sessionId": "111Q3",
       "year": 111,
       "session": 3,
       "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 23,
-      "stem": "假設一條新的法令，規定所有的股票或債券的交易，都需要繳交額外的交易稅。這對於貨幣的需求有何影響？",
+      "sourceId": "macro-03",
+      "number": 24,
+      "stem": "假設貨幣的流動速度是 4，實質產出是 10，物價水準為 2。當政府增加名目貨幣供給到 6，其他變數不變的情況下，物價的變動為上升多少？",
       "options": [
-        "貨幣需求先是下降，之後隨著通貨膨脹而上升",
-        "貨幣需求上升",
-        "整體的效果不確定",
-        "貨幣需求下降"
+        "2.4%",
+        "20%",
+        "24%",
+        "50%"
       ],
       "answer": [
         "B"
       ],
       "sourceIds": [
-        "macro-13",
         "macro-03"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        },
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "111Q3-macro-25",
+      "sessionId": "111Q3",
+      "year": 111,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 25,
+      "stem": "假設實質利率為 4% ，通貨膨脹率為 3%。如果貨幣供給上升 10%，而產出、實質利率、期待的通貨膨脹率不變，則物價水準上升多少？",
+      "options": [
+        "3%",
+        "4%",
+        "7%",
+        "10%"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
         {
           "chapterId": "macro-03",
           "sectionIndex": 1
@@ -1510,6 +1418,34 @@ window.CHAPTER_DATA["macro-03"] = {
       ]
     },
     {
+      "id": "112Q2-macro-10",
+      "sessionId": "112Q2",
+      "year": 112,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 10,
+      "stem": "若名目所得 10 兆，貨幣供給 2 兆，依據古典學派之貨幣數量學說，則流通速度(velocity)為 _____。",
+      "options": [
+        "2",
+        "5",
+        "10",
+        "40"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
       "id": "112Q2-macro-13",
       "sessionId": "112Q2",
       "year": 112,
@@ -1534,6 +1470,34 @@ window.CHAPTER_DATA["macro-03"] = {
         {
           "chapterId": "macro-03",
           "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "112Q2-macro-21",
+      "sessionId": "112Q2",
+      "year": 112,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 21,
+      "stem": "下列何種存款的變化與景氣波動最有關連性？",
+      "options": [
+        "定期存款",
+        "郵政儲金",
+        "外匯存款",
+        "活期存款"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
         }
       ]
     },
@@ -1567,32 +1531,27 @@ window.CHAPTER_DATA["macro-03"] = {
       ]
     },
     {
-      "id": "112Q3-macro-20",
-      "sessionId": "112Q3",
-      "year": 112,
-      "session": 3,
+      "id": "113Q1-macro-07",
+      "sessionId": "113Q1",
+      "year": 113,
+      "session": 1,
       "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 20,
-      "stem": "假設一條新的法令，規定所有的股票或債券的交易，都需要繳交額外的交易稅。這對於貨幣的需求有何影響？",
+      "sourceId": "macro-03",
+      "number": 7,
+      "stem": "下列哪項存款比較能衡量自然人金融活動熱絡程度？",
       "options": [
-        "貨幣需求先是下降，之後隨著通貨膨脹而上升",
-        "貨幣需求上升",
-        "整體的效果不確定",
-        "貨幣需求下降"
+        "通貨",
+        "支票存款",
+        "活期存款",
+        "活期儲蓄存款"
       ],
       "answer": [
-        "B"
+        "D"
       ],
       "sourceIds": [
-        "macro-13",
         "macro-03"
       ],
       "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        },
         {
           "chapterId": "macro-03",
           "sectionIndex": 1
@@ -1613,62 +1572,6 @@ window.CHAPTER_DATA["macro-03"] = {
         "M2 增加而 M1B 減少",
         "M2 減少而 M1B 增加",
         "M2 不變而 M1B 增加"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "113Q2-macro-19",
-      "sessionId": "113Q2",
-      "year": 113,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 19,
-      "stem": "如果操作目標(Operating Target)為同業拆放利率，此情況下在以下項目：甲.M1B、乙.銀行平均存款利率、丙.M2、丁.長期債券利率、戊.國庫券利率，適合做為中間目標的有幾個？",
-      "options": [
-        "1",
-        "2",
-        "3",
-        "4"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "113Q3-macro-33",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 33,
-      "stem": "甲將 1000 元存進銀行，銀行將 900 元借給乙，乙支付 800 元給丙，丙將 700 元存進銀行，銀行將 600 元借給丁。請問此時貨幣數量是多少？",
-      "options": [
-        "1000",
-        "1700",
-        "2300",
-        "2500"
       ],
       "answer": [
         "D"
@@ -1708,6 +1611,34 @@ window.CHAPTER_DATA["macro-03"] = {
         {
           "chapterId": "macro-03",
           "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "114Q2-macro-32",
+      "sessionId": "114Q2",
+      "year": 114,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 32,
+      "stem": "國際貨幣基金會(IMF)2022 年 5 月 11 日，宣佈調整特別提款權(SDRs) 權重，是將人民幣權重由 10.92%上調至 12.28%，也成為權重排名的第幾？",
+      "options": [
+        "第一",
+        "第二",
+        "第三",
+        "第四"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
         }
       ]
     },
@@ -1824,36 +1755,30 @@ window.CHAPTER_DATA["macro-03"] = {
       ]
     },
     {
-      "id": "115Q2-macro-07",
+      "id": "115Q2-macro-10",
       "sessionId": "115Q2",
       "year": 115,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-03",
-      "number": 7,
-      "stem": "經由許多條方程式來表示貨幣及財政政策傳遞管道的模型，稱之為_____。",
+      "number": 10,
+      "stem": "在商品貨幣發行時，若存在兩種型態的貨幣，則民眾會保留成色較高的貨幣，使得市面上僅流通較差的貨幣，造成「劣幣驅逐良幣」的現象發生，此現象又稱為下列哪個經濟學法則？",
       "options": [
-        "縮減式模型(Reduced-Form Model)",
-        "中間選民模型(Median-Voter Model)",
-        "直接模型(Direct-Model)",
-        "結構式模型(Structural Model)"
+        "格來興法則",
+        "賽伊法則",
+        "泰勒法則",
+        "歐肯法則"
       ],
       "answer": [
-        "D"
+        "A"
       ],
       "sourceIds": [
-        "macro-03",
-        "macro-06"
+        "macro-03"
       ],
-      "eventId": "taiwan-monetary-2025",
       "sourceRefs": [
         {
           "chapterId": "macro-03",
           "sectionIndex": 1
-        },
-        {
-          "chapterId": "macro-06",
-          "sectionIndex": 2
         }
       ]
     }

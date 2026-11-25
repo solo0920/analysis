@@ -606,207 +606,6 @@ window.CHAPTER_DATA["macro-04"] = {
   ],
   "questions": [
     {
-      "id": "107Q1-macro-28",
-      "sessionId": "107Q1",
-      "year": 107,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 28,
-      "stem": "年關將近，若中央銀行預期民眾消費增加，而進行公開市場買進操作，對金融業拆款市場的影響為：",
-      "options": [
-        "借入準備金增加，準備金供給曲線右移，金融業拆款利率上升",
-        "超額準備減少，準備金需求曲線左移，金融業拆款利率下跌",
-        "非借入準備金增加，準備金供給曲線右移，金融業拆款利率下跌",
-        "應提準備減少，準備金需求曲線右移，金融業拆款利率上升"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "107Q2-macro-31",
-      "sessionId": "107Q2",
-      "year": 107,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 31,
-      "stem": "如果中央銀行進行扭轉操作，買進長期債券，同時賣出等額的短期債券，則準備貨幣將會：",
-      "options": [
-        "增加",
-        "減少",
-        "維持不變",
-        "增減不一定"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "107Q2-macro-32",
-      "sessionId": "107Q2",
-      "year": 107,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 32,
-      "stem": "2008 年金融海嘯發生後，美國聯準會採用量化寬鬆政策，大量買進有價證券。相關的影響，下列何錯誤？",
-      "options": [
-        "增加貨幣供給",
-        "直接提供流動性給需要資金的金融機構",
-        "增加聯準會的資產規模",
-        "聯準會不會面對信用風險"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05",
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        },
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "107Q3-macro-02",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 2,
-      "stem": "「財團法人金融消費評議中心」是依什麼法律規定設立之爭議處理機構？",
-      "options": [
-        "公司法",
-        "金融消費者保護法",
-        "證券交易法",
-        "證券投資人及期貨交易人保護法"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "107Q3-macro-20",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 20,
-      "stem": "中央銀行如果希望銀行業放鬆銀根，會採取下列何項措施？",
-      "options": [
-        "央行可以發行定存單沖銷銀行爛頭寸",
-        "央行可以提高法定存款準備率",
-        "央行可以調高重貼現率",
-        "央行可以向銀行買公債"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "107Q3-macro-28",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 28,
-      "stem": "美國聯準會進行縮表計畫。中央銀行資產負債表的變動，哪一項使貨幣基數(monetary base)減少？",
-      "options": [
-        "政府存入之存款增加",
-        "持有之政府公債增加",
-        "央行國外資產增加",
-        "對金融機構放款增加"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "107Q3-macro-33",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 33,
-      "stem": "中央銀行操作貨幣政策會釘住一些目標。如果中間目標(intermediate target)為銀行平均存款利率，此情況下，在以下操作目標(operating targets)中：[I.國庫券利率、Ⅱ.借入準備、 Ⅲ.貨幣基數、Ⅳ.非借入準備，Ⅴ.同業拆款利率]，適合做為相應的操作目標有幾個？",
-      "options": [
-        "1",
-        "2",
-        "3",
-        "4"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
       "id": "107Q4-macro-02",
       "sessionId": "107Q4",
       "year": 107,
@@ -863,22 +662,22 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
-      "id": "108Q1-macro-12",
+      "id": "108Q1-macro-31",
       "sessionId": "108Q1",
       "year": 108,
       "session": 1,
       "subject": "macro",
       "sourceId": "macro-04",
-      "number": 12,
-      "stem": "中央銀行增加貨幣供給，同時政府採取減稅措施，則利率水準將：",
+      "number": 31,
+      "stem": "RTC 法案是指下列哪個法案？",
       "options": [
-        "上升",
-        "下降",
-        "不一定",
-        "大幅波動"
+        "金融控股公司法",
+        "金融重建基金設置及管理條例",
+        "外匯管理法",
+        "票券金融管理法"
       ],
       "answer": [
-        "C"
+        "B"
       ],
       "sourceIds": [
         "macro-04"
@@ -886,35 +685,7 @@ window.CHAPTER_DATA["macro-04"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "108Q2-macro-25",
-      "sessionId": "108Q2",
-      "year": 108,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 25,
-      "stem": "中央銀行資產負債表的變動，哪一項使貨幣基數 (Monetary Base) 增加？",
-      "options": [
-        "央行賣出公債",
-        "政府在央行存款增加",
-        "對金融機構放款增加",
-        "央行儲蓄券發行增加"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
+          "sectionIndex": 3
         }
       ]
     },
@@ -940,6 +711,62 @@ window.CHAPTER_DATA["macro-04"] = {
         "macro-04"
       ],
       "eventId": "taiwan-policy-2025",
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "108Q2-macro-30",
+      "sessionId": "108Q2",
+      "year": 108,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 30,
+      "stem": "銀行發行之可轉讓定存單、個人及企業各天期存款、證券投資、向央行重貼現貸款、準備金、資本、向銀行同業拆款、政府存款、對企業放款。以上屬於銀行資產項的有幾個？",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "108Q2-macro-31",
+      "sessionId": "108Q2",
+      "year": 108,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 31,
+      "stem": "銀行借出金額時，預先扣留一部份金額，剩下的才借給企業，這種方式稱為？",
+      "options": [
+        "放款",
+        "貼現",
+        "透支",
+        "投資"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
       "sourceRefs": [
         {
           "chapterId": "macro-04",
@@ -1060,75 +887,19 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
-      "id": "108Q3-macro-24",
-      "sessionId": "108Q3",
-      "year": 108,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 24,
-      "stem": "中央銀行對下列何者具有完全控制力？",
-      "options": [
-        "借入準備",
-        "非借入準備",
-        "銀行準備金",
-        "銀行超額準備"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "108Q3-macro-25",
-      "sessionId": "108Q3",
-      "year": 108,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 25,
-      "stem": "中央銀行在公開市場買進債券是一種：",
-      "options": [
-        "擴張性財政政策",
-        "緊縮性財政政策",
-        "擴張性貨幣政策",
-        "緊縮性貨幣政策"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "109Q2-macro-25",
-      "sessionId": "109Q2",
+      "id": "109Q3-macro-29",
+      "sessionId": "109Q3",
       "year": 109,
-      "session": 2,
+      "session": 3,
       "subject": "macro",
       "sourceId": "macro-04",
-      "number": 25,
-      "stem": "在存款創造的過程中，若當法定準備率是 10%，支票存款減少$500，這可能是中央銀行：",
+      "number": 29,
+      "stem": "積極管理負債的銀行，最可能藉由_________應付準備金的短缺。",
       "options": [
-        "出售$500 的政府債券",
-        "出售$50 的政府債券",
-        "購買$50 的政府債券",
-        "購買$500 的政府債券"
+        "尋找新的存款",
+        "同業拆款",
+        "召回放款 (call in loans)",
+        "出售地方債券"
       ],
       "answer": [
         "B"
@@ -1139,7 +910,7 @@ window.CHAPTER_DATA["macro-04"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-04",
-          "sectionIndex": 1
+          "sectionIndex": 2
         }
       ]
     },
@@ -1228,106 +999,22 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
-      "id": "109Q3-macro-33",
-      "sessionId": "109Q3",
-      "year": 109,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 33,
-      "stem": "若中央銀行決定消化銀行持有的濫頭寸，那麼可能會_______。",
-      "options": [
-        "降低重貼現率",
-        "出售政府公債給銀行",
-        "延長重貼現貸款給銀行",
-        "跟銀行購買政府公債"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "109Q3-macro-34",
-      "sessionId": "109Q3",
-      "year": 109,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 34,
-      "stem": "中央銀行比較不常使用法定準備率政策來控制貨幣供給的原因有：",
-      "options": [
-        "法定準備率政策對貨幣供給的影響太強",
-        "對超額準備較多的銀行容易造成流動性問題",
-        "即使常常變動法定準備率也不會影響銀行流動性管理",
-        "調整法定準備率對貨幣供給沒有什麼影響"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "109Q4-macro-23",
-      "sessionId": "109Q4",
-      "year": 109,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 23,
-      "stem": "下列何者不屬於選擇性信用管制策略？",
-      "options": [
-        "重貼現率政策",
-        "調整保證金比率",
-        "消費者信用管制",
-        "不動產信用管制"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "110Q2-macro-22",
+      "id": "110Q2-macro-06",
       "sessionId": "110Q2",
       "year": 110,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-04",
-      "number": 22,
-      "stem": "當中央銀行減少貨幣供給，會使得這國家的通貨：",
+      "number": 6,
+      "stem": "因市場價格變動對銀行資產負債部位造成損失，此稱為________。",
       "options": [
-        "在短期升值的比長期多",
-        "在長期升值的比短期多",
-        "在短期貶值的比長期多",
-        "在長期貶值的比短期多"
+        "營運風險",
+        "利率風險",
+        "市場風險",
+        "流動性風險"
       ],
       "answer": [
-        "A"
+        "C"
       ],
       "sourceIds": [
         "macro-04"
@@ -1335,35 +1022,7 @@ window.CHAPTER_DATA["macro-04"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "110Q3-macro-17",
-      "sessionId": "110Q3",
-      "year": 110,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 17,
-      "stem": "在我國，有價證券上市的審查係哪一單位之職責？",
-      "options": [
-        "金融監督管理委員會",
-        "證券交易所",
-        "中央銀行",
-        "財政部"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
+          "sectionIndex": 2
         }
       ]
     },
@@ -1424,62 +1083,6 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
-      "id": "110Q3-macro-24",
-      "sessionId": "110Q3",
-      "year": 110,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 24,
-      "stem": "中央銀行對下列何者具有完全控制力？",
-      "options": [
-        "借入準備",
-        "非借入準備",
-        "銀行準備金",
-        "銀行超額準備"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "111Q1-macro-11",
-      "sessionId": "111Q1",
-      "year": 111,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 11,
-      "stem": "下列有關財團法人金融消費評議中心的敘述，何者有誤？",
-      "options": [
-        "藉此建立金融消費爭議處理機制",
-        "強化金融紀律讓消費者各項金融投資保本",
-        "增進金融消費者對市場之信心",
-        "促進金融市場健全發展之立法目標"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
       "id": "111Q1-macro-15",
       "sessionId": "111Q1",
       "year": 111,
@@ -1498,45 +1101,12 @@ window.CHAPTER_DATA["macro-04"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-04",
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "111Q2-macro-08",
-      "sessionId": "111Q2",
-      "year": 111,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 8,
-      "stem": "下列有關財團法人金融消費評議中心的敘述何者有誤？",
-      "options": [
-        "藉此建立金融消費爭議處理機制",
-        "強化金融紀律讓消費者各項金融投資保本",
-        "增進金融消費者對市場之信心",
-        "促進金融市場健全發展之立法目標"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
         "macro-04"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-04",
-          "sectionIndex": 3
+          "sectionIndex": 2
         }
       ]
     },
@@ -1557,119 +1127,6 @@ window.CHAPTER_DATA["macro-04"] = {
       ],
       "answer": [
         "C"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "111Q2-macro-35",
-      "sessionId": "111Q2",
-      "year": 111,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 35,
-      "stem": "金管會推動綠色金融行動 2.0 中有八大推動面向包括，促進發展金融商品或服務深化發展、國際鏈結與誘因機制、授信、投資、人才培育、 、 、 。",
-      "options": [
-        "金融科技、公司治理、風險管理",
-        "資訊揭露、公司治理、地方發展",
-        "資訊揭露、審慎監理、資本市場籌資",
-        "金融資安、公司治理、風險管理"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "eventId": "taiwan-policy-2025",
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "111Q3-macro-18",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 18,
-      "stem": "中央銀行最常用的減少貨幣供給的方法為何？",
-      "options": [
-        "增加課稅",
-        "賣出政府公債",
-        "向政府買入政府公債",
-        "從民眾手中買入政府公債"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "112Q1-macro-18",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 18,
-      "stem": "如果中央銀行貨幣政策的中間目標 (intermediate ta rget) 為銀行平均存款利率，在此情況下，請問以下 5 個變數(甲.借入準備、乙.同業拆放利率、丙.貨幣基數、丁.非借入貨幣基數、戊.國庫券利率)適合做為操作目標(operating target)的有幾個？",
-      "options": [
-        "1",
-        "2",
-        "3",
-        "4"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "112Q1-macro-27",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 27,
-      "stem": "給定下列 11 個機構：中央銀行、商業銀行、信用合作社、郵政儲金匯業局、農會信用部、信託投資公司、保險公司、退休基金、票券金融公司、證券金融公司及期貨交易所。關於前述機構之分類，以下何者正確？",
-      "options": [
-        "屬於存款貨幣機構的有 3 個",
-        "屬於間接金融機構的有 6 個",
-        "屬於直接金融機構的有 4 個",
-        "屬於存款機構的有 6 個"
-      ],
-      "answer": [
-        "A"
       ],
       "sourceIds": [
         "macro-04"
@@ -1710,27 +1167,26 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
-      "id": "112Q2-macro-19",
-      "sessionId": "112Q2",
+      "id": "112Q1-macro-35",
+      "sessionId": "112Q1",
       "year": 112,
-      "session": 2,
+      "session": 1,
       "subject": "macro",
       "sourceId": "macro-04",
-      "number": 19,
-      "stem": "當 FOMC 調高聯邦資金利率的目標水準時，表示美國聯邦準備正採取：",
+      "number": 35,
+      "stem": "外商銀行在台灣分行的設立，依規定在申請前一年於全世界銀行資本額或資產排名須居幾名以內？",
       "options": [
-        "較為寬鬆的財政政策",
-        "較為緊縮的財政政策",
-        "較為寬鬆的貨幣政策",
-        "較為緊縮的貨幣政策"
+        "100",
+        "300",
+        "500",
+        "1,000"
       ],
       "answer": [
-        "D"
+        "C"
       ],
       "sourceIds": [
         "macro-04"
       ],
-      "eventId": "fed-2025",
       "sourceRefs": [
         {
           "chapterId": "macro-04",
@@ -1739,55 +1195,22 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
-      "id": "112Q2-macro-21",
-      "sessionId": "112Q2",
-      "year": 112,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 21,
-      "stem": "下列何種存款的變化與景氣波動最有關連性？",
-      "options": [
-        "定期存款",
-        "郵政儲金",
-        "外匯存款",
-        "活期存款"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-04",
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "112Q3-macro-21",
+      "id": "112Q3-macro-07",
       "sessionId": "112Q3",
       "year": 112,
       "session": 3,
       "subject": "macro",
       "sourceId": "macro-04",
-      "number": 21,
-      "stem": "想要降低貨幣供給，中央銀行最常使用的方法為何？",
+      "number": 7,
+      "stem": "金融六法不包括下列何者？",
       "options": [
-        "增加賦稅",
-        "對大眾發行販售債券",
-        "從政府手中買回債券",
-        "從大眾手中買回債券"
+        "金融控股公司法",
+        "金融重建基金設置及管理條例",
+        "外匯管理法",
+        "票券金融管理法"
       ],
       "answer": [
-        "B"
+        "C"
       ],
       "sourceIds": [
         "macro-04"
@@ -1795,7 +1218,7 @@ window.CHAPTER_DATA["macro-04"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-04",
-          "sectionIndex": 1
+          "sectionIndex": 3
         }
       ]
     },
@@ -1847,18 +1270,13 @@ window.CHAPTER_DATA["macro-04"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-04",
-        "macro-10"
+        "macro-04"
       ],
       "eventId": "fed-2025",
       "sourceRefs": [
         {
           "chapterId": "macro-04",
           "sectionIndex": 1
-        },
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 2
         }
       ]
     },
@@ -1948,39 +1366,6 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
-      "id": "113Q1-macro-33",
-      "sessionId": "113Q1",
-      "year": 113,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 33,
-      "stem": "有關伊斯蘭金融業經營模式的描述，下列何者有誤？",
-      "options": [
-        "銀行與用戶結為合作夥伴",
-        "銀行可以和借款方企業簽訂分紅合約",
-        "放款利率高過存款利率",
-        "債券與基金是伊斯蘭金融業可以進行的業務"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-04",
-        "macro-11"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-11",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
       "id": "113Q2-macro-03",
       "sessionId": "113Q2",
       "year": 113,
@@ -2005,67 +1390,6 @@ window.CHAPTER_DATA["macro-04"] = {
         {
           "chapterId": "macro-04",
           "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "113Q2-macro-17",
-      "sessionId": "113Q2",
-      "year": 113,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 17,
-      "stem": "央行操控中間目標(Intermediate Target)時常須面對「價量不相容」狀況，一般而言，以下何者正確？",
-      "options": [
-        "若干擾因素確定來自於貨幣需求，這時應選擇貨幣供給當成中間目標",
-        "若干擾確定來自於貨幣需求以外因素，這時應選擇利率當成中間目標",
-        "操作目標和中間目標的選擇在價或量的選取上應該一致",
-        "以上皆是"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05",
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 3
-        },
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q2-macro-18",
-      "sessionId": "113Q2",
-      "year": 113,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 18,
-      "stem": "中央銀行賣出本國通貨以買進國外資產，使得：",
-      "options": [
-        "國際準備減少",
-        "本國通貨貶值",
-        "貨幣供給減少",
-        "本國利率上升"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
         }
       ]
     },
@@ -2098,6 +1422,34 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
+      "id": "113Q2-macro-32",
+      "sessionId": "113Q2",
+      "year": 113,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 32,
+      "stem": "若銀行面臨放款壞帳 10 億元，在壞帳打銷後：",
+      "options": [
+        "放款額增加 10 億元",
+        "存款額減少 10 億元",
+        "準備金減少 10 億元",
+        "資本額減少 10 億元"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
       "id": "113Q2-macro-35",
       "sessionId": "113Q2",
       "year": 113,
@@ -2126,118 +1478,6 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
-      "id": "113Q3-macro-07",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 7,
-      "stem": "下列有關財團法人金融消費評議中心的敘述何者有誤？",
-      "options": [
-        "藉此建立金融消費爭議處理機制",
-        "強化金融紀律讓消費者各項金融投資保本",
-        "促進金融市場健全發展之立法目標",
-        "增進金融消費者對市場之信心"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "113Q3-macro-25",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 25,
-      "stem": "當中央銀行增加貨幣供給時：",
-      "options": [
-        "IS 曲線往右移動",
-        "LM 曲線往右移動",
-        "IS 曲線往左移動",
-        "LM 曲線往左移動"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "114Q1-macro-10",
-      "sessionId": "114Q1",
-      "year": 114,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 10,
-      "stem": "想要降低貨幣供給，中央銀行最常使用的方法為何？",
-      "options": [
-        "增加賦稅",
-        "對大眾販售債券",
-        "從政府手中買回債券",
-        "從大眾手中買回債券"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "114Q1-macro-17",
-      "sessionId": "114Q1",
-      "year": 114,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 17,
-      "stem": "當你讀了報導說中央銀行打算擴張貨幣供給，央行最有可能做哪一件事？",
-      "options": [
-        "印更多鈔票，然後分送到各相關單位",
-        "從民間機構購回政府公債",
-        "將政府公債賣給民間機構",
-        "購買新發行的政府公債"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
       "id": "114Q1-macro-24",
       "sessionId": "114Q1",
       "year": 114,
@@ -2254,34 +1494,6 @@ window.CHAPTER_DATA["macro-04"] = {
       ],
       "answer": [
         "A"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "114Q2-macro-14",
-      "sessionId": "114Q2",
-      "year": 114,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 14,
-      "stem": "下列有關財團法人金融消費評議中心的敘述何者有誤？",
-      "options": [
-        "藉此建立金融消費爭議處理機制",
-        "強化金融紀律讓消費者各項金融投資保本",
-        "促進金融市場健全發展之立法目標",
-        "增進金融消費者對市場之信心"
-      ],
-      "answer": [
-        "B"
       ],
       "sourceIds": [
         "macro-04"
@@ -2323,68 +1535,30 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
-      "id": "114Q3-macro-08",
+      "id": "114Q3-macro-16",
       "sessionId": "114Q3",
       "year": 114,
       "session": 3,
       "subject": "macro",
       "sourceId": "macro-04",
-      "number": 8,
-      "stem": "在其他條件不變的情形下，中央銀行購買政府債券會導致：",
+      "number": 16,
+      "stem": "積極管理負債的銀行，最可能藉由_________應付準備金的短缺。",
       "options": [
-        "總需求增加",
-        "總需求減少",
-        "總供給增加",
-        "總供給減少"
+        "尋找新的存款",
+        "同業拆款",
+        "召回放款 (call in loans)",
+        "出售持有的債券"
       ],
       "answer": [
-        "A"
+        "B"
       ],
       "sourceIds": [
-        "macro-04",
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        },
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "114Q3-macro-17",
-      "sessionId": "114Q3",
-      "year": 114,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-12",
-      "number": 17,
-      "stem": "美國聯準會將聯邦資金利率目標區從 4.00%～4.25%下降到從 3.75%～4.00%。那麼利率是下降________。",
-      "options": [
-        "半碼",
-        "2.5 碼",
-        "0.25 個基點",
-        "25 個基點 (basis point)"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-12",
         "macro-04"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-12",
-          "sectionIndex": 5
-        },
-        {
           "chapterId": "macro-04",
-          "sectionIndex": 1
+          "sectionIndex": 2
         }
       ]
     },
@@ -2405,39 +1579,6 @@ window.CHAPTER_DATA["macro-04"] = {
       ],
       "answer": [
         "B"
-      ],
-      "sourceIds": [
-        "macro-04",
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        },
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "114Q3-macro-29",
-      "sessionId": "114Q3",
-      "year": 114,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 29,
-      "stem": "若中央銀行決定消化銀行持有的濫頭寸，那麼可能會_______。",
-      "options": [
-        "跟銀行購買政府公債",
-        "降低重貼現率",
-        "發行國庫券或央行定存單給銀行",
-        "降低法定準備率"
-      ],
-      "answer": [
-        "C"
       ],
       "sourceIds": [
         "macro-04"
@@ -2537,6 +1678,35 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
+      "id": "115Q2-macro-23",
+      "sessionId": "115Q2",
+      "year": 115,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 23,
+      "stem": "當今美國聯準會主席是哪一位？",
+      "options": [
+        "班·柏南奇(Ben Bernanke)",
+        "珍娜特·葉倫(Janet Yellen)",
+        "傑洛姆·鮑爾(Jerome Powell)",
+        "凱文·華許(Kevin Warsh)"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "eventId": "fed-2025",
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
       "id": "115Q2-macro-24",
       "sessionId": "115Q2",
       "year": 115,
@@ -2555,18 +1725,13 @@ window.CHAPTER_DATA["macro-04"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-04",
-        "macro-09"
+        "macro-04"
       ],
       "eventId": "fed-2025",
       "sourceRefs": [
         {
           "chapterId": "macro-04",
           "sectionIndex": 1
-        },
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 3
         }
       ]
     },
@@ -2765,34 +1930,6 @@ window.CHAPTER_DATA["macro-04"] = {
             ],
             "takeaway": "FOMC 投票成員是12人，不是13人；紐約聯準銀行總裁是當然委員。",
             "trap": "把「12個地區聯準銀行」與「12名投票成員」混淆。"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "year": 114,
-    "label": "114 年",
-    "sections": {
-      "macro-04::1": {
-        "focus": "中央銀行題，先分「目標、工具、組織」。央行目標通常是物價穩定、金融穩定、經濟成長；工具包括公開市場操作、重貼現、準備率。",
-        "strategies": [
-          "央行經營目標：促進金融穩定、健全銀行業務、維護對內及對外幣值穩定、協助經濟發展。",
-          "外匯存底孳息繳庫不是央行法定經營目標，而是預算/盈餘處理。",
-          "CBDC 讓民眾可直接持有央行負債，央行對貨幣供給的控制能力提高。",
-          "FOMC 有12名投票成員：7名理事、紐約聯準銀行總裁、4名輪值地區總裁。"
-        ],
-        "examples": [
-          {
-            "questionId": "114Q1-macro-10",
-            "steps": [
-              "公開市場操作是央行最常用的工具；賣出債券會收回準備貨幣，降低貨幣供給。",
-              "「對大眾販售債券」即公開市場賣出，答案B。",
-              "買回債券會放出準備貨幣、增加貨幣供給；增加賦稅是財政政策。",
-              "從政府或大眾買回債券都是擴張方向。"
-            ],
-            "takeaway": "降低貨幣供給＝央行賣債券、收回流動性。",
-            "trap": "把「賣出債券」與「買回債券」的方向寫反。"
           }
         ]
       }

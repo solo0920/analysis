@@ -3230,17 +3230,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-07",
-        "macro-10"
+        "macro-07"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-07",
           "sectionIndex": 3
-        },
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 4
         }
       ]
     },
@@ -3278,7 +3273,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-02",
+      "sourceId": "macro-01",
       "number": 4,
       "stem": "下列何者不算政府支出 G（就 GDP 支出面分類）？",
       "options": [
@@ -3291,12 +3286,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-02"
+        "macro-01"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-02",
-          "sectionIndex": 2
+          "chapterId": "macro-01",
+          "sectionIndex": 1
         }
       ]
     },
@@ -3448,7 +3443,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-05",
+      "sourceId": "macro-08",
       "number": 10,
       "stem": "根據 Jones 與 Tonetti（2020）的研究，下列何者最能描述「資料（data）」在 AI 經濟學中的重要特性？",
       "options": [
@@ -3461,17 +3456,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-05",
-        "macro-02"
+        "macro-08"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-05",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 3
+          "chapterId": "macro-08",
+          "sectionIndex": 1
         }
       ]
     },
@@ -3578,16 +3568,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-10",
-        "macro-12"
+        "macro-10"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-10",
-          "sectionIndex": 1
-        },
-        {
-          "chapterId": "macro-12",
           "sectionIndex": 1
         }
       ]
@@ -3710,7 +3695,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-05",
+      "sourceId": "macro-12",
       "number": 19,
       "stem": "一年期利率 5%，二年期利率 5.5%，二年期利率的風險溢酬 0.5%，根據流動性偏好假說，預期一年後的一年期利率應該為多少？",
       "options": [
@@ -3723,12 +3708,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-05"
+        "macro-12"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-05",
-          "sectionIndex": 2
+          "chapterId": "macro-12",
+          "sectionIndex": 1
         }
       ]
     },
@@ -3794,7 +3779,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-12",
+      "sourceId": "macro-10",
       "number": 22,
       "stem": "若國際費雪效果成立，國家之間不同的名目利率將反應在：",
       "options": [
@@ -3807,12 +3792,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-12"
+        "macro-10"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-12",
-          "sectionIndex": 1
+          "chapterId": "macro-10",
+          "sectionIndex": 2
         }
       ]
     },
@@ -4116,17 +4101,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-09",
-        "macro-12"
+        "macro-09"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-09",
           "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-12",
-          "sectionIndex": 1
         }
       ]
     },
@@ -6917,7 +6897,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-02",
+      "sourceId": "macro-08",
       "number": 5,
       "stem": "12 月聖誕節是一年中景氣較旺的月份，請按照籌備聖誕節的相關經濟活動由領先到落後排序。甲.餐飲、乙.訂單、丙.加班生產、丁.銷售、戊.配送鋪貨",
       "options": [
@@ -6930,14 +6910,9 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-02",
         "macro-08"
       ],
       "sourceRefs": [
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 2
-        },
         {
           "chapterId": "macro-08",
           "sectionIndex": 3
@@ -6978,7 +6953,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-03",
+      "sourceId": "macro-05",
       "number": 7,
       "stem": "經由許多條方程式來表示貨幣及財政政策傳遞管道的模型，稱之為_____。",
       "options": [
@@ -6991,18 +6966,13 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-03",
-        "macro-06"
+        "macro-05"
       ],
       "eventId": "taiwan-monetary-2025",
       "sourceRefs": [
         {
-          "chapterId": "macro-03",
+          "chapterId": "macro-05",
           "sectionIndex": 1
-        },
-        {
-          "chapterId": "macro-06",
-          "sectionIndex": 2
         }
       ]
     },
@@ -7053,17 +7023,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-09",
-        "macro-12"
+        "macro-09"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-09",
           "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-12",
-          "sectionIndex": 1
         }
       ]
     },
@@ -7073,7 +7038,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-05",
+      "sourceId": "macro-03",
       "number": 10,
       "stem": "在商品貨幣發行時，若存在兩種型態的貨幣，則民眾會保留成色較高的貨幣，使得市面上僅流通較差的貨幣，造成「劣幣驅逐良幣」的現象發生，此現象又稱為下列哪個經濟學法則？",
       "options": [
@@ -7086,12 +7051,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-05"
+        "macro-03"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-05",
-          "sectionIndex": 2
+          "chapterId": "macro-03",
+          "sectionIndex": 1
         }
       ]
     },
@@ -7271,7 +7236,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-06",
+      "sourceId": "macro-05",
       "number": 17,
       "stem": "「安倍三箭」是日本前首相安倍晉三在 2012 年提出的核心經濟政策組合，下列何者不是？",
       "options": [
@@ -7284,17 +7249,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-06",
-        "macro-08"
+        "macro-05"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-06",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 2
+          "chapterId": "macro-05",
+          "sectionIndex": 4
         }
       ]
     },
@@ -7304,7 +7264,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-12",
+      "sourceId": "macro-02",
       "number": 18,
       "stem": "2026 年的年中美國國債，最接近哪一個數字？",
       "options": [
@@ -7317,13 +7277,13 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-12"
+        "macro-02"
       ],
       "eventId": "us-debt-gold",
       "sourceRefs": [
         {
-          "chapterId": "macro-12",
-          "sectionIndex": 3
+          "chapterId": "macro-02",
+          "sectionIndex": 1
         }
       ]
     },
@@ -7389,7 +7349,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-10",
+      "sourceId": "macro-01",
       "number": 21,
       "stem": "在國內生產毛額的計算中，臺灣下列哪一項的占比最大？",
       "options": [
@@ -7402,14 +7362,9 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-10",
         "macro-01"
       ],
       "sourceRefs": [
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 5
-        },
         {
           "chapterId": "macro-01",
           "sectionIndex": 1
@@ -7435,17 +7390,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-09",
-        "macro-01"
+        "macro-09"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-09",
           "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-01",
-          "sectionIndex": 4
         }
       ]
     },
@@ -7455,7 +7405,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-10",
+      "sourceId": "macro-04",
       "number": 23,
       "stem": "當今美國聯準會主席是哪一位？",
       "options": [
@@ -7468,13 +7418,13 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-10"
+        "macro-04"
       ],
       "eventId": "fed-2025",
       "sourceRefs": [
         {
-          "chapterId": "macro-10",
-          "sectionIndex": 2
+          "chapterId": "macro-04",
+          "sectionIndex": 1
         }
       ]
     },
@@ -7497,18 +7447,13 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-04",
-        "macro-09"
+        "macro-04"
       ],
       "eventId": "fed-2025",
       "sourceRefs": [
         {
           "chapterId": "macro-04",
           "sectionIndex": 1
-        },
-        {
-          "chapterId": "macro-09",
-          "sectionIndex": 3
         }
       ]
     },
@@ -7518,7 +7463,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-02",
+      "sourceId": "macro-10",
       "number": 25,
       "stem": "下列有關 2024 年川普政府宣布對某國計算的對等關稅描述何者有誤？",
       "options": [
@@ -7531,13 +7476,13 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-02"
+        "macro-10"
       ],
       "eventId": "tariffs-2025",
       "sourceRefs": [
         {
-          "chapterId": "macro-02",
-          "sectionIndex": 1
+          "chapterId": "macro-10",
+          "sectionIndex": 5
         }
       ]
     },

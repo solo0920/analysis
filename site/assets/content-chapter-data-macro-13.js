@@ -606,62 +606,6 @@ window.CHAPTER_DATA["macro-13"] = {
   ],
   "questions": [
     {
-      "id": "107Q1-macro-13",
-      "sessionId": "107Q1",
-      "year": 107,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 13,
-      "stem": "當工資上漲超過預期時，債券市場供需會如何變動？",
-      "options": [
-        "債券供給增加，債券利率下跌",
-        "債券供給減少，債券利率上漲",
-        "債券需求增加，債券供給減少，債券利率下跌",
-        "債券需求減少，債券供給增加，債券利率上漲"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "107Q1-macro-19",
-      "sessionId": "107Q1",
-      "year": 107,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 19,
-      "stem": "利率預期上升時，預期報酬率下跌幅度最少的是下列哪一年期的債券？",
-      "options": [
-        "20 年期",
-        "10 年期",
-        "5 年期",
-        "2 年期"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
       "id": "107Q2-macro-16",
       "sessionId": "107Q2",
       "year": 107,
@@ -686,34 +630,6 @@ window.CHAPTER_DATA["macro-13"] = {
         {
           "chapterId": "macro-13",
           "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "107Q2-macro-18",
-      "sessionId": "107Q2",
-      "year": 107,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 18,
-      "stem": "假定目前有一張附息債券，面值 1,000 元、票面利率 10%、小明以 1,200 元購入，持有一年之後以 1,300 元售出。根據前述條件，下列敘述何者正確？",
-      "options": [
-        "小明持有此張債券一年可獲得 120 元之債息收入",
-        "此張附息債券在小明購買時為溢價債券",
-        "此張債券之報酬率為 10%",
-        "此張債券之報酬率為 12%"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
         }
       ]
     },
@@ -774,235 +690,6 @@ window.CHAPTER_DATA["macro-13"] = {
       ]
     },
     {
-      "id": "107Q3-macro-27",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 27,
-      "stem": "風險分散 (diversification) 的概念和以下哪一個說法最接近？",
-      "options": [
-        "天下沒有白吃的午餐",
-        "早起的鳥兒有蟲吃",
-        "不要把所有雞蛋放在同一個籃子裡",
-        "要怎麼收穫，就怎麼栽"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 6
-        }
-      ]
-    },
-    {
-      "id": "107Q3-macro-31",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 31,
-      "stem": "以下對債券的描述何者正確？",
-      "options": [
-        "若到期前轉賣債券，若此時利率上升會有資本利得",
-        "短期債券的價格及報酬較長期債券容易波動",
-        "即使債券一開始有不錯的利息，但若市場利率持續上升，其報酬率有可能是負值",
-        "利率下降時，債券期限愈長，報酬率愈低"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "107Q4-macro-03",
-      "sessionId": "107Q4",
-      "year": 107,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 3,
-      "stem": "面額＄1,000，每年發放票面利息＄80 的債券，如果利率由 9%上升到 10%，則它的票面利率會如何變化？",
-      "options": [
-        "票面利率仍然在 8%不變",
-        "票面利率仍然在 9%不變",
-        "票面利率增加到 10%",
-        "以上皆非"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-02",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 2,
-      "stem": "假設投資人買進債券的價格高於面額，且在賣出債券時發生資本損失，則：",
-      "options": [
-        "到期收益率<票面利率<當期收益率",
-        "當期收益率<到期收益率<票面利率",
-        "到期收益率<當期收益率<票面利率",
-        "當期收益率<票面利率<到期收益率"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-20",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 20,
-      "stem": "零息債券的折價部分應為投資人的：",
-      "options": [
-        "利息收入的減項",
-        "再投資收入",
-        "資本利得",
-        "利息收入"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-21",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 21,
-      "stem": "下列有關債券利率之敘述，何者有誤？",
-      "options": [
-        "債券價格與利率間成反比",
-        "短期債券的利率風險高於長期債券",
-        "永續債券沒有固定到期日",
-        "債券距到期日愈遠，其價格隨市場利率變動的敏感性愈大"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-25",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 25,
-      "stem": "投資淨額不包括下列哪一項？",
-      "options": [
-        "建築物",
-        "機器設備",
-        "存貨",
-        "折舊"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 7
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-31",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 31,
-      "stem": "RTC 法案是指下列哪個法案？",
-      "options": [
-        "金融控股公司法",
-        "金融重建基金設置及管理條例",
-        "外匯管理法",
-        "票券金融管理法"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13",
-        "macro-11"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-11",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
       "id": "108Q2-macro-04",
       "sessionId": "108Q2",
       "year": 108,
@@ -1027,34 +714,6 @@ window.CHAPTER_DATA["macro-13"] = {
         {
           "chapterId": "macro-13",
           "sectionIndex": 7
-        }
-      ]
-    },
-    {
-      "id": "108Q2-macro-19",
-      "sessionId": "108Q2",
-      "year": 108,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 19,
-      "stem": "在其他條件不變之下，假如預期未來利率會下降，目前對長期債券的_______將_________，且長期債券需求曲線將往_______移動。",
-      "options": [
-        "需求；提高；右",
-        "需求；下降；左",
-        "供給；提高；右",
-        "供給；下降；右"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
         }
       ]
     },
@@ -1105,47 +764,9 @@ window.CHAPTER_DATA["macro-13"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-13",
-        "macro-11"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        },
-        {
-          "chapterId": "macro-11",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q4-macro-04",
-      "sessionId": "108Q4",
-      "year": 108,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-12",
-      "number": 4,
-      "stem": "國民購買汽機車輪胎是屬於？",
-      "options": [
-        "耐久財消費",
-        "半耐久財消費",
-        "非耐久財消費",
-        "投資"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-12",
         "macro-13"
       ],
       "sourceRefs": [
-        {
-          "chapterId": "macro-12",
-          "sectionIndex": 1
-        },
         {
           "chapterId": "macro-13",
           "sectionIndex": 3
@@ -1169,34 +790,6 @@ window.CHAPTER_DATA["macro-13"] = {
       ],
       "answer": [
         "C"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "108Q4-macro-09",
-      "sessionId": "108Q4",
-      "year": 108,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 9,
-      "stem": "投資國外債券的報酬率之計算為下列何者之相乘積：",
-      "options": [
-        "匯率變動率與債券價格變動率",
-        "匯率變動幅度與價格變動幅度",
-        "匯率變動率與物價變動率",
-        "匯率變動幅度與物價變動幅度"
-      ],
-      "answer": [
-        "A"
       ],
       "sourceIds": [
         "macro-13"
@@ -1233,231 +826,6 @@ window.CHAPTER_DATA["macro-13"] = {
         {
           "chapterId": "macro-13",
           "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q4-macro-29",
-      "sessionId": "108Q4",
-      "year": 108,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 29,
-      "stem": "當 BB 級與 AAA 級債券的風險利差擴大時，反映了何種現象？",
-      "options": [
-        "通貨膨脹",
-        "景氣衰退",
-        "投資需求上升",
-        "市場資金過多"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "109Q1-macro-26",
-      "sessionId": "109Q1",
-      "year": 109,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 26,
-      "stem": "某公司採取折價發行債券時，將意味著：",
-      "options": [
-        "市場價值大於票面價值",
-        "被贖回收益率小於票面利率",
-        "到期收益率大於票面利率",
-        "到期收益率小於票面利率"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "109Q1-macro-32",
-      "sessionId": "109Q1",
-      "year": 109,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 32,
-      "stem": "下列關於債券的敘述，何者錯誤？",
-      "options": [
-        "當利率上升，短期債券較保護投資者",
-        "長期債券較短期債券有較大的流動性",
-        "長期債券有較大的價格波動",
-        "長期債券較可能被倒帳"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "109Q1-macro-34",
-      "sessionId": "109Q1",
-      "year": 109,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 34,
-      "stem": "下列何種債券的到期日溢酬(term premium)最大？",
-      "options": [
-        "三十年期債券",
-        "五年期債券",
-        "十年期債券",
-        "一年期債券"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "109Q2-macro-08",
-      "sessionId": "109Q2",
-      "year": 109,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 8,
-      "stem": "下列債券何者到期日貼水（Term Premium）最大？",
-      "options": [
-        "三十年期債券",
-        "五年期債券",
-        "十年期債券",
-        "一年期債券"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "109Q2-macro-16",
-      "sessionId": "109Q2",
-      "year": 109,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 16,
-      "stem": "假定在未來 5 年中，1 年期的債券利率分別為 4%、5%、6%、7%、8%，而投資人持有 1 年期到 5 年期的期限貼水分別為 0.1%、0.2%、0.4%、0.7%、1%。依據習性偏好理論（Preferred Habitat Theory），4 年期利率應為：",
-      "options": [
-        "6.2%",
-        "4.9%",
-        "5.4%",
-        "7%"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "eventId": "taiwan-policy-2025",
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "109Q2-macro-17",
-      "sessionId": "109Q2",
-      "year": 109,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 17,
-      "stem": "假設你有一筆閒錢，打算作4 年的投資。你可以買1 年期 4%的債券、2 年期 5%的債券、3 年期 6%的債券與 4 年期 7%的債券。你又預期1 年後的 1 年期債券利率為6.5%、2 年後為 8%、3 年後為 9%，則下列的投資方案中何者獲利最多？",
-      "options": [
-        "買一張 4 年期債券",
-        "買一張 3 年期債券，3 年後再買一張 1 年期債券",
-        "買一張 2 年期債券，2 年後再買一張 1 年期債券，3 年後再買一張 1 年期債券",
-        "每 1 年都買一張 1 年期債券"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "109Q3-macro-13",
-      "sessionId": "109Q3",
-      "year": 109,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 13,
-      "stem": "面額 100 萬元的零息債券，2 年後到期，如果市場利率為 10%，則該債券的現在價值為：",
-      "options": [
-        "82.64 萬元",
-        "90.91 萬元",
-        "100 萬元",
-        "21 萬元"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
         }
       ]
     },
@@ -1536,17 +904,12 @@ window.CHAPTER_DATA["macro-13"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-13",
-        "macro-11"
+        "macro-13"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-13",
           "sectionIndex": 4
-        },
-        {
-          "chapterId": "macro-11",
-          "sectionIndex": 2
         }
       ]
     },
@@ -1575,184 +938,6 @@ window.CHAPTER_DATA["macro-13"] = {
         {
           "chapterId": "macro-13",
           "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "109Q3-macro-26",
-      "sessionId": "109Q3",
-      "year": 109,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 26,
-      "stem": "在景氣衰退時期，企業投資獲利機會_________使得債券供給 ________，另外，債券需求因人們財富水準減少而 ______。",
-      "options": [
-        "減少；增加；減少",
-        "增加；減少；減少",
-        "減少；減少；增加",
-        "減少；減少；減少"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-13",
-        "macro-02"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        },
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "109Q3-macro-28",
-      "sessionId": "109Q3",
-      "year": 109,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 28,
-      "stem": "假如目前及預期未來 4 年的一年期利率分別為 2%、3%、2%、4%、3%，預期理論預測目前哪種期限的債券的利率最低？",
-      "options": [
-        "1 年期",
-        "2 年期",
-        "3 年期",
-        "4 年期"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "109Q4-macro-28",
-      "sessionId": "109Q4",
-      "year": 109,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 28,
-      "stem": "當預期利率會上升時，下列何者債券預期會有比較大的損失？",
-      "options": [
-        "5 年期票面利率 10%債券",
-        "10 年期票面利率 10%債券",
-        "5 年期票面利率 5%債券",
-        "10 年期票面利率 5%債券"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "109Q4-macro-34",
-      "sessionId": "109Q4",
-      "year": 109,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 34,
-      "stem": "根據市場區隔理論，當央行打算進行扭轉操作，拉高短期利率，並且降低長期利率，應該如何在債券市場操作？",
-      "options": [
-        "買進短期公債、賣出長期公債",
-        "買進長期公債、賣出短期公債",
-        "長期與短期公債皆買進",
-        "長期與短期公債皆賣出"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "110Q1-macro-02",
-      "sessionId": "110Q1",
-      "year": 110,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 2,
-      "stem": "若 2 年期與3 年期之債券利率分別為2.25%與 3%，根據預期理論，未來的第3 年 1 年期預期利率為：",
-      "options": [
-        "4.5%",
-        "6.25%",
-        "3.25%",
-        "5%"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "110Q1-macro-09",
-      "sessionId": "110Q1",
-      "year": 110,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 9,
-      "stem": "未來欲買外匯，使用遠期契約避險之缺點為：",
-      "options": [
-        "遠期巿場之交易成本高",
-        "遠期匯率高於即期匯率",
-        "在避險的期間該貨幣可能貶值",
-        "在避險的期間該貨幣可能升值"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-13",
-        "macro-10"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 5
-        },
-        {
-          "chapterId": "macro-10",
-          "sectionIndex": 2
         }
       ]
     },
@@ -1841,34 +1026,6 @@ window.CHAPTER_DATA["macro-13"] = {
       ]
     },
     {
-      "id": "110Q2-macro-03",
-      "sessionId": "110Q2",
-      "year": 110,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 3,
-      "stem": "下列何者關於債券風險貼水的陳述是錯的？",
-      "options": [
-        "與發行者個別情況無關",
-        "對於承擔風險所要求的補償",
-        "投資人重要參考",
-        "通常指收益率的差異"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
       "id": "110Q2-macro-04",
       "sessionId": "110Q2",
       "year": 110,
@@ -1885,146 +1042,6 @@ window.CHAPTER_DATA["macro-13"] = {
       ],
       "answer": [
         "C"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "110Q2-macro-15",
-      "sessionId": "110Q2",
-      "year": 110,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 15,
-      "stem": "假設你有一筆閒錢，打算作 4 年的投資。你可以買 1 年期 4%的債券、2 年期 5%的債券、3 年期 6%的債券與 4 年期 7%的債券；你又預期 1 年後的 1 年期債券利率為 6.5%、2 年後為 8%、3 年後為 9%，則下列的投資方案中何者獲利最多？",
-      "options": [
-        "買一張 4 年期債券",
-        "買一張 3 年期債券，3 年後再買一張 1 年期債券",
-        "買一張 2 年期債券，2 年後再買一張 1 年期債券，3 年後再買一張 1 年期債券",
-        "每 1 年都買一張 1 年期債券"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "110Q2-macro-23",
-      "sessionId": "110Q2",
-      "year": 110,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 23,
-      "stem": "當人們預期未來的利率上升，債券市場中：",
-      "options": [
-        "需求曲線會往左邊移動些",
-        "供給曲線會往左邊移動些",
-        "需求曲線會往右邊移動些",
-        "供給曲線會往右邊移動些"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "110Q2-macro-25",
-      "sessionId": "110Q2",
-      "year": 110,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 25,
-      "stem": "利息未支付或債券面額未償還的風險，稱為_________。",
-      "options": [
-        "通膨風險",
-        "道德危險",
-        "利率風險",
-        "倒帳風險"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "110Q2-macro-26",
-      "sessionId": "110Q2",
-      "year": 110,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 26,
-      "stem": "安隆公司破產使得 Baa 債券的利率上升，這是由於________。",
-      "options": [
-        "追求流動性",
-        "風險上升",
-        "期限縮短",
-        "以上皆非"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "110Q3-macro-10",
-      "sessionId": "110Q3",
-      "year": 110,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 10,
-      "stem": "若債券的利率將由 5%上升至 6%，你會持有下列哪一種債券？",
-      "options": [
-        "1 年到期的債券",
-        "5 年到期的債券",
-        "10 年到期的債券",
-        "20 年到期的債券"
-      ],
-      "answer": [
-        "A"
       ],
       "sourceIds": [
         "macro-13"
@@ -2177,62 +1194,6 @@ window.CHAPTER_DATA["macro-13"] = {
       ]
     },
     {
-      "id": "111Q1-macro-02",
-      "sessionId": "111Q1",
-      "year": 111,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 2,
-      "stem": "依標準普爾公司給予的債券評等，下列何者屬於投資等級？",
-      "options": [
-        "CCC",
-        "BB",
-        "BBB",
-        "B"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "111Q1-macro-04",
-      "sessionId": "111Q1",
-      "year": 111,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 4,
-      "stem": "以下何者與零息債券沒有關係？",
-      "options": [
-        "現時收益率",
-        "價格低於面額",
-        "到期收益率",
-        "利率風險"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
       "id": "111Q1-macro-10",
       "sessionId": "111Q1",
       "year": 111,
@@ -2345,90 +1306,6 @@ window.CHAPTER_DATA["macro-13"] = {
       ]
     },
     {
-      "id": "111Q1-macro-24",
-      "sessionId": "111Q1",
-      "year": 111,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 24,
-      "stem": "若一張債券的面額為 10 萬元，載明票面利率為 5%：",
-      "options": [
-        "若以 9.5 萬元買賣，則其殖利率小於 5%",
-        "若以 9 萬元買賣，則其當期收益率為 6%",
-        "若以 10 萬元買賣，則其殖利率大於 5%",
-        "若以 8 萬元買賣，則其當期收益率為 6.25%"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "111Q1-macro-26",
-      "sessionId": "111Q1",
-      "year": 111,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 26,
-      "stem": "要使國庫券買家去購買長期公債，必須給他額外的誘因，此誘因即_____。",
-      "options": [
-        "稅率貼水",
-        "期限貼水",
-        "風險貼水",
-        "市場貼水"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "111Q1-macro-27",
-      "sessionId": "111Q1",
-      "year": 111,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 27,
-      "stem": "若預期市場上債券利率在未來一年中會上升，目前哪種債券會最被願意持有？",
-      "options": [
-        "一年期債券",
-        "二年期債券",
-        "五年期債券",
-        "十年期債券"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
       "id": "111Q1-macro-30",
       "sessionId": "111Q1",
       "year": 111,
@@ -2453,123 +1330,6 @@ window.CHAPTER_DATA["macro-13"] = {
         {
           "chapterId": "macro-13",
           "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "111Q1-macro-31",
-      "sessionId": "111Q1",
-      "year": 111,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 31,
-      "stem": "下列哪些因素會使得債券供給增加？",
-      "options": [
-        "預期通貨膨脹率下跌",
-        "經濟全面上揚",
-        "政府預算赤字減少",
-        "股票的流動性變好"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13",
-        "macro-12"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        },
-        {
-          "chapterId": "macro-12",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "111Q2-macro-05",
-      "sessionId": "111Q2",
-      "year": 111,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 5,
-      "stem": "浮動利率債券的目的在於？",
-      "options": [
-        "節省公司發行者的利息費用",
-        "避免在到期日前支付利息",
-        "提供依現在巿場狀態調整的利率",
-        "使收益率浮動"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "111Q2-macro-07",
-      "sessionId": "111Q2",
-      "year": 111,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 7,
-      "stem": "下列何者不是美國投資者投資國外債券的原因？",
-      "options": [
-        "分散風險",
-        "較低的交易成本",
-        "報酬較國內債券高",
-        "國內外債券相關係數不為 1"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "111Q2-macro-10",
-      "sessionId": "111Q2",
-      "year": 111,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 10,
-      "stem": "下列何者關於債券風險貼水的陳述是錯的？風險貼水為：",
-      "options": [
-        "與發行者個別情況無關",
-        "對於承擔風險所要求的補償",
-        "投資人重要參考",
-        "通常指收益率的差異"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
         }
       ]
     },
@@ -2602,156 +1362,6 @@ window.CHAPTER_DATA["macro-13"] = {
       ]
     },
     {
-      "id": "111Q3-macro-23",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 23,
-      "stem": "假設一條新的法令，規定所有的股票或債券的交易，都需要繳交額外的交易稅。這對於貨幣的需求有何影響？",
-      "options": [
-        "貨幣需求先是下降，之後隨著通貨膨脹而上升",
-        "貨幣需求上升",
-        "整體的效果不確定",
-        "貨幣需求下降"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13",
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        },
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "112Q1-macro-03",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 3,
-      "stem": "下列何者關於債券風險貼水的陳述是錯的？風險貼水為：",
-      "options": [
-        "與發行者個別情況無關",
-        "對於承擔風險所要求的補償",
-        "投資人重要參考",
-        "通常指收益率的差異"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "112Q1-macro-13",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 13,
-      "stem": "根據市場區隔理論，當央行打算進行扭轉操作，拉高短期利率，並且降低長期利率，應該如何在債券市場操作？",
-      "options": [
-        "買進短期公債、賣出長期公債",
-        "買進長期公債、賣出短期公債",
-        "長期與短期公債皆買進",
-        "長期與短期公債皆賣出"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "112Q1-macro-21",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 21,
-      "stem": "面額為 100 萬元的息票債券，息票利率為 5％，兩年後到期。若現在的利率為 4％，那麼這張債券目前價格應大約為多少？",
-      "options": [
-        "97 萬元",
-        "100 萬元",
-        "102 萬元",
-        "105 萬元"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "112Q1-macro-22",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 22,
-      "stem": "下列何者會使得債券供給增加？",
-      "options": [
-        "預期通貨膨脹率上揚",
-        "政府預算赤字減少",
-        "景氣變差",
-        "股票的流動性提高"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-13",
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        },
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
       "id": "112Q2-macro-01",
       "sessionId": "112Q2",
       "year": 112,
@@ -2770,16 +1380,11 @@ window.CHAPTER_DATA["macro-13"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-13",
-        "macro-11"
+        "macro-13"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-13",
-          "sectionIndex": 3
-        },
-        {
-          "chapterId": "macro-11",
           "sectionIndex": 3
         }
       ]
@@ -2841,34 +1446,6 @@ window.CHAPTER_DATA["macro-13"] = {
       ]
     },
     {
-      "id": "112Q2-macro-29",
-      "sessionId": "112Q2",
-      "year": 112,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 29,
-      "stem": "CCI、PMI 與 VIX 分別對應了下列何種指標？",
-      "options": [
-        "消費信心指標、企業投資信心指標、股市恐慌指標",
-        "消費信心指標、企業投資信心指標、股市信心指標",
-        "股市恐慌指標、消費信心指標、企業投資信心指標",
-        "消費者物價指數、躉售物價指數、股市恐慌指標"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
       "id": "112Q2-macro-30",
       "sessionId": "112Q2",
       "year": 112,
@@ -2925,50 +1502,22 @@ window.CHAPTER_DATA["macro-13"] = {
       ]
     },
     {
-      "id": "112Q2-macro-35",
-      "sessionId": "112Q2",
-      "year": 112,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 35,
-      "stem": "甲國生產一台電腦需要 10 個人日，乙國則需要 8 個人日；甲國生產一瓶酒需要 3 個人日，乙國則需要 1 個人日，請問下列敘述何者為非？",
-      "options": [
-        "乙國生產電腦有絕對優勢",
-        "乙國生產電腦有相對優勢",
-        "乙國生產酒有絕對優勢",
-        "乙國生產酒有相對優勢"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "112Q3-macro-03",
+      "id": "112Q3-macro-02",
       "sessionId": "112Q3",
       "year": 112,
       "session": 3,
       "subject": "macro",
       "sourceId": "macro-13",
-      "number": 3,
-      "stem": "通常若投資_______票面利率和_______到期日債券，則再投資風險上升。",
+      "number": 2,
+      "stem": "寶島債是由我國哪一個單位掛牌買賣？",
       "options": [
-        "較低；較短",
-        "較低；較長",
-        "較高；較短",
-        "較高；較長"
+        "財政部",
+        "證券交易所",
+        "臺灣銀行",
+        "證券櫃檯買賣中心"
       ],
       "answer": [
-        "C"
+        "D"
       ],
       "sourceIds": [
         "macro-13"
@@ -2977,67 +1526,6 @@ window.CHAPTER_DATA["macro-13"] = {
         {
           "chapterId": "macro-13",
           "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "112Q3-macro-07",
-      "sessionId": "112Q3",
-      "year": 112,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 7,
-      "stem": "金融六法不包括下列何者？",
-      "options": [
-        "金融控股公司法",
-        "金融重建基金設置及管理條例",
-        "外匯管理法",
-        "票券金融管理法"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 6
-        }
-      ]
-    },
-    {
-      "id": "112Q3-macro-20",
-      "sessionId": "112Q3",
-      "year": 112,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 20,
-      "stem": "假設一條新的法令，規定所有的股票或債券的交易，都需要繳交額外的交易稅。這對於貨幣的需求有何影響？",
-      "options": [
-        "貨幣需求先是下降，之後隨著通貨膨脹而上升",
-        "貨幣需求上升",
-        "整體的效果不確定",
-        "貨幣需求下降"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13",
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        },
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 1
         }
       ]
     },
@@ -3055,34 +1543,6 @@ window.CHAPTER_DATA["macro-13"] = {
         "高風險高收益率債券",
         "零息債券",
         "區域債券"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "113Q1-macro-09",
-      "sessionId": "113Q1",
-      "year": 113,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 9,
-      "stem": "下列關於債券之敘述何者為非？",
-      "options": [
-        "當利率上升，短期債券較保護投資者",
-        "長期債券較短期債券有較大的流動性",
-        "長期債券有較大的價格波動",
-        "長期債券較可能被倒帳"
       ],
       "answer": [
         "B"
@@ -3126,6 +1586,34 @@ window.CHAPTER_DATA["macro-13"] = {
       ]
     },
     {
+      "id": "113Q1-macro-11",
+      "sessionId": "113Q1",
+      "year": 113,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-13",
+      "number": 11,
+      "stem": "下列何者是波動性造成的風險？",
+      "options": [
+        "Delta 風險",
+        "Gamma 風險",
+        "Vega 風險",
+        "Rho 風險"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-13"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-13",
+          "sectionIndex": 7
+        }
+      ]
+    },
+    {
       "id": "113Q1-macro-26",
       "sessionId": "113Q1",
       "year": 113,
@@ -3150,62 +1638,6 @@ window.CHAPTER_DATA["macro-13"] = {
         {
           "chapterId": "macro-13",
           "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "113Q2-macro-09",
-      "sessionId": "113Q2",
-      "year": 113,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 9,
-      "stem": "當 BB 級與 AAA 級債券的風險利差擴大時，反映了何種現象？",
-      "options": [
-        "通貨膨脹",
-        "景氣衰退",
-        "投資需求上升",
-        "市場資金過多"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "113Q2-macro-10",
-      "sessionId": "113Q2",
-      "year": 113,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 10,
-      "stem": "關於債券票面利率(Coupon Rate)及持有債券報酬率的差別，下列何者為真？",
-      "options": [
-        "持有債券的報酬率未必等於債券的票面利率",
-        "若有資本利得，票面利率會大於持有債券的報酬率",
-        "當債券的價格下降時，持有債券的報酬率會大於債券票面利率",
-        "選項(A)(B)(C)皆非"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
         }
       ]
     },
@@ -3238,47 +1670,19 @@ window.CHAPTER_DATA["macro-13"] = {
       ]
     },
     {
-      "id": "113Q2-macro-23",
-      "sessionId": "113Q2",
+      "id": "113Q3-macro-17",
+      "sessionId": "113Q3",
       "year": 113,
-      "session": 2,
+      "session": 3,
       "subject": "macro",
       "sourceId": "macro-13",
-      "number": 23,
-      "stem": "若一張兩年期債券的面額為 100 萬元，載明息票利率為 4%，",
+      "number": 17,
+      "stem": "隱含波動率主要是透過何種價格計算而得？",
       "options": [
-        "若以 101 萬元交易，則其到期收益率(Yield To Maturity)為 4.5%",
-        "若以 100 萬元交易，則其到期收益率為 4%",
-        "若以 99 萬元交易，則其到期收益率為 3.9%",
-        "若以 98 萬元交易，則其當期收益率(Current Yield)為 4%"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "113Q2-macro-26",
-      "sessionId": "113Q2",
-      "year": 113,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 26,
-      "stem": "假如目前一年期利率為 2%，預期未來 4 年的一年期利率為 3%、1%、3%、3%，預期理論預測目前哪種期限之債券的利率最高?",
-      "options": [
-        "2 年期",
-        "3 年期",
-        "4 年期",
-        "5 年期"
+        "選擇權價格",
+        "股票價格",
+        "匯率",
+        "債券價格"
       ],
       "answer": [
         "A"
@@ -3289,119 +1693,7 @@ window.CHAPTER_DATA["macro-13"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "113Q2-macro-29",
-      "sessionId": "113Q2",
-      "year": 113,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 29,
-      "stem": "下面哪些因素會使得債券供給增加？",
-      "options": [
-        "房地產需求減少",
-        "政府預算赤字增加",
-        "家戶所得提高",
-        "股票的流動性提高"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "113Q2-macro-33",
-      "sessionId": "113Q2",
-      "year": 113,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 33,
-      "stem": "一張債券到期時才付款一次 100 萬元，期限為 5 年，利率為 3.5%，這張債券的存續期 (Duration)為：",
-      "options": [
-        "1.5",
-        "3.5",
-        "4.0",
-        "5.0"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "113Q3-macro-14",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 14,
-      "stem": "根據市場區隔理論，當央行打算進行扭轉操作，拉高短期利率，並且降低長期利率，應該如何在債券市場操作？",
-      "options": [
-        "買進短期公債、賣出長期公債",
-        "買進長期公債、賣出短期公債",
-        "長期與短期公債皆買進",
-        "長期與短期公債皆賣出"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "113Q3-macro-18",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 18,
-      "stem": "當預期利率會下降時，買下列何種債券，才能獲得最大資本報酬率？",
-      "options": [
-        "5 年到期，票面利率 10%",
-        "10 年到期，票面利率 8%",
-        "5 年到期，票面利率 8%",
-        "10 年到期，票面利率 10%"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
+          "sectionIndex": 7
         }
       ]
     },
@@ -3430,39 +1722,6 @@ window.CHAPTER_DATA["macro-13"] = {
         {
           "chapterId": "macro-13",
           "sectionIndex": 7
-        }
-      ]
-    },
-    {
-      "id": "114Q2-macro-22",
-      "sessionId": "114Q2",
-      "year": 114,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-11",
-      "number": 22,
-      "stem": "海湖莊園協議是源自美國白宮經濟顧問委員會主席米蘭的哪一個報告？",
-      "options": [
-        "《重組全球貿易體系的使用者指南》",
-        "《重組全球貨幣體系的使用者指南》",
-        "《重組全球戰略體系的使用者指南》",
-        "《重組全球民主體系的使用者指南》"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-11",
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-11",
-          "sectionIndex": 1
-        },
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 2
         }
       ]
     },
@@ -3551,34 +1810,6 @@ window.CHAPTER_DATA["macro-13"] = {
       ]
     },
     {
-      "id": "114Q3-macro-31",
-      "sessionId": "114Q3",
-      "year": 114,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-13",
-      "number": 31,
-      "stem": "在同一時間，以下期限相同的債券中哪一個債券投資人比較樂意去購買？",
-      "options": [
-        "面額$10,000，票面利率 3%，價格為$10,000",
-        "面額$10,000，票面利率 3%，價格為$9,500",
-        "面額$10,000，票面利率 4%，價格為$10,000",
-        "面額$10,000，票面利率 4%，價格為$9,500"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-13"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-13",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
       "id": "114Q3-macro-32",
       "sessionId": "114Q3",
       "year": 114,
@@ -3607,22 +1838,22 @@ window.CHAPTER_DATA["macro-13"] = {
       ]
     },
     {
-      "id": "114Q3-macro-34",
+      "id": "114Q3-macro-33",
       "sessionId": "114Q3",
       "year": 114,
       "session": 3,
       "subject": "macro",
       "sourceId": "macro-13",
-      "number": 34,
-      "stem": "在景氣熱絡時期，債券供給 ________，債券需求______，而此時實際經濟中的利率通常 _______。",
+      "number": 33,
+      "stem": "臺灣的鴻海公司到美國發行的股權憑證稱為",
       "options": [
-        "減少；增加；下降",
-        "增加；減少；下降",
-        "增加；減少；上升",
-        "增加；增加；上升"
+        "臺灣存託憑證 (TDR)",
+        "美國存託憑證 (ADR)",
+        "全球存託憑證 (GDR)",
+        "國際存託憑證 (IDR)"
       ],
       "answer": [
-        "D"
+        "B"
       ],
       "sourceIds": [
         "macro-13"
@@ -3630,7 +1861,7 @@ window.CHAPTER_DATA["macro-13"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-13",
-          "sectionIndex": 3
+          "sectionIndex": 4
         }
       ]
     },

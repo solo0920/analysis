@@ -1326,9 +1326,9 @@ const pastExamExpectedChapterTotals = {
   "accounting-13": 75, "accounting-14": 8, "accounting-15": 98, "accounting-16": 20, "accounting-17": 33, "accounting-18": 3,
   "accounting-19": 21, "accounting-20": 30, "accounting-21": 11, "accounting-22": 3, "accounting-23": 41,
   // macro
-  "macro-01": 52, "macro-02": 78, "macro-03": 43, "macro-04": 70, "macro-05": 128, "macro-06": 30,
-  "macro-07": 53, "macro-08": 54, "macro-09": 97, "macro-10": 173, "macro-11": 28, "macro-12": 153,
-  "macro-13": 108,
+  "macro-01": 59, "macro-02": 58, "macro-03": 42, "macro-04": 42, "macro-05": 125, "macro-06": 53,
+  "macro-07": 65, "macro-08": 56, "macro-09": 60, "macro-10": 164, "macro-11": 33, "macro-12": 190,
+  "macro-13": 47,
 };
 const pastExamChapterTotals = {};
 const pastExamSessionMap = {};
@@ -1743,13 +1743,13 @@ solutionBatches.forEach(function (batch) {
   });
 });
 const solutionExpectedByYear = {
-  115: { sections: 81, examples: 142, written: 24 },
+  115: { sections: 79, examples: 142, written: 24 },
   114: { sections: 47, examples: 83, written: 36 },
   113: { sections: 32, examples: 52, written: 36 },
   112: { sections: 35, examples: 48, written: 36 },
   111: { sections: 27, examples: 48, written: 36 },
   110: { sections: 29, examples: 48, written: 36 },
-  109: { sections: 32, examples: 60, written: 48 },
+  109: { sections: 31, examples: 60, written: 48 },
   108: { sections: 30, examples: 60, written: 48 },
   107: { sections: 33, examples: 60, written: 48 }
 };

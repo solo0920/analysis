@@ -662,34 +662,6 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "107Q2-macro-04",
-      "sessionId": "107Q2",
-      "year": 107,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 4,
-      "stem": "假設三個月國庫券的利率為 5%，且十年期公債的利率為 6%，則經濟衰退的機率可謂：",
-      "options": [
-        "大約 100%",
-        "大約 40%",
-        "大約 25%",
-        "少於 15%"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
       "id": "107Q3-macro-08",
       "sessionId": "107Q3",
       "year": 107,
@@ -858,6 +830,34 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
+      "id": "108Q4-macro-22",
+      "sessionId": "108Q4",
+      "year": 108,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 22,
+      "stem": "下列哪項指標是衡量企業經營與投資活動的熱絡程度？",
+      "options": [
+        "生產者物價指數",
+        "經理人採購指數",
+        "消費者信心指數",
+        "波羅地海綜合指數"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
       "id": "108Q4-macro-26",
       "sessionId": "108Q4",
       "year": 108,
@@ -886,6 +886,90 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
+      "id": "108Q4-macro-27",
+      "sessionId": "108Q4",
+      "year": 108,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 27,
+      "stem": "關於經濟循環中的擴張階段，下列敘述何者正確？",
+      "options": [
+        "利潤減少",
+        "失業率上升",
+        "利率上升",
+        "物價下跌"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "108Q4-macro-34",
+      "sessionId": "108Q4",
+      "year": 108,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 34,
+      "stem": "當景氣出現了藍燈，下列何者是政府不應該採取之應對政策？",
+      "options": [
+        "增加政府支出",
+        "提高稅率",
+        "公開市場上買入債券",
+        "調降法定準備率"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "109Q1-macro-01",
+      "sessionId": "109Q1",
+      "year": 109,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 1,
+      "stem": "某國使用的總體生產函數為Y = AK0.3N0.7，而其資本數量K = 2,000、勞動數量N = 100，技術狀況 A = 1，目前產出是Y = 246。假設該國資本與勞動同時成長 10%，而在技術狀況不變下，產出將成長多少？",
+      "options": [
+        "5%",
+        "10%",
+        "15%",
+        "20%"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
       "id": "109Q1-macro-05",
       "sessionId": "109Q1",
       "year": 109,
@@ -904,17 +988,12 @@ window.CHAPTER_DATA["macro-08"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-08",
-        "macro-02"
+        "macro-08"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-08",
           "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 1
         }
       ]
     },
@@ -947,19 +1026,19 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "109Q2-macro-09",
-      "sessionId": "109Q2",
+      "id": "109Q4-macro-33",
+      "sessionId": "109Q4",
       "year": 109,
-      "session": 2,
+      "session": 4,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 9,
-      "stem": "大部分實證結果顯示：貨幣流通速度傾向與景氣循環_____，也就是當經濟活動緊縮時，貨幣流通速度會_____。",
+      "number": 33,
+      "stem": "下列哪項指標是和企業經營與投資熱絡程度有直接關係？",
       "options": [
-        "同向變動；減少",
-        "反向變動；減少",
-        "反向變動；增加",
-        "同向變動；增加"
+        "PMI",
+        "CPI",
+        "GDP",
+        "M1B"
       ],
       "answer": [
         "A"
@@ -970,119 +1049,7 @@ window.CHAPTER_DATA["macro-08"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-08",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "109Q2-macro-22",
-      "sessionId": "109Q2",
-      "year": 109,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 22,
-      "stem": "全球肺炎大流行衝擊全球經濟前景，各國紛紛實施寬鬆財政政策來刺激經濟成長，若貨幣需求對利率的敏感性越小時，寬鬆財政政策的實施效果則：",
-      "options": [
-        "越大",
-        "越小",
-        "不變",
-        "不一定"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "109Q4-macro-11",
-      "sessionId": "109Q4",
-      "year": 109,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 11,
-      "stem": "當經濟大約開始衰退時，你可能會觀察到：",
-      "options": [
-        "收益率曲線向上稍微傾斜",
-        "收益率曲線陡峭正斜率",
-        "收益率曲線平坦或反轉成負斜率",
-        "收益率曲線，在短期到期會向上傾斜，然後在長期到期會向下斜率。"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "110Q1-macro-27",
-      "sessionId": "110Q1",
-      "year": 110,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 27,
-      "stem": "有關投資理論的敘述，何者錯誤？",
-      "options": [
-        "新古典投資理論指出廠商投資將受實質利率影響",
-        "投資的加速原理係指產出變動將引起投資更大幅度變動",
-        "Tobin 的比率係指廠商市場價值與廠商重置成本的比率",
-        "股市低迷導致q < 1，意味著廠商將會從事新廠房設備投資"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "110Q3-macro-14",
-      "sessionId": "110Q3",
-      "year": 110,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 14,
-      "stem": "2017 年諾貝爾得主塞勒(Richard H. Thaler)，針對個人決策心理分析進行相關研究，進而開創經濟學新領域？",
-      "options": [
-        "政治經濟學",
-        "行為經濟學",
-        "實驗經濟學",
-        "教育經濟學"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 1
+          "sectionIndex": 3
         }
       ]
     },
@@ -1143,19 +1110,47 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "111Q2-macro-14",
+      "id": "111Q2-macro-20",
       "sessionId": "111Q2",
       "year": 111,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 14,
-      "stem": "2017 年諾貝爾得主賽勒(Richard H.Thaler)，針對個人決策心理分析進行相關研究，進而開創經濟學新領域？",
+      "number": 20,
+      "stem": "在景氣指標中，外銷訂單動向指數是屬於指標，失業率是屬於指標、非農業部門就業率是屬於指標。",
       "options": [
-        "政治經濟學",
-        "行為經濟學",
-        "實驗經濟學",
-        "教育經濟學"
+        "領先、落後、同時",
+        "領先、落後、落後",
+        "同時、落後、同時",
+        "領先、同時、同時"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "111Q2-macro-21",
+      "sessionId": "111Q2",
+      "year": 111,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 21,
+      "stem": "12 月聖誕節是一年中景氣較旺的月份，請按照籌備聖誕節的相關經濟活動由領先到落後排序。甲.餐飲、乙.訂單、丙.加班生產、丁.銷售、戊.配送鋪貨。",
+      "options": [
+        "甲乙丙丁戊",
+        "乙丙戊丁甲",
+        "乙戊丙丁甲",
+        "乙丙丁甲戊"
       ],
       "answer": [
         "B"
@@ -1166,7 +1161,7 @@ window.CHAPTER_DATA["macro-08"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-08",
-          "sectionIndex": 1
+          "sectionIndex": 2
         }
       ]
     },
@@ -1424,34 +1419,29 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "112Q2-macro-28",
+      "id": "112Q2-macro-29",
       "sessionId": "112Q2",
       "year": 112,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 28,
-      "stem": "下列何者現象反映了貧富差距擴大？I.吉尼係數上升、II.薪資佔全體要素所得比重上升、III.薪資成長率低於經濟成長率",
+      "number": 29,
+      "stem": "CCI、PMI 與 VIX 分別對應了下列何種指標？",
       "options": [
-        "僅 I",
-        "I 與 II",
-        "I 與 III",
-        "I、II 與 III"
+        "消費信心指標、企業投資信心指標、股市恐慌指標",
+        "消費信心指標、企業投資信心指標、股市信心指標",
+        "股市恐慌指標、消費信心指標、企業投資信心指標",
+        "消費者物價指數、躉售物價指數、股市恐慌指標"
       ],
       "answer": [
-        "C"
+        "A"
       ],
       "sourceIds": [
-        "macro-08",
-        "macro-02"
+        "macro-08"
       ],
       "sourceRefs": [
         {
           "chapterId": "macro-08",
-          "sectionIndex": 1
-        },
-        {
-          "chapterId": "macro-02",
           "sectionIndex": 3
         }
       ]
@@ -1518,7 +1508,7 @@ window.CHAPTER_DATA["macro-08"] = {
       "year": 112,
       "session": 3,
       "subject": "macro",
-      "sourceId": "macro-10",
+      "sourceId": "macro-08",
       "number": 15,
       "stem": "當資本額度增加，但資本的邊際產出不變，則產出與資本的關係圖中，其圖形會是：",
       "options": [
@@ -1531,14 +1521,66 @@ window.CHAPTER_DATA["macro-08"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-10",
         "macro-08"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-10",
-          "sectionIndex": 5
-        },
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "112Q3-macro-16",
+      "sessionId": "112Q3",
+      "year": 112,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 16,
+      "stem": "經濟學家常常假設一國之資本存量固定不變，因為________。",
+      "options": [
+        "勞動力是更重要的生產因子，因此資本可以被忽略",
+        "資本的變動較為緩慢，因為投資或是舊設備的報廢，都需要較長的時間來影響資本的額度",
+        "一個經濟體系內，勞動的量比資本的量要大許多",
+        "除非利率改變，否則資本存量不會改變"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "112Q3-macro-19",
+      "sessionId": "112Q3",
+      "year": 112,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 19,
+      "stem": "假設現階段的產出為 5,000，產出對資本的彈性（elasticity of output with respect to capital）為 0.4。則資本上升 10% 將導致產出變為：",
+      "options": [
+        "5,020",
+        "5,050",
+        "5,200",
+        "5,500"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "eventId": "taiwan-policy-2025",
+      "sourceRefs": [
         {
           "chapterId": "macro-08",
           "sectionIndex": 1
@@ -1658,22 +1700,22 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "113Q1-macro-22",
+      "id": "113Q1-macro-08",
       "sessionId": "113Q1",
       "year": 113,
       "session": 1,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 22,
-      "stem": "台灣主計總處公布的經濟成長率資料，下列描述何者有誤?",
+      "number": 8,
+      "stem": "「創造性的毀滅過程」是哪一位經濟學家的主張？",
       "options": [
-        "yoy 的季成長率為原實質 GDP 對上年同季之成長率",
-        "saqr 為經季節調整後實質 GDP 對上季增率未予標準化為年率",
-        "saar 為經季節調整後實質 GDP 對上季增率折成年化",
-        "季調數列或非季調數列計算之年經濟成長率不同"
+        "熊彼德(J.A. Schumpeter)",
+        "基蘭德(F. Kydland)",
+        "盧卡斯(R. Lucas)",
+        "貝克(G. Becker)"
       ],
       "answer": [
-        "D"
+        "A"
       ],
       "sourceIds": [
         "macro-08"
@@ -1798,34 +1840,6 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "114Q1-macro-08",
-      "sessionId": "114Q1",
-      "year": 114,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 8,
-      "stem": "當一個國家的經濟情況進入衰退時，下列何者為自動穩定機制(automatic stabilizer)的範例？",
-      "options": [
-        "更多的人符合領取失業救濟金的資格",
-        "與景氣循環相關的廠商，其股票價格降低",
-        "國會或立法機構啟動經濟刺激方案",
-        "央行採取利率調整的機制"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
       "id": "114Q1-macro-13",
       "sessionId": "114Q1",
       "year": 114,
@@ -1882,35 +1896,58 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "114Q2-macro-25",
-      "sessionId": "114Q2",
+      "id": "114Q3-macro-10",
+      "sessionId": "114Q3",
       "year": 114,
-      "session": 2,
+      "session": 3,
       "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 25,
-      "stem": "有關供應鏈的描述下列何者有誤？",
+      "sourceId": "macro-08",
+      "number": 10,
+      "stem": "下列何者為我國重要計畫：5+2 產業創新計畫中，所包含之產業類別?",
       "options": [
-        "全球化講究供應鏈安全",
-        "全球化拉長供應鏈",
-        "疫情縮短供應鏈",
-        "短鏈革命注重供應鏈安全"
+        "國防產業",
+        "綠能產業",
+        "生醫產業",
+        "以上皆是"
       ],
       "answer": [
-        "A"
+        "D"
       ],
       "sourceIds": [
-        "macro-07",
         "macro-08"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-07",
-          "sectionIndex": 2
-        },
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "114Q3-macro-11",
+      "sessionId": "114Q3",
+      "year": 114,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 11,
+      "stem": "下列何者非我國製造業採購經理人指數所涵蓋之內容?",
+      "options": [
+        "生產數量",
+        "存貨",
+        "人力平均雇用薪資",
+        "新增訂單數量"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
         {
           "chapterId": "macro-08",
-          "sectionIndex": 2
+          "sectionIndex": 3
         }
       ]
     },
@@ -1960,6 +1997,34 @@ window.CHAPTER_DATA["macro-08"] = {
       ],
       "answer": [
         "D"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "115Q1-macro-10",
+      "sessionId": "115Q1",
+      "year": 115,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 10,
+      "stem": "根據 Jones 與 Tonetti（2020）的研究，下列何者最能描述「資料（data）」在 AI 經濟學中的重要特性？",
+      "options": [
+        "資料具有強烈的排他性",
+        "資料具有非競爭性（nonrivalry）",
+        "資料必須一次性消耗",
+        "資料與生產效率無關"
+      ],
+      "answer": [
+        "B"
       ],
       "sourceIds": [
         "macro-08"
@@ -2061,7 +2126,7 @@ window.CHAPTER_DATA["macro-08"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-02",
+      "sourceId": "macro-08",
       "number": 5,
       "stem": "12 月聖誕節是一年中景氣較旺的月份，請按照籌備聖誕節的相關經濟活動由領先到落後排序。甲.餐飲、乙.訂單、丙.加班生產、丁.銷售、戊.配送鋪貨",
       "options": [
@@ -2074,50 +2139,12 @@ window.CHAPTER_DATA["macro-08"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-02",
         "macro-08"
       ],
       "sourceRefs": [
-        {
-          "chapterId": "macro-02",
-          "sectionIndex": 2
-        },
         {
           "chapterId": "macro-08",
           "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "115Q2-macro-17",
-      "sessionId": "115Q2",
-      "year": 115,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-06",
-      "number": 17,
-      "stem": "「安倍三箭」是日本前首相安倍晉三在 2012 年提出的核心經濟政策組合，下列何者不是？",
-      "options": [
-        "大規模量化寬鬆政策",
-        "擴大公共建設與基礎設施投資",
-        "結構性改革以促進民間投資",
-        "注重永續發展的 ESG 政策"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-06",
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-06",
-          "sectionIndex": 2
-        },
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 2
         }
       ]
     },
@@ -2430,33 +2457,6 @@ window.CHAPTER_DATA["macro-08"] = {
             ],
             "takeaway": "黃金律是消費最大，不是產出最大。",
             "trap": "把黃金律記成儲蓄率越高越好。"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "year": 109,
-    "label": "109 年",
-    "sections": {
-      "macro-08::1": {
-        "focus": "經濟成長題，先分 Solow 模型、成長會計與景氣循環。Solow 穩定狀態下，人均資本與人均產出不變，長期成長由技術進步決定。",
-        "strategies": [
-          "Solow 模型：\\(Y=A F(K,L)\\)；穩定狀態下 \\(sf(k)=(n+\\delta)k\\)。",
-          "長期人均產出成長率等於技術進步率 gA；資本累積只能帶來過渡期成長。",
-          "成長會計：gY＝gA＋αgK＋(1−α)gN；Solow residual＝gA。",
-          "72 法則：倍增年數≈72/年成長率（%）。"
-        ],
-        "examples": [
-          {
-            "questionId": "109Q2-macro-22",
-            "steps": [
-              "貨幣需求對利率越不敏感，LM曲線越陡。",
-              "LM越陡，財政擴張的排擠效果越小，政策效果越大。",
-              "答案B。"
-            ],
-            "takeaway": "LM越陡，財政政策越有效；LM越平坦，貨幣政策越有效。",
-            "trap": "把兩者效果記反。"
           }
         ]
       }

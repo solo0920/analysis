@@ -5297,6 +5297,51 @@
     ].join("");
   }
 
+  function renderMacroExamDistribution() {
+    const subject = getSubject("macro");
+    const practice = pastExamStats && pastExamStats.practice ? pastExamStats.practice : null;
+    const total = practice && practice.subjects ? Number(practice.subjects.macro) || 0 : 0;
+    if (!subject || !total || !practice.chapters) {
+      return "";
+    }
+    const rows = subject.chapters.map(function (chapter) {
+      const count = Number(practice.chapters[chapter.id] && practice.chapters[chapter.id].count) || 0;
+      return {
+        chapter: chapter,
+        count: count,
+        percent: total ? (count / total) * 100 : 0
+      };
+    });
+    const sorted = rows.slice().sort(function (a, b) { return b.count - a.count; });
+    const top = sorted[0];
+    const bottom = sorted[sorted.length - 1];
+    return [
+      '<section class="macro-exam-distribution" aria-labelledby="macro-exam-distribution-title">',
+      '  <div class="section-heading">',
+      '    <div>',
+      '      <p class="eyebrow">考古題章節分布 · 107–115</p>',
+      '      <h2 id="macro-exam-distribution-title">總體經濟 ' + total + " 題主要出處</h2>",
+      '      <p>每題依主要命題概念歸入一章，百分比以 ' + total + " 題選擇題為分母；跨章題目不再重複計入。</p>",
+      "    </div>",
+      '    <span class="macro-exam-distribution-total">' + total + " 題</span>",
+      "  </div>",
+      '  <div class="macro-exam-distribution-list">',
+      rows.map(function (row) {
+        return [
+          '<a class="macro-exam-distribution-row" href="#/chapter/' + escapeHtml(row.chapter.id) + '">',
+          '  <span class="macro-exam-distribution-name"><span class="macro-exam-distribution-num">' + padNumber(row.chapter.number) + "</span>" + escapeHtml(row.chapter.title) + "</span>",
+          '  <span class="macro-exam-distribution-bar" aria-hidden="true"><i style="width:' + row.percent.toFixed(1) + '%"></i></span>',
+          '  <span class="macro-exam-distribution-count">' + row.count + " 題</span>",
+          '  <span class="macro-exam-distribution-percent">' + row.percent.toFixed(1) + "%</span>",
+          "</a>"
+        ].join("");
+      }).join(""),
+      "  </div>",
+      '  <p class="macro-exam-distribution-note">比例最高為第 ' + padNumber(top.chapter.number) + " 章「" + escapeHtml(top.chapter.title) + "」" + top.count + " 題（" + top.percent.toFixed(1) + "%）；最低為第 " + padNumber(bottom.chapter.number) + " 章「" + escapeHtml(bottom.chapter.title) + "」" + bottom.count + " 題（" + bottom.percent.toFixed(1) + "%）。</p>",
+      "</section>"
+    ].join("");
+  }
+
   function renderSubject(subject) {
     const unitLabel = subjectUnitLabel(subject, true);
     const partGroups = subject.parts
@@ -5333,7 +5378,7 @@
       "      <h1>" + escapeHtml(subject.name) + "</h1>",
       '      <p class="lede">' + renderInlineMath(subject.description) + "</p>",
       "    </div>",
-      '    <aside class="subject-hero-panel">',
+      '    <div class="subject-hero-panel">',
       renderProgress(subject),
       "      <p>完成章節會自動保存在此瀏覽器；不需要登入，也不會上傳。</p>",
       '      <div class="subject-mini-stats">',
@@ -5341,11 +5386,12 @@
       "        <div><strong>" + subjectSections(subject) + "</strong><span>" + unitLabel + "</span></div>",
       "        <div><strong>" + subjectTerms(subject) + "</strong><span>名詞卡</span></div>",
       "      </div>",
-      "    </aside>",
+      "    </div>",
       "  </section>",
       subject.id === "macro"
         ? '<div class="subject-cta-grid">' + renderModelAtlasCard(subject) + renderMacroEvolutionCta() + renderNobelCta() + "</div>"
         : "",
+      subject.id === "macro" ? renderMacroExamDistribution() : "",
       subject.id === "investment" ? renderInvestmentFormulasCard() : "",
       subject.id === "investment" ? renderInvestmentTechnicalCard() : "",
       subject.id === "accounting" ? '<div class="notice"><strong>IFRS 版本查核：</strong>2026 年考試仍請以金管會當年度認可之 IFRS 正體中文版為準。IASB 發布之 IFRS 18「財務報表之表達與揭露」自 2027-01-01 起適用；金管會規劃臺灣公開發行公司於 117 會計年度（2028 年）接軌，符合條件者可於認可後提前適用。IFRS 19 自 2027-01-01 起適用，屬符合條件子公司之減少揭露選項。本章節以現行教材與 IFRS 9／15／16／10 等為主，考前請再核對 <a href="https://www.sfb.gov.tw/ch/home.jsp?id=931&amp;parentpath=0%2C2%2C929" target="_blank" rel="noopener noreferrer">金管會 IFRS 推動情形</a>。</div>' : "",
