@@ -302,7 +302,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     title: "凱因斯十字架：總支出線與 45 度線決定均衡所得",
     kicker: "學派模型 · 凱因斯",
     formula: String.raw`Y=\frac{1}{1-MPC}A_0`,
-    caption: "凱因斯十字架以 45 度線代表 AE = Y。AE₀ 與 45 度線交於 E₀，決定均衡所得 Y₀。政府支出或自發支出增加會使 AE 平行上移到 AE₁，均衡點移到 E₁，所得由 Y₀ 增加到 Y₁；增加幅度是自發支出變動量乘以乘數。",
+    caption: "凱因斯十字架以 45 度線代表 AE = Y。AE 線斜率為 MPC、截距為自發支出 A₀。AE₀ 與 45 度線交於 E₀，決定均衡所得 Y₀。政府支出或自發支出增加會使 AE 平行上移到 AE₁，均衡點移到 E₁，所得由 Y₀ 增加到 Y₁；增加幅度是自發支出變動量乘以乘數。",
     svg: `
 <svg viewBox="0 0 640 480" role="img" aria-labelledby="dg-keynes-title dg-keynes-desc" style="max-width:640px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
   <title id="dg-keynes-title">凱因斯十字架均衡所得圖</title>
@@ -316,6 +316,8 @@ Object.assign(window.MACRO_DIAGRAMS, {
   <line class="dg-axis" x1="80" y1="420" x2="80" y2="70"></line>
   <text class="dg-label" x="260" y="470" text-anchor="middle">實質所得 Y</text>
   <text class="dg-label" x="88" y="60">總支出 AE</text>
+  <text class="dg-label-xs" x="72" y="331" text-anchor="end">A₀</text>
+  <text class="dg-label-xs" x="72" y="291" text-anchor="end">A₀+ΔA₀</text>
 
   <line class="dg-curve-soft" x1="80" y1="420" x2="420" y2="80"></line>
   <line class="dg-curve" x1="80" y1="340" x2="420" y2="136"></line>
@@ -323,7 +325,6 @@ Object.assign(window.MACRO_DIAGRAMS, {
   <line class="dg-curve-alt" x1="80" y1="300" x2="420" y2="96"></line>
   <text class="dg-label" x="428" y="102">AE₁</text>
   <line class="dg-arrow" x1="180" y1="280" x2="180" y2="240" marker-end="url(#dg-keynes-arrow)"></line>
-  <text class="dg-label-sm" x="190" y="266">自發支出↑</text>
 
   <line class="dg-guide" x1="280" y1="220" x2="280" y2="420"></line>
   <line class="dg-guide" x1="380" y1="120" x2="380" y2="420"></line>
@@ -334,6 +335,13 @@ Object.assign(window.MACRO_DIAGRAMS, {
   <text class="dg-label-sm" x="266" y="440">Y₀</text>
   <text class="dg-label-sm" x="366" y="440">Y₁</text>
 
+  <text class="dg-label-xs" x="460" y="130">參數</text>
+  <text class="dg-label-xs" x="460" y="155">MPC：AE 斜率</text>
+  <text class="dg-label-xs" x="460" y="180">A₀：自發支出</text>
+  <text class="dg-label-xs" x="460" y="205">k = 1/(1−MPC)</text>
+  <text class="dg-label-xs" x="460" y="230">ΔY = kΔA₀</text>
+  <text class="dg-label-xs" x="460" y="255">T：定額稅（擴充）</text>
+
   <text class="dg-label-xs" x="460" y="300">圖例</text>
   <line class="dg-curve" x1="460" y1="330" x2="490" y2="330"></line>
   <text class="dg-label-xs" x="498" y="334">總支出 AE₀</text>
@@ -341,6 +349,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   <text class="dg-label-xs" x="498" y="359">總支出 AE₁</text>
   <line class="dg-curve-soft" x1="460" y1="380" x2="490" y2="380"></line>
   <text class="dg-label-xs" x="498" y="384">45°：AE = Y</text>
+  <text class="dg-label-xs" x="460" y="405">箭頭：A₀↑（自發支出↑）</text>
 </svg>`,
     variables: [
       ["Y", "實質所得（產出）", "橫軸；均衡所得由 AE 與 45 度線的交點決定。"],
@@ -362,7 +371,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     kicker: "學派模型 · 凱因斯",
     title: "節儉的矛盾：自發儲蓄增加使總支出下移",
     formula: String.raw`S=-C_0+(1-MPC)Y,\qquad I=S`,
-    caption: "家庭想多儲蓄會減少自發消費，使 AE 由 AE₀ 下移到 AE₁，均衡所得從 Y₀ 下降到 Y₁。所得下降後，實際儲蓄未必增加，甚至可能不變或減少，這就是節儉的矛盾。",
+    caption: "家庭想多儲蓄會減少自發消費 C₀，使自發支出 A₀ 下降、AE 由 AE₀ 下移到 AE₁，均衡所得從 Y₀ 下降到 Y₁。所得下降後，實際儲蓄未必增加，甚至可能不變或減少，這就是節儉的矛盾。",
     svg: `
 <svg viewBox="0 0 640 480" role="img" aria-labelledby="dg-thrift-title dg-thrift-desc" style="max-width:640px;display:block;margin-inline:auto" xmlns="http://www.w3.org/2000/svg">
   <title id="dg-thrift-title">節儉的矛盾示意圖</title>
@@ -376,6 +385,8 @@ Object.assign(window.MACRO_DIAGRAMS, {
   <line class="dg-axis" x1="80" y1="420" x2="80" y2="70"></line>
   <text class="dg-label" x="260" y="470" text-anchor="middle">實質所得 Y</text>
   <text class="dg-label" x="88" y="60">總支出 AE</text>
+  <text class="dg-label-xs" x="72" y="351" text-anchor="end">A₀</text>
+  <text class="dg-label-xs" x="72" y="381" text-anchor="end">A₀−ΔA₀</text>
 
   <line class="dg-curve-soft" x1="80" y1="420" x2="420" y2="80"></line>
   <line class="dg-curve" x1="80" y1="360" x2="420" y2="156"></line>
@@ -393,6 +404,13 @@ Object.assign(window.MACRO_DIAGRAMS, {
   <text class="dg-label-sm" x="216" y="440">Y₀</text>
   <text class="dg-label-sm" x="141" y="440">Y₁</text>
 
+  <text class="dg-label-xs" x="460" y="130">參數</text>
+  <text class="dg-label-xs" x="460" y="155">MPC：AE 斜率</text>
+  <text class="dg-label-xs" x="460" y="180">A₀：自發支出</text>
+  <text class="dg-label-xs" x="460" y="205">C₀：自發消費</text>
+  <text class="dg-label-xs" x="460" y="230">k = 1/(1−MPC)</text>
+  <text class="dg-label-xs" x="460" y="255">ΔY = kΔA₀</text>
+
   <text class="dg-label-xs" x="460" y="300">圖例</text>
   <line class="dg-curve" x1="460" y1="330" x2="490" y2="330"></line>
   <text class="dg-label-xs" x="498" y="334">總支出 AE₀</text>
@@ -400,7 +418,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
   <text class="dg-label-xs" x="498" y="359">總支出 AE₁</text>
   <line class="dg-curve-soft" x1="460" y1="380" x2="490" y2="380"></line>
   <text class="dg-label-xs" x="498" y="384">45°：AE = Y</text>
-  <text class="dg-label-xs" x="460" y="405">箭頭：自發消費↓（儲蓄↑）</text>
+  <text class="dg-label-xs" x="460" y="405">箭頭：C₀↓（儲蓄↑）</text>
 </svg>`,
     variables: [
       ["Y", "實質所得", "橫軸；均衡所得隨總支出移動。"],
@@ -410,6 +428,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     ],
     parameters: [
       ["C₀", "自發消費", "所得為零時的消費水準；\\(C_0\\) 下降使 AE 截距下降。"],
+      ["A₀", "自發支出", "\\(A_0=C_0+I_0+G_0+NX_0\\)；\\(C_0\\) 下降使 \\(A_0\\) 下降、AE 下移。"],
       ["MPC", "邊際消費傾向", "AE 線斜率為 MPC 且不變，因此是平行下移。"],
       ["k", "乘數", "所得減少的幅度是自發支出減少量的 k 倍；\\(k=\\dfrac{1}{1-MPC}\\)。"]
     ],
