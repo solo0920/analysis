@@ -564,6 +564,8 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 
 2026-11-26 部署流程簡化為 Cloudflare Worker：移除 `.github/workflows/pages.yml` 與 GitHub Pages 鏡像，新增根目錄 `wrangler.toml`（`analysis`、`assets.directory = "./site"`、`not_found_handling = "404-page"`）；Cloudflare Workers Builds 的 Build command 已設為 `bash site/scripts/verify.sh`，Deploy command 維持 `npx wrangler deploy`。新增 `site/scripts/write-version.js`、`check-live.sh` 與 `check-js-syntax.js`；`verify.sh` 在通過內容／SEO 驗證後產生 `site/version.json`，`site/version.json` 加入 `.gitignore`。JS 語法檢查由 170 次 `node --check` 改為單一 Node 進程，`verify.sh` 由約 6.3 秒降至約 2.4 秒。正式站建置後以 `bash site/scripts/check-live.sh` 比對 commit；`version.json` 回傳 `main` 與目前 commit，GitHub 只保留 push，不再部署 Pages；GitHub Pages 已停用（Pages API 回 404）。
 
+2026-11-26 將 `macro-06` 章名改為「投資儲蓄-流動性偏好貨幣供給 IS-LM模型」，summary 補上投資儲蓄（IS）與流動性偏好貨幣供給（LM）的完整名稱，並同步來源章節表、章節頁與科目頁 metadata。390px／1280px 實測章名與 summary 正確、0 `.katex-error`、0 水平溢出；`verify.sh` 195,949 項、0 失敗。
+
 2026-11-26 將 `macro-07` 章名改為「總合供需AD-AS模型」，並把章節內的「總需求／總供給／總供需」統一為「總合需求／總合供給／總合供需」。同步更新 summary、第1／2節名稱、名詞、考試重點、記憶卡、`FORMULA_TEX` 鍵值與參數說明、`diagrams-macro-3.js` 的 sectionTitle／caption／variables、考古題解題 focus，以及靜態頁的 title／description／JSON-LD。390px／1280px 實測標題、2 個節名、3 張模型圖與 KaTeX 均正常，0 原始 LaTeX、0 `.katex-error`、0 水平溢出；`verify.sh` 195,949 項、0 失敗。
 
 2026-11-26 複習題側欄支援鍵盤上下切換：在 `#/review` 頁面按 `ArrowDown`／`ArrowUp` 可依目前科目篩選的順序切換上一題／下一題，首尾可環繞；同步更新右側題目、網址 `?question=`、側欄 active 狀態與焦點。側欄按鈕採 roving `tabindex`（目前題目為 0、其餘為 −1），焦點會停在切換後的題號，讓方向鍵可連續操作。IndexedDB 兩題種子資料實測 ↓ 31→32、↑ 32→31、首題 ↑ 環繞到末題，active／focus／heading／hash／tabindex 全部同步，0 console errors。

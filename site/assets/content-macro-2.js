@@ -5,9 +5,9 @@ window.MACRO_SUBJECT.chapters.push(
   {
     id: "macro-06",
     number: 6,
-    title: "IS-LM模型",
+    title: "投資儲蓄-流動性偏好貨幣供給 IS-LM模型",
     page: "P. 133",
-    summary: "用 IS 與 LM 兩條曲線連結商品市場與貨幣市場，分析財政政策、貨幣政策與排擠效果。",
+    summary: "以投資儲蓄（IS）與流動性偏好貨幣供給（LM）兩條曲線連結商品市場與貨幣市場，分析財政政策、貨幣政策與排擠效果。",
     sourceIds: ["cbc-knowledge", "naer", "ntu-ocw", "wiki"],
     sections: [
       {
