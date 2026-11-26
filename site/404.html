@@ -18,8 +18,7 @@
       }
 
       var path = location.pathname;
-      var isGitHubPages = location.hostname === "solo0920.github.io" && (path === "/analysis" || path.indexOf("/analysis/") === 0);
-      var root = isGitHubPages ? "/analysis/" : "/";
+      var root = "/";
       if (/^https?:$/.test(location.protocol) && path !== root && path !== root.replace(/\/$/, "")) {
         location.replace(root + location.hash);
       }

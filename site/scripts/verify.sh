@@ -10,7 +10,7 @@ echo "== Build static landing pages =="
 node site/scripts/build-static-landing-pages.js
 
 echo "== Check JavaScript syntax and content in parallel =="
-find site \( -name '*.js' -o -name '*.mjs' \) -type f -print0 | xargs -0 -P 4 -n1 node --check &
+node site/scripts/check-js-syntax.js &
 js_pid=$!
 node site/scripts/validate-content.js &
 content_pid=$!

@@ -37,7 +37,7 @@
 ```text
 site/
 ├── index.html                  # 靜態外殼、SEO metadata、JSON-LD、無 JS 摘要與腳本載入
-├── 404.html                    # GitHub Pages 未知路徑導回站點根目錄
+├── 404.html                    # Cloudflare 未知路徑導回站點根目錄
 ├── robots.txt                  # 爬蟲允許範圍與 sitemap
 ├── sitemap.xml                 # 站點入口、9 個總覽頁與 73 個章節頁（建置產生）
 ├── llms.txt                    # AI 搜尋／LLM 可讀的站點摘要與主要入口
@@ -48,7 +48,6 @@ site/
 ├── macro-current/              # 近二年總經時事靜態落地頁
 ├── nobel/                      # 諾貝爾經濟學獎模型靜態落地頁
 ├── diagrams/mermaid/           # Mermaid 母檔、manifest、靜態 SVG 與圖表說明
-├── .nojekyll                   # 停用 GitHub Pages 的 Jekyll 處理
 ├── README.md
 ├── SOURCES.md                  # 來源清單與校對原則
 ├── scripts/
@@ -64,6 +63,10 @@ site/
 │   ├── build-mermaid-static.mjs # 為新推導圖產生靜態 SVG fallback（需 npm）
 │   ├── build-minisearch-bundle.mjs # 重建 MiniSearch 瀏覽器 bundle（需 npm）
 │   ├── build-pele-bundle.mjs   # 重建樹搖後的 Pele flowchart vendor bundle（需 npm）
+│   ├── check-js-syntax.js     # 單一 Node 進程檢查 JS 語法；.mjs 交給 node --check
+│   ├── verify.sh              # 建置、內容／SEO 驗證與 version.json
+│   ├── write-version.js       # 產生 site/version.json
+│   ├── check-live.sh          # 比對正式站 version.json 與目前 commit
 │   └── verify-nobel-api.js     # 諾貝爾官方 API 年份與得主比對（需網路）
 └── assets/
     ├── app.js                  # hash routing、搜尋、進度、主題、考古題練習與列印
@@ -144,13 +147,36 @@ python3 -m http.server 8765 --directory site
 
 也可以直接開啟 `site/index.html`。內容全部內嵌，不需要 `fetch`，所以 `file://` 可正常顯示；只有外部資料來源連結需要網路。
 
-## GitHub Pages
+## Cloudflare Worker 部署
 
-線上網站：<https://analysis.ragdemo.win/>（GitHub Pages 原站：<https://solo0920.github.io/analysis/>）
+線上網站：<https://analysis.ragdemo.win/>
 
-`.github/workflows/pages.yml` 會在推送 `main` 時先執行 `bash site/scripts/verify.sh`：建置核心 bundle 與靜態頁，並以 `xargs -P 4` 平行檢查 JavaScript 語法與內容，再驗證 SEO；通過後才將 `site/` 上傳為 Pages artifact，再以 `actions/deploy-pages` 發佈。任一驗證失敗即停止部署。`site/.nojekyll` 停用 Jekyll 處理，`site/404.html` 會依 GitHub Pages 子路徑或自訂網域根目錄將未知路徑導回站點首頁；所有資產使用相對路徑，可直接在 `/analysis/` 子路徑下運作。
+GitHub 只作為原始碼托管與 push 觸發；推送 `main` 後由 Cloudflare Workers Builds 自動部署，不部署 GitHub Pages，也不做鏡像。
 
-Repository 的 Pages Source 已設為 **GitHub Actions**；若之後重新建立 Pages，請在 Repository Settings → Pages 將 Source 設為 **GitHub Actions**。
+Cloudflare Build 設定：
+
+| 設定 | 值 |
+| --- | --- |
+| Production branch | `main` |
+| Root directory | `/` |
+| Build command | `bash site/scripts/verify.sh` |
+| Deploy command | `npx wrangler deploy` |
+| Node version | `NODE_VERSION=22` |
+
+根目錄 `wrangler.toml` 定義 Worker `analysis` 與 static assets：
+
+```toml
+name = "analysis"
+compatibility_date = "2026-11-26"
+
+[assets]
+directory = "./site"
+not_found_handling = "404-page"
+```
+
+`verify.sh` 依序建置核心 bundle、靜態頁，檢查 JavaScript 語法、內容與 SEO，最後產生 `site/version.json`。驗證失敗時 Cloudflare build 會停止，舊版繼續留在線上。部署成功後可用 `bash site/scripts/check-live.sh` 比對正式站版本。
+
+`site/404.html` 會將未知路徑導回站點根目錄；Worker 以 `not_found_handling = "404-page"` 提供 404 頁面。所有資產使用相對路徑。
 
 ## 路由
 
@@ -319,9 +345,9 @@ bash site/scripts/verify.sh             # 建置＋JS 語法／內容平行檢�
 node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份與得主
 ```
 
-`verify.sh` 以 `xargs -P 4` 平行執行 170 個 JS／MJS 檔的 `node --check`，同時執行內容驗證；本機完整流程由約 22 秒降至約 6.4 秒（單獨 `node --check` 由約 19.7 秒降至約 5.2 秒）。若只想檢查個別項目，仍可直接執行 `validate-content.js`、`validate-seo.js` 或 `node --check <file>`。
+`verify.sh` 以 `site/scripts/check-js-syntax.js` 在單一 Node 進程檢查 168 個 `.js`，`.mjs` 另以 `node --check` 檢查，並與內容驗證平行執行；本機完整流程約 2.4 秒。若只想檢查個別項目，可直接執行 `validate-content.js`、`check-js-syntax.js`、`validate-seo.js` 或 `node --check <file>`。
 
-`validate-seo.js` 會確認首頁、83 個靜態頁、Sitemap、robots.txt、llms.txt 與 JSON-LD 都使用正式網域 `https://analysis.ragdemo.win`，每個靜態頁的 canonical／og:url 指向自身，Sitemap URL 與實際頁面完全一致，且沒有殘留 GitHub Pages 網域。GitHub Actions 的 `pages.yml` 會在部署前執行 JavaScript 語法檢查、`validate-content.js` 與 `validate-seo.js`，任一失敗即停止部署。
+`validate-seo.js` 會確認首頁、83 個靜態頁、Sitemap、robots.txt、llms.txt 與 JSON-LD 都使用正式網域 `https://analysis.ragdemo.win`，每個靜態頁的 canonical／og:url 指向自身，Sitemap URL 與實際頁面完全一致，且沒有殘留 GitHub Pages 網域。Cloudflare Build 的 `verify.sh` 會在部署前執行 JavaScript 語法檢查、`validate-content.js` 與 `validate-seo.js`，任一失敗即停止部署。
 
 `validate-content.js` 會比對三份來源目錄的章號、章名、Part、順序、節次與頁碼，並檢查：
 
@@ -351,7 +377,7 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 - 全站中文以臺灣繁體中文為準；英文只保留得主姓名、專有名詞、公式符號、縮寫與技術名稱。內容異動後以 `s2t` 字元掃描或人工複查確認沒有新增簡體字。
 - 跨模型初審結果記錄在 `documents/content_review_checklist.md` 與 `documents/reviews/`；模型只作輔助，官方公告與正式教材仍是最終依據。
 
-目前 `validate-content.js` 執行 195,045 項檢查，失敗數為 0（含四個科目章節界線、網站內容不得再出現「第 X 篇」、投資學比例公式綁定、66 條投資學核心公式與 50 種技術分析指標的欄位、優先級、章節連結與 KaTeX 實編譯、119 個 KaTeX 公式綁定與 3,405 個行內公式／204 個區塊公式實編譯、效率市場比較表欄列結構、32 張總體既有章節圖、15 張投資學既有教學圖、8 張會計學教學圖與 6 張 Mermaid 推導圖、學派演進圖的模型／諾貝爾綁定、法規全文資料綁定、3,710 題選擇題與逐選項解析、348 題計算／申論題與題意檢核、107–115 年章節解題（343 節次、601 例題）、15 個總經時事（12 個主題含 26 條公式；20 則 TOP 20 摘要整合、8 大主題、5 題申論）與參考資料、97 題組／118 個部分單一題庫（74 個題組對應主題公式）、21 組多部分題組、38 條整合公式、2 組敏感度分析、13 個章節進階補給、14 個法規深度補給與 15 張法規速讀卡、73 章出處分布與繁體中文守門檢查）。
+目前 `validate-content.js` 執行 195,435 項檢查，失敗數為 0（含四個科目章節界線、網站內容不得再出現「第 X 篇」、投資學比例公式綁定、66 條投資學核心公式與 50 種技術分析指標的欄位、優先級、章節連結與 KaTeX 實編譯、119 個 KaTeX 公式綁定與 3,405 個行內公式／204 個區塊公式實編譯、效率市場比較表欄列結構、32 張總體既有章節圖、15 張投資學既有教學圖、8 張會計學教學圖與 6 張 Mermaid 推導圖、學派演進圖的模型／諾貝爾綁定、法規全文資料綁定、3,710 題選擇題與逐選項解析、348 題計算／申論題與題意檢核、107–115 年章節解題（343 節次、601 例題）、15 個總經時事（12 個主題含 26 條公式；20 則 TOP 20 摘要整合、8 大主題、5 題申論）與參考資料、97 題組／118 個部分單一題庫（74 個題組對應主題公式）、21 組多部分題組、38 條整合公式、2 組敏感度分析、13 個章節進階補給、14 個法規深度補給與 15 張法規速讀卡、73 章出處分布與繁體中文守門檢查）。
 
 諾貝爾年表的年份與得主另以 `site/scripts/verify-nobel-api.js` 對照官方 API；2026-10-20 執行結果為 58 屆、0 筆不一致。此檢查需要網路，不列入離線驗證；2025、2026 屆公式已對照官方科學背景，2019–2020 屆公式與學說方向、2021 LATE 公式與 2022–2024 學說方向亦已核對（2019、2020 網站公式為概念式），2019–2026 代表原始論文書目已核對；2019–2026 每年至少一篇代表論文完成全文抽查（2026 為 Hall；Woodford 2003 專書未逐條）；其餘屆公式、全文、學說摘述與模型圖仍待原始文獻逐條核對。
 
@@ -507,6 +533,8 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 
 2026-10-26 補回四個科目首頁的每章考古題統計，並把選擇題解答改為原位標示：`build-static-landing-pages.js` 新增 `percentText()`，四個靜態科目頁的每章卡加入「選擇題 N 題 · 頻率 X%」與「申論題 N 題 · 頻率 X%」，頻率以該科選擇題／申論題總數為分母；互動版科目頁原有的 `.chapter-exam-stat` 維持不變。選擇題展開「完整參考解答」後，`annotateLawChoiceOptions()` 直接在原 `li[data-law-option]` 顯示 `.law-option-feedback`，正確選項加 `.is-correct`，解答 summary 改為官方答案，不再建立 `.law-answer-body` 或 `.past-exam-analysis` 選項列表；申論／計算題仍以 `.law-answer-body` 顯示完整參考解答。靜態科目頁四頁共 13／16／23／21 章、26／32／46／42 組統計，390px 淺色與 1280px 深色 axe 0 violations、0 水平溢出；互動版四科統計亦為 26／32／46／42 組。選擇題原位解析實測 law-01、macro-01、macro-10、investment-09、accounting-01 與 21 個法規章節、52 個非法規章節：初始 0 個選項說明、0 個解答 body，展開後 summary 顯示官方答案、1 個以上正解高亮、4 項原位說明、0 個重複選項列表；多答案題 CD／BD／BC 與 A–D 均給分共 6 題正常；`file://` 正常；390px／1280px、深淺主題 axe 0 violations；20 種風格 × 深淺主題的選擇題解答元素（正解標籤、選項字母、說明、提示、解答 summary）對比皆 ≥ 4.5:1、axe 0 violations；`.law-question-hint`／`.law-answer-note` 改以 `--ink-soft` 顯示；驗證器 157,260 項、失敗 0。
 
+2026-11-26 部署流程簡化為 Cloudflare Worker：移除 `.github/workflows/pages.yml` 與 GitHub Pages 鏡像，新增根目錄 `wrangler.toml`（`analysis`、`assets.directory = "./site"`、`not_found_handling = "404-page"`）；Cloudflare Workers Builds 的 Build command 應設為 `bash site/scripts/verify.sh`，Deploy command 維持 `npx wrangler deploy`。新增 `site/scripts/write-version.js`、`check-live.sh` 與 `check-js-syntax.js`；`verify.sh` 在通過內容／SEO 驗證後產生 `site/version.json`，`site/version.json` 加入 `.gitignore`。JS 語法檢查由 170 次 `node --check` 改為單一 Node 進程，`verify.sh` 由約 6.3 秒降至約 2.4 秒。正式站建置後可用 `bash site/scripts/check-live.sh` 比對 commit；GitHub 只保留 push，不再部署 Pages。
+
 2026-10-26 修正法規考古題章節歸屬並加入條號指定：新增 `sourceRefs[].articleNo`，`lawQuestionArticleRefs()` 會優先採用明確條號，不再只靠題幹中的「第 N 條」推斷。修正 7 題選擇題：`107Q2-law-08` 移至 law-03 第 5 條；`108Q2-law-07`、`114Q1-law-23` 移至 law-03 第 17 條；`114Q3-law-18` 移至 law-03 第 66 條；`108Q4-law-15`、`109Q2-law-12`、`111Q3-law-16` 移至 law-02 第 22-1 條。另修正 17 題計算／申論題的章節歸屬，移除 law-21、law-05、law-06、law-17、law-08、law-11、law-12 等與題意無關的交叉掛載，並把單純考證交法的題目移至 law-01；相關解題範例同步移轉。修正後 law-01 為 196 題選擇＋37 題申論（233）、law-02 228＋49（277）、law-03 168＋3（171）、law-21 0＋0（0）；法規總數仍為 910 題選擇＋87 題申論。21 個法規章節在 390px／1280px、深淺主題 axe 0 violations、0 水平溢出；law-01 第 139 條已無題目，law-03 第 5／17／66 條與 law-02 第 22-1 條顯示正確題目；`file://` 正常；驗證器 157,243 項、失敗 0。非 法規 2,800 題以章節關鍵詞與題幹相似度掃描，未發現像本例這樣明確的錯置；高分候選多為跨章節應用。
 
 2026-10-26 重寫杜邦分析內容：依指定版本將 accounting-15 新增「第3節 杜邦分析」，完整說明三階段（淨利率 × 總資產週轉率 × 權益乘數）與五階段（稅負負擔 × 利息負擔 × EBIT 利潤率 × 總資產週轉率 × 權益乘數），兩式皆以大型 boxed KaTeX 呈現；五階段公式的五個分數下方也加上稅負負擔、利息負擔、EBIT 利潤率、總資產週轉率、權益乘數五個 underbrace 標籤，並加入三階段分析重點、三階段與五階段比較表、考試記憶口訣（利、轉、槓／稅、息、營、轉、槓）。investment-14 學習重點 3 同步改寫，移除舊的「稅務效率／本業獲利」用語；`content-formula-tex.js`、投資學比率公式表、考前猜題與解答、章節補充、`documents/accounting_contents.md` 全部改用新口徑。移除杜邦流程圖 SVG（`accounting-15#2`、`investment-14#2`）與 Mermaid（`accounting-dupont`、`investment-dupont`），改以三階段／五階段 KaTeX 公式作為主要呈現；五階段標籤為稅負負擔、利息負擔、EBIT 利潤率、總資產週轉率、權益乘數；長公式在手機可在區塊內滑動。實測 accounting-15／investment-14 在 390px／1280px、深淺主題 axe 0 violations、0 水平溢出、0 `.katex-error`；`file://` 正常；驗證器 157,369 項、失敗 0。會計學增為 65 個單元、全站 231 個單元、1,528 張名詞卡；KaTeX 公式 118 筆，章節教學圖 48 張（投資學 13、會計學 6），Mermaid 15 張。
@@ -587,7 +615,7 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 
 1. 先更新 `documents/` 下的來源目錄。
 2. 修改對應的 `site/assets/content-*.js`；不要用另一個科目的章節補洞。模型圖變更則修改 `site/assets/diagrams-macro*.js`、`diagrams-investment.js` 或 `diagrams-accounting.js`，確認 `sectionTitle` 仍與節次相符。學派演進圖修改 `content-macro-evolution.js`；模型名稱與諾貝爾資料仍分別以 `diagrams-macro*.js`、`content-nobel.js` 為單一來源。諾貝爾年表修改 `content-nobel.js`，圖組修改 `diagrams-nobel.js`，維持 58 屆資料與 17 組模型的對應。
-3. 執行 `bash site/scripts/verify.sh`，一次完成核心 bundle／靜態頁建置、JavaScript 語法與內容平行檢查、SEO 驗證；確認內容與網址差異都已被處理。
+3. 執行 `bash site/scripts/verify.sh`，一次完成核心 bundle／靜態頁建置、JavaScript 語法與內容平行檢查、SEO 驗證與 `site/version.json`；確認內容與網址差異都已被處理。通過後 commit、push `main`，Cloudflare Workers Builds 會自動部署；可用 `bash site/scripts/check-live.sh` 比對正式站版本。
 4. 用瀏覽器檢查首頁、四個科目頁（含每章「選擇題 N 題 · 頻率 X%」與「申論題 N 題 · 頻率 X%」；總體含第 11–13 章與學派演進圖）、至少一個含模型圖的總體章、`#/models/macro`、`#/models/macro?model=<anchor>` 的模型卡跳轉與高亮、`#/macro/evolution`（舊網址 `#/subject/macro?evolution=1` 仍可開啟）、`#/nobel`、`?group=`／`?year=`／`?table=`／`?models=` 跳轉、搜尋入口（含會計名詞）、`#/sources`、`#/past-exams` 的年度／科目／次別篩選與作答、`#/past-exams/written` 的年度／科目／次別篩選、`#/investment/formulas` 的公式總表、`#/investment/technical` 的技術分析 50 指標、`#/chapter/investment-14` 的綁定公式，會計第 14、15、23 章，以及證券法規章節；章節頁另檢查選擇題展開解答後在原選項顯示正解與說明。
 5. 若修改模型圖，確認總覽頁與原章節顯示相同內容；可暫時修改記憶體中的 `MACRO_DIAGRAMS`、`INVESTMENT_DIAGRAMS`、`ACCOUNTING_DIAGRAMS` 或 `NOBEL_DIAGRAMS`，切換路由檢查資料綁定。諾貝爾頁是 `NOBEL_DATA`／`NOBEL_DIAGRAMS` 的唯一呈現頁；模型總覽不重複列諾貝爾模型。
 6. 在桌機與 390px 寬度檢查頁面沒有水平溢出；諾貝爾頁為 17 組模型，每組在桌機左右 1:1、900px 以下為單欄，模型圖可在圖表區內滑動；年份下拉可切換所屬模型並捲動，屆別晶片只切換屆別資料；並以 `file://` 開啟確認可閱讀。
@@ -597,7 +625,7 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 
 ## 設計限制
 
-- 靜態網站、無建置步驟、無外部套件。
+- 靜態網站；建置與驗證由 Node 腳本執行，部署由 Cloudflare Workers Builds 完成；瀏覽器執行時不載入外部套件。
 - 模型圖是概念示意，用於理解曲線方向與移動，不提供互動拖曳、數值模擬或實證估計。
 - 模型總覽頁是唯讀聚合視圖，不是另一份內容或線上編輯器；更新來源仍是 `diagrams-macro*.js`，變更後重新載入即可在章節頁與總覽頁看到同步結果。
 - 窄螢幕下模型圖保留最小寬度，可在圖表區塊內水平滑動，並顯示「圖表較寬」提示；頁面本身不會水平溢出。

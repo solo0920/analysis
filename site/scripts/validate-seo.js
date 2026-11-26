@@ -78,7 +78,7 @@ check(llms.includes(origin), "llms.txt 缺少正式網域");
 check(!llms.includes("solo0920.github.io"), "llms.txt 仍含 GitHub Pages 網域");
 check(builder.includes('const BASE_URL = "' + origin + '";'), "靜態頁產生器的 BASE_URL 不是正式網域");
 check(builder.includes("function resolveUpdated()"), "靜態頁產生器沒有自動更新日期邏輯");
-check(notFound.includes('location.hostname === "solo0920.github.io"'), "404 頁沒有依部署環境判斷 base path");
+check(notFound.includes('var root = "/";'), "404 頁沒有設定站點根路徑");
 
 const sitemapUrls = Array.from(sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)).map(function (match) {
   return match[1];

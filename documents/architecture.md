@@ -226,7 +226,7 @@ sequenceDiagram
 flowchart LR
   Sources["documents/*.md<br/>章節目錄與界線"] --> Validate["validate-content.js"]
   Assets["site/assets/*.js<br/>content、diagrams、formula"] --> Validate
-  Validate --> Checks["154,272 項結構檢查<br/>章節／公式／模型／法規／分包／繁中守門"]
+  Validate --> Checks["195,435 項結構檢查<br/>章節／公式／模型／法規／分包／繁中守門"]
   Checks -->|失敗| Fail["非 0 結束碼<br/>列出失敗訊息"]
   Checks -->|通過| Pass["結束碼 0<br/>可提交"]
   Nobel["content-nobel.js"] --> Verify["verify-nobel-api.js"]
@@ -238,23 +238,24 @@ flowchart LR
 - `verify-nobel-api.js`：需要網路，只比對諾貝爾年表的年份與得主，不檢查公式或模型圖。
 - 這兩個腳本只在開發／驗證時執行，不會被 `index.html` 載入，也不會增加瀏覽器執行時負擔。
 
-## 7. GitHub Pages 部署
+## 7. Cloudflare Worker 部署
 
 ```mermaid
 flowchart LR
-  Dev["推送 main"] --> Actions["GitHub Actions<br/>pages.yml"]
-  Actions --> Checkout["checkout"]
-  Checkout --> Configure["configure-pages"]
-  Configure --> Upload["upload-pages-artifact<br/>path: site"]
-  Upload --> Deploy["deploy-pages"]
-  Deploy --> Live["GitHub Pages<br/>solo0920.github.io/analysis/"]
+  Dev["push main"] --> Build["Cloudflare Workers Builds<br/>bash site/scripts/verify.sh"]
+  Build --> Verify["JS 語法／內容／SEO<br/>site/version.json"]
+  Verify --> Deploy["npx wrangler deploy"]
+  Deploy --> Assets["Worker static assets<br/>directory: site/"]
+  Assets --> Live["https://analysis.ragdemo.win"]
 ```
 
-- `site/` 是唯一的發佈目錄；`documents/`、`specs/`、`.specify/` 與驗證腳本不會進入 Pages artifact。
-- `site/.nojekyll` 停用 Jekyll 處理；workflow 以 `include-hidden-files: true` 將它納入 artifact。
-- `site/404.html` 將未知路徑導回站點根目錄。
-- 所有 CSS、JavaScript、SVG 與 KaTeX 字型都使用相對路徑，因此可在 `/analysis/` 子路徑下運作。
-- 推送 `main` 或手動執行 workflow 都會重新部署；`site/**` 與 workflow 檔變更才會觸發自動部署。
+- GitHub 只作為原始碼托管與 push 觸發；不部署 GitHub Pages，也不做鏡像。
+- 根目錄 `wrangler.toml` 定義 Worker `analysis`、`[assets] directory = "./site"` 與 `not_found_handling = "404-page"`。
+- Cloudflare Build command 為 `bash site/scripts/verify.sh`，Deploy command 為 `npx wrangler deploy`，Production branch 為 `main`，Node 版本為 22。
+- `verify.sh` 會建置核心 bundle、靜態頁，檢查 JavaScript 語法、內容與 SEO，最後產生 `site/version.json`；驗證失敗即停止部署，舊版繼續留在線上。
+- `site/404.html` 將未知路徑導回站點根目錄；Worker 以 `not_found_handling = "404-page"` 提供 404 頁面。
+- 部署完成後可用 `bash site/scripts/check-live.sh` 比對 `https://analysis.ragdemo.win/version.json` 與目前 commit；需要回復舊版時，在 Cloudflare Deployments 選擇前一個版本 Rollback。
+- 所有 CSS、JavaScript、SVG 與 KaTeX 字型都使用相對路徑，因此可直接在 `file://` 或任何靜態主機閱讀。
 
 ## 8. 倉庫目錄分層
 
