@@ -129,7 +129,7 @@ window.__ASSET_MANIFEST__ = {
   "content-nobel.js": "24cd1e6f665a",
   "content-past-exam-search.js": "7b84d4b8f088",
   "content-past-exam-stats.js": "478325ff2b0b",
-  "content-past-exams-explanations.js": "2a3c61fbebe1",
+  "content-past-exams-explanations.js": "1656c0e9656e",
   "content-past-exams-written.js": "f54b9b493838",
   "content-past-exams-year-107.js": "91c1c5611b6a",
   "content-past-exams-year-108.js": "9806e7942b5b",

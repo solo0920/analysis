@@ -564,6 +564,8 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 
 2026-11-26 部署流程簡化為 Cloudflare Worker：移除 `.github/workflows/pages.yml` 與 GitHub Pages 鏡像，新增根目錄 `wrangler.toml`（`analysis`、`assets.directory = "./site"`、`not_found_handling = "404-page"`）；Cloudflare Workers Builds 的 Build command 已設為 `bash site/scripts/verify.sh`，Deploy command 維持 `npx wrangler deploy`。新增 `site/scripts/write-version.js`、`check-live.sh` 與 `check-js-syntax.js`；`verify.sh` 在通過內容／SEO 驗證後產生 `site/version.json`，`site/version.json` 加入 `.gitignore`。JS 語法檢查由 170 次 `node --check` 改為單一 Node 進程，`verify.sh` 由約 6.3 秒降至約 2.4 秒。正式站建置後以 `bash site/scripts/check-live.sh` 比對 commit；`version.json` 回傳 `main` 與目前 commit，GitHub 只保留 push，不再部署 Pages；GitHub Pages 已停用（Pages API 回 404）。
 
+2026-11-26 補齊 `111Q2-macro-02` 的歐豬五國解析：summary 改為 PIIGS 全稱、2008–2010 年代歐洲主權債務危機背景，並列出 Portugal／Italy／Ireland／Greece／Spain 五國；Ireland 另註明原「PIGS」四國後加入。`file://` 390px／1280px 展開解析顯示完整清單、0 `.katex-error`、0 水平溢出；`verify.sh` 195,435 項、0 失敗，選項分析與答案不變。
+
 2026-11-26 完成 P3 連結與內容稽核：`check-links.js` 已涵蓋 HTML `href`／`src`、`srcset` 與 CSS `url()`（2,774 條、0 斷鏈）；`check-ui.js` 擴充為 12 條動態 hash 路由 × 4 viewport/theme（48 組），另加 5 個內容斷言、搜尋與遠端 404。2026 諾貝爾 NKPC 依官方科學背景改為 `π_t = βE_tπ_{t+1} + κ\tilde{y}_t`，圖說與變數同步改為 `ỹ`。會計例題完成 153 題算術覆核（390 條等式鏈）與參考解答數字交叉比對，修正 `107Q3-accounting-written-5`、`109Q3-accounting-written-1`、`109Q1-accounting-written-1`、`115Q1-accounting-17` 四處例題；`build-chapter-data-bundles.js` 已重建受影響章節分包。尚未完成與原始試卷逐題全文比對，其他屆諾貝爾原始論文與模型圖仍待逐條核對。
 
 > 2026-11-26 起部署改為 Cloudflare Worker；以下 2026-11-26 之前的 GitHub Pages／pages.yml 紀錄為歷史，不再代表目前流程。
