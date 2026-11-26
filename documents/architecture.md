@@ -249,7 +249,7 @@ flowchart LR
   Assets --> Live["https://analysis.ragdemo.win"]
 ```
 
-- GitHub 只作為原始碼托管與 push 觸發；不部署 GitHub Pages，也不做鏡像。
+- GitHub 只作為原始碼托管與 push 觸發；不部署 GitHub Pages，也不做鏡像；GitHub Pages 已停用（Pages API 回 404）。
 - 根目錄 `wrangler.toml` 定義 Worker `analysis`、`[assets] directory = "./site"` 與 `not_found_handling = "404-page"`。
 - Cloudflare Build command 為 `bash site/scripts/verify.sh`，Deploy command 為 `npx wrangler deploy`，Production branch 為 `main`，Node 版本為 22。
 - `verify.sh` 會建置核心 bundle、靜態頁，檢查 JavaScript 語法、內容與 SEO，最後產生 `site/version.json`；驗證失敗即停止部署，舊版繼續留在線上。

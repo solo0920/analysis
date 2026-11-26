@@ -76,7 +76,7 @@ Cloudflare Build 設定應為：
 | Deploy command | `npx wrangler deploy` |
 | Node version | `NODE_VERSION=22` |
 
-GitHub Repository Settings → Pages 應設為 **None／停用**，避免又回到 GitHub Pages 鏡像。
+GitHub Repository Settings → Pages 已停用（Pages API 回 404），避免又回到 GitHub Pages 鏡像。
 
 ## 授權
 
