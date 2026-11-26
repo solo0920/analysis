@@ -47,14 +47,14 @@ window.MERMAID_DIAGRAMS = {
     "note": "三面法等價，再依序調整 NFIA、折舊、間接稅、公司稅與移轉收支，最後得到 PDI。",
     "source": "flowchart TD\n  accTitle: 國民所得會計帳流程圖\n  accDescr: 生產面、支出面與所得面三種算法都得到 GDP；GDP 加國外要素所得淨額得到 GNI，再依序扣除折舊與間接稅淨額，調整公司稅、未分配盈餘、社會安全捐、移轉支付與淨利息，最後扣除個人直接稅得到 PDI，並拆分為消費與儲蓄。\n\n  subgraph S[\"三面等價：同一筆 GDP\"]\n    direction LR\n    P[\"生產面<br/>各業附加價值加總\"]\n    E[\"支出面<br/>C + I + G + (X − M)\"]\n    I[\"所得面<br/>要素所得＋折舊＋間接稅淨額\"]\n  end\n\n  P --> GDP\n  E --> GDP\n  I --> GDP\n  GDP[\"國內生產毛額 GDP<br/>三面數值相等 · 屬地原則\"]:::accent\n  GDP -- \"+ NFIA\" --> GNI[\"國民總收入 GNI<br/>GDP + NFIA（GNP ≈ GNI）\"]\n  GNI -- \"− 折舊 D\" --> NNP[\"國民生產淨額 NNP<br/>GNI − 折舊 D\"]\n  NNP -- \"− 間接稅淨額 NIT\" --> NI[\"國民所得 NI<br/>NNP − NIT（要素成本）\"]\n  NI -- \"− CIT − URE − SSC<br/>+ TR + INT\" --> PI[\"個人所得 PI<br/>NI − CIT − URE − SSC + TR + INT\"]\n  PI -- \"− 個人直接稅 Tp\" --> PDI[\"個人可支配所得 PDI<br/>PI − Tp = C + S\"]:::outcome\n  PDI --> C[\"消費 C<br/>PDI 中用於消費\"]\n  PDI --> SAVE[\"儲蓄 S<br/>PDI − C\"]\n\n  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px\n  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px\n"
   },
-  "macro-05#0": {
-    "key": "macro-05#0",
+  "macro-06#0": {
+    "key": "macro-06#0",
     "file": "macro-deposit-creation.mmd",
     "slug": "macro-deposit-creation",
     "order": 4,
     "subject": "macro",
     "subjectName": "總體經濟學",
-    "chapterId": "macro-05",
+    "chapterId": "macro-06",
     "chapterTitle": "貨幣供需與貨幣政策",
     "section": 0,
     "sectionTitle": "第1節 存款貨幣的創造與貨幣供給",
@@ -62,15 +62,15 @@ window.MERMAID_DIAGRAMS = {
     "note": "原始存款經銀行保留準備、貸出超額準備，形成存款乘數。",
     "source": "flowchart TD\n  accTitle: 存款貨幣的創造與貨幣乘數\n  accDescr: 原始存款進入銀行後，銀行保留法定準備、貸出超額準備；貸款再存入其他銀行，形成一連串存款與放款，存款總額收斂到原始存款乘以貨幣乘數。\n\n  DEP[\"原始存款<br/>+100\"]:::accent\n  A[\"銀行 A<br/>準備 +10、放款 +90\"]\n  B[\"銀行 B<br/>存款 +90<br/>準備 +9、放款 +81\"]\n  C[\"銀行 C<br/>存款 +81<br/>準備 +8.1、放款 +72.9\"]\n  MORE[\"其餘銀行<br/>持續創造存款…\"]\n  TOTAL[\"存款總額<br/>100 + 90 + 81 + …<br/>= 100 × (1 ÷ rr)\"]:::outcome\n\n  DEP --> A --> B --> C --> MORE --> TOTAL\n\n  subgraph RULE[\"準備金與乘數\"]\n    direction TB\n    RR[\"法定準備率 rr<br/>準備 = 存款 × rr\"]\n    EX[\"超額準備<br/>放款 = 存款 × (1 − rr)\"]\n    MM[\"簡單貨幣乘數<br/>m = 1 ÷ rr\"]\n    RR --> MM\n    EX --> MM\n  end\n\n  MM -.-> TOTAL\n\n  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px\n  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px\n"
   },
-  "macro-06#0-2": {
-    "key": "macro-06#0-2",
+  "macro-07#0-2": {
+    "key": "macro-07#0-2",
     "file": "macro-model-map.mmd",
     "slug": "macro-model-map",
     "order": 5,
     "subject": "macro",
     "subjectName": "總體經濟學",
-    "chapterId": "macro-06",
-    "chapterTitle": "IS-LM模型",
+    "chapterId": "macro-07",
+    "chapterTitle": "投資儲蓄-流動性偏好貨幣供給 IS-LM模型",
     "section": 0,
     "sectionTitle": "第1節 IS曲線與LM曲線",
     "shortTitle": "總體模型地圖",
@@ -126,14 +126,14 @@ window.MERMAID_DIAGRAMS = {
     ],
     "source": "flowchart TD\n  accTitle: 總體經濟模型地圖\n  accDescr: 從古典學派與凱因斯出發，經 IS-LM、AD-AS、Phillips 曲線到新凱因斯；另列 Solow 成長與政策分析。\n\n  CLASS[\"古典學派<br/>彈性價格、充分就業\"]:::accent\n  KEYNES[\"凱因斯<br/>有效需求、工資僵固\"]\n  ISLM[\"IS-LM<br/>商品與貨幣市場\"]\n  ADAS[\"AD-AS<br/>短期與長期\"]\n  PHILLIPS[\"Phillips 曲線<br/>通膨與失業\"]\n  NK[\"新凱因斯<br/>NKPC、Taylor 規則\"]\n  SOLOW[\"Solow 成長<br/>資本累積與穩態\"]\n  POLICY[\"政策分析<br/>財政、貨幣、供給面\"]:::outcome\n\n  CLASS --> ISLM\n  KEYNES --> ISLM\n  ISLM --> ADAS\n  ADAS --> PHILLIPS\n  PHILLIPS --> NK\n  CLASS --> SOLOW\n  NK --> POLICY\n  SOLOW --> POLICY\n\n  classDef accent fill:#e3efeb,stroke:#0f5c5c,color:#182426,stroke-width:2px\n  classDef outcome fill:#f5ead8,stroke:#a86d27,color:#182426,stroke-width:2px\n"
   },
-  "macro-11#0": {
-    "key": "macro-11#0",
+  "macro-12#0": {
+    "key": "macro-12#0",
     "file": "macro-financial-flow.mmd",
     "slug": "macro-financial-flow",
     "order": 6,
     "subject": "macro",
     "subjectName": "總體經濟學",
-    "chapterId": "macro-11",
+    "chapterId": "macro-12",
     "chapterTitle": "金融體系",
     "section": 0,
     "sectionTitle": "第1節 金融體系",
@@ -563,19 +563,19 @@ window.MERMAID_DIAGRAMS = {
 };
 
 window.MERMAID_RELATED = {
-  "macro-06#0": [
-    {
-      "label": "總體經濟模型地圖",
-      "href": "#/lab/mermaid?diagram=macro-model-map"
-    }
-  ],
   "macro-07#0": [
     {
       "label": "總體經濟模型地圖",
       "href": "#/lab/mermaid?diagram=macro-model-map"
     }
   ],
-  "macro-09#2": [
+  "macro-08#0": [
+    {
+      "label": "總體經濟模型地圖",
+      "href": "#/lab/mermaid?diagram=macro-model-map"
+    }
+  ],
+  "macro-10#2": [
     {
       "label": "總體經濟模型地圖",
       "href": "#/lab/mermaid?diagram=macro-model-map"
@@ -605,7 +605,7 @@ window.MERMAID_RELATED = {
       "href": "#/lab/mermaid?diagram=investment-bond-risk"
     }
   ],
-  "macro-12#4": [
+  "macro-13#4": [
     {
       "label": "債券利率風險地圖",
       "href": "#/lab/mermaid?diagram=investment-bond-risk"
@@ -635,31 +635,19 @@ window.MERMAID_RELATED = {
       "href": "#/lab/mermaid?diagram=accounting-cycle"
     }
   ],
-  "macro-02#0": [
+  "macro-03#0": [
     {
       "label": "總體經濟模型地圖",
       "href": "#/lab/mermaid?diagram=macro-model-map"
     }
   ],
-  "macro-02#2": [
-    {
-      "label": "總體經濟模型地圖",
-      "href": "#/lab/mermaid?diagram=macro-model-map"
-    }
-  ],
-  "macro-05#1": [
+  "macro-03#2": [
     {
       "label": "總體經濟模型地圖",
       "href": "#/lab/mermaid?diagram=macro-model-map"
     }
   ],
   "macro-06#1": [
-    {
-      "label": "總體經濟模型地圖",
-      "href": "#/lab/mermaid?diagram=macro-model-map"
-    }
-  ],
-  "macro-06#2": [
     {
       "label": "總體經濟模型地圖",
       "href": "#/lab/mermaid?diagram=macro-model-map"
@@ -677,73 +665,85 @@ window.MERMAID_RELATED = {
       "href": "#/lab/mermaid?diagram=macro-model-map"
     }
   ],
-  "macro-08#0": [
-    {
-      "label": "總體經濟模型地圖",
-      "href": "#/lab/mermaid?diagram=macro-model-map"
-    }
-  ],
-  "macro-08#0-2": [
-    {
-      "label": "總體經濟模型地圖",
-      "href": "#/lab/mermaid?diagram=macro-model-map"
-    }
-  ],
   "macro-08#1": [
     {
       "label": "總體經濟模型地圖",
       "href": "#/lab/mermaid?diagram=macro-model-map"
     }
   ],
-  "macro-08#1-2": [
+  "macro-08#2": [
     {
       "label": "總體經濟模型地圖",
       "href": "#/lab/mermaid?diagram=macro-model-map"
     }
   ],
-  "macro-09#2-2": [
+  "macro-09#0": [
     {
       "label": "總體經濟模型地圖",
       "href": "#/lab/mermaid?diagram=macro-model-map"
     }
   ],
-  "macro-10#1": [
+  "macro-09#0-2": [
     {
       "label": "總體經濟模型地圖",
       "href": "#/lab/mermaid?diagram=macro-model-map"
     }
   ],
-  "macro-10#1-2": [
+  "macro-09#1": [
     {
       "label": "總體經濟模型地圖",
       "href": "#/lab/mermaid?diagram=macro-model-map"
     }
   ],
-  "macro-10#3": [
+  "macro-09#1-2": [
     {
       "label": "總體經濟模型地圖",
       "href": "#/lab/mermaid?diagram=macro-model-map"
     }
   ],
-  "macro-12#1": [
+  "macro-10#2-2": [
+    {
+      "label": "總體經濟模型地圖",
+      "href": "#/lab/mermaid?diagram=macro-model-map"
+    }
+  ],
+  "macro-11#1": [
+    {
+      "label": "總體經濟模型地圖",
+      "href": "#/lab/mermaid?diagram=macro-model-map"
+    }
+  ],
+  "macro-11#1-2": [
+    {
+      "label": "總體經濟模型地圖",
+      "href": "#/lab/mermaid?diagram=macro-model-map"
+    }
+  ],
+  "macro-11#3": [
+    {
+      "label": "總體經濟模型地圖",
+      "href": "#/lab/mermaid?diagram=macro-model-map"
+    }
+  ],
+  "macro-13#1": [
     {
       "label": "債券利率風險地圖",
       "href": "#/lab/mermaid?diagram=investment-bond-risk"
     }
   ],
-  "macro-12#2": [
+  "macro-13#2": [
     {
       "label": "債券利率風險地圖",
       "href": "#/lab/mermaid?diagram=investment-bond-risk"
     }
   ],
-  "macro-12#3": [
+  "macro-13#3": [
     {
       "label": "債券利率風險地圖",
       "href": "#/lab/mermaid?diagram=investment-bond-risk"
     }
   ],
-  "macro-13#6": [
+  "macro-14#6": [
     {
       "label": "選擇權定價地圖",
       "href": "#/lab/mermaid?diagram=investment-option-pricing-map"

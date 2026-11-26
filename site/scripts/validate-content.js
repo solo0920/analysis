@@ -1326,10 +1326,10 @@ const pastExamExpectedChapterTotals = {
   "accounting-07": 50, "accounting-08": 23, "accounting-09": 19, "accounting-10": 56, "accounting-11": 15, "accounting-12": 10,
   "accounting-13": 75, "accounting-14": 8, "accounting-15": 98, "accounting-16": 20, "accounting-17": 33, "accounting-18": 3,
   "accounting-19": 21, "accounting-20": 30, "accounting-21": 11, "accounting-22": 3, "accounting-23": 41,
-  // macro
-  "macro-01": 59, "macro-02": 58, "macro-03": 42, "macro-04": 42, "macro-05": 125, "macro-06": 53,
-  "macro-07": 65, "macro-08": 56, "macro-09": 60, "macro-10": 164, "macro-11": 33, "macro-12": 190,
-  "macro-13": 47,
+  // macro（2026-11-26 新增古典學派章後，原 02–13 章號與 ID 已加 1）
+  "macro-01": 59, "macro-02": 0, "macro-03": 58, "macro-04": 42, "macro-05": 42, "macro-06": 125,
+  "macro-07": 53, "macro-08": 65, "macro-09": 56, "macro-10": 60, "macro-11": 164, "macro-12": 33,
+  "macro-13": 190, "macro-14": 47,
 };
 const pastSearchIndex = loaded.pastSearchIndex || [];
 check(Array.isArray(pastSearchIndex), "考古題搜尋索引格式錯誤");
@@ -2005,7 +2005,7 @@ Object.keys(lazyPastStats.practice.years || {}).forEach(function (year) {
   check(yearData.questions.length === lazyPastStats.practice.years[year].count, "考古題年度分包題數與統計不一致：" + year);
   check(yearData.questions.every(function (question) { return question.year === Number(year); }), "考古題年度分包混入其他年度：" + year);
 });
-check(Object.keys(lazyPastStats.practice.chapters || {}).length === 73, "延遲載入用考古題統計應涵蓋 73 個有出處章節");
+check(Object.keys(lazyPastStats.practice.chapters || {}).length === 74, "延遲載入用考古題統計應涵蓋 74 個章節（新章可為 0 題）");
 check(Object.keys(lazyPastStats.written.chapters || {}).length === 55, "延遲載入用考古題統計應涵蓋 55 個申論章節");
 ["macro", "investment", "accounting", "law"].forEach(function (subject) {
   check(lazyPastStats.practice.subjects[subject] === { macro: 994, investment: 924, accounting: 882, law: 910 }[subject], "延遲載入用考古題統計科目數錯誤：" + subject);

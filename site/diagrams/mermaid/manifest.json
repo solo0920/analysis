@@ -46,13 +46,13 @@
       "note": "三面法等價，再依序調整 NFIA、折舊、間接稅、公司稅與移轉收支，最後得到 PDI。"
     },
     {
-      "key": "macro-05#0",
+      "key": "macro-06#0",
       "file": "macro-deposit-creation.mmd",
       "slug": "macro-deposit-creation",
       "order": 4,
       "subject": "macro",
       "subjectName": "總體經濟學",
-      "chapterId": "macro-05",
+      "chapterId": "macro-06",
       "chapterTitle": "貨幣供需與貨幣政策",
       "section": 0,
       "sectionTitle": "第1節 存款貨幣的創造與貨幣供給",
@@ -60,14 +60,14 @@
       "note": "原始存款經銀行保留準備、貸出超額準備，形成存款乘數。"
     },
     {
-      "key": "macro-06#0-2",
+      "key": "macro-07#0-2",
       "file": "macro-model-map.mmd",
       "slug": "macro-model-map",
       "order": 5,
       "subject": "macro",
       "subjectName": "總體經濟學",
-      "chapterId": "macro-06",
-      "chapterTitle": "IS-LM模型",
+      "chapterId": "macro-07",
+      "chapterTitle": "投資儲蓄-流動性偏好貨幣供給 IS-LM模型",
       "section": 0,
       "sectionTitle": "第1節 IS曲線與LM曲線",
       "shortTitle": "總體模型地圖",
@@ -123,13 +123,13 @@
       ]
     },
     {
-      "key": "macro-11#0",
+      "key": "macro-12#0",
       "file": "macro-financial-flow.mmd",
       "slug": "macro-financial-flow",
       "order": 6,
       "subject": "macro",
       "subjectName": "總體經濟學",
-      "chapterId": "macro-11",
+      "chapterId": "macro-12",
       "chapterTitle": "金融體系",
       "section": 0,
       "sectionTitle": "第1節 金融體系",
@@ -547,19 +547,19 @@
     }
   ],
   "related": {
-    "macro-06#0": [
-      {
-        "label": "總體經濟模型地圖",
-        "href": "#/lab/mermaid?diagram=macro-model-map"
-      }
-    ],
     "macro-07#0": [
       {
         "label": "總體經濟模型地圖",
         "href": "#/lab/mermaid?diagram=macro-model-map"
       }
     ],
-    "macro-09#2": [
+    "macro-08#0": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-10#2": [
       {
         "label": "總體經濟模型地圖",
         "href": "#/lab/mermaid?diagram=macro-model-map"
@@ -589,7 +589,7 @@
         "href": "#/lab/mermaid?diagram=investment-bond-risk"
       }
     ],
-    "macro-12#4": [
+    "macro-13#4": [
       {
         "label": "債券利率風險地圖",
         "href": "#/lab/mermaid?diagram=investment-bond-risk"
@@ -619,31 +619,19 @@
         "href": "#/lab/mermaid?diagram=accounting-cycle"
       }
     ],
-    "macro-02#0": [
+    "macro-03#0": [
       {
         "label": "總體經濟模型地圖",
         "href": "#/lab/mermaid?diagram=macro-model-map"
       }
     ],
-    "macro-02#2": [
-      {
-        "label": "總體經濟模型地圖",
-        "href": "#/lab/mermaid?diagram=macro-model-map"
-      }
-    ],
-    "macro-05#1": [
+    "macro-03#2": [
       {
         "label": "總體經濟模型地圖",
         "href": "#/lab/mermaid?diagram=macro-model-map"
       }
     ],
     "macro-06#1": [
-      {
-        "label": "總體經濟模型地圖",
-        "href": "#/lab/mermaid?diagram=macro-model-map"
-      }
-    ],
-    "macro-06#2": [
       {
         "label": "總體經濟模型地圖",
         "href": "#/lab/mermaid?diagram=macro-model-map"
@@ -661,73 +649,85 @@
         "href": "#/lab/mermaid?diagram=macro-model-map"
       }
     ],
-    "macro-08#0": [
-      {
-        "label": "總體經濟模型地圖",
-        "href": "#/lab/mermaid?diagram=macro-model-map"
-      }
-    ],
-    "macro-08#0-2": [
-      {
-        "label": "總體經濟模型地圖",
-        "href": "#/lab/mermaid?diagram=macro-model-map"
-      }
-    ],
     "macro-08#1": [
       {
         "label": "總體經濟模型地圖",
         "href": "#/lab/mermaid?diagram=macro-model-map"
       }
     ],
-    "macro-08#1-2": [
+    "macro-08#2": [
       {
         "label": "總體經濟模型地圖",
         "href": "#/lab/mermaid?diagram=macro-model-map"
       }
     ],
-    "macro-09#2-2": [
+    "macro-09#0": [
       {
         "label": "總體經濟模型地圖",
         "href": "#/lab/mermaid?diagram=macro-model-map"
       }
     ],
-    "macro-10#1": [
+    "macro-09#0-2": [
       {
         "label": "總體經濟模型地圖",
         "href": "#/lab/mermaid?diagram=macro-model-map"
       }
     ],
-    "macro-10#1-2": [
+    "macro-09#1": [
       {
         "label": "總體經濟模型地圖",
         "href": "#/lab/mermaid?diagram=macro-model-map"
       }
     ],
-    "macro-10#3": [
+    "macro-09#1-2": [
       {
         "label": "總體經濟模型地圖",
         "href": "#/lab/mermaid?diagram=macro-model-map"
       }
     ],
-    "macro-12#1": [
+    "macro-10#2-2": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-11#1": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-11#1-2": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-11#3": [
+      {
+        "label": "總體經濟模型地圖",
+        "href": "#/lab/mermaid?diagram=macro-model-map"
+      }
+    ],
+    "macro-13#1": [
       {
         "label": "債券利率風險地圖",
         "href": "#/lab/mermaid?diagram=investment-bond-risk"
       }
     ],
-    "macro-12#2": [
+    "macro-13#2": [
       {
         "label": "債券利率風險地圖",
         "href": "#/lab/mermaid?diagram=investment-bond-risk"
       }
     ],
-    "macro-12#3": [
+    "macro-13#3": [
       {
         "label": "債券利率風險地圖",
         "href": "#/lab/mermaid?diagram=investment-bond-risk"
       }
     ],
-    "macro-13#6": [
+    "macro-14#6": [
       {
         "label": "選擇權定價地圖",
         "href": "#/lab/mermaid?diagram=investment-option-pricing-map"

@@ -22,9 +22,9 @@ window.MACRO_CURRENT_EVENTS = {
         "注意：實際稅率與暫停期間變動快，除非題目給定，不要背單一數字。"
       ],
       "sourceIds": [
-        "macro-10",
-        "macro-02",
-        "macro-12"
+        "macro-11",
+        "macro-03",
+        "macro-13"
       ],
       "references": [
         {
@@ -49,9 +49,9 @@ window.MACRO_CURRENT_EVENTS = {
         "2026 年 9 月升息背景是通膨仍高、就業接近充分、金融條件不緊；考試要能說明雙重使命的取捨。"
       ],
       "sourceIds": [
-        "macro-04",
         "macro-05",
-        "macro-12"
+        "macro-06",
+        "macro-13"
       ],
       "references": [
         {
@@ -80,9 +80,9 @@ window.MACRO_CURRENT_EVENTS = {
         "考試用 AD-AS／IS-LM 說明傳導，再分辨供給面與需求面衝擊。"
       ],
       "sourceIds": [
-        "macro-04",
         "macro-05",
-        "macro-10"
+        "macro-06",
+        "macro-11"
       ],
       "references": [
         {
@@ -111,10 +111,10 @@ window.MACRO_CURRENT_EVENTS = {
         "考試用 AD-AS、菲利浦曲線、貿易條件與匯率傳導。"
       ],
       "sourceIds": [
-        "macro-02",
-        "macro-05",
-        "macro-10",
-        "macro-12"
+        "macro-03",
+        "macro-06",
+        "macro-11",
+        "macro-13"
       ],
       "references": [
         {
@@ -139,9 +139,9 @@ window.MACRO_CURRENT_EVENTS = {
         "黃金 vs 黃金 ETF vs 黃金期貨：現貨、受益憑證與衍生性商品的風險不同。"
       ],
       "sourceIds": [
-        "macro-10",
-        "macro-12",
-        "macro-04"
+        "macro-11",
+        "macro-13",
+        "macro-05"
       ],
       "references": [
         {
@@ -172,9 +172,9 @@ window.MACRO_CURRENT_EVENTS = {
         "風險：買回可能被解讀為市場壓力訊號；縮短債務存續期間會增加再融資風險；財政主導會削弱央行獨立性。"
       ],
       "sourceIds": [
-        "macro-04",
-        "macro-10",
-        "macro-12"
+        "macro-05",
+        "macro-11",
+        "macro-13"
       ],
       "references": [
         {
@@ -207,10 +207,10 @@ window.MACRO_CURRENT_EVENTS = {
         "2026 年日本政策組合：BOJ 正常化 vs 財政擴張。"
       ],
       "sourceIds": [
-        "macro-04",
         "macro-05",
-        "macro-08",
-        "macro-10"
+        "macro-06",
+        "macro-09",
+        "macro-11"
       ],
       "references": [
         {
@@ -239,9 +239,9 @@ window.MACRO_CURRENT_EVENTS = {
         "臺灣 VASP／穩定幣法制可參考美國的功能監理與準備、揭露要求，但須保留本地牌照與央行職權。"
       ],
       "sourceIds": [
-        "macro-03",
         "macro-04",
-        "macro-11"
+        "macro-05",
+        "macro-12"
       ],
       "references": [
         {
@@ -273,9 +273,9 @@ window.MACRO_CURRENT_EVENTS = {
         "美國 GENIUS Act 以 1:1 準備、聯邦／州雙軌發行人、每月揭露與查核、贖回與不得付息為核心，是各國重要參考。"
       ],
       "sourceIds": [
-        "macro-03",
         "macro-04",
-        "macro-11"
+        "macro-05",
+        "macro-12"
       ],
       "references": [
         {
@@ -304,9 +304,9 @@ window.MACRO_CURRENT_EVENTS = {
         "風險：擠兌、準備資產貶值或流動性不足、美元化與貨幣政策傳導。"
       ],
       "sourceIds": [
-        "macro-03",
         "macro-04",
-        "macro-11"
+        "macro-05",
+        "macro-12"
       ],
       "references": [
         {
@@ -337,9 +337,9 @@ window.MACRO_CURRENT_EVENTS = {
         "CBDC 不一定取代現金；設計會影響銀行存款與支付市場結構。"
       ],
       "sourceIds": [
-        "macro-03",
-        "macro-05",
-        "macro-11"
+        "macro-04",
+        "macro-06",
+        "macro-12"
       ]
     },
     {
@@ -356,10 +356,10 @@ window.MACRO_CURRENT_EVENTS = {
         "政策名稱與金額會變動，以行政院、國發會、央行與金管會公告為準。"
       ],
       "sourceIds": [
-        "macro-02",
-        "macro-08",
-        "macro-10",
-        "macro-11"
+        "macro-03",
+        "macro-09",
+        "macro-11",
+        "macro-12"
       ]
     },
     {
@@ -376,9 +376,9 @@ window.MACRO_CURRENT_EVENTS = {
         "央行獨立性、透明度和政策可信度會影響通膨預期。"
       ],
       "sourceIds": [
-        "macro-04",
         "macro-05",
-        "macro-10"
+        "macro-06",
+        "macro-11"
       ]
     },
     {
@@ -395,9 +395,9 @@ window.MACRO_CURRENT_EVENTS = {
         "若 AI 增加資本需求，實質利率可能上升；若替代勞動，工資結構會改變。"
       ],
       "sourceIds": [
-        "macro-08",
+        "macro-09",
         "macro-01",
-        "macro-05"
+        "macro-06"
       ]
     },
     {
@@ -414,9 +414,9 @@ window.MACRO_CURRENT_EVENTS = {
         "歐豬五國（PIIGS）是考試常見名詞，但成員國與危機細節會隨時間被重新詮釋。"
       ],
       "sourceIds": [
-        "macro-10",
-        "macro-04",
-        "macro-12"
+        "macro-11",
+        "macro-05",
+        "macro-13"
       ]
     }
   ]

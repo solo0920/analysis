@@ -3,7 +3,7 @@
 
 (function () {
   const supplements = {
-    "macro-05": [
+    "macro-06": [
       {
         title: "進階專題：泰勒法則、QTM 與準備金走廊",
         body: [
@@ -28,7 +28,7 @@
         formula: ""
       }
     ],
-    "macro-06": [
+    "macro-07": [
       {
         title: "進階專題：李嘉圖等價、期限溢酬與 MMT",
         body: [
@@ -52,7 +52,7 @@
         formula: ""
       }
     ],
-    "macro-08": [
+    "macro-09": [
       {
         title: "進階專題：AI、TFP 與人口老化",
         body: [
@@ -76,7 +76,7 @@
         formula: ""
       }
     ],
-    "macro-09": [
+    "macro-10": [
       {
         title: "進階專題：綠色通膨與供給面衝擊",
         body: [
@@ -100,7 +100,7 @@
         formula: ""
       }
     ],
-    "macro-10": [
+    "macro-11": [
       {
         title: "進階專題：REER、J 曲線與三元悖論",
         body: [
@@ -124,7 +124,7 @@
         formula: ""
       }
     ],
-    "macro-04": [
+    "macro-05": [
       {
         title: "進階專題：宏觀審慎、CCyB 與金融穩定",
         body: [

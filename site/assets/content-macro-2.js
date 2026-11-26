@@ -3,7 +3,7 @@
 
 window.MACRO_SUBJECT.chapters.push(
   {
-    id: "macro-06",
+    id: "macro-07",
     number: 7,
     title: "投資儲蓄-流動性偏好貨幣供給 IS-LM模型",
     page: "P. 133",
@@ -76,7 +76,7 @@ window.MACRO_SUBJECT.chapters.push(
     ]
   },
   {
-    id: "macro-07",
+    id: "macro-08",
     number: 8,
     title: "總合供需AD-AS模型",
     page: "P. 145",
@@ -151,7 +151,7 @@ window.MACRO_SUBJECT.chapters.push(
     ]
   },
   {
-    id: "macro-08",
+    id: "macro-09",
     number: 9,
     title: "經濟成長與景氣循環",
     page: "P. 167",
@@ -230,7 +230,7 @@ window.MACRO_SUBJECT.chapters.push(
     ]
   },
   {
-    id: "macro-09",
+    id: "macro-10",
     number: 10,
     title: "失業與通貨膨脹",
     page: "P. 185",
@@ -306,7 +306,7 @@ window.MACRO_SUBJECT.chapters.push(
     ]
   },
   {
-    id: "macro-10",
+    id: "macro-11",
     number: 11,
     title: "開放經濟（國際經濟學精華）",
     page: "P. 207",

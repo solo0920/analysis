@@ -3188,7 +3188,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-08",
+      "sourceId": "macro-09",
       "number": 1,
       "stem": "在經濟學中，將人工智慧（AI）視為「一般目的技術」（General Purpose Technology, GPT ）的主要理由為何？",
       "options": [
@@ -3201,12 +3201,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-08"
+        "macro-09"
       ],
       "eventId": "ai-gpt-2025",
       "sourceRefs": [
         {
-          "chapterId": "macro-08",
+          "chapterId": "macro-09",
           "sectionIndex": 1
         }
       ]
@@ -3217,7 +3217,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-07",
+      "sourceId": "macro-08",
       "number": 2,
       "stem": "古典學派對財政政策的主要批評為：",
       "options": [
@@ -3230,11 +3230,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-07"
+        "macro-08"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-07",
+          "chapterId": "macro-08",
           "sectionIndex": 3
         }
       ]
@@ -3245,7 +3245,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-09",
+      "sourceId": "macro-10",
       "number": 3,
       "stem": "古典學派認為失業主要是：",
       "options": [
@@ -3258,11 +3258,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-09"
+        "macro-10"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-09",
+          "chapterId": "macro-10",
           "sectionIndex": 1
         }
       ]
@@ -3301,7 +3301,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-08",
+      "sourceId": "macro-09",
       "number": 5,
       "stem": "Solow 成長模型中，長期經濟成長主要來自：",
       "options": [
@@ -3314,11 +3314,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-08"
+        "macro-09"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-08",
+          "chapterId": "macro-09",
           "sectionIndex": 1
         }
       ]
@@ -3329,7 +3329,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-02",
+      "sourceId": "macro-03",
       "number": 6,
       "stem": "Friedman 提出的消費理論是：",
       "options": [
@@ -3342,11 +3342,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-02"
+        "macro-03"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-02",
+          "chapterId": "macro-03",
           "sectionIndex": 1
         }
       ]
@@ -3357,7 +3357,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-11",
+      "sourceId": "macro-12",
       "number": 7,
       "stem": "近年來 P2P 借貸平台與數位銀行快速成長，使企業能直接從投資者取得資金，而不必透過傳統銀行。從總體經濟角度來看，這最可能造成下列哪一種影響？",
       "options": [
@@ -3370,12 +3370,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-11"
+        "macro-12"
       ],
       "eventId": "taiwan-policy-2025",
       "sourceRefs": [
         {
-          "chapterId": "macro-11",
+          "chapterId": "macro-12",
           "sectionIndex": 1
         }
       ]
@@ -3386,7 +3386,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-04",
+      "sourceId": "macro-05",
       "number": 8,
       "stem": "若中央銀行推出「中央銀行數位貨幣（CBDC）」，民眾可以直接在中央銀行持有存款。從總體經濟角度來看，下列哪一項可能是主要政策影響？",
       "options": [
@@ -3399,12 +3399,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-04"
+        "macro-05"
       ],
       "eventId": "cbdc-2025",
       "sourceRefs": [
         {
-          "chapterId": "macro-04",
+          "chapterId": "macro-05",
           "sectionIndex": 1
         }
       ]
@@ -3415,7 +3415,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-02",
+      "sourceId": "macro-03",
       "number": 9,
       "stem": "某封閉經濟中，消費函數為 \\(C=80+0.75Y\\)，投資為 \\(I=120\\)，若投資增加 40，則均衡所得將增加多少？",
       "options": [
@@ -3428,11 +3428,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-02"
+        "macro-03"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-02",
+          "chapterId": "macro-03",
           "sectionIndex": 1
         }
       ]
@@ -3443,7 +3443,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-08",
+      "sourceId": "macro-09",
       "number": 10,
       "stem": "根據 Jones 與 Tonetti（2020）的研究，下列何者最能描述「資料（data）」在 AI 經濟學中的重要特性？",
       "options": [
@@ -3456,11 +3456,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-08"
+        "macro-09"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-08",
+          "chapterId": "macro-09",
           "sectionIndex": 1
         }
       ]
@@ -3499,7 +3499,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-08",
+      "sourceId": "macro-09",
       "number": 12,
       "stem": "國發會景氣對策信號是由幾項構成項目組成？",
       "options": [
@@ -3512,11 +3512,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-08"
+        "macro-09"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-08",
+          "chapterId": "macro-09",
           "sectionIndex": 3
         }
       ]
@@ -3527,7 +3527,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-06",
+      "sourceId": "macro-07",
       "number": 13,
       "stem": "某經濟體的 IS 曲線為 Y=1000−50r，LM 曲線為 Y=200+100r，請問均衡利率 r 為何？",
       "options": [
@@ -3540,11 +3540,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-06"
+        "macro-07"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-06",
+          "chapterId": "macro-07",
           "sectionIndex": 1
         }
       ]
@@ -3555,7 +3555,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-10",
+      "sourceId": "macro-11",
       "number": 14,
       "stem": "台幣一年利率 4%，美元一年利率 10%，目前美元兌台幣即期匯率為 30，根據利率評價原理，下列敘述何為真？",
       "options": [
@@ -3568,11 +3568,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-10"
+        "macro-11"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-10",
+          "chapterId": "macro-11",
           "sectionIndex": 1
         }
       ]
@@ -3583,7 +3583,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-08",
+      "sourceId": "macro-09",
       "number": 15,
       "stem": "哪種消費容易受到景氣循環影響？",
       "options": [
@@ -3596,11 +3596,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-08"
+        "macro-09"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-08",
+          "chapterId": "macro-09",
           "sectionIndex": 2
         }
       ]
@@ -3611,7 +3611,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-13",
+      "sourceId": "macro-14",
       "number": 16,
       "stem": "「主動式 ETF」的重點特色之一為：",
       "options": [
@@ -3624,11 +3624,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-13"
+        "macro-14"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-13",
+          "chapterId": "macro-14",
           "sectionIndex": 6
         }
       ]
@@ -3639,7 +3639,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-13",
+      "sourceId": "macro-14",
       "number": 17,
       "stem": "下列何者最能作為 ETF 挑選時的「品質」重點之一？",
       "options": [
@@ -3652,11 +3652,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-13"
+        "macro-14"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-13",
+          "chapterId": "macro-14",
           "sectionIndex": 6
         }
       ]
@@ -3667,7 +3667,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-03",
+      "sourceId": "macro-04",
       "number": 18,
       "stem": "M1B 稱為「戰鬥貨幣」非｢防衛貨幣｣主要理由是：",
       "options": [
@@ -3680,11 +3680,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-03"
+        "macro-04"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-03",
+          "chapterId": "macro-04",
           "sectionIndex": 2
         }
       ]
@@ -3695,7 +3695,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-12",
+      "sourceId": "macro-13",
       "number": 19,
       "stem": "一年期利率 5%，二年期利率 5.5%，二年期利率的風險溢酬 0.5%，根據流動性偏好假說，預期一年後的一年期利率應該為多少？",
       "options": [
@@ -3708,11 +3708,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-12"
+        "macro-13"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-12",
+          "chapterId": "macro-13",
           "sectionIndex": 1
         }
       ]
@@ -3723,7 +3723,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-05",
+      "sourceId": "macro-06",
       "number": 20,
       "stem": "何者會讓貨幣乘數變小？",
       "options": [
@@ -3736,11 +3736,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-05"
+        "macro-06"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-05",
+          "chapterId": "macro-06",
           "sectionIndex": 1
         }
       ]
@@ -3751,7 +3751,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-05",
+      "sourceId": "macro-06",
       "number": 21,
       "stem": "關於存款準備率政策的敘述，下列何者錯誤？",
       "options": [
@@ -3764,11 +3764,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-05"
+        "macro-06"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-05",
+          "chapterId": "macro-06",
           "sectionIndex": 1
         }
       ]
@@ -3779,7 +3779,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-10",
+      "sourceId": "macro-11",
       "number": 22,
       "stem": "若國際費雪效果成立，國家之間不同的名目利率將反應在：",
       "options": [
@@ -3792,11 +3792,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-10"
+        "macro-11"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-10",
+          "chapterId": "macro-11",
           "sectionIndex": 2
         }
       ]
@@ -3807,7 +3807,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-10",
+      "sourceId": "macro-11",
       "number": 23,
       "stem": "2011 年所發生之歐債危機，下列何者為主要發生國，而被冠上「歐豬五國」？",
       "options": [
@@ -3820,12 +3820,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-10"
+        "macro-11"
       ],
       "eventId": "euro-crisis-2025",
       "sourceRefs": [
         {
-          "chapterId": "macro-10",
+          "chapterId": "macro-11",
           "sectionIndex": 6
         }
       ]
@@ -3864,7 +3864,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-10",
+      "sourceId": "macro-11",
       "number": 25,
       "stem": "下列何者因素將導致本國貨幣升值？",
       "options": [
@@ -3877,11 +3877,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-10"
+        "macro-11"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-10",
+          "chapterId": "macro-11",
           "sectionIndex": 1
         }
       ]
@@ -3892,7 +3892,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-03",
+      "sourceId": "macro-04",
       "number": 26,
       "stem": "貨幣數量學說認為總合支出的變化主要是由下列何者所引起？",
       "options": [
@@ -3905,11 +3905,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-03"
+        "macro-04"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-03",
+          "chapterId": "macro-04",
           "sectionIndex": 2
         }
       ]
@@ -3920,7 +3920,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-10",
+      "sourceId": "macro-11",
       "number": 27,
       "stem": "一家公司因為未來有一筆外幣支出，所以公司計劃要做避險動作以避免匯兌損失，下列何者為此避險的成本？",
       "options": [
@@ -3933,11 +3933,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-10"
+        "macro-11"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-10",
+          "chapterId": "macro-11",
           "sectionIndex": 1
         }
       ]
@@ -3948,7 +3948,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-08",
+      "sourceId": "macro-09",
       "number": 28,
       "stem": "實質經濟成長率如果是每年 6%，需要幾年，平均國民所得可以倍增，下列何者年數最接近？",
       "options": [
@@ -3961,11 +3961,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-08"
+        "macro-09"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-08",
+          "chapterId": "macro-09",
           "sectionIndex": 1
         }
       ]
@@ -3976,7 +3976,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-12",
+      "sourceId": "macro-13",
       "number": 29,
       "stem": "下列哪一種情形下，您會偏好成為貸款者(Lender)？",
       "options": [
@@ -3989,11 +3989,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-12"
+        "macro-13"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-12",
+          "chapterId": "macro-13",
           "sectionIndex": 1
         }
       ]
@@ -4004,7 +4004,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-11",
+      "sourceId": "macro-12",
       "number": 30,
       "stem": "金融機構身為資金的仲介者，其具備三項主要功能，下列何者不是？",
       "options": [
@@ -4017,11 +4017,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-11"
+        "macro-12"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-11",
+          "chapterId": "macro-12",
           "sectionIndex": 3
         }
       ]
@@ -4032,7 +4032,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-07",
+      "sourceId": "macro-08",
       "number": 31,
       "stem": "當發生供給面的衝擊，增加了總要素生產力（total factor productivity ），這是直接影響生產方程模型中的哪一項 Y=AF(K,N)？",
       "options": [
@@ -4045,11 +4045,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-07"
+        "macro-08"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-07",
+          "chapterId": "macro-08",
           "sectionIndex": 2
         }
       ]
@@ -4088,7 +4088,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-09",
+      "sourceId": "macro-10",
       "number": 33,
       "stem": "預期未來出現通貨膨脹，比較適合下列哪種類型的投資？",
       "options": [
@@ -4101,11 +4101,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-09"
+        "macro-10"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-09",
+          "chapterId": "macro-10",
           "sectionIndex": 2
         }
       ]
@@ -4116,7 +4116,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-12",
+      "sourceId": "macro-13",
       "number": 34,
       "stem": "到期收益率為 7%，當貼現率增加 50 基點，則新的收益率為：",
       "options": [
@@ -4129,11 +4129,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-12"
+        "macro-13"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-12",
+          "chapterId": "macro-13",
           "sectionIndex": 1
         }
       ]
@@ -4144,7 +4144,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 1,
       "subject": "macro",
-      "sourceId": "macro-10",
+      "sourceId": "macro-11",
       "number": 35,
       "stem": "資本移動性的增加，將使得浮動匯率制度下貨幣政策的效果：",
       "options": [
@@ -4157,11 +4157,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-10"
+        "macro-11"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-10",
+          "chapterId": "macro-11",
           "sectionIndex": 4
         }
       ]
@@ -6785,7 +6785,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-02",
+      "sourceId": "macro-03",
       "number": 1,
       "stem": "下列有關簡單凱因斯模型的敘述何者有誤？",
       "options": [
@@ -6798,11 +6798,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-02"
+        "macro-03"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-02",
+          "chapterId": "macro-03",
           "sectionIndex": 1
         }
       ]
@@ -6813,7 +6813,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-05",
+      "sourceId": "macro-06",
       "number": 2,
       "stem": "若其他條件不變，大眾持有通貨比例提高，將使貨幣乘數：",
       "options": [
@@ -6826,11 +6826,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-05"
+        "macro-06"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-05",
+          "chapterId": "macro-06",
           "sectionIndex": 1
         }
       ]
@@ -6841,7 +6841,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-06",
+      "sourceId": "macro-07",
       "number": 3,
       "stem": "在 IS 與 LM 模型中，投資需求的利率彈性越小，表示：",
       "options": [
@@ -6854,11 +6854,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-06"
+        "macro-07"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-06",
+          "chapterId": "macro-07",
           "sectionIndex": 2
         }
       ]
@@ -6869,7 +6869,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-07",
+      "sourceId": "macro-08",
       "number": 4,
       "stem": "若一國的總合需求為 AD=6,100+0.7Y-10,000r，該國央行設定利率為 1%，則當該國達到充分就業時，其潛在產出為何？",
       "options": [
@@ -6882,11 +6882,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-07"
+        "macro-08"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-07",
+          "chapterId": "macro-08",
           "sectionIndex": 1
         }
       ]
@@ -6897,7 +6897,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-08",
+      "sourceId": "macro-09",
       "number": 5,
       "stem": "12 月聖誕節是一年中景氣較旺的月份，請按照籌備聖誕節的相關經濟活動由領先到落後排序。甲.餐飲、乙.訂單、丙.加班生產、丁.銷售、戊.配送鋪貨",
       "options": [
@@ -6910,11 +6910,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-08"
+        "macro-09"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-08",
+          "chapterId": "macro-09",
           "sectionIndex": 3
         }
       ]
@@ -6925,7 +6925,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-10",
+      "sourceId": "macro-11",
       "number": 6,
       "stem": "未拋補的利率平價說(Uncovered Interest Rate Parity)使用什麼工具或理論來說明海內外的投資報酬均等？",
       "options": [
@@ -6938,11 +6938,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-10"
+        "macro-11"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-10",
+          "chapterId": "macro-11",
           "sectionIndex": 2
         }
       ]
@@ -6953,7 +6953,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-05",
+      "sourceId": "macro-06",
       "number": 7,
       "stem": "經由許多條方程式來表示貨幣及財政政策傳遞管道的模型，稱之為_____。",
       "options": [
@@ -6966,12 +6966,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-05"
+        "macro-06"
       ],
       "eventId": "taiwan-monetary-2025",
       "sourceRefs": [
         {
-          "chapterId": "macro-05",
+          "chapterId": "macro-06",
           "sectionIndex": 1
         }
       ]
@@ -7010,7 +7010,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-09",
+      "sourceId": "macro-10",
       "number": 9,
       "stem": "預期未來出現通貨膨脹，比較適合下列哪種類型的投資？",
       "options": [
@@ -7023,11 +7023,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-09"
+        "macro-10"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-09",
+          "chapterId": "macro-10",
           "sectionIndex": 2
         }
       ]
@@ -7038,7 +7038,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-03",
+      "sourceId": "macro-04",
       "number": 10,
       "stem": "在商品貨幣發行時，若存在兩種型態的貨幣，則民眾會保留成色較高的貨幣，使得市面上僅流通較差的貨幣，造成「劣幣驅逐良幣」的現象發生，此現象又稱為下列哪個經濟學法則？",
       "options": [
@@ -7051,11 +7051,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-03"
+        "macro-04"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-03",
+          "chapterId": "macro-04",
           "sectionIndex": 1
         }
       ]
@@ -7066,7 +7066,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-10",
+      "sourceId": "macro-11",
       "number": 11,
       "stem": "由《經濟學人》雜誌提出之大麥克指數與《華爾街日報》提出之星巴克拿鐵指數，都以跨國企業中民眾較易消費之產品，來衡量各國匯率變化，這類具生活化之指標都將下列哪項理論成立為前提，才會略具經濟意涵？",
       "options": [
@@ -7079,11 +7079,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-10"
+        "macro-11"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-10",
+          "chapterId": "macro-11",
           "sectionIndex": 2
         }
       ]
@@ -7094,7 +7094,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-12",
+      "sourceId": "macro-13",
       "number": 12,
       "stem": "債券投資人可以藉由下列何者來避免因利率上升，導致債券價格下降的風險？",
       "options": [
@@ -7107,11 +7107,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-12"
+        "macro-13"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-12",
+          "chapterId": "macro-13",
           "sectionIndex": 3
         }
       ]
@@ -7122,7 +7122,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-10",
+      "sourceId": "macro-11",
       "number": 13,
       "stem": "當國際收支出現大幅逆差時，央行如何採取「沖銷式外匯干預」？",
       "options": [
@@ -7135,11 +7135,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-10"
+        "macro-11"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-10",
+          "chapterId": "macro-11",
           "sectionIndex": 4
         }
       ]
@@ -7150,7 +7150,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-12",
+      "sourceId": "macro-13",
       "number": 14,
       "stem": "債券市場中，信用評等 BB 級的債券與 AAA 級的債券利差擴大，反映了何種現象？",
       "options": [
@@ -7163,11 +7163,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-12"
+        "macro-13"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-12",
+          "chapterId": "macro-13",
           "sectionIndex": 3
         }
       ]
@@ -7178,7 +7178,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-04",
+      "sourceId": "macro-05",
       "number": 15,
       "stem": "美國聯邦公開市場委員會(FOMC)是美國貨幣政策的最高決策機構，每年召開幾次例行會議？",
       "options": [
@@ -7191,12 +7191,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-04"
+        "macro-05"
       ],
       "eventId": "fed-2025",
       "sourceRefs": [
         {
-          "chapterId": "macro-04",
+          "chapterId": "macro-05",
           "sectionIndex": 1
         }
       ]
@@ -7207,7 +7207,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-04",
+      "sourceId": "macro-05",
       "number": 16,
       "stem": "下列何者對美國聯邦公開市場委員會(FOMC)的描述有誤？",
       "options": [
@@ -7220,12 +7220,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-04"
+        "macro-05"
       ],
       "eventId": "fed-2025",
       "sourceRefs": [
         {
-          "chapterId": "macro-04",
+          "chapterId": "macro-05",
           "sectionIndex": 1
         }
       ]
@@ -7236,7 +7236,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-05",
+      "sourceId": "macro-06",
       "number": 17,
       "stem": "「安倍三箭」是日本前首相安倍晉三在 2012 年提出的核心經濟政策組合，下列何者不是？",
       "options": [
@@ -7249,11 +7249,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-05"
+        "macro-06"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-05",
+          "chapterId": "macro-06",
           "sectionIndex": 4
         }
       ]
@@ -7264,7 +7264,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-02",
+      "sourceId": "macro-03",
       "number": 18,
       "stem": "2026 年的年中美國國債，最接近哪一個數字？",
       "options": [
@@ -7277,12 +7277,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-02"
+        "macro-03"
       ],
       "eventId": "us-debt-gold",
       "sourceRefs": [
         {
-          "chapterId": "macro-02",
+          "chapterId": "macro-03",
           "sectionIndex": 1
         }
       ]
@@ -7293,7 +7293,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-12",
+      "sourceId": "macro-13",
       "number": 19,
       "stem": "下列有關美國房貸利率的敘述何者有誤？",
       "options": [
@@ -7306,11 +7306,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-12"
+        "macro-13"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-12",
+          "chapterId": "macro-13",
           "sectionIndex": 3
         }
       ]
@@ -7321,7 +7321,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-10",
+      "sourceId": "macro-11",
       "number": 20,
       "stem": "下列哪一種匯率制度來描述臺灣目前情形最為適合？",
       "options": [
@@ -7334,11 +7334,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-10"
+        "macro-11"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-10",
+          "chapterId": "macro-11",
           "sectionIndex": 4
         }
       ]
@@ -7377,7 +7377,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-09",
+      "sourceId": "macro-10",
       "number": 22,
       "stem": "美國的哪一個總經數據在每個月第一個星期五公布？",
       "options": [
@@ -7390,11 +7390,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-09"
+        "macro-10"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-09",
+          "chapterId": "macro-10",
           "sectionIndex": 2
         }
       ]
@@ -7405,7 +7405,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-04",
+      "sourceId": "macro-05",
       "number": 23,
       "stem": "當今美國聯準會主席是哪一位？",
       "options": [
@@ -7418,12 +7418,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-04"
+        "macro-05"
       ],
       "eventId": "fed-2025",
       "sourceRefs": [
         {
-          "chapterId": "macro-04",
+          "chapterId": "macro-05",
           "sectionIndex": 1
         }
       ]
@@ -7434,7 +7434,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-04",
+      "sourceId": "macro-05",
       "number": 24,
       "stem": "哪一位美國聯準會主席在位時的經濟狀況被形容為金髮女郎的經濟？",
       "options": [
@@ -7447,12 +7447,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-04"
+        "macro-05"
       ],
       "eventId": "fed-2025",
       "sourceRefs": [
         {
-          "chapterId": "macro-04",
+          "chapterId": "macro-05",
           "sectionIndex": 1
         }
       ]
@@ -7463,7 +7463,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-10",
+      "sourceId": "macro-11",
       "number": 25,
       "stem": "下列有關 2024 年川普政府宣布對某國計算的對等關稅描述何者有誤？",
       "options": [
@@ -7476,12 +7476,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-10"
+        "macro-11"
       ],
       "eventId": "tariffs-2025",
       "sourceRefs": [
         {
-          "chapterId": "macro-10",
+          "chapterId": "macro-11",
           "sectionIndex": 5
         }
       ]
@@ -7492,7 +7492,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-12",
+      "sourceId": "macro-13",
       "number": 26,
       "stem": "下列有關殖利率曲線倒掛的描述何者有誤？",
       "options": [
@@ -7505,11 +7505,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-12"
+        "macro-13"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-12",
+          "chapterId": "macro-13",
           "sectionIndex": 4
         }
       ]
@@ -7520,7 +7520,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-05",
+      "sourceId": "macro-06",
       "number": 27,
       "stem": "美國聯準會最近實施「儲備管理購買計畫」(Reserve Management Purchases, RMP)通過什麼動作來穩定提升銀行體系的準備金水位，避免回購市場失序的風險？",
       "options": [
@@ -7533,11 +7533,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-05"
+        "macro-06"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-05",
+          "chapterId": "macro-06",
           "sectionIndex": 4
         }
       ]
@@ -7548,7 +7548,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-08",
+      "sourceId": "macro-09",
       "number": 28,
       "stem": "國發會定期發布景氣燈號及景氣指標，並計算景氣對策信號綜合判斷分數，其中景氣對策信號綜合判斷分數最高的分數是多少？",
       "options": [
@@ -7561,11 +7561,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-08"
+        "macro-09"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-08",
+          "chapterId": "macro-09",
           "sectionIndex": 3
         }
       ]
@@ -7576,7 +7576,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-04",
+      "sourceId": "macro-05",
       "number": 29,
       "stem": "2026 年六月底立法院院會三讀通過「虛擬資產服務法」，明確規範穩定幣發行及管理。下列何者不是其內容？",
       "options": [
@@ -7589,12 +7589,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-04"
+        "macro-05"
       ],
       "eventId": "stablecoin-2026",
       "sourceRefs": [
         {
-          "chapterId": "macro-04",
+          "chapterId": "macro-05",
           "sectionIndex": 1
         }
       ]
@@ -7605,7 +7605,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-04",
+      "sourceId": "macro-05",
       "number": 30,
       "stem": "根據我國「中央銀行法」第 2 條中制訂央行的經營目標，下列何者不是？",
       "options": [
@@ -7618,12 +7618,12 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "C"
       ],
       "sourceIds": [
-        "macro-04"
+        "macro-05"
       ],
       "eventId": "taiwan-monetary-2025",
       "sourceRefs": [
         {
-          "chapterId": "macro-04",
+          "chapterId": "macro-05",
           "sectionIndex": 1
         }
       ]
@@ -7634,7 +7634,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-05",
+      "sourceId": "macro-06",
       "number": 31,
       "stem": "費雪(Fisher)提出的貨幣數量學說，認為貨幣需求是_____的函數，且與______無關",
       "options": [
@@ -7647,11 +7647,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "A"
       ],
       "sourceIds": [
-        "macro-05"
+        "macro-06"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-05",
+          "chapterId": "macro-06",
           "sectionIndex": 2
         }
       ]
@@ -7662,7 +7662,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-09",
+      "sourceId": "macro-10",
       "number": 32,
       "stem": "下列有關貝佛里奇曲線(Beveridge Curve)的描述何者為誤？",
       "options": [
@@ -7675,11 +7675,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-09"
+        "macro-10"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-09",
+          "chapterId": "macro-10",
           "sectionIndex": 3
         }
       ]
@@ -7690,7 +7690,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-11",
+      "sourceId": "macro-12",
       "number": 33,
       "stem": "金融機構身為資金的仲介者，仲介具備三項主要功能，下列何者不是？",
       "options": [
@@ -7703,11 +7703,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "B"
       ],
       "sourceIds": [
-        "macro-11"
+        "macro-12"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-11",
+          "chapterId": "macro-12",
           "sectionIndex": 3
         }
       ]
@@ -7746,7 +7746,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
       "year": 115,
       "session": 2,
       "subject": "macro",
-      "sourceId": "macro-09",
+      "sourceId": "macro-10",
       "number": 35,
       "stem": "菲力普曲線(Phillips Curve)考量通貨膨脹與失業之間的關係。長期菲力普曲線一般呈現：",
       "options": [
@@ -7759,11 +7759,11 @@ window.PAST_EXAMS_YEAR_BUNDLES["115"] = {
         "D"
       ],
       "sourceIds": [
-        "macro-09"
+        "macro-10"
       ],
       "sourceRefs": [
         {
-          "chapterId": "macro-09",
+          "chapterId": "macro-10",
           "sectionIndex": 3
         }
       ]

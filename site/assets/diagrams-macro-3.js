@@ -3,7 +3,7 @@
 window.MACRO_DIAGRAMS = window.MACRO_DIAGRAMS || {};
 
 Object.assign(window.MACRO_DIAGRAMS, {
-  "macro-07#0": {
+  "macro-08#0": {
     sectionTitle: "第1節 總合供需曲線",
     title: "總合供需 AD-AS 模型：短期均衡與長期調整",
     formula: String.raw`AD:\ Y=C+I+G+NX,\qquad LRAS:\ Y=Y^*`,
@@ -61,7 +61,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "短期均衡不一定在 Yn；長期調整靠預期、工資與價格的調整完成。總合需求管理政策只影響短期產出，長期主要影響物價。"
   },
 
-  "macro-07#1": {
+  "macro-08#1": {
     sectionTitle: "第2節 總合供需均衡分析",
     title: "總合需求衝擊與總合供給衝擊的比較",
     formula: String.raw`\text{產出缺口}=\frac{Y-Y^*}{Y^*}\times100\%`,
@@ -129,7 +129,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "總合供給衝擊造成的物價上升與產出下降同時出現，稱為停滯性通膨（stagflation）。"
   },
 
-  "macro-08#0": {
+  "macro-09#0": {
     sectionTitle: "第1節 經濟成長理論",
     title: "Solow 成長模型：儲蓄、資本累積與穩態",
     formula: String.raw`y=f(k),\qquad sf(k)=(n+\delta+g)k`,
@@ -179,7 +179,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "Solow 模型的長期成長來自技術進步，儲蓄率只影響穩態水準，不影響長期成長率；這是與內生成長理論的關鍵差異。"
   },
 
-  "macro-08#1": {
+  "macro-09#1": {
     sectionTitle: "第2節 景氣循環",
     title: "景氣循環：圍繞長期趨勢的波動",
     formula: String.raw`y_t=y_t^{\text{trend}}+c_t`,
@@ -216,7 +216,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "景氣循環是總體經濟活動的波動，不是單一產業或單一公司的股價波動；高峰與谷底通常要事後確認。"
   }
 ,
-  "macro-07#2": {
+  "macro-08#2": {
     sectionTitle: "第3節 總體經濟理論主要學派",
     kicker: "學派模型 · 供給面",
     title: "供給面學派：Laffer 曲線與稅收",
@@ -255,7 +255,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     ],
     note: "Laffer 曲線是供給面學派的概念圖，不是「減稅必然增加稅收」的保證；實際稅收效果取決於目前稅率位置、稅基彈性與政策期間。"
   },
-  "macro-08#0-2": {
+  "macro-09#0-2": {
     sectionTitle: "第1節 經濟成長理論",
     kicker: "學派模型 · 內生成長",
     title: "內生成長：AK 模型與知識外溢",
@@ -296,7 +296,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     ],
     note: "AK 模型是內生成長的最小教學版本；Romer 的知識外溢與 Lucas 的人力資本模型另加入研發、教育與不完全競爭。"
   },
-  "macro-08#1-2": {
+  "macro-09#1-2": {
     sectionTitle: "第2節 景氣循環",
     kicker: "學派模型 · 新古典 RBC",
     title: "實質景氣循環（RBC）：技術衝擊與勞動市場",

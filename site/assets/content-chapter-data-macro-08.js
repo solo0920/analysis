@@ -606,22 +606,22 @@ window.CHAPTER_DATA["macro-08"] = {
   ],
   "questions": [
     {
-      "id": "107Q1-macro-14",
+      "id": "107Q1-macro-01",
       "sessionId": "107Q1",
       "year": 107,
       "session": 1,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 14,
-      "stem": "主張廠商投資減少是導致經濟衰退主因的學派為：",
+      "number": 1,
+      "stem": "其他條件不變，下列何種情況會使總合需求增加？",
       "options": [
-        "凱因斯學派",
-        "貨幣學派",
-        "理性預期學派",
-        "實質景氣循環學派"
+        "稅收增加",
+        "淨出口減少",
+        "貨幣供給減少",
+        "計畫性投資增加"
       ],
       "answer": [
-        "A"
+        "D"
       ],
       "sourceIds": [
         "macro-08"
@@ -629,24 +629,24 @@ window.CHAPTER_DATA["macro-08"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-08",
-          "sectionIndex": 1
+          "sectionIndex": 2
         }
       ]
     },
     {
-      "id": "107Q1-macro-15",
-      "sessionId": "107Q1",
+      "id": "107Q2-macro-27",
+      "sessionId": "107Q2",
       "year": 107,
-      "session": 1,
+      "session": 2,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 15,
-      "stem": "下列何者不是新古典(梭羅)成長理論在穩定狀態(steady state)時的論述？",
+      "number": 27,
+      "stem": "造成停滯性通貨膨脹的原因可能是下列哪一項？",
       "options": [
-        "人均資本固定",
-        "資本量固定",
-        "人均產出固定",
-        "經濟成長率決定於人口成長率"
+        "央行提高貨幣供給",
+        "石油價格劇烈上漲",
+        "政府提高各項政府支出",
+        "廠商生產之技術進步"
       ],
       "answer": [
         "B"
@@ -662,22 +662,134 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "107Q3-macro-08",
+      "id": "107Q3-macro-01",
       "sessionId": "107Q3",
       "year": 107,
       "session": 3,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 8,
-      "stem": "下列何者象徵經濟活動復甦前的低點，景氣擴張將隨後產生？",
+      "number": 1,
+      "stem": "賽依(J. B. Say)所提出賽依法則(Say's Law)是？",
       "options": [
-        "景氣波幅",
-        "景氣波動",
-        "景氣波峰",
-        "景氣波谷"
+        "供給創造其自身的需求",
+        "需求創造其自身的供給",
+        "供給創造其自身的供給",
+        "需求創造其自身的需求"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "107Q3-macro-03",
+      "sessionId": "107Q3",
+      "year": 107,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 3,
+      "stem": "亞當‧史密斯(Adam Smith)為啟始的古典學派(Classical School)認為經濟體系中存在一隻看不見的手此即：",
+      "options": [
+        "政府",
+        "比較利益",
+        "民間活力",
+        "價格機能"
       ],
       "answer": [
         "D"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "107Q3-macro-06",
+      "sessionId": "107Q3",
+      "year": 107,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 6,
+      "stem": "下列有關長期總合供給(Long-Run Aggregate Supply, LRAS)的描述何者有誤？",
+      "options": [
+        "縱軸是一般物價水準",
+        "橫軸是實質生產",
+        "是一水平線",
+        "產量是充分就業的產量"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "107Q3-macro-16",
+      "sessionId": "107Q3",
+      "year": 107,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 16,
+      "stem": "停滯性通貨膨脹(stagflation)發生在：",
+      "options": [
+        "總合供給曲線左移時",
+        "總合供給曲線右移時",
+        "總合需求曲線左移時",
+        "總合需求曲線右移時"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "107Q3-macro-18",
+      "sessionId": "107Q3",
+      "year": 107,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 18,
+      "stem": "盧卡斯(Lucas)的總合供給曲線指出實際產出和充分就業產出水準中間的差距受的影響。",
+      "options": [
+        "任何總合需求變動",
+        "不可預期的通貨膨脹",
+        "生產要素變動",
+        "貨幣政策"
+      ],
+      "answer": [
+        "B"
       ],
       "sourceIds": [
         "macro-08"
@@ -690,19 +802,215 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "107Q4-macro-18",
+      "id": "107Q3-macro-19",
+      "sessionId": "107Q3",
+      "year": 107,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 19,
+      "stem": "如果總產出低於自然產出水準，政策激進派(activist)會建議政府：",
+      "options": [
+        "使總合需求曲線往右移動來消除高失業率",
+        "使總合需求曲線往左移動來消除高失業率",
+        "提高總合供給來消除通貨膨脹",
+        "什麼都不要做"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "107Q4-macro-10",
       "sessionId": "107Q4",
       "year": 107,
       "session": 4,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 18,
-      "stem": "在梭羅(Solow)成長模型中，當體系內折舊率上升時，對達成穩定狀態的影響為何？",
+      "number": 10,
+      "stem": "若勞動市場已達自然就業，則總需求增加在長期將導致：",
       "options": [
-        "每人資本增加，每人消費增加",
-        "每人資本增加，每人儲蓄減少",
-        "每人資本減少，每人產出減少",
-        "每人資本減少，每人消費增加"
+        "產出增加",
+        "物價上升",
+        "產出減少",
+        "物價下跌"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "107Q4-macro-15",
+      "sessionId": "107Q4",
+      "year": 107,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 15,
+      "stem": "體系存在皮古效果(Pigou Effect)將對經濟活動釀成影響，何者正確？",
+      "options": [
+        "體系利率下降，將吸引消費者增加當期消費",
+        "體系物價上升，將帶動消費者的實質財富增加",
+        "體系物價下跌，將誘使廠商減少投資",
+        "皮古效果出現，有助於擴大體系總需求的物價彈性"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "107Q4-macro-21",
+      "sessionId": "107Q4",
+      "year": 107,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 21,
+      "stem": "當體系內總供給曲線呈現水平線時，何種說法正確？",
+      "options": [
+        "此體系趨近於自然就業的總供給曲線",
+        "體系長期總供給曲線將缺乏物價彈性",
+        "此種現象隱含體系內物價調整具有自由浮動性",
+        "擴張性需求管理政策將促使實質產出增加，而物價持穩不變"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "107Q4-macro-25",
+      "sessionId": "107Q4",
+      "year": 107,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 25,
+      "stem": "在何種情況下，新興古典學派(New Classical School)認為央行執行擴張貨幣政策，將會促使實質產出增加？",
+      "options": [
+        "未預期貨幣政策",
+        "預期貨幣政策",
+        "未預期或預期貨幣政策都有可能增加實質產出",
+        "任何型態的貨幣政策都無法擴張實質產出"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "108Q1-macro-01",
+      "sessionId": "108Q1",
+      "year": 108,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 1,
+      "stem": "造成停滯性通貨膨脹的原因可能是下列哪一項？",
+      "options": [
+        "央行提高貨幣供給",
+        "政府提高各項政府支出",
+        "廠商生產之技術進步",
+        "石油價格劇烈上漲"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "108Q1-macro-14",
+      "sessionId": "108Q1",
+      "year": 108,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 14,
+      "stem": "所謂貨幣中立性(Neutrality)係指，貨幣供給變動時：",
+      "options": [
+        "對物價水準及實質產出均沒有影響",
+        "只引起物價水準變動，對實質產出則沒有影響",
+        "只引起實質產出變動，對物價水準則沒有影響",
+        "引起實質產出的變動，對利率則沒有影響"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "108Q1-macro-15",
+      "sessionId": "108Q1",
+      "year": 108,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 15,
+      "stem": "假設總合供給曲線為正斜率，若總需求增加時，則：",
+      "options": [
+        "物價上漲、產出不變",
+        "物價下跌、產出不變",
+        "物價與產出皆增加",
+        "物價不變、產出增加"
       ],
       "answer": [
         "C"
@@ -718,22 +1026,78 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "108Q2-macro-03",
+      "id": "108Q1-macro-16",
+      "sessionId": "108Q1",
+      "year": 108,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 16,
+      "stem": "「需求拉升」與「成本推動」的通貨膨脹，對物價水準及產出的影響方向為？",
+      "options": [
+        "對物價的影響方向不同，對所得的影響方向相同",
+        "對物價的影響方向相同，對所得的影響方向不同",
+        "對物價與所得的影響方向均相同",
+        "對物價與所得的影響方向均不同"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "108Q1-macro-35",
+      "sessionId": "108Q1",
+      "year": 108,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 35,
+      "stem": "下述何者認為，政策決定者若假定經濟體系為一穩定關係，則政策評估會出錯？",
+      "options": [
+        "貨幣學派(Monetarist)",
+        "路卡斯評論(Lucas Critique)",
+        "公共選擇理論(Public Choice Theory)",
+        "新興凱因斯理論(New Keynesian Theory)"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "108Q2-macro-14",
       "sessionId": "108Q2",
       "year": 108,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 3,
-      "stem": "下列何者不是景氣同時指標綜合指數的因素之一？",
+      "number": 14,
+      "stem": "下述何者認為，政策決定者若假定經濟體系為一穩定關係，則政策評估會出錯？",
       "options": [
-        "工業生產指數",
-        "機械與電機設備進口值",
-        "製造業銷售值",
-        "半導體接單出貨比"
+        "貨幣學派(Monetarist)",
+        "路卡斯評論(Lucas Critique)",
+        "公共選擇理論(Public Choice Theory)",
+        "新興凱因斯理論(New Keynesian Theory)"
       ],
       "answer": [
-        "D"
+        "B"
       ],
       "sourceIds": [
         "macro-08"
@@ -746,19 +1110,47 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "108Q3-macro-05",
+      "id": "108Q3-macro-10",
       "sessionId": "108Q3",
       "year": 108,
       "session": 3,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 5,
-      "stem": "實質景氣循環學派認為影響景氣循環的最重要因素是？",
+      "number": 10,
+      "stem": "下列那一項因素會導致總需求線左移？",
       "options": [
-        "貨幣供給的變動",
-        "利率的波動",
-        "央行的政策選擇",
-        "生產技術的衝擊"
+        "政府減稅",
+        "進口減少",
+        "政府支出減少",
+        "選項(A)(B)(C)皆是"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "109Q1-macro-04",
+      "sessionId": "109Q1",
+      "year": 109,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 4,
+      "stem": "依據古典學派說法，央行採取緊縮貨幣政策，長期將對體系造成何種影響？",
+      "options": [
+        "實質產出減少與實質利率上升",
+        "實質利率上升，而名目產出維持不變",
+        "物價與實質產出同時下降",
+        "實質利率與實質產出維持不變"
       ],
       "answer": [
         "D"
@@ -774,75 +1166,19 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "108Q3-macro-09",
-      "sessionId": "108Q3",
-      "year": 108,
-      "session": 3,
+      "id": "109Q1-macro-20",
+      "sessionId": "109Q1",
+      "year": 109,
+      "session": 1,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 9,
-      "stem": "下列何者不是景氣領先指標綜合指數的因素之一？",
+      "number": 20,
+      "stem": "在貨幣中立性的假設下，央行增加名目貨幣供給，將會造成何種結果？",
       "options": [
-        "製造業存貨量指數",
-        "核發建照面積",
-        "貨幣總計數M1B",
-        "工業生產指數"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q4-macro-18",
-      "sessionId": "108Q4",
-      "year": 108,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 18,
-      "stem": "下列哪項不是景氣的領先指標？",
-      "options": [
-        "失業率",
-        "股價指數",
-        "實質貨幣總計數 M1B",
-        "外銷訂單指數"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q4-macro-22",
-      "sessionId": "108Q4",
-      "year": 108,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 22,
-      "stem": "下列哪項指標是衡量企業經營與投資活動的熱絡程度？",
-      "options": [
-        "生產者物價指數",
-        "經理人採購指數",
-        "消費者信心指數",
-        "波羅地海綜合指數"
+        "僅會影響實質產出，但不影響物價",
+        "物價將與貨幣供給等比例增加",
+        "實質產出將與貨幣供給等比例增加",
+        "實質利率上漲將等於貨幣供給增加率"
       ],
       "answer": [
         "B"
@@ -858,50 +1194,22 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "108Q4-macro-26",
-      "sessionId": "108Q4",
-      "year": 108,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 26,
-      "stem": "下列何者並非實質景氣循環理論中，認為造成景氣波動的原因？",
-      "options": [
-        "技術進步",
-        "發現新的生產能源",
-        "利率的波動",
-        "戰爭使生產設備遭到毀損"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q4-macro-27",
-      "sessionId": "108Q4",
-      "year": 108,
-      "session": 4,
+      "id": "109Q1-macro-27",
+      "sessionId": "109Q1",
+      "year": 109,
+      "session": 1,
       "subject": "macro",
       "sourceId": "macro-08",
       "number": 27,
-      "stem": "關於經濟循環中的擴張階段，下列敘述何者正確？",
+      "stem": "下列何者不是總供給曲線移動的原因？",
       "options": [
-        "利潤減少",
-        "失業率上升",
-        "利率上升",
-        "物價下跌"
+        "氣候的改變",
+        "天然災害",
+        "油價的改變",
+        "外國人所得改變"
       ],
       "answer": [
-        "C"
+        "D"
       ],
       "sourceIds": [
         "macro-08"
@@ -909,52 +1217,24 @@ window.CHAPTER_DATA["macro-08"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-08",
-          "sectionIndex": 2
+          "sectionIndex": 1
         }
       ]
     },
     {
-      "id": "108Q4-macro-34",
-      "sessionId": "108Q4",
-      "year": 108,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 34,
-      "stem": "當景氣出現了藍燈，下列何者是政府不應該採取之應對政策？",
-      "options": [
-        "增加政府支出",
-        "提高稅率",
-        "公開市場上買入債券",
-        "調降法定準備率"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "109Q1-macro-01",
-      "sessionId": "109Q1",
+      "id": "109Q2-macro-33",
+      "sessionId": "109Q2",
       "year": 109,
-      "session": 1,
+      "session": 2,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 1,
-      "stem": "某國使用的總體生產函數為Y = AK0.3N0.7，而其資本數量K = 2,000、勞動數量N = 100，技術狀況 A = 1，目前產出是Y = 246。假設該國資本與勞動同時成長 10%，而在技術狀況不變下，產出將成長多少？",
+      "number": 33,
+      "stem": "商品價格下跌將使本國商品的競爭力上升，使本國的出口增加、進口減少，亦即出口淨額增加，這種效果稱為：",
       "options": [
-        "5%",
-        "10%",
-        "15%",
-        "20%"
+        "跨期替代效果",
+        "國際替代效果",
+        "實質財富效果",
+        "所得效果"
       ],
       "answer": [
         "B"
@@ -970,22 +1250,78 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "109Q1-macro-05",
-      "sessionId": "109Q1",
+      "id": "109Q2-macro-34",
+      "sessionId": "109Q2",
       "year": 109,
-      "session": 1,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 34,
+      "stem": "總合需求曲線 AD，顯示物價水準與總支出呈反向變動關係，假設物價水準改變會影響貨幣市場也會影響商品市場，下列何者並非物價水準下降所造成的影響而使總支出上升？",
+      "options": [
+        "消費的跨期替代效果",
+        "國際替代效果",
+        "實質財富效果",
+        "乘數效果"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "109Q2-macro-35",
+      "sessionId": "109Q2",
+      "year": 109,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 35,
+      "stem": "物價水準變動對實質財富的影響之效果，稱為：",
+      "options": [
+        "凱因斯效果（Keynes Effect）",
+        "實質餘額效果（Real Balance Effect）",
+        "皮古效果（Pigou Effect）",
+        "流動性效果（Liquidity Effect）"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "109Q3-macro-05",
+      "sessionId": "109Q3",
+      "year": 109,
+      "session": 3,
       "subject": "macro",
       "sourceId": "macro-08",
       "number": 5,
-      "stem": "Keynesians 學派認為體系出現景氣循環波動的主要來源是：",
+      "stem": "基蘭德(Kydland)和普雷斯科特(Prescott)將政府所宣布的政策與其後行為不相同的現象稱為？",
       "options": [
-        "總需求衝擊",
-        "生產力衝擊",
-        "油價衝擊",
-        "消費者信心衝擊"
+        "理性預期",
+        "調適預期",
+        "結構改變",
+        "時間不一致性"
       ],
       "answer": [
-        "A"
+        "D"
       ],
       "sourceIds": [
         "macro-08"
@@ -993,27 +1329,27 @@ window.CHAPTER_DATA["macro-08"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-08",
-          "sectionIndex": 2
+          "sectionIndex": 3
         }
       ]
     },
     {
-      "id": "109Q1-macro-06",
-      "sessionId": "109Q1",
+      "id": "109Q3-macro-07",
+      "sessionId": "109Q3",
       "year": 109,
-      "session": 1,
+      "session": 3,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 6,
-      "stem": "政府運用財政與貨幣政策來減緩景氣循環波動，此即被稱為：",
+      "number": 7,
+      "stem": "其他條件不變，下列何種情況會使總合需求增加？",
       "options": [
-        "總需求管理",
-        "總供給管理",
-        "自動穩定措施",
-        "總體審慎措施"
+        "稅收增加",
+        "淨出口減少",
+        "貨幣供給減少",
+        "計畫性投資增加"
       ],
       "answer": [
-        "A"
+        "D"
       ],
       "sourceIds": [
         "macro-08"
@@ -1026,22 +1362,106 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "109Q4-macro-33",
+      "id": "109Q3-macro-25",
+      "sessionId": "109Q3",
+      "year": 109,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 25,
+      "stem": "停滯性通貨膨脹 (stagflation)，是總合供給曲線向移動造成的，會造成物價而產出水準。",
+      "options": [
+        "左邊；上漲；減少",
+        "左邊；上漲；增加",
+        "右邊；上漲；減少",
+        "右邊；下降；減少"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "109Q3-macro-35",
+      "sessionId": "109Q3",
+      "year": 109,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 35,
+      "stem": "以下何者正確？",
+      "options": [
+        "泡沫經濟造成各種價格的上漲，是來自於供給面的波動",
+        "能源危機造成的物價上漲是來自於總需求的波動",
+        "貨幣需求增加，會導致物價上升",
+        "盧卡斯 (Lucas) 的供給方程式指出失業率和自然失業率中間的差距受到「不可預期通貨膨脹」的影響"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "109Q4-macro-08",
       "sessionId": "109Q4",
       "year": 109,
       "session": 4,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 33,
-      "stem": "下列哪項指標是和企業經營與投資熱絡程度有直接關係？",
+      "number": 8,
+      "stem": "若勞動市場已達充份就業，則總合需求增加在長期將導致：",
       "options": [
-        "PMI",
-        "CPI",
-        "GDP",
-        "M1B"
+        "產出增加",
+        "物價上升",
+        "產出減少",
+        "物價下跌"
       ],
       "answer": [
-        "A"
+        "B"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "109Q4-macro-29",
+      "sessionId": "109Q4",
+      "year": 109,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 29,
+      "stem": "新興古典學派是假設人們是理性預期，因此當蓋起捷運的地段應該何時土地市價會上漲？",
+      "options": [
+        "捷運完工時",
+        "捷運正動工時",
+        "宣布興建時",
+        "有消息透露出要蓋捷運時"
+      ],
+      "answer": [
+        "D"
       ],
       "sourceIds": [
         "macro-08"
@@ -1054,19 +1474,243 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "111Q1-macro-03",
+      "id": "109Q4-macro-30",
+      "sessionId": "109Q4",
+      "year": 109,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 30,
+      "stem": "其他條件不變下，下列何種狀況會使短期總合供給下降？",
+      "options": [
+        "技術進步",
+        "工資上漲",
+        "財政支出增加",
+        "貨幣數量增加"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "110Q1-macro-01",
+      "sessionId": "110Q1",
+      "year": 110,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 1,
+      "stem": "國際油價上漲時，所引起的物價膨脹主要是？",
+      "options": [
+        "總合需求線左移",
+        "總合需求線右移",
+        "總合供給線左移",
+        "總合供給線右移"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "110Q1-macro-04",
+      "sessionId": "110Q1",
+      "year": 110,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 4,
+      "stem": "若勞動市場已達充份就業，則總合需求增加在長期將導致：",
+      "options": [
+        "產出增加",
+        "物價上升",
+        "產出減少",
+        "物價下跌"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "110Q1-macro-22",
+      "sessionId": "110Q1",
+      "year": 110,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 22,
+      "stem": "依據古典學派說法，某國期初處於自然產出環境。隨著該國總需求擴張，長期將會導致何種結果？",
+      "options": [
+        "高物價與低循環性失業率",
+        "高物價與高實質產出",
+        "高名目產出與高物價",
+        "高物價與低自然產出"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "110Q1-macro-26",
+      "sessionId": "110Q1",
+      "year": 110,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 26,
+      "stem": "有關總需求曲線變化衍生的說法，何者錯誤？",
+      "options": [
+        "央行緊縮貨幣供給，將引起總需求曲線左移",
+        "總需求曲線右移，將引起 Phillips 曲線右移",
+        "自發性民間消費增加，將引起總需求曲線右移",
+        "沿著某一 Phillips 曲線向左上方移動，隱含總需求曲線右移"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "110Q3-macro-09",
+      "sessionId": "110Q3",
+      "year": 110,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 9,
+      "stem": "生產要素短期具有何特性？",
+      "options": [
+        "僵固性",
+        "不可逆性",
+        "嚴謹性",
+        "彈性"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "110Q3-macro-14",
+      "sessionId": "110Q3",
+      "year": 110,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 14,
+      "stem": "2017 年諾貝爾得主塞勒(Richard H. Thaler)，針對個人決策心理分析進行相關研究，進而開創經濟學新領域？",
+      "options": [
+        "政治經濟學",
+        "行為經濟學",
+        "實驗經濟學",
+        "教育經濟學"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "111Q1-macro-06",
       "sessionId": "111Q1",
       "year": 111,
       "session": 1,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 3,
-      "stem": "實質景氣循環學派認為影響景氣循環的最重要因素是________。",
+      "number": 6,
+      "stem": "國際油價上漲時，所引起的物價膨脹主要是？",
       "options": [
-        "貨幣供給的變動",
-        "利率的波動",
-        "央行的政策選擇",
-        "生產技術的衝擊"
+        "總合需求線左移",
+        "總合需求線右移",
+        "總合供給線左移",
+        "總合供給線右移"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "111Q1-macro-07",
+      "sessionId": "111Q1",
+      "year": 111,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 7,
+      "stem": "總合需求曲線為負斜率的理由，下列何者不是？",
+      "options": [
+        "實質餘額效果",
+        "利率效果",
+        "替代效果",
+        "理性預期效果"
       ],
       "answer": [
         "D"
@@ -1077,24 +1721,52 @@ window.CHAPTER_DATA["macro-08"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-08",
-          "sectionIndex": 2
+          "sectionIndex": 1
         }
       ]
     },
     {
-      "id": "111Q2-macro-11",
+      "id": "111Q2-macro-14",
       "sessionId": "111Q2",
       "year": 111,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 11,
-      "stem": "景氣循環理論中庫茲耐(Kuznets)循環代表下列何種循環？",
+      "number": 14,
+      "stem": "2017 年諾貝爾得主賽勒(Richard H.Thaler)，針對個人決策心理分析進行相關研究，進而開創經濟學新領域？",
       "options": [
-        "存貨循環",
-        "設備投資循環",
-        "建築循環",
-        "長期循環"
+        "政治經濟學",
+        "行為經濟學",
+        "實驗經濟學",
+        "教育經濟學"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "111Q2-macro-16",
+      "sessionId": "111Q2",
+      "year": 111,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 16,
+      "stem": "下列何者因素不是影響總合供給曲線的移動？",
+      "options": [
+        "生產要素成本改變",
+        "生產技術的改變",
+        "貨幣供給變動",
+        "實質工資改變"
       ],
       "answer": [
         "C"
@@ -1110,19 +1782,215 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "111Q2-macro-20",
+      "id": "111Q2-macro-18",
       "sessionId": "111Q2",
       "year": 111,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 18,
+      "stem": "下列何者是造成停滯性通貨膨脹的主要因素？",
+      "options": [
+        "政府擴大財政支出",
+        "出口衰退",
+        "能源與原物料進口價格上揚",
+        "央行採取寬鬆性貨幣政策"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "111Q3-macro-30",
+      "sessionId": "111Q3",
+      "year": 111,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 30,
+      "stem": "當政策改變，民眾的行為也隨之改變，因此過去歷史資料顯示總體經濟變數之間的關聯是無法長久存在的。這樣的理論稱為：",
+      "options": [
+        "飛利浦曲線",
+        "政策無關性假說",
+        "遲滯現象",
+        "盧卡斯批判（Lucas critique）"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "112Q1-macro-07",
+      "sessionId": "112Q1",
+      "year": 112,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 7,
+      "stem": "長期總合供給曲線為一通過________的垂直線。",
+      "options": [
+        "自然產出",
+        "實質工資率",
+        "實質失業率",
+        "預期通貨膨脹率"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "112Q1-macro-09",
+      "sessionId": "112Q1",
+      "year": 112,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 9,
+      "stem": "總合供給曲線短期有何特性？",
+      "options": [
+        "具負斜率",
+        "具正斜率",
+        "水平",
+        "垂直"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "112Q1-macro-15",
+      "sessionId": "112Q1",
+      "year": 112,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 15,
+      "stem": "停滯性通貨膨脹，是總合________曲線向________移動造成的，會使物價________而產出水準 ________。",
+      "options": [
+        "供給；右邊；上漲；增加",
+        "供給；左邊；上漲；減少",
+        "需求；右邊；上漲；增加",
+        "需求；左邊；下降；減少"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "112Q2-macro-04",
+      "sessionId": "112Q2",
+      "year": 112,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 4,
+      "stem": "國際油價上漲時，所引起的物價膨脹主要是？",
+      "options": [
+        "總合需求線左移",
+        "總合需求線右移",
+        "總合供給線左移",
+        "總合供給線右移"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "112Q2-macro-12",
+      "sessionId": "112Q2",
+      "year": 112,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 12,
+      "stem": "下列哪一項因素會導致總需求線左移？",
+      "options": [
+        "政府減稅",
+        "進口減少",
+        "政府支出減少",
+        "選項(A)(B)(C) 皆是"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "112Q2-macro-20",
+      "sessionId": "112Q2",
+      "year": 112,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-08",
       "number": 20,
-      "stem": "在景氣指標中，外銷訂單動向指數是屬於指標，失業率是屬於指標、非農業部門就業率是屬於指標。",
+      "stem": "下列何者因素會造成總需求下降？",
       "options": [
-        "領先、落後、同時",
-        "領先、落後、落後",
-        "同時、落後、同時",
-        "領先、同時、同時"
+        "利率上升",
+        "財政支出增加",
+        "貨幣數量增加",
+        "預期通貨膨脹率上升"
       ],
       "answer": [
         "A"
@@ -1138,469 +2006,19 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "111Q2-macro-21",
-      "sessionId": "111Q2",
-      "year": 111,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 21,
-      "stem": "12 月聖誕節是一年中景氣較旺的月份，請按照籌備聖誕節的相關經濟活動由領先到落後排序。甲.餐飲、乙.訂單、丙.加班生產、丁.銷售、戊.配送鋪貨。",
-      "options": [
-        "甲乙丙丁戊",
-        "乙丙戊丁甲",
-        "乙戊丙丁甲",
-        "乙丙丁甲戊"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "111Q2-macro-28",
-      "sessionId": "111Q2",
-      "year": 111,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 28,
-      "stem": "Solow 模型下經濟成長的「黃金法則」 （Golden Rule）指經濟體系在穩定狀態（steady state）時的最適儲蓄率應使下列何者達到最高水準？",
-      "options": [
-        "平均每人儲蓄",
-        "平均每人消費",
-        "平均每人產出",
-        "平均每人工資"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "111Q3-macro-02",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 2,
-      "stem": "實質景氣循環學派認為影響景氣循環的最重要因素是________。",
-      "options": [
-        "貨幣供給的變動",
-        "利率的波動",
-        "央行的政策選擇",
-        "生產技術的衝擊"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "111Q3-macro-03",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 3,
-      "stem": "景氣循環理論中庫茲耐(Kuznets)循環代表下列何種循環？",
-      "options": [
-        "存貨循環",
-        "設備投資循環",
-        "建築循環",
-        "長期循環"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "111Q3-macro-07",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 7,
-      "stem": "國發會所公布之景氣指標，包含「領先指標」 、 「同時指標」及「落後指標」三部分，下列何者不屬於「落後指標」構成項目？",
-      "options": [
-        "金融業隔夜拆款利率",
-        "非農業部門就業人數",
-        "製造業存貨價值",
-        "失業率"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "111Q3-macro-35",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 35,
-      "stem": "景氣黃藍燈號表示",
-      "options": [
-        "景氣由熱絡轉為緩和",
-        "景氣由熱絡轉為穩定",
-        "景氣由穩定轉為低迷",
-        "景氣低迷"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "112Q2-macro-05",
+      "id": "112Q2-macro-22",
       "sessionId": "112Q2",
       "year": 112,
       "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 5,
-      "stem": "依照梭羅成長模型，若在穩定狀態下，一個國家人口成長率為 3%，其他條件不變下，則該國之 GDP 成長率為何？",
-      "options": [
-        "2%",
-        "3%",
-        "5%",
-        "4%"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "112Q2-macro-15",
-      "sessionId": "112Q2",
-      "year": 112,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 15,
-      "stem": "股價指數是_____指標、工業生產指數是_____指標。",
-      "options": [
-        "領先、領先",
-        "領先、同時",
-        "同時、同時",
-        "領先、落後"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "112Q2-macro-23",
-      "sessionId": "112Q2",
-      "year": 112,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 23,
-      "stem": "現代經濟體系內的內在穩定因子不包括下列何者項目？",
-      "options": [
-        "累計所得稅制",
-        "公司分紅制度",
-        "社會保險",
-        "失業補助"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "112Q2-macro-26",
-      "sessionId": "112Q2",
-      "year": 112,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 26,
-      "stem": "實質景氣循環理論指出造成景氣波動的原因不包括下列何者？",
-      "options": [
-        "ChatGPT 的 AI 革命創造新興產業",
-        "俄烏戰爭導致全球供應斷鏈",
-        "美國聯準會量化寬鬆貨幣政策",
-        "氣候暖化導致糧食危機"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "eventId": "ai-gpt-2025",
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "112Q2-macro-29",
-      "sessionId": "112Q2",
-      "year": 112,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 29,
-      "stem": "CCI、PMI 與 VIX 分別對應了下列何種指標？",
-      "options": [
-        "消費信心指標、企業投資信心指標、股市恐慌指標",
-        "消費信心指標、企業投資信心指標、股市信心指標",
-        "股市恐慌指標、消費信心指標、企業投資信心指標",
-        "消費者物價指數、躉售物價指數、股市恐慌指標"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "112Q2-macro-34",
-      "sessionId": "112Q2",
-      "year": 112,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 34,
-      "stem": "一個自給自足經濟體要能永續成長，下列何種方式比較適宜？",
-      "options": [
-        "技術創新與進步",
-        "資本持續累積",
-        "人口持續成長",
-        "生產活動都使用再生能源"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "112Q3-macro-10",
-      "sessionId": "112Q3",
-      "year": 112,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 10,
-      "stem": "實質經濟成長率如果是每年 6%，需要幾年，平均國民所得可以倍增，下列何者年數最接近？",
-      "options": [
-        "15",
-        "12",
-        "8",
-        "20"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "112Q3-macro-15",
-      "sessionId": "112Q3",
-      "year": 112,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 15,
-      "stem": "當資本額度增加，但資本的邊際產出不變，則產出與資本的關係圖中，其圖形會是：",
-      "options": [
-        "正斜率的直線",
-        "水平的直線",
-        "垂直的直線",
-        "正斜率，但斜率隨著資本額度增加而遞減"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "112Q3-macro-16",
-      "sessionId": "112Q3",
-      "year": 112,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 16,
-      "stem": "經濟學家常常假設一國之資本存量固定不變，因為________。",
-      "options": [
-        "勞動力是更重要的生產因子，因此資本可以被忽略",
-        "資本的變動較為緩慢，因為投資或是舊設備的報廢，都需要較長的時間來影響資本的額度",
-        "一個經濟體系內，勞動的量比資本的量要大許多",
-        "除非利率改變，否則資本存量不會改變"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "112Q3-macro-19",
-      "sessionId": "112Q3",
-      "year": 112,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 19,
-      "stem": "假設現階段的產出為 5,000，產出對資本的彈性（elasticity of output with respect to capital）為 0.4。則資本上升 10% 將導致產出變為：",
-      "options": [
-        "5,020",
-        "5,050",
-        "5,200",
-        "5,500"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "eventId": "taiwan-policy-2025",
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "112Q3-macro-22",
-      "sessionId": "112Q3",
-      "year": 112,
-      "session": 3,
       "subject": "macro",
       "sourceId": "macro-08",
       "number": 22,
-      "stem": "總要素生產力（Total factor productivity）的成長是經濟成長的一部分，其來源為：",
+      "stem": "當經濟陷入衰退時，下列何者會主張政府應降稅？",
       "options": [
-        "資本的成長＋勞動力的成長",
-        "資本的成長－勞動力的成長",
-        "資本的成長 x 勞動力的成長",
-        "與資本的成長或勞動力的成長均無關"
+        "古典學派",
+        "理性預期學派",
+        "貨幣學派",
+        "供給學派"
       ],
       "answer": [
         "D"
@@ -1611,136 +2029,24 @@ window.CHAPTER_DATA["macro-08"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-08",
-          "sectionIndex": 1
+          "sectionIndex": 3
         }
       ]
     },
     {
-      "id": "112Q3-macro-23",
+      "id": "112Q3-macro-04",
       "sessionId": "112Q3",
       "year": 112,
       "session": 3,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 23,
-      "stem": "景氣循環是一再重複發生的，這樣的說法是：",
+      "number": 4,
+      "stem": "新興古典學派(New Classical School)與新興凱因斯學派(New Keynesian School)皆認為 ________。",
       "options": [
-        "經濟活動的下降通常跟隨者前期的下降，經濟的成長也通常跟隨著前期的成長",
-        "經濟的緊縮-谷底-擴張-高峰等循環模式，是一般工業國家觀察到的標準模式",
-        "許多經濟的變項（variables）都會朝向相同的方向變動，且變動的模式在景氣循環中是可以預期的",
-        "景氣循環的波鋒與波谷通常出現在可預期的區段"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "112Q3-macro-24",
-      "sessionId": "112Q3",
-      "year": 112,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 24,
-      "stem": "經濟變項在景氣循環中，如果是與整體產出的數據朝向相同的方向變化，則稱為",
-      "options": [
-        "procyclical",
-        "countercyclical",
-        "acyclical",
-        "a leading variable"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "112Q3-macro-26",
-      "sessionId": "112Q3",
-      "year": 112,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 26,
-      "stem": "在「實質景氣循環理論」 （RBC）中，經濟學者比較模型中的相關係數，與實際數據比較，主要是要觀察下列何者？",
-      "options": [
-        "景氣循環中，變項引導產出的相關情況",
-        "不同變項中，其間順循環（procyclicality）的強度",
-        "景氣循環中，不同變項間的隨機變化模式",
-        "景氣循環中，不同變項之間的同方向變化的模式強度"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "113Q1-macro-08",
-      "sessionId": "113Q1",
-      "year": 113,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 8,
-      "stem": "「創造性的毀滅過程」是哪一位經濟學家的主張？",
-      "options": [
-        "熊彼德(J.A. Schumpeter)",
-        "基蘭德(F. Kydland)",
-        "盧卡斯(R. Lucas)",
-        "貝克(G. Becker)"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q1-macro-27",
-      "sessionId": "113Q1",
-      "year": 113,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 27,
-      "stem": "國發會定期發布景氣燈號及景氣指標，並計算景氣對策信號綜合判斷分數，其中景氣對策信號綜合判斷分數最低分數是多少？",
-      "options": [
-        "0",
-        "5",
-        "9",
-        "13"
+        "預期到的政策不會影響實質產出與失業",
+        "將預期與非預期的政策效果分開，而前者影響較大",
+        "將預期與非預期的政策效果分開，而後者影響較大",
+        "假設當預期物價水準變動時，工資與物價皆具有伸縮性"
       ],
       "answer": [
         "C"
@@ -1756,50 +2062,22 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "113Q1-macro-35",
-      "sessionId": "113Q1",
-      "year": 113,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 35,
-      "stem": "有關 Solow 成長模型，下列何種描述有誤？",
-      "options": [
-        "儲蓄率為外生",
-        "黃金法則所追求的目標達到每人消費極大",
-        "技術進步是內生探討",
-        "儲蓄率可以影響均衡的每人所得"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q2-macro-08",
+      "id": "113Q2-macro-01",
       "sessionId": "113Q2",
       "year": 113,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 8,
-      "stem": "我國景氣對策信號共有 9 個指標構成，其共有__種燈號，其中代表熱絡的紅燈其分數範圍為 _____。",
+      "number": 1,
+      "stem": "新興古典學派(New Classical School)假設人們行為是________，所以工資與物價會隨人們預期而_______。",
       "options": [
-        "5；38-45 分",
-        "5；30-40 分",
-        "6；35-45 分",
-        "6；38-45 分"
+        "適應性預期；充分伸縮",
+        "適應性預期；僵固",
+        "理性預期的；充分伸縮",
+        "理性預期的；僵固"
       ],
       "answer": [
-        "A"
+        "C"
       ],
       "sourceIds": [
         "macro-08"
@@ -1812,19 +2090,47 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "113Q3-macro-04",
+      "id": "113Q3-macro-08",
       "sessionId": "113Q3",
       "year": 113,
       "session": 3,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 4,
-      "stem": "我國國發會所採用之景氣循環是採下列何者概念？",
+      "number": 8,
+      "stem": "根據凱因斯的總合供需模型，實質工資率和景氣波動有：",
       "options": [
-        "古典循環",
-        "新興市場國家循環",
-        "成長循環",
-        "開發中國家成長循環"
+        "正向關係",
+        "反向關係",
+        "兩者不相關",
+        "不一定"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "113Q3-macro-11",
+      "sessionId": "113Q3",
+      "year": 113,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 11,
+      "stem": "短期總合供給線為正斜率是基於下列何種假設？",
+      "options": [
+        "長期要素價格固定",
+        "要素價格比產出價格更有彈性",
+        "產出價格比要素價格更有彈性",
+        "要素價格彈性不論在長期或短期都是無窮大"
       ],
       "answer": [
         "C"
@@ -1835,27 +2141,83 @@ window.CHAPTER_DATA["macro-08"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-08",
-          "sectionIndex": 2
+          "sectionIndex": 1
         }
       ]
     },
     {
-      "id": "114Q1-macro-13",
+      "id": "113Q3-macro-20",
+      "sessionId": "113Q3",
+      "year": 113,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 20,
+      "stem": "新古典經濟學強調「貨幣中立性」是指：",
+      "options": [
+        "貨幣政策不應執政黨派不同而有所差異",
+        "貨幣供給增加同時影響消費者與生產者",
+        "貨幣政策應該和財政政策獨立運行",
+        "貨幣供給增加只會造成物價上漲，不會影響實質產出"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "113Q3-macro-31",
+      "sessionId": "113Q3",
+      "year": 113,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-08",
+      "number": 31,
+      "stem": "哪種因素會造成總需求曲線右移？",
+      "options": [
+        "進口增加",
+        "政府增稅",
+        "工資上升",
+        "政府支出增加"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-08"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-08",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "114Q1-macro-11",
       "sessionId": "114Q1",
       "year": 114,
       "session": 1,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 13,
-      "stem": "經濟變項在景氣循環中，如果是與整體產出的數據朝向相反的方向變化，則稱為：",
+      "number": 11,
+      "stem": "當發生供給面的衝擊，增加了總要素生產力( total factor productivity)，這是直接影響生產函數(Y = AF(K, N)) 中的哪一項？",
       "options": [
-        "procyclical",
-        "countercyclical",
-        "acyclical",
-        "a leading variable"
+        "A",
+        "F",
+        "K",
+        "N"
       ],
       "answer": [
-        "B"
+        "A"
       ],
       "sourceIds": [
         "macro-08"
@@ -1868,75 +2230,19 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "114Q2-macro-15",
+      "id": "114Q2-macro-01",
       "sessionId": "114Q2",
       "year": 114,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 15,
-      "stem": "下列哪一位諾貝爾經濟學獎得主將氣候變化納入長期的總體經濟分析？",
+      "number": 1,
+      "stem": "國際油價上漲時，所引起的物價膨脹主要是：",
       "options": [
-        "威廉·諾德豪斯",
-        "保羅·羅莫",
-        "理查·塞勒",
-        "奧立佛·哈特"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "114Q3-macro-10",
-      "sessionId": "114Q3",
-      "year": 114,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 10,
-      "stem": "下列何者為我國重要計畫：5+2 產業創新計畫中，所包含之產業類別?",
-      "options": [
-        "國防產業",
-        "綠能產業",
-        "生醫產業",
-        "以上皆是"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "114Q3-macro-11",
-      "sessionId": "114Q3",
-      "year": 114,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 11,
-      "stem": "下列何者非我國製造業採購經理人指數所涵蓋之內容?",
-      "options": [
-        "生產數量",
-        "存貨",
-        "人力平均雇用薪資",
-        "新增訂單數量"
+        "總合需求線左移",
+        "總合需求線右移",
+        "總合供給線左移",
+        "總合供給線右移"
       ],
       "answer": [
         "C"
@@ -1947,32 +2253,31 @@ window.CHAPTER_DATA["macro-08"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-08",
-          "sectionIndex": 3
+          "sectionIndex": 2
         }
       ]
     },
     {
-      "id": "115Q1-macro-01",
-      "sessionId": "115Q1",
-      "year": 115,
-      "session": 1,
+      "id": "114Q2-macro-13",
+      "sessionId": "114Q2",
+      "year": 114,
+      "session": 2,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 1,
-      "stem": "在經濟學中，將人工智慧（AI）視為「一般目的技術」（General Purpose Technology, GPT ）的主要理由為何？",
+      "number": 13,
+      "stem": "下列何者是造成停滯性通貨膨脹的主要因素？",
       "options": [
-        "AI 主要用於單一產業的自動化生產",
-        "AI 具有跨產業擴散性並能誘發互補性創新",
-        "AI 只是一種短期的技術潮流",
-        "AI 主要影響消費市場而非生產系統"
+        "政府擴大財政支出",
+        "出口衰退",
+        "能源與原物料進口價格上揚",
+        "央行採取寬鬆性貨幣政策"
       ],
       "answer": [
-        "B"
+        "C"
       ],
       "sourceIds": [
         "macro-08"
       ],
-      "eventId": "ai-gpt-2025",
       "sourceRefs": [
         {
           "chapterId": "macro-08",
@@ -1981,19 +2286,19 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "115Q1-macro-05",
-      "sessionId": "115Q1",
-      "year": 115,
-      "session": 1,
+      "id": "114Q3-macro-05",
+      "sessionId": "114Q3",
+      "year": 114,
+      "session": 3,
       "subject": "macro",
       "sourceId": "macro-08",
       "number": 5,
-      "stem": "Solow 成長模型中，長期經濟成長主要來自：",
+      "stem": "負的總需求面衝擊會對經濟體系造成什麼影響？",
       "options": [
-        "勞動增加",
-        "貿易順差",
-        "政府支出",
-        "技術進步"
+        "增加總產出，降低失業，物價上升",
+        "降低總產出，增加失業，物價上升",
+        "增加總產出，降低失業，物價下跌",
+        "降低總產出，增加失業，物價下跌"
       ],
       "answer": [
         "D"
@@ -2004,27 +2309,27 @@ window.CHAPTER_DATA["macro-08"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-08",
-          "sectionIndex": 1
+          "sectionIndex": 2
         }
       ]
     },
     {
-      "id": "115Q1-macro-10",
-      "sessionId": "115Q1",
-      "year": 115,
-      "session": 1,
+      "id": "114Q3-macro-09",
+      "sessionId": "114Q3",
+      "year": 114,
+      "session": 3,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 10,
-      "stem": "根據 Jones 與 Tonetti（2020）的研究，下列何者最能描述「資料（data）」在 AI 經濟學中的重要特性？",
+      "number": 9,
+      "stem": "下列有關長期總合供給(Long-Run Aggregate Supply, LRAS)的描述有誤？",
       "options": [
-        "資料具有強烈的排他性",
-        "資料具有非競爭性（nonrivalry）",
-        "資料必須一次性消耗",
-        "資料與生產效率無關"
+        "縱軸是一般物價水準",
+        "橫軸是實質生產",
+        "是一水平線",
+        "產量是充分就業的產量"
       ],
       "answer": [
-        "B"
+        "C"
       ],
       "sourceIds": [
         "macro-08"
@@ -2037,22 +2342,22 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "115Q1-macro-12",
+      "id": "115Q1-macro-02",
       "sessionId": "115Q1",
       "year": 115,
       "session": 1,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 12,
-      "stem": "國發會景氣對策信號是由幾項構成項目組成？",
+      "number": 2,
+      "stem": "古典學派對財政政策的主要批評為：",
       "options": [
-        "5 項",
-        "7 項",
-        "9 項",
-        "12 項"
+        "政府支出過低",
+        "排擠效果",
+        "通貨膨脹過低",
+        "匯率波動"
       ],
       "answer": [
-        "C"
+        "B"
       ],
       "sourceIds": [
         "macro-08"
@@ -2065,19 +2370,19 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "115Q1-macro-15",
+      "id": "115Q1-macro-31",
       "sessionId": "115Q1",
       "year": 115,
       "session": 1,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 15,
-      "stem": "哪種消費容易受到景氣循環影響？",
+      "number": 31,
+      "stem": "當發生供給面的衝擊，增加了總要素生產力（total factor productivity ），這是直接影響生產方程模型中的哪一項 Y=AF(K,N)？",
       "options": [
-        "汽車",
-        "手機通信費",
-        "通勤",
-        "食品"
+        "A",
+        "F",
+        "K",
+        "N"
       ],
       "answer": [
         "A"
@@ -2093,22 +2398,22 @@ window.CHAPTER_DATA["macro-08"] = {
       ]
     },
     {
-      "id": "115Q1-macro-28",
-      "sessionId": "115Q1",
+      "id": "115Q2-macro-04",
+      "sessionId": "115Q2",
       "year": 115,
-      "session": 1,
+      "session": 2,
       "subject": "macro",
       "sourceId": "macro-08",
-      "number": 28,
-      "stem": "實質經濟成長率如果是每年 6%，需要幾年，平均國民所得可以倍增，下列何者年數最接近？",
+      "number": 4,
+      "stem": "若一國的總合需求為 AD=6,100+0.7Y-10,000r，該國央行設定利率為 1%，則當該國達到充分就業時，其潛在產出為何？",
       "options": [
-        "15",
-        "12",
-        "8",
-        "20"
+        "20,000",
+        "25,000",
+        "30,000",
+        "45,000"
       ],
       "answer": [
-        "B"
+        "A"
       ],
       "sourceIds": [
         "macro-08"
@@ -2117,62 +2422,6 @@ window.CHAPTER_DATA["macro-08"] = {
         {
           "chapterId": "macro-08",
           "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "115Q2-macro-05",
-      "sessionId": "115Q2",
-      "year": 115,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 5,
-      "stem": "12 月聖誕節是一年中景氣較旺的月份，請按照籌備聖誕節的相關經濟活動由領先到落後排序。甲.餐飲、乙.訂單、丙.加班生產、丁.銷售、戊.配送鋪貨",
-      "options": [
-        "甲、乙、丙、丁、戊",
-        "乙、丙、戊、丁、甲",
-        "乙、戊、丙、丁、甲",
-        "乙、丙、丁、甲、戊"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "115Q2-macro-28",
-      "sessionId": "115Q2",
-      "year": 115,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-08",
-      "number": 28,
-      "stem": "國發會定期發布景氣燈號及景氣指標，並計算景氣對策信號綜合判斷分數，其中景氣對策信號綜合判斷分數最高的分數是多少？",
-      "options": [
-        "35",
-        "40",
-        "45",
-        "50"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-08"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-08",
-          "sectionIndex": 3
         }
       ]
     }
@@ -2207,82 +2456,66 @@ window.CHAPTER_DATA["macro-08"] = {
   },
   "questions": [
     {
-      "id": "111Q3-macro-written-3",
+      "id": "111Q3-macro-written-1",
       "sessionId": "111Q3",
       "year": 111,
       "session": 3,
       "subject": "macro",
-      "number": 3,
-      "stem": "請描述景氣循環的主要特性。尤其是 (A)有哪些變數會隨著景氣的影響，有特別明顯的變化？(2.5 分) (B)這些變數又是有著如何的相互關聯？(2.5 分) (C)景氣循環的模式為何？是否有規律性或週期性的變化？(2.5 分) (D)景氣的變化是否可以預期？如果可以，要如何預期？(2.5 分)",
-      "sourceIds": [
-        "macro-08"
-      ],
-      "kind": "申論題",
-      "answer": [
-        "(A) 景氣循環中變動最明顯的變數：實質GDP、工業生產、就業與失業、個人消費、企業投資、存貨、產能利用率、公司利潤、股價、利率與信用利差。其中投資、耐久財、存貨與股價波動通常大於GDP；服務業與農產品波動較小。",
-        "(B) 相互關聯：多數變數具**順循環**特性（GDP、消費、投資、就業、利潤、股價同向變動），失業率為**逆循環**；投資與耐久財比GDP更易波動，利率與信用利差也有循環性。領先指標先轉折，同時指標與景氣同步，落後指標較晚反應。",
-        "(C) 景氣循環模式：擴張→高峰→衰退→谷底→復甦，週而復始；但循環的長度、幅度與期間並不固定，沒有嚴格週期性。戰後 cycles 通常比19世紀溫和，金融危機與供給衝擊會造成較深衰退。",
-        "(D) 可預期性：無法完美預期，但可用領先指標（殖利率曲線、PMI、建築許可、股價、消費者信心、初領失業救濟、貨幣供給、信用利差）、計量模型與央行/研究機構預測來提高預測能力；結構性斷裂、政策衝擊與外部事件仍會造成誤差。"
-      ],
-      "answerType": "reference",
-      "note": "本站參考解答（非官方）"
-    },
-    {
-      "id": "112Q3-macro-written-1",
-      "sessionId": "112Q3",
-      "year": 112,
-      "session": 3,
-      "subject": "macro",
       "number": 1,
-      "stem": "某經濟體系的生產方程為 \\(Y=A K^{0.5}N^{0.5}\\)。於 2000 年，\\(K=6,400\\)、\\(N=100\\)、\\(Y=800\\)。於 2010 年，資本、勞動、產出都變成兩倍，亦即 \\(K=12,800\\)、\\(N=200\\)、\\(Y=1,600\\)。(1) 這兩個年份間，生產力 \\(A\\) 上升了多少百分比？(5 分) (2) 如果 2010 年的產出上升至 3,200，而不是 1,600，資本與勞動力同樣是變兩倍，則生產力上升了多少百分比？(5 分)",
+      "stem": "考慮下列 AD-AS 模型，假設經濟體系一開始處於平衡狀態。\\(AD: Y=600+10(M/P)\\)；\\(SRAS: Y=\\bar Y+P-P^e\\)；Okun's Law：\\((Y-\\bar Y)/\\bar Y=-2(u-\\bar u)\\)。假設 \\(\\bar Y=750\\)、\\(\\bar u=0.05\\)、\\(M=600\\)、\\(P^e=40\\)。請回答下列問題。(A) 目前長期均衡狀態下的物價水準為何？(3 分) (B) 假設有一非預期性的名目貨幣供給，\\(M\\) 增加到 800 單位。短期平衡下，產出水準 \\(Y\\) 為何？失業率為何？物價水準為何？(3 分) (C) 當物價水準完全的調整後，使得整體的市場恢復到長期平衡狀態，則新的物價水準為何？(4 分)",
       "sourceIds": [
-        "macro-02",
         "macro-08"
       ],
       "kind": "計算題",
       "answer": [
-        "生產函數 \\(Y=AK^{0.5}N^{0.5}\\)，故 \\(A=Y/(K^{0.5}N^{0.5})\\)。",
-        "(1) 2000年：\\(K^{0.5}N^{0.5}=\\sqrt{6{,}400\\times100}=\\sqrt{640{,}000}=800\\)，\\(A=800/800=1\\)。2010年：\\(\\sqrt{12{,}800\\times200}=\\sqrt{2{,}560{,}000}=1{,}600\\)，\\(A=1{,}600/1{,}600=1\\)。生產力A不變，上升 **0%**。",
-        "(2) 若2010年Y=3,200，則 \\(A=3{,}200/1{,}600=2\\)，由1升至2，生產力上升 **100%**。"
+        "模型：AD \\(Y=600+10(M/P)\\)；SRAS \\(Y=\\bar Y+P-P^e\\)；Okun \\((Y-\\bar Y)/\\bar Y=-2(u-\\bar u)\\)，其中 \\(\\bar Y=750\\)、\\(\\bar u=0.05\\)、\\(P^e=40\\)。",
+        "(A) 長期均衡 \\(Y=\\bar Y=750\\)，且 \\(P=P^e=40\\)。由AD：\\(750=600+10(600/P)\\)，\\(150=6{,}000/P\\)，\\(P=40\\)。",
+        "(B) M增至800，短期 \\(P^e=40\\)：SRAS \\(Y=750+P-40=710+P\\)；AD \\(Y=600+10(800/P)=600+8{,}000/P\\)。聯立 \\(710+P=600+8{,}000/P\\)，整理 \\(P^2+110P-8{,}000=0\\)，得 \\(P=50\\)；\\(Y=710+50=760\\)。Okun：\\((760-750)/750=0.013333=-2(u-0.05)\\)，\\(u=0.04333=4.33\\%\\)。",
+        "(C) 長期物價完全調整後 \\(Y=\\bar Y=750\\)，AD：\\(750=600+10(800/P)\\)，\\(150=8{,}000/P\\)，新物價 \\(P=53.33\\)。"
       ],
       "answerType": "reference",
       "note": "本站參考解答（非官方）"
     },
     {
-      "id": "114Q1-macro-written-2",
+      "id": "114Q1-macro-written-3",
       "sessionId": "114Q1",
       "year": 114,
       "session": 1,
       "subject": "macro",
-      "number": 2,
-      "stem": "假設一經濟體系的生產函數為：\\(Y=A K^{0.3}N^{0.7}\\)。在 2000 年時，\\(K=1,000\\)、\\(N=100\\)、\\(Y=199.5\\)。在 2010 年時，資本、勞動力以及產出都翻倍，亦即 \\(K=2,000\\)、\\(N=200\\)、\\(Y=399\\)。(1) 從 2000 年至 2010 年，生產力的成長為多少百分比？(5 分) (2) 從 2000 年至 2010 年，如果產出增加至 798 而不是 399，同時資本、勞動力還是翻倍，則生產力增加了多少百分比？(5 分)",
+      "number": 3,
+      "stem": "請用凱因斯模型中的 AD- AS 圖形，來討論下列的情況。(1) 假設一經濟體系有預期性的貨幣供給增加，則物價水準、總產出、失業率等因子有何影響？請用 圖形加文字說明來解釋。(4 分) (2)如果貨幣供給的增加，不在預期之中，則物價水準、總產出、失業率等因子有何變化？請用圖形 加文字說明來解釋。(3 分) (3)以(2)的結論，請用 Phillips(菲利浦)曲線衍生推論前述分析結果對臺灣總體變數的變化。(3 分)",
       "sourceIds": [
+        "macro-08",
+        "macro-10"
+      ],
+      "kind": "計算題",
+      "note": "本站參考解答（非官方）",
+      "answer": [
+        "(1) 預期性貨幣供給增加：AD右移，同時因預期調整，短期總合供給SRAS也左移（或名目工資預先上升）。結果物價水準上升，總產出與失業率大致維持在潛在水準與自然失業率，貨幣中性。",
+        "(2) 未預期增加：SRAS尚未調整，AD右移使物價水準與總產出上升，失業率下降；長期預期調整後，SRAS左移，產出與失業回到自然水準，只有物價較高。",
+        "(3) 菲利浦曲線：未預期擴張使經濟沿短期菲利浦曲線移動，通膨上升、失業下降；長期菲利浦曲線垂直於自然失業率。對臺灣而言，若貨幣寬鬆未被預期，短期出口、就業與股市可能受支撐，但進口物價、匯率與通膨預期會升高；若政策被預期，主要效果是物價與通膨預期上升，實質產出與失業改善有限。"
+      ],
+      "answerType": "reference"
+    },
+    {
+      "id": "114Q3-macro-written-2",
+      "sessionId": "114Q3",
+      "year": 114,
+      "session": 3,
+      "subject": "macro",
+      "number": 2,
+      "stem": "假設一個經濟體系：消費 C=200+0.75(Y-T)，投資 I=300-50r，政府支出 G=200，淨出口 NX=200，稅收 T=100。而且，實質貨幣需求 L =400+0.5Y-100r，名目貨幣供給量＝500 億元。(利率 r 的單位是%，所得 Y 的單位是億元) (1) 請找出 IS、 LM、AD 曲線方程式並繪出各曲線圖形（含座標）。(6 分) (2) 假設物價(P) 為 1，請算出均衡所得及均衡利率。(4 分) 2008 諾貝爾經濟學獎得主克魯曼 (Paul Krugman) 對美國總統川普 (Donald Trump) 的關稅政策相 當憂心，他認為將會帶來停滯性通貨膨脹 (stagflation)。這樣看法的邏輯性為何？(5 分)他對川普政府 的經濟建議核心重點有哪些？ (5 分)",
+      "sourceIds": [
+        "macro-07",
         "macro-08"
       ],
       "kind": "計算題",
       "note": "本站參考解答（非官方）",
       "answer": [
-        "生產力 \\(A=Y/(K^{0.3}N^{0.7})\\)。2000年：\\(K^{0.3}N^{0.7}=1000^{0.3}\\times100^{0.7}\\approx7.943\\times25.119\\approx199.5\\)，\\(A_{2000}=199.5/199.5\\approx1\\)。2010年K、N翻倍：\\(2000^{0.3}\\times200^{0.7}\\approx9.779\\times40.81\\approx399.1\\)，若\\(Y=399\\)，\\(A_{2010}\\approx0.997\\approx1\\)，成長約0%。",
-        "若2010年\\(Y=798\\)，則\\(A_{2010}=798/399.1\\approx2\\)，由約1增至2，生產力成長約100%。"
-      ],
-      "answerType": "reference"
-    },
-    {
-      "id": "115Q2-macro-written-3",
-      "sessionId": "115Q2",
-      "year": 115,
-      "session": 2,
-      "subject": "macro",
-      "number": 3,
-      "stem": "請寫出經濟成長理論中相當著名的梭羅成長模型(Solow growth model)，然後以科布-道格拉斯 生產函數為例，該生產函數可表示為 \\(Y=A L^{\\alpha}K^{1-\\alpha}\\)，去表達梭羅殘差(Solow residual)的觀念。（10 分）",
-      "sourceIds": [
-        "macro-08"
-      ],
-      "kind": "申論題",
-      "note": "本站參考解答（非官方）",
-      "answer": [
-        "梭羅模型：\\(Y=A F(K,L)\\)，穩定狀態下人均資本與人均產出不變，長期成長由技術進步決定。Cobb-Douglas：\\(Y=A L^{\\alpha}K^{1-\\alpha}\\)。",
-        "成長會計：\\(g_Y=g_A+\\alpha g_K+(1-\\alpha)g_N\\)；梭羅殘差 \\(g_A=g_Y-\\alpha g_K-(1-\\alpha)g_N\\)，即 TFP 成長，是無法由資本與勞動解釋的生產力進步。"
+        "(1) IS：Y=C+I+G+NX=200+0.75(Y-100)+300-50r+200+200，整理得Y=3300-200r。LM：500/P=400+0.5Y-100r。消去r得AD：Y=1250+500/P。圖形：IS在(Y,r)平面負斜率，由(0,16.5)至(3300,0)；LM正斜率；AD在(P,Y)平面負斜率，P=1時Y=1750。",
+        "(2) P=1時LM為Y=200+200r，與IS聯立：3300-200r=200+200r，r=7.75%，Y=1750億元。",
+        "克魯曼邏輯：關稅提高進口成本，形成供給面衝擊，SRAS左移，短期物價上升、產出下降，故有停滯性通膨風險；若各國報復，貿易與投資進一步受損。",
+        "建議核心：以多邊協商與規則為主，避免全面關稅；支援受衝擊產業與勞工、維持貨幣政策可信度、提供財政支持與社會安全網，並強化供應鏈韌性。"
       ],
       "answerType": "reference"
     }
@@ -2294,57 +2527,46 @@ window.CHAPTER_DATA["macro-08"] = {
     "label": "115 年",
     "sections": {
       "macro-08::1": {
-        "focus": "經濟成長題，先分 Solow 模型、成長會計與景氣循環。Solow 穩定狀態下，人均資本與人均產出不變，長期成長由技術進步決定。",
+        "focus": "總合供需模型題，先分清 AD 與 AS。AD 是商品與貨幣市場共同決定的總合需求；充分就業產出是 potential output。",
         "strategies": [
-          "Solow 模型：\\(Y=A F(K,L)\\)；穩定狀態下 \\(sf(k)=(n+\\delta)k\\)。",
-          "長期人均產出成長率等於技術進步率 gA；資本累積只能帶來過渡期成長。",
-          "成長會計：gY＝gA＋αgK＋(1−α)gN；Solow residual＝gA。",
-          "72 法則：倍增年數≈72/年成長率（%）。"
+          "AD 曲線負斜率：物價上升→實質貨幣供給下降→利率上升→投資與消費下降。",
+          "短期 AS 正斜率；長期 AS 垂直於潛在產出。",
+          "AD 與 AS 的交點決定短期物價與產出。",
+          "若央行設定利率，AD 方程式中的 r 直接代入政策利率。"
         ],
         "examples": [
           {
-            "questionId": "115Q2-macro-written-3",
+            "questionId": "115Q2-macro-04",
             "steps": [
-              "Solow 模型：\\(Y=A F(K,L)\\)，A 為技術水準，K 為資本，L 為勞動。",
-              "Cobb-Douglas：\\(Y=A L^{\\alpha}K^{1-\\alpha}\\)；穩定狀態下人均資本與人均產出不變，長期成長由 \\(g_A\\) 決定。",
-              "成長會計：gY＝gA＋αgK＋(1−α)gN。",
-              "Solow residual：gA＝gY−αgK−(1−α)gN，即無法由資本與勞動解釋的生產力進步（TFP 成長）。"
+              "AD＝6,100＋0.7Y−10,000r，央行設定r＝1%＝0.01。",
+              "AD＝6,100＋0.7Y−100＝6,000＋0.7Y。",
+              "充分就業時 AD＝Y：Y＝6,000＋0.7Y。",
+              "0.3Y＝6,000→Y＝20,000。答案A。"
             ],
-            "takeaway": "Solow residual 是成長會計的「殘差」，代表技術進步與生產力。",
-            "trap": "把資本累積當成長期成長來源；Solow 模型長期成長靠技術進步。"
-          },
-          {
-            "questionId": "115Q1-macro-28",
-            "steps": [
-              "實質經濟成長率每年6%。",
-              "72 法則：倍增年數≈72/6＝12年。",
-              "答案B。",
-              "若用精確複利：1.06^n＝2，n≈11.9年，仍最接近12年。"
-            ],
-            "takeaway": "72 法則快速估算倍增時間：72/成長率（%）。",
-            "trap": "把 72 除以 0.06，得到1200年；成長率要用百分數的數字6。"
+            "takeaway": "AD 方程式的 r 用政策利率代入，再令 AD＝Y 解潛在產出。",
+            "trap": "把 r＝1 直接代入，而不是1%＝0.01，導致數量級錯誤。"
           }
         ]
       },
       "macro-08::3": {
-        "focus": "景氣指標與燈號：國發會景氣對策信號由9項構成項目組成，綜合判斷分數最高45分。領先指標領先景氣，同時指標與景氣同步。",
+        "focus": "總體學派與政策爭論：古典學派強調市場機能與排擠效果；凱因斯強調需求管理；供給面學派強調減稅與生產誘因。",
         "strategies": [
-          "景氣對策信號9項構成項目，綜合判斷分數最高45分。",
-          "燈號：紅燈、黃紅燈、綠燈、黃藍燈、藍燈。",
-          "領先指標用於預測未來景氣；同時指標用於確認當前景氣。",
-          "景氣循環階段：復甦、繁榮、衰退、蕭條。"
+          "古典學派：價格與工資可調整，財政政策易產生排擠效果。",
+          "凱因斯學派：價格僵固、需求不足，財政政策有效。",
+          "供給面衝擊：生產力上升使 AS 右移，物價下降、產出增加。",
+          "停滯性通膨：供給面負向衝擊使 AS 左移，物價上升、產出下降。"
         ],
         "examples": [
           {
-            "questionId": "115Q1-macro-12",
+            "questionId": "115Q1-macro-02",
             "steps": [
-              "國發會景氣對策信號由9項構成項目組成。",
-              "每項依表現給分，綜合判斷分數最高45分。",
-              "題目問「幾項構成項目」，答案C的9項。",
-              "若問最高分數，則是45分，不要混淆。"
+              "古典學派認為政府支出增加會推升利率，排擠民間投資。",
+              "因此古典學派對財政政策的主要批評是排擠效果。",
+              "答案B；政府支出過低、通膨過低、匯率波動都不是主要批評。",
+              "答題時把「古典→排擠效果」連在一起。"
             ],
-            "takeaway": "景氣對策信號：9項構成、最高45分。",
-            "trap": "把9項與7項、12項混淆；記住「9項、45分」。"
+            "takeaway": "古典學派批評財政政策的核心是排擠效果。",
+            "trap": "把古典學派與凱因斯學派對財政政策的立場對調。"
           }
         ]
       }
@@ -2354,60 +2576,24 @@ window.CHAPTER_DATA["macro-08"] = {
     "year": 114,
     "label": "114 年",
     "sections": {
-      "macro-08::1": {
-        "focus": "經濟成長題，先分 Solow 模型、成長會計與景氣循環。Solow 穩定狀態下，人均資本與人均產出不變，長期成長由技術進步決定。",
+      "macro-08::2": {
+        "focus": "停滯性通膨是「物價上升＋產出下降＋失業上升」同時出現，通常來自供給面衝擊。解題時先分需求拉動與成本推動，再看供給衝擊如何使AD-AS與Phillips曲線移動。",
         "strategies": [
-          "Solow 模型：\\(Y=A F(K,L)\\)；穩定狀態下 \\(sf(k)=(n+\\delta)k\\)。",
-          "長期人均產出成長率等於技術進步率 gA；資本累積只能帶來過渡期成長。",
-          "成長會計：gY＝gA＋αgK＋(1−α)gN；Solow residual＝gA。",
-          "72 法則：倍增年數≈72/年成長率（%）。"
+          "成本推動型通膨：能源、原物料、工資上漲使AS左移，物價上升、產出下降。",
+          "需求拉動型通膨：AD右移，短期物價與產出同向上升，失業下降。",
+          "停滯性通膨的菲利浦曲線會向右上方移動，政策面臨「抗通膨」與「救失業」的取捨。"
         ],
         "examples": [
           {
-            "questionId": "114Q1-macro-written-2",
+            "questionId": "114Q2-macro-13",
             "steps": [
-              "生產函數 \\(Y=A K^{0.3}N^{0.7}\\)，規模報酬不變：K、N 同時翻倍時，若 A 不變，Y 也翻倍。",
-              "2000年Y＝199.5，2010年K、N翻倍且Y＝399≈2×199.5，因此A不變，生產力成長0%。",
-              "若2010年Y＝798＝4×199.5，而K、N只翻倍，則A必須變成2倍。",
-              "生產力成長＝(2A－A)/A＝100%。這就是成長會計的TFP（梭羅殘差）。"
+              "停滯性通膨的主要特徵是供給面衝擊：能源與原物料進口價格上揚，使生產成本上升、AS左移。",
+              "AS左移造成物價上升、產出下降、失業上升，形成停滯性通膨。",
+              "政府擴大支出或央行寬鬆屬於需求面政策，可能使物價更高，不是主要原因。",
+              "答案C。"
             ],
-            "takeaway": "TFP成長＝產出成長－資本與勞動加權成長；K、N翻倍且Y翻倍時TFP不變。",
-            "trap": "把產出翻倍直接當成生產力成長100%；還要扣除要素投入的貢獻。"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "year": 112,
-    "label": "112 年",
-    "sections": {
-      "macro-08::1": {
-        "focus": "經濟成長題，先分 Solow 模型、成長會計與景氣循環。Solow 穩定狀態下，人均資本與人均產出不變，長期成長由技術進步決定。",
-        "strategies": [
-          "Solow 模型：\\(Y=A F(K,L)\\)；穩定狀態下 \\(sf(k)=(n+\\delta)k\\)。",
-          "長期人均產出成長率等於技術進步率 gA；資本累積只能帶來過渡期成長。",
-          "成長會計：gY＝gA＋αgK＋(1−α)gN；Solow residual＝gA。",
-          "72 法則：倍增年數≈72/年成長率（%）。"
-        ],
-        "examples": [
-          {
-            "questionId": "112Q3-macro-written-1",
-            "steps": [
-              "生產函數 \\(Y=AK^{0.5}N^{0.5}\\)，故 \\(A=Y/(K^{0.5}N^{0.5})\\)。",
-              "(1) 2000年：\\(K^{0.5}N^{0.5}=\\sqrt{6{,}400\\times100}=\\sqrt{640{,}000}=800\\)，\\(A=800/800=1\\)。2010年：\\(\\sqrt{12{,}800\\times200}=\\sqrt{2{,}560{,}000}=1{,}600\\)，\\(A=1{,}600/1{,}600=1\\)。生產力A不變，上升 0%。",
-              "(2) 若2010年Y=3,200，則 \\(A=3{,}200/1{,}600=2\\)，由1升至2，生產力上升 100%。"
-            ],
-            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
-          },
-          {
-            "questionId": "112Q2-macro-05",
-            "steps": [
-              "Solow穩定狀態下，人均產出不成長；總產出（GDP）成長率＝人口成長率＋技術進步率。",
-              "技術不變、人口成長3%，所以GDP成長率＝3%。答案B。"
-            ],
-            "takeaway": "穩定狀態下GDP成長率等於人口成長率加技術進步率。",
-            "trap": "把人均產出成長率當成GDP成長率。"
+            "takeaway": "停滯性通膨看供給面；能源與原物料價格是典型成本推動因素。",
+            "trap": "把財政擴張或貨幣寬鬆當成停滯性通膨的主因；那是需求拉動。"
           }
         ]
       }
@@ -2417,46 +2603,24 @@ window.CHAPTER_DATA["macro-08"] = {
     "year": 111,
     "label": "111 年",
     "sections": {
-      "macro-08::2": {
-        "focus": "景氣循環題先記四個階段（擴張、高峰、衰退、谷底），再看領先、同時、落後指標與變數的共動關係。",
+      "macro-08::1": {
+        "focus": "總合供需模型題，先分清 AD 與 AS。AD 是商品與貨幣市場共同決定的總合需求；充分就業產出是 potential output。",
         "strategies": [
-          "四階段：擴張→高峰→衰退→谷底，週期長度與幅度不固定。",
-          "領先指標：股價、貨幣供給、新訂單、建築許可。",
-          "同時指標：工業生產、就業、個人所得。",
-          "落後指標：失業率、物價、存貨。",
-          "共動特性：多數變數同向變動，但幅度與時間不同。"
+          "AD 曲線負斜率：物價上升→實質貨幣供給下降→利率上升→投資與消費下降。",
+          "短期 AS 正斜率；長期 AS 垂直於潛在產出。",
+          "AD 與 AS 的交點決定短期物價與產出。",
+          "若央行設定利率，AD 方程式中的 r 直接代入政策利率。"
         ],
         "examples": [
           {
-            "questionId": "111Q3-macro-written-3",
+            "questionId": "111Q3-macro-written-1",
             "steps": [
-              "(A) 景氣循環中變動最明顯的變數：實質GDP、工業生產、就業與失業、個人消費、企業投資、存貨、產能利用率、公司利潤、股價、利率與信用利差。其中投資、耐久財、存貨與股價波動通常大於GDP；服務業與農產品波動較小。",
-              "(B) 相互關聯：多數變數具順循環特性（GDP、消費、投資、就業、利潤、股價同向變動），失業率為逆循環；投資與耐久財比GDP更易波動，利率與信用利差也有循環性。領先指標先轉折，同時指標與景氣同步，落後指標較晚反應。",
-              "(C) 景氣循環模式：擴張→高峰→衰退→谷底→復甦，週而復始；但循環的長度、幅度與期間並不固定，沒有嚴格週期性。戰後 cycles 通常比19世紀溫和，金融危機與供給衝擊會造成較深衰退。",
-              "(D) 可預期性：無法完美預期，但可用領先指標（殖利率曲線、PMI、建築許可、股價、消費者信心、初領失業救濟、貨幣供給、信用利差）、計量模型與央行/研究機構預測來提高預測能力；結構性斷裂、政策衝擊與外部事件仍會造成誤差。"
+              "模型：AD \\(Y=600+10(M/P)\\)；SRAS \\(Y=\\bar Y+P-P^e\\)；Okun \\((Y-\\bar Y)/\\bar Y=-2(u-\\bar u)\\)，其中 \\(\\bar Y=750\\)、\\(\\bar u=0.05\\)、\\(P^e=40\\)。",
+              "(A) 長期均衡 \\(Y=\\bar Y=750\\)，且 \\(P=P^e=40\\)。由AD：\\(750=600+10(600/P)\\)，\\(150=6{,}000/P\\)，\\(P=40\\)。",
+              "(B) M增至800，短期 \\(P^e=40\\)：SRAS \\(Y=750+P-40=710+P\\)；AD \\(Y=600+10(800/P)=600+8{,}000/P\\)。聯立 \\(710+P=600+8{,}000/P\\)，整理 \\(P^2+110P-8{,}000=0\\)，得 \\(P=50\\)；\\(Y=710+50=760\\)。Okun：\\((760-750)/750=0.013333=-2(u-0.05)\\)，\\(u=0.04333=4.33\\%\\)。",
+              "(C) 長期物價完全調整後 \\(Y=\\bar Y=750\\)，AD：\\(750=600+10(800/P)\\)，\\(150=8{,}000/P\\)，新物價 \\(P=53.33\\)。"
             ],
             "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
-          }
-        ]
-      },
-      "macro-08::1": {
-        "focus": "經濟成長題，先分 Solow 模型、成長會計與景氣循環。Solow 穩定狀態下，人均資本與人均產出不變，長期成長由技術進步決定。",
-        "strategies": [
-          "Solow 模型：\\(Y=A F(K,L)\\)；穩定狀態下 \\(sf(k)=(n+\\delta)k\\)。",
-          "長期人均產出成長率等於技術進步率 gA；資本累積只能帶來過渡期成長。",
-          "成長會計：gY＝gA＋αgK＋(1−α)gN；Solow residual＝gA。",
-          "72 法則：倍增年數≈72/年成長率（%）。"
-        ],
-        "examples": [
-          {
-            "questionId": "111Q2-macro-28",
-            "steps": [
-              "Solow黃金法則：穩定狀態下使每人消費最大的儲蓄率。",
-              "條件為MPK＝n＋g＋δ（資本邊際產量＝人口成長＋技術進步＋折舊）。",
-              "答案B。"
-            ],
-            "takeaway": "黃金律是消費最大，不是產出最大。",
-            "trap": "把黃金律記成儲蓄率越高越好。"
           }
         ]
       }

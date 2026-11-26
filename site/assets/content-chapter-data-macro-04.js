@@ -606,127 +606,14 @@ window.CHAPTER_DATA["macro-04"] = {
   ],
   "questions": [
     {
-      "id": "107Q4-macro-02",
-      "sessionId": "107Q4",
+      "id": "107Q1-macro-18",
+      "sessionId": "107Q1",
       "year": 107,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 2,
-      "stem": "下面哪一項不是中央銀行國庫局的業務？",
-      "options": [
-        "經理國庫收支",
-        "辦理公債與國庫券之發行",
-        "公開市場買賣",
-        "公債與國庫券之還本付息業務"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-05",
-      "sessionId": "108Q1",
-      "year": 108,
       "session": 1,
       "subject": "macro",
       "sourceId": "macro-04",
-      "number": 5,
-      "stem": "下列有關銀行資產負債表的敘述，何者是錯誤的？",
-      "options": [
-        "為銀行在某一特定時點的財務狀況",
-        "屬於流量的概念",
-        "資產包括現金、國外資產、放款及投資等",
-        "負債包括國外負債、存款、借入款等"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-31",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 31,
-      "stem": "RTC 法案是指下列哪個法案？",
-      "options": [
-        "金融控股公司法",
-        "金融重建基金設置及管理條例",
-        "外匯管理法",
-        "票券金融管理法"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "108Q2-macro-27",
-      "sessionId": "108Q2",
-      "year": 108,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 27,
-      "stem": "有關銀行資本適足 (Capital adequacy) 管理，下列敘述何者不正確？",
-      "options": [
-        "應符合政府對資本種類及風險性規範",
-        "資本額愈多，ROE (Return On Equity)愈低",
-        "應持有較多資本以達成具競爭力之 ROE",
-        "應維持較多的資本以防止銀行倒閉"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "eventId": "taiwan-policy-2025",
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q2-macro-30",
-      "sessionId": "108Q2",
-      "year": 108,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 30,
-      "stem": "銀行發行之可轉讓定存單、個人及企業各天期存款、證券投資、向央行重貼現貸款、準備金、資本、向銀行同業拆款、政府存款、對企業放款。以上屬於銀行資產項的有幾個？",
+      "number": 18,
+      "stem": "2017 年起，國際貨幣基金會(IMF)所發行的特別提款權(SDR)，其組成貨幣包含了幾種通貨？",
       "options": [
         "3",
         "4",
@@ -734,90 +621,6 @@ window.CHAPTER_DATA["macro-04"] = {
         "6"
       ],
       "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q2-macro-31",
-      "sessionId": "108Q2",
-      "year": 108,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 31,
-      "stem": "銀行借出金額時，預先扣留一部份金額，剩下的才借給企業，這種方式稱為？",
-      "options": [
-        "放款",
-        "貼現",
-        "透支",
-        "投資"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q2-macro-35",
-      "sessionId": "108Q2",
-      "year": 108,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 35,
-      "stem": "實踐金融監理一元化目標，台灣目前金融監理機關為？",
-      "options": [
-        "財政部金融局",
-        "金融監督管理委員會",
-        "中央銀行金融業務檢查處",
-        "中央存款保險公司"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "108Q3-macro-21",
-      "sessionId": "108Q3",
-      "year": 108,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 21,
-      "stem": "中央銀行被稱為「銀行的銀行」，是因為中央銀行：",
-      "options": [
-        "獨占通貨發行權",
-        "保管外匯",
-        "扮演銀行最後融通者角色",
-        "辦理票據交換之清算"
-      ],
-      "answer": [
         "C"
       ],
       "sourceIds": [
@@ -831,19 +634,47 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
-      "id": "108Q3-macro-22",
-      "sessionId": "108Q3",
-      "year": 108,
+      "id": "107Q2-macro-15",
+      "sessionId": "107Q2",
+      "year": 107,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 15,
+      "stem": "若民眾從他在郵局的定期存款中提領 50 萬元現金，存入其在銀行的活期儲蓄存款帳戶時，對我國銀行貨幣總計數 M1A、M1B 及 M2 之立即影響，下列何者為正確？",
+      "options": [
+        "M2 不變而 M1B 增加",
+        "M2 減少而 M1A 增加",
+        "M2 增加而 M1B 減少",
+        "M2 增加而 M1A 減少"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "107Q3-macro-21",
+      "sessionId": "107Q3",
+      "year": 107,
       "session": 3,
       "subject": "macro",
       "sourceId": "macro-04",
-      "number": 22,
-      "stem": "下列何者不是中央銀行獨立性的優點？",
+      "number": 21,
+      "stem": "下面那一項包括在官方貨幣定義當中？",
       "options": [
-        "避免造成政治性景氣循環",
-        "避免以貨幣融通財政",
-        "貨幣政策較具一致性",
-        "貨幣政策能與財政政策配合"
+        "金幣",
+        "比特幣",
+        "信用卡",
+        "銀行存款"
       ],
       "answer": [
         "D"
@@ -859,19 +690,75 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
-      "id": "108Q3-macro-23",
-      "sessionId": "108Q3",
-      "year": 108,
+      "id": "107Q3-macro-22",
+      "sessionId": "107Q3",
+      "year": 107,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 22,
+      "stem": "有關股市非常關心的「黃金交叉」 ，以下哪一個不正確？",
+      "options": [
+        "顯示資金動能高",
+        "是股市活絡暢旺的表徵",
+        "交叉點之後M1B 年增率高於 M1A 年增率",
+        "交叉點之後M1B 年增率高於 M2 年增率"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "107Q3-macro-23",
+      "sessionId": "107Q3",
+      "year": 107,
       "session": 3,
       "subject": "macro",
       "sourceId": "macro-04",
       "number": 23,
-      "stem": "下列何者不是中央銀行的資產？",
+      "stem": "將一筆現金存入活期儲蓄存款帳戶中，",
       "options": [
-        "對銀行的放款",
-        "持有的公債",
-        "財政部在央行的存款",
-        "持有的黃金"
+        "M1A 及 M1B 都不變",
+        "M1A 會減少，M1B 增加",
+        "M1B 會減少，M2 不變",
+        "M1B 及 M2 都不變"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "107Q3-macro-25",
+      "sessionId": "107Q3",
+      "year": 107,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 25,
+      "stem": "名目所得為 $24,000，貨幣供給額為＄10,000，物價水準為 1.2，那麼根據所得型的交易方程式，貨幣流通速度為？",
+      "options": [
+        "1.2",
+        "2",
+        "2.4",
+        "2.88"
       ],
       "answer": [
         "C"
@@ -887,75 +774,19 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
-      "id": "109Q3-macro-29",
-      "sessionId": "109Q3",
-      "year": 109,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 29,
-      "stem": "積極管理負債的銀行，最可能藉由_________應付準備金的短缺。",
-      "options": [
-        "尋找新的存款",
-        "同業拆款",
-        "召回放款 (call in loans)",
-        "出售地方債券"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "109Q3-macro-30",
-      "sessionId": "109Q3",
-      "year": 109,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 30,
-      "stem": "下面哪一項不是我國中央銀行監事會的職權？",
-      "options": [
-        "檢查資產負債",
-        "檢查貨幣發行準備",
-        "保管國際準備",
-        "審核決算"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "109Q3-macro-31",
-      "sessionId": "109Q3",
-      "year": 109,
-      "session": 3,
+      "id": "107Q4-macro-31",
+      "sessionId": "107Q4",
+      "year": 107,
+      "session": 4,
       "subject": "macro",
       "sourceId": "macro-04",
       "number": 31,
-      "stem": "以下何者是贊成中央銀行獨立性的理由？",
+      "stem": "人們將郵政存簿儲金轉存至銀行的活期儲蓄存款帳戶，將會造成何種影響？",
       "options": [
-        "貨幣政策應該著重近短期的目標",
-        "若獨立，容易淪為政治性景氣循環的工具",
-        "若不獨立，政府為促進充分就業，貨幣政策容易導致通貨膨脹",
-        "貨幣政策與財政政策應該相輔相成"
+        "M1B 及 M2 都不變",
+        "M1B 與 M2 都會增加",
+        "M1B 增加，M2 不變",
+        "M1B 增加，M2 減少"
       ],
       "answer": [
         "C"
@@ -966,24 +797,24 @@ window.CHAPTER_DATA["macro-04"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-04",
-          "sectionIndex": 1
+          "sectionIndex": 2
         }
       ]
     },
     {
-      "id": "109Q3-macro-32",
-      "sessionId": "109Q3",
-      "year": 109,
-      "session": 3,
+      "id": "108Q1-macro-04",
+      "sessionId": "108Q1",
+      "year": 108,
+      "session": 1,
       "subject": "macro",
       "sourceId": "macro-04",
-      "number": 32,
-      "stem": "_______和_________皆是中央銀行的負債。",
+      "number": 4,
+      "stem": "李四從郵局提領10 萬元現金，存入其在銀行的活期儲蓄存款帳戶時，對M1A 、M1B 及M2之立即影響為？",
       "options": [
-        "流通中的通貨淨額；準備金",
-        "政府公債；重貼現貸款",
-        "政府公債；準備金",
-        "流通中的通貨淨額；重貼現貸款"
+        "M2不變而 M1B 增加",
+        "M2 減少而 M1A 增加",
+        "M2增加而 M1B 減少",
+        "M2 增加而 M1A 減少"
       ],
       "answer": [
         "A"
@@ -999,50 +830,22 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
-      "id": "110Q2-macro-06",
-      "sessionId": "110Q2",
-      "year": 110,
-      "session": 2,
+      "id": "108Q1-macro-09",
+      "sessionId": "108Q1",
+      "year": 108,
+      "session": 1,
       "subject": "macro",
       "sourceId": "macro-04",
-      "number": 6,
-      "stem": "因市場價格變動對銀行資產負債部位造成損失，此稱為________。",
+      "number": 9,
+      "stem": "依據交易方程式，若貨幣數量為1,000，平均物價水準為2，商品與勞務交易量為1,500，則貨幣流通速度(V)為：",
       "options": [
-        "營運風險",
-        "利率風險",
-        "市場風險",
-        "流動性風險"
+        "2.5",
+        "3",
+        "5",
+        "6"
       ],
       "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "110Q3-macro-21",
-      "sessionId": "110Q3",
-      "year": 110,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 21,
-      "stem": "中央銀行被稱為「銀行的銀行」 ，是因為中央銀行：",
-      "options": [
-        "獨占通貨發行權",
-        "保管外匯",
-        "扮演銀行最後融通者角色",
-        "辦理票據交換之清算"
-      ],
-      "answer": [
-        "C"
+        "B"
       ],
       "sourceIds": [
         "macro-04"
@@ -1055,19 +858,75 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
-      "id": "110Q3-macro-23",
-      "sessionId": "110Q3",
-      "year": 110,
-      "session": 3,
+      "id": "108Q2-macro-02",
+      "sessionId": "108Q2",
+      "year": 108,
+      "session": 2,
       "subject": "macro",
       "sourceId": "macro-04",
-      "number": 23,
-      "stem": "下列何者不是中央銀行的資產？",
+      "number": 2,
+      "stem": "貨幣數量學說認為總合支出的變化主要是由下列何者所引起？",
       "options": [
-        "對銀行的放款",
-        "持有的公債",
-        "財政部在中央銀行的存款",
-        "持有的黃金"
+        "利率",
+        "貨幣供給",
+        "貨幣流通速度",
+        "政府支出與稅收"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "108Q2-macro-18",
+      "sessionId": "108Q2",
+      "year": 108,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 18,
+      "stem": "有人定期儲蓄存款到期後，將整筆金額存入郵局的存簿儲金帳戶。這會導致什麼變化？",
+      "options": [
+        "M1A 增加，M2 不變",
+        "M1B 增加，M2 不變",
+        "M1B 增加，M2 減少",
+        "M1A、M1B、M2 皆不變"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "108Q2-macro-21",
+      "sessionId": "108Q2",
+      "year": 108,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 21,
+      "stem": "已知貨幣供給額為 3,000 億元，貨幣流通速度為 2，物價水準為 1.2 ，那麼根據所得型的交易方程式，名目所得為__________。",
+      "options": [
+        "3,600 億元",
+        "5,000 億元",
+        "6,000 億元",
+        "7,200 億元"
       ],
       "answer": [
         "C"
@@ -1083,22 +942,246 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
-      "id": "111Q1-macro-15",
+      "id": "108Q4-macro-32",
+      "sessionId": "108Q4",
+      "year": 108,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 32,
+      "stem": "張三從郵局提領 10 萬元現金，存入其在銀行的活期儲蓄存款帳戶時，對 M1B 及 M2 之立即影響為何？",
+      "options": [
+        "M2 增加而 M1B 不變",
+        "M2 增加而 M1B 減少",
+        "M2 減少而 M1B 增加",
+        "M2 不變而 M1B 增加"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "109Q1-macro-07",
+      "sessionId": "109Q1",
+      "year": 109,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 7,
+      "stem": "有關 \\(M_{1A}\\) 與 \\(M_2\\) 的敘述，何者正確?",
+      "options": [
+        "貨幣基金將同時出現在 \\(M_{1A}\\) 與 \\(M_2\\) 定義中",
+        "\\(M_2\\) 相較於 \\(M_{1A}\\) 將更具有流動性",
+        "\\(M_2\\) 成長率必然大於 \\(M_{1A}\\) 成長率",
+        "外國人存款出現在 \\(M_2\\) 定義中，卻排除在 \\(M_{1A}\\) 定義之外"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "109Q2-macro-24",
+      "sessionId": "109Q2",
+      "year": 109,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 24,
+      "stem": "依據「所得方程式」 ，若貨幣供給額成長30%，而貨幣流通速度(V)下降 50%，則名目 GDP 約：",
+      "options": [
+        "增加 20%",
+        "增加 30%",
+        "減少 20%",
+        "減少 30%"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "109Q3-macro-04",
+      "sessionId": "109Q3",
+      "year": 109,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 4,
+      "stem": "貨幣數量學說認為總合支出的變化主要是由下列何者所引起？",
+      "options": [
+        "利率",
+        "貨幣供給",
+        "貨幣流通速度",
+        "政府支出與稅收"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "109Q3-macro-15",
+      "sessionId": "109Q3",
+      "year": 109,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 15,
+      "stem": "股市上揚吸引投資人把定期存款轉成活期儲蓄存款以備進場買股，此時：",
+      "options": [
+        "M1A 會增加，M2 不變動",
+        "M1A 會增加，M1B 不變動",
+        "M1B 會增加，M2 不變動",
+        "M1B 會增加，M2 會減少"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "109Q4-macro-26",
+      "sessionId": "109Q4",
+      "year": 109,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 26,
+      "stem": "下列哪項存款比較能衡量自然人金融活動熱絡程度？",
+      "options": [
+        "通貨",
+        "支票存款",
+        "活期存款",
+        "活期儲蓄存款"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "110Q1-macro-10",
+      "sessionId": "110Q1",
+      "year": 110,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 10,
+      "stem": "哪一位經濟學家提出交易方程式所說明「一手交錢，一手交貨」之結果，使得每筆交易必定導致與成交值相等之貨幣易手？",
+      "options": [
+        "費雪(Fisher)",
+        "弗利曼(Friedman)",
+        "盧卡斯(Lucas)",
+        "普列斯卡(Prescott)"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "110Q3-macro-12",
+      "sessionId": "110Q3",
+      "year": 110,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 12,
+      "stem": "郵局轉存款是屬於下述哪一類貨幣供給中的一項？",
+      "options": [
+        "M1A",
+        "M1B",
+        "M1",
+        "M2"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "111Q1-macro-16",
       "sessionId": "111Q1",
       "year": 111,
       "session": 1,
       "subject": "macro",
       "sourceId": "macro-04",
-      "number": 15,
-      "stem": "________和_________皆是中央銀行的資產項目。",
+      "number": 16,
+      "stem": "下列哪一個對「錢」的敘述最接近經濟學家所定義的貨幣？",
       "options": [
-        "流通中的通貨淨額；準備金",
-        "政府公債；重貼現貸款",
-        "政府公債；準備金",
-        "流通中的通貨淨額；重貼現貸款"
+        "郭台銘很有錢",
+        "小美打算在暑假期間打工賺很多錢",
+        "阿仁希望準備足夠的錢出國去旅行",
+        "今天賣的股票賺了不少錢"
       ],
       "answer": [
-        "B"
+        "C"
       ],
       "sourceIds": [
         "macro-04"
@@ -1111,358 +1194,75 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
-      "id": "111Q2-macro-12",
+      "id": "111Q1-macro-21",
+      "sessionId": "111Q1",
+      "year": 111,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 21,
+      "stem": "假如一個人把手中持有的現金移轉至定期存款帳戶，那麼：",
+      "options": [
+        "M1 減少，M2 保持不變",
+        "M1 和 M2 皆保持不變",
+        "M1 和 M2 皆增加",
+        "M1 減少，M2 增加"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "111Q1-macro-23",
+      "sessionId": "111Q1",
+      "year": 111,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 23,
+      "stem": "下列哪一項不被包括在「存款貨幣」當中？",
+      "options": [
+        "活期儲蓄存款",
+        "支票存款",
+        "活期存款",
+        "定期存款"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "111Q2-macro-29",
       "sessionId": "111Q2",
       "year": 111,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-04",
-      "number": 12,
-      "stem": "下面哪一項不是中央銀行國庫局的業務？",
-      "options": [
-        "經理國庫收支",
-        "辦理公債與國庫券之發行",
-        "公開市場買賣",
-        "公債與國庫券之還本付息業務"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "112Q1-macro-28",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 28,
-      "stem": "下列何者屬於銀行的「表外業務」？",
-      "options": [
-        "在拆款中心放款給其他銀行",
-        "買賣公司債",
-        "發行信用卡",
-        "買賣上市櫃股票"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "112Q1-macro-35",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 35,
-      "stem": "外商銀行在台灣分行的設立，依規定在申請前一年於全世界銀行資本額或資產排名須居幾名以內？",
-      "options": [
-        "100",
-        "300",
-        "500",
-        "1,000"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "112Q3-macro-07",
-      "sessionId": "112Q3",
-      "year": 112,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 7,
-      "stem": "金融六法不包括下列何者？",
-      "options": [
-        "金融控股公司法",
-        "金融重建基金設置及管理條例",
-        "外匯管理法",
-        "票券金融管理法"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "113Q1-macro-15",
-      "sessionId": "113Q1",
-      "year": 113,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 15,
-      "stem": "2024 年 2 月底要參考美國聯邦公開市場委員會(FOMC)之前最新的利率點陣圖，應該是看何時公布的？",
-      "options": [
-        "2024 年 1 月",
-        "2023 年 12 月",
-        "2023 年 11 月",
-        "2023 年 2 月"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "eventId": "fed-2025",
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q1-macro-16",
-      "sessionId": "113Q1",
-      "year": 113,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 16,
-      "stem": "美國聯邦公開市場委員會由幾位成員組成？他們透過投票左右利率決議。",
-      "options": [
-        "10 位",
-        "11 位",
-        "12 位",
-        "13 位"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "eventId": "fed-2025",
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q1-macro-29",
-      "sessionId": "113Q1",
-      "year": 113,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-04",
       "number": 29,
-      "stem": "根據我國「中央銀行法」第 2 條中，關於制訂央行的經營目標，下列何者非屬之？",
+      "stem": "下列哪項存款比較能衡量日常小額交易的熱絡程度？",
       "options": [
-        "外匯存底孳息繳庫",
-        "健全銀行業務",
-        "維護對內及對外幣值之穩定",
-        "促進金融穩定"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "eventId": "taiwan-monetary-2025",
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q1-macro-30",
-      "sessionId": "113Q1",
-      "year": 113,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 30,
-      "stem": "下列何者不是央行貨幣政策指標中，五大銀行平均基準利率中的五大銀行？",
-      "options": [
-        "台灣銀行",
-        "合作金庫銀行",
-        "台灣土地銀行",
-        "彰化銀行"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q1-macro-31",
-      "sessionId": "113Q1",
-      "year": 113,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 31,
-      "stem": "有關我國央行的描述，下列何者有誤？",
-      "options": [
-        "是國家銀行",
-        "央行資本，由國庫撥給之",
-        "隸屬總統府，以維持獨立性",
-        "總裁綜理行務，執行理事會之決議，對外代表本行；副總裁輔佐總裁處理行務"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q2-macro-03",
-      "sessionId": "113Q2",
-      "year": 113,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 3,
-      "stem": "因為金融危機造成的信用緊縮現象，不包括下列哪種？",
-      "options": [
-        "銀行同業間拆款利率上升",
-        "央行緊縮銀根",
-        "中小企業向銀行融資困難",
-        "銀行縮減個人信用卡額度"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "113Q2-macro-24",
-      "sessionId": "113Q2",
-      "year": 113,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 24,
-      "stem": "以下關於我國金管會之敘述，何者正確？",
-      "options": [
-        "央行總裁為當然委員",
-        "隸屬在法務部之下",
-        "銀行局負責金融機構檢查稽核",
-        "能源部長為當然委員"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q2-macro-32",
-      "sessionId": "113Q2",
-      "year": 113,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 32,
-      "stem": "若銀行面臨放款壞帳 10 億元，在壞帳打銷後：",
-      "options": [
-        "放款額增加 10 億元",
-        "存款額減少 10 億元",
-        "準備金減少 10 億元",
-        "資本額減少 10 億元"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "113Q2-macro-35",
-      "sessionId": "113Q2",
-      "year": 113,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 35,
-      "stem": "下列有關中央銀行獨立性的敘述，何者正確？",
-      "options": [
-        "央行法定目標愈多，中央銀行獨立性愈大",
-        "央行愈屬於政府，中央銀行獨立性愈大",
-        "央行官員任期愈長，中央銀行獨立性愈小",
-        "央行若能直接承購新發行公債，其獨立性愈大"
+        "通貨",
+        "支票存款",
+        "活期存款",
+        "活期儲蓄存款"
       ],
       "answer": [
         "A"
@@ -1478,140 +1278,26 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
-      "id": "114Q1-macro-24",
-      "sessionId": "114Q1",
-      "year": 114,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 24,
-      "stem": "下列哪種金融危機之發生，係因為放款過度寬鬆，出現過多的不良資產、導致呆帳大量增加，影響金融體系穩定性？",
-      "options": [
-        "銀行危機",
-        "貨幣危機",
-        "債務危機",
-        "資本市場危機"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "114Q2-macro-16",
-      "sessionId": "114Q2",
-      "year": 114,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 16,
-      "stem": "下列哪一位諾貝爾經濟學獎得主曾擔任過聯準會主席？",
-      "options": [
-        "菲利普·迪布維格",
-        "賓·伯南克",
-        "道格拉斯·戴蒙德",
-        "吉多·因本斯"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "eventId": "fed-2025",
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "114Q3-macro-16",
-      "sessionId": "114Q3",
-      "year": 114,
+      "id": "111Q3-macro-08",
+      "sessionId": "111Q3",
+      "year": 111,
       "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 16,
-      "stem": "積極管理負債的銀行，最可能藉由_________應付準備金的短缺。",
-      "options": [
-        "尋找新的存款",
-        "同業拆款",
-        "召回放款 (call in loans)",
-        "出售持有的債券"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "114Q3-macro-21",
-      "sessionId": "114Q3",
-      "year": 114,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 21,
-      "stem": "________和_________皆是中央銀行的資產項目。",
-      "options": [
-        "流通中的通貨淨額；準備金",
-        "外匯存底；重貼現放款",
-        "政府公債；準備金",
-        "政府存款；重貼現放款"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "115Q1-macro-08",
-      "sessionId": "115Q1",
-      "year": 115,
-      "session": 1,
       "subject": "macro",
       "sourceId": "macro-04",
       "number": 8,
-      "stem": "若中央銀行推出「中央銀行數位貨幣（CBDC）」，民眾可以直接在中央銀行持有存款。從總體經濟角度來看，下列哪一項可能是主要政策影響？",
+      "stem": "下述哪一項是屬於內在貨幣(Inside Money)？",
       "options": [
-        "中央銀行對貨幣供給的控制能力提高",
-        "商業銀行完全消失",
-        "通貨膨脹必然上升",
-        "匯率固定"
+        "通貨淨額",
+        "準備貨幣",
+        "銀行存款",
+        "選項(A)(B)(C)皆是"
       ],
       "answer": [
-        "A"
+        "C"
       ],
       "sourceIds": [
         "macro-04"
       ],
-      "eventId": "cbdc-2025",
       "sourceRefs": [
         {
           "chapterId": "macro-04",
@@ -1620,19 +1306,47 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
-      "id": "115Q2-macro-15",
-      "sessionId": "115Q2",
-      "year": 115,
-      "session": 2,
+      "id": "111Q3-macro-17",
+      "sessionId": "111Q3",
+      "year": 111,
+      "session": 3,
       "subject": "macro",
       "sourceId": "macro-04",
-      "number": 15,
-      "stem": "美國聯邦公開市場委員會(FOMC)是美國貨幣政策的最高決策機構，每年召開幾次例行會議？",
+      "number": 17,
+      "stem": "下列何者不屬於 M1？",
       "options": [
-        "7 次",
-        "8 次",
-        "9 次",
-        "10 次"
+        "活期存款帳戶",
+        "支票存款帳戶",
+        "時間存款帳戶",
+        "旅行支票"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "111Q3-macro-24",
+      "sessionId": "111Q3",
+      "year": 111,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 24,
+      "stem": "假設貨幣的流動速度是 4，實質產出是 10，物價水準為 2。當政府增加名目貨幣供給到 6，其他變數不變的情況下，物價的變動為上升多少？",
+      "options": [
+        "2.4%",
+        "20%",
+        "24%",
+        "50%"
       ],
       "answer": [
         "B"
@@ -1640,7 +1354,6 @@ window.CHAPTER_DATA["macro-04"] = {
       "sourceIds": [
         "macro-04"
       ],
-      "eventId": "fed-2025",
       "sourceRefs": [
         {
           "chapterId": "macro-04",
@@ -1649,109 +1362,162 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
-      "id": "115Q2-macro-16",
-      "sessionId": "115Q2",
-      "year": 115,
-      "session": 2,
+      "id": "111Q3-macro-25",
+      "sessionId": "111Q3",
+      "year": 111,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 25,
+      "stem": "假設實質利率為 4% ，通貨膨脹率為 3%。如果貨幣供給上升 10%，而產出、實質利率、期待的通貨膨脹率不變，則物價水準上升多少？",
+      "options": [
+        "3%",
+        "4%",
+        "7%",
+        "10%"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "112Q1-macro-16",
+      "sessionId": "112Q1",
+      "year": 112,
+      "session": 1,
       "subject": "macro",
       "sourceId": "macro-04",
       "number": 16,
-      "stem": "下列何者對美國聯邦公開市場委員會(FOMC)的描述有誤？",
+      "stem": "張老闆開了張三個月期 100 萬元的支票去支付所購買的原料，此行為不能表現貨幣的哪個功能？",
       "options": [
-        "有 13 名投票成員",
-        "7 名聯邦準備理事會理事都是成員",
-        "11 家地區銀行總裁輪流擔任 4 席",
-        "紐約聯邦儲備銀行總裁為當然委員"
+        "交易媒介",
+        "計價單位",
+        "價值儲藏",
+        "延遲支付的標準"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "112Q2-macro-10",
+      "sessionId": "112Q2",
+      "year": 112,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 10,
+      "stem": "若名目所得 10 兆，貨幣供給 2 兆，依據古典學派之貨幣數量學說，則流通速度(velocity)為 _____。",
+      "options": [
+        "2",
+        "5",
+        "10",
+        "40"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "112Q2-macro-13",
+      "sessionId": "112Q2",
+      "year": 112,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 13,
+      "stem": "張三從郵局提領 10 萬元現金，存入其在銀行的活期儲蓄存款帳戶時，對M1B及M2 之立即影響為何？",
+      "options": [
+        "M2 增加而 M1B 不變",
+        "M2 增加而 M1B 減少",
+        "M2 減少而 M1B 增加",
+        "M2 不變而 M1B 增加"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "112Q2-macro-21",
+      "sessionId": "112Q2",
+      "year": 112,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 21,
+      "stem": "下列何種存款的變化與景氣波動最有關連性？",
+      "options": [
+        "定期存款",
+        "郵政儲金",
+        "外匯存款",
+        "活期存款"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "112Q2-macro-31",
+      "sessionId": "112Q2",
+      "year": 112,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 31,
+      "stem": "下列的虛擬貨幣中何者是屬於穩定幣(stable coin)？",
+      "options": [
+        "泰達幣",
+        "以太幣",
+        "比特幣",
+        "狗狗幣"
       ],
       "answer": [
         "A"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "eventId": "fed-2025",
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "115Q2-macro-23",
-      "sessionId": "115Q2",
-      "year": 115,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 23,
-      "stem": "當今美國聯準會主席是哪一位？",
-      "options": [
-        "班·柏南奇(Ben Bernanke)",
-        "珍娜特·葉倫(Janet Yellen)",
-        "傑洛姆·鮑爾(Jerome Powell)",
-        "凱文·華許(Kevin Warsh)"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "eventId": "fed-2025",
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "115Q2-macro-24",
-      "sessionId": "115Q2",
-      "year": 115,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 24,
-      "stem": "哪一位美國聯準會主席在位時的經濟狀況被形容為金髮女郎的經濟？",
-      "options": [
-        "班·柏南奇(Ben Bernanke)",
-        "珍娜特·葉倫(Janet Yellen)",
-        "傑洛姆·鮑爾(Jerome Powell)",
-        "艾倫·葛林斯潘(Alan Greenspan)"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-04"
-      ],
-      "eventId": "fed-2025",
-      "sourceRefs": [
-        {
-          "chapterId": "macro-04",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "115Q2-macro-29",
-      "sessionId": "115Q2",
-      "year": 115,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-04",
-      "number": 29,
-      "stem": "2026 年六月底立法院院會三讀通過「虛擬資產服務法」，明確規範穩定幣發行及管理。下列何者不是其內容？",
-      "options": [
-        "在我國境內發行穩定幣須取得中央銀行同意及金管會許可",
-        "發行人必須維持十足準備資產及交付信託",
-        "進行定期查核與資訊揭露",
-        "將穩定幣列入我國的戰略儲備"
-      ],
-      "answer": [
-        "D"
       ],
       "sourceIds": [
         "macro-04"
@@ -1765,19 +1531,103 @@ window.CHAPTER_DATA["macro-04"] = {
       ]
     },
     {
-      "id": "115Q2-macro-30",
-      "sessionId": "115Q2",
-      "year": 115,
+      "id": "113Q1-macro-07",
+      "sessionId": "113Q1",
+      "year": 113,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 7,
+      "stem": "下列哪項存款比較能衡量自然人金融活動熱絡程度？",
+      "options": [
+        "通貨",
+        "支票存款",
+        "活期存款",
+        "活期儲蓄存款"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "113Q1-macro-14",
+      "sessionId": "113Q1",
+      "year": 113,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 14,
+      "stem": "張三從郵局提領 10 萬元現金，存入其在銀行的活期儲蓄存款帳戶時，對M1B 及 M2 之立即影響為何？",
+      "options": [
+        "M2 增加而 M1B 不變",
+        "M2 增加而 M1B 減少",
+        "M2 減少而 M1B 增加",
+        "M2 不變而 M1B 增加"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "114Q2-macro-29",
+      "sessionId": "114Q2",
+      "year": 114,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-04",
-      "number": 30,
-      "stem": "根據我國「中央銀行法」第 2 條中制訂央行的經營目標，下列何者不是？",
+      "number": 29,
+      "stem": "下列何者不屬於貨幣總計數 M1 的範圍？",
       "options": [
-        "協助經濟之發展",
-        "健全銀行業務",
-        "外匯存底孳息繳庫",
-        "促進金融穩定"
+        "通貨淨額",
+        "支票存款",
+        "活期存款",
+        "外匯存款"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "114Q2-macro-32",
+      "sessionId": "114Q2",
+      "year": 114,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 32,
+      "stem": "國際貨幣基金會(IMF)2022 年 5 月 11 日，宣佈調整特別提款權(SDRs) 權重，是將人民幣權重由 10.92%上調至 12.28%，也成為權重排名的第幾？",
+      "options": [
+        "第一",
+        "第二",
+        "第三",
+        "第四"
       ],
       "answer": [
         "C"
@@ -1785,7 +1635,146 @@ window.CHAPTER_DATA["macro-04"] = {
       "sourceIds": [
         "macro-04"
       ],
-      "eventId": "taiwan-monetary-2025",
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "114Q2-macro-34",
+      "sessionId": "114Q2",
+      "year": 114,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 34,
+      "stem": "有關貨幣四大功能，不包含下列哪一項？",
+      "options": [
+        "交易媒介",
+        "價值儲藏",
+        "計價單位",
+        "中心化支付標準"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "114Q3-macro-15",
+      "sessionId": "114Q3",
+      "year": 114,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 15,
+      "stem": "股市不停創新高，若投資人看多股市因而把定期儲蓄存款解約轉成活期儲蓄存款以備進場買股，此時：",
+      "options": [
+        "M1A 會增加，M1B 也增加",
+        "M1A 會增加，M2 不變動",
+        "M1B 會增加，M2 會減少",
+        "M1B 會增加，M2 不變動"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "115Q1-macro-18",
+      "sessionId": "115Q1",
+      "year": 115,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 18,
+      "stem": "M1B 稱為「戰鬥貨幣」非｢防衛貨幣｣主要理由是：",
+      "options": [
+        "與保本定存最相關",
+        "含交易與投資性目的，景氣好時更活躍",
+        "只用於政府支出",
+        "只用於進出口貿易"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "115Q1-macro-26",
+      "sessionId": "115Q1",
+      "year": 115,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 26,
+      "stem": "貨幣數量學說認為總合支出的變化主要是由下列何者所引起？",
+      "options": [
+        "利率",
+        "貨幣供給",
+        "貨幣流通速度",
+        "政府支出與稅收"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-04",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "115Q2-macro-10",
+      "sessionId": "115Q2",
+      "year": 115,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-04",
+      "number": 10,
+      "stem": "在商品貨幣發行時，若存在兩種型態的貨幣，則民眾會保留成色較高的貨幣，使得市面上僅流通較差的貨幣，造成「劣幣驅逐良幣」的現象發生，此現象又稱為下列哪個經濟學法則？",
+      "options": [
+        "格來興法則",
+        "賽伊法則",
+        "泰勒法則",
+        "歐肯法則"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-04"
+      ],
       "sourceRefs": [
         {
           "chapterId": "macro-04",
@@ -1824,63 +1813,129 @@ window.CHAPTER_DATA["macro-04"] = {
   },
   "questions": [
     {
-      "id": "108Q3-macro-written-1",
-      "sessionId": "108Q3",
+      "id": "108Q1-macro-written-2",
+      "sessionId": "108Q1",
       "year": 108,
-      "session": 3,
+      "session": 1,
       "subject": "macro",
-      "number": 1,
-      "stem": "試說明金融危機的可能徵兆？(共 10 分)",
+      "number": 2,
+      "stem": "假設商品市場\\(y=c(y-t(y))+i(r)+g\\)，貨幣市場 \\(\\bar M/P_0=l(r)+k(y)\\)，(其中 y：所得、c：消費、t：租稅、i：投資、r：利率、g：政府支出、\\(\\bar M\\)：名目貨幣供給、 \\(P_0\\)：物價，假設 \\(\\bar M/P_0=m\\)、l(r)：投機性貨幣需求、k(y)：交易性貨幣需求) (1)請導出政府支出乘數 \\(dy/dg\\) 為何？(5 分) (2)請導出貨幣供給乘數 \\(dy/dm\\) 為何？(5 分)",
       "sourceIds": [
-        "macro-04"
+        "macro-06",
+        "macro-04",
+        "macro-07"
       ],
-      "kind": "申論題",
+      "kind": "計算題",
       "answer": [
-        "金融危機徵兆：資產價格泡沫、信用與槓桿快速擴張、家庭/企業債務上升、銀行流動性錯配、信用利差與CDS上升、殖利率曲線倒掛、房價與成交量轉弱、不良貸款增加、資本外流與匯率貶值、金融機構傳染與信心崩跌。",
-        "制度面：影子銀行、監管套利、複雜證券化、風險集中、壓力測試失效、隱性擔保與道德風險。這些指標需綜合判讀，不能單一指標斷定危機。"
+        "(1) 對商品市場與貨幣市場全微分：\\(dy=c^{\\prime}(1-t^{\\prime})dy+i^{\\prime}dr+dg\\)；\\(dm=l^{\\prime}dr+k^{\\prime}dy\\)。dg時dm=0，\\(dr=-(k^{\\prime}/l^{\\prime})dy\\)。代入：\\[dy[1-c^{\\prime}(1-t^{\\prime})+i^{\\prime}k^{\\prime}/l^{\\prime}]=dg\\]，故 \\[\\frac{dy}{dg}=\\frac{1}{1-c^{\\prime}(1-t^{\\prime})+i^{\\prime}k^{\\prime}/l^{\\prime}}\\] 。",
+        "(2) dm時dg=0：\\(dr=[1-c^{\\prime}(1-t^{\\prime})]dy/i^{\\prime}\\)。代入貨幣市場：\\(dm=l^{\\prime}dr+k^{\\prime}dy=dy\\{k^{\\prime}+l^{\\prime}[1-c^{\\prime}(1-t^{\\prime})]/i^{\\prime}\\}\\)，故 \\[\\frac{dy}{dm}=\\frac{1}{k^{\\prime}+l^{\\prime}[1-c^{\\prime}(1-t^{\\prime})]/i^{\\prime}}\\] 。",
+        "因 \\(i^{\\prime}<0\\)、\\(l^{\\prime}<0\\)，分母中的 \\(i^{\\prime}k^{\\prime}/l^{\\prime}\\) 與 \\(l^{\\prime}(...)/i^{\\prime}\\) 為正，政府支出乘數小於簡單乘數，貨幣乘數為正。"
       ],
       "answerType": "reference",
       "note": "本站參考解答（非官方）"
     },
     {
-      "id": "110Q3-macro-written-1",
+      "id": "109Q1-macro-written-2",
+      "sessionId": "109Q1",
+      "year": 109,
+      "session": 1,
+      "subject": "macro",
+      "number": 2,
+      "stem": "某國的貨幣需求函數為：\\(M^d/P=1,000+0.2y-1,000(r+\\pi^e)\\)，試計算下列問題：(1) 假設 \\(y=2,000\\)、\\(r=6\\%\\)、\\(\\pi^e=4\\%\\)，試問流通速度為何？(5 分) (2) 假設貨幣供給為 \\(M^s=2,600\\)，試問物價水準為何？(5 分)",
+      "sourceIds": [
+        "macro-04"
+      ],
+      "kind": "計算題",
+      "answer": [
+        "(1) \\(r+\\pi^e=6\\%+4\\%=10\\%\\)。貨幣需求 \\(M_d/P=1{,}000+0.2(2{,}000)-1{,}000(0.10)=1{,}000+400-100=1{,}300\\)。流通速度 \\(V=Py/M=y/(M/P)=2{,}000/1{,}300\\approx1.54\\)。",
+        "(2) \\(M_s/P=2{,}600/P=1{,}300\\)，故 \\(P=2.0\\)。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "110Q3-macro-written-2",
       "sessionId": "110Q3",
       "year": 110,
       "session": 3,
       "subject": "macro",
-      "number": 1,
-      "stem": "試說明金融危機的可能徵兆？（10 分）",
+      "number": 2,
+      "stem": "何謂「存託憑證」？存託憑證有哪些分類？試說明之。（10 分）",
       "sourceIds": [
-        "macro-04"
+        "macro-04",
+        "macro-14"
       ],
       "kind": "申論題",
       "answer": [
-        "金融危機的可能徵兆包括：資產價格泡沫（股市、房市漲幅遠超過基本面）、信用快速擴張與槓桿升高、家庭/企業債務比率上升、銀行資金來源短期化與流動性錯配、信用利差擴大、CDS/違約風險上升、殖利率曲線倒掛、房價與成交量轉弱、不良貸款與逾期放款增加、資本外流與匯率貶值壓力、金融機構互相傳染與信心崩跌。",
-        "制度面徵兆包括：影子銀行快速成長、監管套利、複雜證券化與衍生品透明度不足、風險集中於少數機構、壓力測試失效、政府隱性擔保與道德風險。",
-        "這些指標不必然同時出現，也不代表危機一定發生；應結合領先/同時指標、金融健全指標與壓力測試綜合判斷。"
+        "存託憑證（Depositary Receipt, DR）是由存託機構發行、代表對外國公司股票所有權的可轉讓憑證，讓投資人可在本國交易所間接投資外國公司，不必直接持有外國股票。",
+        "分類：依發行地/交易地可分為ADR（美國）、GDR（全球）、TDR（臺灣）、IDR（國際）、HKDR（香港）等；依發行人與存託機構合作關係可分**贊助型**（sponsored）與**非贊助型**（unsponsored）；ADR再分Level I（店頭）、Level II（交易所上市但不增資）、Level III（交易所上市並增資）；依是否募集新資金分**初次/增資**與**老股**；依權利分**普通/特別**存託憑證。",
+        "優點：降低跨國投資障礙、以本國貨幣交易、流動性較高；風險包括匯率、政治、法律制度、存託機構信用與資訊不對稱。"
       ],
       "answerType": "reference",
       "note": "本站參考解答（非官方）"
     },
     {
-      "id": "113Q1-macro-written-3",
-      "sessionId": "113Q1",
-      "year": 113,
-      "session": 1,
+      "id": "111Q2-macro-written-1",
+      "sessionId": "111Q2",
+      "year": 111,
+      "session": 2,
       "subject": "macro",
-      "number": 3,
-      "stem": "請說明2023年美國矽谷銀行 (SVB) 倒閉的原因及美國政府如何克服這個金融危機？ (10分)",
+      "number": 1,
+      "stem": "何謂加密貨幣(2 分)？請說明加密貨幣的出現對經濟或金融可能會產生哪些負面影響？(8 分)",
       "sourceIds": [
-        "macro-04"
+        "macro-04",
+        "macro-14"
       ],
       "kind": "申論題",
       "answer": [
-        "SVB倒閉的核心是資產負債期限錯配與利率風險：存款大量投入長期公債與MBS，聯準會快速升息使長債價格下跌，產生大量未實現損失；同時存款高度集中於科技與創投業，未受存保的存款比例高。",
-        "當客戶同時提款，銀行被迫賤賣資產實現損失，引發擠兌。社群媒體加速擠兌速度，流動性迅速耗盡。",
-        "美國政府處理：FDIC接管並保障存款（系統性風險例外）、Fed推出BTFP讓銀行以公債面額抵押借貸、財政部與Fed協調流動性；股東與無擔保債權人承擔損失，避免納稅人直接救助。"
+        "加密貨幣是一種以密碼學與分散式帳本（區塊鏈）建立的數位資產，通常不依賴中央銀行或單一發行機構，可在網路上移轉、交易或作為價值儲存工具；它不是法定貨幣，價格波動大。",
+        "負面影響包括：第一，金融穩定風險，價格暴漲暴跌、槓桿交易與機構曝險可能傳染至傳統金融；第二，貨幣政策與資本流動，加密資產可繞過資本管制，造成貨幣替代、資本外逃與央行控制力下降；第三，投資人保護，詐騙、龐氏騙局、交易所倒閉、錢包被盗與資訊不對稱嚴重；第四，洗錢、資恐、逃稅與制裁規避；第五，支付與清算風險，交易不可逆、網路攻擊、私鑰遺失；第六，能源消耗與環境成本；第七，監管套利與跨國監理困難；第八，穩定幣若發生擠兌，可能引發短期流動性危機。"
       ],
       "answerType": "reference",
       "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "112Q1-macro-written-1",
+      "sessionId": "112Q1",
+      "year": 112,
+      "session": 1,
+      "subject": "macro",
+      "number": 1,
+      "stem": "給定下面資料：(億元) 中央銀行 銀行體系 資產 負債 資產 負債 國外資產 200 通貨發行額 430 庫存現金 50 支票存款 450 對政府債權 60 銀行存款 400 在央行存款 400 活期性存款 400 對銀行債權 560 政府存款 16 放款 1,700 定期存款 1,400 庫存現金 30 外國存款 4 證券 500 資本 400 850 850 2,650 2,650 請算出流通中的通貨、準備貨幣、M1、M2 金額，以及 M2 之乘數。(10 分)",
+      "sourceIds": [
+        "macro-04"
+      ],
+      "kind": "計算題",
+      "answer": [
+        "中央銀行發行通貨 430 億元，金融機構庫存現金 30 億元，中央銀行庫存現金 50 億元，故流通中通貨 = 430 - 30 - 50 = 350 億元。",
+        "準備貨幣 = 流通中通貨 + 金融機構在央行存款 + 金融機構庫存現金 = 350 + 400 + 30 = 780 億元。",
+        "M1 = 流通中通貨 + 支票存款 + 活期性存款 = 350 + 450 + 400 = 1,200 億元。",
+        "M2 = M1 + 定期存款 + 外國存款 = 1,200 + 1,400 + 4 = 2,604 億元。",
+        "M2 乘數 = M2 ÷ 準備貨幣 = 2,604 ÷ 780 ≈ 3.3385。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "115Q2-macro-written-2",
+      "sessionId": "115Q2",
+      "year": 115,
+      "session": 2,
+      "subject": "macro",
+      "number": 2,
+      "stem": "何謂央行數位通貨(CBDC)？（5 分）請就其發展狀況及國際趨勢作一申論說明。（5 分）",
+      "sourceIds": [
+        "macro-04",
+        "macro-06"
+      ],
+      "kind": "申論題",
+      "note": "本站參考解答（非官方）",
+      "answer": [
+        "CBDC是中央銀行發行的數位形式法定貨幣，可分零售型（公眾日常支付）與批發型（金融機構間結算）；它是央行負債，與商業銀行存款不同。",
+        "發展狀況與趨勢：中國e-CNY大規模試點，歐洲央行進行數位歐元準備，各國關注跨境支付效率、金融包融、隱私與離線支付；同時重視商業銀行脱媒、金融穩定與貨幣政策傳導。臺灣目前以研究、概念驗證與跨機構試驗為主，尚未全面發行。"
+      ],
+      "eventId": "cbdc-2025",
+      "answerType": "reference"
     }
   ]
 },
@@ -1889,47 +1944,75 @@ window.CHAPTER_DATA["macro-04"] = {
     "year": 115,
     "label": "115 年",
     "sections": {
-      "macro-04::1": {
-        "focus": "中央銀行題，先分「目標、工具、組織」。央行目標通常是物價穩定、金融穩定、經濟成長；工具包括公開市場操作、重貼現、準備率。",
+      "macro-04::2": {
+        "focus": "貨幣定義與貨幣數量學說：M1A、M1B、M2 的組成要分清楚；貨幣數量學說 MV＝PY，焦點是貨幣供給對總合支出的影響。",
         "strategies": [
-          "央行經營目標：促進金融穩定、健全銀行業務、維護對內及對外幣值穩定、協助經濟發展。",
-          "外匯存底孳息繳庫不是央行法定經營目標，而是預算/盈餘處理。",
-          "CBDC 讓民眾可直接持有央行負債，央行對貨幣供給的控制能力提高。",
-          "FOMC 有12名投票成員：7名理事、紐約聯準銀行總裁、4名輪值地區總裁。"
+          "M1A＝通貨淨額＋支票存款＋活期存款；M1B＝M1A＋活期儲蓄存款。",
+          "M2＝M1B＋準貨幣（定期存款、外匯存款、郵政儲金等）。",
+          "貨幣數量學說：MV＝PY；V 與 Y 穩定時，M 變動主要影響物價。",
+          "CBDC 是央行發行的數位法定貨幣，會提高央行對貨幣供給的控制能力。"
         ],
         "examples": [
           {
-            "questionId": "115Q1-macro-08",
+            "questionId": "115Q2-macro-written-2",
             "steps": [
-              "CBDC 是央行直接發行的數位負債，民眾可直接在央行持有。",
-              "這使央行能更直接掌握貨幣供給與支付系統，控制能力提高。",
-              "商業銀行不會完全消失，但可能面臨存款流失與脱媒壓力。",
-              "通膨不一定上升、匯率也不一定固定。答案A。"
+              "CBDC 是中央銀行發行的數位形式法定貨幣，分零售型（公眾使用）與批發型（金融機構間支付）。",
+              "它是央行的直接負債，與商業銀行存款不同；民眾可直接在央行持有。",
+              "國際趨勢：中國 e-CNY 試點、歐洲央行數位歐元準備、跨境支付與 mBridge；重點在隱私、離線支付、金融穩定與商業銀行脱媒風險。",
+              "臺灣目前以研究與試驗為主，尚未全面發行。"
             ],
-            "takeaway": "CBDC 提高央行對貨幣與支付體系的直接控制，但也帶來銀行脱媒風險。",
-            "trap": "把 CBDC 說成商業銀行存款，或以為它必然造成通膨。"
+            "takeaway": "CBDC 是央行直接負債，會改變銀行體系的中介角色與貨幣政策傳遞。",
+            "trap": "把 CBDC 當成商業銀行存款或加密貨幣；它是法定貨幣的數位形式。"
           },
           {
-            "questionId": "115Q2-macro-30",
+            "questionId": "115Q1-macro-18",
             "steps": [
-              "中央銀行法第2條的經營目標包括：促進金融穩定、健全銀行業務、維護對內及對外幣值穩定、協助經濟發展。",
-              "外匯存底孳息繳庫不是法定經營目標，而是盈餘繳庫的預算處理。",
-              "因此答案C。",
-              "答題時把「政策目標」與「預算處理」分開。"
+              "M1B 包含通貨淨額、活期存款、支票存款與活期儲蓄存款。",
+              "它同時具有交易與投資性目的，景氣好時資金更活躍，因此被稱為「戰鬥貨幣」。",
+              "M2 包含定期存款等準貨幣，較不具立即交易性，被稱為「防衛貨幣」。",
+              "答案B。"
             ],
-            "takeaway": "央行四大目標：金融穩定、健全銀行、幣值穩定、協助經濟發展。",
-            "trap": "把「外匯存底孳息繳庫」當成央行政策目標。"
+            "takeaway": "M1B 交易性高、景氣好時活躍；M2 包含準貨幣，較穩定。",
+            "trap": "把 M1B 與 M2 的組成對調。"
           },
           {
-            "questionId": "115Q2-macro-16",
+            "questionId": "115Q1-macro-26",
             "steps": [
-              "FOMC 是美國貨幣政策的決策機構。",
-              "投票成員共12人：7名聯邦準備理事會理事、紐約聯準銀行總裁（當然委員）、4名地區聯準銀行總裁輪值。",
-              "因此「有13名投票成員」錯誤；答案A。",
-              "B、C、D都是正確描述。"
+              "貨幣數量學說 MV＝PY。",
+              "若貨幣流通速度 V 與實質產出 Y 相對穩定，貨幣供給 M 的變動會主要反映在物價 P 或名目總合支出 PY。",
+              "因此總合支出的變化主要由貨幣供給所引起，答案B。",
+              "利率、流通速度、政府支出稅收不是貨幣數量學說的主要驅動變數。"
             ],
-            "takeaway": "FOMC 投票成員是12人，不是13人；紐約聯準銀行總裁是當然委員。",
-            "trap": "把「12個地區聯準銀行」與「12名投票成員」混淆。"
+            "takeaway": "貨幣數量學說的核心是「貨幣供給變動→名目支出/物價變動」。",
+            "trap": "把貨幣數量學說與凱因斯學派的利率傳遞混淆。"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "year": 114,
+    "label": "114 年",
+    "sections": {
+      "macro-04::2": {
+        "focus": "貨幣定義與貨幣數量學說：M1A、M1B、M2 的組成要分清楚；貨幣數量學說 MV＝PY，焦點是貨幣供給對總合支出的影響。",
+        "strategies": [
+          "M1A＝通貨淨額＋支票存款＋活期存款；M1B＝M1A＋活期儲蓄存款。",
+          "M2＝M1B＋準貨幣（定期存款、外匯存款、郵政儲金等）。",
+          "貨幣數量學說：MV＝PY；V 與 Y 穩定時，M 變動主要影響物價。",
+          "CBDC 是央行發行的數位法定貨幣，會提高央行對貨幣供給的控制能力。"
+        ],
+        "examples": [
+          {
+            "questionId": "114Q2-macro-29",
+            "steps": [
+              "M1＝通貨淨額＋支票存款＋活期存款（含類似活期存款）。",
+              "外匯存款屬於外幣計價存款，不列入新臺幣M1。",
+              "因此答案D。",
+              "M2則再加準貨幣（定期存款、外匯存款等）。"
+            ],
+            "takeaway": "M1看「通貨＋活期性存款」；外匯存款屬準貨幣。",
+            "trap": "把外匯存款當成活期存款；幣別不同，不列入M1。"
           }
         ]
       }
@@ -1939,23 +2022,97 @@ window.CHAPTER_DATA["macro-04"] = {
     "year": 113,
     "label": "113 年",
     "sections": {
-      "macro-04::1": {
-        "focus": "中央銀行與金融穩定：央行同時面對物價、成長與金融穩定目標。解題時先分政策工具（公開市場操作、貼現窗口、準備率、流動性工具），再看事件是流動性問題還是清償能力問題。",
+      "macro-04::2": {
+        "focus": "貨幣定義與貨幣數量學說：M1A、M1B、M2 的組成要分清楚；貨幣數量學說 MV＝PY，焦點是貨幣供給對總合支出的影響。",
         "strategies": [
-          "中央銀行目標：物價穩定、金融穩定、經濟成長；工具包括公開市場操作、重貼現、準備率、選擇性信用管制。",
-          "金融危機處理：最後貸款者提供流動性，存款保險保障存款人，必要時以系統性風險例外處理。",
-          "SVB：利率上升造成長債未實現損失、存款集中且未受保比例高、擠兌速度快。",
-          "政策取捨：救流動性不等於救股東；股東與無擔保債權人先承擔損失，降低道德風險。"
+          "M1A＝通貨淨額＋支票存款＋活期存款；M1B＝M1A＋活期儲蓄存款。",
+          "M2＝M1B＋準貨幣（定期存款、外匯存款、郵政儲金等）。",
+          "貨幣數量學說：MV＝PY；V 與 Y 穩定時，M 變動主要影響物價。",
+          "CBDC 是央行發行的數位法定貨幣，會提高央行對貨幣供給的控制能力。"
         ],
         "examples": [
           {
-            "questionId": "113Q1-macro-written-3",
+            "questionId": "113Q1-macro-14",
             "steps": [
-              "SVB倒閉的核心是資產負債期限錯配與利率風險：存款大量投入長期公債與MBS，聯準會快速升息使長債價格下跌，產生大量未實現損失；同時存款高度集中於科技與創投業，未受存保的存款比例高。",
-              "當客戶同時提款，銀行被迫賤賣資產實現損失，引發擠兌。社群媒體加速擠兌速度，流動性迅速耗盡。",
-              "美國政府處理：FDIC接管並保障存款（系統性風險例外）、Fed推出BTFP讓銀行以公債面額抵押借貸、財政部與Fed協調流動性；股東與無擔保債權人承擔損失，避免納稅人直接救助。"
+              "郵局儲金屬於M2的準貨幣，不計入M1B；提領現金後再存入銀行活期儲蓄存款，活儲屬於M1B。",
+              "因此M1B增加10萬元；M2的組成由郵局儲金轉為銀行存款，總額不變。",
+              "答案D。"
+            ],
+            "takeaway": "M1B看通貨與活期性存款；郵局儲金不計入M1B，但屬M2。",
+            "trap": "把郵局提領的現金當成M1B增加；真正增加的是存入銀行活儲。"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "year": 112,
+    "label": "112 年",
+    "sections": {
+      "macro-04::2": {
+        "focus": "貨幣定義與貨幣數量學說：M1A、M1B、M2 的組成要分清楚；貨幣數量學說 MV＝PY，焦點是貨幣供給對總合支出的影響。",
+        "strategies": [
+          "M1A＝通貨淨額＋支票存款＋活期存款；M1B＝M1A＋活期儲蓄存款。",
+          "M2＝M1B＋準貨幣（定期存款、外匯存款、郵政儲金等）。",
+          "貨幣數量學說：MV＝PY；V 與 Y 穩定時，M 變動主要影響物價。",
+          "CBDC 是央行發行的數位法定貨幣，會提高央行對貨幣供給的控制能力。"
+        ],
+        "examples": [
+          {
+            "questionId": "112Q1-macro-written-1",
+            "steps": [
+              "流通中的通貨＝通貨發行額－銀行庫存現金＝\\(430-50=380\\)。",
+              "準備貨幣（貨幣基數）＝流通中通貨＋銀行在央行存款＝\\(380+400=780\\)。",
+              "M1＝流通中通貨＋支票存款＋活期性存款＝\\(380+450+400=1{,}230\\)。",
+              "M2＝M1＋定期存款＝\\(1{,}230+1{,}400=2{,}630\\)。",
+              "M2乘數＝M2÷準備貨幣＝\\(2{,}630/780\\approx3.3718\\)。"
             ],
             "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "year": 111,
+    "label": "111 年",
+    "sections": {
+      "macro-04::1": {
+        "focus": "貨幣概論先分「貨幣的功能」與「貨幣的演進」。加密貨幣考點是它是否具備交易媒介、計價單位、價值儲藏功能，以及對金融穩定的負面影響。",
+        "strategies": [
+          "貨幣功能：交易媒介、計價單位、價值儲藏、延期支付標準。",
+          "貨幣演進：商品貨幣→金屬貨幣→紙幣→存款貨幣→電子支付與加密貨幣。",
+          "加密貨幣：去中心化、無發行主體、價格波動大、可能被用於洗錢與逃漏稅。",
+          "負面影響：金融穩定風險、消費者保護不足、貨幣政策傳導受阻、能源消耗。"
+        ],
+        "examples": [
+          {
+            "questionId": "111Q2-macro-written-1",
+            "steps": [
+              "加密貨幣是一種以密碼學與分散式帳本（區塊鏈）建立的數位資產，通常不依賴中央銀行或單一發行機構，可在網路上移轉、交易或作為價值儲存工具；它不是法定貨幣，價格波動大。",
+              "負面影響包括：第一，金融穩定風險，價格暴漲暴跌、槓桿交易與機構曝險可能傳染至傳統金融；第二，貨幣政策與資本流動，加密資產可繞過資本管制，造成貨幣替代、資本外逃與央行控制力下降；第三，投資人保護，詐騙、龐氏騙局、交易所倒閉、錢包被盗與資訊不對稱嚴重；第四，洗錢、資恐、逃稅與制裁規避；第五，支付與清算風險，交易不可逆、網路攻擊、私鑰遺失；第六，能源消耗與環境成本；第七，監管套利與跨國監理困難；第八，穩定幣若發生擠兌，可能引發短期流動性危機。"
+            ],
+            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+          }
+        ]
+      },
+      "macro-04::2": {
+        "focus": "貨幣定義與貨幣數量學說：M1A、M1B、M2 的組成要分清楚；貨幣數量學說 MV＝PY，焦點是貨幣供給對總合支出的影響。",
+        "strategies": [
+          "M1A＝通貨淨額＋支票存款＋活期存款；M1B＝M1A＋活期儲蓄存款。",
+          "M2＝M1B＋準貨幣（定期存款、外匯存款、郵政儲金等）。",
+          "貨幣數量學說：MV＝PY；V 與 Y 穩定時，M 變動主要影響物價。",
+          "CBDC 是央行發行的數位法定貨幣，會提高央行對貨幣供給的控制能力。"
+        ],
+        "examples": [
+          {
+            "questionId": "111Q1-macro-16",
+            "steps": [
+              "經濟學定義的貨幣：被社會普遍接受、可作為交易媒介與支付工具。",
+              "並具計價單位與價值儲藏功能。答案C。"
+            ],
+            "takeaway": "貨幣的本質是「被普遍接受的交易媒介」。",
+            "trap": "把貨幣等同於所有財富或所得。"
           }
         ]
       }
@@ -1965,50 +2122,59 @@ window.CHAPTER_DATA["macro-04"] = {
     "year": 110,
     "label": "110 年",
     "sections": {
-      "macro-04::3": {
-        "focus": "金融危機徵兆題從「資產價格、信用擴張、金融機構體質、外部失衡」四面向整理：先看泡沫與槓桿，再看擠兌與傳染。",
+      "macro-04::2": {
+        "focus": "貨幣定義與貨幣數量學說：M1A、M1B、M2 的組成要分清楚；貨幣數量學說 MV＝PY，焦點是貨幣供給對總合支出的影響。",
         "strategies": [
-          "資產價格偏離基本面、股市與房市泡沫。",
-          "信用快速擴張、槓桿比率升高、放款標準放寬。",
-          "金融機構流動性不足、期限錯配、不良債權增加。",
-          "國際收支惡化、外匯存底流失、匯率貶值壓力。",
-          "傳染效果：一家機構倒閉引發系統性擠兌與市場凍結。"
+          "M1A＝通貨淨額＋支票存款＋活期存款；M1B＝M1A＋活期儲蓄存款。",
+          "M2＝M1B＋準貨幣（定期存款、外匯存款、郵政儲金等）。",
+          "貨幣數量學說：MV＝PY；V 與 Y 穩定時，M 變動主要影響物價。",
+          "CBDC 是央行發行的數位法定貨幣，會提高央行對貨幣供給的控制能力。"
         ],
         "examples": [
           {
-            "questionId": "110Q3-macro-written-1",
+            "questionId": "110Q3-macro-12",
             "steps": [
-              "金融危機的可能徵兆包括：資產價格泡沫（股市、房市漲幅遠超過基本面）、信用快速擴張與槓桿升高、家庭/企業債務比率上升、銀行資金來源短期化與流動性錯配、信用利差擴大、CDS/違約風險上升、殖利率曲線倒掛、房價與成交量轉弱、不良貸款與逾期放款增加、資本外流與匯率貶值壓力、金融機構互相傳染與信心崩跌。",
-              "制度面徵兆包括：影子銀行快速成長、監管套利、複雜證券化與衍生品透明度不足、風險集中於少數機構、壓力測試失效、政府隱性擔保與道德風險。",
-              "這些指標不必然同時出現，也不代表危機一定發生；應結合領先/同時指標、金融健全指標與壓力測試綜合判斷。"
+              "郵局轉存款屬於M2的準貨幣，不計入M1A與M1B。",
+              "M2＝M1B＋準貨幣（含郵政儲金、定期存款、外匯存款等）。",
+              "答案D。"
             ],
-            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+            "takeaway": "郵局轉存款是M2準貨幣，不是M1B。",
+            "trap": "把郵局儲金計入M1B。"
           }
         ]
       }
     }
   },
   {
-    "year": 108,
-    "label": "108 年",
+    "year": 109,
+    "label": "109 年",
     "sections": {
-      "macro-04::3": {
-        "focus": "金融危機徵兆題從「資產價格、信用擴張、金融機構體質、外部失衡」四面向整理：先看泡沫與槓桿，再看擠兌與傳染。",
+      "macro-04::2": {
+        "focus": "貨幣定義與貨幣數量學說：M1A、M1B、M2 的組成要分清楚；貨幣數量學說 MV＝PY，焦點是貨幣供給對總合支出的影響。",
         "strategies": [
-          "資產價格偏離基本面、股市與房市泡沫。",
-          "信用快速擴張、槓桿比率升高、放款標準放寬。",
-          "金融機構流動性不足、期限錯配、不良債權增加。",
-          "國際收支惡化、外匯存底流失、匯率貶值壓力。",
-          "傳染效果：一家機構倒閉引發系統性擠兌與市場凍結。"
+          "M1A＝通貨淨額＋支票存款＋活期存款；M1B＝M1A＋活期儲蓄存款。",
+          "M2＝M1B＋準貨幣（定期存款、外匯存款、郵政儲金等）。",
+          "貨幣數量學說：MV＝PY；V 與 Y 穩定時，M 變動主要影響物價。",
+          "CBDC 是央行發行的數位法定貨幣，會提高央行對貨幣供給的控制能力。"
         ],
         "examples": [
           {
-            "questionId": "108Q3-macro-written-1",
+            "questionId": "109Q1-macro-written-2",
             "steps": [
-              "金融危機徵兆：資產價格泡沫、信用與槓桿快速擴張、家庭/企業債務上升、銀行流動性錯配、信用利差與CDS上升、殖利率曲線倒掛、房價與成交量轉弱、不良貸款增加、資本外流與匯率貶值、金融機構傳染與信心崩跌。",
-              "制度面：影子銀行、監管套利、複雜證券化、風險集中、壓力測試失效、隱性擔保與道德風險。這些指標需綜合判讀，不能單一指標斷定危機。"
+              "(1) \\(r+\\pi^e=6\\%+4\\%=10\\%\\)。貨幣需求 \\(M_d/P=1{,}000+0.2(2{,}000)-1{,}000(0.10)=1{,}000+400-100=1{,}300\\)。流通速度 \\(V=Py/M=y/(M/P)=2{,}000/1{,}300\\approx1.54\\)。",
+              "(2) \\(M_s/P=2{,}600/P=1{,}300\\)，故 \\(P=2.0\\)。"
             ],
             "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+          },
+          {
+            "questionId": "109Q1-macro-07",
+            "steps": [
+              "M1A＝通貨淨額＋支票存款＋活期存款；M1B＝M1A＋活期儲蓄存款。",
+              "M2＝M1B＋準貨幣（定期存款、郵政儲金、外匯存款等）。",
+              "答案D。"
+            ],
+            "takeaway": "M1A、M1B、M2是層層加項的關係。",
+            "trap": "把活期儲蓄存款計入M1A。"
           }
         ]
       }

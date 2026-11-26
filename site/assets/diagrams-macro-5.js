@@ -3,7 +3,7 @@
 window.MACRO_DIAGRAMS = window.MACRO_DIAGRAMS || {};
 
 Object.assign(window.MACRO_DIAGRAMS, {
-  "macro-12#1": {
+  "macro-13#1": {
     sectionTitle: "第2節 利率決定理論",
     title: "可貸資金市場：政府赤字與利率",
     kicker: "學派模型 · 古典",
@@ -54,7 +54,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "可貸資金理論與流動性偏好理論都決定利率，但前者強調儲蓄與投資的流量，後者強調貨幣存量供需。若改以國民儲蓄為供給，政府赤字會使供給左移，均衡利率同樣上升；兩種畫法的曲線移動方向不同，不可混用。"
   },
 
-  "macro-12#2": {
+  "macro-13#2": {
     sectionTitle: "第3節 利率之風險結構",
     title: "風險結構：信用價差與殖利率",
     formula: String.raw`y_{\text{公司債}}=y_{\text{公債}}+\text{信用價差}`,
@@ -96,7 +96,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "本圖為相同到期日下的比較；若到期日不同，還要區分期限結構（收益率曲線）的效果。「政府公債（無風險）」是考試慣例；政府公債仍有通膨、流動性與再投資風險，並非完全無風險。"
   },
 
-  "macro-12#3": {
+  "macro-13#3": {
     sectionTitle: "第4節 利率之期限結構理論",
     title: "收益率曲線：正常、平坦與倒掛",
     formula: String.raw`(1+y_n)^n=(1+y_1)(1+f_2)\cdots(1+f_n)`,
@@ -131,7 +131,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "預期理論、流動性溢酬理論、市場區隔理論與偏好棲息地理論，對曲線形狀有不同解釋，考試常比較其差異。"
   },
 
-  "macro-12#4": {
+  "macro-13#4": {
     sectionTitle: "第5節 利率風險管理",
     title: "存續期間與凸性：價格對利率的敏感度",
     formula: String.raw`\frac{\Delta P}{P}\approx-D^*\Delta y+\frac12\text{Convexity}(\Delta y)^2`,
@@ -176,7 +176,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "價格變動率近似為 ΔP/P ≈ −D* × Δy + ½ × 凸性 × (Δy)²。存續期間適合小幅利率變動，大幅變動要加入凸性。"
   },
 
-  "macro-13#6": {
+  "macro-14#6": {
     sectionTitle: "第7節 衍生性金融商品",
     title: "選擇權到期價值：買權與賣權",
     formula: String.raw`\max(S_T-K,0),\qquad \max(K-S_T,0)`,
@@ -213,7 +213,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
 });
 
 Object.assign(window.MACRO_DIAGRAMS, {
-  "macro-04#0": {
+  "macro-05#0": {
     sectionTitle: "第1節 中央銀行",
     kicker: "題庫導向圖解",
     title: "準備金市場：公開市場買進使供給右移、利率下降",
@@ -268,7 +268,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "本圖為概念示意，未按實際準備金供需數值繪製；公開市場買進同時增加央行資產與負債，實際利率效果還取決於準備金需求彈性與沖銷操作。"
   },
 
-  "macro-05#4": {
+  "macro-06#4": {
     sectionTitle: "進階專題：泰勒法則、QTM 與準備金走廊",
     kicker: "題庫導向圖解",
     title: "準備金走廊與 QT：供給左移使短期利率向 IORB 靠攏",
@@ -317,7 +317,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "本圖為概念示意；走廊上下限的相對位置、EFFR 與 SOFR 的實際交易區間，會隨制度、準備金豐裕程度與回購市場摩擦變動。"
   },
 
-  "macro-10#6": {
+  "macro-11#6": {
     sectionTitle: "進階專題：REER、J 曲線與三元悖論",
     kicker: "題庫導向圖解",
     title: "J 曲線：貶值後貿易餘額先惡化、後改善",
@@ -359,7 +359,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "本圖為概念示意，未按實際時間與金額繪製；J 曲線不是每國、每次貶值都會出現，若彈性不足或供給鏈受阻，貿易餘額可能持續惡化。"
   },
 
-  "macro-13#0": {
+  "macro-14#0": {
     sectionTitle: "第1節 貨幣市場與資本市場比較整理",
     kicker: "題庫導向圖解",
     title: "金融工具地圖：貨幣市場、資本市場與衍生品",

@@ -606,22 +606,22 @@ window.CHAPTER_DATA["macro-07"] = {
   ],
   "questions": [
     {
-      "id": "107Q1-macro-01",
+      "id": "107Q1-macro-02",
       "sessionId": "107Q1",
       "year": 107,
       "session": 1,
       "subject": "macro",
       "sourceId": "macro-07",
-      "number": 1,
-      "stem": "其他條件不變，下列何種情況會使總合需求增加？",
+      "number": 2,
+      "stem": "IS 線與 LM 線交點，可以決定________與________之均衡水準。",
       "options": [
-        "稅收增加",
-        "淨出口減少",
-        "貨幣供給減少",
-        "計畫性投資增加"
+        "總合產出；物價",
+        "總合產出；利率",
+        "貨幣供給；物價",
+        "消費支出；利率"
       ],
       "answer": [
-        "D"
+        "B"
       ],
       "sourceIds": [
         "macro-07"
@@ -629,108 +629,192 @@ window.CHAPTER_DATA["macro-07"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-07",
-          "sectionIndex": 2
+          "sectionIndex": 1
         }
       ]
     },
     {
-      "id": "107Q2-macro-27",
+      "id": "107Q2-macro-06",
       "sessionId": "107Q2",
       "year": 107,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-07",
-      "number": 27,
-      "stem": "造成停滯性通貨膨脹的原因可能是下列哪一項？",
-      "options": [
-        "央行提高貨幣供給",
-        "石油價格劇烈上漲",
-        "政府提高各項政府支出",
-        "廠商生產之技術進步"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "107Q3-macro-01",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 1,
-      "stem": "賽依(J. B. Say)所提出賽依法則(Say's Law)是？",
-      "options": [
-        "供給創造其自身的需求",
-        "需求創造其自身的供給",
-        "供給創造其自身的供給",
-        "需求創造其自身的需求"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "107Q3-macro-03",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 3,
-      "stem": "亞當‧史密斯(Adam Smith)為啟始的古典學派(Classical School)認為經濟體系中存在一隻看不見的手此即：",
-      "options": [
-        "政府",
-        "比較利益",
-        "民間活力",
-        "價格機能"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "107Q3-macro-06",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-07",
       "number": 6,
-      "stem": "下列有關長期總合供給(Long-Run Aggregate Supply, LRAS)的描述何者有誤？",
+      "stem": "若央行採取釘住利率的貨幣政策，當政府支出________時，央行會增加貨幣供給以避免利率________。",
       "options": [
-        "縱軸是一般物價水準",
-        "橫軸是實質生產",
-        "是一水平線",
-        "產量是充分就業的產量"
+        "減少；上升",
+        "減少；下降",
+        "增加；下降",
+        "增加；上升"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "107Q2-macro-26",
+      "sessionId": "107Q2",
+      "year": 107,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 26,
+      "stem": "在 IS/LM 模型中，有關貨幣政策及財政政策的有效性，下列敘述何者錯誤？",
+      "options": [
+        "LM 曲線平坦，貨幣政策較無效",
+        "IS 曲線陡峭，財政政策較有效",
+        "寬鬆的貨幣政策，LM 曲線向右下方移動",
+        "擴張的財政政策，IS 曲線向左下方移動"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "107Q2-macro-30",
+      "sessionId": "107Q2",
+      "year": 107,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 30,
+      "stem": "當貨幣供給量不變，政府支出增加，導致利率上升，但民間投資減少的現象，稱為：",
+      "options": [
+        "排擠效果",
+        "實質餘額效果",
+        "信用分配效果",
+        "流動性效果"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "107Q3-macro-15",
+      "sessionId": "107Q3",
+      "year": 107,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 15,
+      "stem": "下列有關流動性陷阱(Liquidity Trap)的敘述，何者正確？",
+      "options": [
+        "此時人們手中所持有的貨幣很少",
+        "發生在利率偏高的時候",
+        "依照凱因斯的說法，此時即使貨幣供給變動也無法改變經濟活動",
+        "此 LM 曲線很陡"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "107Q4-macro-20",
+      "sessionId": "107Q4",
+      "year": 107,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 20,
+      "stem": "有關排拉入效果(Pulling-In Effect)的敘述，何者正確？",
+      "options": [
+        "政府支出與民間支出彼此存在互補關係",
+        "政府支出增加將會帶動進口減少",
+        "政府支出增加將會替代民間消費支出",
+        "政府支出增加將會導致租稅減少"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "107Q4-macro-34",
+      "sessionId": "107Q4",
+      "year": 107,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 34,
+      "stem": "在 IS-LM 模型中，有關貨幣政策與財政政策效果的敘述，何者錯誤？",
+      "options": [
+        "LM 曲線缺乏利率彈性，貨幣政策效果極為顯著",
+        "IS 曲線具有高利率彈性，財政政策將會出現高度排擠效果",
+        "貨幣需求具有高利率彈性，財政政策將毫無效果可言",
+        "消費與投資缺乏利率彈性，貨幣政策將無效果可言"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "108Q1-macro-12",
+      "sessionId": "108Q1",
+      "year": 108,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 12,
+      "stem": "中央銀行增加貨幣供給，同時政府採取減稅措施，則利率水準將：",
+      "options": [
+        "上升",
+        "下降",
+        "不一定",
+        "大幅波動"
       ],
       "answer": [
         "C"
@@ -746,131 +830,19 @@ window.CHAPTER_DATA["macro-07"] = {
       ]
     },
     {
-      "id": "107Q3-macro-16",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
+      "id": "108Q1-macro-13",
+      "sessionId": "108Q1",
+      "year": 108,
+      "session": 1,
       "subject": "macro",
       "sourceId": "macro-07",
-      "number": 16,
-      "stem": "停滯性通貨膨脹(stagflation)發生在：",
+      "number": 13,
+      "stem": "「當利率降至極低水準時，貨幣需求的利率彈性變為無窮大，此種情況下，中央銀行不論增加多少貨幣供給，都會被大眾的貨幣需求所吸收，利率卻不再下降」 ，此種現象稱為：",
       "options": [
-        "總合供給曲線左移時",
-        "總合供給曲線右移時",
-        "總合需求曲線左移時",
-        "總合需求曲線右移時"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "107Q3-macro-18",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 18,
-      "stem": "盧卡斯(Lucas)的總合供給曲線指出實際產出和充分就業產出水準中間的差距受的影響。",
-      "options": [
-        "任何總合需求變動",
-        "不可預期的通貨膨脹",
-        "生產要素變動",
-        "貨幣政策"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "107Q3-macro-19",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 19,
-      "stem": "如果總產出低於自然產出水準，政策激進派(activist)會建議政府：",
-      "options": [
-        "使總合需求曲線往右移動來消除高失業率",
-        "使總合需求曲線往左移動來消除高失業率",
-        "提高總合供給來消除通貨膨脹",
-        "什麼都不要做"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "107Q4-macro-10",
-      "sessionId": "107Q4",
-      "year": 107,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 10,
-      "stem": "若勞動市場已達自然就業，則總需求增加在長期將導致：",
-      "options": [
-        "產出增加",
-        "物價上升",
-        "產出減少",
-        "物價下跌"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "107Q4-macro-15",
-      "sessionId": "107Q4",
-      "year": 107,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 15,
-      "stem": "體系存在皮古效果(Pigou Effect)將對經濟活動釀成影響，何者正確？",
-      "options": [
-        "體系利率下降，將吸引消費者增加當期消費",
-        "體系物價上升，將帶動消費者的實質財富增加",
-        "體系物價下跌，將誘使廠商減少投資",
-        "皮古效果出現，有助於擴大體系總需求的物價彈性"
+        "貨幣中立性",
+        "貨幣幻覺",
+        "排擠效果",
+        "流動性陷阱"
       ],
       "answer": [
         "D"
@@ -886,47 +858,19 @@ window.CHAPTER_DATA["macro-07"] = {
       ]
     },
     {
-      "id": "107Q4-macro-21",
-      "sessionId": "107Q4",
-      "year": 107,
-      "session": 4,
+      "id": "108Q1-macro-26",
+      "sessionId": "108Q1",
+      "year": 108,
+      "session": 1,
       "subject": "macro",
       "sourceId": "macro-07",
-      "number": 21,
-      "stem": "當體系內總供給曲線呈現水平線時，何種說法正確？",
+      "number": 26,
+      "stem": "根據加速原理，趨緩的所得增加率將透過加速原理造成投資減少，而使：",
       "options": [
-        "此體系趨近於自然就業的總供給曲線",
-        "體系長期總供給曲線將缺乏物價彈性",
-        "此種現象隱含體系內物價調整具有自由浮動性",
-        "擴張性需求管理政策將促使實質產出增加，而物價持穩不變"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "107Q4-macro-25",
-      "sessionId": "107Q4",
-      "year": 107,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 25,
-      "stem": "在何種情況下，新興古典學派(New Classical School)認為央行執行擴張貨幣政策，將會促使實質產出增加？",
-      "options": [
-        "未預期貨幣政策",
-        "預期貨幣政策",
-        "未預期或預期貨幣政策都有可能增加實質產出",
-        "任何型態的貨幣政策都無法擴張實質產出"
+        "所得減少",
+        "投資再增加",
+        "利率上升",
+        "物價上漲"
       ],
       "answer": [
         "A"
@@ -937,24 +881,24 @@ window.CHAPTER_DATA["macro-07"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-07",
-          "sectionIndex": 3
+          "sectionIndex": 1
         }
       ]
     },
     {
-      "id": "108Q1-macro-01",
+      "id": "108Q1-macro-29",
       "sessionId": "108Q1",
       "year": 108,
       "session": 1,
       "subject": "macro",
       "sourceId": "macro-07",
-      "number": 1,
-      "stem": "造成停滯性通貨膨脹的原因可能是下列哪一項？",
+      "number": 29,
+      "stem": "「排擠效果」是指政府支出增加造成？",
       "options": [
-        "央行提高貨幣供給",
-        "政府提高各項政府支出",
-        "廠商生產之技術進步",
-        "石油價格劇烈上漲"
+        "課稅所得減少",
+        "進出口貿易減少",
+        "民間消費減少",
+        "企業投資減少"
       ],
       "answer": [
         "D"
@@ -965,139 +909,27 @@ window.CHAPTER_DATA["macro-07"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-14",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 14,
-      "stem": "所謂貨幣中立性(Neutrality)係指，貨幣供給變動時：",
-      "options": [
-        "對物價水準及實質產出均沒有影響",
-        "只引起物價水準變動，對實質產出則沒有影響",
-        "只引起實質產出變動，對物價水準則沒有影響",
-        "引起實質產出的變動，對利率則沒有影響"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-15",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 15,
-      "stem": "假設總合供給曲線為正斜率，若總需求增加時，則：",
-      "options": [
-        "物價上漲、產出不變",
-        "物價下跌、產出不變",
-        "物價與產出皆增加",
-        "物價不變、產出增加"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-16",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 16,
-      "stem": "「需求拉升」與「成本推動」的通貨膨脹，對物價水準及產出的影響方向為？",
-      "options": [
-        "對物價的影響方向不同，對所得的影響方向相同",
-        "對物價的影響方向相同，對所得的影響方向不同",
-        "對物價與所得的影響方向均相同",
-        "對物價與所得的影響方向均不同"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-35",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 35,
-      "stem": "下述何者認為，政策決定者若假定經濟體系為一穩定關係，則政策評估會出錯？",
-      "options": [
-        "貨幣學派(Monetarist)",
-        "路卡斯評論(Lucas Critique)",
-        "公共選擇理論(Public Choice Theory)",
-        "新興凱因斯理論(New Keynesian Theory)"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
           "sectionIndex": 3
         }
       ]
     },
     {
-      "id": "108Q2-macro-14",
+      "id": "108Q2-macro-06",
       "sessionId": "108Q2",
       "year": 108,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-07",
-      "number": 14,
-      "stem": "下述何者認為，政策決定者若假定經濟體系為一穩定關係，則政策評估會出錯？",
+      "number": 6,
+      "stem": "政府採行緊縮性財政政策，利用增稅或減少政府支出來抑制總合需求，此時的政府預算盈餘將增加或預算赤字獲得改善，於是借貸市場需求力道減緩，實質利率因此下跌。實質利率下探反而會刺激消費與投資的增加，這將抵銷部份緊縮性財政政策的效果，此稱為？",
       "options": [
-        "貨幣學派(Monetarist)",
-        "路卡斯評論(Lucas Critique)",
-        "公共選擇理論(Public Choice Theory)",
-        "新興凱因斯理論(New Keynesian Theory)"
+        "實質餘額效果",
+        "替代效果",
+        "擠出效果",
+        "擠入效果"
       ],
       "answer": [
-        "B"
+        "D"
       ],
       "sourceIds": [
         "macro-07"
@@ -1105,108 +937,52 @@ window.CHAPTER_DATA["macro-07"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-07",
-          "sectionIndex": 3
+          "sectionIndex": 2
         }
       ]
     },
     {
-      "id": "108Q3-macro-10",
+      "id": "108Q2-macro-23",
+      "sessionId": "108Q2",
+      "year": 108,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 23,
+      "stem": "假設物價水準固定不變，什麼情況下財政政策會比貨幣政策更有效力？",
+      "options": [
+        "當投資的利率彈性愈大時",
+        "IS 曲線愈平坦",
+        "LM 曲線愈陡斜",
+        "當貨幣需求對利率彈性愈大時"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "108Q3-macro-27",
       "sessionId": "108Q3",
       "year": 108,
       "session": 3,
       "subject": "macro",
       "sourceId": "macro-07",
-      "number": 10,
-      "stem": "下列那一項因素會導致總需求線左移？",
-      "options": [
-        "政府減稅",
-        "進口減少",
-        "政府支出減少",
-        "選項(A)(B)(C)皆是"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "109Q1-macro-04",
-      "sessionId": "109Q1",
-      "year": 109,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 4,
-      "stem": "依據古典學派說法，央行採取緊縮貨幣政策，長期將對體系造成何種影響？",
-      "options": [
-        "實質產出減少與實質利率上升",
-        "實質利率上升，而名目產出維持不變",
-        "物價與實質產出同時下降",
-        "實質利率與實質產出維持不變"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "109Q1-macro-20",
-      "sessionId": "109Q1",
-      "year": 109,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 20,
-      "stem": "在貨幣中立性的假設下，央行增加名目貨幣供給，將會造成何種結果？",
-      "options": [
-        "僅會影響實質產出，但不影響物價",
-        "物價將與貨幣供給等比例增加",
-        "實質產出將與貨幣供給等比例增加",
-        "實質利率上漲將等於貨幣供給增加率"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "109Q1-macro-27",
-      "sessionId": "109Q1",
-      "year": 109,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-07",
       "number": 27,
-      "stem": "下列何者不是總供給曲線移動的原因？",
+      "stem": "若社會大眾的流動性偏好(liquidity preference)降低，但貨幣供給減少，則 LM 曲線如何移動？：",
       "options": [
-        "氣候的改變",
-        "天然災害",
-        "油價的改變",
-        "外國人所得改變"
+        "右移",
+        "左移",
+        "不變",
+        "不一定"
       ],
       "answer": [
         "D"
@@ -1222,159 +998,19 @@ window.CHAPTER_DATA["macro-07"] = {
       ]
     },
     {
-      "id": "109Q2-macro-33",
-      "sessionId": "109Q2",
-      "year": 109,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 33,
-      "stem": "商品價格下跌將使本國商品的競爭力上升，使本國的出口增加、進口減少，亦即出口淨額增加，這種效果稱為：",
-      "options": [
-        "跨期替代效果",
-        "國際替代效果",
-        "實質財富效果",
-        "所得效果"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "109Q2-macro-34",
-      "sessionId": "109Q2",
-      "year": 109,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 34,
-      "stem": "總合需求曲線 AD，顯示物價水準與總支出呈反向變動關係，假設物價水準改變會影響貨幣市場也會影響商品市場，下列何者並非物價水準下降所造成的影響而使總支出上升？",
-      "options": [
-        "消費的跨期替代效果",
-        "國際替代效果",
-        "實質財富效果",
-        "乘數效果"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "109Q2-macro-35",
-      "sessionId": "109Q2",
-      "year": 109,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 35,
-      "stem": "物價水準變動對實質財富的影響之效果，稱為：",
-      "options": [
-        "凱因斯效果（Keynes Effect）",
-        "實質餘額效果（Real Balance Effect）",
-        "皮古效果（Pigou Effect）",
-        "流動性效果（Liquidity Effect）"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "109Q3-macro-05",
-      "sessionId": "109Q3",
-      "year": 109,
+      "id": "108Q3-macro-28",
+      "sessionId": "108Q3",
+      "year": 108,
       "session": 3,
       "subject": "macro",
       "sourceId": "macro-07",
-      "number": 5,
-      "stem": "基蘭德(Kydland)和普雷斯科特(Prescott)將政府所宣布的政策與其後行為不相同的現象稱為？",
+      "number": 28,
+      "stem": "若經濟體處於「投資陷阱」，則下列敘述何者為正確：",
       "options": [
-        "理性預期",
-        "調適預期",
-        "結構改變",
-        "時間不一致性"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "109Q3-macro-07",
-      "sessionId": "109Q3",
-      "year": 109,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 7,
-      "stem": "其他條件不變，下列何種情況會使總合需求增加？",
-      "options": [
-        "稅收增加",
-        "淨出口減少",
-        "貨幣供給減少",
-        "計畫性投資增加"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "109Q3-macro-25",
-      "sessionId": "109Q3",
-      "year": 109,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 25,
-      "stem": "停滯性通貨膨脹 (stagflation)，是總合供給曲線向移動造成的，會造成物價而產出水準。",
-      "options": [
-        "左邊；上漲；減少",
-        "左邊；上漲；增加",
-        "右邊；上漲；減少",
-        "右邊；下降；減少"
+        "財政政策有效，貨幣政策無效",
+        "財政政策無效，貨幣政策有效",
+        "貨幣政策較財政政策有效",
+        "財政政策與貨幣政策均無效"
       ],
       "answer": [
         "A"
@@ -1385,388 +1021,52 @@ window.CHAPTER_DATA["macro-07"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "109Q3-macro-35",
-      "sessionId": "109Q3",
-      "year": 109,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 35,
-      "stem": "以下何者正確？",
-      "options": [
-        "泡沫經濟造成各種價格的上漲，是來自於供給面的波動",
-        "能源危機造成的物價上漲是來自於總需求的波動",
-        "貨幣需求增加，會導致物價上升",
-        "盧卡斯 (Lucas) 的供給方程式指出失業率和自然失業率中間的差距受到「不可預期通貨膨脹」的影響"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "109Q4-macro-08",
-      "sessionId": "109Q4",
-      "year": 109,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 8,
-      "stem": "若勞動市場已達充份就業，則總合需求增加在長期將導致：",
-      "options": [
-        "產出增加",
-        "物價上升",
-        "產出減少",
-        "物價下跌"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "109Q4-macro-29",
-      "sessionId": "109Q4",
-      "year": 109,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 29,
-      "stem": "新興古典學派是假設人們是理性預期，因此當蓋起捷運的地段應該何時土地市價會上漲？",
-      "options": [
-        "捷運完工時",
-        "捷運正動工時",
-        "宣布興建時",
-        "有消息透露出要蓋捷運時"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
           "sectionIndex": 3
         }
       ]
     },
     {
-      "id": "109Q4-macro-30",
-      "sessionId": "109Q4",
+      "id": "109Q1-macro-16",
+      "sessionId": "109Q1",
       "year": 109,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 30,
-      "stem": "其他條件不變下，下列何種狀況會使短期總合供給下降？",
-      "options": [
-        "技術進步",
-        "工資上漲",
-        "財政支出增加",
-        "貨幣數量增加"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "110Q1-macro-01",
-      "sessionId": "110Q1",
-      "year": 110,
       "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 1,
-      "stem": "國際油價上漲時，所引起的物價膨脹主要是？",
-      "options": [
-        "總合需求線左移",
-        "總合需求線右移",
-        "總合供給線左移",
-        "總合供給線右移"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "110Q1-macro-04",
-      "sessionId": "110Q1",
-      "year": 110,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 4,
-      "stem": "若勞動市場已達充份就業，則總合需求增加在長期將導致：",
-      "options": [
-        "產出增加",
-        "物價上升",
-        "產出減少",
-        "物價下跌"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "110Q1-macro-22",
-      "sessionId": "110Q1",
-      "year": 110,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 22,
-      "stem": "依據古典學派說法，某國期初處於自然產出環境。隨著該國總需求擴張，長期將會導致何種結果？",
-      "options": [
-        "高物價與低循環性失業率",
-        "高物價與高實質產出",
-        "高名目產出與高物價",
-        "高物價與低自然產出"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "110Q1-macro-26",
-      "sessionId": "110Q1",
-      "year": 110,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 26,
-      "stem": "有關總需求曲線變化衍生的說法，何者錯誤？",
-      "options": [
-        "央行緊縮貨幣供給，將引起總需求曲線左移",
-        "總需求曲線右移，將引起 Phillips 曲線右移",
-        "自發性民間消費增加，將引起總需求曲線右移",
-        "沿著某一 Phillips 曲線向左上方移動，隱含總需求曲線右移"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "110Q3-macro-09",
-      "sessionId": "110Q3",
-      "year": 110,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 9,
-      "stem": "生產要素短期具有何特性？",
-      "options": [
-        "僵固性",
-        "不可逆性",
-        "嚴謹性",
-        "彈性"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "110Q3-macro-14",
-      "sessionId": "110Q3",
-      "year": 110,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 14,
-      "stem": "2017 年諾貝爾得主塞勒(Richard H. Thaler)，針對個人決策心理分析進行相關研究，進而開創經濟學新領域？",
-      "options": [
-        "政治經濟學",
-        "行為經濟學",
-        "實驗經濟學",
-        "教育經濟學"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "111Q1-macro-06",
-      "sessionId": "111Q1",
-      "year": 111,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 6,
-      "stem": "國際油價上漲時，所引起的物價膨脹主要是？",
-      "options": [
-        "總合需求線左移",
-        "總合需求線右移",
-        "總合供給線左移",
-        "總合供給線右移"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "111Q1-macro-07",
-      "sessionId": "111Q1",
-      "year": 111,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 7,
-      "stem": "總合需求曲線為負斜率的理由，下列何者不是？",
-      "options": [
-        "實質餘額效果",
-        "利率效果",
-        "替代效果",
-        "理性預期效果"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "111Q2-macro-14",
-      "sessionId": "111Q2",
-      "year": 111,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 14,
-      "stem": "2017 年諾貝爾得主賽勒(Richard H.Thaler)，針對個人決策心理分析進行相關研究，進而開創經濟學新領域？",
-      "options": [
-        "政治經濟學",
-        "行為經濟學",
-        "實驗經濟學",
-        "教育經濟學"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "111Q2-macro-16",
-      "sessionId": "111Q2",
-      "year": 111,
-      "session": 2,
       "subject": "macro",
       "sourceId": "macro-07",
       "number": 16,
-      "stem": "下列何者因素不是影響總合供給曲線的移動？",
+      "stem": "有關股價與廠商從事實體資本投資的關係，可用何種理論解釋？",
       "options": [
-        "生產要素成本改變",
-        "生產技術的改變",
-        "貨幣供給變動",
-        "實質工資改變"
+        "資本使用者成本理論",
+        "q 比率理論",
+        "殖利率曲線理論",
+        "現值法的投資理論"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "109Q1-macro-19",
+      "sessionId": "109Q1",
+      "year": 109,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 19,
+      "stem": "某國勞工的工作意願大幅上升，將對 IS 曲線造成何種影響？",
+      "options": [
+        "透過消費增加而促使 IS 曲線右移",
+        "促使工資下降而引起消費減少，進而引起 IS 曲線左移",
+        "對 IS 曲線毫無影響",
+        "廠商生產成本下降導致物價下跌，促使 IS 曲線左移"
       ],
       "answer": [
         "C"
@@ -1782,47 +1082,19 @@ window.CHAPTER_DATA["macro-07"] = {
       ]
     },
     {
-      "id": "111Q2-macro-18",
-      "sessionId": "111Q2",
-      "year": 111,
-      "session": 2,
+      "id": "109Q1-macro-29",
+      "sessionId": "109Q1",
+      "year": 109,
+      "session": 1,
       "subject": "macro",
       "sourceId": "macro-07",
-      "number": 18,
-      "stem": "下列何者是造成停滯性通貨膨脹的主要因素？",
+      "number": 29,
+      "stem": "「當利率降至極低水準時，貨幣需求的利率彈性變為無窮大，此種情況下，中央銀行不論增加多少貨幣供給，都會被大眾的貨幣需求吸收，利率卻不再下降」，此種現象稱為；",
       "options": [
-        "政府擴大財政支出",
-        "出口衰退",
-        "能源與原物料進口價格上揚",
-        "央行採取寬鬆性貨幣政策"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "111Q3-macro-30",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 30,
-      "stem": "當政策改變，民眾的行為也隨之改變，因此過去歷史資料顯示總體經濟變數之間的關聯是無法長久存在的。這樣的理論稱為：",
-      "options": [
-        "飛利浦曲線",
-        "政策無關性假說",
-        "遲滯現象",
-        "盧卡斯批判（Lucas critique）"
+        "貨幣中立性",
+        "貨幣幻覺",
+        "排擠效果",
+        "流動性陷阱"
       ],
       "answer": [
         "D"
@@ -1838,78 +1110,22 @@ window.CHAPTER_DATA["macro-07"] = {
       ]
     },
     {
-      "id": "112Q1-macro-07",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
+      "id": "109Q2-macro-05",
+      "sessionId": "109Q2",
+      "year": 109,
+      "session": 2,
       "subject": "macro",
       "sourceId": "macro-07",
-      "number": 7,
-      "stem": "長期總合供給曲線為一通過________的垂直線。",
+      "number": 5,
+      "stem": "若央行採取釘住利率的貨幣政策，當政府支出______時，央行會增加貨幣供給以避免利率 ______。",
       "options": [
-        "自然產出",
-        "實質工資率",
-        "實質失業率",
-        "預期通貨膨脹率"
+        "減少；上升",
+        "減少；下降",
+        "增加；下降",
+        "增加；上升"
       ],
       "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "112Q1-macro-09",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 9,
-      "stem": "總合供給曲線短期有何特性？",
-      "options": [
-        "具負斜率",
-        "具正斜率",
-        "水平",
-        "垂直"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "112Q1-macro-15",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 15,
-      "stem": "停滯性通貨膨脹，是總合________曲線向________移動造成的，會使物價________而產出水準 ________。",
-      "options": [
-        "供給；右邊；上漲；增加",
-        "供給；左邊；上漲；減少",
-        "需求；右邊；上漲；增加",
-        "需求；左邊；下降；減少"
-      ],
-      "answer": [
-        "B"
+        "D"
       ],
       "sourceIds": [
         "macro-07"
@@ -1922,186 +1138,18 @@ window.CHAPTER_DATA["macro-07"] = {
       ]
     },
     {
-      "id": "112Q2-macro-04",
-      "sessionId": "112Q2",
-      "year": 112,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 4,
-      "stem": "國際油價上漲時，所引起的物價膨脹主要是？",
-      "options": [
-        "總合需求線左移",
-        "總合需求線右移",
-        "總合供給線左移",
-        "總合供給線右移"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "112Q2-macro-12",
-      "sessionId": "112Q2",
-      "year": 112,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 12,
-      "stem": "下列哪一項因素會導致總需求線左移？",
-      "options": [
-        "政府減稅",
-        "進口減少",
-        "政府支出減少",
-        "選項(A)(B)(C) 皆是"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "112Q2-macro-20",
-      "sessionId": "112Q2",
-      "year": 112,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 20,
-      "stem": "下列何者因素會造成總需求下降？",
-      "options": [
-        "利率上升",
-        "財政支出增加",
-        "貨幣數量增加",
-        "預期通貨膨脹率上升"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "112Q2-macro-22",
-      "sessionId": "112Q2",
-      "year": 112,
+      "id": "109Q2-macro-22",
+      "sessionId": "109Q2",
+      "year": 109,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-07",
       "number": 22,
-      "stem": "當經濟陷入衰退時，下列何者會主張政府應降稅？",
+      "stem": "全球肺炎大流行衝擊全球經濟前景，各國紛紛實施寬鬆財政政策來刺激經濟成長，若貨幣需求對利率的敏感性越小時，寬鬆財政政策的實施效果則：",
       "options": [
-        "古典學派",
-        "理性預期學派",
-        "貨幣學派",
-        "供給學派"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "112Q3-macro-04",
-      "sessionId": "112Q3",
-      "year": 112,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 4,
-      "stem": "新興古典學派(New Classical School)與新興凱因斯學派(New Keynesian School)皆認為 ________。",
-      "options": [
-        "預期到的政策不會影響實質產出與失業",
-        "將預期與非預期的政策效果分開，而前者影響較大",
-        "將預期與非預期的政策效果分開，而後者影響較大",
-        "假設當預期物價水準變動時，工資與物價皆具有伸縮性"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "113Q2-macro-01",
-      "sessionId": "113Q2",
-      "year": 113,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 1,
-      "stem": "新興古典學派(New Classical School)假設人們行為是________，所以工資與物價會隨人們預期而_______。",
-      "options": [
-        "適應性預期；充分伸縮",
-        "適應性預期；僵固",
-        "理性預期的；充分伸縮",
-        "理性預期的；僵固"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "113Q3-macro-08",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 8,
-      "stem": "根據凱因斯的總合供需模型，實質工資率和景氣波動有：",
-      "options": [
-        "正向關係",
-        "反向關係",
-        "兩者不相關",
+        "越大",
+        "越小",
+        "不變",
         "不一定"
       ],
       "answer": [
@@ -2113,108 +1161,24 @@ window.CHAPTER_DATA["macro-07"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-07",
-          "sectionIndex": 3
+          "sectionIndex": 2
         }
       ]
     },
     {
-      "id": "113Q3-macro-11",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
+      "id": "109Q4-macro-05",
+      "sessionId": "109Q4",
+      "year": 109,
+      "session": 4,
       "subject": "macro",
       "sourceId": "macro-07",
-      "number": 11,
-      "stem": "短期總合供給線為正斜率是基於下列何種假設？",
+      "number": 5,
+      "stem": "若社會目前的貨幣供給量＞貨幣需求量，但計劃性的社會總支出=實際的總產出=100；則根據 IS-LM 模型，最後的均衡產出水準會？",
       "options": [
-        "長期要素價格固定",
-        "要素價格比產出價格更有彈性",
-        "產出價格比要素價格更有彈性",
-        "要素價格彈性不論在長期或短期都是無窮大"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q3-macro-20",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 20,
-      "stem": "新古典經濟學強調「貨幣中立性」是指：",
-      "options": [
-        "貨幣政策不應執政黨派不同而有所差異",
-        "貨幣供給增加同時影響消費者與生產者",
-        "貨幣政策應該和財政政策獨立運行",
-        "貨幣供給增加只會造成物價上漲，不會影響實質產出"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "113Q3-macro-31",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 31,
-      "stem": "哪種因素會造成總需求曲線右移？",
-      "options": [
-        "進口增加",
-        "政府增稅",
-        "工資上升",
-        "政府支出增加"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "114Q1-macro-11",
-      "sessionId": "114Q1",
-      "year": 114,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 11,
-      "stem": "當發生供給面的衝擊，增加了總要素生產力( total factor productivity)，這是直接影響生產函數(Y = AF(K, N)) 中的哪一項？",
-      "options": [
-        "A",
-        "F",
-        "K",
-        "N"
+        "＞100",
+        "＜100",
+        "=100",
+        "以上都有可能"
       ],
       "answer": [
         "A"
@@ -2225,80 +1189,24 @@ window.CHAPTER_DATA["macro-07"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-07",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "114Q2-macro-01",
-      "sessionId": "114Q2",
-      "year": 114,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 1,
-      "stem": "國際油價上漲時，所引起的物價膨脹主要是：",
-      "options": [
-        "總合需求線左移",
-        "總合需求線右移",
-        "總合供給線左移",
-        "總合供給線右移"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "114Q2-macro-13",
-      "sessionId": "114Q2",
-      "year": 114,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-07",
-      "number": 13,
-      "stem": "下列何者是造成停滯性通貨膨脹的主要因素？",
-      "options": [
-        "政府擴大財政支出",
-        "出口衰退",
-        "能源與原物料進口價格上揚",
-        "央行採取寬鬆性貨幣政策"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-07"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-07",
           "sectionIndex": 1
         }
       ]
     },
     {
-      "id": "114Q3-macro-05",
-      "sessionId": "114Q3",
-      "year": 114,
-      "session": 3,
+      "id": "109Q4-macro-13",
+      "sessionId": "109Q4",
+      "year": 109,
+      "session": 4,
       "subject": "macro",
       "sourceId": "macro-07",
-      "number": 5,
-      "stem": "負的總需求面衝擊會對經濟體系造成什麼影響？",
+      "number": 13,
+      "stem": "政府採行緊縮性財政政策，利用增稅或減少政府支出來抑制總合需求，此時的政府預算盈餘將增加或預算赤字獲得改善，於是借貸市場需求力道減緩，實質利率因此下跌。實質利率下探反而會刺激消費與投資的增加，這將抵銷部份緊縮性財政政策的效果，此稱為:",
       "options": [
-        "增加總產出，降低失業，物價上升",
-        "降低總產出，增加失業，物價上升",
-        "增加總產出，降低失業，物價下跌",
-        "降低總產出，增加失業，物價下跌"
+        "實質餘額效果",
+        "替代效果",
+        "擠出效果",
+        "擠入效果"
       ],
       "answer": [
         "D"
@@ -2314,22 +1222,50 @@ window.CHAPTER_DATA["macro-07"] = {
       ]
     },
     {
-      "id": "114Q3-macro-09",
-      "sessionId": "114Q3",
-      "year": 114,
-      "session": 3,
+      "id": "109Q4-macro-18",
+      "sessionId": "109Q4",
+      "year": 109,
+      "session": 4,
       "subject": "macro",
       "sourceId": "macro-07",
-      "number": 9,
-      "stem": "下列有關長期總合供給(Long-Run Aggregate Supply, LRAS)的描述有誤？",
+      "number": 18,
+      "stem": "在 IS 與 LM 模型中，投資需求的利率彈性越小，表示：",
       "options": [
-        "縱軸是一般物價水準",
-        "橫軸是實質生產",
-        "是一水平線",
-        "產量是充分就業的產量"
+        "IS 曲線越平緩",
+        "LM 曲線越陡峭",
+        "貨幣政策相對有效",
+        "財政政策相對有效"
       ],
       "answer": [
-        "C"
+        "D"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "110Q1-macro-27",
+      "sessionId": "110Q1",
+      "year": 110,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 27,
+      "stem": "有關投資理論的敘述，何者錯誤？",
+      "options": [
+        "新古典投資理論指出廠商投資將受實質利率影響",
+        "投資的加速原理係指產出變動將引起投資更大幅度變動",
+        "Tobin 的比率係指廠商市場價值與廠商重置成本的比率",
+        "股市低迷導致q < 1，意味著廠商將會從事新廠房設備投資"
+      ],
+      "answer": [
+        "D"
       ],
       "sourceIds": [
         "macro-07"
@@ -2342,19 +1278,19 @@ window.CHAPTER_DATA["macro-07"] = {
       ]
     },
     {
-      "id": "115Q1-macro-02",
-      "sessionId": "115Q1",
-      "year": 115,
+      "id": "110Q1-macro-33",
+      "sessionId": "110Q1",
+      "year": 110,
       "session": 1,
       "subject": "macro",
       "sourceId": "macro-07",
-      "number": 2,
-      "stem": "古典學派對財政政策的主要批評為：",
+      "number": 33,
+      "stem": "某國的貨幣需求函數屬於 Baumol 型態，則其 LM 曲線將呈現何種型態？",
       "options": [
-        "政府支出過低",
-        "排擠效果",
-        "通貨膨脹過低",
-        "匯率波動"
+        "高利率彈性的正斜率曲線",
+        "低利率彈性的正斜率曲線",
+        "缺乏利率彈性的垂直線",
+        "利率彈性無窮大的水平線"
       ],
       "answer": [
         "B"
@@ -2370,19 +1306,103 @@ window.CHAPTER_DATA["macro-07"] = {
       ]
     },
     {
-      "id": "115Q1-macro-31",
-      "sessionId": "115Q1",
-      "year": 115,
-      "session": 1,
+      "id": "110Q2-macro-24",
+      "sessionId": "110Q2",
+      "year": 110,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 24,
+      "stem": "假設商品市場為:y＝c(y－t(y))＋i(r)＋g，貨幣市場為: ，假設，請計算政府支出乘數為何？",
+      "options": [
+        "2.275",
+        "1.275",
+        "1.575",
+        "2.575"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "110Q2-macro-31",
+      "sessionId": "110Q2",
+      "year": 110,
+      "session": 2,
       "subject": "macro",
       "sourceId": "macro-07",
       "number": 31,
-      "stem": "當發生供給面的衝擊，增加了總要素生產力（total factor productivity ），這是直接影響生產方程模型中的哪一項 Y=AF(K,N)？",
+      "stem": "如果經濟處在 LM 曲線上，但是在 IS 曲線的右邊，總產出會而利率會。",
       "options": [
-        "A",
-        "F",
-        "K",
-        "N"
+        "增加；上升",
+        "增加；下降",
+        "減少；上升",
+        "減少；下降"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "110Q2-macro-32",
+      "sessionId": "110Q2",
+      "year": 110,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 32,
+      "stem": "排擠效果在什麼情況下較嚴重？",
+      "options": [
+        "IS 愈垂直時",
+        "LM 愈垂直時",
+        "LM 愈水平時",
+        "總支出線愈垂直時"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "110Q2-macro-33",
+      "sessionId": "110Q2",
+      "year": 110,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 33,
+      "stem": "在流動性陷阱裡，貨幣政策對總合支出將________，因為貨幣供給變動對利率將________。",
+      "options": [
+        "沒有影響；沒有影響",
+        "沒有影響；有很大的影響",
+        "有很大的影響；有很大的影響",
+        "沒有影響；有很小的影響"
       ],
       "answer": [
         "A"
@@ -2398,19 +1418,47 @@ window.CHAPTER_DATA["macro-07"] = {
       ]
     },
     {
-      "id": "115Q2-macro-04",
-      "sessionId": "115Q2",
-      "year": 115,
+      "id": "110Q2-macro-34",
+      "sessionId": "110Q2",
+      "year": 110,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-07",
-      "number": 4,
-      "stem": "若一國的總合需求為 AD=6,100+0.7Y-10,000r，該國央行設定利率為 1%，則當該國達到充分就業時，其潛在產出為何？",
+      "number": 34,
+      "stem": "聯邦準備銀行實行寬鬆貨幣政策，另外美國眾議院通過 1.9 兆美元疫情紓困方案，根據紓困方案內容可知，年收入少於 7.5 萬美元的美國人民，可獲得至少 1,400 美元的援助，此一政策將會讓 IS 曲線，LM 曲線。",
       "options": [
-        "20,000",
-        "25,000",
-        "30,000",
-        "45,000"
+        "左移；右移",
+        "左移；左移",
+        "右移；左移",
+        "右移；右移"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "110Q3-macro-07",
+      "sessionId": "110Q3",
+      "year": 110,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 7,
+      "stem": "若社會目前的貨幣供給量＞貨幣需求量，但計劃性的社會總支出=實際的總產出=100；則根據 IS-LM 模型，最後的均衡產出水準會？",
+      "options": [
+        "＞100",
+        "＜100",
+        "100",
+        "選項(A)(B)(C)都有可能"
       ],
       "answer": [
         "A"
@@ -2422,6 +1470,622 @@ window.CHAPTER_DATA["macro-07"] = {
         {
           "chapterId": "macro-07",
           "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "110Q3-macro-27",
+      "sessionId": "110Q3",
+      "year": 110,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 27,
+      "stem": "若社會大眾的流動性偏好(Liquidity Preference)降低，但貨幣供給減少，則 LM 曲線如何移動？",
+      "options": [
+        "右移",
+        "左移",
+        "不變",
+        "不一定"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "110Q3-macro-28",
+      "sessionId": "110Q3",
+      "year": 110,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 28,
+      "stem": "若經濟體處於「投資陷阱」 ，則下列敘述何者為正確：",
+      "options": [
+        "財政政策有效，貨幣政策無效",
+        "財政政策無效，貨幣政策有效",
+        "貨幣政策較財政政策有效",
+        "財政政策與貨幣政策均無效"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "111Q1-macro-01",
+      "sessionId": "111Q1",
+      "year": 111,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 1,
+      "stem": "其他條件不變下，若總合產出在 IS 線右上方，代表商品市場出現超額_______，因此產出會 _______。",
+      "options": [
+        "供給；下降",
+        "供給；增加",
+        "需求；下降",
+        "需求；增加"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "111Q1-macro-32",
+      "sessionId": "111Q1",
+      "year": 111,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 32,
+      "stem": "財政政策效力越大，發生在________時。",
+      "options": [
+        "IS 越水平或 LM 越垂直",
+        "IS 越陡直且 LM 越垂直",
+        "LM 越平坦或 IS 越陡直",
+        "IS 越水平且 LM 越水平"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "111Q2-macro-24",
+      "sessionId": "111Q2",
+      "year": 111,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 24,
+      "stem": "在 IS-LM 模型中，何種因素是造成 LM 曲線的移動？",
+      "options": [
+        "自發性消費變動",
+        "稅賦改變",
+        "政府支出變動",
+        "物價的變動"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "111Q2-macro-25",
+      "sessionId": "111Q2",
+      "year": 111,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 25,
+      "stem": "政府支出增加造成的排擠效果(crowding-out effect)，意旨：",
+      "options": [
+        "致使本國貨幣升值，導致出口減少",
+        "造成物價上漲，使得消費需求減少",
+        "造成工資上漲，使得國內生產數量減少",
+        "造成利率上升，使得投資支出減少"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "111Q2-macro-27",
+      "sessionId": "111Q2",
+      "year": 111,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 27,
+      "stem": "在 IS 與LM 模型中，下列何種狀況下貨幣政策相對有效？",
+      "options": [
+        "投資需求的利率彈性越大",
+        "貨幣需求的利率彈性越大",
+        "貨幣需求的所得彈性越大",
+        "以上皆是"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "111Q3-macro-16",
+      "sessionId": "111Q3",
+      "year": 111,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 16,
+      "stem": "在凱因斯模型中，如果央行訂定了實質利率的目標，以致IS 曲線往左移動，而央行希望不影響產出，則",
+      "options": [
+        "稅率上升",
+        "貨幣供給下降",
+        "實質利率下降",
+        "稅率下降"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "112Q1-macro-02",
+      "sessionId": "112Q1",
+      "year": 112,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 2,
+      "stem": "在其他條件不變的情形下，如果經濟體系是處於高利率及高失業率的情況，以 IS-LM 的架構分析，代表此時的________政策過於________。",
+      "options": [
+        "財政；寬鬆",
+        "財政；緊縮",
+        "貨幣；寬鬆",
+        "貨幣；緊縮"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "112Q1-macro-19",
+      "sessionId": "112Q1",
+      "year": 112,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 19,
+      "stem": "在流動性陷阱 (liquidity trap) 裡，________曲線很________，貨幣政策對總合支出將________。",
+      "options": [
+        "IS；平坦；沒有影響",
+        "IS；陡峭；效果很大",
+        "LM；平坦；沒有影響",
+        "LM；陡峭；效果很大"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "112Q2-macro-03",
+      "sessionId": "112Q2",
+      "year": 112,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 3,
+      "stem": "「當利率降至極低水準時，貨幣需求的利率彈性變為無窮大，此種情況下，中央銀行不論增加多少貨幣供給，都會被大眾的貨幣需求所吸收，利率卻不再下降」 ，此種現象稱為：",
+      "options": [
+        "貨幣中立性",
+        "貨幣幻覺",
+        "排擠效果",
+        "流動性陷阱"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "112Q3-macro-25",
+      "sessionId": "112Q3",
+      "year": 112,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 25,
+      "stem": "IS 曲線顯示「產出」與「實質利率」的關係，其代表的是：",
+      "options": [
+        "貨物市場在均衡狀況",
+        "勞動市場在均衡狀況",
+        "金融資產市場在均衡狀況",
+        "產出上升會造成市場的利率上升"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "113Q2-macro-02",
+      "sessionId": "113Q2",
+      "year": 113,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 2,
+      "stem": "哪種政策搭配組合可以使得利率不變的情況下，產出會增加？",
+      "options": [
+        "貨幣供給與政府支出皆增加",
+        "貨幣供給增加，政府支出減少",
+        "貨幣供給減少，政府支出增加",
+        "貨幣供給與政府支出皆減少"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "113Q2-macro-16",
+      "sessionId": "113Q2",
+      "year": 113,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 16,
+      "stem": "財政政策的排擠效果(Crowding Out Effect)在什麼情況下較嚴重？",
+      "options": [
+        "IS 愈垂直時",
+        "LM 愈垂直時",
+        "LM 愈水平時",
+        "總支出線愈垂直時"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "113Q3-macro-12",
+      "sessionId": "113Q3",
+      "year": 113,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 12,
+      "stem": "其他條件不變下，若總合產出在 IS 線右上方，代表商品市場出現超額_______，因此產出會 _______。",
+      "options": [
+        "供給；下降",
+        "供給；增加",
+        "需求；下降",
+        "需求；增加"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "113Q3-macro-25",
+      "sessionId": "113Q3",
+      "year": 113,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 25,
+      "stem": "當中央銀行增加貨幣供給時：",
+      "options": [
+        "IS 曲線往右移動",
+        "LM 曲線往右移動",
+        "IS 曲線往左移動",
+        "LM 曲線往左移動"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "113Q3-macro-26",
+      "sessionId": "113Q3",
+      "year": 113,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 26,
+      "stem": "已知消費函數 C=100+0.75Y，投資函數Ｉ=200−25i，政府支出 G=150，稅收 T=50。請問該經濟的 IS 曲線方程式是什麼？",
+      "options": [
+        "Y=1650−100i",
+        "Y=1600−50i",
+        "Y=700−25i",
+        "Y=500−75i"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "113Q3-macro-27",
+      "sessionId": "113Q3",
+      "year": 113,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 27,
+      "stem": "所謂的排擠效果是指：",
+      "options": [
+        "政府支出增加導致物價上升，造成民間消費減少",
+        "政府支出增加導致貨幣升值，造成出口減少",
+        "政府支出增加導致貨幣數量減少，導致民間投資減少",
+        "政府支出增加導致利率上升，造成民間投資減少"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "114Q3-macro-20",
+      "sessionId": "114Q3",
+      "year": 114,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 20,
+      "stem": "政府支出增加產生排擠 (crowding out)效果，此排擠效果的大小決定於：",
+      "options": [
+        "消費支出的所得彈性",
+        "投資支出的利率彈性",
+        "消費邊際傾向",
+        "政府支出乘數的大小"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "114Q3-macro-25",
+      "sessionId": "114Q3",
+      "year": 114,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 25,
+      "stem": "貨幣政策效力愈大，發生在：",
+      "options": [
+        "IS 愈水平時或 LM 愈垂直時",
+        "IS 愈陡直且 LM 愈垂直時",
+        "IS 愈陡直時或 LM 愈平坦",
+        "IS 愈水平且 LM 愈水平時"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "115Q1-macro-13",
+      "sessionId": "115Q1",
+      "year": 115,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 13,
+      "stem": "某經濟體的 IS 曲線為 Y=1000−50r，LM 曲線為 Y=200+100r，請問均衡利率 r 為何？",
+      "options": [
+        "4",
+        "5",
+        "5.33",
+        "6"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "115Q2-macro-03",
+      "sessionId": "115Q2",
+      "year": 115,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-07",
+      "number": 3,
+      "stem": "在 IS 與 LM 模型中，投資需求的利率彈性越小，表示：",
+      "options": [
+        "IS 曲線越平緩",
+        "LM 曲線越陡峭",
+        "貨幣政策相對有效",
+        "財政政策相對有效"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-07"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-07",
+          "sectionIndex": 2
         }
       ]
     }
@@ -2456,44 +2120,356 @@ window.CHAPTER_DATA["macro-07"] = {
   },
   "questions": [
     {
-      "id": "111Q3-macro-written-1",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
+      "id": "107Q2-macro-written-1",
+      "sessionId": "107Q2",
+      "year": 107,
+      "session": 2,
       "subject": "macro",
       "number": 1,
-      "stem": "考慮下列 AD-AS 模型，假設經濟體系一開始處於平衡狀態。\\(AD: Y=600+10(M/P)\\)；\\(SRAS: Y=\\bar Y+P-P^e\\)；Okun's Law：\\((Y-\\bar Y)/\\bar Y=-2(u-\\bar u)\\)。假設 \\(\\bar Y=750\\)、\\(\\bar u=0.05\\)、\\(M=600\\)、\\(P^e=40\\)。請回答下列問題。(A) 目前長期均衡狀態下的物價水準為何？(3 分) (B) 假設有一非預期性的名目貨幣供給，\\(M\\) 增加到 800 單位。短期平衡下，產出水準 \\(Y\\) 為何？失業率為何？物價水準為何？(3 分) (C) 當物價水準完全的調整後，使得整體的市場恢復到長期平衡狀態，則新的物價水準為何？(4 分)",
+      "stem": "在 IS /LM 模型下，假設不考慮國外部門，給定以下資訊：(共 10 分) 商品市場：消費函數C=225+0.75Yd，投資函數I=600-200r，政府支出G=300，稅收函數T=-100+0.2Y 貨幣市場：貨幣需求函數 Md=600+0.5Y-150r +P，貨幣供給 Ms=1000 (其中 Yd 為可支配所得，r 為利率以%表示，Y 為所得，C 為消費，I 為投資，G 為政府支出，T 為 稅收，Md 為貨幣需求，Ms 為貨幣供給，P 為物價) (1)假設 P=100，請寫出 IS 曲線和 LM 曲線數學式子，並計算出均衡利率及所得。(6 分) (2)假設 P=100，若中央銀行在公開市場買進$100 公債且知貨幣乘數為 2。請計算出此時的均衡利 率及所得。(4 分)",
       "sourceIds": [
         "macro-07"
       ],
       "kind": "計算題",
       "answer": [
-        "模型：AD \\(Y=600+10(M/P)\\)；SRAS \\(Y=\\bar Y+P-P^e\\)；Okun \\((Y-\\bar Y)/\\bar Y=-2(u-\\bar u)\\)，其中 \\(\\bar Y=750\\)、\\(\\bar u=0.05\\)、\\(P^e=40\\)。",
-        "(A) 長期均衡 \\(Y=\\bar Y=750\\)，且 \\(P=P^e=40\\)。由AD：\\(750=600+10(600/P)\\)，\\(150=6{,}000/P\\)，\\(P=40\\)。",
-        "(B) M增至800，短期 \\(P^e=40\\)：SRAS \\(Y=750+P-40=710+P\\)；AD \\(Y=600+10(800/P)=600+8{,}000/P\\)。聯立 \\(710+P=600+8{,}000/P\\)，整理 \\(P^2+110P-8{,}000=0\\)，得 \\(P=50\\)；\\(Y=710+50=760\\)。Okun：\\((760-750)/750=0.013333=-2(u-0.05)\\)，\\(u=0.04333=4.33\\%\\)。",
-        "(C) 長期物價完全調整後 \\(Y=\\bar Y=750\\)，AD：\\(750=600+10(800/P)\\)，\\(150=8{,}000/P\\)，新物價 \\(P=53.33\\)。"
+        "(1) \\(Y_d=Y-(-100+0.2Y)=0.8Y+100\\)；\\(C=225+0.75(0.8Y+100)=300+0.6Y\\)。\\[Y=300+0.6Y+600-200r+300\\]，\\(0.4Y=1{,}200-200r\\)，IS \\(Y=3{,}000-500r\\)。LM：\\(600+0.5Y-150r+100=1{,}000\\)，\\(0.5Y=300+150r\\)，\\(Y=600+300r\\)。聯立 \\(3{,}000-500r=600+300r\\)，\\(800r=2{,}400\\)，r=3%，Y=1,500。",
+        "(2) 公開市場買進100、貨幣乘數2，Ms增加200至1,200。LM \\(700+0.5Y-150r=1{,}200\\)，Y=1,000+300r。聯立 \\(3{,}000-500r=1{,}000+300r\\)，r=2.5%，Y=1,750。"
       ],
       "answerType": "reference",
       "note": "本站參考解答（非官方）"
     },
     {
-      "id": "114Q1-macro-written-3",
+      "id": "107Q2-macro-written-3",
+      "sessionId": "107Q2",
+      "year": 107,
+      "session": 2,
+      "subject": "macro",
+      "number": 3,
+      "stem": "設有下列經濟模型資訊：(共 10 分) Y=C+I+G；C=140+0.8Yd；Yd=Y-T；I=200-500r；G=120；L=M/P；L=50+0.3Y-500r (其中 Yd 為可支配所得，r 為利率以%表示，Y 為所得，C 為消費，I 為投資，G 為政府支出，T 為 稅收，L 為實質貨幣需求，M/P 為實質貨幣供給，P 為物價)：(1)計算當稅收 T 增加 100 時，所得將上升或減少多少單位？ (5 分) (2)計算當政府支出 G 增加 50 時，所得將上升或減少多少單位？ (5 分)",
+      "sourceIds": [
+        "macro-03",
+        "macro-07"
+      ],
+      "kind": "計算題",
+      "answer": [
+        "IS：\\(Y=140+0.8(Y-T)+200-500r+120\\)，整理 \\(0.2Y=460-0.8T-500r\\)，\\(Y=2{,}300-4T-2{,}500r\\)。LM：\\(50+0.3Y-500r=M/P\\)，\\(r=(0.3Y-M/P+50)/500\\)。",
+        "代入消去r：\\(Y=2{,}300-4T-5(0.3Y-M/P+50)\\)，\\(2.5Y=2{,}050-4T+5M/P\\)，\\(Y=820-1.6T+2M/P\\)。",
+        "(1) T增加100，所得減少 \\(1.6\\times100=\\)**160**。(2) G乘數：\\(Y=580+2G-1.6T+2M/P\\)，G增加50，所得增加 \\(2\\times50=\\)**100**。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "107Q3-macro-written-8",
+      "sessionId": "107Q3",
+      "year": 107,
+      "session": 3,
+      "subject": "macro",
+      "number": 2,
+      "stem": "過去十幾年全球各國不斷採行貨幣政策兼(或)財政政策來因應面臨的經濟問題。請用IS-LM 圖 形加文字說明貨幣政策及財政政策的有效性(即什麼情況下貨幣政策及財政政策較有效)。(10 分)",
+      "sourceIds": [
+        "macro-07"
+      ],
+      "kind": "申論題",
+      "answer": [
+        "貨幣政策有效性：LM越陡（貨幣需求對利率不敏感）、IS越平坦（投資對利率敏感），貨幣政策效果越大；流動性陷阱（LM水平）時貨幣政策無效。",
+        "財政政策有效性：IS越陡（投資對利率不敏感）、LM越平坦（貨幣需求對利率敏感），財政政策效果越大；LM垂直時完全排擠，效果為零。",
+        "極端情形：古典學派LM垂直，財政政策無效、貨幣政策有效；流動性陷阱LM水平，財政政策有效、貨幣政策無效。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "107Q4-macro-written-1",
+      "sessionId": "107Q4",
+      "year": 107,
+      "session": 4,
+      "subject": "macro",
+      "number": 1,
+      "stem": "針對下列情況，試以 IS - LM 曲線說明對台灣均衡所得與利率的影響：(1)立法院通過大幅降低所得稅率，而央行採取緊縮貨幣政策。(5 分) (2)財政部要求央行將盈餘繳庫，用於彌補政府預算赤字。(5 分)",
+      "sourceIds": [
+        "macro-07"
+      ],
+      "kind": "計算題",
+      "answer": [
+        "(1) 大幅減稅：IS右移，所得增加、利率上升；央行緊縮貨幣：LM左移，利率再上升、所得下降。最終利率確定上升，所得變動不確定，取決於兩政策相對強度；若LM陡峭，減稅效果可能被完全排擠。",
+        "(2) 財政部要求央行盈餘繳庫以彌補赤字：若只是盈餘移轉，政府赤字減少、公債供給下降，利率有下降壓力；但央行為繳庫而出售資產/收回流動性，會使準備貨幣與貨幣供給減少、LM左移，利率上升、所得下降。淨效果取決於繳庫方式與規模。",
+        "政策協調上，應避免央行為財政目的犧牲貨幣政策獨立性。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "108Q1-macro-written-1",
+      "sessionId": "108Q1",
+      "year": 108,
+      "session": 1,
+      "subject": "macro",
+      "number": 1,
+      "stem": "假設凱因斯模型如下：消費函數 C = 100 + 0.6(Y − 50)，投資函數 I = 200 − 10r，政府支出G=100，貨幣需求函數Md = P(Y − 100r)，貨幣供給函數MS = 800，式中假設物價 P=1，r 為利率：(1)試求均衡所得 Y 和利率 r 分別為多少？ (5 分) (2)若政府採取擴大公共支出的財政政策，使 Y 增加到充分就業水準Yf = 1,100，則政府支出必須 再增加或減少多少才能達成此目標？ (5 分)",
+      "sourceIds": [
+        "macro-03",
+        "macro-07"
+      ],
+      "kind": "計算題",
+      "answer": [
+        "(1) IS：\\(C=100+0.6(Y-50)=70+0.6Y\\)；\\(Y=70+0.6Y+200-10r+100\\)，整理 \\(0.4Y=370-10r\\)，\\(Y=925-25r\\)。LM：\\(M_d/P=Y-100r=800\\)，\\(Y=800+100r\\)。聯立 \\(925-25r=800+100r\\)，\\(r=1\\)（100%），\\(Y=900\\)。",
+        "(2) 充分就業 \\(Y=1{,}100\\)。由 LM，\\(r=3\\)（300%）。IS：\\(1{,}100=70+0.6(1{,}100)+200-10(3)+G\\)，得 \\(G=200\\)。原 \\(G=100\\)，須再增加 100。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "108Q1-macro-written-2",
+      "sessionId": "108Q1",
+      "year": 108,
+      "session": 1,
+      "subject": "macro",
+      "number": 2,
+      "stem": "假設商品市場\\(y=c(y-t(y))+i(r)+g\\)，貨幣市場 \\(\\bar M/P_0=l(r)+k(y)\\)，(其中 y：所得、c：消費、t：租稅、i：投資、r：利率、g：政府支出、\\(\\bar M\\)：名目貨幣供給、 \\(P_0\\)：物價，假設 \\(\\bar M/P_0=m\\)、l(r)：投機性貨幣需求、k(y)：交易性貨幣需求) (1)請導出政府支出乘數 \\(dy/dg\\) 為何？(5 分) (2)請導出貨幣供給乘數 \\(dy/dm\\) 為何？(5 分)",
+      "sourceIds": [
+        "macro-06",
+        "macro-04",
+        "macro-07"
+      ],
+      "kind": "計算題",
+      "answer": [
+        "(1) 對商品市場與貨幣市場全微分：\\(dy=c^{\\prime}(1-t^{\\prime})dy+i^{\\prime}dr+dg\\)；\\(dm=l^{\\prime}dr+k^{\\prime}dy\\)。dg時dm=0，\\(dr=-(k^{\\prime}/l^{\\prime})dy\\)。代入：\\[dy[1-c^{\\prime}(1-t^{\\prime})+i^{\\prime}k^{\\prime}/l^{\\prime}]=dg\\]，故 \\[\\frac{dy}{dg}=\\frac{1}{1-c^{\\prime}(1-t^{\\prime})+i^{\\prime}k^{\\prime}/l^{\\prime}}\\] 。",
+        "(2) dm時dg=0：\\(dr=[1-c^{\\prime}(1-t^{\\prime})]dy/i^{\\prime}\\)。代入貨幣市場：\\(dm=l^{\\prime}dr+k^{\\prime}dy=dy\\{k^{\\prime}+l^{\\prime}[1-c^{\\prime}(1-t^{\\prime})]/i^{\\prime}\\}\\)，故 \\[\\frac{dy}{dm}=\\frac{1}{k^{\\prime}+l^{\\prime}[1-c^{\\prime}(1-t^{\\prime})]/i^{\\prime}}\\] 。",
+        "因 \\(i^{\\prime}<0\\)、\\(l^{\\prime}<0\\)，分母中的 \\(i^{\\prime}k^{\\prime}/l^{\\prime}\\) 與 \\(l^{\\prime}(...)/i^{\\prime}\\) 為正，政府支出乘數小於簡單乘數，貨幣乘數為正。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "109Q1-macro-written-1",
+      "sessionId": "109Q1",
+      "year": 109,
+      "session": 1,
+      "subject": "macro",
+      "number": 1,
+      "stem": "試說明下列狀況對 IS 曲線的影響：(1)預期未來所得增加。(3 分) (2)預期資本的未來生產力增加。(3 分) (3)政府調低個人所得稅稅率。(4 分)",
+      "sourceIds": [
+        "macro-07"
+      ],
+      "kind": "計算題",
+      "answer": [
+        "(1) 預期未來所得增加：消費者依恆常所得/生命循環理論，預期未來收入上升會增加目前消費，IS右移（同一利率下Y增加）。",
+        "(2) 預期資本未來生產力增加：企業預期投資報酬率上升，增加目前投資，IS右移。",
+        "(3) 個人所得稅率調低：可支配所得增加，消費增加；乘數效果使IS右移。若減稅同時影響勞動供給或政府預算，效果可能再變動。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "109Q3-macro-written-2",
+      "sessionId": "109Q3",
+      "year": 109,
+      "session": 3,
+      "subject": "macro",
+      "number": 2,
+      "stem": "請以貨幣市場圖形說明貨幣政策中間目標 (intermediate target) 選取時，「價量不相容」的情形。若中 間目標選擇釘住「量」，那麼比較恰當的操作目標 (operating target) 有哪些？",
+      "sourceIds": [
+        "macro-07"
+      ],
+      "kind": "申論題",
+      "answer": [
+        "貨幣市場圖中，貨幣供給曲線與貨幣需求曲線決定利率與貨幣數量。若央行以「量」為中間目標（如 \\(M_1\\)、\\(M_2\\)），當貨幣需求曲線因所得、物價或預期而波動時，央行必須調整準備金供給以維持數量，利率會大幅波動；若以「價」為中間目標（如短期利率），則必須隨需求波動調整供給，貨幣數量會波動。因此價與量無法同時精確釘住，稱為「價量不相容」。",
+        "若中間目標選擇釘住「量」，較恰當的操作目標是**準備金總量/貨幣基數、非借入準備、借入準備**等數量指標，透過公開市場操作控制準備金供給；若操作目標訂利率，會與數量目標衝突。",
+        "實務上央行常採「利率操作目標、貨幣數量監控」的折衷，並以走廊制度控制短期利率。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "110Q1-macro-written-3",
+      "sessionId": "110Q1",
+      "year": 110,
+      "session": 1,
+      "subject": "macro",
+      "number": 3,
+      "stem": "某國央行經研處估計該國的消費與投資函數如下：消費函數 \\(C=1,200+0.8y-3,000r\\)，投資函數 \\(I=500-2,000i\\)，Fisher 方程式 \\(i=r+\\pi^e\\)；\\(r\\) 為實質利率、\\(i\\) 為名目利率、\\(\\pi^e\\) 是預期通膨率。該國目前處於自然產出環境 \\(y^*=6,000\\)。依據新古典實質可貸資金理論，計算下列問題：(A) 該國物價處於平穩狀態，均衡名目利率與實質利率分別為何？(5%) (B) 新冠肺炎爆發引起人們產生預期通縮為 \\(\\pi^e=-2\\%\\)，均衡名目利率與實質利率分別為何？(5%)",
+      "sourceIds": [
+        "macro-13",
+        "macro-07"
+      ],
+      "kind": "計算題",
+      "answer": [
+        "(A) \\(\\pi^e=0\\)，故 \\(i=r\\)。商品市場均衡 \\(Y=C+I\\)：\\[6{,}000=1{,}200+0.8(6{,}000)-3{,}000r+500-2{,}000r\\]，右邊 \\(=1{,}200+4{,}800+500-5{,}000r=6{,}500-5{,}000r\\)。解得 \\(5{,}000r=500\\)，\\(r=0.10=10\\%\\)，\\(i=10\\%\\)。",
+        "(B) \\(\\pi^e=-2\\%\\)，Fisher \\(i=r-0.02\\)。\\[6{,}000=6{,}500-3{,}000r-2{,}000(r-0.02)=6{,}540-5{,}000r\\]，\\(5{,}000r=540\\)，\\(r=0.108=10.8\\%\\)；\\(i=10.8\\%-2\\%=8.8\\%\\)。",
+        "預期通縮使名目利率下降，但實質利率上升，儲蓄意願增加、投資減少，維持自然產出下的資金市場均衡。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "110Q2-macro-written-1",
+      "sessionId": "110Q2",
+      "year": 110,
+      "session": 2,
+      "subject": "macro",
+      "number": 1,
+      "stem": "某封閉體系的總體經濟模型如下：○1 消費函數 ○2 稅收函數 ○3 投資函數 ○4 貨幣市場均衡方程式 式中 為消費，為租稅，為投資，為國民所得，為利率，為物價，為自發性消費，為總額 稅，為所得稅稅率，為加速係數，為自發性投資，為名目貨幣供給，為常數，代表交易 性貨幣需求，代表投機性貨幣需求，為邊際消費傾向，假設此經濟社會之 , , , , , , , , , , ,當政府支出 時：(1)請求出均衡之 之值為何？（2 分） (2)請求出均衡之 之值為何？（3 分） (3)請求出均衡之 之值為何？（2 分） (4)請求出均衡之 之值為何？（3 分）",
+      "sourceIds": [
+        "macro-03",
+        "macro-07"
+      ],
+      "kind": "計算題",
+      "answer": [
+        "商品市場：\\(C=100+0.5(Y-(10+0.34Y))=95+0.33Y\\)；\\(I=200+0.17Y-2{,}000r\\)。\\[Y=95+0.33Y+200+0.17Y-2{,}000r+300\\]，整理 \\(0.5Y=595-2{,}000r\\)，IS：\\(Y=1{,}190-4{,}000r\\)。",
+        "貨幣市場：\\(M_s/P=1{,}000/10=100=0.2Y-1{,}500r\\)，LM：\\(Y=500+7{,}500r\\)。",
+        "聯立：\\(1{,}190-4{,}000r=500+7{,}500r\\)，\\(690=11{,}500r\\)，\\(r=0.06=6\\%\\)；\\(Y=500+7{,}500(0.06)=950\\)。",
+        "租稅 \\(T=10+0.34\\times950=333\\)；投資 \\(I=200+0.17\\times950-2{,}000(0.06)=200+161.5-120=241.5\\)。故(1)Y=950、(2)T=333、(3)r=6%、(4)I=241.5。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "110Q2-macro-written-3",
+      "sessionId": "110Q2",
+      "year": 110,
+      "session": 2,
+      "subject": "macro",
+      "number": 3,
+      "stem": "2020 年因新冠肺炎發生，各國中央銀行紛紛採行寬鬆的貨幣政策，在凱因斯理論下，請繪圖 （IS-LM，AS-AD，勞動市場供需） 說明該經濟體系均衡所得、利率、物價、就業及貨幣工資會有 什麼變化？（10 分）",
+      "sourceIds": [
+        "macro-07"
+      ],
+      "kind": "計算題",
+      "answer": [
+        "COVID-19期間央行採寬鬆貨幣政策，LM右移、利率下降、所得上升；AD右移，短期物價上升、產出增加。",
+        "勞動市場：產出增加使勞動需求上升，就業增加、失業下降；名目工資短期具僵固性，實質工資可能下降；長期名目工資隨物價調整上升，SRAS左移，產出回到自然水準、物價進一步上升。",
+        "長期效果：貨幣中性，實質產出與就業回到自然率，物價與名目工資同比例上升，利率回到自然利率；若處於流動性陷阱，寬鬆貨幣短期效果有限。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "111Q1-macro-written-2",
+      "sessionId": "111Q1",
+      "year": 111,
+      "session": 1,
+      "subject": "macro",
+      "number": 2,
+      "stem": "假設一個經濟體系：商品市場 \\(C=200+0.8Y_d\\)、\\(I=700-2,000r\\)、\\(G=300\\)、\\(X=500\\)、\\(M=120+0.1Y\\)、\\(T=100+0.25Y\\)；貨幣市場 \\(M^s=1,600\\)、\\(M^d=1,000+0.25Y-500r\\)（\\(Y_d\\)：可支配所得，\\(r\\)：利率，\\(Y\\)：所得，\\(C\\)：消費，\\(I\\)：投資，\\(G\\)：政府支出，\\(X\\)：出口，\\(M\\)：進口，\\(T\\)：稅收，\\(M^s\\)：貨幣供給，\\(M^d\\)：貨幣需求）(1) 請找出 IS 曲線。(1 分) (2) 請找出 LM 曲線。(1 分) (3) 求解出均衡所得與利率。(2 分) (4) 假設政府採行擴張性政策，增加 $100 政府支出，會造成怎樣的排擠效果？並將此政策及其變化畫在 IS-LM 圖上。(3 分) (5) 如果央行在公開市場買進 $50 政府公債，給定貨幣乘數為 2。均衡所得與利率會受到什麼影響？並將此政策及其變化畫在 IS-LM 圖上。(3 分)",
+      "sourceIds": [
+        "macro-07"
+      ],
+      "kind": "計算題",
+      "answer": [
+        "(1) 商品市場：\\(Y_d=Y-(100+0.25Y)=0.75Y-100\\)，\\(C=200+0.8(0.75Y-100)=120+0.6Y\\)。\\(NX=500-(120+0.1Y)=380-0.1Y\\)。\\[Y=120+0.6Y+700-2{,}000r+300+380-0.1Y\\]，整理 \\(0.5Y=1{,}500-2{,}000r\\)，IS：\\(Y=3{,}000-4{,}000r\\)。",
+        "(2) 貨幣市場：\\(1{,}000+0.25Y-500r=1{,}600\\)，\\(0.25Y=600+500r\\)，LM：\\(Y=2{,}400+2{,}000r\\)。",
+        "(3) 聯立：\\(3{,}000-4{,}000r=2{,}400+2{,}000r\\)，\\(600=6{,}000r\\)，\\(r=0.10=10\\%\\)；\\(Y=2{,}400+200=2{,}600\\)。",
+        "(4) G增加100，IS變為 \\(Y=3{,}200-4{,}000r\\)。與LM聯立：\\(3{,}200-4{,}000r=2{,}400+2{,}000r\\)，\\(800=6{,}000r\\)，\\(r=13.33\\%\\)；\\(Y=2{,}400+266.67=2{,}666.67\\)。若利率不變，乘數 \\(1/(1-0.6+0.1)=2\\)，G增加100可使Y增加200；實際只增加66.67，排擠效果133.33，其中投資因利率上升而減少 \\(2{,}000\\times3.33\\%=66.67\\)，再經乘數放大為133.33。",
+        "(5) 央行買進50元公債、貨幣乘數2，貨幣供給增加100，Ms=1,700。LM：\\(1{,}000+0.25Y-500r=1{,}700\\)，\\(Y=2{,}800+2{,}000r\\)。與IS聯立：\\(3{,}000-4{,}000r=2{,}800+2{,}000r\\)，\\(200=6{,}000r\\)，\\(r=3.33\\%\\)；\\(Y=2{,}800+66.67=2{,}866.67\\)。所得增加266.67，利率下降6.67%。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "112Q1-macro-written-3",
+      "sessionId": "112Q1",
+      "year": 112,
+      "session": 1,
+      "subject": "macro",
+      "number": 3,
+      "stem": "美國聯準會自2022年把控制通貨膨脹當成政策目標。為了達成此目標，聯準會採取什麼做法？ 請利用貨幣市場圖形、IS-LM圖形、AD-AS圖形以及匯率決定圖形以及說明文字分析這樣的做 法，對利率、貨幣量、所得、物價及匯率(幣值)的影響。(10分)",
+      "sourceIds": [
+        "macro-07"
+      ],
+      "kind": "計算題",
+      "answer": [
+        "聯準會2022年為對抗通膨，主要採取緊縮性貨幣政策：提高聯邦基金利率目標區間、持續升息、縮減資產負債表（QT）、減少持有公債與MBS、提高貼現率，並以 前瞻指引 傳達持續緊縮的立場。",
+        "(一) 貨幣市場：貨幣供給減少或成長放緩，MS左移；貨幣需求不變下，短期利率上升。",
+        "(二) IS-LM：LM左移，利率上升、投資與產出下降；這是需求緊縮，會降低所得。",
+        "(三) AD-AS：AD左移，短期物價水準下降或通膨減緩，產出下降、失業上升；若通膨預期下降，SRAS也可能往下移動，有助通膨回落。",
+        "(四) 匯率：美國利率上升，資本流入美國，美元需求增加，美元升值（外幣貶值）；美元升值使進口品變便宜，有助降低通膨，但出口競爭力下降。",
+        "整體效果：利率上升、貨幣量減少、所得與物價下降或通膨降溫、美元升值。政策代價是經濟成長放緩與失業上升；若緊縮過度，可能造成硬著陸。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "112Q2-macro-written-2",
+      "sessionId": "112Q2",
+      "year": 112,
+      "session": 2,
+      "subject": "macro",
+      "number": 2,
+      "stem": "假設消費函數為 C = 200+0.75Yd，Yd=Y-tY，t=0.2，投資函數為 I=200-5,000r，r 為利率，淨 出口 EX=200，政府支出 G=100，貨幣供給 M=700，貨幣需求函數 L=Y-5,000r，請求解均衡 的所得 Y 與利率 r。(10 分)",
+      "sourceIds": [
+        "macro-13",
+        "macro-07"
+      ],
+      "kind": "計算題",
+      "answer": [
+        "商品市場：\\(Y=C+I+G+NX\\)。\\(Y_d=Y-0.2Y=0.8Y\\)，\\(C=200+0.75(0.8Y)=200+0.6Y\\)。代入：\\[Y=200+0.6Y+200-5{,}000r+100+200\\]，整理 \\(0.4Y=700-5{,}000r\\)，IS：\\(Y=1{,}750-12{,}500r\\)。",
+        "貨幣市場：\\(L=M\\)，\\(Y-5{,}000r=700\\)，LM：\\(Y=700+5{,}000r\\)。",
+        "聯立：\\(1{,}750-12{,}500r=700+5{,}000r\\)，\\(1{,}050=17{,}500r\\)，\\(r=0.06=6\\%\\)；\\(Y=700+5{,}000(0.06)=1{,}000\\)。",
+        "均衡所得 **Y=1,000**，均衡利率 **r=6%**。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "113Q2-macro-written-1",
+      "sessionId": "113Q2",
+      "year": 113,
+      "session": 2,
+      "subject": "macro",
+      "number": 1,
+      "stem": "有關停滯性通貨膨脹 (Stagflation)：(1) 其成因是什麼？並請將其呈現在 AD-AS 圖形。(3 分) (2) 財政政策或貨幣政策可徹底解決人民的痛苦嗎？請利用 IS-LM 圖形、以及 AD-AS 圖形併同文字說明。(3 分) (3) 理論上兩全其美的政策為何？(4 分)",
+      "sourceIds": [
+        "macro-07"
+      ],
+      "kind": "申論題",
+      "answer": [
+        "(1) 停滯性通貨膨脹是「產出停滯、失業上升」與「物價上漲」同時出現。主要成因是供給面衝擊：能源或原物料價格大漲、供應鏈中斷、工資推升成本、生產力下降、戰爭或天災等，使短期總合供給曲線 SRAS 向左（向上）移動。AD-AS 圖上，原均衡為 \\(Y_n,P_0\\)；SRAS 左移至 \\(SRAS^{\\prime}\\) 後，新均衡 \\(Y_1<Y_n\\)、\\(P_1>P_0\\)，即產出下降、物價上升。",
+        "(2) 財政政策與貨幣政策都是需求面政策，只能移動 AD，不能把 SRAS 移回原位。擴張性財政政策（G↑或T↓）使 IS 右移、AD 右移，所得與就業增加，但物價進一步上漲；擴張性貨幣政策（M↑）使 LM 右移、AD 右移，效果類似。反之，緊縮性財政或貨幣政策使 AD 左移，物價下降，但產出與就業進一步惡化。因此在 IS-LM 與 AD-AS 架構下，需求政策只能在通膨與失業之間取捨，無法徹底消除停滯性通膨的痛苦；若通膨預期定型，政策效果更差。",
+        "(3) 理論上「兩全其美」的政策是供給面政策：降低生產成本、提升生產力，使 SRAS 向右移動。例如能源政策、減稅與投資誘因、放寬管制、基礎建設、教育訓練、勞動市場彈性、技術進步等。SRAS 右移可同時使物價下降、產出與就業增加，繞開通膨與失業的短期取捨。1980年代美國的供給面經濟學（減稅、放寬管制）常被引用為例子；搭配可信的貨幣政策與所得政策，效果更完整。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "113Q2-macro-written-2",
+      "sessionId": "113Q2",
+      "year": 113,
+      "session": 2,
+      "subject": "macro",
+      "number": 2,
+      "stem": "給定某一經濟中的市場資料如下：商品勞務市場 \\(C=150+0.8Y_d\\)、\\(I=710-20r\\)、\\(G=300\\)、\\(T=0.25Y-50\\)；貨幣市場 \\(M^d=700+0.4Y-10r\\)、\\(M^s=1,300+10r\\)（\\(Y_d\\)：可支配所得，\\(r\\)：利率，以 % 表示，\\(Y\\)：所得，\\(C\\)：消費，\\(I\\)：投資，\\(G\\)：政府支出，\\(T\\)：稅收，\\(M^d\\)：貨幣需求，\\(M^s\\)：貨幣供給）試問：(1) 找出 IS 曲線方程式以及 LM 曲線方程式(各 3 分) (2) 均衡利率及均衡所得為多少？(2 分) (3) 均衡時有財政盈餘或赤字多少？(2 分)",
+      "sourceIds": [
+        "macro-07"
+      ],
+      "kind": "計算題",
+      "answer": [
+        "(1) 商品市場：\\(Y=C+I+G\\)，其中 \\(Y_d=Y-T=Y-(0.25Y-50)=0.75Y+50\\)，故 \\(C=150+0.8(0.75Y+50)=190+0.6Y\\)。代入得 \\(Y=190+0.6Y+710-20r+300\\)，整理：\\(0.4Y=1{,}200-20r\\)，所以 **IS：\\(Y=3{,}000-50r\\)**。",
+        "貨幣市場：\\(M_d=M_s\\)，\\(700+0.4Y-10r=1{,}300+10r\\)，整理 \\(0.4Y=600+20r\\)，所以 **LM：\\(Y=1{,}500+50r\\)**。",
+        "(2) 聯立 IS 與 LM：\\(3{,}000-50r=1{,}500+50r\\)，得 \\(100r=1{,}500\\)，**\\(r=15\\)（15%）**；\\(Y=3{,}000-50(15)=2{,}250\\)。",
+        "(3) 稅收 \\(T=0.25(2{,}250)-50=512.5\\)，政府支出 \\(G=300\\)，財政餘額 \\(T-G=512.5-300=212.5\\)，為**財政盈餘 212.5**。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "114Q1-macro-written-1",
       "sessionId": "114Q1",
       "year": 114,
       "session": 1,
       "subject": "macro",
-      "number": 3,
-      "stem": "請用凱因斯模型中的 AD- AS 圖形，來討論下列的情況。(1) 假設一經濟體系有預期性的貨幣供給增加，則物價水準、總產出、失業率等因子有何影響？請用 圖形加文字說明來解釋。(4 分) (2)如果貨幣供給的增加，不在預期之中，則物價水準、總產出、失業率等因子有何變化？請用圖形 加文字說明來解釋。(3 分) (3)以(2)的結論，請用 Phillips(菲利浦)曲線衍生推論前述分析結果對臺灣總體變數的變化。(3 分)",
+      "number": 1,
+      "stem": "當中央銀行採取貨幣緊縮政策，請用圖形及凱因斯理論分別描述對下列事項短期與長期的影響。(1)國內的產出、實質利率、淨出口。(5 分) (2)請問對於貿易夥伴國的產出、利率與淨出口有什麼影響？(5 分)",
       "sourceIds": [
+        "macro-06",
         "macro-07",
-        "macro-09"
+        "macro-11"
       ],
       "kind": "計算題",
       "note": "本站參考解答（非官方）",
       "answer": [
-        "(1) 預期性貨幣供給增加：AD右移，同時因預期調整，短期總合供給SRAS也左移（或名目工資預先上升）。結果物價水準上升，總產出與失業率大致維持在潛在水準與自然失業率，貨幣中性。",
-        "(2) 未預期增加：SRAS尚未調整，AD右移使物價水準與總產出上升，失業率下降；長期預期調整後，SRAS左移，產出與失業回到自然水準，只有物價較高。",
-        "(3) 菲利浦曲線：未預期擴張使經濟沿短期菲利浦曲線移動，通膨上升、失業下降；長期菲利浦曲線垂直於自然失業率。對臺灣而言，若貨幣寬鬆未被預期，短期出口、就業與股市可能受支撐，但進口物價、匯率與通膨預期會升高；若政策被預期，主要效果是物價與通膨預期上升，實質產出與失業改善有限。"
+        "(1) 國內：央行緊縮使LM左移、AD左移。短期價格黏性下，產出下降、實質利率上升；利率上升吸引資本流入，本國貨幣升值，淨出口減少。圖形上IS不變、LM左移，均衡由\\((Y_0,r_0)\\)移至\\((Y_1<r? \\)實際為\\(Y_1<Y_0, r_1>r_0)\\)；AD-AS上AD左移，短期\\(P_1<P_0、Y_1<Y_n\\)。長期工資與物價下跌，實質貨幣供給增加，LM右移回到IS，產出回到潛在水準\\(Y_n\\)，實質利率回到自然利率\\(r^*\\)；實質匯率回到均衡，淨出口回到初始水準，但名目匯率與物價水準較低。",
+        "(2) 貿易夥伴國：本國需求收縮與本國貨幣升值使夥伴國出口需求下降，短期產出與利率傾向下降；夥伴國貨幣相對貶值，有利其淨出口與對第三國競爭力，但若本國需求大幅下降，夥伴國出口收入仍受壓。長期價格與匯率調整後，夥伴國實質變數回到自然水準；若本國為小型經濟，夥伴國影響有限。"
       ],
       "answerType": "reference"
     },
@@ -2506,8 +2482,8 @@ window.CHAPTER_DATA["macro-07"] = {
       "number": 2,
       "stem": "假設一個經濟體系：消費 C=200+0.75(Y-T)，投資 I=300-50r，政府支出 G=200，淨出口 NX=200，稅收 T=100。而且，實質貨幣需求 L =400+0.5Y-100r，名目貨幣供給量＝500 億元。(利率 r 的單位是%，所得 Y 的單位是億元) (1) 請找出 IS、 LM、AD 曲線方程式並繪出各曲線圖形（含座標）。(6 分) (2) 假設物價(P) 為 1，請算出均衡所得及均衡利率。(4 分) 2008 諾貝爾經濟學獎得主克魯曼 (Paul Krugman) 對美國總統川普 (Donald Trump) 的關稅政策相 當憂心，他認為將會帶來停滯性通貨膨脹 (stagflation)。這樣看法的邏輯性為何？(5 分)他對川普政府 的經濟建議核心重點有哪些？ (5 分)",
       "sourceIds": [
-        "macro-06",
-        "macro-07"
+        "macro-07",
+        "macro-08"
       ],
       "kind": "計算題",
       "note": "本站參考解答（非官方）",
@@ -2527,46 +2503,46 @@ window.CHAPTER_DATA["macro-07"] = {
     "label": "115 年",
     "sections": {
       "macro-07::1": {
-        "focus": "總合供需模型題，先分清 AD 與 AS。AD 是商品與貨幣市場共同決定的總合需求；充分就業產出是 potential output。",
+        "focus": "IS-LM 題，先寫兩條方程式，再聯立解 r 與 Y。IS 是商品市場均衡，LM 是貨幣市場均衡。",
         "strategies": [
-          "AD 曲線負斜率：物價上升→實質貨幣供給下降→利率上升→投資與消費下降。",
-          "短期 AS 正斜率；長期 AS 垂直於潛在產出。",
-          "AD 與 AS 的交點決定短期物價與產出。",
-          "若央行設定利率，AD 方程式中的 r 直接代入政策利率。"
+          "IS：Y＝C＋I＋G，通常可整理成 Y 與 r 的負向關係。",
+          "LM：貨幣供給＝貨幣需求，通常可整理成 Y 與 r 的正向關係。",
+          "聯立 IS 與 LM 可解均衡利率與所得。",
+          "政策效果看曲線斜率：IS 越陡，財政政策越有效；LM 越陡，貨幣政策越有效。"
         ],
         "examples": [
           {
-            "questionId": "115Q2-macro-04",
+            "questionId": "115Q1-macro-13",
             "steps": [
-              "AD＝6,100＋0.7Y−10,000r，央行設定r＝1%＝0.01。",
-              "AD＝6,100＋0.7Y−100＝6,000＋0.7Y。",
-              "充分就業時 AD＝Y：Y＝6,000＋0.7Y。",
-              "0.3Y＝6,000→Y＝20,000。答案A。"
+              "IS：Y＝1000−50r；LM：Y＝200＋100r。",
+              "均衡時兩式相等：1000−50r＝200＋100r。",
+              "800＝150r→r＝800/150≈5.33。",
+              "答案C。"
             ],
-            "takeaway": "AD 方程式的 r 用政策利率代入，再令 AD＝Y 解潛在產出。",
-            "trap": "把 r＝1 直接代入，而不是1%＝0.01，導致數量級錯誤。"
+            "takeaway": "IS-LM 聯立解：令兩式的 Y 相等，先解 r，再代回求 Y。",
+            "trap": "把兩式相加或相減錯誤；先把含 r 項移到同一邊。"
           }
         ]
       },
-      "macro-07::3": {
-        "focus": "總體學派與政策爭論：古典學派強調市場機能與排擠效果；凱因斯強調需求管理；供給面學派強調減稅與生產誘因。",
+      "macro-07::2": {
+        "focus": "IS-LM 政策有效性取決於曲線斜率。投資對利率越不敏感（投資需求利率彈性小），IS 越陡，財政政策越有效。",
         "strategies": [
-          "古典學派：價格與工資可調整，財政政策易產生排擠效果。",
-          "凱因斯學派：價格僵固、需求不足，財政政策有效。",
-          "供給面衝擊：生產力上升使 AS 右移，物價下降、產出增加。",
-          "停滯性通膨：供給面負向衝擊使 AS 左移，物價上升、產出下降。"
+          "投資需求利率彈性小→利率變動對投資影響小→IS 陡。",
+          "IS 陡：政府支出增加對所得的擴張效果大，財政政策有效。",
+          "LM 陡：貨幣供給增加對利率影響大，貨幣政策有效。",
+          "流動性陷阱：LM 水平，貨幣政策無效，財政政策有效。"
         ],
         "examples": [
           {
-            "questionId": "115Q1-macro-02",
+            "questionId": "115Q2-macro-03",
             "steps": [
-              "古典學派認為政府支出增加會推升利率，排擠民間投資。",
-              "因此古典學派對財政政策的主要批評是排擠效果。",
-              "答案B；政府支出過低、通膨過低、匯率波動都不是主要批評。",
-              "答題時把「古典→排擠效果」連在一起。"
+              "投資需求的利率彈性越小，表示投資對利率越不敏感。",
+              "IS 曲線越陡峭，政府支出增加時，利率上升對投資的排擠效果較小。",
+              "因此財政政策相對有效，答案D。",
+              "貨幣政策的效果則取決於 LM 斜率，不是投資利率彈性。"
             ],
-            "takeaway": "古典學派批評財政政策的核心是排擠效果。",
-            "trap": "把古典學派與凱因斯學派對財政政策的立場對調。"
+            "takeaway": "投資利率彈性小→IS 陡→財政政策相對有效。",
+            "trap": "把 IS 陡誤認為貨幣政策有效；貨幣政策看 LM。"
           }
         ]
       }
@@ -2576,24 +2552,143 @@ window.CHAPTER_DATA["macro-07"] = {
     "year": 114,
     "label": "114 年",
     "sections": {
-      "macro-07::2": {
-        "focus": "停滯性通膨是「物價上升＋產出下降＋失業上升」同時出現，通常來自供給面衝擊。解題時先分需求拉動與成本推動，再看供給衝擊如何使AD-AS與Phillips曲線移動。",
+      "macro-07::1": {
+        "focus": "IS-LM 題，先寫兩條方程式，再聯立解 r 與 Y。IS 是商品市場均衡，LM 是貨幣市場均衡。",
         "strategies": [
-          "成本推動型通膨：能源、原物料、工資上漲使AS左移，物價上升、產出下降。",
-          "需求拉動型通膨：AD右移，短期物價與產出同向上升，失業下降。",
-          "停滯性通膨的菲利浦曲線會向右上方移動，政策面臨「抗通膨」與「救失業」的取捨。"
+          "IS：Y＝C＋I＋G，通常可整理成 Y 與 r 的負向關係。",
+          "LM：貨幣供給＝貨幣需求，通常可整理成 Y 與 r 的正向關係。",
+          "聯立 IS 與 LM 可解均衡利率與所得。",
+          "政策效果看曲線斜率：IS 越陡，財政政策越有效；LM 越陡，貨幣政策越有效。"
         ],
         "examples": [
           {
-            "questionId": "114Q2-macro-13",
+            "questionId": "114Q1-macro-written-1",
             "steps": [
-              "停滯性通膨的主要特徵是供給面衝擊：能源與原物料進口價格上揚，使生產成本上升、AS左移。",
-              "AS左移造成物價上升、產出下降、失業上升，形成停滯性通膨。",
-              "政府擴大支出或央行寬鬆屬於需求面政策，可能使物價更高，不是主要原因。",
+              "貨幣緊縮：LM左移、AD左移；短期產出下降、實質利率上升，本國貨幣傾向升值、淨出口減少。",
+              "長期物價與工資調整後，產出回到潛在水準，實質利率回到自然利率；淨出口取決於匯率與國外需求。",
+              "對貿易夥伴國：其出口需求下降，短期產出與利率下降、淨出口可能惡化。",
+              "若資本移動與匯率調整，效果會外溢；用IS-LM、AD-AS與Mundell-Fleming圖形說明傳導。"
+            ],
+            "takeaway": "緊縮政策的短期效果看LM/AD左移；長期回到自然產出。",
+            "trap": "把長期產出寫成下降；長期貨幣中立，只有物價與名目變數調整。"
+          },
+          {
+            "questionId": "114Q3-macro-written-2",
+            "steps": [
+              "IS：Y＝200＋0.75(Y－100)＋300－50r＋200＋200，整理得Y＝3,300－200r。",
+              "LM：500/P＝400＋0.5Y－100r；P＝1時，Y＝200＋200r。",
+              "聯立IS與LM：3,300－200r＝200＋200r，得r＝7.75%、Y＝1,750。",
+              "AD：由IS與LM消去r，得Y＝1,250＋500/P；IS負斜率、LM正斜率，AD為負斜率。"
+            ],
+            "takeaway": "IS-LM題先整理方程式，再聯立；AD要把P保留在LM中消去r。",
+            "trap": "把LM的500/P寫成500，或忘記政府支出與淨出口進入IS。"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "year": 113,
+    "label": "113 年",
+    "sections": {
+      "macro-07::1": {
+        "focus": "IS-LM 題，先寫兩條方程式，再聯立解 r 與 Y。IS 是商品市場均衡，LM 是貨幣市場均衡。",
+        "strategies": [
+          "IS：Y＝C＋I＋G，通常可整理成 Y 與 r 的負向關係。",
+          "LM：貨幣供給＝貨幣需求，通常可整理成 Y 與 r 的正向關係。",
+          "聯立 IS 與 LM 可解均衡利率與所得。",
+          "政策效果看曲線斜率：IS 越陡，財政政策越有效；LM 越陡，貨幣政策越有效。"
+        ],
+        "examples": [
+          {
+            "questionId": "113Q2-macro-written-1",
+            "steps": [
+              "(1) 停滯性通貨膨脹是「產出停滯、失業上升」與「物價上漲」同時出現。主要成因是供給面衝擊：能源或原物料價格大漲、供應鏈中斷、工資推升成本、生產力下降、戰爭或天災等，使短期總合供給曲線 SRAS 向左（向上）移動。AD-AS 圖上，原均衡為 \\(Y_n,P_0\\)；SRAS 左移至 \\(SRAS^{\\prime}\\) 後，新均衡 \\(Y_1<Y_n\\)、\\(P_1>P_0\\)，即產出下降、物價上升。",
+              "(2) 財政政策與貨幣政策都是需求面政策，只能移動 AD，不能把 SRAS 移回原位。擴張性財政政策（G↑或T↓）使 IS 右移、AD 右移，所得與就業增加，但物價進一步上漲；擴張性貨幣政策（M↑）使 LM 右移、AD 右移，效果類似。反之，緊縮性財政或貨幣政策使 AD 左移，物價下降，但產出與就業進一步惡化。因此在 IS-LM 與 AD-AS 架構下，需求政策只能在通膨與失業之間取捨，無法徹底消除停滯性通膨的痛苦；若通膨預期定型，政策效果更差。",
+              "(3) 理論上「兩全其美」的政策是供給面政策：降低生產成本、提升生產力，使 SRAS 向右移動。例如能源政策、減稅與投資誘因、放寬管制、基礎建設、教育訓練、勞動市場彈性、技術進步等。SRAS 右移可同時使物價下降、產出與就業增加，繞開通膨與失業的短期取捨。1980年代美國的供給面經濟學（減稅、放寬管制）常被引用為例子；搭配可信的貨幣政策與所得政策，效果更完整。"
+            ],
+            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+          },
+          {
+            "questionId": "113Q2-macro-written-2",
+            "steps": [
+              "(1) 商品市場：\\(Y=C+I+G\\)，其中 \\(Y_d=Y-T=Y-(0.25Y-50)=0.75Y+50\\)，故 \\(C=150+0.8(0.75Y+50)=190+0.6Y\\)。代入得 \\(Y=190+0.6Y+710-20r+300\\)，整理：\\(0.4Y=1{,}200-20r\\)，所以 IS：\\(Y=3{,}000-50r\\)。",
+              "貨幣市場：\\(M_d=M_s\\)，\\(700+0.4Y-10r=1{,}300+10r\\)，整理 \\(0.4Y=600+20r\\)，所以 LM：\\(Y=1{,}500+50r\\)。",
+              "(2) 聯立 IS 與 LM：\\(3{,}000-50r=1{,}500+50r\\)，得 \\(100r=1{,}500\\)，\\(r=15\\)（15%）；\\(Y=3{,}000-50(15)=2{,}250\\)。",
+              "(3) 稅收 \\(T=0.25(2{,}250)-50=512.5\\)，政府支出 \\(G=300\\)，財政餘額 \\(T-G=512.5-300=212.5\\)，為財政盈餘 212.5。"
+            ],
+            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "year": 112,
+    "label": "112 年",
+    "sections": {
+      "macro-07::2": {
+        "focus": "IS-LM 政策有效性取決於曲線斜率。投資對利率越不敏感（投資需求利率彈性小），IS 越陡，財政政策越有效。",
+        "strategies": [
+          "投資需求利率彈性小→利率變動對投資影響小→IS 陡。",
+          "IS 陡：政府支出增加對所得的擴張效果大，財政政策有效。",
+          "LM 陡：貨幣供給增加對利率影響大，貨幣政策有效。",
+          "流動性陷阱：LM 水平，貨幣政策無效，財政政策有效。"
+        ],
+        "examples": [
+          {
+            "questionId": "112Q1-macro-written-3",
+            "steps": [
+              "聯準會2022年為對抗通膨，主要採取緊縮性貨幣政策：提高聯邦基金利率目標區間、持續升息、縮減資產負債表（QT）、減少持有公債與MBS、提高貼現率，並以 前瞻指引 傳達持續緊縮的立場。",
+              "(一) 貨幣市場：貨幣供給減少或成長放緩，MS左移；貨幣需求不變下，短期利率上升。",
+              "(二) IS-LM：LM左移，利率上升、投資與產出下降；這是需求緊縮，會降低所得。",
+              "(三) AD-AS：AD左移，短期物價水準下降或通膨減緩，產出下降、失業上升；若通膨預期下降，SRAS也可能往下移動，有助通膨回落。",
+              "(四) 匯率：美國利率上升，資本流入美國，美元需求增加，美元升值（外幣貶值）；美元升值使進口品變便宜，有助降低通膨，但出口競爭力下降。",
+              "整體效果：利率上升、貨幣量減少、所得與物價下降或通膨降溫、美元升值。政策代價是經濟成長放緩與失業上升；若緊縮過度，可能造成硬著陸。"
+            ],
+            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+          }
+        ]
+      },
+      "macro-07::1": {
+        "focus": "IS-LM 題，先寫兩條方程式，再聯立解 r 與 Y。IS 是商品市場均衡，LM 是貨幣市場均衡。",
+        "strategies": [
+          "IS：Y＝C＋I＋G，通常可整理成 Y 與 r 的負向關係。",
+          "LM：貨幣供給＝貨幣需求，通常可整理成 Y 與 r 的正向關係。",
+          "聯立 IS 與 LM 可解均衡利率與所得。",
+          "政策效果看曲線斜率：IS 越陡，財政政策越有效；LM 越陡，貨幣政策越有效。"
+        ],
+        "examples": [
+          {
+            "questionId": "112Q2-macro-written-2",
+            "steps": [
+              "商品市場：\\(Y=C+I+G+NX\\)。\\(Y_d=Y-0.2Y=0.8Y\\)，\\(C=200+0.75(0.8Y)=200+0.6Y\\)。代入：\\[Y=200+0.6Y+200-5{,}000r+100+200\\]，整理 \\(0.4Y=700-5{,}000r\\)，IS：\\(Y=1{,}750-12{,}500r\\)。",
+              "貨幣市場：\\(L=M\\)，\\(Y-5{,}000r=700\\)，LM：\\(Y=700+5{,}000r\\)。",
+              "聯立：\\(1{,}750-12{,}500r=700+5{,}000r\\)，\\(1{,}050=17{,}500r\\)，\\(r=0.06=6\\%\\)；\\(Y=700+5{,}000(0.06)=1{,}000\\)。",
+              "均衡所得 Y=1,000，均衡利率 r=6%。"
+            ],
+            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+          }
+        ]
+      },
+      "macro-07::3": {
+        "focus": "政策有效性看 IS 與 LM 的斜率：LM 越平坦（流動性陷阱），貨幣政策越無效、財政政策越有效；LM 越陡，則相反。",
+        "strategies": [
+          "流動性陷阱：LM 水平，貨幣供給增加只被人們持有，利率不再下降，貨幣政策無效。",
+          "投資陷阱：IS 垂直，利率下降無法刺激投資，貨幣政策無效。",
+          "財政政策：LM 越平坦，排擠效果越小，效果越大；LM 越陡，排擠效果越大。",
+          "古典情況：LM 垂直，貨幣政策有效、財政政策完全排擠。"
+        ],
+        "examples": [
+          {
+            "questionId": "112Q1-macro-19",
+            "steps": [
+              "流動性陷阱下，LM曲線在低利率區間呈水平（平坦）。",
+              "貨幣供給增加只被人們持有，利率不再下降，投資與總合支出不變，貨幣政策無效。",
               "答案C。"
             ],
-            "takeaway": "停滯性通膨看供給面；能源與原物料價格是典型成本推動因素。",
-            "trap": "把財政擴張或貨幣寬鬆當成停滯性通膨的主因；那是需求拉動。"
+            "takeaway": "流動性陷阱是LM平坦、貨幣政策無效。",
+            "trap": "把流動性陷阱記成IS平坦或LM陡峭。"
           }
         ]
       }
@@ -2604,23 +2699,269 @@ window.CHAPTER_DATA["macro-07"] = {
     "label": "111 年",
     "sections": {
       "macro-07::1": {
-        "focus": "總合供需模型題，先分清 AD 與 AS。AD 是商品與貨幣市場共同決定的總合需求；充分就業產出是 potential output。",
+        "focus": "IS-LM 題，先寫兩條方程式，再聯立解 r 與 Y。IS 是商品市場均衡，LM 是貨幣市場均衡。",
         "strategies": [
-          "AD 曲線負斜率：物價上升→實質貨幣供給下降→利率上升→投資與消費下降。",
-          "短期 AS 正斜率；長期 AS 垂直於潛在產出。",
-          "AD 與 AS 的交點決定短期物價與產出。",
-          "若央行設定利率，AD 方程式中的 r 直接代入政策利率。"
+          "IS：Y＝C＋I＋G，通常可整理成 Y 與 r 的負向關係。",
+          "LM：貨幣供給＝貨幣需求，通常可整理成 Y 與 r 的正向關係。",
+          "聯立 IS 與 LM 可解均衡利率與所得。",
+          "政策效果看曲線斜率：IS 越陡，財政政策越有效；LM 越陡，貨幣政策越有效。"
         ],
         "examples": [
           {
-            "questionId": "111Q3-macro-written-1",
+            "questionId": "111Q1-macro-written-2",
             "steps": [
-              "模型：AD \\(Y=600+10(M/P)\\)；SRAS \\(Y=\\bar Y+P-P^e\\)；Okun \\((Y-\\bar Y)/\\bar Y=-2(u-\\bar u)\\)，其中 \\(\\bar Y=750\\)、\\(\\bar u=0.05\\)、\\(P^e=40\\)。",
-              "(A) 長期均衡 \\(Y=\\bar Y=750\\)，且 \\(P=P^e=40\\)。由AD：\\(750=600+10(600/P)\\)，\\(150=6{,}000/P\\)，\\(P=40\\)。",
-              "(B) M增至800，短期 \\(P^e=40\\)：SRAS \\(Y=750+P-40=710+P\\)；AD \\(Y=600+10(800/P)=600+8{,}000/P\\)。聯立 \\(710+P=600+8{,}000/P\\)，整理 \\(P^2+110P-8{,}000=0\\)，得 \\(P=50\\)；\\(Y=710+50=760\\)。Okun：\\((760-750)/750=0.013333=-2(u-0.05)\\)，\\(u=0.04333=4.33\\%\\)。",
-              "(C) 長期物價完全調整後 \\(Y=\\bar Y=750\\)，AD：\\(750=600+10(800/P)\\)，\\(150=8{,}000/P\\)，新物價 \\(P=53.33\\)。"
+              "(1) 商品市場：\\(Y_d=Y-(100+0.25Y)=0.75Y-100\\)，\\(C=200+0.8(0.75Y-100)=120+0.6Y\\)。\\(NX=500-(120+0.1Y)=380-0.1Y\\)。\\[Y=120+0.6Y+700-2{,}000r+300+380-0.1Y\\]，整理 \\(0.5Y=1{,}500-2{,}000r\\)，IS：\\(Y=3{,}000-4{,}000r\\)。",
+              "(2) 貨幣市場：\\(1{,}000+0.25Y-500r=1{,}600\\)，\\(0.25Y=600+500r\\)，LM：\\(Y=2{,}400+2{,}000r\\)。",
+              "(3) 聯立：\\(3{,}000-4{,}000r=2{,}400+2{,}000r\\)，\\(600=6{,}000r\\)，\\(r=0.10=10\\%\\)；\\(Y=2{,}400+200=2{,}600\\)。",
+              "(4) G增加100，IS變為 \\(Y=3{,}200-4{,}000r\\)。與LM聯立：\\(3{,}200-4{,}000r=2{,}400+2{,}000r\\)，\\(800=6{,}000r\\)，\\(r=13.33\\%\\)；\\(Y=2{,}400+266.67=2{,}666.67\\)。若利率不變，乘數 \\(1/(1-0.6+0.1)=2\\)，G增加100可使Y增加200；實際只增加66.67，排擠效果133.33，其中投資因利率上升而減少 \\(2{,}000\\times3.33\\%=66.67\\)，再經乘數放大為133.33。",
+              "(5) 央行買進50元公債、貨幣乘數2，貨幣供給增加100，Ms=1,700。LM：\\(1{,}000+0.25Y-500r=1{,}700\\)，\\(Y=2{,}800+2{,}000r\\)。與IS聯立：\\(3{,}000-4{,}000r=2{,}800+2{,}000r\\)，\\(200=6{,}000r\\)，\\(r=3.33\\%\\)；\\(Y=2{,}800+66.67=2{,}866.67\\)。所得增加266.67，利率下降6.67%。"
             ],
             "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "year": 110,
+    "label": "110 年",
+    "sections": {
+      "macro-07::1": {
+        "focus": "IS-LM 題，先寫兩條方程式，再聯立解 r 與 Y。IS 是商品市場均衡，LM 是貨幣市場均衡。",
+        "strategies": [
+          "IS：Y＝C＋I＋G，通常可整理成 Y 與 r 的負向關係。",
+          "LM：貨幣供給＝貨幣需求，通常可整理成 Y 與 r 的正向關係。",
+          "聯立 IS 與 LM 可解均衡利率與所得。",
+          "政策效果看曲線斜率：IS 越陡，財政政策越有效；LM 越陡，貨幣政策越有效。"
+        ],
+        "examples": [
+          {
+            "questionId": "110Q1-macro-written-3",
+            "steps": [
+              "(A) \\(\\pi^e=0\\)，故 \\(i=r\\)。商品市場均衡 \\(Y=C+I\\)：\\[6{,}000=1{,}200+0.8(6{,}000)-3{,}000r+500-2{,}000r\\]，右邊 \\(=1{,}200+4{,}800+500-5{,}000r=6{,}500-5{,}000r\\)。解得 \\(5{,}000r=500\\)，\\(r=0.10=10\\%\\)，\\(i=10\\%\\)。",
+              "(B) \\(\\pi^e=-2\\%\\)，Fisher \\(i=r-0.02\\)。\\[6{,}000=6{,}500-3{,}000r-2{,}000(r-0.02)=6{,}540-5{,}000r\\]，\\(5{,}000r=540\\)，\\(r=0.108=10.8\\%\\)；\\(i=10.8\\%-2\\%=8.8\\%\\)。",
+              "預期通縮使名目利率下降，但實質利率上升，儲蓄意願增加、投資減少，維持自然產出下的資金市場均衡。"
+            ],
+            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+          },
+          {
+            "questionId": "110Q2-macro-written-1",
+            "steps": [
+              "商品市場：\\(C=100+0.5(Y-(10+0.34Y))=95+0.33Y\\)；\\(I=200+0.17Y-2{,}000r\\)。\\[Y=95+0.33Y+200+0.17Y-2{,}000r+300\\]，整理 \\(0.5Y=595-2{,}000r\\)，IS：\\(Y=1{,}190-4{,}000r\\)。",
+              "貨幣市場：\\(M_s/P=1{,}000/10=100=0.2Y-1{,}500r\\)，LM：\\(Y=500+7{,}500r\\)。",
+              "聯立：\\(1{,}190-4{,}000r=500+7{,}500r\\)，\\(690=11{,}500r\\)，\\(r=0.06=6\\%\\)；\\(Y=500+7{,}500(0.06)=950\\)。",
+              "租稅 \\(T=10+0.34\\times950=333\\)；投資 \\(I=200+0.17\\times950-2{,}000(0.06)=200+161.5-120=241.5\\)。故(1)Y=950、(2)T=333、(3)r=6%、(4)I=241.5。"
+            ],
+            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+          },
+          {
+            "questionId": "110Q2-macro-31",
+            "steps": [
+              "經濟在LM曲線上、但在IS曲線右邊：商品市場有超額供給。",
+              "超額供給使產出Y下降，沿著LM曲線利率r也下降。",
+              "答案D。"
+            ],
+            "takeaway": "IS右邊＝商品市場超額供給，所得下降；沿LM調整利率。",
+            "trap": "把IS右邊當成超額需求。"
+          }
+        ]
+      },
+      "macro-07::2": {
+        "focus": "IS-LM 政策有效性取決於曲線斜率。投資對利率越不敏感（投資需求利率彈性小），IS 越陡，財政政策越有效。",
+        "strategies": [
+          "投資需求利率彈性小→利率變動對投資影響小→IS 陡。",
+          "IS 陡：政府支出增加對所得的擴張效果大，財政政策有效。",
+          "LM 陡：貨幣供給增加對利率影響大，貨幣政策有效。",
+          "流動性陷阱：LM 水平，貨幣政策無效，財政政策有效。"
+        ],
+        "examples": [
+          {
+            "questionId": "110Q2-macro-written-3",
+            "steps": [
+              "COVID-19期間央行採寬鬆貨幣政策，LM右移、利率下降、所得上升；AD右移，短期物價上升、產出增加。",
+              "勞動市場：產出增加使勞動需求上升，就業增加、失業下降；名目工資短期具僵固性，實質工資可能下降；長期名目工資隨物價調整上升，SRAS左移，產出回到自然水準、物價進一步上升。",
+              "長期效果：貨幣中性，實質產出與就業回到自然率，物價與名目工資同比例上升，利率回到自然利率；若處於流動性陷阱，寬鬆貨幣短期效果有限。"
+            ],
+            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "year": 109,
+    "label": "109 年",
+    "sections": {
+      "macro-07::1": {
+        "focus": "IS-LM 題，先寫兩條方程式，再聯立解 r 與 Y。IS 是商品市場均衡，LM 是貨幣市場均衡。",
+        "strategies": [
+          "IS：Y＝C＋I＋G，通常可整理成 Y 與 r 的負向關係。",
+          "LM：貨幣供給＝貨幣需求，通常可整理成 Y 與 r 的正向關係。",
+          "聯立 IS 與 LM 可解均衡利率與所得。",
+          "政策效果看曲線斜率：IS 越陡，財政政策越有效；LM 越陡，貨幣政策越有效。"
+        ],
+        "examples": [
+          {
+            "questionId": "109Q1-macro-written-1",
+            "steps": [
+              "(1) 預期未來所得增加：消費者依恆常所得/生命循環理論，預期未來收入上升會增加目前消費，IS右移（同一利率下Y增加）。",
+              "(2) 預期資本未來生產力增加：企業預期投資報酬率上升，增加目前投資，IS右移。",
+              "(3) 個人所得稅率調低：可支配所得增加，消費增加；乘數效果使IS右移。若減稅同時影響勞動供給或政府預算，效果可能再變動。"
+            ],
+            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+          }
+        ]
+      },
+      "macro-07::2": {
+        "focus": "IS-LM 政策有效性取決於曲線斜率。投資對利率越不敏感（投資需求利率彈性小），IS 越陡，財政政策越有效。",
+        "strategies": [
+          "投資需求利率彈性小→利率變動對投資影響小→IS 陡。",
+          "IS 陡：政府支出增加對所得的擴張效果大，財政政策有效。",
+          "LM 陡：貨幣供給增加對利率影響大，貨幣政策有效。",
+          "流動性陷阱：LM 水平，貨幣政策無效，財政政策有效。",
+          "Solow 模型：\\(Y=A F(K,L)\\)；穩定狀態下 \\(sf(k)=(n+\\delta)k\\)。",
+          "長期人均產出成長率等於技術進步率 gA；資本累積只能帶來過渡期成長。",
+          "成長會計：gY＝gA＋αgK＋(1−α)gN；Solow residual＝gA。",
+          "72 法則：倍增年數≈72/年成長率（%）。"
+        ],
+        "examples": [
+          {
+            "questionId": "109Q3-macro-written-2",
+            "steps": [
+              "貨幣市場圖中，貨幣供給曲線與貨幣需求曲線決定利率與貨幣數量。若央行以「量」為中間目標（如M1、M2），當貨幣需求曲線因所得、物價或預期而波動時，央行必須調整準備金供給以維持數量，利率會大幅波動；若以「價」為中間目標（如短期利率），則必須隨需求波動調整供給，貨幣數量會波動。因此價與量無法同時精確釘住，稱為「價量不相容」。",
+              "若中間目標選擇釘住「量」，較恰當的操作目標是準備金總量/貨幣基數、非借入準備、借入準備等數量指標，透過公開市場操作控制準備金供給；若操作目標訂利率，會與數量目標衝突。",
+              "實務上央行常採「利率操作目標、貨幣數量監控」的折衷，並以走廊制度控制短期利率。"
+            ],
+            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+          },
+          {
+            "questionId": "109Q2-macro-22",
+            "steps": [
+              "貨幣需求對利率越不敏感，LM曲線越陡。",
+              "LM越陡，財政擴張的排擠效果越小，政策效果越大。",
+              "答案B。"
+            ],
+            "takeaway": "LM越陡，財政政策越有效；LM越平坦，貨幣政策越有效。",
+            "trap": "把兩者效果記反。"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "year": 108,
+    "label": "108 年",
+    "sections": {
+      "macro-07::1": {
+        "focus": "IS-LM 題，先寫兩條方程式，再聯立解 r 與 Y。IS 是商品市場均衡，LM 是貨幣市場均衡。",
+        "strategies": [
+          "IS：Y＝C＋I＋G，通常可整理成 Y 與 r 的負向關係。",
+          "LM：貨幣供給＝貨幣需求，通常可整理成 Y 與 r 的正向關係。",
+          "聯立 IS 與 LM 可解均衡利率與所得。",
+          "政策效果看曲線斜率：IS 越陡，財政政策越有效；LM 越陡，貨幣政策越有效。"
+        ],
+        "examples": [
+          {
+            "questionId": "108Q1-macro-written-1",
+            "steps": [
+              "商品市場：\\(C=100+0.6(Y-50)=70+0.6Y\\)；\\(Y=70+0.6Y+200-10r+100\\)，整理 \\(0.4Y=370-10r\\)，IS：\\(Y=925-25r\\)。",
+              "貨幣市場：\\(M_d=P(Y-100r)=Y-100r=800\\)，LM：\\(Y=800+100r\\)。聯立：\\(925-25r=800+100r\\)，\\(125=125r\\)，\\(r=1=100\\%\\)；\\(Y=900\\)。",
+              "(2) 充分就業Y=1,100。LM下 \\(1{,}100=800+100r\\)，r=3=300%。IS：\\(1{,}100=70+0.6(1{,}100)+200-10(3)+G\\)，右邊 \\(=70+660+200-30+G=900+G\\)，故G=200。原G=100，政府支出須再增加 100。"
+            ],
+            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+          },
+          {
+            "questionId": "108Q1-macro-written-2",
+            "steps": [
+              "(1) 對商品市場與貨幣市場全微分：\\(dy=c^{\\prime}(1-t^{\\prime})dy+i^{\\prime}dr+dg\\)；\\(dm=l^{\\prime}dr+k^{\\prime}dy\\)。dg時dm=0，\\(dr=-(k^{\\prime}/l^{\\prime})dy\\)。代入：\\[dy[1-c^{\\prime}(1-t^{\\prime})+i^{\\prime}k^{\\prime}/l^{\\prime}]=dg\\]，故 \\[\\frac{dy}{dg}=\\frac{1}{1-c^{\\prime}(1-t^{\\prime})+i^{\\prime}k^{\\prime}/l^{\\prime}}\\] 。",
+              "(2) dm時dg=0：\\(dr=[1-c^{\\prime}(1-t^{\\prime})]dy/i^{\\prime}\\)。代入貨幣市場：\\(dm=l^{\\prime}dr+k^{\\prime}dy=dy\\{k^{\\prime}+l^{\\prime}[1-c^{\\prime}(1-t^{\\prime})]/i^{\\prime}\\}\\)，故 \\[\\frac{dy}{dm}=\\frac{1}{k^{\\prime}+l^{\\prime}[1-c^{\\prime}(1-t^{\\prime})]/i^{\\prime}}\\] 。",
+              "因 \\(i^{\\prime}<0\\)、\\(l^{\\prime}<0\\)，分母中的 \\(i^{\\prime}k^{\\prime}/l^{\\prime}\\) 與 \\(l^{\\prime}(...)/i^{\\prime}\\) 為正，政府支出乘數小於簡單乘數，貨幣乘數為正。"
+            ],
+            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "year": 107,
+    "label": "107 年",
+    "sections": {
+      "macro-07::1": {
+        "focus": "IS-LM 題，先寫兩條方程式，再聯立解 r 與 Y。IS 是商品市場均衡，LM 是貨幣市場均衡。",
+        "strategies": [
+          "IS：Y＝C＋I＋G，通常可整理成 Y 與 r 的負向關係。",
+          "LM：貨幣供給＝貨幣需求，通常可整理成 Y 與 r 的正向關係。",
+          "聯立 IS 與 LM 可解均衡利率與所得。",
+          "政策效果看曲線斜率：IS 越陡，財政政策越有效；LM 越陡，貨幣政策越有效。"
+        ],
+        "examples": [
+          {
+            "questionId": "107Q2-macro-written-1",
+            "steps": [
+              "(1) \\(Y_d=Y-(-100+0.2Y)=0.8Y+100\\)；\\(C=225+0.75(0.8Y+100)=300+0.6Y\\)。\\[Y=300+0.6Y+600-200r+300\\]，\\(0.4Y=1{,}200-200r\\)，IS \\(Y=3{,}000-500r\\)。LM：\\(600+0.5Y-150r+100=1{,}000\\)，\\(0.5Y=300+150r\\)，\\(Y=600+300r\\)。聯立 \\(3{,}000-500r=600+300r\\)，\\(800r=2{,}400\\)，r=3%，Y=1,500。",
+              "(2) 公開市場買進100、貨幣乘數2，Ms增加200至1,200。LM \\(700+0.5Y-150r=1{,}200\\)，Y=1,000+300r。聯立 \\(3{,}000-500r=1{,}000+300r\\)，r=2.5%，Y=1,750。"
+            ],
+            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+          },
+          {
+            "questionId": "107Q2-macro-written-3",
+            "steps": [
+              "IS：\\(Y=140+0.8(Y-T)+200-500r+120\\)，整理 \\(0.2Y=460-0.8T-500r\\)，\\(Y=2{,}300-4T-2{,}500r\\)。LM：\\(50+0.3Y-500r=M/P\\)，\\(r=(0.3Y-M/P+50)/500\\)。",
+              "代入消去r：\\(Y=2{,}300-4T-5(0.3Y-M/P+50)\\)，\\(2.5Y=2{,}050-4T+5M/P\\)，\\(Y=820-1.6T+2M/P\\)。",
+              "(1) T增加100，所得減少 \\(1.6\\times100=\\)160。(2) G乘數：\\(Y=580+2G-1.6T+2M/P\\)，G增加50，所得增加 \\(2\\times50=\\)100。"
+            ],
+            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+          }
+        ]
+      },
+      "macro-07::3": {
+        "focus": "政策有效性看 IS 與 LM 的斜率：LM 越平坦（流動性陷阱），貨幣政策越無效、財政政策越有效；LM 越陡，則相反。",
+        "strategies": [
+          "流動性陷阱：LM 水平，貨幣供給增加只被人們持有，利率不再下降，貨幣政策無效。",
+          "投資陷阱：IS 垂直，利率下降無法刺激投資，貨幣政策無效。",
+          "財政政策：LM 越平坦，排擠效果越小，效果越大；LM 越陡，排擠效果越大。",
+          "古典情況：LM 垂直，貨幣政策有效、財政政策完全排擠。"
+        ],
+        "examples": [
+          {
+            "questionId": "107Q3-macro-written-8",
+            "steps": [
+              "貨幣政策有效性：LM越陡（貨幣需求對利率不敏感）、IS越平坦（投資對利率敏感），貨幣政策效果越大；流動性陷阱（LM水平）時貨幣政策無效。",
+              "財政政策有效性：IS越陡（投資對利率不敏感）、LM越平坦（貨幣需求對利率敏感），財政政策效果越大；LM垂直時完全排擠，效果為零。",
+              "極端情形：古典學派LM垂直，財政政策無效、貨幣政策有效；流動性陷阱LM水平，財政政策有效、貨幣政策無效。"
+            ],
+            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+          }
+        ]
+      },
+      "macro-07::2": {
+        "focus": "IS-LM 政策有效性取決於曲線斜率。投資對利率越不敏感（投資需求利率彈性小），IS 越陡，財政政策越有效。",
+        "strategies": [
+          "投資需求利率彈性小→利率變動對投資影響小→IS 陡。",
+          "IS 陡：政府支出增加對所得的擴張效果大，財政政策有效。",
+          "LM 陡：貨幣供給增加對利率影響大，貨幣政策有效。",
+          "流動性陷阱：LM 水平，貨幣政策無效，財政政策有效。"
+        ],
+        "examples": [
+          {
+            "questionId": "107Q4-macro-written-1",
+            "steps": [
+              "(1) 大幅減稅：IS右移，所得增加、利率上升；央行緊縮貨幣：LM左移，利率再上升、所得下降。最終利率確定上升，所得變動不確定，取決於兩政策相對強度；若LM陡峭，減稅效果可能被完全排擠。",
+              "(2) 財政部要求央行盈餘繳庫以彌補赤字：若只是盈餘移轉，政府赤字減少、公債供給下降，利率有下降壓力；但央行為繳庫而出售資產/收回流動性，會使準備貨幣與貨幣供給減少、LM左移，利率上升、所得下降。淨效果取決於繳庫方式與規模。",
+              "政策協調上，應避免央行為財政目的犧牲貨幣政策獨立性。"
+            ],
+            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+          },
+          {
+            "questionId": "107Q2-macro-26",
+            "steps": [
+              "LM越陡：財政政策排擠效果小、效果大；貨幣政策效果小。",
+              "LM越平坦：貨幣政策效果小、財政政策效果大；流動性陷阱時貨幣政策無效。",
+              "答案D。"
+            ],
+            "takeaway": "政策有效性取決於IS、LM斜率。",
+            "trap": "把財政與貨幣政策的效果記反。"
           }
         ]
       }

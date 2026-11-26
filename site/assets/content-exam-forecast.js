@@ -61,8 +61,8 @@ window.EXAM_FORECAST = {
       ],
       "focus": "由 Y=C+I+G 與 M/P=L 聯立；財政擴張推升 r、排擠投資。若貨幣政策同時放鬆，利率上升與排擠效果可被部分抵銷。",
       "chapters": [
-        "macro-06",
-        "macro-02"
+        "macro-07",
+        "macro-03"
       ],
       "eventId": "us-debt-gold",
       "assumption": "情境與數字為教學示例；實際數據請以題目與官方公告為準。",
@@ -93,8 +93,8 @@ window.EXAM_FORECAST = {
       ],
       "focus": "先確認 S 是每美元的新台幣價格；S 上升代表新台幣貶值。利差、風險溢酬、央行干預、資本管制與預期都會造成偏離。",
       "chapters": [
-        "macro-10",
-        "macro-12"
+        "macro-11",
+        "macro-13"
       ],
       "eventId": "global-rate-policy",
       "assumption": "情境與數字為教學示例；實際數據請以題目與官方公告為準。",
@@ -127,8 +127,8 @@ window.EXAM_FORECAST = {
       ],
       "focus": "近似 r≈i−π^e；精確 1+i=(1+r)(1+π^e)。名目利率若調整不足，實質利率下降；若 Fed 充分升息，實質利率可能維持或上升。",
       "chapters": [
-        "macro-05",
-        "macro-12"
+        "macro-06",
+        "macro-13"
       ],
       "eventId": "fed-2025",
       "assumption": "情境與數字為教學示例；實際數據請以題目與官方公告為準。",
@@ -159,8 +159,8 @@ window.EXAM_FORECAST = {
       ],
       "focus": "供給等於需求時解 r；政府借款使需求右移、利率上升。景氣衰退、民間投資需求疲弱或央行配合時，排擠效果可能較小。",
       "chapters": [
-        "macro-06",
-        "macro-02"
+        "macro-07",
+        "macro-03"
       ],
       "eventId": "us-debt-gold",
       "assumption": "情境與數字為教學示例；實際數據請以題目與官方公告為準。",
@@ -193,8 +193,8 @@ window.EXAM_FORECAST = {
       ],
       "focus": "乘數=1/(1−MPC+MPM)=1/(0.2+0.2)=2.5；所得變動−250 億元。這是模型值，不是現實 GDP 預測。",
       "chapters": [
-        "macro-10",
-        "macro-07"
+        "macro-11",
+        "macro-08"
       ],
       "eventId": "tariffs-2025",
       "assumption": "情境與數字為教學示例；實際數據請以題目與官方公告為準。",
@@ -227,8 +227,8 @@ window.EXAM_FORECAST = {
       ],
       "focus": "1+g_real=(1+g_nominal)/(1+π)；約 0.97%。平均 CPI 無法反映所得別、區域別與消費籃差異。",
       "chapters": [
-        "macro-09",
-        "macro-05"
+        "macro-10",
+        "macro-06"
       ],
       "eventId": "global-inflation-2026",
       "assumption": "情境與數字為教學示例；實際數據請以題目與官方公告為準。",
@@ -259,8 +259,8 @@ window.EXAM_FORECAST = {
       ],
       "focus": "π=3%−0.5(1%)+1%=3.5%。預期上升使短期曲線上移；長期失業回到自然率，貨幣政策只能影響通膨。",
       "chapters": [
-        "macro-09",
-        "macro-05"
+        "macro-10",
+        "macro-06"
       ],
       "eventId": "global-inflation-2026",
       "assumption": "情境與數字為教學示例；實際數據請以題目與官方公告為準。",
@@ -291,9 +291,9 @@ window.EXAM_FORECAST = {
       ],
       "focus": "m=(1+c)/(rr+e+c)=1.2/0.35≈3.43；理論增加約 3,430 億元。實際效果受銀行放款意願與準備金需求影響。",
       "chapters": [
-        "macro-03",
         "macro-04",
-        "macro-05"
+        "macro-05",
+        "macro-06"
       ],
       "eventId": "fed-2025",
       "assumption": "情境與數字為教學示例；實際數據請以題目與官方公告為準。",
@@ -326,8 +326,8 @@ window.EXAM_FORECAST = {
       ],
       "focus": "能源供給衝擊使 SRAS 左移、貿易條件惡化；能源出口國受益、進口國受損。要區分短期價格衝擊與長期供應鏈重組。",
       "chapters": [
-        "macro-07",
-        "macro-09"
+        "macro-08",
+        "macro-10"
       ],
       "eventId": "global-inflation-2026",
       "assumption": "情境與數字為教學示例；實際數據請以題目與官方公告為準。",
@@ -358,8 +358,8 @@ window.EXAM_FORECAST = {
       ],
       "focus": "補貼可短期減輕民怨但可能擴大赤字與扭曲價格；釋放儲油是暫時供給；升息壓抑需求；能源轉型是長期供給面政策。",
       "chapters": [
-        "macro-07",
-        "macro-09"
+        "macro-08",
+        "macro-10"
       ],
       "eventId": "global-inflation-2026",
       "assumption": "情境與數字為教學示例；實際數據請以題目與官方公告為準。",
@@ -390,8 +390,8 @@ window.EXAM_FORECAST = {
       ],
       "focus": "AI 投資先推動 AD 與資本存量，長期取決於 TFP 與技術擴散；若供給瓶頸（電力、人才）限制了產能，物價壓力會上升。",
       "chapters": [
-        "macro-08",
-        "macro-04"
+        "macro-09",
+        "macro-05"
       ],
       "eventId": "ai-gpt-2025",
       "assumption": "情境與數字為教學示例；實際數據請以題目與官方公告為準。",
@@ -422,8 +422,8 @@ window.EXAM_FORECAST = {
       ],
       "focus": "關稅提高進口成本、可能壓縮進口，但也推升通膨、報復與供應鏈成本；匯率升值會抵銷部分效果，貿易逆差取決於儲蓄—投資缺口。",
       "chapters": [
-        "macro-10",
-        "macro-07"
+        "macro-11",
+        "macro-08"
       ],
       "eventId": "tariffs-2025",
       "assumption": "情境與數字為教學示例；實際數據請以題目與官方公告為準。",
@@ -456,8 +456,8 @@ window.EXAM_FORECAST = {
       ],
       "focus": "BEI≈4.5%-2.0%=2.5%。實際通膨高於 2.5% 時，TIPS 的實質本金調整較有利；BEI 還包含通膨風險溢酬與流動性溢酬。",
       "chapters": [
-        "macro-09",
-        "macro-05"
+        "macro-10",
+        "macro-06"
       ],
       "eventId": "global-inflation-2026",
       "assumption": "情境與數字為教學示例；實際數據請以題目與官方公告為準。",
@@ -488,9 +488,9 @@ window.EXAM_FORECAST = {
       ],
       "focus": "QT 使央行資產與負債同步縮減；ON RRP 先吸收過剩流動性，耗盡後準備金下降。準備金需求缺乏彈性時，SOFR 可能跳升並偏離走廊，Fed 需以公開市場操作或放慢 QT 因應。",
       "chapters": [
-        "macro-03",
         "macro-04",
-        "macro-05"
+        "macro-05",
+        "macro-06"
       ],
       "eventId": "fed-2025",
       "assumption": "題設數字為教學假設；實際考試請以題目給定與最新官方資料為準。",
@@ -523,8 +523,8 @@ window.EXAM_FORECAST = {
       ],
       "focus": "Y=AF(K,L)；供應鏈重組降低比較利益與 TFP，LRAS 左移、潛在產出下降、物價中樞上升。投資與技術移轉可能部分抵銷，但 transition cost 與效率損失可能持久。",
       "chapters": [
-        "macro-10",
-        "macro-07"
+        "macro-11",
+        "macro-08"
       ],
       "eventId": "tariffs-2025",
       "assumption": "題設數字為教學假設；實際考試請以題目給定與最新官方資料為準。",
@@ -557,8 +557,8 @@ window.EXAM_FORECAST = {
       ],
       "focus": "以日圓/美元報價，UIP 預期變動約 i_JP−i_US=−4.5%，E(S) 約 143.25。利差收斂使日圓升值、套利者匯損，被迫賣出美元資產還日圓，形成去槓桿與流動性螺旋。",
       "chapters": [
-        "macro-10",
-        "macro-12"
+        "macro-11",
+        "macro-13"
       ],
       "eventId": "global-rate-policy",
       "assumption": "題設數字為教學假設；實際考試請以題目給定與最新官方資料為準。",
@@ -591,8 +591,8 @@ window.EXAM_FORECAST = {
       ],
       "focus": "ΔRER≈−3%+(2.8%−2.2%)=−2.4%，實質升值。J 曲線：短期合約使出口量變動小，長期價格競爭力下降；高附加價值電子業較能吸收匯率，傳統零組件較敏感。",
       "chapters": [
-        "macro-10",
-        "macro-12"
+        "macro-11",
+        "macro-13"
       ],
       "eventId": "global-rate-policy",
       "assumption": "題設數字為教學假設；實際考試請以題目給定與最新官方資料為準。",
@@ -623,8 +623,8 @@ window.EXAM_FORECAST = {
       ],
       "focus": "資本自由流動、固定匯率、獨立貨幣政策三者不可兼得。第一代模型強調財政赤字與外儲耗盡；第二代強調預期與自我實現。工具含外匯干預、資本管制、升息、IMF 融通與財政調整。",
       "chapters": [
-        "macro-10",
-        "macro-12"
+        "macro-11",
+        "macro-13"
       ],
       "eventId": "global-rate-policy",
       "assumption": "題設數字為教學假設；實際考試請以題目給定與最新官方資料為準。",
@@ -655,8 +655,8 @@ window.EXAM_FORECAST = {
       ],
       "focus": "李嘉圖等價假設理性前瞻、無流動性約束、租稅非扭曲；現實中借貸限制、短視與政治因素使其不完全成立。公債供給增加推升可貸資金需求與利率；期限溢酬受供給、通膨不確定性、duration 風險與海外需求影響。",
       "chapters": [
-        "macro-06",
-        "macro-02"
+        "macro-07",
+        "macro-03"
       ],
       "eventId": "us-debt-gold",
       "assumption": "題設數字為教學假設；實際考試請以題目給定與最新官方資料為準。",
@@ -690,8 +690,8 @@ window.EXAM_FORECAST = {
       "focus": "MMT 強調貨幣主權、財政與央行協調、實質資源約束；主流批評忽略通膨預期、政治經濟與租稅扭曲。疫情財政貨幣擴張後高通膨顯示「無免費午餐」，但各國制度與產出缺口不同。",
       "chapters": [
         "macro-01",
-        "macro-02",
-        "macro-05"
+        "macro-03",
+        "macro-06"
       ],
       "eventId": "fed-2025",
       "assumption": "題設數字為教學假設；實際考試請以題目給定與最新官方資料為準。",
@@ -722,8 +722,8 @@ window.EXAM_FORECAST = {
       ],
       "focus": "綠色轉型壓抑傳統能源供給、推升關鍵金屬需求，短期供給彈性低使成本上升；LRAS 左移或成長放緩、物價中樞上升。政策應投資電網與儲能、避免瓶頸，貨幣政策區分一次性相對價格調整與預期失錨。",
       "chapters": [
-        "macro-07",
-        "macro-09"
+        "macro-08",
+        "macro-10"
       ],
       "eventId": "global-inflation-2026",
       "assumption": "題設數字為教學假設；實際考試請以題目給定與最新官方資料為準。",
@@ -754,8 +754,8 @@ window.EXAM_FORECAST = {
       ],
       "focus": "生命週期：工作期儲蓄、退休期負儲蓄；老化可能先提高預防性儲蓄，再轉為 dissaving。R* 受儲蓄 glut、投資需求、勞動供給、財政赤字與安全資產需求共同影響，方向非單一。",
       "chapters": [
-        "macro-08",
-        "macro-04"
+        "macro-09",
+        "macro-05"
       ],
       "eventId": "ai-gpt-2025",
       "assumption": "題設數字為教學假設；實際考試請以題目給定與最新官方資料為準。",
@@ -786,9 +786,9 @@ window.EXAM_FORECAST = {
       ],
       "focus": "ΔP/P=ΔM/M+ΔV/V−ΔY/Y=10%−5%−2.5%=2.5%。超額準備沉澱、V 不穩定，M2 與通膨連結減弱；央行需看信用、準備金、通膨預期與實質活動，不能只看貨幣總量。",
       "chapters": [
-        "macro-03",
         "macro-04",
-        "macro-05"
+        "macro-05",
+        "macro-06"
       ],
       "eventId": "fed-2025",
       "assumption": "題設數字為教學假設；實際考試請以題目給定與最新官方資料為準。",
@@ -819,8 +819,8 @@ window.EXAM_FORECAST = {
       ],
       "focus": "微觀審慎看個別機構倒閉風險；宏觀審慎看共同曝險、系統性風險與合成謬誤。CCyB 在信貸過熱時提高 CET1 0–2.5%，衰退時釋放；可抑制信貸與槓桿，但可能套利、順循環與跨國協調問題。",
       "chapters": [
-        "macro-04",
-        "macro-11"
+        "macro-05",
+        "macro-12"
       ],
       "eventId": "taiwan-monetary-2025",
       "assumption": "題設數字為教學假設；實際考試請以題目給定與最新官方資料為準。",
@@ -847,8 +847,8 @@ window.EXAM_FORECAST = {
       "ask": [],
       "focus": "先做基礎部分，再做進階部分；兩部分的答案與假設要分開寫。",
       "chapters": [
-        "macro-07",
-        "macro-09"
+        "macro-08",
+        "macro-10"
       ],
       "eventId": "global-inflation-2026",
       "assumption": "本題組的數字與情境為教學假設；實際考試以題目給定與最新官方資料為準。",
@@ -907,8 +907,8 @@ window.EXAM_FORECAST = {
       "ask": [],
       "focus": "先做基礎部分，再做進階部分；兩部分的答案與假設要分開寫。",
       "chapters": [
-        "macro-08",
-        "macro-04"
+        "macro-09",
+        "macro-05"
       ],
       "eventId": "ai-gpt-2025",
       "assumption": "本題組的數字與情境為教學假設；實際考試以題目給定與最新官方資料為準。",
@@ -967,8 +967,8 @@ window.EXAM_FORECAST = {
       "ask": [],
       "focus": "先做基礎部分，再做進階部分；兩部分的答案與假設要分開寫。",
       "chapters": [
-        "macro-05",
-        "macro-12"
+        "macro-06",
+        "macro-13"
       ],
       "eventId": "fed-2025",
       "assumption": "本題組的數字與情境為教學假設；實際考試以題目給定與最新官方資料為準。",
@@ -1027,8 +1027,8 @@ window.EXAM_FORECAST = {
       "ask": [],
       "focus": "先做基礎部分，再做進階部分；兩部分的答案與假設要分開寫。",
       "chapters": [
-        "macro-04",
-        "macro-11"
+        "macro-05",
+        "macro-12"
       ],
       "eventId": "taiwan-monetary-2025",
       "assumption": "本題組的數字與情境為教學假設；實際考試以題目給定與最新官方資料為準。",
@@ -1087,8 +1087,8 @@ window.EXAM_FORECAST = {
       "ask": [],
       "focus": "先做基礎部分，再做進階部分；兩部分的答案與假設要分開寫。",
       "chapters": [
-        "macro-12",
-        "macro-05"
+        "macro-13",
+        "macro-06"
       ],
       "eventId": "us-debt-gold",
       "assumption": "本題組的數字與情境為教學假設；實際考試以題目給定與最新官方資料為準。",
@@ -1147,8 +1147,8 @@ window.EXAM_FORECAST = {
       "ask": [],
       "focus": "先做基礎部分，再做進階部分；兩部分的答案與假設要分開寫。",
       "chapters": [
-        "macro-06",
-        "macro-02"
+        "macro-07",
+        "macro-03"
       ],
       "eventId": "us-debt-gold",
       "assumption": "本題組的數字與情境為教學假設；實際考試以題目給定與最新官方資料為準。",
@@ -1207,8 +1207,8 @@ window.EXAM_FORECAST = {
       "ask": [],
       "focus": "先做基礎部分，再做進階部分；兩部分的答案與假設要分開寫。",
       "chapters": [
-        "macro-06",
-        "macro-02"
+        "macro-07",
+        "macro-03"
       ],
       "eventId": "us-debt-gold",
       "assumption": "本題組的數字與情境為教學假設；實際考試以題目給定與最新官方資料為準。",
@@ -1266,8 +1266,8 @@ window.EXAM_FORECAST = {
       "ask": [],
       "focus": "先做基礎部分，再做進階部分；兩部分的答案與假設要分開寫。",
       "chapters": [
-        "macro-04",
-        "macro-11"
+        "macro-05",
+        "macro-12"
       ],
       "eventId": "taiwan-monetary-2025",
       "assumption": "本題組的數字與情境為教學假設；實際考試以題目給定與最新官方資料為準。",
@@ -1326,8 +1326,8 @@ window.EXAM_FORECAST = {
       "ask": [],
       "focus": "先做基礎部分，再做進階部分；兩部分的答案與假設要分開寫。",
       "chapters": [
-        "macro-05",
-        "macro-12"
+        "macro-06",
+        "macro-13"
       ],
       "eventId": "fed-2025",
       "assumption": "本題組的數字與情境為教學假設；實際考試以題目給定與最新官方資料為準。",
@@ -1386,8 +1386,8 @@ window.EXAM_FORECAST = {
       "ask": [],
       "focus": "先做基礎部分，再做進階部分；兩部分的答案與假設要分開寫。",
       "chapters": [
-        "macro-09",
-        "macro-05"
+        "macro-10",
+        "macro-06"
       ],
       "eventId": "global-inflation-2026",
       "assumption": "本題組的數字與情境為教學假設；實際考試以題目給定與最新官方資料為準。",

@@ -362,7 +362,7 @@ window.MACRO_SUBJECT = {
       ]
     },
     {
-      id: "macro-classical",
+      id: "macro-02",
       number: 2,
       title: "古典學派的總體經濟理論",
       page: "P. 13",
@@ -536,7 +536,7 @@ window.MACRO_SUBJECT = {
       partTitle: "總體經濟學"
     },
     {
-      id: "macro-02",
+      id: "macro-03",
       number: 3,
       title: "簡單凱因斯所得模型",
       page: "P. 23",
@@ -559,7 +559,7 @@ window.MACRO_SUBJECT = {
                 "下一小節把定額稅、比例所得稅、移轉性支付與進口全部納入，推導完整 AE 線，並求解開放經濟乘數。"
               ],
               formula: "\\begin{gathered}\\boxed{C=C_a+cY_d,\\quad Y_d=Y-T_a}\\\\[6pt]\\boxed{AE=C_a+cY_d+I_a+G_a+NX_a}\\\\[6pt]\\boxed{A_a=C_a+I_a+G_a+NX_a\\quad(T_a=TR_a=t=m=0)}\\\\[6pt]\\boxed{Y=\\dfrac{1}{1-c}A_a}\\end{gathered}",
-              diagramKey: "macro-02#0"
+              diagramKey: "macro-03#0"
             },
             {
               title: "二、四部門開放經濟的 AE 線推導",
@@ -642,7 +642,7 @@ window.MACRO_SUBJECT = {
                 "成立條件包括完全預見、無流動性限制、定額稅、跨代利他，以及政府與家庭借貸利率相同。若家庭短視、借貸受限、稅負扭曲或沒有遺產動機，等價可能不成立。"
               ],
               "formula": "\\begin{gathered}\\boxed{G_1+\\dfrac{G_2}{1+r}=T_1+\\dfrac{T_2}{1+r}}\\\\[6pt]\\boxed{C_1+\\dfrac{C_2}{1+r}=Y_1-T_1+\\dfrac{Y_2-T_2}{1+r}}\\\\[6pt]\\boxed{\\Delta T_1<0,\\quad B=-\\Delta T_1,\\quad \\Delta T_2=(1+r)B}\\end{gathered}",
-              "diagramKey": "macro-02#1"
+              "diagramKey": "macro-03#1"
             }
           ],
           terms: [
@@ -696,7 +696,7 @@ window.MACRO_SUBJECT = {
                 note: "誘發性投資模型需 \\(1-c-e>0\\)；若 e=0，則 \\(\\Delta S^*=0\\)，所得下降但總儲蓄不變。"
               },
               formula: "\\begin{gathered}\\boxed{S=Y-C=S_a+(1-c)Y,\\quad S_a=-C_a}\\\\[6pt]\\boxed{I=I_a+eY,\\quad e>0}\\\\[6pt]\\boxed{S=I\\;\\Rightarrow\\;Y^*=\\dfrac{I_a-S_a}{1-c-e}}\\\\[6pt]\\boxed{S^*=\\dfrac{(1-c)I_a-eS_a}{1-c-e}}\\\\[6pt]\\boxed{\\Delta Y^*=\\dfrac{-\\Delta S_a}{1-c-e},\\quad \\Delta S^*=\\dfrac{-e\\Delta S_a}{1-c-e}}\\end{gathered}",
-              diagramKey: "macro-02#2"
+              diagramKey: "macro-03#2"
             },
             {
               title: "二、定額稅與累進稅的影響",
@@ -718,7 +718,7 @@ window.MACRO_SUBJECT = {
                 ]
               },
               formula: "\\begin{gathered}\\boxed{T=T_a\\quad\\text{或}\\quad T=T_a+tY}\\\\[6pt]\\boxed{Y_d=Y-T+TR_a,\\quad AE=A_a+cY\\quad\\text{或}\\quad A_a+c(1-t)Y}\\\\[6pt]\\boxed{k_G^{T_a}=\\dfrac{1}{1-c},\\quad k_{T_a}=-\\dfrac{c}{1-c},\\quad k_G^{t}=\\dfrac{1}{1-c(1-t)}}\\end{gathered}",
-              diagramKey: "macro-02#2-1"
+              diagramKey: "macro-03#2-1"
             },
             {
               title: "三、超額儲蓄與超額儲蓄率",
@@ -729,7 +729,7 @@ window.MACRO_SUBJECT = {
                 "台灣長期超額儲蓄率偏高，常與國內投資動能、企業海外投資、壽險資金外流等有關；實際數字以主計總處國民所得統計為準。"
               ],
               formula: "\\boxed{ES=S-I,\\qquad es=\\dfrac{S-I}{Y}\\times100\\%=s-i}",
-              diagramKey: "macro-02#2-2"
+              diagramKey: "macro-03#2-2"
             }
           ],
           terms: [
@@ -770,7 +770,7 @@ window.MACRO_SUBJECT = {
       ]
     },
     {
-      id: "macro-03",
+      id: "macro-04",
       number: 4,
       title: "貨幣概論",
       page: "P. 43",
@@ -824,7 +824,7 @@ window.MACRO_SUBJECT = {
       ]
     },
     {
-      id: "macro-04",
+      id: "macro-05",
       number: 5,
       title: "中央銀行與銀行業",
       page: "P. 55",
@@ -901,7 +901,7 @@ window.MACRO_SUBJECT = {
       ]
     },
     {
-      id: "macro-05",
+      id: "macro-06",
       number: 6,
       title: "貨幣供需與貨幣政策",
       page: "P. 91",

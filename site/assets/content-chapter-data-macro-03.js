@@ -606,16 +606,632 @@ window.CHAPTER_DATA["macro-03"] = {
   ],
   "questions": [
     {
-      "id": "107Q1-macro-18",
+      "id": "107Q1-macro-24",
       "sessionId": "107Q1",
       "year": 107,
       "session": 1,
       "subject": "macro",
       "sourceId": "macro-03",
-      "number": 18,
-      "stem": "2017 年起，國際貨幣基金會(IMF)所發行的特別提款權(SDR)，其組成貨幣包含了幾種通貨？",
+      "number": 24,
+      "stem": "當自發性消費支出減少 100 億元，同時政府減稅100 億元時，若邊際消費支出傾向為 0.6 時，短期產出如何變動？",
       "options": [
-        "3",
+        "產出減少 100 億元",
+        "產出增加 100 億元",
+        "產出減少 250 億元",
+        "產出增加 250 億元"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "107Q3-macro-11",
+      "sessionId": "107Q3",
+      "year": 107,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 11,
+      "stem": "當平均儲蓄傾向為 0.4 時，平均消費傾向為：",
+      "options": [
+        "0.5",
+        "0.6",
+        "0.8",
+        "0.9"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "107Q3-macro-12",
+      "sessionId": "107Q3",
+      "year": 107,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 12,
+      "stem": "自發性儲蓄提高的結果，將造成國民所得的減少，此一現象謂之：",
+      "options": [
+        "儲蓄是一種美德",
+        "節儉的代價",
+        "投資的陷阱",
+        "節儉的矛盾"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "107Q3-macro-17",
+      "sessionId": "107Q3",
+      "year": 107,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 17,
+      "stem": "如果簡單的自發性政府支出乘數為 4，那麼定額稅的乘數為：",
+      "options": [
+        "-1",
+        "-3",
+        "1",
+        "3"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "107Q4-macro-12",
+      "sessionId": "107Q4",
+      "year": 107,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 12,
+      "stem": "在政府支出既定的情形下，透過跨代間移轉，課稅與發行公債的經濟效果相同，與融資方法無關，此稱為？",
+      "options": [
+        "李嘉圖等值定理",
+        "彌勒反璞歸真定理",
+        "斯密實質定理",
+        "寇斯本質定理"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "107Q4-macro-17",
+      "sessionId": "107Q4",
+      "year": 107,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 17,
+      "stem": "某一封閉體系的所得稅制度係屬於定額稅。假設體系的邊際消費傾向為 0.8，政府增加支出 1,000 萬元，同時採取增加課徵等額定額稅融通，則當期均衡產出將如何變化？",
+      "options": [
+        "增加 200 萬元",
+        "增加 800 萬元",
+        "增加 1,000 萬元",
+        "增加 5,000 萬元"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "107Q4-macro-29",
+      "sessionId": "107Q4",
+      "year": 107,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 29,
+      "stem": "面對景氣蕭條，人們對未來前景惴惴不安，儲蓄意願驟升，可能釀成何種結果？",
+      "options": [
+        "有助於融通投資增加，促進未來經濟成長",
+        "儲蓄增加將擴大資金供給，利率趨於下降",
+        "儲蓄增加意味著消費意願低落，景氣更趨低迷",
+        "節儉致富，有助於體系財富累積"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "107Q4-macro-35",
+      "sessionId": "107Q4",
+      "year": 107,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 35,
+      "stem": "主計總處採取 C = a＋bY 型態來估計台灣的民間消費函數，a > 0、0 < b < 1，而儲蓄函數 S = Y－C。何者錯誤？",
+      "options": [
+        "APC > MPC",
+        "APS > MPS",
+        "APC 隨所得增加而遞減",
+        "APS 隨所得增加而遞增"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "108Q1-macro-10",
+      "sessionId": "108Q1",
+      "year": 108,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 10,
+      "stem": "假設某一封閉經濟體Y=C+I+G，其中Y 為所得、C 為消費、I 為投資、G 為政府支出，其C=100+0.8Y， I=120，G=80，則均衡所得為多少？",
+      "options": [
+        "1,000",
+        "1,250",
+        "1,500",
+        "2,000"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "108Q2-macro-17",
+      "sessionId": "108Q2",
+      "year": 108,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 17,
+      "stem": "如果邊際消費傾向為 0.75，那麼簡單的支出乘數為_______，平衡預算 (balanced budget) 的乘數為_______。",
+      "options": [
+        "3；1",
+        "4；0",
+        "4；1",
+        "4；3"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "108Q3-macro-04",
+      "sessionId": "108Q3",
+      "year": 108,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 4,
+      "stem": "下列有關簡單凱因斯模型的敘述何者有誤？",
+      "options": [
+        "有四種計畫性支出",
+        "消費函數是所得的正函數",
+        "物價可以靈活調整",
+        "有效需求就是計畫性總合需求"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "108Q3-macro-11",
+      "sessionId": "108Q3",
+      "year": 108,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 11,
+      "stem": "下列哪一項會造成國民所得的減少？",
+      "options": [
+        "出口增加",
+        "進口增加",
+        "投資增加",
+        "減稅"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "108Q4-macro-03",
+      "sessionId": "108Q4",
+      "year": 108,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 3,
+      "stem": "下列何者不是來自國家的特別預算？",
+      "options": [
+        "採購高性能戰機",
+        "國軍老舊眷村改建",
+        "金融重建基金",
+        "口蹄疫危機處理"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "108Q4-macro-08",
+      "sessionId": "108Q4",
+      "year": 108,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 8,
+      "stem": "維持生活之基本所需所必要的開銷稱為？",
+      "options": [
+        "誘發性的消費",
+        "自發性的消費",
+        "誘發性的投資",
+        "自發性的投資"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "108Q4-macro-17",
+      "sessionId": "108Q4",
+      "year": 108,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 17,
+      "stem": "在民間消費中，奢侈耐久財與民生必需品的比較，下列何者有誤？",
+      "options": [
+        "奢侈耐久財的所得需求彈性比民生必需品大",
+        "奢侈耐久財受到景氣循環的影響比民生必需品大",
+        "消費者信心程度影響購買民生必需品意願比奢侈耐久財大",
+        "奢侈耐久財產業之 Beta 值比民生必需品產業大"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "108Q4-macro-35",
+      "sessionId": "108Q4",
+      "year": 108,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 35,
+      "stem": "簡單凱因斯模型中，當邊際消費傾向 MPC=0.8，則政府支出增加 1 元與稅收減少 1 元所造成的所得乘數效果分別為：",
+      "options": [
+        "5、5",
+        "5、4",
+        "4、5",
+        "4、4"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "109Q1-macro-12",
+      "sessionId": "109Q1",
+      "year": 109,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 12,
+      "stem": "某國政府課稅$500,000，同時執行政府消費性支出$350,000 與移轉性支付 $100,000，但無利息支出或公共投資支出，試問該國政府預算呈現何種狀況？",
+      "options": [
+        "出現預算盈餘 $75,000",
+        "出現預算盈餘 $50,000",
+        "處於預算平衡狀態",
+        "出現預算赤字 $75,000"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "109Q1-macro-15",
+      "sessionId": "109Q1",
+      "year": 109,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 15,
+      "stem": "「李嘉圖等值理論」(Ricardian equivalence theory)指出政府減稅釀成預算赤字，將會產生何種結果？",
+      "options": [
+        "釀成通貨膨脹",
+        "促使經常帳出現赤字",
+        "推動利率上漲",
+        "對消費並無影響"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "109Q1-macro-22",
+      "sessionId": "109Q1",
+      "year": 109,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 22,
+      "stem": "在簡單凱因斯模型中，實際投資支出不等於計畫性投資支出將是依賴下列哪一項調整？",
+      "options": [
+        "自發性投資",
+        "誘發性投資",
+        "存貨",
+        "邊際消費傾向"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "109Q1-macro-33",
+      "sessionId": "109Q1",
+      "year": 109,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 33,
+      "stem": "如果邊際消費傾向是0.8，當政府同時增加支出與定額稅新臺幣 100 百萬元時，則可預期政府政策會導致何種結果？",
+      "options": [
+        "總消費減少新臺幣100 百萬元",
+        "均衡所得增加新臺幣 100 百萬元",
+        "均衡所得不受影響",
+        "選項(A)(B)(C)皆非"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "109Q2-macro-07",
+      "sessionId": "109Q2",
+      "year": 109,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 7,
+      "stem": "如果邊際消費傾向是 0.8，當政府同時增加支出與定額稅新臺幣 100 百萬元時，則可預期政府政策會導致何種結果？",
+      "options": [
+        "總消費減少新臺幣 100 百萬元",
+        "均衡所得增加新臺幣 100 百萬元",
+        "均衡所得不受影響",
+        "選項(A)、(B)、(C)皆非"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "109Q4-macro-16",
+      "sessionId": "109Q4",
+      "year": 109,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 16,
+      "stem": "政府若發放消費券給民眾以刺激消費，民眾採取下列何種消費型態比較難刺激經濟？",
+      "options": [
+        "旅遊消費",
+        "購買汽車",
+        "購買家俱",
+        "購買衛生紙"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "109Q4-macro-31",
+      "sessionId": "109Q4",
+      "year": 109,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 31,
+      "stem": "簡單凱因斯模型中，當邊際消費傾向為 0.8，則支出乘數為多少？",
+      "options": [
+        "0.8",
         "4",
         "5",
         "6"
@@ -634,498 +1250,106 @@ window.CHAPTER_DATA["macro-03"] = {
       ]
     },
     {
-      "id": "107Q2-macro-15",
-      "sessionId": "107Q2",
-      "year": 107,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 15,
-      "stem": "若民眾從他在郵局的定期存款中提領 50 萬元現金，存入其在銀行的活期儲蓄存款帳戶時，對我國銀行貨幣總計數 M1A、M1B 及 M2 之立即影響，下列何者為正確？",
-      "options": [
-        "M2 不變而 M1B 增加",
-        "M2 減少而 M1A 增加",
-        "M2 增加而 M1B 減少",
-        "M2 增加而 M1A 減少"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "107Q3-macro-21",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 21,
-      "stem": "下面那一項包括在官方貨幣定義當中？",
-      "options": [
-        "金幣",
-        "比特幣",
-        "信用卡",
-        "銀行存款"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "107Q3-macro-22",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 22,
-      "stem": "有關股市非常關心的「黃金交叉」 ，以下哪一個不正確？",
-      "options": [
-        "顯示資金動能高",
-        "是股市活絡暢旺的表徵",
-        "交叉點之後M1B 年增率高於 M1A 年增率",
-        "交叉點之後M1B 年增率高於 M2 年增率"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "107Q3-macro-23",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 23,
-      "stem": "將一筆現金存入活期儲蓄存款帳戶中，",
-      "options": [
-        "M1A 及 M1B 都不變",
-        "M1A 會減少，M1B 增加",
-        "M1B 會減少，M2 不變",
-        "M1B 及 M2 都不變"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "107Q3-macro-25",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 25,
-      "stem": "名目所得為 $24,000，貨幣供給額為＄10,000，物價水準為 1.2，那麼根據所得型的交易方程式，貨幣流通速度為？",
-      "options": [
-        "1.2",
-        "2",
-        "2.4",
-        "2.88"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "107Q4-macro-31",
-      "sessionId": "107Q4",
-      "year": 107,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 31,
-      "stem": "人們將郵政存簿儲金轉存至銀行的活期儲蓄存款帳戶，將會造成何種影響？",
-      "options": [
-        "M1B 及 M2 都不變",
-        "M1B 與 M2 都會增加",
-        "M1B 增加，M2 不變",
-        "M1B 增加，M2 減少"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-04",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 4,
-      "stem": "李四從郵局提領10 萬元現金，存入其在銀行的活期儲蓄存款帳戶時，對M1A 、M1B 及M2之立即影響為？",
-      "options": [
-        "M2不變而 M1B 增加",
-        "M2 減少而 M1A 增加",
-        "M2增加而 M1B 減少",
-        "M2 增加而 M1A 減少"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-09",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 9,
-      "stem": "依據交易方程式，若貨幣數量為1,000，平均物價水準為2，商品與勞務交易量為1,500，則貨幣流通速度(V)為：",
-      "options": [
-        "2.5",
-        "3",
-        "5",
-        "6"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "108Q2-macro-02",
-      "sessionId": "108Q2",
-      "year": 108,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 2,
-      "stem": "貨幣數量學說認為總合支出的變化主要是由下列何者所引起？",
-      "options": [
-        "利率",
-        "貨幣供給",
-        "貨幣流通速度",
-        "政府支出與稅收"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q2-macro-18",
-      "sessionId": "108Q2",
-      "year": 108,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 18,
-      "stem": "有人定期儲蓄存款到期後，將整筆金額存入郵局的存簿儲金帳戶。這會導致什麼變化？",
-      "options": [
-        "M1A 增加，M2 不變",
-        "M1B 增加，M2 不變",
-        "M1B 增加，M2 減少",
-        "M1A、M1B、M2 皆不變"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q2-macro-21",
-      "sessionId": "108Q2",
-      "year": 108,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 21,
-      "stem": "已知貨幣供給額為 3,000 億元，貨幣流通速度為 2，物價水準為 1.2 ，那麼根據所得型的交易方程式，名目所得為__________。",
-      "options": [
-        "3,600 億元",
-        "5,000 億元",
-        "6,000 億元",
-        "7,200 億元"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q4-macro-32",
-      "sessionId": "108Q4",
-      "year": 108,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 32,
-      "stem": "張三從郵局提領 10 萬元現金，存入其在銀行的活期儲蓄存款帳戶時，對 M1B 及 M2 之立即影響為何？",
-      "options": [
-        "M2 增加而 M1B 不變",
-        "M2 增加而 M1B 減少",
-        "M2 減少而 M1B 增加",
-        "M2 不變而 M1B 增加"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "109Q1-macro-07",
-      "sessionId": "109Q1",
-      "year": 109,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 7,
-      "stem": "有關 \\(M_{1A}\\) 與 \\(M_2\\) 的敘述，何者正確?",
-      "options": [
-        "貨幣基金將同時出現在 \\(M_{1A}\\) 與 \\(M_2\\) 定義中",
-        "\\(M_2\\) 相較於 \\(M_{1A}\\) 將更具有流動性",
-        "\\(M_2\\) 成長率必然大於 \\(M_{1A}\\) 成長率",
-        "外國人存款出現在 \\(M_2\\) 定義中，卻排除在 \\(M_{1A}\\) 定義之外"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "109Q2-macro-24",
-      "sessionId": "109Q2",
-      "year": 109,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 24,
-      "stem": "依據「所得方程式」 ，若貨幣供給額成長30%，而貨幣流通速度(V)下降 50%，則名目 GDP 約：",
-      "options": [
-        "增加 20%",
-        "增加 30%",
-        "減少 20%",
-        "減少 30%"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "109Q3-macro-04",
-      "sessionId": "109Q3",
-      "year": 109,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 4,
-      "stem": "貨幣數量學說認為總合支出的變化主要是由下列何者所引起？",
-      "options": [
-        "利率",
-        "貨幣供給",
-        "貨幣流通速度",
-        "政府支出與稅收"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "109Q3-macro-15",
-      "sessionId": "109Q3",
-      "year": 109,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 15,
-      "stem": "股市上揚吸引投資人把定期存款轉成活期儲蓄存款以備進場買股，此時：",
-      "options": [
-        "M1A 會增加，M2 不變動",
-        "M1A 會增加，M1B 不變動",
-        "M1B 會增加，M2 不變動",
-        "M1B 會增加，M2 會減少"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "109Q4-macro-26",
-      "sessionId": "109Q4",
-      "year": 109,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 26,
-      "stem": "下列哪項存款比較能衡量自然人金融活動熱絡程度？",
-      "options": [
-        "通貨",
-        "支票存款",
-        "活期存款",
-        "活期儲蓄存款"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "110Q1-macro-10",
+      "id": "110Q1-macro-20",
       "sessionId": "110Q1",
       "year": 110,
       "session": 1,
       "subject": "macro",
       "sourceId": "macro-03",
-      "number": 10,
-      "stem": "哪一位經濟學家提出交易方程式所說明「一手交錢，一手交貨」之結果，使得每筆交易必定導致與成交值相等之貨幣易手？",
+      "number": 20,
+      "stem": "某人的所得為Y = 0，其消費支出為C = 500。隨著他的所得增加為Y = 2,000，消費支出將遞增為 C = 1,900。此人的消費函數可能為何？",
       "options": [
-        "費雪(Fisher)",
-        "弗利曼(Friedman)",
-        "盧卡斯(Lucas)",
-        "普列斯卡(Prescott)"
+        "C = 0.85Y",
+        "C = 0.95Y",
+        "C = 500 + 0.7Y",
+        "C = 500 + 0.65Y"
       ],
       "answer": [
-        "A"
+        "C"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "110Q1-macro-25",
+      "sessionId": "110Q1",
+      "year": 110,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 25,
+      "stem": "某國的結構式總體模型如下：消費函數 \\(C=120+0.8Y_d\\)，可支用所得 \\(Y_d=Y-T\\)，租稅函數 \\(T=0.2Y\\)，投資函數 \\(I=20+0.1Y\\)，政府支出 \\(G=50\\)，出口函數 \\(X=30\\)，進口函數 \\(Z=20+0.14Y\\)。當該國達成均衡時，何種狀況錯誤？",
+      "options": [
+        "均衡所得為 500",
+        "政府預算赤字 50",
+        "貿易赤字 60",
+        "貿易總額 120"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "110Q2-macro-11",
+      "sessionId": "110Q2",
+      "year": 110,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 11,
+      "stem": "下列何者代表凱因斯強調自發性總合支出的重要性？",
+      "options": [
+        "實質餘額效果",
+        "利率效果",
+        "國際替代效果",
+        "支出乘數效果"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "110Q2-macro-27",
+      "sessionId": "110Q2",
+      "year": 110,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 27,
+      "stem": "以下那一項政策降低物價膨脹(Inflation)效果最大?",
+      "options": [
+        "加稅 50 億元",
+        "減少政府購買財貨和勞務支出 50 億元",
+        "同時加稅及增加政府支出 50 億元",
+        "同時減稅及減少政府支出 50 億元"
+      ],
+      "answer": [
+        "B"
       ],
       "sourceIds": [
         "macro-03"
@@ -1138,106 +1362,50 @@ window.CHAPTER_DATA["macro-03"] = {
       ]
     },
     {
-      "id": "110Q3-macro-12",
+      "id": "110Q2-macro-30",
+      "sessionId": "110Q2",
+      "year": 110,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 30,
+      "stem": "當總支出超過總產出時，非計劃性存貨會，導致產出水準。",
+      "options": [
+        "減少；減少",
+        "減少；增加",
+        "增加；減少",
+        "增加；增加"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "110Q3-macro-01",
       "sessionId": "110Q3",
       "year": 110,
       "session": 3,
       "subject": "macro",
       "sourceId": "macro-03",
-      "number": 12,
-      "stem": "郵局轉存款是屬於下述哪一類貨幣供給中的一項？",
+      "number": 1,
+      "stem": "下列有關簡單凱因斯模型的敘述何者有誤？",
       "options": [
-        "M1A",
-        "M1B",
-        "M1",
-        "M2"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "111Q1-macro-16",
-      "sessionId": "111Q1",
-      "year": 111,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 16,
-      "stem": "下列哪一個對「錢」的敘述最接近經濟學家所定義的貨幣？",
-      "options": [
-        "郭台銘很有錢",
-        "小美打算在暑假期間打工賺很多錢",
-        "阿仁希望準備足夠的錢出國去旅行",
-        "今天賣的股票賺了不少錢"
+        "有四種計畫性支出",
+        "消費函數是所得的正函數",
+        "物價可以靈活調整",
+        "有效需求就是計畫性總合需求"
       ],
       "answer": [
         "C"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "111Q1-macro-21",
-      "sessionId": "111Q1",
-      "year": 111,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 21,
-      "stem": "假如一個人把手中持有的現金移轉至定期存款帳戶，那麼：",
-      "options": [
-        "M1 減少，M2 保持不變",
-        "M1 和 M2 皆保持不變",
-        "M1 和 M2 皆增加",
-        "M1 減少，M2 增加"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "111Q1-macro-23",
-      "sessionId": "111Q1",
-      "year": 111,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 23,
-      "stem": "下列哪一項不被包括在「存款貨幣」當中？",
-      "options": [
-        "活期儲蓄存款",
-        "支票存款",
-        "活期存款",
-        "定期存款"
-      ],
-      "answer": [
-        "D"
       ],
       "sourceIds": [
         "macro-03"
@@ -1250,131 +1418,47 @@ window.CHAPTER_DATA["macro-03"] = {
       ]
     },
     {
-      "id": "111Q2-macro-29",
+      "id": "110Q3-macro-03",
+      "sessionId": "110Q3",
+      "year": 110,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 3,
+      "stem": "下述哪一選項不正確？政府支出增加的可能影響：",
+      "options": [
+        "可支配所得可能增加",
+        "淨出口值一定會增加",
+        "貨幣供給可能增加",
+        "企業投資可能減少"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "111Q2-macro-15",
       "sessionId": "111Q2",
       "year": 111,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-03",
-      "number": 29,
-      "stem": "下列哪項存款比較能衡量日常小額交易的熱絡程度？",
+      "number": 15,
+      "stem": "其他條件不變下，下列何種因素比較無法擴大本國內需？",
       "options": [
-        "通貨",
-        "支票存款",
-        "活期存款",
-        "活期儲蓄存款"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "111Q3-macro-08",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 8,
-      "stem": "下述哪一項是屬於內在貨幣(Inside Money)？",
-      "options": [
-        "通貨淨額",
-        "準備貨幣",
-        "銀行存款",
-        "選項(A)(B)(C)皆是"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "111Q3-macro-17",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 17,
-      "stem": "下列何者不屬於 M1？",
-      "options": [
-        "活期存款帳戶",
-        "支票存款帳戶",
-        "時間存款帳戶",
-        "旅行支票"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "111Q3-macro-24",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 24,
-      "stem": "假設貨幣的流動速度是 4，實質產出是 10，物價水準為 2。當政府增加名目貨幣供給到 6，其他變數不變的情況下，物價的變動為上升多少？",
-      "options": [
-        "2.4%",
-        "20%",
-        "24%",
-        "50%"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "111Q3-macro-25",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 25,
-      "stem": "假設實質利率為 4% ，通貨膨脹率為 3%。如果貨幣供給上升 10%，而產出、實質利率、期待的通貨膨脹率不變，則物價水準上升多少？",
-      "options": [
-        "3%",
-        "4%",
-        "7%",
-        "10%"
+        "受薪階級平均所得提高",
+        "貧富差距縮小",
+        "消費者信心提高",
+        "利潤租金佔要素所得比重上升"
       ],
       "answer": [
         "D"
@@ -1390,19 +1474,131 @@ window.CHAPTER_DATA["macro-03"] = {
       ]
     },
     {
-      "id": "112Q1-macro-16",
+      "id": "111Q2-macro-30",
+      "sessionId": "111Q2",
+      "year": 111,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 30,
+      "stem": "在民間消費中，下列何種商品消費受到消費者信心影響較大？",
+      "options": [
+        "餐廳用餐",
+        "國內旅遊",
+        "購買智慧型手機",
+        "購買汽車"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "111Q2-macro-33",
+      "sessionId": "111Q2",
+      "year": 111,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 33,
+      "stem": "簡單凱因斯模型中，當邊際消費傾向MPC=0.8，則政府支出增加1 元所造成的所得乘數效果分別為：",
+      "options": [
+        "5",
+        "4",
+        "3",
+        "2"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "111Q3-macro-27",
+      "sessionId": "111Q3",
+      "year": 111,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 27,
+      "stem": "政府的預算赤字，主要等於下列何者？",
+      "options": [
+        "預算編列 – 稅收",
+        "政府購買 + 移轉性支付 + 淨利息 – 稅收",
+        "預算編列 + 淨利息 – 稅收",
+        "政府購買 + 移轉性支付 – 稅收"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "111Q3-macro-28",
+      "sessionId": "111Q3",
+      "year": 111,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 28,
+      "stem": "古典經濟學家認為定額稅（一次總付稅）",
+      "options": [
+        "應該要採用，可以作為穩定景氣循環的用途",
+        "對於整體的經濟表現有重大影響",
+        "對於整體需求有延遲性的影響",
+        "根據李嘉圖的等價假說 (Ricardian Equivalence Theorem)，此賦稅沒有特別效果"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "112Q1-macro-05",
       "sessionId": "112Q1",
       "year": 112,
       "session": 1,
       "subject": "macro",
       "sourceId": "macro-03",
-      "number": 16,
-      "stem": "張老闆開了張三個月期 100 萬元的支票去支付所購買的原料，此行為不能表現貨幣的哪個功能？",
+      "number": 5,
+      "stem": "下列有關簡單凱因斯模型的敘述何者有誤？",
       "options": [
-        "交易媒介",
-        "計價單位",
-        "價值儲藏",
-        "延遲支付的標準"
+        "有四種計畫性支出",
+        "消費函數是所得的正函數",
+        "物價可以靈活調整",
+        "有效需求就是計畫性總合需求"
       ],
       "answer": [
         "C"
@@ -1418,19 +1614,160 @@ window.CHAPTER_DATA["macro-03"] = {
       ]
     },
     {
-      "id": "112Q2-macro-10",
+      "id": "112Q1-macro-06",
+      "sessionId": "112Q1",
+      "year": 112,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 6,
+      "stem": "當所得增加時，消費會隨之增加的現象稱為？",
+      "options": [
+        "誘發性的消費",
+        "自發性的消費",
+        "替代效果",
+        "所得效果"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "112Q2-macro-24",
       "sessionId": "112Q2",
       "year": 112,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-03",
-      "number": 10,
-      "stem": "若名目所得 10 兆，貨幣供給 2 兆，依據古典學派之貨幣數量學說，則流通速度(velocity)為 _____。",
+      "number": 24,
+      "stem": "假設經濟體系如下：消費函數 \\(C=25+0.75Y_d\\)，\\(Y_d\\) 為可支配所得，投資 \\(I=50\\)、政府支出 \\(G=40\\)、稅額 \\(T=20\\)，則均衡所得為多少？",
       "options": [
-        "2",
-        "5",
-        "10",
-        "40"
+        "400",
+        "250",
+        "500",
+        "380"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "113Q1-macro-02",
+      "sessionId": "113Q1",
+      "year": 113,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 2,
+      "stem": "下列何種情形會使乘數效果加大？",
+      "options": [
+        "邊際進口傾向減小",
+        "自發性支出增加",
+        "邊際消費傾向減小",
+        "邊際稅率增加"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "113Q1-macro-18",
+      "sessionId": "113Q1",
+      "year": 113,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 18,
+      "stem": "2024 年年初美國國債，最接近哪一個數字？",
+      "options": [
+        "28 兆美元",
+        "30 兆美元",
+        "32 兆美元",
+        "34 兆美元"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "eventId": "us-debt-gold",
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "113Q3-macro-10",
+      "sessionId": "113Q3",
+      "year": 113,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 10,
+      "stem": "一位上班族在某期的樂透彩中獲得 10 萬元獎金，觀察其獲獎後之一年，其生活消費並無顯著大幅度變動，若該名上班族之行為符合恆常所得假說，則是因為何種現象導致而成？",
+      "options": [
+        "所得替代效果",
+        "柏拉圖最適",
+        "有限理性",
+        "消費平滑性"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "113Q3-macro-19",
+      "sessionId": "113Q3",
+      "year": 113,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 19,
+      "stem": "李嘉圖等價定理主要描述怎樣的觀點？",
+      "options": [
+        "當政府增發貨幣時，消費者預期未來稅收增加",
+        "政府舉債融通減稅政策時，消費者預期未來稅收增加，財政效果無效",
+        "政府增加稅收以應對經濟衰退時，財政效果無效",
+        "當政府減少稅收以促進經濟增長時，財政效果無效"
       ],
       "answer": [
         "B"
@@ -1446,75 +1783,19 @@ window.CHAPTER_DATA["macro-03"] = {
       ]
     },
     {
-      "id": "112Q2-macro-13",
-      "sessionId": "112Q2",
-      "year": 112,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 13,
-      "stem": "張三從郵局提領 10 萬元現金，存入其在銀行的活期儲蓄存款帳戶時，對M1B及M2 之立即影響為何？",
-      "options": [
-        "M2 增加而 M1B 不變",
-        "M2 增加而 M1B 減少",
-        "M2 減少而 M1B 增加",
-        "M2 不變而 M1B 增加"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "112Q2-macro-21",
-      "sessionId": "112Q2",
-      "year": 112,
-      "session": 2,
+      "id": "113Q3-macro-21",
+      "sessionId": "113Q3",
+      "year": 113,
+      "session": 3,
       "subject": "macro",
       "sourceId": "macro-03",
       "number": 21,
-      "stem": "下列何種存款的變化與景氣波動最有關連性？",
+      "stem": "如果政府支出增加 50，稅收增加 50，且 MPC 為 0.8，則產出會增加多少？",
       "options": [
-        "定期存款",
-        "郵政儲金",
-        "外匯存款",
-        "活期存款"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "112Q2-macro-31",
-      "sessionId": "112Q2",
-      "year": 112,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 31,
-      "stem": "下列的虛擬貨幣中何者是屬於穩定幣(stable coin)？",
-      "options": [
-        "泰達幣",
-        "以太幣",
-        "比特幣",
-        "狗狗幣"
+        "50",
+        "100",
+        "200",
+        "0"
       ],
       "answer": [
         "A"
@@ -1522,7 +1803,6 @@ window.CHAPTER_DATA["macro-03"] = {
       "sourceIds": [
         "macro-03"
       ],
-      "eventId": "stablecoin-2026",
       "sourceRefs": [
         {
           "chapterId": "macro-03",
@@ -1531,103 +1811,19 @@ window.CHAPTER_DATA["macro-03"] = {
       ]
     },
     {
-      "id": "113Q1-macro-07",
-      "sessionId": "113Q1",
+      "id": "113Q3-macro-34",
+      "sessionId": "113Q3",
       "year": 113,
-      "session": 1,
+      "session": 3,
       "subject": "macro",
       "sourceId": "macro-03",
-      "number": 7,
-      "stem": "下列哪項存款比較能衡量自然人金融活動熱絡程度？",
+      "number": 34,
+      "stem": "在跨期消費模型中，對一個存款者面對利率下降時，下列敘述何者為真？",
       "options": [
-        "通貨",
-        "支票存款",
-        "活期存款",
-        "活期儲蓄存款"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q1-macro-14",
-      "sessionId": "113Q1",
-      "year": 113,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 14,
-      "stem": "張三從郵局提領 10 萬元現金，存入其在銀行的活期儲蓄存款帳戶時，對M1B 及 M2 之立即影響為何？",
-      "options": [
-        "M2 增加而 M1B 不變",
-        "M2 增加而 M1B 減少",
-        "M2 減少而 M1B 增加",
-        "M2 不變而 M1B 增加"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "114Q2-macro-29",
-      "sessionId": "114Q2",
-      "year": 114,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 29,
-      "stem": "下列何者不屬於貨幣總計數 M1 的範圍？",
-      "options": [
-        "通貨淨額",
-        "支票存款",
-        "活期存款",
-        "外匯存款"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "114Q2-macro-32",
-      "sessionId": "114Q2",
-      "year": 114,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 32,
-      "stem": "國際貨幣基金會(IMF)2022 年 5 月 11 日，宣佈調整特別提款權(SDRs) 權重，是將人民幣權重由 10.92%上調至 12.28%，也成為權重排名的第幾？",
-      "options": [
-        "第一",
-        "第二",
-        "第三",
-        "第四"
+        "本期消費一定減少",
+        "本期消費一定增加",
+        "未來消費一定減少",
+        "未來消費一定增加"
       ],
       "answer": [
         "C"
@@ -1643,19 +1839,131 @@ window.CHAPTER_DATA["macro-03"] = {
       ]
     },
     {
-      "id": "114Q2-macro-34",
-      "sessionId": "114Q2",
+      "id": "114Q1-macro-01",
+      "sessionId": "114Q1",
       "year": 114,
-      "session": 2,
+      "session": 1,
       "subject": "macro",
       "sourceId": "macro-03",
-      "number": 34,
-      "stem": "有關貨幣四大功能，不包含下列哪一項？",
+      "number": 1,
+      "stem": "假設實質利率對於儲蓄的替代效果小於所得效果，則實質利率的下降，對於債權人(lender)的影響為：消費______，儲蓄______。",
       "options": [
-        "交易媒介",
-        "價值儲藏",
-        "計價單位",
-        "中心化支付標準"
+        "下降；下降",
+        "下降；上升",
+        "上升；上升",
+        "上升；下降"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "114Q1-macro-04",
+      "sessionId": "114Q1",
+      "year": 114,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 4,
+      "stem": "級距性的所得稅 (progressive income tax)是一種經濟體系自動穩定的機制(automatic stabilizer)，會隨著政府的預算赤字或預算盈餘而做出自動的調節，其原因為：",
+      "options": [
+        "儘管處於負債狀況，民眾仍會需要繳交所得稅",
+        "當產出成長時，較高的所得稅率會自動被課徵，而向下調整花費的額度",
+        "當產出成長時，邊際花費額度會增加，而所得稅的徵收降低",
+        "選項(A)(B)(C)皆非"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "114Q1-macro-08",
+      "sessionId": "114Q1",
+      "year": 114,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 8,
+      "stem": "當一個國家的經濟情況進入衰退時，下列何者為自動穩定機制(automatic stabilizer)的範例？",
+      "options": [
+        "更多的人符合領取失業救濟金的資格",
+        "與景氣循環相關的廠商，其股票價格降低",
+        "國會或立法機構啟動經濟刺激方案",
+        "央行採取利率調整的機制"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "114Q1-macro-09",
+      "sessionId": "114Q1",
+      "year": 114,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 9,
+      "stem": "根據凱因斯的分析，下列何者會有最大的整體需求上升？",
+      "options": [
+        "課稅增加$100 兆",
+        "課稅減少$100 兆",
+        "政府花費增加$100 兆",
+        "政府花費減少$100 兆"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "114Q1-macro-21",
+      "sessionId": "114Q1",
+      "year": 114,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 21,
+      "stem": "假設在一封閉經濟體系，自發性消費為$400，計畫性投資為$500，政府支出為$200，邊際消費傾向為 0.9。若政府支出增加$10，則均衡產出會改變多少？",
+      "options": [
+        "-$100",
+        "-$10",
+        "$10",
+        "$100"
       ],
       "answer": [
         "D"
@@ -1671,19 +1979,188 @@ window.CHAPTER_DATA["macro-03"] = {
       ]
     },
     {
-      "id": "114Q3-macro-15",
+      "id": "114Q2-macro-03",
+      "sessionId": "114Q2",
+      "year": 114,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 3,
+      "stem": "下列有關簡單凱因斯模型的敘述何者有誤？",
+      "options": [
+        "有四種計畫性支出",
+        "消費函數是所得的正函數",
+        "物價可以靈活調整",
+        "有效需求就是計畫性總合需求"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "114Q2-macro-05",
+      "sessionId": "114Q2",
+      "year": 114,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 5,
+      "stem": "其他條件不變下，下列何種因素比較無法擴大本國內需？",
+      "options": [
+        "受薪階級平均所得提高",
+        "貧富差距縮小",
+        "消費者信心提高",
+        "利潤租金佔要素所得比重上升"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "114Q2-macro-12",
+      "sessionId": "114Q2",
+      "year": 114,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 12,
+      "stem": "以什麼模型說明乘數效果，即政府支出增加時，產出會以倍數增加最為容易？",
+      "options": [
+        "簡單凱因斯模型",
+        "理性預期模型",
+        "AD-AS 總合供需模型",
+        "總體計量模型"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "114Q2-macro-21",
+      "sessionId": "114Q2",
+      "year": 114,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 21,
+      "stem": "2025 年 3 月 29 日美國財政部的官網出現的國家債務跟下列哪一個數字最接近？",
+      "options": [
+        "30 兆",
+        "33 兆",
+        "36 兆",
+        "39 兆"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "eventId": "us-debt-gold",
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "114Q3-macro-12",
       "sessionId": "114Q3",
       "year": 114,
       "session": 3,
       "subject": "macro",
       "sourceId": "macro-03",
-      "number": 15,
-      "stem": "股市不停創新高，若投資人看多股市因而把定期儲蓄存款解約轉成活期儲蓄存款以備進場買股，此時：",
+      "number": 12,
+      "stem": "維持生活之基本所需所必要的開銷稱為？",
       "options": [
-        "M1A 會增加，M1B 也增加",
-        "M1A 會增加，M2 不變動",
-        "M1B 會增加，M2 會減少",
-        "M1B 會增加，M2 不變動"
+        "誘發性的消費",
+        "自發性的消費",
+        "誘發性的投資",
+        "自發性的投資"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "115Q1-macro-06",
+      "sessionId": "115Q1",
+      "year": 115,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 6,
+      "stem": "Friedman 提出的消費理論是：",
+      "options": [
+        "恆常所得假說",
+        "絕對所得假說",
+        "相對所得假說",
+        "邊際消費假說"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "115Q1-macro-09",
+      "sessionId": "115Q1",
+      "year": 115,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 9,
+      "stem": "某封閉經濟中，消費函數為 \\(C=80+0.75Y\\)，投資為 \\(I=120\\)，若投資增加 40，則均衡所得將增加多少？",
+      "options": [
+        "40",
+        "80",
+        "120",
+        "160"
       ],
       "answer": [
         "D"
@@ -1694,87 +2171,60 @@ window.CHAPTER_DATA["macro-03"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-03",
-          "sectionIndex": 2
+          "sectionIndex": 1
         }
       ]
     },
     {
-      "id": "115Q1-macro-18",
-      "sessionId": "115Q1",
-      "year": 115,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 18,
-      "stem": "M1B 稱為「戰鬥貨幣」非｢防衛貨幣｣主要理由是：",
-      "options": [
-        "與保本定存最相關",
-        "含交易與投資性目的，景氣好時更活躍",
-        "只用於政府支出",
-        "只用於進出口貿易"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "115Q1-macro-26",
-      "sessionId": "115Q1",
-      "year": 115,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-03",
-      "number": 26,
-      "stem": "貨幣數量學說認為總合支出的變化主要是由下列何者所引起？",
-      "options": [
-        "利率",
-        "貨幣供給",
-        "貨幣流通速度",
-        "政府支出與稅收"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-03"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-03",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "115Q2-macro-10",
+      "id": "115Q2-macro-01",
       "sessionId": "115Q2",
       "year": 115,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-03",
-      "number": 10,
-      "stem": "在商品貨幣發行時，若存在兩種型態的貨幣，則民眾會保留成色較高的貨幣，使得市面上僅流通較差的貨幣，造成「劣幣驅逐良幣」的現象發生，此現象又稱為下列哪個經濟學法則？",
+      "number": 1,
+      "stem": "下列有關簡單凱因斯模型的敘述何者有誤？",
       "options": [
-        "格來興法則",
-        "賽伊法則",
-        "泰勒法則",
-        "歐肯法則"
+        "有四種計畫性支出",
+        "消費函數是所得的正函數",
+        "物價可以靈活調整",
+        "有效需求就是計畫性總合需求"
       ],
       "answer": [
-        "A"
+        "C"
       ],
       "sourceIds": [
         "macro-03"
       ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-03",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "115Q2-macro-18",
+      "sessionId": "115Q2",
+      "year": 115,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-03",
+      "number": 18,
+      "stem": "2026 年的年中美國國債，最接近哪一個數字？",
+      "options": [
+        "25 兆美元",
+        "30 兆美元",
+        "35 兆美元",
+        "40 兆美元"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-03"
+      ],
+      "eventId": "us-debt-gold",
       "sourceRefs": [
         {
           "chapterId": "macro-03",
@@ -1813,128 +2263,249 @@ window.CHAPTER_DATA["macro-03"] = {
   },
   "questions": [
     {
-      "id": "108Q1-macro-written-2",
+      "id": "107Q2-macro-written-3",
+      "sessionId": "107Q2",
+      "year": 107,
+      "session": 2,
+      "subject": "macro",
+      "number": 3,
+      "stem": "設有下列經濟模型資訊：(共 10 分) Y=C+I+G；C=140+0.8Yd；Yd=Y-T；I=200-500r；G=120；L=M/P；L=50+0.3Y-500r (其中 Yd 為可支配所得，r 為利率以%表示，Y 為所得，C 為消費，I 為投資，G 為政府支出，T 為 稅收，L 為實質貨幣需求，M/P 為實質貨幣供給，P 為物價)：(1)計算當稅收 T 增加 100 時，所得將上升或減少多少單位？ (5 分) (2)計算當政府支出 G 增加 50 時，所得將上升或減少多少單位？ (5 分)",
+      "sourceIds": [
+        "macro-03",
+        "macro-07"
+      ],
+      "kind": "計算題",
+      "answer": [
+        "IS：\\(Y=140+0.8(Y-T)+200-500r+120\\)，整理 \\(0.2Y=460-0.8T-500r\\)，\\(Y=2{,}300-4T-2{,}500r\\)。LM：\\(50+0.3Y-500r=M/P\\)，\\(r=(0.3Y-M/P+50)/500\\)。",
+        "代入消去r：\\(Y=2{,}300-4T-5(0.3Y-M/P+50)\\)，\\(2.5Y=2{,}050-4T+5M/P\\)，\\(Y=820-1.6T+2M/P\\)。",
+        "(1) T增加100，所得減少 \\(1.6\\times100=\\)**160**。(2) G乘數：\\(Y=580+2G-1.6T+2M/P\\)，G增加50，所得增加 \\(2\\times50=\\)**100**。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "108Q1-macro-written-1",
       "sessionId": "108Q1",
       "year": 108,
       "session": 1,
       "subject": "macro",
-      "number": 2,
-      "stem": "假設商品市場\\(y=c(y-t(y))+i(r)+g\\)，貨幣市場 \\(\\bar M/P_0=l(r)+k(y)\\)，(其中 y：所得、c：消費、t：租稅、i：投資、r：利率、g：政府支出、\\(\\bar M\\)：名目貨幣供給、 \\(P_0\\)：物價，假設 \\(\\bar M/P_0=m\\)、l(r)：投機性貨幣需求、k(y)：交易性貨幣需求) (1)請導出政府支出乘數 \\(dy/dg\\) 為何？(5 分) (2)請導出貨幣供給乘數 \\(dy/dm\\) 為何？(5 分)",
+      "number": 1,
+      "stem": "假設凱因斯模型如下：消費函數 C = 100 + 0.6(Y − 50)，投資函數 I = 200 − 10r，政府支出G=100，貨幣需求函數Md = P(Y − 100r)，貨幣供給函數MS = 800，式中假設物價 P=1，r 為利率：(1)試求均衡所得 Y 和利率 r 分別為多少？ (5 分) (2)若政府採取擴大公共支出的財政政策，使 Y 增加到充分就業水準Yf = 1,100，則政府支出必須 再增加或減少多少才能達成此目標？ (5 分)",
       "sourceIds": [
-        "macro-05",
         "macro-03",
-        "macro-06"
+        "macro-07"
       ],
       "kind": "計算題",
       "answer": [
-        "(1) 對商品市場與貨幣市場全微分：\\(dy=c^{\\prime}(1-t^{\\prime})dy+i^{\\prime}dr+dg\\)；\\(dm=l^{\\prime}dr+k^{\\prime}dy\\)。dg時dm=0，\\(dr=-(k^{\\prime}/l^{\\prime})dy\\)。代入：\\[dy[1-c^{\\prime}(1-t^{\\prime})+i^{\\prime}k^{\\prime}/l^{\\prime}]=dg\\]，故 \\[\\frac{dy}{dg}=\\frac{1}{1-c^{\\prime}(1-t^{\\prime})+i^{\\prime}k^{\\prime}/l^{\\prime}}\\] 。",
-        "(2) dm時dg=0：\\(dr=[1-c^{\\prime}(1-t^{\\prime})]dy/i^{\\prime}\\)。代入貨幣市場：\\(dm=l^{\\prime}dr+k^{\\prime}dy=dy\\{k^{\\prime}+l^{\\prime}[1-c^{\\prime}(1-t^{\\prime})]/i^{\\prime}\\}\\)，故 \\[\\frac{dy}{dm}=\\frac{1}{k^{\\prime}+l^{\\prime}[1-c^{\\prime}(1-t^{\\prime})]/i^{\\prime}}\\] 。",
-        "因 \\(i^{\\prime}<0\\)、\\(l^{\\prime}<0\\)，分母中的 \\(i^{\\prime}k^{\\prime}/l^{\\prime}\\) 與 \\(l^{\\prime}(...)/i^{\\prime}\\) 為正，政府支出乘數小於簡單乘數，貨幣乘數為正。"
+        "(1) IS：\\(C=100+0.6(Y-50)=70+0.6Y\\)；\\(Y=70+0.6Y+200-10r+100\\)，整理 \\(0.4Y=370-10r\\)，\\(Y=925-25r\\)。LM：\\(M_d/P=Y-100r=800\\)，\\(Y=800+100r\\)。聯立 \\(925-25r=800+100r\\)，\\(r=1\\)（100%），\\(Y=900\\)。",
+        "(2) 充分就業 \\(Y=1{,}100\\)。由 LM，\\(r=3\\)（300%）。IS：\\(1{,}100=70+0.6(1{,}100)+200-10(3)+G\\)，得 \\(G=200\\)。原 \\(G=100\\)，須再增加 100。"
       ],
       "answerType": "reference",
       "note": "本站參考解答（非官方）"
     },
     {
-      "id": "109Q1-macro-written-2",
-      "sessionId": "109Q1",
-      "year": 109,
+      "id": "108Q1-macro-written-3",
+      "sessionId": "108Q1",
+      "year": 108,
       "session": 1,
       "subject": "macro",
-      "number": 2,
-      "stem": "某國的貨幣需求函數為：\\(M^d/P=1,000+0.2y-1,000(r+\\pi^e)\\)，試計算下列問題：(1) 假設 \\(y=2,000\\)、\\(r=6\\%\\)、\\(\\pi^e=4\\%\\)，試問流通速度為何？(5 分) (2) 假設貨幣供給為 \\(M^s=2,600\\)，試問物價水準為何？(5 分)",
+      "number": 3,
+      "stem": "在凱因斯模型假設下，假設政府支出增加，請繪圖說明所得Y、利率r、就業L、物價P、名目工 資 W 之變化為何？(10 分)",
       "sourceIds": [
         "macro-03"
       ],
       "kind": "計算題",
       "answer": [
-        "(1) \\(r+\\pi^e=6\\%+4\\%=10\\%\\)。貨幣需求 \\(M_d/P=1{,}000+0.2(2{,}000)-1{,}000(0.10)=1{,}000+400-100=1{,}300\\)。流通速度 \\(V=Py/M=y/(M/P)=2{,}000/1{,}300\\approx1.54\\)。",
-        "(2) \\(M_s/P=2{,}600/P=1{,}300\\)，故 \\(P=2.0\\)。"
+        "政府支出增加：IS右移，利率上升、所得增加（可能有排擠效果）；AD右移。",
+        "AD-AS：短期AD右移使物價上升、產出增加；勞動市場勞動需求上升，就業L增加、失業下降；名目工資W短期僵固，實質工資下降。",
+        "長期名目工資隨物價調整上升，SRAS左移，產出回到自然率、物價再上升；就業回到自然率，利率與實質變數回復。"
       ],
       "answerType": "reference",
       "note": "本站參考解答（非官方）"
     },
     {
-      "id": "110Q3-macro-written-2",
-      "sessionId": "110Q3",
-      "year": 110,
-      "session": 3,
+      "id": "109Q2-macro-written-2",
+      "sessionId": "109Q2",
+      "year": 109,
+      "session": 2,
       "subject": "macro",
       "number": 2,
-      "stem": "何謂「存託憑證」？存託憑證有哪些分類？試說明之。（10 分）",
+      "stem": "假設 A 國之總體資料如下所示：C = 50 + 0.75Yd I = 200 + 0.15Y G = 60 T = 80 + 0.2Y X = 100 M = 50 + 0.1Y 其中 C、I、G、T、X、M、Y 分別表示消費、投資、政府支出、政府稅收、出口、進口、所得。試求：(1)均衡國民所得。（3 分） (2)若自發性投資增加 1 元，則均衡國民所得會增（減）多少元？（3 分） (3)均衡的政府赤字（或盈餘）。（2 分） (4)當充分就業的所得為 1,200 時，A 國之膨脹（或緊縮）缺口為若干？（2 分） （請四捨五入至小數第二位）",
       "sourceIds": [
-        "macro-03",
-        "macro-13"
+        "macro-03"
+      ],
+      "kind": "計算題",
+      "answer": [
+        "\\(Y_d=Y-(80+0.2Y)=0.8Y-80\\)，\\(C=50+0.75(0.8Y-80)=0.6Y-10\\)。\\[Y=0.6Y-10+200+0.15Y+60+100-(50+0.1Y)=0.65Y+300\\]，故 \\(0.35Y=300\\)，Y≈**857.14**。",
+        "(2) 自發性投資增加1，乘數 \\(1/(1-0.65)=1/0.35\\approx2.8571\\)，均衡所得增加 **2.86**。",
+        "(3) 稅收 \\(T=80+0.2(857.14)=251.43\\)，政府支出60，政府**盈餘191.43**。",
+        "(4) 充分就業所得1,200，目前857.14，差342.86；緊縮缺口＝產出缺口÷乘數＝342.86/2.8571≈**120**。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "109Q4-macro-written-2",
+      "sessionId": "109Q4",
+      "year": 109,
+      "session": 4,
+      "subject": "macro",
+      "number": 2,
+      "stem": "假設在一封閉體系下，自發性消費為$500，計畫性投資為$400，政府支出為$200，邊際消費傾向 為 0.9，請問：(1)均衡產出為多少？（5 分） (2)當政府支出增加＄20，則均衡產出會增加多少？（5 分）",
+      "sourceIds": [
+        "macro-03"
+      ],
+      "kind": "計算題",
+      "answer": [
+        "(1) 封閉體系 \\(Y=C+I+G\\)，自發性支出 \\(500+400+200=1{,}100\\)，乘數 \\(1/(1-0.9)=10\\)，均衡產出 \\(Y=11{,}000\\)。",
+        "(2) 政府支出增加20，\\(\\Delta Y=20\\times10=200\\)，新均衡11,200。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "110Q1-macro-written-2",
+      "sessionId": "110Q1",
+      "year": 110,
+      "session": 1,
+      "subject": "macro",
+      "number": 2,
+      "stem": "Keynesian 學派偏好「緊縮財政政策與寬鬆貨幣政策」 組合，試說明這種政策偏好的理由為何？ (10%)",
+      "sourceIds": [
+        "macro-03"
       ],
       "kind": "申論題",
       "answer": [
-        "存託憑證（Depositary Receipt, DR）是由存託機構發行、代表對外國公司股票所有權的可轉讓憑證，讓投資人可在本國交易所間接投資外國公司，不必直接持有外國股票。",
-        "分類：依發行地/交易地可分為ADR（美國）、GDR（全球）、TDR（臺灣）、IDR（國際）、HKDR（香港）等；依發行人與存託機構合作關係可分**贊助型**（sponsored）與**非贊助型**（unsponsored）；ADR再分Level I（店頭）、Level II（交易所上市但不增資）、Level III（交易所上市並增資）；依是否募集新資金分**初次/增資**與**老股**；依權利分**普通/特別**存託憑證。",
-        "優點：降低跨國投資障礙、以本國貨幣交易、流動性較高；風險包括匯率、政治、法律制度、存託機構信用與資訊不對稱。"
+        "Keynesian偏好「緊縮財政、寬鬆貨幣」的政策組合，理由如下：",
+        "第一，寬鬆貨幣壓低利率，刺激投資與耐久財消費；Keynesian認為投資對利率敏感，貨幣政策可透過投資帶動產出。第二，緊縮財政可避免政府支出排擠私人投資、降低預算赤字與國家債務，讓資源轉向民間。第三，若經濟接近充分就業，擴張財政易推升物價與進口，緊縮財政可減輕通膨壓力；寬鬆貨幣則可維持需求與就業。",
+        "以IS-LM說明：緊縮財政使IS左移，寬鬆貨幣使LM右移；若搭配得宜，產出可維持不變，但利率下降、投資增加，政策組合可改善民間投資與財政結構。"
       ],
       "answerType": "reference",
       "note": "本站參考解答（非官方）"
     },
     {
-      "id": "111Q2-macro-written-1",
+      "id": "110Q2-macro-written-1",
+      "sessionId": "110Q2",
+      "year": 110,
+      "session": 2,
+      "subject": "macro",
+      "number": 1,
+      "stem": "某封閉體系的總體經濟模型如下：○1 消費函數 ○2 稅收函數 ○3 投資函數 ○4 貨幣市場均衡方程式 式中 為消費，為租稅，為投資，為國民所得，為利率，為物價，為自發性消費，為總額 稅，為所得稅稅率，為加速係數，為自發性投資，為名目貨幣供給，為常數，代表交易 性貨幣需求，代表投機性貨幣需求，為邊際消費傾向，假設此經濟社會之 , , , , , , , , , , ,當政府支出 時：(1)請求出均衡之 之值為何？（2 分） (2)請求出均衡之 之值為何？（3 分） (3)請求出均衡之 之值為何？（2 分） (4)請求出均衡之 之值為何？（3 分）",
+      "sourceIds": [
+        "macro-03",
+        "macro-07"
+      ],
+      "kind": "計算題",
+      "answer": [
+        "商品市場：\\(C=100+0.5(Y-(10+0.34Y))=95+0.33Y\\)；\\(I=200+0.17Y-2{,}000r\\)。\\[Y=95+0.33Y+200+0.17Y-2{,}000r+300\\]，整理 \\(0.5Y=595-2{,}000r\\)，IS：\\(Y=1{,}190-4{,}000r\\)。",
+        "貨幣市場：\\(M_s/P=1{,}000/10=100=0.2Y-1{,}500r\\)，LM：\\(Y=500+7{,}500r\\)。",
+        "聯立：\\(1{,}190-4{,}000r=500+7{,}500r\\)，\\(690=11{,}500r\\)，\\(r=0.06=6\\%\\)；\\(Y=500+7{,}500(0.06)=950\\)。",
+        "租稅 \\(T=10+0.34\\times950=333\\)；投資 \\(I=200+0.17\\times950-2{,}000(0.06)=200+161.5-120=241.5\\)。故(1)Y=950、(2)T=333、(3)r=6%、(4)I=241.5。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "110Q2-macro-written-2",
+      "sessionId": "110Q2",
+      "year": 110,
+      "session": 2,
+      "subject": "macro",
+      "number": 2,
+      "stem": "依凱因斯投資邊際效率(Marginal Efficiency of Investment)，假設某公司有A、B 兩項投資計畫，其 購置成本均為1，在 A 投資計劃中第一年之預期收益為0，第二年之預期收益為4。在 B 投資計畫 中第一年之預期收益為2，第二年預期收益為1。(1)A 與 B 投資計畫之投資邊際效率為何？（8 分） (2)請問公司應採行A 或 B 之投資計畫？（2 分）",
+      "sourceIds": [
+        "macro-14",
+        "macro-03"
+      ],
+      "kind": "申論題",
+      "answer": [
+        "(1) 投資邊際效率是使未來收益現值等於購置成本的折現率。A：\\(1=4/(1+r)^2\\)，\\((1+r)^2=4\\)，\\(r=1=100\\%\\)。B：\\(1=2/(1+r)+1/(1+r)^2\\)，令 \\(x=1/(1+r)\\)，\\(x^2+2x-1=0\\)，\\(x=\\sqrt2-1=0.4142\\)，\\(1+r=2.4142\\)，\\(r=141.42\\%\\)。",
+        "(2) B的投資邊際效率141.42%高於A的100%，若無資金限制，應選擇B。B前期回收較快，雖然總報酬較低，但內部報酬率較高。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "111Q2-macro-written-3",
       "sessionId": "111Q2",
       "year": 111,
       "session": 2,
       "subject": "macro",
-      "number": 1,
-      "stem": "何謂加密貨幣(2 分)？請說明加密貨幣的出現對經濟或金融可能會產生哪些負面影響？(8 分)",
-      "sourceIds": [
-        "macro-03",
-        "macro-13"
-      ],
-      "kind": "申論題",
-      "answer": [
-        "加密貨幣是一種以密碼學與分散式帳本（區塊鏈）建立的數位資產，通常不依賴中央銀行或單一發行機構，可在網路上移轉、交易或作為價值儲存工具；它不是法定貨幣，價格波動大。",
-        "負面影響包括：第一，金融穩定風險，價格暴漲暴跌、槓桿交易與機構曝險可能傳染至傳統金融；第二，貨幣政策與資本流動，加密資產可繞過資本管制，造成貨幣替代、資本外逃與央行控制力下降；第三，投資人保護，詐騙、龐氏騙局、交易所倒閉、錢包被盗與資訊不對稱嚴重；第四，洗錢、資恐、逃稅與制裁規避；第五，支付與清算風險，交易不可逆、網路攻擊、私鑰遺失；第六，能源消耗與環境成本；第七，監管套利與跨國監理困難；第八，穩定幣若發生擠兌，可能引發短期流動性危機。"
-      ],
-      "answerType": "reference",
-      "note": "本站參考解答（非官方）"
-    },
-    {
-      "id": "112Q1-macro-written-1",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "number": 1,
-      "stem": "給定下面資料：(億元) 中央銀行 銀行體系 資產 負債 資產 負債 國外資產 200 通貨發行額 430 庫存現金 50 支票存款 450 對政府債權 60 銀行存款 400 在央行存款 400 活期性存款 400 對銀行債權 560 政府存款 16 放款 1,700 定期存款 1,400 庫存現金 30 外國存款 4 證券 500 資本 400 850 850 2,650 2,650 請算出流通中的通貨、準備貨幣、M1、M2 金額，以及 M2 之乘數。(10 分)",
+      "number": 3,
+      "stem": "假設有一簡單凱因斯開放經濟模型，其中 Y、C、I、G 分別代表所得、消費、投資與政府支出，X、M、S、T 則分別代表出口 、 進口 、 儲蓄與稅賦。Y=C+I+G+(X-M)、Y=C+S+T、C=250+0.75*(Y-T)、 I=400、T=200、G=200、X=220、M=20+0.05Y。請問：(1)該經濟模型的均衡所得、可支配所得與儲蓄各為多少？（6 分） (2)若國內廠商因至海外疫情供應鏈阻斷而增加國內投資 300，此時均衡所得與貿易餘額（亦即 出口減去進口）分別出現多少的變化？（4 分）",
       "sourceIds": [
         "macro-03"
       ],
       "kind": "計算題",
       "answer": [
-        "中央銀行發行通貨 430 億元，金融機構庫存現金 30 億元，中央銀行庫存現金 50 億元，故流通中通貨 = 430 - 30 - 50 = 350 億元。",
-        "準備貨幣 = 流通中通貨 + 金融機構在央行存款 + 金融機構庫存現金 = 350 + 400 + 30 = 780 億元。",
-        "M1 = 流通中通貨 + 支票存款 + 活期性存款 = 350 + 450 + 400 = 1,200 億元。",
-        "M2 = M1 + 定期存款 + 外國存款 = 1,200 + 1,400 + 4 = 2,604 億元。",
-        "M2 乘數 = M2 ÷ 準備貨幣 = 2,604 ÷ 780 ≈ 3.3385。"
+        "(1) \\(Y_d=Y-200\\)，\\(C=250+0.75(Y-200)=100+0.75Y\\)。\\[Y=100+0.75Y+400+200+220-(20+0.05Y)\\]整理 \\(Y=900+0.70Y\\)，\\(0.30Y=900\\)，\\(Y=3{,}000\\)。可支配所得 \\(Y_d=2{,}800\\)；儲蓄 \\(S=Y_d-C=2{,}800-(100+0.75\\times3{,}000)=2{,}800-2{,}350=450\\)。",
+        "(2) 投資增加300，自發性支出增加300；乘數 \\(1/(1-0.75+0.05)=1/0.30=3.3333\\)，所得增加 \\(300\\times3.3333=1{,}000\\)，新所得4,000。原貿易餘額 \\(NX=220-(20+0.05\\times3{,}000)=50\\)；新貿易餘額 \\(NX^{\\prime}=220-(20+0.05\\times4{,}000)=0\\)；貿易餘額減少50。",
+        "因此所得增加 **1,000**、貿易餘額減少 **50**（由順差50變為0）。"
       ],
       "answerType": "reference",
       "note": "本站參考解答（非官方）"
     },
     {
-      "id": "115Q2-macro-written-2",
-      "sessionId": "115Q2",
-      "year": 115,
-      "session": 2,
+      "id": "112Q3-macro-written-1",
+      "sessionId": "112Q3",
+      "year": 112,
+      "session": 3,
       "subject": "macro",
-      "number": 2,
-      "stem": "何謂央行數位通貨(CBDC)？（5 分）請就其發展狀況及國際趨勢作一申論說明。（5 分）",
+      "number": 1,
+      "stem": "某經濟體系的生產方程為 \\(Y=A K^{0.5}N^{0.5}\\)。於 2000 年，\\(K=6,400\\)、\\(N=100\\)、\\(Y=800\\)。於 2010 年，資本、勞動、產出都變成兩倍，亦即 \\(K=12,800\\)、\\(N=200\\)、\\(Y=1,600\\)。(1) 這兩個年份間，生產力 \\(A\\) 上升了多少百分比？(5 分) (2) 如果 2010 年的產出上升至 3,200，而不是 1,600，資本與勞動力同樣是變兩倍，則生產力上升了多少百分比？(5 分)",
       "sourceIds": [
         "macro-03",
-        "macro-05"
+        "macro-09"
       ],
-      "kind": "申論題",
+      "kind": "計算題",
+      "answer": [
+        "生產函數 \\(Y=AK^{0.5}N^{0.5}\\)，故 \\(A=Y/(K^{0.5}N^{0.5})\\)。",
+        "(1) 2000年：\\(K^{0.5}N^{0.5}=\\sqrt{6{,}400\\times100}=\\sqrt{640{,}000}=800\\)，\\(A=800/800=1\\)。2010年：\\(\\sqrt{12{,}800\\times200}=\\sqrt{2{,}560{,}000}=1{,}600\\)，\\(A=1{,}600/1{,}600=1\\)。生產力A不變，上升 **0%**。",
+        "(2) 若2010年Y=3,200，則 \\(A=3{,}200/1{,}600=2\\)，由1升至2，生產力上升 **100%**。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "113Q3-macro-written-3",
+      "sessionId": "113Q3",
+      "year": 113,
+      "session": 3,
+      "subject": "macro",
+      "number": 3,
+      "stem": "以下為某國 2013 年與 2023 年的所得分配 戶數百分比 2013 年 2023 年 最低 20% 7.07 5.64 次低 20% 12.82 11.37 第三低 20% 17.47 16.43 次高 20% 23.41 22.4 最高 20% 39.23 44.16 請用累積分配的比例差異，即洛侖士曲線(Lorenz Curve)，來說明這兩年所得分配的差異比較。(10 分)",
+      "sourceIds": [
+        "macro-03",
+        "macro-01"
+      ],
+      "kind": "計算題",
+      "answer": [
+        "將各20%戶數的所得份額累加，得到洛侖士曲線的座標（橫軸為累積戶數百分比，縱軸為累積所得百分比）：2013年為(0,0)、(20,7.07)、(40,19.89)、(60,37.36)、(80,60.77)、(100,100)；2023年為(0,0)、(20,5.64)、(40,17.01)、(60,33.44)、(80,55.84)、(100,100)。",
+        "比較兩條曲線：2023年的洛侖士曲線在每一個內點都低於2013年，離45度完全平等線更遠。最低20%的所得份額由7.07%降至5.64%，次低20%由12.82%降至11.37%，第三低20%由17.47%降至16.43%，次高20%由23.41%降至22.4%；只有最高20%由39.23%升至44.16%。",
+        "這表示2023年的所得分配比2013年更不均：所得向最高所得組集中，其餘80%的相對份額都下降。以五等分資料計算的吉尼係數約由0.2996上升至0.3523，也支持不平等惡化的結論。洛侖士曲線沒有交叉，因此是明確的「更不平等」而非模糊的相對變化。",
+        "政策含義：最高20%份額上升、最低80%份額下降，可能需要透過租稅、移轉支付、教育與技能訓練、最低工資或社會安全網等措施改善底層所得；單看平均所得或經濟成長率，會掩蓋分配惡化的問題。"
+      ],
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
+    },
+    {
+      "id": "115Q1-macro-written-3",
+      "sessionId": "115Q1",
+      "year": 115,
+      "session": 1,
+      "subject": "macro",
+      "number": 3,
+      "stem": "假設有一簡單凱因斯開放經濟模型，其中 Y、C、I、G 分別代表所得、消費、投資與政府支出，X、M、S、T 則分別代表出口、進口、儲蓄與稅賦。Y=C+I+G+(X-M)、Y=C+S+T、C=260+0.8(Y-T)、I=500、T=300、G=100、X=250、M=50+0.05Y。請問：該經濟模型的均衡所 得(4 分)、可支配所得(3 分)與儲蓄(3 分)各為多少？ (請列算式)",
+      "sourceIds": [
+        "macro-03",
+        "macro-11"
+      ],
+      "kind": "計算題",
       "note": "本站參考解答（非官方）",
       "answer": [
-        "CBDC是中央銀行發行的數位形式法定貨幣，可分零售型（公眾日常支付）與批發型（金融機構間結算）；它是央行負債，與商業銀行存款不同。",
-        "發展狀況與趨勢：中國e-CNY大規模試點，歐洲央行進行數位歐元準備，各國關注跨境支付效率、金融包融、隱私與離線支付；同時重視商業銀行脱媒、金融穩定與貨幣政策傳導。臺灣目前以研究、概念驗證與跨機構試驗為主，尚未全面發行。"
+        "均衡條件Y=C+I+G+X-M。代入：Y=260+0.8(Y-300)+500+100+250-(50+0.05Y)=820+0.75Y，解得Y=3,280。",
+        "可支配所得Yd=Y-T=3,280-300=2,980。消費C=260+0.8×2,980=2,644。儲蓄S=Yd-C=2,980-2,644=336（或S=Y-C-T=3,280-2,644-300=336）。"
       ],
-      "eventId": "cbdc-2025",
       "answerType": "reference"
     }
   ]
@@ -1944,47 +2515,47 @@ window.CHAPTER_DATA["macro-03"] = {
     "year": 115,
     "label": "115 年",
     "sections": {
-      "macro-03::2": {
-        "focus": "貨幣定義與貨幣數量學說：M1A、M1B、M2 的組成要分清楚；貨幣數量學說 MV＝PY，焦點是貨幣供給對總合支出的影響。",
+      "macro-03::1": {
+        "focus": "簡單凱因斯模型假設物價固定、利率不變，均衡所得由計畫性支出決定。解題時先把消費函數代入 Y＝C＋I＋G＋(X−M)，再解 Y。",
         "strategies": [
-          "M1A＝通貨淨額＋支票存款＋活期存款；M1B＝M1A＋活期儲蓄存款。",
-          "M2＝M1B＋準貨幣（定期存款、外匯存款、郵政儲金等）。",
-          "貨幣數量學說：MV＝PY；V 與 Y 穩定時，M 變動主要影響物價。",
-          "CBDC 是央行發行的數位法定貨幣，會提高央行對貨幣供給的控制能力。"
+          "封閉經濟：Y＝C＋I＋G；開放經濟：Y＝C＋I＋G＋X−M。",
+          "消費函數 C＝a＋b(Y−T)，b 為邊際消費傾向 MPC。",
+          "自發性支出乘數＝1/(1−b)（封閉、無稅、無進口）；有稅與進口時分母會變大。",
+          "簡單凱因斯模型假設物價固定，所以不是「物價可靈活調整」。"
         ],
         "examples": [
           {
-            "questionId": "115Q2-macro-written-2",
+            "questionId": "115Q1-macro-written-3",
             "steps": [
-              "CBDC 是中央銀行發行的數位形式法定貨幣，分零售型（公眾使用）與批發型（金融機構間支付）。",
-              "它是央行的直接負債，與商業銀行存款不同；民眾可直接在央行持有。",
-              "國際趨勢：中國 e-CNY 試點、歐洲央行數位歐元準備、跨境支付與 mBridge；重點在隱私、離線支付、金融穩定與商業銀行脱媒風險。",
-              "臺灣目前以研究與試驗為主，尚未全面發行。"
+              "Y＝C＋I＋G＋X−M＝260＋0.8(Y−300)＋500＋100＋250−(50＋0.05Y)。",
+              "整理：Y＝260＋0.8Y−240＋500＋100＋250−50−0.05Y＝820＋0.75Y。",
+              "Y−0.75Y＝820→0.25Y＝820→Y＝3,280。",
+              "可支配所得＝Y−T＝3,280−300＝2,980；消費C＝260＋0.8×2,980＝2,644；儲蓄＝2,980−2,644＝336。"
             ],
-            "takeaway": "CBDC 是央行直接負債，會改變銀行體系的中介角色與貨幣政策傳遞。",
-            "trap": "把 CBDC 當成商業銀行存款或加密貨幣；它是法定貨幣的數位形式。"
+            "takeaway": "開放經濟模型先把進口函數代入，整理成 Y＝自發性支出＋邊際支出率×Y，再解 Y。",
+            "trap": "忘記進口也會隨所得變動，漏掉−0.05Y，導致乘數算錯。"
           },
           {
-            "questionId": "115Q1-macro-18",
+            "questionId": "115Q1-macro-09",
             "steps": [
-              "M1B 包含通貨淨額、活期存款、支票存款與活期儲蓄存款。",
-              "它同時具有交易與投資性目的，景氣好時資金更活躍，因此被稱為「戰鬥貨幣」。",
-              "M2 包含定期存款等準貨幣，較不具立即交易性，被稱為「防衛貨幣」。",
-              "答案B。"
+              "消費函數C＝80＋0.75Y，MPC＝0.75。",
+              "封閉經濟乘數＝1/(1−0.75)＝4。",
+              "投資增加40，均衡所得增加＝40×4＝160。",
+              "答案D。"
             ],
-            "takeaway": "M1B 交易性高、景氣好時活躍；M2 包含準貨幣，較穩定。",
-            "trap": "把 M1B 與 M2 的組成對調。"
+            "takeaway": "乘數＝1/(1−MPC)；投資變動乘上乘數就是所得變動。",
+            "trap": "把乘數算成1/0.75＝1.33，或忘記乘投資變動40。"
           },
           {
-            "questionId": "115Q1-macro-26",
+            "questionId": "115Q2-macro-01",
             "steps": [
-              "貨幣數量學說 MV＝PY。",
-              "若貨幣流通速度 V 與實質產出 Y 相對穩定，貨幣供給 M 的變動會主要反映在物價 P 或名目總合支出 PY。",
-              "因此總合支出的變化主要由貨幣供給所引起，答案B。",
-              "利率、流通速度、政府支出稅收不是貨幣數量學說的主要驅動變數。"
+              "簡單凱因斯模型有四種計畫性支出：消費、投資、政府支出、淨出口。",
+              "消費函數是所得的正函數，正確。",
+              "有效需求就是計畫性總合需求，正確。",
+              "簡單凱因斯模型假設物價固定，不是物價可靈活調整，因此C錯誤。"
             ],
-            "takeaway": "貨幣數量學說的核心是「貨幣供給變動→名目支出/物價變動」。",
-            "trap": "把貨幣數量學說與凱因斯學派的利率傳遞混淆。"
+            "takeaway": "簡單凱因斯的核心假設是「物價固定、產出由需求決定」。",
+            "trap": "把古典學派的物價靈活調整套到簡單凱因斯模型。"
           }
         ]
       }
@@ -1994,80 +2565,25 @@ window.CHAPTER_DATA["macro-03"] = {
     "year": 114,
     "label": "114 年",
     "sections": {
-      "macro-03::2": {
-        "focus": "貨幣定義與貨幣數量學說：M1A、M1B、M2 的組成要分清楚；貨幣數量學說 MV＝PY，焦點是貨幣供給對總合支出的影響。",
+      "macro-03::1": {
+        "focus": "簡單凱因斯模型假設物價固定、利率不變，均衡所得由計畫性支出決定。解題時先把消費函數代入 Y＝C＋I＋G＋(X−M)，再解 Y。",
         "strategies": [
-          "M1A＝通貨淨額＋支票存款＋活期存款；M1B＝M1A＋活期儲蓄存款。",
-          "M2＝M1B＋準貨幣（定期存款、外匯存款、郵政儲金等）。",
-          "貨幣數量學說：MV＝PY；V 與 Y 穩定時，M 變動主要影響物價。",
-          "CBDC 是央行發行的數位法定貨幣，會提高央行對貨幣供給的控制能力。"
+          "封閉經濟：Y＝C＋I＋G；開放經濟：Y＝C＋I＋G＋X−M。",
+          "消費函數 C＝a＋b(Y−T)，b 為邊際消費傾向 MPC。",
+          "自發性支出乘數＝1/(1−b)（封閉、無稅、無進口）；有稅與進口時分母會變大。",
+          "簡單凱因斯模型假設物價固定，所以不是「物價可靈活調整」。"
         ],
         "examples": [
           {
-            "questionId": "114Q2-macro-29",
+            "questionId": "114Q1-macro-21",
             "steps": [
-              "M1＝通貨淨額＋支票存款＋活期存款（含類似活期存款）。",
-              "外匯存款屬於外幣計價存款，不列入新臺幣M1。",
-              "因此答案D。",
-              "M2則再加準貨幣（定期存款、外匯存款等）。"
+              "封閉經濟的支出乘數＝1/(1－MPC)＝1/(1－0.9)＝10。",
+              "政府支出增加10元，均衡產出變動＝10×10＝100元。",
+              "方向為增加，答案D。",
+              "若問定額稅乘數，則是－MPC/(1－MPC)＝－9。"
             ],
-            "takeaway": "M1看「通貨＋活期性存款」；外匯存款屬準貨幣。",
-            "trap": "把外匯存款當成活期存款；幣別不同，不列入M1。"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "year": 113,
-    "label": "113 年",
-    "sections": {
-      "macro-03::2": {
-        "focus": "貨幣定義與貨幣數量學說：M1A、M1B、M2 的組成要分清楚；貨幣數量學說 MV＝PY，焦點是貨幣供給對總合支出的影響。",
-        "strategies": [
-          "M1A＝通貨淨額＋支票存款＋活期存款；M1B＝M1A＋活期儲蓄存款。",
-          "M2＝M1B＋準貨幣（定期存款、外匯存款、郵政儲金等）。",
-          "貨幣數量學說：MV＝PY；V 與 Y 穩定時，M 變動主要影響物價。",
-          "CBDC 是央行發行的數位法定貨幣，會提高央行對貨幣供給的控制能力。"
-        ],
-        "examples": [
-          {
-            "questionId": "113Q1-macro-14",
-            "steps": [
-              "郵局儲金屬於M2的準貨幣，不計入M1B；提領現金後再存入銀行活期儲蓄存款，活儲屬於M1B。",
-              "因此M1B增加10萬元；M2的組成由郵局儲金轉為銀行存款，總額不變。",
-              "答案D。"
-            ],
-            "takeaway": "M1B看通貨與活期性存款；郵局儲金不計入M1B，但屬M2。",
-            "trap": "把郵局提領的現金當成M1B增加；真正增加的是存入銀行活儲。"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "year": 112,
-    "label": "112 年",
-    "sections": {
-      "macro-03::2": {
-        "focus": "貨幣定義與貨幣數量學說：M1A、M1B、M2 的組成要分清楚；貨幣數量學說 MV＝PY，焦點是貨幣供給對總合支出的影響。",
-        "strategies": [
-          "M1A＝通貨淨額＋支票存款＋活期存款；M1B＝M1A＋活期儲蓄存款。",
-          "M2＝M1B＋準貨幣（定期存款、外匯存款、郵政儲金等）。",
-          "貨幣數量學說：MV＝PY；V 與 Y 穩定時，M 變動主要影響物價。",
-          "CBDC 是央行發行的數位法定貨幣，會提高央行對貨幣供給的控制能力。"
-        ],
-        "examples": [
-          {
-            "questionId": "112Q1-macro-written-1",
-            "steps": [
-              "流通中的通貨＝通貨發行額－銀行庫存現金＝\\(430-50=380\\)。",
-              "準備貨幣（貨幣基數）＝流通中通貨＋銀行在央行存款＝\\(380+400=780\\)。",
-              "M1＝流通中通貨＋支票存款＋活期性存款＝\\(380+450+400=1{,}230\\)。",
-              "M2＝M1＋定期存款＝\\(1{,}230+1{,}400=2{,}630\\)。",
-              "M2乘數＝M2÷準備貨幣＝\\(2{,}630/780\\approx3.3718\\)。"
-            ],
-            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+            "takeaway": "自發性支出變動×乘數＝均衡產出變動；乘數是1/(1－MPC)。",
+            "trap": "把乘數寫成MPC/(1－MPC)，或把政府支出增加當成負向。"
           }
         ]
       }
@@ -2078,41 +2594,22 @@ window.CHAPTER_DATA["macro-03"] = {
     "label": "111 年",
     "sections": {
       "macro-03::1": {
-        "focus": "貨幣概論先分「貨幣的功能」與「貨幣的演進」。加密貨幣考點是它是否具備交易媒介、計價單位、價值儲藏功能，以及對金融穩定的負面影響。",
+        "focus": "簡單凱因斯模型假設物價固定、利率不變，均衡所得由計畫性支出決定。解題時先把消費函數代入 Y＝C＋I＋G＋(X−M)，再解 Y。",
         "strategies": [
-          "貨幣功能：交易媒介、計價單位、價值儲藏、延期支付標準。",
-          "貨幣演進：商品貨幣→金屬貨幣→紙幣→存款貨幣→電子支付與加密貨幣。",
-          "加密貨幣：去中心化、無發行主體、價格波動大、可能被用於洗錢與逃漏稅。",
-          "負面影響：金融穩定風險、消費者保護不足、貨幣政策傳導受阻、能源消耗。"
+          "封閉經濟：Y＝C＋I＋G；開放經濟：Y＝C＋I＋G＋X−M。",
+          "消費函數 C＝a＋b(Y−T)，b 為邊際消費傾向 MPC。",
+          "自發性支出乘數＝1/(1−b)（封閉、無稅、無進口）；有稅與進口時分母會變大。",
+          "簡單凱因斯模型假設物價固定，所以不是「物價可靈活調整」。"
         ],
         "examples": [
           {
-            "questionId": "111Q2-macro-written-1",
+            "questionId": "111Q2-macro-written-3",
             "steps": [
-              "加密貨幣是一種以密碼學與分散式帳本（區塊鏈）建立的數位資產，通常不依賴中央銀行或單一發行機構，可在網路上移轉、交易或作為價值儲存工具；它不是法定貨幣，價格波動大。",
-              "負面影響包括：第一，金融穩定風險，價格暴漲暴跌、槓桿交易與機構曝險可能傳染至傳統金融；第二，貨幣政策與資本流動，加密資產可繞過資本管制，造成貨幣替代、資本外逃與央行控制力下降；第三，投資人保護，詐騙、龐氏騙局、交易所倒閉、錢包被盗與資訊不對稱嚴重；第四，洗錢、資恐、逃稅與制裁規避；第五，支付與清算風險，交易不可逆、網路攻擊、私鑰遺失；第六，能源消耗與環境成本；第七，監管套利與跨國監理困難；第八，穩定幣若發生擠兌，可能引發短期流動性危機。"
+              "(1) \\(Y_d=Y-200\\)，\\(C=250+0.75(Y-200)=100+0.75Y\\)。\\[Y=100+0.75Y+400+200+220-(20+0.05Y)\\]整理 \\(Y=900+0.70Y\\)，\\(0.30Y=900\\)，\\(Y=3{,}000\\)。可支配所得 \\(Y_d=2{,}800\\)；儲蓄 \\(S=Y_d-C=2{,}800-(100+0.75\\times3{,}000)=2{,}800-2{,}350=450\\)。",
+              "(2) 投資增加300，自發性支出增加300；乘數 \\(1/(1-0.75+0.05)=1/0.30=3.3333\\)，所得增加 \\(300\\times3.3333=1{,}000\\)，新所得4,000。原貿易餘額 \\(NX=220-(20+0.05\\times3{,}000)=50\\)；新貿易餘額 \\(NX^{\\prime}=220-(20+0.05\\times4{,}000)=0\\)；貿易餘額減少50。",
+              "因此所得增加 1,000、貿易餘額減少 50（由順差50變為0）。"
             ],
             "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
-          }
-        ]
-      },
-      "macro-03::2": {
-        "focus": "貨幣定義與貨幣數量學說：M1A、M1B、M2 的組成要分清楚；貨幣數量學說 MV＝PY，焦點是貨幣供給對總合支出的影響。",
-        "strategies": [
-          "M1A＝通貨淨額＋支票存款＋活期存款；M1B＝M1A＋活期儲蓄存款。",
-          "M2＝M1B＋準貨幣（定期存款、外匯存款、郵政儲金等）。",
-          "貨幣數量學說：MV＝PY；V 與 Y 穩定時，M 變動主要影響物價。",
-          "CBDC 是央行發行的數位法定貨幣，會提高央行對貨幣供給的控制能力。"
-        ],
-        "examples": [
-          {
-            "questionId": "111Q1-macro-16",
-            "steps": [
-              "經濟學定義的貨幣：被社會普遍接受、可作為交易媒介與支付工具。",
-              "並具計價單位與價值儲藏功能。答案C。"
-            ],
-            "takeaway": "貨幣的本質是「被普遍接受的交易媒介」。",
-            "trap": "把貨幣等同於所有財富或所得。"
           }
         ]
       }
@@ -2123,23 +2620,41 @@ window.CHAPTER_DATA["macro-03"] = {
     "label": "110 年",
     "sections": {
       "macro-03::2": {
-        "focus": "貨幣定義與貨幣數量學說：M1A、M1B、M2 的組成要分清楚；貨幣數量學說 MV＝PY，焦點是貨幣供給對總合支出的影響。",
+        "focus": "政府支出與財政政策題，先分「政府消費/投資」與「移轉支付」。GDP 的 G 只含政府對最終產品與服務的支出，不含移轉支付。",
         "strategies": [
-          "M1A＝通貨淨額＋支票存款＋活期存款；M1B＝M1A＋活期儲蓄存款。",
-          "M2＝M1B＋準貨幣（定期存款、外匯存款、郵政儲金等）。",
-          "貨幣數量學說：MV＝PY；V 與 Y 穩定時，M 變動主要影響物價。",
-          "CBDC 是央行發行的數位法定貨幣，會提高央行對貨幣供給的控制能力。"
+          "政府支付警察薪資、蓋捷運、採購疫苗都是政府消費或投資，計入 G。",
+          "政府發放社福補助是移轉支付，不是政府購買最終產品，不計入 G。",
+          "反景氣循環財政政策：衰退時增加支出或減稅，過熱時減少支出或增稅。",
+          "自動穩定器（如失業救濟、累進稅）會隨景氣自動調節，無需立法。"
         ],
         "examples": [
           {
-            "questionId": "110Q3-macro-12",
+            "questionId": "110Q1-macro-written-2",
             "steps": [
-              "郵局轉存款屬於M2的準貨幣，不計入M1A與M1B。",
-              "M2＝M1B＋準貨幣（含郵政儲金、定期存款、外匯存款等）。",
-              "答案D。"
+              "Keynesian偏好「緊縮財政、寬鬆貨幣」的政策組合，理由如下：",
+              "第一，寬鬆貨幣壓低利率，刺激投資與耐久財消費；Keynesian認為投資對利率敏感，貨幣政策可透過投資帶動產出。第二，緊縮財政可避免政府支出排擠私人投資、降低預算赤字與國家債務，讓資源轉向民間。第三，若經濟接近充分就業，擴張財政易推升物價與進口，緊縮財政可減輕通膨壓力；寬鬆貨幣則可維持需求與就業。",
+              "以IS-LM說明：緊縮財政使IS左移，寬鬆貨幣使LM右移；若搭配得宜，產出可維持不變，但利率下降、投資增加，政策組合可改善民間投資與財政結構。"
             ],
-            "takeaway": "郵局轉存款是M2準貨幣，不是M1B。",
-            "trap": "把郵局儲金計入M1B。"
+            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+          }
+        ]
+      },
+      "macro-03::1": {
+        "focus": "簡單凱因斯模型假設物價固定、利率不變，均衡所得由計畫性支出決定。解題時先把消費函數代入 Y＝C＋I＋G＋(X−M)，再解 Y。",
+        "strategies": [
+          "封閉經濟：Y＝C＋I＋G；開放經濟：Y＝C＋I＋G＋X−M。",
+          "消費函數 C＝a＋b(Y−T)，b 為邊際消費傾向 MPC。",
+          "自發性支出乘數＝1/(1−b)（封閉、無稅、無進口）；有稅與進口時分母會變大。",
+          "簡單凱因斯模型假設物價固定，所以不是「物價可靈活調整」。"
+        ],
+        "examples": [
+          {
+            "questionId": "110Q2-macro-written-2",
+            "steps": [
+              "(1) 投資邊際效率是使未來收益現值等於購置成本的折現率。A：\\(1=4/(1+r)^2\\)，\\((1+r)^2=4\\)，\\(r=1=100\\%\\)。B：\\(1=2/(1+r)+1/(1+r)^2\\)，令 \\(x=1/(1+r)\\)，\\(x^2+2x-1=0\\)，\\(x=\\sqrt2-1=0.4142\\)，\\(1+r=2.4142\\)，\\(r=141.42\\%\\)。",
+              "(2) B的投資邊際效率141.42%高於A的100%，若無資金限制，應選擇B。B前期回收較快，雖然總報酬較低，但內部報酬率較高。"
+            ],
+            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
           }
         ]
       }
@@ -2149,32 +2664,58 @@ window.CHAPTER_DATA["macro-03"] = {
     "year": 109,
     "label": "109 年",
     "sections": {
-      "macro-03::2": {
-        "focus": "貨幣定義與貨幣數量學說：M1A、M1B、M2 的組成要分清楚；貨幣數量學說 MV＝PY，焦點是貨幣供給對總合支出的影響。",
+      "macro-03::1": {
+        "focus": "簡單凱因斯模型假設物價固定、利率不變，均衡所得由計畫性支出決定。解題時先把消費函數代入 Y＝C＋I＋G＋(X−M)，再解 Y。",
         "strategies": [
-          "M1A＝通貨淨額＋支票存款＋活期存款；M1B＝M1A＋活期儲蓄存款。",
-          "M2＝M1B＋準貨幣（定期存款、外匯存款、郵政儲金等）。",
-          "貨幣數量學說：MV＝PY；V 與 Y 穩定時，M 變動主要影響物價。",
-          "CBDC 是央行發行的數位法定貨幣，會提高央行對貨幣供給的控制能力。"
+          "封閉經濟：Y＝C＋I＋G；開放經濟：Y＝C＋I＋G＋X−M。",
+          "消費函數 C＝a＋b(Y−T)，b 為邊際消費傾向 MPC。",
+          "自發性支出乘數＝1/(1−b)（封閉、無稅、無進口）；有稅與進口時分母會變大。",
+          "簡單凱因斯模型假設物價固定，所以不是「物價可靈活調整」。"
         ],
         "examples": [
           {
-            "questionId": "109Q1-macro-written-2",
+            "questionId": "109Q2-macro-written-2",
             "steps": [
-              "(1) \\(r+\\pi^e=6\\%+4\\%=10\\%\\)。貨幣需求 \\(M_d/P=1{,}000+0.2(2{,}000)-1{,}000(0.10)=1{,}000+400-100=1{,}300\\)。流通速度 \\(V=Py/M=y/(M/P)=2{,}000/1{,}300\\approx1.54\\)。",
-              "(2) \\(M_s/P=2{,}600/P=1{,}300\\)，故 \\(P=2.0\\)。"
+              "\\(Y_d=Y-(80+0.2Y)=0.8Y-80\\)，\\(C=50+0.75(0.8Y-80)=0.6Y-10\\)。\\[Y=0.6Y-10+200+0.15Y+60+100-(50+0.1Y)=0.65Y+300\\]，故 \\(0.35Y=300\\)，Y≈857.14。",
+              "(2) 自發性投資增加1，乘數 \\(1/(1-0.65)=1/0.35\\approx2.8571\\)，均衡所得增加 2.86。",
+              "(3) 稅收 \\(T=80+0.2(857.14)=251.43\\)，政府支出60，政府盈餘191.43。",
+              "(4) 充分就業所得1,200，目前857.14，差342.86；緊縮缺口＝產出缺口÷乘數＝342.86/2.8571≈120。"
             ],
             "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
           },
           {
-            "questionId": "109Q1-macro-07",
+            "questionId": "109Q4-macro-written-2",
             "steps": [
-              "M1A＝通貨淨額＋支票存款＋活期存款；M1B＝M1A＋活期儲蓄存款。",
-              "M2＝M1B＋準貨幣（定期存款、郵政儲金、外匯存款等）。",
-              "答案D。"
+              "(1) 封閉體系 \\(Y=C+I+G\\)，自發性支出 \\(500+400+200=1{,}100\\)，乘數 \\(1/(1-0.9)=10\\)，均衡產出 \\(Y=11{,}000\\)。",
+              "(2) 政府支出增加20，\\(\\Delta Y=20\\times10=200\\)，新均衡11,200。"
             ],
-            "takeaway": "M1A、M1B、M2是層層加項的關係。",
-            "trap": "把活期儲蓄存款計入M1A。"
+            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "year": 108,
+    "label": "108 年",
+    "sections": {
+      "macro-03::2": {
+        "focus": "政府支出與財政政策題，先分「政府消費/投資」與「移轉支付」。GDP 的 G 只含政府對最終產品與服務的支出，不含移轉支付。",
+        "strategies": [
+          "政府支付警察薪資、蓋捷運、採購疫苗都是政府消費或投資，計入 G。",
+          "政府發放社福補助是移轉支付，不是政府購買最終產品，不計入 G。",
+          "反景氣循環財政政策：衰退時增加支出或減稅，過熱時減少支出或增稅。",
+          "自動穩定器（如失業救濟、累進稅）會隨景氣自動調節，無需立法。"
+        ],
+        "examples": [
+          {
+            "questionId": "108Q1-macro-written-3",
+            "steps": [
+              "政府支出增加：IS右移，利率上升、所得增加（可能有排擠效果）；AD右移。",
+              "AD-AS：短期AD右移使物價上升、產出增加；勞動市場勞動需求上升，就業L增加、失業下降；名目工資W短期僵固，實質工資下降。",
+              "長期名目工資隨物價調整上升，SRAS左移，產出回到自然率、物價再上升；就業回到自然率，利率與實質變數回復。"
+            ],
+            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
           }
         ]
       }

@@ -1083,7 +1083,7 @@ window.PAST_EXAM_STATS = {
           "115Q2": 1
         }
       },
-      "macro-07": {
+      "macro-08": {
         "count": 65,
         "sessions": {
           "107Q1": 1,
@@ -1114,7 +1114,7 @@ window.PAST_EXAM_STATS = {
           "115Q2": 1
         }
       },
-      "macro-06": {
+      "macro-07": {
         "count": 53,
         "sessions": {
           "107Q1": 1,
@@ -1143,7 +1143,7 @@ window.PAST_EXAM_STATS = {
           "115Q2": 1
         }
       },
-      "macro-10": {
+      "macro-11": {
         "count": 164,
         "sessions": {
           "107Q1": 7,
@@ -1177,7 +1177,7 @@ window.PAST_EXAM_STATS = {
           "115Q2": 5
         }
       },
-      "macro-05": {
+      "macro-06": {
         "count": 125,
         "sessions": {
           "107Q1": 5,
@@ -1210,7 +1210,7 @@ window.PAST_EXAM_STATS = {
           "115Q2": 5
         }
       },
-      "macro-12": {
+      "macro-13": {
         "count": 190,
         "sessions": {
           "107Q1": 7,
@@ -1244,7 +1244,7 @@ window.PAST_EXAM_STATS = {
           "115Q2": 4
         }
       },
-      "macro-09": {
+      "macro-10": {
         "count": 60,
         "sessions": {
           "107Q1": 2,
@@ -1276,7 +1276,7 @@ window.PAST_EXAM_STATS = {
           "115Q2": 4
         }
       },
-      "macro-11": {
+      "macro-12": {
         "count": 33,
         "sessions": {
           "107Q1": 1,
@@ -1298,7 +1298,7 @@ window.PAST_EXAM_STATS = {
           "115Q2": 1
         }
       },
-      "macro-08": {
+      "macro-09": {
         "count": 56,
         "sessions": {
           "107Q1": 2,
@@ -1324,7 +1324,7 @@ window.PAST_EXAM_STATS = {
           "115Q2": 2
         }
       },
-      "macro-03": {
+      "macro-04": {
         "count": 42,
         "sessions": {
           "107Q1": 1,
@@ -1352,7 +1352,7 @@ window.PAST_EXAM_STATS = {
           "115Q2": 1
         }
       },
-      "macro-02": {
+      "macro-03": {
         "count": 58,
         "sessions": {
           "107Q1": 1,
@@ -1483,7 +1483,7 @@ window.PAST_EXAM_STATS = {
           "114Q3": 1
         }
       },
-      "macro-13": {
+      "macro-14": {
         "count": 47,
         "sessions": {
           "107Q2": 1,
@@ -1674,7 +1674,7 @@ window.PAST_EXAM_STATS = {
           "115Q2": 1
         }
       },
-      "macro-04": {
+      "macro-05": {
         "count": 42,
         "sessions": {
           "107Q4": 1,
@@ -1773,6 +1773,10 @@ window.PAST_EXAM_STATS = {
           "114Q3": 1,
           "115Q2": 1
         }
+      },
+      "macro-02": {
+        "count": 0,
+        "sessions": {}
       },
       "law-21": {
         "count": 0,
@@ -2127,7 +2131,7 @@ window.PAST_EXAM_STATS = {
           "115Q2": 1
         }
       },
-      "macro-12": {
+      "macro-13": {
         "count": 16,
         "sessions": {
           "107Q1": 1,
@@ -2145,7 +2149,7 @@ window.PAST_EXAM_STATS = {
           "115Q1": 1
         }
       },
-      "macro-05": {
+      "macro-06": {
         "count": 14,
         "sessions": {
           "107Q1": 1,
@@ -2251,7 +2255,7 @@ window.PAST_EXAM_STATS = {
           "115Q1": 1
         }
       },
-      "macro-06": {
+      "macro-07": {
         "count": 18,
         "sessions": {
           "107Q2": 2,
@@ -2270,7 +2274,7 @@ window.PAST_EXAM_STATS = {
           "114Q3": 1
         }
       },
-      "macro-02": {
+      "macro-03": {
         "count": 12,
         "sessions": {
           "107Q2": 1,
@@ -2328,7 +2332,7 @@ window.PAST_EXAM_STATS = {
           "113Q1": 1
         }
       },
-      "macro-10": {
+      "macro-11": {
         "count": 14,
         "sessions": {
           "107Q3": 1,
@@ -2388,7 +2392,7 @@ window.PAST_EXAM_STATS = {
           "115Q2": 1
         }
       },
-      "macro-09": {
+      "macro-10": {
         "count": 4,
         "sessions": {
           "107Q4": 1,
@@ -2418,7 +2422,7 @@ window.PAST_EXAM_STATS = {
           "113Q3": 1
         }
       },
-      "macro-03": {
+      "macro-04": {
         "count": 6,
         "sessions": {
           "108Q1": 1,
@@ -2448,7 +2452,7 @@ window.PAST_EXAM_STATS = {
           "113Q1": 1
         }
       },
-      "macro-13": {
+      "macro-14": {
         "count": 8,
         "sessions": {
           "108Q2": 1,
@@ -2475,7 +2479,7 @@ window.PAST_EXAM_STATS = {
           "108Q3": 1
         }
       },
-      "macro-04": {
+      "macro-05": {
         "count": 3,
         "sessions": {
           "108Q3": 1,
@@ -2483,7 +2487,7 @@ window.PAST_EXAM_STATS = {
           "113Q1": 1
         }
       },
-      "macro-11": {
+      "macro-12": {
         "count": 2,
         "sessions": {
           "108Q3": 1,
@@ -2557,7 +2561,7 @@ window.PAST_EXAM_STATS = {
           "111Q3": 1
         }
       },
-      "macro-07": {
+      "macro-08": {
         "count": 3,
         "sessions": {
           "111Q3": 1,
@@ -2565,7 +2569,7 @@ window.PAST_EXAM_STATS = {
           "114Q3": 1
         }
       },
-      "macro-08": {
+      "macro-09": {
         "count": 4,
         "sessions": {
           "111Q3": 1,

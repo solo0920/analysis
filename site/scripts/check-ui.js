@@ -80,7 +80,7 @@ function urlFor(base, route) {
 const ROUTES = [
   { name: "home", path: "/#/", selector: ".hero", expect: null },
   { name: "subject", path: "/#/subject/macro", selector: ".subject-hero", expect: null },
-  { name: "chapter", path: "/#/chapter/macro-09?section=3", selector: "#section-3 .model-diagram", expect: 2 },
+  { name: "chapter", path: "/#/chapter/macro-10?section=3", selector: "#section-3 .model-diagram", expect: 2 },
   { name: "past-exams", path: "/#/past-exams", selector: ".past-exam-hero", expect: null },
   { name: "past-exam", path: "/#/past-exams?question=108Q2-macro-11", selector: "[data-practice-option]", expect: 4 },
   { name: "written-exams", path: "/#/past-exams/written", selector: ".written-page", expect: null },
@@ -88,7 +88,7 @@ const ROUTES = [
   { name: "review", path: "/#/review", selector: ".review-hero", expect: null },
   { name: "exam-forecast", path: "/#/exam-forecast?subject=accounting", selector: ".forecast-page", expect: null },
   { name: "nobel", path: "/#/nobel?group=nobel-17", selector: "#nobel-module-nobel-17", expect: 1 },
-  { name: "models-macro", path: "/#/models/macro?chapter=macro-09", selector: "#models-macro-09", expect: 1 },
+  { name: "models-macro", path: "/#/models/macro?chapter=macro-10", selector: "#models-macro-10", expect: 1 },
   { name: "macro-current", path: "/#/macro-current?event=fed-2025", selector: "#macro-event-fed-2025", expect: 1 }
 ];
 
@@ -98,8 +98,8 @@ const CONTENT_CHECKS = [
   { name: "accounting-109Q3", path: "/#/past-exams/written?question=109Q3-accounting-written-1", selector: "#written-109Q3-accounting-written-1", contains: "11,067,062" },
   { name: "accounting-109Q1", path: "/#/past-exams/written?question=109Q1-accounting-written-1", selector: "#written-109Q1-accounting-written-1", contains: "97,000" },
   { name: "accounting-115Q1", path: "/#/chapter/accounting-02?section=5", selector: "#section-5 .section-solutions", contains: "51,000" },
-  { name: "macro-05-taylor", path: "/#/chapter/macro-05?section=5", selector: "#section-5 .section-subsections", contains: "泰勒法則參數", minKatex: 20 },
-  { name: "macro-classical", path: "/#/chapter/macro-classical", selector: "#section-5", contains: "古典模型", minKatex: 20 }
+  { name: "macro-06-taylor", path: "/#/chapter/macro-06?section=5", selector: "#section-5 .section-subsections", contains: "泰勒法則參數", minKatex: 20 },
+  { name: "macro-02-classical", path: "/#/chapter/macro-02", selector: "#section-5", contains: "古典模型", minKatex: 20 }
 ];
 
 function checkPage(send, events, route, selector, expectedCount) {

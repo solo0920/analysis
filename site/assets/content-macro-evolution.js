@@ -25,11 +25,11 @@ window.MACRO_EVOLUTION = {
           period: "1776–1930s",
           founders: "Adam Smith、David Ricardo",
           summary: "以分工、資本累積與市場價格機能解釋長期成長；Say 法則、可貸資金市場與貨幣數量論構成古典總體分析的起點。",
-          modelAnchors: ["model-macro-12-1"],
+          modelAnchors: ["model-macro-13-1"],
           nobelYears: [],
           chapterRefs: [
-            { chapterId: "macro-classical", sectionIndex: 4, label: "第二章 古典模型" },
-            { chapterId: "macro-07", sectionIndex: 2, label: "第八章 學派說明" }
+            { chapterId: "macro-02", sectionIndex: 4, label: "第二章 古典模型" },
+            { chapterId: "macro-08", sectionIndex: 2, label: "第八章 學派說明" }
           ]
         }
       ]
@@ -50,13 +50,13 @@ window.MACRO_EVOLUTION = {
           founders: "John Maynard Keynes",
           summary: "有效需求決定短期產出；價格與工資具黏性，政府可透過財政與貨幣政策穩定經濟。",
           modelAnchors: [
-            "model-macro-02-0",
-            "model-macro-06-0",
-            "model-macro-07-0"
+            "model-macro-03-0",
+            "model-macro-07-0",
+            "model-macro-08-0"
           ],
           nobelYears: [],
           chapterRefs: [
-            { chapterId: "macro-07", sectionIndex: 2, label: "第七章 學派說明" }
+            { chapterId: "macro-08", sectionIndex: 2, label: "第七章 學派說明" }
           ]
         },
         {
@@ -68,13 +68,13 @@ window.MACRO_EVOLUTION = {
           founders: "John Hicks、Paul Samuelson、Franco Modigliani",
           summary: "把凱因斯理論翻譯成 IS-LM 與計量模型，形成戰後主流總體經濟學；短期需求管理與長期新古典成長並存。",
           modelAnchors: [
-            "model-macro-06-0",
-            "model-macro-06-1",
-            "model-macro-07-0"
+            "model-macro-07-0",
+            "model-macro-07-1",
+            "model-macro-08-0"
           ],
           nobelYears: [1970, 1972],
           chapterRefs: [
-            { chapterId: "macro-06", sectionIndex: 0, label: "第六章 IS-LM" }
+            { chapterId: "macro-07", sectionIndex: 0, label: "第六章 IS-LM" }
           ]
         }
       ]
@@ -94,11 +94,11 @@ window.MACRO_EVOLUTION = {
           period: "1956–1970s",
           founders: "Milton Friedman、Anna Schwartz",
           summary: "貨幣供給是景氣波動主因；長期菲利浦曲線垂直，主張固定貨幣成長規則，反對相機抉擇。",
-          modelAnchors: ["model-macro-09-2"],
+          modelAnchors: ["model-macro-10-2"],
           nobelYears: [1976],
           chapterRefs: [
-            { chapterId: "macro-05", sectionIndex: 1, label: "第五章 貨幣需求" },
-            { chapterId: "macro-07", sectionIndex: 2, label: "第七章 學派說明" }
+            { chapterId: "macro-06", sectionIndex: 1, label: "第五章 貨幣需求" },
+            { chapterId: "macro-08", sectionIndex: 2, label: "第七章 學派說明" }
           ]
         }
       ]
@@ -119,15 +119,15 @@ window.MACRO_EVOLUTION = {
           founders: "Robert E. Lucas Jr.、Thomas Sargent、Robert Barro；Finn Kydland、Edward Prescott",
           summary: "理性預期與市場結清；Lucas 批判指出政策改變會改變行為參數，預期到的政策無實質效果。RBC 以技術衝擊解釋景氣循環。",
           modelAnchors: [
-            "model-macro-09-2",
-            "model-macro-08-1",
-            "model-macro-08-1-2",
-            "model-macro-07-0"
+            "model-macro-10-2",
+            "model-macro-09-1",
+            "model-macro-09-1-2",
+            "model-macro-08-0"
           ],
           nobelYears: [1995, 2004, 2011],
           chapterRefs: [
-            { chapterId: "macro-07", sectionIndex: 2, label: "第七章 學派說明" },
-            { chapterId: "macro-08", sectionIndex: 1, label: "第八章 景氣循環" }
+            { chapterId: "macro-08", sectionIndex: 2, label: "第七章 學派說明" },
+            { chapterId: "macro-09", sectionIndex: 1, label: "第八章 景氣循環" }
           ]
         },
         {
@@ -138,10 +138,10 @@ window.MACRO_EVOLUTION = {
           period: "1970s–1980s",
           founders: "Robert Mundell、Arthur Laffer",
           summary: "減稅、去管制與誘因改善可提升潛在供給；稅率與稅收、儲蓄與投資的關係是政策辯論核心。",
-          modelAnchors: ["model-macro-07-2"],
+          modelAnchors: ["model-macro-08-2"],
           nobelYears: [],
           chapterRefs: [
-            { chapterId: "macro-07", sectionIndex: 2, label: "第七章 學派說明" }
+            { chapterId: "macro-08", sectionIndex: 2, label: "第七章 學派說明" }
           ]
         }
       ]
@@ -162,13 +162,13 @@ window.MACRO_EVOLUTION = {
           founders: "Stanley Fischer、John Taylor、Gregory Mankiw",
           summary: "為價格黏性建立個體基礎；菜單成本、Calvo 定價與 Taylor 規則成為穩定政策分析工具。",
           modelAnchors: [
-            "model-macro-07-0",
-            "model-macro-09-2",
-            "model-macro-09-2-2"
+            "model-macro-08-0",
+            "model-macro-10-2",
+            "model-macro-10-2-2"
           ],
           nobelYears: [2026],
           chapterRefs: [
-            { chapterId: "macro-07", sectionIndex: 2, label: "第七章 學派說明" }
+            { chapterId: "macro-08", sectionIndex: 2, label: "第七章 學派說明" }
           ]
         },
         {
@@ -180,13 +180,13 @@ window.MACRO_EVOLUTION = {
           founders: "Robert Mundell、Paul Krugman",
           summary: "以 Mundell-Fleming、最適貨幣區與規模經濟／壟斷競爭，解釋匯率、資本流動與產業內貿易。",
           modelAnchors: [
-            "model-macro-10-1",
-            "model-macro-10-1-2",
-            "model-macro-10-3"
+            "model-macro-11-1",
+            "model-macro-11-1-2",
+            "model-macro-11-3"
           ],
           nobelYears: [1999, 2008],
           chapterRefs: [
-            { chapterId: "macro-10", sectionIndex: 1, label: "第十章 匯率之決定" }
+            { chapterId: "macro-11", sectionIndex: 1, label: "第十章 匯率之決定" }
           ]
         }
       ]
@@ -206,10 +206,10 @@ window.MACRO_EVOLUTION = {
           period: "1980s–迄今",
           founders: "Paul Romer、Robert Lucas Jr.",
           summary: "把知識、人力資本與創新內生化，突破 Solow 模型的外生技術假設；創新與創造性破壞驅動長期成長。",
-          modelAnchors: ["model-macro-08-0", "model-macro-08-0-2"],
+          modelAnchors: ["model-macro-09-0", "model-macro-09-0-2"],
           nobelYears: [1987, 2018, 2025],
           chapterRefs: [
-            { chapterId: "macro-08", sectionIndex: 0, label: "第八章 經濟成長" }
+            { chapterId: "macro-09", sectionIndex: 0, label: "第八章 經濟成長" }
           ]
         },
         {
@@ -221,13 +221,13 @@ window.MACRO_EVOLUTION = {
           founders: "Daron Acemoglu、Simon Johnson、James Robinson；Ben S. Bernanke、Douglas W. Diamond、Philip H. Dybvig；David Card、Joshua D. Angrist、Guido W. Imbens",
           summary: "制度品質、金融摩擦與因果識別成為長期成長與政策評估核心；從跨國制度比較延伸到自然實驗與隨機對照試驗（RCT）。",
           modelAnchors: [
-            "model-macro-11-0",
-            "model-macro-05-0"
+            "model-macro-12-0",
+            "model-macro-06-0"
           ],
           nobelYears: [2021, 2022, 2024],
           chapterRefs: [
-            { chapterId: "macro-11", sectionIndex: 0, label: "第十一章 金融體系" },
-            { chapterId: "macro-07", sectionIndex: 2, label: "第七章 學派說明" }
+            { chapterId: "macro-12", sectionIndex: 0, label: "第十一章 金融體系" },
+            { chapterId: "macro-08", sectionIndex: 2, label: "第七章 學派說明" }
           ]
         }
       ]

@@ -3,7 +3,7 @@
 window.MACRO_DIAGRAMS = window.MACRO_DIAGRAMS || {};
 
 Object.assign(window.MACRO_DIAGRAMS, {
-  "macro-05#1": {
+  "macro-06#1": {
     sectionTitle: "第2節 貨幣需求理論",
     title: "流動性偏好：貨幣需求移動與利率",
     formula: String.raw`M/P=L(Y,i)`,
@@ -52,7 +52,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "流動性偏好理論由凱因斯提出：利率是放棄流動性的報酬。貨幣需求動機包括交易、預防與投機動機。k 與 h 是敏感度係數；所得彈性與利率彈性會隨 Y、i 改變，不應把 k、h 直接稱為彈性。"
   },
 
-  "macro-06#0": {
+  "macro-07#0": {
     sectionTitle: "第1節 IS曲線與LM曲線",
     title: "IS-LM 模型：商品市場與貨幣市場同時均衡",
     kicker: "學派模型 · 凱因斯／新古典綜合",
@@ -92,7 +92,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "IS-LM 是短期、價格固定模型；價格改變時要改用 AD-AS 分析。"
   },
 
-  "macro-06#1": {
+  "macro-07#1": {
     sectionTitle: "第2節 總體經濟政策與IS-LM曲線",
     title: "財政政策與貨幣政策的移動效果",
     formula: String.raw`G\uparrow:\ IS\rightarrow\text{右},\qquad M\uparrow:\ LM\rightarrow\text{右}`,
@@ -166,7 +166,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "財政擴張可能排擠民間投資（crowding out）；貨幣擴張則透過利率下降刺激投資。實際效果取決於 IS 與 LM 的斜率。"
   },
 
-  "macro-06#2": {
+  "macro-07#2": {
     sectionTitle: "第3節 IS-LM模型與總體經濟政策有效性",
     title: "LM 斜率與政策有效性：陡峭與平坦的比較",
     formula: String.raw`LM:\ M/P=L(i,Y)`,

@@ -606,50 +606,50 @@ window.CHAPTER_DATA["macro-05"] = {
   ],
   "questions": [
     {
-      "id": "107Q1-macro-05",
-      "sessionId": "107Q1",
+      "id": "107Q4-macro-02",
+      "sessionId": "107Q4",
       "year": 107,
+      "session": 4,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 2,
+      "stem": "下面哪一項不是中央銀行國庫局的業務？",
+      "options": [
+        "經理國庫收支",
+        "辦理公債與國庫券之發行",
+        "公開市場買賣",
+        "公債與國庫券之還本付息業務"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "108Q1-macro-05",
+      "sessionId": "108Q1",
+      "year": 108,
       "session": 1,
       "subject": "macro",
       "sourceId": "macro-05",
       "number": 5,
-      "stem": "重貼現率政策最大的優點是：",
+      "stem": "下列有關銀行資產負債表的敘述，何者是錯誤的？",
       "options": [
-        "能夠精準的控制準備貨幣(Reserve Money)",
-        "表現中央銀行是銀行的最後貸款者(Lender of Last Resort)",
-        "能夠精準的控制貨幣供給",
-        "能夠懲罰準備金不足的銀行"
+        "為銀行在某一特定時點的財務狀況",
+        "屬於流量的概念",
+        "資產包括現金、國外資產、放款及投資等",
+        "負債包括國外負債、存款、借入款等"
       ],
       "answer": [
         "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "107Q1-macro-16",
-      "sessionId": "107Q1",
-      "year": 107,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 16,
-      "stem": "當貨幣供給緊縮時，根據流動性偏好理論：",
-      "options": [
-        "債券市場發生超額供給，債券利率上升",
-        "債券市場發生超額需求，債券利率上升",
-        "債券市場發生超額供給，債券利率下跌",
-        "債券市場發生超額需求，債券利率下跌"
-      ],
-      "answer": [
-        "A"
       ],
       "sourceIds": [
         "macro-05"
@@ -662,383 +662,19 @@ window.CHAPTER_DATA["macro-05"] = {
       ]
     },
     {
-      "id": "107Q1-macro-20",
-      "sessionId": "107Q1",
-      "year": 107,
+      "id": "108Q1-macro-31",
+      "sessionId": "108Q1",
+      "year": 108,
       "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 20,
-      "stem": "流動性偏好函數為：L(i,y) = y/5 - 50i。式中，L 代表實質貨幣餘額，y 代表實質所得，而 i 代表名目利率。假設 y = 5000，i = 10，則貨幣流通速度為：",
-      "options": [
-        "0.1",
-        "0.5",
-        "10",
-        "0.75"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "107Q1-macro-25",
-      "sessionId": "107Q1",
-      "year": 107,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 25,
-      "stem": "傳統貨幣政策工具不包括：",
-      "options": [
-        "公開市場操作",
-        "重貼現率",
-        "量化寬鬆",
-        "法定準備率"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "107Q1-macro-28",
-      "sessionId": "107Q1",
-      "year": 107,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 28,
-      "stem": "年關將近，若中央銀行預期民眾消費增加，而進行公開市場買進操作，對金融業拆款市場的影響為：",
-      "options": [
-        "借入準備金增加，準備金供給曲線右移，金融業拆款利率上升",
-        "超額準備減少，準備金需求曲線左移，金融業拆款利率下跌",
-        "非借入準備金增加，準備金供給曲線右移，金融業拆款利率下跌",
-        "應提準備減少，準備金需求曲線右移，金融業拆款利率上升"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "107Q2-macro-13",
-      "sessionId": "107Q2",
-      "year": 107,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 13,
-      "stem": "提高法定準備率(Required Reserve Ratio)會有何種影響？",
-      "options": [
-        "準備貨幣(Reserve Money)減少，進而減少貨幣供給",
-        "準備貨幣(Reserve Money)上升，進而增加貨幣供給",
-        "貨幣乘數(Money Multiplier)下降，進而減少貨幣供給",
-        "貨幣乘數(Money Multiplier)上升，進而增加貨幣供給"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "107Q2-macro-21",
-      "sessionId": "107Q2",
-      "year": 107,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 21,
-      "stem": "就存款貨幣的創造，下列敘述何者錯誤？",
-      "options": [
-        "有現金外流的比率愈高，創造的存款貨幣數量愈低",
-        "銀行所創造的存款貨幣數量與法定存款準備率呈正向關係",
-        "閒置資金比率愈高，創造的存款貨幣數量愈低",
-        "銀行所創造的存款貨幣數量與法定存款準備率呈反向關係"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "107Q2-macro-22",
-      "sessionId": "107Q2",
-      "year": 107,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 22,
-      "stem": "有關中央銀行公開市場操作，下列敘述何者正確？",
-      "options": [
-        "中央銀行進行公開市場操作，萬一發現情勢改變，也無法立即進行反向操作",
-        "中央銀行僅能被動地進行公開市場操作",
-        "中央銀行進行公開市場操作，主要是著重於影響匯率水準",
-        "中央銀行進行公開市場操作，可以對銀行準備金和準備貨幣進行控制"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "107Q2-macro-23",
-      "sessionId": "107Q2",
-      "year": 107,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 23,
-      "stem": "下列哪一項措施屬緊縮貨幣政策？",
-      "options": [
-        "降低貼放利率",
-        "降低消費者分期貸款頭期款的最低限額",
-        "公開市場賣出債券",
-        "降低存款準備率"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "107Q2-macro-24",
-      "sessionId": "107Q2",
-      "year": 107,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 24,
-      "stem": "假設中央銀行欲使貨幣供給額從 10,000 億元增加到 12,000 億元，在貨幣乘數維持 4 的情況下，請問央行採取以下何種措施，可以達成該目標？",
-      "options": [
-        "賣出政府公債 500 億元",
-        "買進政府公債 500 億元",
-        "賣出政府公債 400 億元",
-        "買進政府公債 400 億元"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "107Q2-macro-25",
-      "sessionId": "107Q2",
-      "year": 107,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 25,
-      "stem": "有關中央銀行的貨幣政策工具，下列敘述何者正確？",
-      "options": [
-        "法定準備率是中央銀行經常使用的貨幣政策工具",
-        "中央銀行利用公開市場操作扮演最終貸款者的角色",
-        "可逆向操作修正，是中央銀行以公開市場操作作為貨幣政策工具的優點",
-        "具自主性，是中央銀行以貼現政策作為貨幣政策工具的優點"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "107Q2-macro-31",
-      "sessionId": "107Q2",
-      "year": 107,
-      "session": 2,
       "subject": "macro",
       "sourceId": "macro-05",
       "number": 31,
-      "stem": "如果中央銀行進行扭轉操作，買進長期債券，同時賣出等額的短期債券，則準備貨幣將會：",
+      "stem": "RTC 法案是指下列哪個法案？",
       "options": [
-        "增加",
-        "減少",
-        "維持不變",
-        "增減不一定"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "107Q2-macro-32",
-      "sessionId": "107Q2",
-      "year": 107,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 32,
-      "stem": "2008 年金融海嘯發生後，美國聯準會採用量化寬鬆政策，大量買進有價證券。相關的影響，下列何錯誤？",
-      "options": [
-        "增加貨幣供給",
-        "直接提供流動性給需要資金的金融機構",
-        "增加聯準會的資產規模",
-        "聯準會不會面對信用風險"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "107Q3-macro-20",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 20,
-      "stem": "中央銀行如果希望銀行業放鬆銀根，會採取下列何項措施？",
-      "options": [
-        "央行可以發行定存單沖銷銀行爛頭寸",
-        "央行可以提高法定存款準備率",
-        "央行可以調高重貼現率",
-        "央行可以向銀行買公債"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "107Q3-macro-28",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 28,
-      "stem": "美國聯準會進行縮表計畫。中央銀行資產負債表的變動，哪一項使貨幣基數(monetary base)減少？",
-      "options": [
-        "政府存入之存款增加",
-        "持有之政府公債增加",
-        "央行國外資產增加",
-        "對金融機構放款增加"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "107Q3-macro-33",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 33,
-      "stem": "中央銀行操作貨幣政策會釘住一些目標。如果中間目標(intermediate target)為銀行平均存款利率，此情況下，在以下操作目標(operating targets)中：[I.國庫券利率、Ⅱ.借入準備、 Ⅲ.貨幣基數、Ⅳ.非借入準備，Ⅴ.同業拆款利率]，適合做為相應的操作目標有幾個？",
-      "options": [
-        "1",
-        "2",
-        "3",
-        "4"
+        "金融控股公司法",
+        "金融重建基金設置及管理條例",
+        "外匯管理法",
+        "票券金融管理法"
       ],
       "answer": [
         "B"
@@ -1054,47 +690,48 @@ window.CHAPTER_DATA["macro-05"] = {
       ]
     },
     {
-      "id": "107Q3-macro-35",
-      "sessionId": "107Q3",
-      "year": 107,
-      "session": 3,
+      "id": "108Q2-macro-27",
+      "sessionId": "108Q2",
+      "year": 108,
+      "session": 2,
       "subject": "macro",
       "sourceId": "macro-05",
-      "number": 35,
-      "stem": "給定資料，以下選項何者有誤？大眾持有之通貨 300 銀行準備 500 支票存款 1,500 定期存款 2,000",
+      "number": 27,
+      "stem": "有關銀行資本適足 (Capital adequacy) 管理，下列敘述何者不正確？",
       "options": [
-        "貨幣基數＝800",
-        "M1A＝1,800",
-        "M1A 乘數＝2.25",
-        "M2 乘數＝5"
+        "應符合政府對資本種類及風險性規範",
+        "資本額愈多，ROE (Return On Equity)愈低",
+        "應持有較多資本以達成具競爭力之 ROE",
+        "應維持較多的資本以防止銀行倒閉"
       ],
       "answer": [
-        "D"
+        "C"
       ],
       "sourceIds": [
         "macro-05"
       ],
+      "eventId": "taiwan-policy-2025",
       "sourceRefs": [
         {
           "chapterId": "macro-05",
-          "sectionIndex": 1
+          "sectionIndex": 2
         }
       ]
     },
     {
-      "id": "107Q4-macro-04",
-      "sessionId": "107Q4",
-      "year": 107,
-      "session": 4,
+      "id": "108Q2-macro-30",
+      "sessionId": "108Q2",
+      "year": 108,
+      "session": 2,
       "subject": "macro",
       "sourceId": "macro-05",
-      "number": 4,
-      "stem": "費雪(Fisher)提出的貨幣數量學說，認為貨幣需求是_____的函數，且與_____無關。",
+      "number": 30,
+      "stem": "銀行發行之可轉讓定存單、個人及企業各天期存款、證券投資、向央行重貼現貸款、準備金、資本、向銀行同業拆款、政府存款、對企業放款。以上屬於銀行資產項的有幾個？",
       "options": [
-        "所得；利率",
-        "利率；所得",
-        "政府支出；利率",
-        "人們所得；所得"
+        "3",
+        "4",
+        "5",
+        "6"
       ],
       "answer": [
         "A"
@@ -1110,22 +747,50 @@ window.CHAPTER_DATA["macro-05"] = {
       ]
     },
     {
-      "id": "107Q4-macro-07",
-      "sessionId": "107Q4",
-      "year": 107,
-      "session": 4,
+      "id": "108Q2-macro-31",
+      "sessionId": "108Q2",
+      "year": 108,
+      "session": 2,
       "subject": "macro",
       "sourceId": "macro-05",
-      "number": 7,
-      "stem": "若中央銀行降低法定存款準備率(Required Reserve Ratio)後，原來的法定準備都變成銀行的超額準備(Excess Reserves)，則準備貨幣(Reserve Money)______，貨幣供給______。",
+      "number": 31,
+      "stem": "銀行借出金額時，預先扣留一部份金額，剩下的才借給企業，這種方式稱為？",
       "options": [
-        "不變；不變",
-        "不變；增加",
-        "增加；增加",
-        "增加；不變"
+        "放款",
+        "貼現",
+        "透支",
+        "投資"
       ],
       "answer": [
-        "A"
+        "B"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "108Q2-macro-35",
+      "sessionId": "108Q2",
+      "year": 108,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 35,
+      "stem": "實踐金融監理一元化目標，台灣目前金融監理機關為？",
+      "options": [
+        "財政部金融局",
+        "金融監督管理委員會",
+        "中央銀行金融業務檢查處",
+        "中央存款保險公司"
+      ],
+      "answer": [
+        "B"
       ],
       "sourceIds": [
         "macro-05"
@@ -1138,22 +803,500 @@ window.CHAPTER_DATA["macro-05"] = {
       ]
     },
     {
-      "id": "107Q4-macro-08",
-      "sessionId": "107Q4",
-      "year": 107,
-      "session": 4,
+      "id": "108Q3-macro-21",
+      "sessionId": "108Q3",
+      "year": 108,
+      "session": 3,
       "subject": "macro",
       "sourceId": "macro-05",
-      "number": 8,
-      "stem": "經由許多條方程式來表示貨幣及財政政策傳遞管道的模型，稱之為________。",
+      "number": 21,
+      "stem": "中央銀行被稱為「銀行的銀行」，是因為中央銀行：",
       "options": [
-        "縮減式模型(Reduced-Form Model)",
-        "中間選民模型(Median-Voter Model)",
-        "直接模型(Direct-Model)",
-        "結構式模型(Structural Model)"
+        "獨占通貨發行權",
+        "保管外匯",
+        "扮演銀行最後融通者角色",
+        "辦理票據交換之清算"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "108Q3-macro-22",
+      "sessionId": "108Q3",
+      "year": 108,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 22,
+      "stem": "下列何者不是中央銀行獨立性的優點？",
+      "options": [
+        "避免造成政治性景氣循環",
+        "避免以貨幣融通財政",
+        "貨幣政策較具一致性",
+        "貨幣政策能與財政政策配合"
       ],
       "answer": [
         "D"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "108Q3-macro-23",
+      "sessionId": "108Q3",
+      "year": 108,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 23,
+      "stem": "下列何者不是中央銀行的資產？",
+      "options": [
+        "對銀行的放款",
+        "持有的公債",
+        "財政部在央行的存款",
+        "持有的黃金"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "109Q3-macro-29",
+      "sessionId": "109Q3",
+      "year": 109,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 29,
+      "stem": "積極管理負債的銀行，最可能藉由_________應付準備金的短缺。",
+      "options": [
+        "尋找新的存款",
+        "同業拆款",
+        "召回放款 (call in loans)",
+        "出售地方債券"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "109Q3-macro-30",
+      "sessionId": "109Q3",
+      "year": 109,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 30,
+      "stem": "下面哪一項不是我國中央銀行監事會的職權？",
+      "options": [
+        "檢查資產負債",
+        "檢查貨幣發行準備",
+        "保管國際準備",
+        "審核決算"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "109Q3-macro-31",
+      "sessionId": "109Q3",
+      "year": 109,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 31,
+      "stem": "以下何者是贊成中央銀行獨立性的理由？",
+      "options": [
+        "貨幣政策應該著重近短期的目標",
+        "若獨立，容易淪為政治性景氣循環的工具",
+        "若不獨立，政府為促進充分就業，貨幣政策容易導致通貨膨脹",
+        "貨幣政策與財政政策應該相輔相成"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "109Q3-macro-32",
+      "sessionId": "109Q3",
+      "year": 109,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 32,
+      "stem": "_______和_________皆是中央銀行的負債。",
+      "options": [
+        "流通中的通貨淨額；準備金",
+        "政府公債；重貼現貸款",
+        "政府公債；準備金",
+        "流通中的通貨淨額；重貼現貸款"
+      ],
+      "answer": [
+        "A"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "110Q2-macro-06",
+      "sessionId": "110Q2",
+      "year": 110,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 6,
+      "stem": "因市場價格變動對銀行資產負債部位造成損失，此稱為________。",
+      "options": [
+        "營運風險",
+        "利率風險",
+        "市場風險",
+        "流動性風險"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "110Q3-macro-21",
+      "sessionId": "110Q3",
+      "year": 110,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 21,
+      "stem": "中央銀行被稱為「銀行的銀行」 ，是因為中央銀行：",
+      "options": [
+        "獨占通貨發行權",
+        "保管外匯",
+        "扮演銀行最後融通者角色",
+        "辦理票據交換之清算"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "110Q3-macro-23",
+      "sessionId": "110Q3",
+      "year": 110,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 23,
+      "stem": "下列何者不是中央銀行的資產？",
+      "options": [
+        "對銀行的放款",
+        "持有的公債",
+        "財政部在中央銀行的存款",
+        "持有的黃金"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "111Q1-macro-15",
+      "sessionId": "111Q1",
+      "year": 111,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 15,
+      "stem": "________和_________皆是中央銀行的資產項目。",
+      "options": [
+        "流通中的通貨淨額；準備金",
+        "政府公債；重貼現貸款",
+        "政府公債；準備金",
+        "流通中的通貨淨額；重貼現貸款"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "111Q2-macro-12",
+      "sessionId": "111Q2",
+      "year": 111,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 12,
+      "stem": "下面哪一項不是中央銀行國庫局的業務？",
+      "options": [
+        "經理國庫收支",
+        "辦理公債與國庫券之發行",
+        "公開市場買賣",
+        "公債與國庫券之還本付息業務"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "112Q1-macro-28",
+      "sessionId": "112Q1",
+      "year": 112,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 28,
+      "stem": "下列何者屬於銀行的「表外業務」？",
+      "options": [
+        "在拆款中心放款給其他銀行",
+        "買賣公司債",
+        "發行信用卡",
+        "買賣上市櫃股票"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "112Q1-macro-35",
+      "sessionId": "112Q1",
+      "year": 112,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 35,
+      "stem": "外商銀行在台灣分行的設立，依規定在申請前一年於全世界銀行資本額或資產排名須居幾名以內？",
+      "options": [
+        "100",
+        "300",
+        "500",
+        "1,000"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "112Q3-macro-07",
+      "sessionId": "112Q3",
+      "year": 112,
+      "session": 3,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 7,
+      "stem": "金融六法不包括下列何者？",
+      "options": [
+        "金融控股公司法",
+        "金融重建基金設置及管理條例",
+        "外匯管理法",
+        "票券金融管理法"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "113Q1-macro-15",
+      "sessionId": "113Q1",
+      "year": 113,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 15,
+      "stem": "2024 年 2 月底要參考美國聯邦公開市場委員會(FOMC)之前最新的利率點陣圖，應該是看何時公布的？",
+      "options": [
+        "2024 年 1 月",
+        "2023 年 12 月",
+        "2023 年 11 月",
+        "2023 年 2 月"
+      ],
+      "answer": [
+        "B"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "eventId": "fed-2025",
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "113Q1-macro-16",
+      "sessionId": "113Q1",
+      "year": 113,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 16,
+      "stem": "美國聯邦公開市場委員會由幾位成員組成？他們透過投票左右利率決議。",
+      "options": [
+        "10 位",
+        "11 位",
+        "12 位",
+        "13 位"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "eventId": "fed-2025",
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "113Q1-macro-29",
+      "sessionId": "113Q1",
+      "year": 113,
+      "session": 1,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 29,
+      "stem": "根據我國「中央銀行法」第 2 條中，關於制訂央行的經營目標，下列何者非屬之？",
+      "options": [
+        "外匯存底孳息繳庫",
+        "健全銀行業務",
+        "維護對內及對外幣值之穩定",
+        "促進金融穩定"
+      ],
+      "answer": [
+        "A"
       ],
       "sourceIds": [
         "macro-05"
@@ -1167,887 +1310,19 @@ window.CHAPTER_DATA["macro-05"] = {
       ]
     },
     {
-      "id": "107Q4-macro-19",
-      "sessionId": "107Q4",
-      "year": 107,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 19,
-      "stem": "銀行吸收存款必須提存的平均準備率為 20%，而且未保有超額準備，人們採取支票或信用卡交易。假設央行從公開市場買進銀行可轉讓定存單 5,000 元，造成的最終影響為何？",
-      "options": [
-        "貨幣供給緊縮 25,000 元",
-        "對貨幣供給沒有影響",
-        "貨幣供給減少 5,000 元",
-        "貨幣供給擴張 25,000 元"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "107Q4-macro-22",
-      "sessionId": "107Q4",
-      "year": 107,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 22,
-      "stem": "在其他條件不變下，何種狀況將會降低準備貨幣？",
-      "options": [
-        "官股銀行盈餘繳庫",
-        "央行持有外匯存底獲取的美元孳息增加",
-        "郵匯局增加在央行的轉存款",
-        "央行盈餘繳庫"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "107Q4-macro-32",
-      "sessionId": "107Q4",
-      "year": 107,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 32,
-      "stem": "央行調高法定準備率，將對金融體系造成何種衝擊？",
-      "options": [
-        "央行發行的準備貨幣減少，將會釀成金融體系緊縮",
-        "銀行將增加持有超額準備，進而擴張貨幣供給",
-        "貨幣乘數下降，進而釀成金融體系緊縮",
-        "貨幣乘數上升，進而擴大貨幣供給"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "107Q4-macro-33",
-      "sessionId": "107Q4",
-      "year": 107,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 33,
-      "stem": "有關央行從事公開市場操作，何者錯誤？",
-      "options": [
-        "央行從事動態公開市場操作，追求穩定貨幣供給",
-        "央行進行公開市場操作，將具有可逆性",
-        "央行在外匯市場買賣美元，追求穩定匯率水準",
-        "央行透過公開市場操作，影響銀行準備與準備貨幣餘額"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-06",
-      "sessionId": "108Q1",
-      "year": 108,
+      "id": "113Q1-macro-30",
+      "sessionId": "113Q1",
+      "year": 113,
       "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 6,
-      "stem": "假設社會的通貨比率為 15%，銀行體系的超額準備率為15%，所有存款的法定準備率均為10%，若央行自公開市場買入100 萬元的債券，則銀行體系所創造的存款貨幣為多少？",
-      "options": [
-        "200萬",
-        "250 萬",
-        "400萬",
-        "450 萬"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-07",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 7,
-      "stem": "如果中央銀行透過公開市場操作，向銀行買進 1 億元債券，則下列敘述何者是錯誤的？",
-      "options": [
-        "銀行持有的債券減少 1 億元",
-        "銀行的準備金增加 1 億元",
-        "銀行的負債增加1 億元",
-        "銀行的資產總額不變"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-08",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 8,
-      "stem": "下列哪一項措施屬寬鬆貨幣政策？",
-      "options": [
-        "降低貼放利率",
-        "縮短消費者分期貸款償還期限",
-        "公開市場賣出債券",
-        "提高存款準備率"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "108Q1-macro-24",
-      "sessionId": "108Q1",
-      "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 24,
-      "stem": "下列何者是擴張性的貨幣政策？",
-      "options": [
-        "存款準備率上升",
-        "貨幣供給下跌",
-        "中央銀行發行可轉讓定期存單",
-        "中央銀行在公開市場買進債券"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "108Q2-macro-07",
-      "sessionId": "108Q2",
-      "year": 108,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 7,
-      "stem": "重貼現率政策最大的優點是：",
-      "options": [
-        "能夠精準的控制準備貨幣(Reserve Money)",
-        "表現中央銀行是銀行的最後貸款者(Lender of Last Resort)",
-        "能夠精準的控制貨幣供給",
-        "能夠懲罰準備金不足的銀行"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "108Q2-macro-12",
-      "sessionId": "108Q2",
-      "year": 108,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 12,
-      "stem": "下列何者是擴張性的貨幣政策？",
-      "options": [
-        "存款準備率上升",
-        "貨幣供給下跌",
-        "中央銀行發行可轉讓定期存單",
-        "中央銀行在公開市場買進債券"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "108Q2-macro-25",
-      "sessionId": "108Q2",
-      "year": 108,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 25,
-      "stem": "中央銀行資產負債表的變動，哪一項使貨幣基數 (Monetary Base) 增加？",
-      "options": [
-        "央行賣出公債",
-        "政府在央行存款增加",
-        "對金融機構放款增加",
-        "央行儲蓄券發行增加"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "108Q2-macro-34",
-      "sessionId": "108Q2",
-      "year": 108,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 34,
-      "stem": "凱因斯的貨幣需求模型中，認為貨幣流通速度：",
-      "options": [
-        "是固定的",
-        "不是固定的而且和物價水準同方向波動",
-        "不是固定的而且和時間一起波動",
-        "不是固定的而且和利率同方向波動"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q3-macro-08",
-      "sessionId": "108Q3",
-      "year": 108,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 8,
-      "stem": "金融創新將導致：",
-      "options": [
-        "貨幣需求增加",
-        "貨幣需求減少",
-        "貨幣供給增加",
-        "貨幣供給減少"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "108Q3-macro-19",
-      "sessionId": "108Q3",
-      "year": 108,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 19,
-      "stem": "王五將他行的支票存入其往來銀行，並經交換入帳，則對整體銀行體系及全體社會而言，下列敘述何者為錯誤？",
-      "options": [
-        "存款貨幣不變",
-        "準備金不變",
-        "貨幣供給額不變",
-        "放款增加"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "108Q3-macro-20",
-      "sessionId": "108Q3",
-      "year": 108,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 20,
-      "stem": "銀行體系的超額準備增加，在其他情況不變下，貨幣供給將會：",
-      "options": [
-        "增加",
-        "減少",
-        "不變",
-        "無法確定"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "108Q3-macro-24",
-      "sessionId": "108Q3",
-      "year": 108,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 24,
-      "stem": "中央銀行對下列何者具有完全控制力？",
-      "options": [
-        "借入準備",
-        "非借入準備",
-        "銀行準備金",
-        "銀行超額準備"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "108Q3-macro-25",
-      "sessionId": "108Q3",
-      "year": 108,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 25,
-      "stem": "中央銀行在公開市場買進債券是一種：",
-      "options": [
-        "擴張性財政政策",
-        "緊縮性財政政策",
-        "擴張性貨幣政策",
-        "緊縮性貨幣政策"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "108Q3-macro-26",
-      "sessionId": "108Q3",
-      "year": 108,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 26,
-      "stem": "下列哪一項措施屬寬鬆貨幣政策？",
-      "options": [
-        "縮短消費者分期貸款償還期限",
-        "公開市場賣出債券",
-        "降低貼放利率",
-        "提高存款準備率"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "108Q4-macro-02",
-      "sessionId": "108Q4",
-      "year": 108,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 2,
-      "stem": "在什麼情況下，通貨對活期存款的比率會上升？",
-      "options": [
-        "稅率愈高，地下經濟活動愈猖獗",
-        "耐久財和金融資產交易量增加",
-        "電子貨幣快速發展",
-        "選項(A)(B)(C)皆是"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "108Q4-macro-12",
-      "sessionId": "108Q4",
-      "year": 108,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 12,
-      "stem": "在何種情況下，釘住貨幣量比釘住利率更會擴大產出的波動？",
-      "options": [
-        "石油價格上漲",
-        "農產品歉收",
-        "貨幣需求增加",
-        "選項(A)(B)(C)皆是"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "108Q4-macro-13",
-      "sessionId": "108Q4",
-      "year": 108,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 13,
-      "stem": "下述何種貨幣政策工具，可能無法讓中央銀行完全控制準備貨幣水準？",
-      "options": [
-        "公開市場買進債券",
-        "公開市場賣出債券",
-        "變動借入準備的數量",
-        "調整重貼現率"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "108Q4-macro-14",
-      "sessionId": "108Q4",
-      "year": 108,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 14,
-      "stem": "若中央銀行降低法定存款準備率(Required Reserve Ratio)後，原來的法定準備都變成銀行的超額準備(Excess Reserves)，則準備貨幣(Reserve Money)______，貨幣供給______。",
-      "options": [
-        "不變；不變",
-        "不變；增加",
-        "增加；增加",
-        "增加；不變"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "108Q4-macro-23",
-      "sessionId": "108Q4",
-      "year": 108,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 23,
-      "stem": "下列哪一項對台灣股市而言是利多消息？",
-      "options": [
-        "M1B 成長率大於 M2 成長率",
-        "央行宣布調高存款準備率",
-        "殖利率曲線為負斜率",
-        "美國聯準會宣布調升利率"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "109Q1-macro-08",
-      "sessionId": "109Q1",
-      "year": 109,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 8,
-      "stem": "依據貨幣數量學說，體系內名目貨幣需求下降 2%，將會導致何種結果?",
-      "options": [
-        "實質產出增加 2%",
-        "循環性失業率增加 2%",
-        "物價水準上升2%",
-        "實質利率下降 2%"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "109Q1-macro-10",
-      "sessionId": "109Q1",
-      "year": 109,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 10,
-      "stem": "體系內貨幣需求函數為 \\(M^d/P=1,000+0.2y-1,000i\\)，假設物價 \\(P=200\\)、產出 \\(y=2,000\\)，而利率 \\(i=10\\%\\)，則貨幣流通速度為何？",
-      "options": [
-        "0.65",
-        "0.75",
-        "1.33",
-        "1.54"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "109Q2-macro-09",
-      "sessionId": "109Q2",
-      "year": 109,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 9,
-      "stem": "大部分實證結果顯示：貨幣流通速度傾向與景氣循環_____，也就是當經濟活動緊縮時，貨幣流通速度會_____。",
-      "options": [
-        "同向變動；減少",
-        "反向變動；減少",
-        "反向變動；增加",
-        "同向變動；增加"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "109Q2-macro-13",
-      "sessionId": "109Q2",
-      "year": 109,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 13,
-      "stem": "提高法定準備率（Required Reserve Ratio）會有何種影響？",
-      "options": [
-        "準備貨幣（Reserve Money）減少，進而減少貨幣供給",
-        "準備貨幣（Reserve Money）上升，進而增加貨幣供給",
-        "貨幣乘數（Money Multiplier）下降，進而減少貨幣供給",
-        "貨幣乘數（Money Multiplier）上升，進而增加貨幣供給"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "109Q2-macro-23",
-      "sessionId": "109Q2",
-      "year": 109,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 23,
-      "stem": "下列有關貨幣需求的敘述，何者是錯誤的？",
-      "options": [
-        "考慮貨幣需求在長時間的變動時，所得扮演較重要的角色",
-        "考慮貨幣需求在短時間的變動時，利率扮演較重要的角色",
-        "若貨幣需求曲線很陡，表示利率變動對貨幣需求的影響很小",
-        "當貨幣需求曲線為水平線時，表示所得對貨幣需求的重要性，相較於利率來得大"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "109Q2-macro-25",
-      "sessionId": "109Q2",
-      "year": 109,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 25,
-      "stem": "在存款創造的過程中，若當法定準備率是 10%，支票存款減少$500，這可能是中央銀行：",
-      "options": [
-        "出售$500 的政府債券",
-        "出售$50 的政府債券",
-        "購買$50 的政府債券",
-        "購買$500 的政府債券"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "109Q2-macro-30",
-      "sessionId": "109Q2",
-      "year": 109,
-      "session": 2,
       "subject": "macro",
       "sourceId": "macro-05",
       "number": 30,
-      "stem": "一般而言，稅率越高與地下經濟活動規模越大：",
+      "stem": "下列何者不是央行貨幣政策指標中，五大銀行平均基準利率中的五大銀行？",
       "options": [
-        "現金比率將越大，貨幣供給乘數會下降，貨幣供給會減少",
-        "現金比率將越大，貨幣供給乘數會上升，貨幣供給會增加",
-        "現金比率將越小，貨幣供給乘數會下降，貨幣供給會減少",
-        "現金比率將越小，貨幣供給乘數會上升，貨幣供給會增加"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "109Q2-macro-31",
-      "sessionId": "109Q2",
-      "year": 109,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 31,
-      "stem": "一國之現金占存款比率為 0.2，法定準備率為 0.1，銀行之超額準備率為 0.3，則其貨幣供給乘數為：",
-      "options": [
-        "2.0",
-        "2.4",
-        "3.6",
-        "4.0"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "109Q2-macro-32",
-      "sessionId": "109Q2",
-      "year": 109,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 32,
-      "stem": "下列何者會使一國之貨幣供給乘數增加？",
-      "options": [
-        "貨幣基數（Monetary Base）增加",
-        "大眾持有之現金比率增加",
-        "法定準備率增加",
-        "超額準備存款率減少"
+        "台灣銀行",
+        "合作金庫銀行",
+        "台灣土地銀行",
+        "彰化銀行"
       ],
       "answer": [
         "D"
@@ -2063,19 +1338,47 @@ window.CHAPTER_DATA["macro-05"] = {
       ]
     },
     {
-      "id": "109Q3-macro-33",
-      "sessionId": "109Q3",
-      "year": 109,
-      "session": 3,
+      "id": "113Q1-macro-31",
+      "sessionId": "113Q1",
+      "year": 113,
+      "session": 1,
       "subject": "macro",
       "sourceId": "macro-05",
-      "number": 33,
-      "stem": "若中央銀行決定消化銀行持有的濫頭寸，那麼可能會_______。",
+      "number": 31,
+      "stem": "有關我國央行的描述，下列何者有誤？",
       "options": [
-        "降低重貼現率",
-        "出售政府公債給銀行",
-        "延長重貼現貸款給銀行",
-        "跟銀行購買政府公債"
+        "是國家銀行",
+        "央行資本，由國庫撥給之",
+        "隸屬總統府，以維持獨立性",
+        "總裁綜理行務，執行理事會之決議，對外代表本行；副總裁輔佐總裁處理行務"
+      ],
+      "answer": [
+        "C"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "113Q2-macro-03",
+      "sessionId": "113Q2",
+      "year": 113,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 3,
+      "stem": "因為金融危機造成的信用緊縮現象，不包括下列哪種？",
+      "options": [
+        "銀行同業間拆款利率上升",
+        "央行緊縮銀根",
+        "中小企業向銀行融資困難",
+        "銀行縮減個人信用卡額度"
       ],
       "answer": [
         "B"
@@ -2086,24 +1389,80 @@ window.CHAPTER_DATA["macro-05"] = {
       "sourceRefs": [
         {
           "chapterId": "macro-05",
-          "sectionIndex": 4
+          "sectionIndex": 3
         }
       ]
     },
     {
-      "id": "109Q3-macro-34",
-      "sessionId": "109Q3",
-      "year": 109,
-      "session": 3,
+      "id": "113Q2-macro-24",
+      "sessionId": "113Q2",
+      "year": 113,
+      "session": 2,
       "subject": "macro",
       "sourceId": "macro-05",
-      "number": 34,
-      "stem": "中央銀行比較不常使用法定準備率政策來控制貨幣供給的原因有：",
+      "number": 24,
+      "stem": "以下關於我國金管會之敘述，何者正確？",
       "options": [
-        "法定準備率政策對貨幣供給的影響太強",
-        "對超額準備較多的銀行容易造成流動性問題",
-        "即使常常變動法定準備率也不會影響銀行流動性管理",
-        "調整法定準備率對貨幣供給沒有什麼影響"
+        "央行總裁為當然委員",
+        "隸屬在法務部之下",
+        "銀行局負責金融機構檢查稽核",
+        "能源部長為當然委員"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "113Q2-macro-32",
+      "sessionId": "113Q2",
+      "year": 113,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 32,
+      "stem": "若銀行面臨放款壞帳 10 億元，在壞帳打銷後：",
+      "options": [
+        "放款額增加 10 億元",
+        "存款額減少 10 億元",
+        "準備金減少 10 億元",
+        "資本額減少 10 億元"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "113Q2-macro-35",
+      "sessionId": "113Q2",
+      "year": 113,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 35,
+      "stem": "下列有關中央銀行獨立性的敘述，何者正確？",
+      "options": [
+        "央行法定目標愈多，中央銀行獨立性愈大",
+        "央行愈屬於政府，中央銀行獨立性愈大",
+        "央行官員任期愈長，中央銀行獨立性愈小",
+        "央行若能直接承購新發行公債，其獨立性愈大"
       ],
       "answer": [
         "A"
@@ -2119,47 +1478,19 @@ window.CHAPTER_DATA["macro-05"] = {
       ]
     },
     {
-      "id": "109Q4-macro-10",
-      "sessionId": "109Q4",
-      "year": 109,
-      "session": 4,
+      "id": "114Q1-macro-24",
+      "sessionId": "114Q1",
+      "year": 114,
+      "session": 1,
       "subject": "macro",
       "sourceId": "macro-05",
-      "number": 10,
-      "stem": "下述有關於中央銀行貨幣政策工具的敘述，何者是正確的？",
+      "number": 24,
+      "stem": "下列哪種金融危機之發生，係因為放款過度寬鬆，出現過多的不良資產、導致呆帳大量增加，影響金融體系穩定性？",
       "options": [
-        "存款準備率政策對貨幣乘數影響很大，且會嚴重影響銀行的放款",
-        "重貼現政策僅能產生間接效果，成功與否決定於銀行的反應",
-        "公開市場操作的彈性與自主性較大，是一良好的政策工具",
-        "選項(A)(B)(C)皆是"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "109Q4-macro-12",
-      "sessionId": "109Q4",
-      "year": 109,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 12,
-      "stem": "下列何者不是非行動主義者(Nonactivist)的主張？",
-      "options": [
-        "制定權衡性的政策法則",
-        "制定長期的政策法則",
-        "貨幣供給的穩定增長",
-        "穩定的物價水準"
+        "銀行危機",
+        "貨幣危機",
+        "債務危機",
+        "資本市場危機"
       ],
       "answer": [
         "A"
@@ -2175,215 +1506,19 @@ window.CHAPTER_DATA["macro-05"] = {
       ]
     },
     {
-      "id": "109Q4-macro-17",
-      "sessionId": "109Q4",
-      "year": 109,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 17,
-      "stem": "當貨幣需求若來自於投機動機時，該貨幣需求主要受到哪項經濟變數所影響？",
-      "options": [
-        "所得",
-        "利率",
-        "物價",
-        "工資"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "109Q4-macro-23",
-      "sessionId": "109Q4",
-      "year": 109,
-      "session": 4,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 23,
-      "stem": "下列何者不屬於選擇性信用管制策略？",
-      "options": [
-        "重貼現率政策",
-        "調整保證金比率",
-        "消費者信用管制",
-        "不動產信用管制"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "110Q1-macro-11",
-      "sessionId": "110Q1",
-      "year": 110,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 11,
-      "stem": "下列關於貨幣乘數(Money Multiplier)的描述何者正確？",
-      "options": [
-        "貨幣乘數與準備貨幣在實務上經常呈現負向的關係",
-        "貨幣乘數與超額準備存在正向關係",
-        "貨幣乘數與法定存款準備率有正向關係",
-        "貨幣乘數與超額準備的數量獨立不相關"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "110Q1-macro-13",
-      "sessionId": "110Q1",
-      "year": 110,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 13,
-      "stem": "提高法定準備率(Required Reserve Ratio)會有何種影響？",
-      "options": [
-        "準備貨幣(Reserve Money)減少，進而減少貨幣供給",
-        "準備貨幣(Reserve Money)上升，進而增加貨幣供給",
-        "貨幣乘數(Money Multiplier)下降，進而減少貨幣供給",
-        "貨幣乘數(Money Multiplier)上升，進而增加貨幣供給"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "110Q1-macro-15",
-      "sessionId": "110Q1",
-      "year": 110,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 15,
-      "stem": "某國央行宣布提高法定準備率，但為穩定貨幣供給，必須再搭配何種操作？",
-      "options": [
-        "向官股銀行買回央行發行的定存單",
-        "提高郵匯局轉存央行額度",
-        "調低重貼現率",
-        "收回對銀行的短期融通"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "110Q1-macro-16",
-      "sessionId": "110Q1",
-      "year": 110,
-      "session": 1,
+      "id": "114Q2-macro-16",
+      "sessionId": "114Q2",
+      "year": 114,
+      "session": 2,
       "subject": "macro",
       "sourceId": "macro-05",
       "number": 16,
-      "stem": "某國央行持續執行量化寬鬆，短期可能引發何種結果？",
+      "stem": "下列哪一位諾貝爾經濟學獎得主曾擔任過聯準會主席？",
       "options": [
-        "名目利率上漲",
-        "自然產出增加",
-        "引發資產通膨",
-        "金融帳順差"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "110Q1-macro-31",
-      "sessionId": "110Q1",
-      "year": 110,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 31,
-      "stem": "某國央行經研處檢視 M1A 乘數發生變化的原因，何者正確？",
-      "options": [
-        "準備貨幣擴張",
-        "跨國資金持續進入股市",
-        "銀行吸收存款增加",
-        "銀行放款困難"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "110Q1-macro-32",
-      "sessionId": "110Q1",
-      "year": 110,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 32,
-      "stem": "某國央行透過貨幣市場積極買回央行定存單，何種說法錯誤？",
-      "options": [
-        "此係防衛性操作",
-        "準備貨幣遞增",
-        "M1A 乘數增加",
-        "銀行持有法定準備上升"
+        "菲利普·迪布維格",
+        "賓·伯南克",
+        "道格拉斯·戴蒙德",
+        "吉多·因本斯"
       ],
       "answer": [
         "B"
@@ -2391,6 +1526,7 @@ window.CHAPTER_DATA["macro-05"] = {
       "sourceIds": [
         "macro-05"
       ],
+      "eventId": "fed-2025",
       "sourceRefs": [
         {
           "chapterId": "macro-05",
@@ -2399,246 +1535,22 @@ window.CHAPTER_DATA["macro-05"] = {
       ]
     },
     {
-      "id": "110Q2-macro-09",
-      "sessionId": "110Q2",
-      "year": 110,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 9,
-      "stem": "如果產出調整至自然產出水準的速度愈________，且政策實行後到產生實質效果的時差愈 ________，則愈有利於主張積極政策者(Activists)之論點。",
-      "options": [
-        "慢；短",
-        "慢；長",
-        "快；短",
-        "快；長"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "110Q2-macro-20",
-      "sessionId": "110Q2",
-      "year": 110,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 20,
-      "stem": "假定活期存款淨額=2,000、通貨發行額=1,200、商業銀行庫存現金=60、中央銀行庫存現金=40、商業銀行在中央銀行的存款總額=250，試求貨幣乘數(Money Multiplier)(m1)為？",
-      "options": [
-        "2.0",
-        "2.2",
-        "2.4",
-        "2.6"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "110Q2-macro-28",
-      "sessionId": "110Q2",
-      "year": 110,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 28,
-      "stem": "假設在聯邦資金市場有一筆準備金的超額供給。在其他條件不變之下，若聯邦準備體系希望維持當時的聯邦資金利率水準，那聯邦準備體系可採取的適當措施是操作一個________公開市場 _______。",
-      "options": [
-        "防衛性；出售",
-        "自主性；購買",
-        "自主性；出售",
-        "防衛性；購買"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "110Q2-macro-29",
-      "sessionId": "110Q2",
-      "year": 110,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 29,
-      "stem": "公開市場操作區分成兩種模式，________是指中央銀行為了積極改變銀行準備金數量及貨幣供給額的目的所採行的公開市場操作；_________是指中央銀行為了抵消外來因素對銀行準備金的干擾所進行的所採行的公開市場操作。",
-      "options": [
-        "自主性操作；防衛性操作",
-        "自主性操作；靜止性操作",
-        "防衛性操作；靜止性操作",
-        "防衛性操作；自主性操作"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "110Q3-macro-20",
-      "sessionId": "110Q3",
-      "year": 110,
+      "id": "114Q3-macro-16",
+      "sessionId": "114Q3",
+      "year": 114,
       "session": 3,
       "subject": "macro",
       "sourceId": "macro-05",
-      "number": 20,
-      "stem": "銀行體系的超額準備增加，在其他情況不變下，貨幣供給將會：",
+      "number": 16,
+      "stem": "積極管理負債的銀行，最可能藉由_________應付準備金的短缺。",
       "options": [
-        "增加",
-        "減少",
-        "不變",
-        "無法確定"
+        "尋找新的存款",
+        "同業拆款",
+        "召回放款 (call in loans)",
+        "出售持有的債券"
       ],
       "answer": [
         "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "110Q3-macro-24",
-      "sessionId": "110Q3",
-      "year": 110,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 24,
-      "stem": "中央銀行對下列何者具有完全控制力？",
-      "options": [
-        "借入準備",
-        "非借入準備",
-        "銀行準備金",
-        "銀行超額準備"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "111Q1-macro-09",
-      "sessionId": "111Q1",
-      "year": 111,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 9,
-      "stem": "在何種情況下，釘住貨幣量比釘住利率更會擴大產出的波動？",
-      "options": [
-        "石油價格上漲",
-        "農產品欠收",
-        "貨幣需求增加",
-        "以上皆是"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "111Q1-macro-14",
-      "sessionId": "111Q1",
-      "year": 111,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 14,
-      "stem": "下列關於貨幣乘數(Money Multiplier)的描述，何者正確？",
-      "options": [
-        "貨幣乘數與準備貨幣在實務上經常呈現負向的關係",
-        "貨幣乘數與超額準備存在正向關係",
-        "貨幣乘數與法定存款準備率有正向關係",
-        "貨幣乘數與超額準備的數量獨立不相關"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "111Q1-macro-35",
-      "sessionId": "111Q1",
-      "year": 111,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 35,
-      "stem": "以下有關貨幣需求理論的敘述，何者不正確？",
-      "options": [
-        "費雪 (Irving Fisher) 交易方程式中的貨幣純粹為交易媒介，利率完全不能影響貨幣需求",
-        "劍橋學派所謂的貨幣除是交易媒介外，也是一種資產，利率對貨幣需求可以有影響力",
-        "凱因斯 (Keynes) 認為利率對貨幣需求沒有什麼影響",
-        "傅利德曼 (Friedman) 的貨幣數量學說，認為恆常所得是影響貨幣需求最重要因素"
-      ],
-      "answer": [
-        "C"
       ],
       "sourceIds": [
         "macro-05"
@@ -2651,411 +1563,19 @@ window.CHAPTER_DATA["macro-05"] = {
       ]
     },
     {
-      "id": "111Q2-macro-13",
-      "sessionId": "111Q2",
-      "year": 111,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 13,
-      "stem": "若中央銀行降低法定存款準備率(Required Reserve Ratio)後，原來的法定準備都變成銀行的超額準備(Excess Reserves)，則準備貨幣(Reserve Money)______，貨幣供給______。",
-      "options": [
-        "不變；不變",
-        "不變；增加",
-        "增加；增加",
-        "增加；不變"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "111Q2-macro-32",
-      "sessionId": "111Q2",
-      "year": 111,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 32,
-      "stem": "下列何種狀況會讓貨幣創造的乘數變大？",
-      "options": [
-        "人們傾向多持有現金",
-        "銀行多持有存款準備",
-        "人們傾向辦理活期存款",
-        "人們傾向辦理定期存款"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "111Q3-macro-05",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 5,
-      "stem": "根據傳統的利率管道，擴張性貨幣政策使得利率下跌，因此會提高________的支出，進而影響經濟體系的總支出。",
-      "options": [
-        "固定投資",
-        "政府支出",
-        "非耐久財消費",
-        "淨出口"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "111Q3-macro-06",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 6,
-      "stem": "下述何種貨幣政策工具，可能無法讓中央銀行完全控制準備貨幣水準？",
-      "options": [
-        "公開市場買進債券",
-        "公開市場賣出債券",
-        "變動借入準備的數量",
-        "調整重貼現率"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "111Q3-macro-15",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 15,
-      "stem": "下列何者是貨幣政策的工具？",
-      "options": [
-        "政府公債的利率（Treasury Bill）",
-        "房屋貸款的利率 (Mortgage rate)",
-        "重貼現率 (Discount Rate)",
-        "預算赤字"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "111Q3-macro-18",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 18,
-      "stem": "中央銀行最常用的減少貨幣供給的方法為何？",
-      "options": [
-        "增加課稅",
-        "賣出政府公債",
-        "向政府買入政府公債",
-        "從民眾手中買入政府公債"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "111Q3-macro-21",
-      "sessionId": "111Q3",
-      "year": 111,
+      "id": "114Q3-macro-21",
+      "sessionId": "114Q3",
+      "year": 114,
       "session": 3,
       "subject": "macro",
       "sourceId": "macro-05",
       "number": 21,
-      "stem": "下列何者最有可能導致名目貨幣需求降低 10%？",
+      "stem": "________和_________皆是中央銀行的資產項目。",
       "options": [
-        "實質所得上升 5%",
-        "實質所得下降 5%",
-        "整體物價降低10%",
-        "整體物價上升 10%"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "111Q3-macro-22",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 22,
-      "stem": "貨幣的需求函數為 \\(M^d/P=1,000+0.2Y-1,000i\\)。如果 \\(P=200\\)、\\(Y=2,000\\)、\\(i=0.10\\)，則實質貨幣需求量為何？",
-      "options": [
-        "1,300",
-        "1,500",
-        "260,000",
-        "300,000"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "111Q3-macro-23",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 23,
-      "stem": "假設一條新的法令，規定所有的股票或債券的交易，都需要繳交額外的交易稅。這對於貨幣的需求有何影響？",
-      "options": [
-        "貨幣需求先是下降，之後隨著通貨膨脹而上升",
-        "貨幣需求上升",
-        "整體的效果不確定",
-        "貨幣需求下降"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "111Q3-macro-26",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 26,
-      "stem": "當有非預期的貨幣緊縮政策發生，則同業拆款利率最初是________ ，然後 6～12 個月後則 ________。",
-      "options": [
-        "上升; 回復到原始值",
-        "下降; 回復到原始值",
-        "幾乎不改變; 顯著上升",
-        "幾乎不改變; 顯著下降"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "112Q1-macro-10",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 10,
-      "stem": "在何種情況下，釘住貨幣量比釘住利率更會擴大產出的波動？",
-      "options": [
-        "石油價格上漲",
-        "農產品歉收",
-        "貨幣需求增加",
-        "選項(A)(B)(C)皆是"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "112Q1-macro-11",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 11,
-      "stem": "美國聯準會宣佈政策目標的升降息是以下列何者為準？",
-      "options": [
-        "重貼現率",
-        "擔保放款融通利率",
-        "短期融通利率",
-        "聯邦資金率"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "112Q1-macro-17",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 17,
-      "stem": "成功銀行有超額準備 200 萬元，活期存款 1 億元，法定準備率由 10%提高為 12%，此時的超額準備為多少？",
-      "options": [
-        "－180 萬元",
-        "－100 萬元",
-        "0 元",
-        "120 萬元"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "112Q1-macro-18",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 18,
-      "stem": "如果中央銀行貨幣政策的中間目標 (intermediate ta rget) 為銀行平均存款利率，在此情況下，請問以下 5 個變數(甲.借入準備、乙.同業拆放利率、丙.貨幣基數、丁.非借入貨幣基數、戊.國庫券利率)適合做為操作目標(operating target)的有幾個？",
-      "options": [
-        "1",
-        "2",
-        "3",
-        "4"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "112Q1-macro-20",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 20,
-      "stem": "以下哪一個的增加會導致準備貨幣的下降？",
-      "options": [
-        "特別提款權",
-        "存在中央銀行的外國存款",
-        "重貼現貸款",
-        "中央銀行的國外資產"
+        "流通中的通貨淨額；準備金",
+        "外匯存底；重貼現放款",
+        "政府公債；準備金",
+        "政府存款；重貼現放款"
       ],
       "answer": [
         "B"
@@ -3071,19 +1591,19 @@ window.CHAPTER_DATA["macro-05"] = {
       ]
     },
     {
-      "id": "112Q1-macro-23",
-      "sessionId": "112Q1",
-      "year": 112,
+      "id": "115Q1-macro-08",
+      "sessionId": "115Q1",
+      "year": 115,
       "session": 1,
       "subject": "macro",
       "sourceId": "macro-05",
-      "number": 23,
-      "stem": "凱因斯的貨幣需求模型中，認為貨幣流通速度：",
+      "number": 8,
+      "stem": "若中央銀行推出「中央銀行數位貨幣（CBDC）」，民眾可以直接在中央銀行持有存款。從總體經濟角度來看，下列哪一項可能是主要政策影響？",
       "options": [
-        "不是固定的而且和利率同方向波動",
-        "不是固定的而且和物價水準同方向波動",
-        "不是固定的而且和所得反方向波動",
-        "是固定的"
+        "中央銀行對貨幣供給的控制能力提高",
+        "商業銀行完全消失",
+        "通貨膨脹必然上升",
+        "匯率固定"
       ],
       "answer": [
         "A"
@@ -3091,139 +1611,86 @@ window.CHAPTER_DATA["macro-05"] = {
       "sourceIds": [
         "macro-05"
       ],
+      "eventId": "cbdc-2025",
       "sourceRefs": [
         {
           "chapterId": "macro-05",
-          "sectionIndex": 2
+          "sectionIndex": 1
         }
       ]
     },
     {
-      "id": "112Q1-macro-25",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
+      "id": "115Q2-macro-15",
+      "sessionId": "115Q2",
+      "year": 115,
+      "session": 2,
       "subject": "macro",
       "sourceId": "macro-05",
-      "number": 25,
-      "stem": "下面有關懲罰性重貼現率 (penalty discount rate) 的敘述，正確的有幾個？甲.懲罰性重貼現是將重貼現率設定在高於市場利率的水準。乙.此時銀行不再利用重貼現放款來獲取利潤。丙.中央銀行仍然可以扮演最後貸款人的角色。丁.如此可以使宣告效果 (announcement effect) 的不確定性消失。",
+      "number": 15,
+      "stem": "美國聯邦公開市場委員會(FOMC)是美國貨幣政策的最高決策機構，每年召開幾次例行會議？",
       "options": [
-        "1",
-        "2",
-        "3",
-        "4"
+        "7 次",
+        "8 次",
+        "9 次",
+        "10 次"
       ],
       "answer": [
-        "D"
+        "B"
       ],
       "sourceIds": [
         "macro-05"
       ],
+      "eventId": "fed-2025",
       "sourceRefs": [
         {
           "chapterId": "macro-05",
-          "sectionIndex": 4
+          "sectionIndex": 1
         }
       ]
     },
     {
-      "id": "112Q1-macro-31",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 31,
-      "stem": "利用泰勒法則，當均衡實質聯邦資金利率是 2%，產出缺口是-3%，目標通貨膨脹是 2%，本期實際通貨膨脹率是 6%，那麼目標聯邦資金率應該是 _________。",
-      "options": [
-        "4%",
-        "5.5%",
-        "6.5%",
-        "8.5%"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "112Q1-macro-32",
-      "sessionId": "112Q1",
-      "year": 112,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 32,
-      "stem": "銀行若沒有充分的準備金，可以藉由___________提高準備金。",
-      "options": [
-        "購買短期的國庫債券",
-        "在同業拆款中心放款",
-        "償還重貼現貸款",
-        "召回放款"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "112Q2-macro-16",
-      "sessionId": "112Q2",
-      "year": 112,
+      "id": "115Q2-macro-16",
+      "sessionId": "115Q2",
+      "year": 115,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-05",
       "number": 16,
-      "stem": "下列何者是有特定目的之貨幣工具？",
+      "stem": "下列何者對美國聯邦公開市場委員會(FOMC)的描述有誤？",
       "options": [
-        "公開市場操作",
-        "存款準備金比率",
-        "重貼現率政策",
-        "保證金比率"
+        "有 13 名投票成員",
+        "7 名聯邦準備理事會理事都是成員",
+        "11 家地區銀行總裁輪流擔任 4 席",
+        "紐約聯邦儲備銀行總裁為當然委員"
       ],
       "answer": [
-        "D"
+        "A"
       ],
       "sourceIds": [
         "macro-05"
       ],
+      "eventId": "fed-2025",
       "sourceRefs": [
         {
           "chapterId": "macro-05",
-          "sectionIndex": 4
+          "sectionIndex": 1
         }
       ]
     },
     {
-      "id": "112Q2-macro-19",
-      "sessionId": "112Q2",
-      "year": 112,
+      "id": "115Q2-macro-23",
+      "sessionId": "115Q2",
+      "year": 115,
       "session": 2,
       "subject": "macro",
       "sourceId": "macro-05",
-      "number": 19,
-      "stem": "當 FOMC 調高聯邦資金利率的目標水準時，表示美國聯邦準備正採取：",
+      "number": 23,
+      "stem": "當今美國聯準會主席是哪一位？",
       "options": [
-        "較為寬鬆的財政政策",
-        "較為緊縮的財政政策",
-        "較為寬鬆的貨幣政策",
-        "較為緊縮的貨幣政策"
+        "班·柏南奇(Ben Bernanke)",
+        "珍娜特·葉倫(Janet Yellen)",
+        "傑洛姆·鮑爾(Jerome Powell)",
+        "凱文·華許(Kevin Warsh)"
       ],
       "answer": [
         "D"
@@ -3240,467 +1707,19 @@ window.CHAPTER_DATA["macro-05"] = {
       ]
     },
     {
-      "id": "112Q2-macro-33",
-      "sessionId": "112Q2",
-      "year": 112,
+      "id": "115Q2-macro-24",
+      "sessionId": "115Q2",
+      "year": 115,
       "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 33,
-      "stem": "所謂的銀行體系的貨幣創造過程是指：",
-      "options": [
-        "央行印鈔票",
-        "銀行拿有價證券到央行去貼現",
-        "透過存款與放款的循環過程中所增加的存款貨幣",
-        "選項(A)(B)(C)皆是"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "112Q3-macro-20",
-      "sessionId": "112Q3",
-      "year": 112,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 20,
-      "stem": "假設一條新的法令，規定所有的股票或債券的交易，都需要繳交額外的交易稅。這對於貨幣的需求有何影響？",
-      "options": [
-        "貨幣需求先是下降，之後隨著通貨膨脹而上升",
-        "貨幣需求上升",
-        "整體的效果不確定",
-        "貨幣需求下降"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "112Q3-macro-21",
-      "sessionId": "112Q3",
-      "year": 112,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 21,
-      "stem": "想要降低貨幣供給，中央銀行最常使用的方法為何？",
-      "options": [
-        "增加賦稅",
-        "對大眾發行販售債券",
-        "從政府手中買回債券",
-        "從大眾手中買回債券"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q1-macro-28",
-      "sessionId": "113Q1",
-      "year": 113,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 28,
-      "stem": "2023 年聯準會資產負債表的縮減主要反映在下列哪個項目？",
-      "options": [
-        "銀行準備金餘額的下降",
-        "逆回購餘額的下降",
-        "現金數量的下降",
-        "財政部帳戶餘額 (TGA)的下降"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q1-macro-32",
-      "sessionId": "113Q1",
-      "year": 113,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 32,
-      "stem": "下列何者對我國央行公開市場操作的描述有誤？",
-      "options": [
-        "為央行常使用的政策工具",
-        "央行發行可轉讓定期存單，收縮市場資金可以引導市場利率回升",
-        "也稱為下巴骨政策",
-        "央行買入合格之債券或票券，釋出資金以引導市場利率回跌"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "113Q2-macro-15",
-      "sessionId": "113Q2",
-      "year": 113,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 15,
-      "stem": "以下哪一項的減少會導致準備貨幣的增加？",
-      "options": [
-        "中央銀行持有的公債",
-        "重貼現貸款",
-        "存在中央銀行的外國存款",
-        "中央銀行的國外資產"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q2-macro-17",
-      "sessionId": "113Q2",
-      "year": 113,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 17,
-      "stem": "央行操控中間目標(Intermediate Target)時常須面對「價量不相容」狀況，一般而言，以下何者正確？",
-      "options": [
-        "若干擾因素確定來自於貨幣需求，這時應選擇貨幣供給當成中間目標",
-        "若干擾確定來自於貨幣需求以外因素，這時應選擇利率當成中間目標",
-        "操作目標和中間目標的選擇在價或量的選取上應該一致",
-        "以上皆是"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "113Q2-macro-19",
-      "sessionId": "113Q2",
-      "year": 113,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 19,
-      "stem": "如果操作目標(Operating Target)為同業拆放利率，此情況下在以下項目：甲.M1B、乙.銀行平均存款利率、丙.M2、丁.長期債券利率、戊.國庫券利率，適合做為中間目標的有幾個？",
-      "options": [
-        "1",
-        "2",
-        "3",
-        "4"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 3
-        }
-      ]
-    },
-    {
-      "id": "113Q2-macro-20",
-      "sessionId": "113Q2",
-      "year": 113,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 20,
-      "stem": "在其他條件不變之下，根據貨幣傳遞機制，增加貨幣供給將使______因而使得總合______。",
-      "options": [
-        "出口增加；供給增加",
-        "投資增加；供給增加",
-        "進口增加；需求增加",
-        "消費增加；需求增加"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q2-macro-28",
-      "sessionId": "113Q2",
-      "year": 113,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 28,
-      "stem": "若法定準備率是 10%，流通中的通貨淨額是 200 億元，(支票)存款是 800 億元，總超額準備是 40 億元，那麼：",
-      "options": [
-        "通貨/存款比率是 0.4",
-        "超額準備/存款比率是 0.1",
-        "貨幣乘數是 3.5",
-        "貨幣基數是 320 億"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q3-macro-02",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 2,
-      "stem": "下述何種貨幣政策工具，可能無法讓中央銀行完全控制準備貨幣水準？",
-      "options": [
-        "公開市場買進債券",
-        "公開市場賣出債券",
-        "變動借入準備的數量",
-        "調整重貼現率"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "113Q3-macro-05",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 5,
-      "stem": "在什麼情況下，通貨對活期存款的比率會上升？",
-      "options": [
-        "稅率愈高，地下經濟活動愈猖獗",
-        "耐久財和金融資產交易量增加",
-        "電子貨幣快速發展",
-        "選項(A)(B)(C)皆正確"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q3-macro-15",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 15,
-      "stem": "如果銀行的法定存款準備率是 10%，當新增存款為 1000 時，最大可創造多少貨幣供給？",
-      "options": [
-        "1000",
-        "9000",
-        "10000",
-        "11000"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q3-macro-16",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 16,
-      "stem": "如果通貨膨脹率過高，中央銀行可能會採取什麼措施來控制通貨膨脹？",
-      "options": [
-        "降低利率",
-        "增加政府支出",
-        "降低稅收",
-        "提高利率"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q3-macro-24",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
       "subject": "macro",
       "sourceId": "macro-05",
       "number": 24,
-      "stem": "比較托賓（Tobin）與凱恩斯（Keynes）的投機貨幣需求理論，下列何者為真？",
+      "stem": "哪一位美國聯準會主席在位時的經濟狀況被形容為金髮女郎的經濟？",
       "options": [
-        "兩者皆隱含個人只會持有貨幣或債券",
-        "前者預測個人只會持有貨幣或債券，而後者隱含個人會持有多樣化資產",
-        "前者隱含個人會持有多樣化資產，而後者預測個人只會持有貨幣或債券",
-        "兩者皆隱含個人會持有多樣化資產"
-      ],
-      "answer": [
-        "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "113Q3-macro-28",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 28,
-      "stem": "假定活期存款為$2000，通貨發行數量$1750，商業銀行庫存現金$80，中央銀行庫存現金$70，商業銀行在中央銀行的存款總額$120，試求貨幣乘數為多少？",
-      "options": [
-        "1.8",
-        "2",
-        "2.2",
-        "2.4"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "113Q3-macro-33",
-      "sessionId": "113Q3",
-      "year": 113,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 33,
-      "stem": "甲將 1000 元存進銀行，銀行將 900 元借給乙，乙支付 800 元給丙，丙將 700 元存進銀行，銀行將 600 元借給丁。請問此時貨幣數量是多少？",
-      "options": [
-        "1000",
-        "1700",
-        "2300",
-        "2500"
+        "班·柏南奇(Ben Bernanke)",
+        "珍娜特·葉倫(Janet Yellen)",
+        "傑洛姆·鮑爾(Jerome Powell)",
+        "艾倫·葛林斯潘(Alan Greenspan)"
       ],
       "answer": [
         "D"
@@ -3708,6 +1727,7 @@ window.CHAPTER_DATA["macro-05"] = {
       "sourceIds": [
         "macro-05"
       ],
+      "eventId": "fed-2025",
       "sourceRefs": [
         {
           "chapterId": "macro-05",
@@ -3716,302 +1736,51 @@ window.CHAPTER_DATA["macro-05"] = {
       ]
     },
     {
-      "id": "114Q1-macro-05",
-      "sessionId": "114Q1",
-      "year": 114,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 5,
-      "stem": "假設經濟體系的貨幣基數為$80 兆，銀行的準備率(reserve ratio)為 0.12，民眾整體預計以現金方式持有 10%的財富，則貨幣供給大約為：",
-      "options": [
-        "$363 兆，銀行持有$80 兆的貨幣基數",
-        "$400 兆，銀行或是央行持有$80 兆的貨幣基數",
-        "$327 兆，銀行或是央行持有$80 兆的貨幣基數",
-        "$425 兆，銀行持有$80 兆的貨幣基數"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "114Q1-macro-10",
-      "sessionId": "114Q1",
-      "year": 114,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 10,
-      "stem": "想要降低貨幣供給，中央銀行最常使用的方法為何？",
-      "options": [
-        "增加賦稅",
-        "對大眾販售債券",
-        "從政府手中買回債券",
-        "從大眾手中買回債券"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "114Q1-macro-17",
-      "sessionId": "114Q1",
-      "year": 114,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 17,
-      "stem": "當你讀了報導說中央銀行打算擴張貨幣供給，央行最有可能做哪一件事？",
-      "options": [
-        "印更多鈔票，然後分送到各相關單位",
-        "從民間機構購回政府公債",
-        "將政府公債賣給民間機構",
-        "購買新發行的政府公債"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "114Q3-macro-08",
-      "sessionId": "114Q3",
-      "year": 114,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 8,
-      "stem": "在其他條件不變的情形下，中央銀行購買政府債券會導致：",
-      "options": [
-        "總需求增加",
-        "總需求減少",
-        "總供給增加",
-        "總供給減少"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "114Q3-macro-19",
-      "sessionId": "114Q3",
-      "year": 114,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 19,
-      "stem": "市場利率下降會使得：",
-      "options": [
-        "貨幣乘數變小",
-        "銀行對重貼現貸款需求增加",
-        "貨幣供給額不變",
-        "銀行超額準備減少"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "114Q3-macro-28",
-      "sessionId": "114Q3",
-      "year": 114,
-      "session": 3,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 28,
-      "stem": "以下有關貨幣需求理論的敘述，何者正確？",
-      "options": [
-        "費雪 (Irving Fisher) 交易方程式中的貨幣純粹為交易媒介，利率和貨幣需求量成反比",
-        "劍橋學派(Cambridge School) 所謂的貨幣除是交易媒介外，也是一種資產，利率對貨幣需求可以有影響力",
-        "凱因斯 (Keynes) 流動性偏好理論認為利率對貨幣需求沒有什麼影響",
-        "傅利德曼 (Milton Friedman) 的貨幣數量學說，認為利率是影響貨幣需求最重要因素"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "114Q3-macro-29",
-      "sessionId": "114Q3",
-      "year": 114,
-      "session": 3,
+      "id": "115Q2-macro-29",
+      "sessionId": "115Q2",
+      "year": 115,
+      "session": 2,
       "subject": "macro",
       "sourceId": "macro-05",
       "number": 29,
-      "stem": "若中央銀行決定消化銀行持有的濫頭寸，那麼可能會_______。",
+      "stem": "2026 年六月底立法院院會三讀通過「虛擬資產服務法」，明確規範穩定幣發行及管理。下列何者不是其內容？",
       "options": [
-        "跟銀行購買政府公債",
-        "降低重貼現率",
-        "發行國庫券或央行定存單給銀行",
-        "降低法定準備率"
+        "在我國境內發行穩定幣須取得中央銀行同意及金管會許可",
+        "發行人必須維持十足準備資產及交付信託",
+        "進行定期查核與資訊揭露",
+        "將穩定幣列入我國的戰略儲備"
+      ],
+      "answer": [
+        "D"
+      ],
+      "sourceIds": [
+        "macro-05"
+      ],
+      "eventId": "stablecoin-2026",
+      "sourceRefs": [
+        {
+          "chapterId": "macro-05",
+          "sectionIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "115Q2-macro-30",
+      "sessionId": "115Q2",
+      "year": 115,
+      "session": 2,
+      "subject": "macro",
+      "sourceId": "macro-05",
+      "number": 30,
+      "stem": "根據我國「中央銀行法」第 2 條中制訂央行的經營目標，下列何者不是？",
+      "options": [
+        "協助經濟之發展",
+        "健全銀行業務",
+        "外匯存底孳息繳庫",
+        "促進金融穩定"
       ],
       "answer": [
         "C"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "115Q1-macro-20",
-      "sessionId": "115Q1",
-      "year": 115,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 20,
-      "stem": "何者會讓貨幣乘數變小？",
-      "options": [
-        "持有供貨比率越高",
-        "法定準備率越高",
-        "超額準備率越高",
-        "以上皆是"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "115Q1-macro-21",
-      "sessionId": "115Q1",
-      "year": 115,
-      "session": 1,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 21,
-      "stem": "關於存款準備率政策的敘述，下列何者錯誤？",
-      "options": [
-        "存款準備率政策係指中央銀行透過調整法定準備率，影響銀行的信用創造能力，進而影響貨幣供給與市場利率",
-        "存款準備率政策的缺點之一，是政策效果往往較為強烈，不宜頻繁使用",
-        "調整法定準備率除了會影響貨幣供給，也可能改變銀行的資金成本與獲利",
-        "我國目前已完全取消法定準備率制度，中央銀行不再以準備率作為貨幣政策工具之一"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "115Q2-macro-02",
-      "sessionId": "115Q2",
-      "year": 115,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 2,
-      "stem": "若其他條件不變，大眾持有通貨比例提高，將使貨幣乘數：",
-      "options": [
-        "變大",
-        "變小",
-        "不變",
-        "不一定"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "115Q2-macro-07",
-      "sessionId": "115Q2",
-      "year": 115,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 7,
-      "stem": "經由許多條方程式來表示貨幣及財政政策傳遞管道的模型，稱之為_____。",
-      "options": [
-        "縮減式模型(Reduced-Form Model)",
-        "中間選民模型(Median-Voter Model)",
-        "直接模型(Direct-Model)",
-        "結構式模型(Structural Model)"
-      ],
-      "answer": [
-        "D"
       ],
       "sourceIds": [
         "macro-05"
@@ -4021,90 +1790,6 @@ window.CHAPTER_DATA["macro-05"] = {
         {
           "chapterId": "macro-05",
           "sectionIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "115Q2-macro-17",
-      "sessionId": "115Q2",
-      "year": 115,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 17,
-      "stem": "「安倍三箭」是日本前首相安倍晉三在 2012 年提出的核心經濟政策組合，下列何者不是？",
-      "options": [
-        "大規模量化寬鬆政策",
-        "擴大公共建設與基礎設施投資",
-        "結構性改革以促進民間投資",
-        "注重永續發展的 ESG 政策"
-      ],
-      "answer": [
-        "D"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "115Q2-macro-27",
-      "sessionId": "115Q2",
-      "year": 115,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 27,
-      "stem": "美國聯準會最近實施「儲備管理購買計畫」(Reserve Management Purchases, RMP)通過什麼動作來穩定提升銀行體系的準備金水位，避免回購市場失序的風險？",
-      "options": [
-        "購買長期公債",
-        "購買短期公債",
-        "購買房地產抵押擔保證券(MBS)",
-        "購買比特幣"
-      ],
-      "answer": [
-        "B"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 4
-        }
-      ]
-    },
-    {
-      "id": "115Q2-macro-31",
-      "sessionId": "115Q2",
-      "year": 115,
-      "session": 2,
-      "subject": "macro",
-      "sourceId": "macro-05",
-      "number": 31,
-      "stem": "費雪(Fisher)提出的貨幣數量學說，認為貨幣需求是_____的函數，且與______無關",
-      "options": [
-        "所得；利率",
-        "利率；所得",
-        "人們預期；所得",
-        "政府支出；利率"
-      ],
-      "answer": [
-        "A"
-      ],
-      "sourceIds": [
-        "macro-05"
-      ],
-      "sourceRefs": [
-        {
-          "chapterId": "macro-05",
-          "sectionIndex": 2
         }
       ]
     }
@@ -4139,298 +1824,63 @@ window.CHAPTER_DATA["macro-05"] = {
   },
   "questions": [
     {
-      "id": "107Q1-macro-written-2",
-      "sessionId": "107Q1",
-      "year": 107,
-      "session": 1,
-      "subject": "macro",
-      "number": 2,
-      "stem": "在銀行體系內，庫存現金有 20 億元，活期性存款有 1,500 億元，超額準備有 20 億元。若中央銀行 通貨發行額有 200 億元，法定準備率為 20%，請回答下列問題：(1)銀行體系的準備金有多少？(2 分) (2)準備貨幣(reserve money)有多少？(3 分) (3)貨幣供給為何？(3 分) (4)貨幣乘數為何？(2 分)",
-      "sourceIds": [
-        "macro-05"
-      ],
-      "kind": "計算題",
-      "answer": [
-        "(1) 銀行準備金：法定準備 \\(1{,}500\\times20\\%=300\\) 億，加上超額準備 20 億，共 320 億元。",
-        "(2) 準備貨幣：通貨淨額 \\(200-20=180\\) 億，加上銀行準備金 320 億，共 500 億元。",
-        "(3) 貨幣供給：通貨淨額 180 億＋活期存款 1,500 億＝1,680 億元。",
-        "(4) 貨幣乘數：\\(1{,}680/500=\\)3.36。"
-      ],
-      "answerType": "reference",
-      "note": "本站參考解答（非官方）"
-    },
-    {
-      "id": "108Q1-macro-written-2",
-      "sessionId": "108Q1",
+      "id": "108Q3-macro-written-1",
+      "sessionId": "108Q3",
       "year": 108,
-      "session": 1,
-      "subject": "macro",
-      "number": 2,
-      "stem": "假設商品市場\\(y=c(y-t(y))+i(r)+g\\)，貨幣市場 \\(\\bar M/P_0=l(r)+k(y)\\)，(其中 y：所得、c：消費、t：租稅、i：投資、r：利率、g：政府支出、\\(\\bar M\\)：名目貨幣供給、 \\(P_0\\)：物價，假設 \\(\\bar M/P_0=m\\)、l(r)：投機性貨幣需求、k(y)：交易性貨幣需求) (1)請導出政府支出乘數 \\(dy/dg\\) 為何？(5 分) (2)請導出貨幣供給乘數 \\(dy/dm\\) 為何？(5 分)",
-      "sourceIds": [
-        "macro-05",
-        "macro-03",
-        "macro-06"
-      ],
-      "kind": "計算題",
-      "answer": [
-        "(1) 對商品市場與貨幣市場全微分：\\(dy=c^{\\prime}(1-t^{\\prime})dy+i^{\\prime}dr+dg\\)；\\(dm=l^{\\prime}dr+k^{\\prime}dy\\)。dg時dm=0，\\(dr=-(k^{\\prime}/l^{\\prime})dy\\)。代入：\\[dy[1-c^{\\prime}(1-t^{\\prime})+i^{\\prime}k^{\\prime}/l^{\\prime}]=dg\\]，故 \\[\\frac{dy}{dg}=\\frac{1}{1-c^{\\prime}(1-t^{\\prime})+i^{\\prime}k^{\\prime}/l^{\\prime}}\\] 。",
-        "(2) dm時dg=0：\\(dr=[1-c^{\\prime}(1-t^{\\prime})]dy/i^{\\prime}\\)。代入貨幣市場：\\(dm=l^{\\prime}dr+k^{\\prime}dy=dy\\{k^{\\prime}+l^{\\prime}[1-c^{\\prime}(1-t^{\\prime})]/i^{\\prime}\\}\\)，故 \\[\\frac{dy}{dm}=\\frac{1}{k^{\\prime}+l^{\\prime}[1-c^{\\prime}(1-t^{\\prime})]/i^{\\prime}}\\] 。",
-        "因 \\(i^{\\prime}<0\\)、\\(l^{\\prime}<0\\)，分母中的 \\(i^{\\prime}k^{\\prime}/l^{\\prime}\\) 與 \\(l^{\\prime}(...)/i^{\\prime}\\) 為正，政府支出乘數小於簡單乘數，貨幣乘數為正。"
-      ],
-      "answerType": "reference",
-      "note": "本站參考解答（非官方）"
-    },
-    {
-      "id": "108Q2-macro-written-1",
-      "sessionId": "108Q2",
-      "year": 108,
-      "session": 2,
+      "session": 3,
       "subject": "macro",
       "number": 1,
-      "stem": "假定銀行的資產負債表（億元）：資產為準備金 100、放款 900、證券 200，合計 1,200；負債為支票存款 400、定期存款 700、資本 100，合計 1,200。假定支票存款的法定準備率為 10%，定期存款法定準備率為 3%：(1) 請計算此銀行的超額準備。(2 分) (2) 假設銀行發生呆帳 50 億元，請將銀行打銷呆帳後的資產負債表呈現出來。(3 分) (3) 若支票存款的法定準備率提高為 20%，定期存款法定準備率提高為 5%，其他情況不變，此銀行會碰到什麼困難？可以用哪些做法解決，請顯示在簡單資產負債表（T 字帳）上。(5 分)",
+      "stem": "試說明金融危機的可能徵兆？(共 10 分)",
       "sourceIds": [
         "macro-05"
       ],
-      "kind": "計算題",
+      "kind": "申論題",
       "answer": [
-        "法定準備：支票存款 \\(400\\times10\\%=40\\)；定期存款 \\(700\\times3\\%=21\\)；合計61；實際準備100。",
-        "(1) 超額準備 \\(=100-61=39\\) 億元。",
-        "(2) 打銷呆帳50億元：放款減少50、資本減少50。資產：準備100、放款850、證券200＝1,150；負債：支票400、定存700、資本50＝1,150。",
-        "(3) 新法定準備 \\(400\\times20\\%+700\\times5\\%=80+35=115\\)，實際準備100，不足15。解決方法：賣證券15（準備115、證券185）、同業拆借15（準備115、負債增加15）、或收回放款15（準備115、放款835）。T字帳需保持資產負債相等。"
+        "金融危機徵兆：資產價格泡沫、信用與槓桿快速擴張、家庭/企業債務上升、銀行流動性錯配、信用利差與CDS上升、殖利率曲線倒掛、房價與成交量轉弱、不良貸款增加、資本外流與匯率貶值、金融機構傳染與信心崩跌。",
+        "制度面：影子銀行、監管套利、複雜證券化、風險集中、壓力測試失效、隱性擔保與道德風險。這些指標需綜合判讀，不能單一指標斷定危機。"
       ],
       "answerType": "reference",
       "note": "本站參考解答（非官方）"
     },
     {
-      "id": "108Q4-macro-written-1",
-      "sessionId": "108Q4",
-      "year": 108,
-      "session": 4,
+      "id": "110Q3-macro-written-1",
+      "sessionId": "110Q3",
+      "year": 110,
+      "session": 3,
       "subject": "macro",
       "number": 1,
-      "stem": "A 將外匯所得換成新台幣 1,000 元存入銀行，銀行將其中 900 元借給 B，B 投資咖啡店，投資款項 800 元匯入供應商 C 戶頭，B 自己保留 100 元營運現金。C 提領其中 100 元現金自用，銀行將 C 的 700 元存款中 600 元借給 D 用來開服飾店，D 自留 100 元營運金後，將款項 500 元匯入供應商 E 戶頭。E 提領 100 元自用後，銀行將 E 存款 400 元中 300 元借給 F，最後 F 借此 300 元供個人 消費，並未存入銀行體系。根據 A 新增存款 1,000 元後所造成存款與借款流程，請問：(1)新增流通在外通貨為多少？(2 分) (2)新增銀行準備為多少？(2 分) (3)新增貨幣供給為多少？(4 分) (4)新增的商業交易活動金額為多少？(2 分)",
+      "stem": "試說明金融危機的可能徵兆？（10 分）",
       "sourceIds": [
         "macro-05"
       ],
-      "kind": "計算題",
+      "kind": "申論題",
       "answer": [
-        "追蹤存款與現金：A存入1,000，準備+1,000、存款+1,000。銀行貸B900→B存款+900；B付C800、留100。C提現100→通貨+100、C存款700。銀行貸D600→D存款+600；D付E500、留100。E提現100→通貨+100、E存款400。銀行貸F300→F存款+300；F消費300未存入→通貨+300。",
-        "(1) 新增通貨＝100+100+300=**500**。",
-        "(2) 新增準備＝1,000－提現500=**500**。",
-        "(3) 新增存款＝A1,000+B100+C700+D100+E400=**2,300**；貨幣供給＝通貨500＋存款2,300=**2,800**。",
-        "(4) 新增商業交易活動＝B投資900＋C供應800＋D投資600＋E供應500＋F消費300=**3,100**（若只計最終支出，則為B900+D600+F300=1,800；本題以交易總額列示）。"
+        "金融危機的可能徵兆包括：資產價格泡沫（股市、房市漲幅遠超過基本面）、信用快速擴張與槓桿升高、家庭/企業債務比率上升、銀行資金來源短期化與流動性錯配、信用利差擴大、CDS/違約風險上升、殖利率曲線倒掛、房價與成交量轉弱、不良貸款與逾期放款增加、資本外流與匯率貶值壓力、金融機構互相傳染與信心崩跌。",
+        "制度面徵兆包括：影子銀行快速成長、監管套利、複雜證券化與衍生品透明度不足、風險集中於少數機構、壓力測試失效、政府隱性擔保與道德風險。",
+        "這些指標不必然同時出現，也不代表危機一定發生；應結合領先/同時指標、金融健全指標與壓力測試綜合判斷。"
       ],
       "answerType": "reference",
       "note": "本站參考解答（非官方）"
     },
     {
-      "id": "109Q2-macro-written-3",
-      "sessionId": "109Q2",
-      "year": 109,
-      "session": 2,
+      "id": "113Q1-macro-written-3",
+      "sessionId": "113Q1",
+      "year": 113,
+      "session": 1,
       "subject": "macro",
       "number": 3,
-      "stem": "在目前新型冠狀病毒肆虐下，各國紛紛採行寬鬆的貨幣政策，在凱因斯學派假設下，請用相關 圖形分析其對以下的影響為何？ (1)所得 Y （2 分） (2)物價 P （2 分） (3)名目工資 W （2 分） (4)就業 N （2 分） (5)利率 r （2 分） （請用 AD-AS 圖、IS-LM 圖及勞動市場供需圖分析）",
-      "sourceIds": [
-        "macro-05"
-      ],
-      "kind": "計算題",
-      "answer": [
-        "(1) 所得 Y：LM 右移，利率下降，所得上升；短期 Y 上升，長期回到自然水準。",
-        "(2) 物價 P：AD 右移，短期 P 上升；長期隨 SRAS 調整再上升。",
-        "(3) 名目工資 W：短期僵固；長期隨物價上升而上升。",
-        "(4) 就業 N：短期勞動需求增加，N 上升；長期回到自然就業。",
-        "(5) 利率 r：LM 右移使 r 下降；長期回到自然利率。"
-      ],
-      "answerType": "reference",
-      "note": "本站參考解答（非官方）"
-    },
-    {
-      "id": "109Q3-macro-written-1",
-      "sessionId": "109Q3",
-      "year": 109,
-      "session": 3,
-      "subject": "macro",
-      "number": 1,
-      "stem": "中央銀行訂的法定支票存款準備率是10%，活期存款準備率是8%。金融體系流通中的通貨淨額是400 億 元，支票存款總額是800 億元，活期存款總額是1,000 億元；銀行體系的總超額準備是5 億元。請算出此時的：(a)貨幣基數，(b)M1，(c)M1 的貨幣乘數。若支票存款及活期存款準備率皆調高 2 碼，銀行只有能力滿足法定準備要求，此時：(d)貨幣基數為多 少？(e)貨幣乘數為多少？",
-      "sourceIds": [
-        "macro-05"
-      ],
-      "kind": "計算題",
-      "answer": [
-        "法定準備：支票存款 \\(800\\times10\\%=80\\) 億；活期存款 \\(1{,}000\\times8\\%=80\\) 億；合計160億；超額準備5億；總準備165億。",
-        "(a) 貨幣基數＝通貨淨額400＋總準備165＝**565億**。(b) M1＝通貨400＋支票存款800＋活期存款1,000＝**2,200億**。(c) M1乘數＝2,200/565≈**3.8938**。",
-        "準備率各調高2碼（0.5個百分點）：支票10.5%、活期8.5%；法定準備 \\(800\\times10.5\\%+1{,}000\\times8.5\\%=84+85=169\\) 億；銀行僅能滿足法定準備，超額準備0。",
-        "(d) 貨幣基數＝400＋169＝**569億**。(e) M1乘數＝2,200/569≈**3.8664**。"
-      ],
-      "answerType": "reference",
-      "note": "本站參考解答（非官方）"
-    },
-    {
-      "id": "109Q4-macro-written-1",
-      "sessionId": "109Q4",
-      "year": 109,
-      "session": 4,
-      "subject": "macro",
-      "number": 1,
-      "stem": "若流通在外通貨為＄8,000，活期存款為＄10,000，超額準備為＄200，存款準備率 0.1，則請說明 以下各為多少？ (1)貨幣乘數（4 分） (2)貨幣基數（3 分） (3)貨幣供給額（3 分）",
-      "sourceIds": [
-        "macro-05"
-      ],
-      "kind": "計算題",
-      "answer": [
-        "通貨C=8,000，活期存款D=10,000，法定準備 \\(0.1\\times10{,}000=1{,}000\\)，超額準備200，總準備1,200。",
-        "(1) 貨幣乘數 \\(=(1+c)/(c+rr+e)\\)，其中 \\(c=8{,}000/10{,}000=0.8\\)、\\(rr=0.1\\)、\\(e=200/10{,}000=0.02\\)：\\((1.8)/(0.92)\\approx1.9565\\)。",
-        "(2) 貨幣基數 \\(=C+R=8{,}000+1{,}200=9{,}200\\)。",
-        "(3) 貨幣供給 \\(=C+D=8{,}000+10{,}000=18{,}000\\)。"
-      ],
-      "answerType": "reference",
-      "note": "本站參考解答（非官方）"
-    },
-    {
-      "id": "111Q3-macro-written-2",
-      "sessionId": "111Q3",
-      "year": 111,
-      "session": 3,
-      "subject": "macro",
-      "number": 2,
-      "stem": "貨幣供給(M)為 $12.5 million, 現金 (Cash)被非銀行體系的個人或機構持有額度為 $2.5 million, 準備金(Reserve)對存款 (Deposit)比率 (R/D)為0.25。則回答下列問題。(A)銀行存款 (Deposit)的總額度為？(2.5 分) (B)銀行準備金的總額度為？(2.5 分) (C)貨幣總量（貨幣基數）為多少 ? (2.5 分) (D)貨幣乘數為多少？(2.5 分)",
-      "sourceIds": [
-        "macro-05"
-      ],
-      "kind": "計算題",
-      "answer": [
-        "貨幣供給 \\(M=12.5\\) 百萬，現金 \\(C=2.5\\) 百萬，準備率 \\(R/D=0.25\\)。",
-        "(A) \\(M=C+D\\)，\\(12.5=2.5+D\\)，存款 \\(D=10\\) 百萬。",
-        "(B) 準備金 \\(R=0.25D=0.25\\times10=2.5\\) 百萬。",
-        "(C) 貨幣基數 \\(MB=C+R=2.5+2.5=5\\) 百萬。",
-        "(D) 貨幣乘數 \\(M/MB=12.5/5=2.5\\)。也可用 \\((1+c)/(c+r)\\)，其中 \\(c=C/D=0.25\\)、\\(r=0.25\\)，得 \\(1.25/0.50=2.5\\)。"
-      ],
-      "answerType": "reference",
-      "note": "本站參考解答（非官方）"
-    },
-    {
-      "id": "114Q1-macro-written-1",
-      "sessionId": "114Q1",
-      "year": 114,
-      "session": 1,
-      "subject": "macro",
-      "number": 1,
-      "stem": "當中央銀行採取貨幣緊縮政策，請用圖形及凱因斯理論分別描述對下列事項短期與長期的影響。(1)國內的產出、實質利率、淨出口。(5 分) (2)請問對於貿易夥伴國的產出、利率與淨出口有什麼影響？(5 分)",
-      "sourceIds": [
-        "macro-05",
-        "macro-06",
-        "macro-10"
-      ],
-      "kind": "計算題",
-      "note": "本站參考解答（非官方）",
-      "answer": [
-        "(1) 國內：央行緊縮使LM左移、AD左移。短期價格黏性下，產出下降、實質利率上升；利率上升吸引資本流入，本國貨幣升值，淨出口減少。圖形上IS不變、LM左移，均衡由\\((Y_0,r_0)\\)移至\\((Y_1<r? \\)實際為\\(Y_1<Y_0, r_1>r_0)\\)；AD-AS上AD左移，短期\\(P_1<P_0、Y_1<Y_n\\)。長期工資與物價下跌，實質貨幣供給增加，LM右移回到IS，產出回到潛在水準\\(Y_n\\)，實質利率回到自然利率\\(r^*\\)；實質匯率回到均衡，淨出口回到初始水準，但名目匯率與物價水準較低。",
-        "(2) 貿易夥伴國：本國需求收縮與本國貨幣升值使夥伴國出口需求下降，短期產出與利率傾向下降；夥伴國貨幣相對貶值，有利其淨出口與對第三國競爭力，但若本國需求大幅下降，夥伴國出口收入仍受壓。長期價格與匯率調整後，夥伴國實質變數回到自然水準；若本國為小型經濟，夥伴國影響有限。"
-      ],
-      "answerType": "reference"
-    },
-    {
-      "id": "114Q2-macro-written-1",
-      "sessionId": "114Q2",
-      "year": 114,
-      "session": 2,
-      "subject": "macro",
-      "number": 1,
-      "stem": "2019 年 COVID-19 開始大流行，重創美國經濟，造成股市大跌與失業率大幅上升。2020 年 3 月聯準會開始使用貨幣政策來救市及拉動經濟。請評論該政策的效果、後續的經濟副作用和後 來的矯正。(10 分)",
+      "stem": "請說明2023年美國矽谷銀行 (SVB) 倒閉的原因及美國政府如何克服這個金融危機？ (10分)",
       "sourceIds": [
         "macro-05"
       ],
       "kind": "申論題",
-      "note": "本站參考解答（非官方）",
       "answer": [
-        "COVID期間Fed將政策利率降至零附近，推出大規模QE、前瞻指引與流動性工具，短期效果是穩定金融市場、降低借貸成本、支撐資產價格與總合需求，避免失業與企業倒閉進一步惡化。",
-        "副作用包括2021-2022年通膨升高、資產價格膨脹與財富不均、道德風險與殭屍企業增加；貨幣政策單獨無法解決供給瓶頸。",
-        "後續矯正以2022年起快速升息、縮表、財政政策退場與加強金融監理為主；目標是在不造成硬著陸下把通膨拉回目標，並修復銀行流動性與期限錯配風險。"
+        "SVB倒閉的核心是資產負債期限錯配與利率風險：存款大量投入長期公債與MBS，聯準會快速升息使長債價格下跌，產生大量未實現損失；同時存款高度集中於科技與創投業，未受存保的存款比例高。",
+        "當客戶同時提款，銀行被迫賤賣資產實現損失，引發擠兌。社群媒體加速擠兌速度，流動性迅速耗盡。",
+        "美國政府處理：FDIC接管並保障存款（系統性風險例外）、Fed推出BTFP讓銀行以公債面額抵押借貸、財政部與Fed協調流動性；股東與無擔保債權人承擔損失，避免納稅人直接救助。"
       ],
-      "eventId": "fed-2025",
-      "answerType": "reference"
-    },
-    {
-      "id": "114Q2-macro-written-3",
-      "sessionId": "114Q2",
-      "year": 114,
-      "session": 2,
-      "subject": "macro",
-      "number": 3,
-      "stem": "請簡述台灣的貨幣政策架構與傳遞管道，包含的操作工具、操作目標、中間目標、最終目標。(10 分)",
-      "sourceIds": [
-        "macro-05"
-      ],
-      "kind": "申論題",
-      "note": "本站參考解答（非官方）",
-      "answer": [
-        "臺灣貨幣政策：央行以公開市場操作、重貼現率、存款準備率與選擇性信用管制為工具；操作目標為金融機構拆款利率與準備金水準，中間目標為\\(M_2\\)與信用成長，最終目標為物價穩定、金融穩定、經濟成長與就業。",
-        "傳遞管道包括利率、信用、資產價格、匯率與預期；臺灣是小型開放經濟，資本移動與匯率使政策效果受國際利率、出口循環與金融市場情緒影響。"
-      ],
-      "eventId": "taiwan-monetary-2025",
-      "answerType": "reference"
-    },
-    {
-      "id": "114Q3-macro-written-1",
-      "sessionId": "114Q3",
-      "year": 114,
-      "session": 3,
-      "subject": "macro",
-      "number": 1,
-      "stem": "考慮一個只有使用現金及活期存款的經濟社會。法定準備率是 10%，銀行體系有超額準備 10 億元，活期存款額 100 億元，現金和活期存款的比例為 0.2 (1) 銀行體系的總準備金有多少？ 貨幣乘數值為？(4 分) (2) 根據以上資料，若央行在公開市場買進 2 億元公債，貨幣供給如何變動？(2分) (3) 若現金和活期存款的比例變動為 0.3，貨幣乘數變為多少？(2分) (4) 若只有法定準備率提高為 20%，央行公開市場賣出 1 億元公債，貨幣供給如何變動？(2分)",
-      "sourceIds": [
-        "macro-05"
-      ],
-      "kind": "計算題",
-      "note": "本站參考解答（非官方）",
-      "answer": [
-        "(1) 法定準備金=100×10%=10億元；總準備金=10+10=20億元。現金=0.2×100=20億元，準備貨幣=20+20=40億元，貨幣供給=20+100=120億元，貨幣乘數=120/40=3（或(1+0.2)/(0.1+0.1+0.2)=3）。",
-        "(2) 央行買進2億元公債使準備貨幣增加2億元，貨幣供給增加約2×3=6億元。",
-        "(3) 現金比率0.3時，貨幣乘數=(1+0.3)/(0.1+0.1+0.3)=1.3/0.5=2.6。",
-        "(4) 法定準備率20%、賣出1億元時，貨幣乘數=(1+0.2)/(0.2+0.1+0.2)=1.2/0.5=2.4，貨幣供給減少約2.4億元。"
-      ],
-      "answerType": "reference"
-    },
-    {
-      "id": "115Q1-macro-written-1",
-      "sessionId": "115Q1",
-      "year": 115,
-      "session": 1,
-      "subject": "macro",
-      "number": 1,
-      "stem": "假設銀行僅吸收活期存款，活期存款的法定準備率為 5%，通貨淨額對活期存款比率為 10%，超 額準備對活期存款比率為 5%，則貨幣乘數為多少？(10 分，請列出式子)",
-      "sourceIds": [
-        "macro-05"
-      ],
-      "kind": "計算題",
-      "note": "本站參考解答（非官方）",
-      "answer": [
-        "通貨淨額對活期存款比率c=0.1，法定準備率rr=0.05，超額準備率e=0.05。貨幣乘數=(1+c)/(rr+e+c)=(1+0.1)/(0.05+0.05+0.1)=1.1/0.2=5.5。"
-      ],
-      "answerType": "reference"
-    },
-    {
-      "id": "115Q2-macro-written-2",
-      "sessionId": "115Q2",
-      "year": 115,
-      "session": 2,
-      "subject": "macro",
-      "number": 2,
-      "stem": "何謂央行數位通貨(CBDC)？（5 分）請就其發展狀況及國際趨勢作一申論說明。（5 分）",
-      "sourceIds": [
-        "macro-03",
-        "macro-05"
-      ],
-      "kind": "申論題",
-      "note": "本站參考解答（非官方）",
-      "answer": [
-        "CBDC是中央銀行發行的數位形式法定貨幣，可分零售型（公眾日常支付）與批發型（金融機構間結算）；它是央行負債，與商業銀行存款不同。",
-        "發展狀況與趨勢：中國e-CNY大規模試點，歐洲央行進行數位歐元準備，各國關注跨境支付效率、金融包融、隱私與離線支付；同時重視商業銀行脱媒、金融穩定與貨幣政策傳導。臺灣目前以研究、概念驗證與跨機構試驗為主，尚未全面發行。"
-      ],
-      "eventId": "cbdc-2025",
-      "answerType": "reference"
+      "answerType": "reference",
+      "note": "本站參考解答（非官方）"
     }
   ]
 },
@@ -4440,100 +1890,6 @@ window.CHAPTER_DATA["macro-05"] = {
     "label": "115 年",
     "sections": {
       "macro-05::1": {
-        "focus": "貨幣乘數題，先寫公式 m＝(1＋c)/(rr＋e＋c)，再逐項判斷變動方向。通貨比率、法定準備率、超額準備率上升都會使乘數變小。",
-        "strategies": [
-          "貨幣乘數 m＝(1＋c)/(rr＋e＋c)，c＝通貨/活期存款，rr＝法定準備率，e＝超額準備/活期存款。",
-          "c 上升：分子分母都增加，但分母增加較多，m 下降。",
-          "rr 或 e 上升：分母增加，m 下降。",
-          "準備貨幣（強力貨幣）＝通貨＋銀行準備金；貨幣供給＝m×準備貨幣。"
-        ],
-        "examples": [
-          {
-            "questionId": "115Q1-macro-written-1",
-            "steps": [
-              "c＝10%＝0.1，rr＝5%＝0.05，e＝5%＝0.05。",
-              "m＝(1＋c)/(rr＋e＋c)＝(1＋0.1)/(0.05＋0.05＋0.1)。",
-              "＝1.1/0.2＝5.5。",
-              "答案：貨幣乘數5.5。"
-            ],
-            "takeaway": "貨幣乘數公式分母包含法定準備、超額準備與通貨比率，三項缺一不可。",
-            "trap": "忘記把通貨比率放進分母，或把分子寫成c而不是1＋c。"
-          },
-          {
-            "questionId": "115Q1-macro-20",
-            "steps": [
-              "通貨比率越高：民眾持有現金越多，銀行可創造存款的基礎越少，乘數變小。",
-              "法定準備率越高：銀行必須保留更多準備，乘數變小。",
-              "超額準備率越高：銀行自願保留更多準備，乘數變小。",
-              "三者都會使貨幣乘數變小，答案D。"
-            ],
-            "takeaway": "通貨比率、法定準備率、超額準備率都與貨幣乘數反向。",
-            "trap": "以為通貨比率上升會讓乘數變大；現金漏出銀行體系會降低存款創造。"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "year": 114,
-    "label": "114 年",
-    "sections": {
-      "macro-05::1": {
-        "focus": "貨幣乘數題，先寫公式 m＝(1＋c)/(rr＋e＋c)，再逐項判斷變動方向。通貨比率、法定準備率、超額準備率上升都會使乘數變小。",
-        "strategies": [
-          "貨幣乘數 m＝(1＋c)/(rr＋e＋c)，c＝通貨/活期存款，rr＝法定準備率，e＝超額準備/活期存款。",
-          "c 上升：分子分母都增加，但分母增加較多，m 下降。",
-          "rr 或 e 上升：分母增加，m 下降。",
-          "準備貨幣（強力貨幣）＝通貨＋銀行準備金；貨幣供給＝m×準備貨幣。"
-        ],
-        "examples": [
-          {
-            "questionId": "114Q1-macro-05",
-            "steps": [
-              "現金/存款比c＝0.1，準備率rr＝0.12，假設無超額準備，貨幣乘數m＝(1＋c)/(rr＋c)。",
-              "m＝1.1/(0.12＋0.1)＝1.1/0.22＝5。",
-              "貨幣供給＝m×貨幣基數＝5×80＝400兆。",
-              "答案B；貨幣基數由央行負債與銀行準備構成。"
-            ],
-            "takeaway": "貨幣乘數用現金比率與準備率；貨幣供給＝乘數×貨幣基數。",
-            "trap": "把貨幣基數直接當貨幣供給，或忘記加現金比率。"
-          },
-          {
-            "questionId": "114Q3-macro-written-1",
-            "steps": [
-              "活期存款100億、現金比率0.2，故現金20億；法定準備＝100×10%＝10億，超額準備10億，總準備20億。",
-              "準備貨幣＝現金20＋準備20＝40億；M1B＝現金20＋存款100＝120億；貨幣乘數＝120/40＝3。",
-              "央行買進2億公債，準備貨幣增加2億，貨幣供給增加3×2＝6億。",
-              "若現金比率0.3，m＝(1＋0.3)/(0.1＋0.1＋0.3)＝2.6。若法定準備率20%、賣出1億，m＝1.2/(0.2＋0.1＋0.2)＝2.4，貨幣供給減少2.4億。"
-            ],
-            "takeaway": "先算現金、準備、準備貨幣，再算乘數；公開市場操作乘上乘數就是貨幣供給變動。",
-            "trap": "把超額準備漏掉，或把現金比率只加在分子；乘數分母也要加超額準備率。"
-          },
-          {
-            "questionId": "114Q2-macro-written-1",
-            "steps": [
-              "COVID-19期間Fed採降息、QE與前瞻指引，短期壓低利率、支撐資產價格與信用流動，避免金融體系崩潰。",
-              "副作用包括通膨升高、資產價格與財富不均、殭屍企業與道德風險。",
-              "後續矯正以快速升息、縮表、財政退場與加強金融監理為主。",
-              "難點是抑制通膨又不能造成硬著陸；可用AD-AS、Phillips曲線與流動性陷阱說明。"
-            ],
-            "takeaway": "救市政策短期有效，但長期要付出通膨與道德風險的代價。",
-            "trap": "只寫「QE很好」或只寫「通膨很糟」；要同時寫效果、副作用與矯正。"
-          },
-          {
-            "questionId": "114Q2-macro-written-3",
-            "steps": [
-              "臺灣貨幣政策架構：央行以公開市場操作、重貼現率、存款準備率與選擇性信用管制為主要工具。",
-              "操作目標為金融業拆款利率與準備金水準；中間目標為M2與信用成長。",
-              "最終目標為物價穩定、金融穩定、經濟成長與就業。",
-              "傳遞管道包括利率、信用、資產價格、匯率與預期；臺灣是小型開放經濟，受國際利率與貿易循環影響。"
-            ],
-            "takeaway": "政策架構用「工具→操作目標→中間目標→最終目標」四層來寫。",
-            "trap": "把最終目標與操作工具混在一起；拆款利率是操作目標，不是最終目標。"
-          }
-        ]
-      },
-      "macro-05::4": {
         "focus": "中央銀行題，先分「目標、工具、組織」。央行目標通常是物價穩定、金融穩定、經濟成長；工具包括公開市場操作、重貼現、準備率。",
         "strategies": [
           "央行經營目標：促進金融穩定、健全銀行業務、維護對內及對外幣值穩定、協助經濟發展。",
@@ -4543,15 +1899,37 @@ window.CHAPTER_DATA["macro-05"] = {
         ],
         "examples": [
           {
-            "questionId": "114Q1-macro-10",
+            "questionId": "115Q1-macro-08",
             "steps": [
-              "公開市場操作是央行最常用的工具；賣出債券會收回準備貨幣，降低貨幣供給。",
-              "「對大眾販售債券」即公開市場賣出，答案B。",
-              "買回債券會放出準備貨幣、增加貨幣供給；增加賦稅是財政政策。",
-              "從政府或大眾買回債券都是擴張方向。"
+              "CBDC 是央行直接發行的數位負債，民眾可直接在央行持有。",
+              "這使央行能更直接掌握貨幣供給與支付系統，控制能力提高。",
+              "商業銀行不會完全消失，但可能面臨存款流失與脱媒壓力。",
+              "通膨不一定上升、匯率也不一定固定。答案A。"
             ],
-            "takeaway": "降低貨幣供給＝央行賣債券、收回流動性。",
-            "trap": "把「賣出債券」與「買回債券」的方向寫反。"
+            "takeaway": "CBDC 提高央行對貨幣與支付體系的直接控制，但也帶來銀行脱媒風險。",
+            "trap": "把 CBDC 說成商業銀行存款，或以為它必然造成通膨。"
+          },
+          {
+            "questionId": "115Q2-macro-30",
+            "steps": [
+              "中央銀行法第2條的經營目標包括：促進金融穩定、健全銀行業務、維護對內及對外幣值穩定、協助經濟發展。",
+              "外匯存底孳息繳庫不是法定經營目標，而是盈餘繳庫的預算處理。",
+              "因此答案C。",
+              "答題時把「政策目標」與「預算處理」分開。"
+            ],
+            "takeaway": "央行四大目標：金融穩定、健全銀行、幣值穩定、協助經濟發展。",
+            "trap": "把「外匯存底孳息繳庫」當成央行政策目標。"
+          },
+          {
+            "questionId": "115Q2-macro-16",
+            "steps": [
+              "FOMC 是美國貨幣政策的決策機構。",
+              "投票成員共12人：7名聯邦準備理事會理事、紐約聯準銀行總裁（當然委員）、4名地區聯準銀行總裁輪值。",
+              "因此「有13名投票成員」錯誤；答案A。",
+              "B、C、D都是正確描述。"
+            ],
+            "takeaway": "FOMC 投票成員是12人，不是13人；紐約聯準銀行總裁是當然委員。",
+            "trap": "把「12個地區聯準銀行」與「12名投票成員」混淆。"
           }
         ]
       }
@@ -4562,50 +1940,20 @@ window.CHAPTER_DATA["macro-05"] = {
     "label": "113 年",
     "sections": {
       "macro-05::1": {
-        "focus": "貨幣乘數題，先寫公式 m＝(1＋c)/(rr＋e＋c)，再逐項判斷變動方向。通貨比率、法定準備率、超額準備率上升都會使乘數變小。",
+        "focus": "中央銀行與金融穩定：央行同時面對物價、成長與金融穩定目標。解題時先分政策工具（公開市場操作、貼現窗口、準備率、流動性工具），再看事件是流動性問題還是清償能力問題。",
         "strategies": [
-          "貨幣乘數 m＝(1＋c)/(rr＋e＋c)，c＝通貨/活期存款，rr＝法定準備率，e＝超額準備/活期存款。",
-          "c 上升：分子分母都增加，但分母增加較多，m 下降。",
-          "rr 或 e 上升：分母增加，m 下降。",
-          "準備貨幣（強力貨幣）＝通貨＋銀行準備金；貨幣供給＝m×準備貨幣。"
+          "中央銀行目標：物價穩定、金融穩定、經濟成長；工具包括公開市場操作、重貼現、準備率、選擇性信用管制。",
+          "金融危機處理：最後貸款者提供流動性，存款保險保障存款人，必要時以系統性風險例外處理。",
+          "SVB：利率上升造成長債未實現損失、存款集中且未受保比例高、擠兌速度快。",
+          "政策取捨：救流動性不等於救股東；股東與無擔保債權人先承擔損失，降低道德風險。"
         ],
         "examples": [
           {
-            "questionId": "113Q2-macro-28",
+            "questionId": "113Q1-macro-written-3",
             "steps": [
-              "通貨淨額C＝200億，存款D＝800億，超額準備ER＝40億，法定準備RR＝10%×800＝80億。",
-              "準備R＝RR＋ER＝120億；貨幣基數H＝C＋R＝200＋120＝320億。",
-              "通貨/存款比＝200/800＝0.25；超額準備/存款＝40/800＝0.05；貨幣乘數＝(1＋0.25)/(0.1＋0.05＋0.25)＝1.25/0.4＝3.125。",
-              "只有D正確。"
-            ],
-            "takeaway": "貨幣基數＝通貨＋準備；貨幣乘數＝(1＋c)/(rr＋e＋c)。",
-            "trap": "把貨幣基數只算通貨，或把超額準備漏掉。"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "year": 111,
-    "label": "111 年",
-    "sections": {
-      "macro-05::1": {
-        "focus": "貨幣乘數題，先寫公式 m＝(1＋c)/(rr＋e＋c)，再逐項判斷變動方向。通貨比率、法定準備率、超額準備率上升都會使乘數變小。",
-        "strategies": [
-          "貨幣乘數 m＝(1＋c)/(rr＋e＋c)，c＝通貨/活期存款，rr＝法定準備率，e＝超額準備/活期存款。",
-          "c 上升：分子分母都增加，但分母增加較多，m 下降。",
-          "rr 或 e 上升：分母增加，m 下降。",
-          "準備貨幣（強力貨幣）＝通貨＋銀行準備金；貨幣供給＝m×準備貨幣。"
-        ],
-        "examples": [
-          {
-            "questionId": "111Q3-macro-written-2",
-            "steps": [
-              "貨幣供給 \\(M=12.5\\) 百萬，現金 \\(C=2.5\\) 百萬，準備率 \\(R/D=0.25\\)。",
-              "(A) \\(M=C+D\\)，\\(12.5=2.5+D\\)，存款 \\(D=10\\) 百萬。",
-              "(B) 準備金 \\(R=0.25D=0.25\\times10=2.5\\) 百萬。",
-              "(C) 貨幣基數 \\(MB=C+R=2.5+2.5=5\\) 百萬。",
-              "(D) 貨幣乘數 \\(M/MB=12.5/5=2.5\\)。也可用 \\((1+c)/(c+r)\\)，其中 \\(c=C/D=0.25\\)、\\(r=0.25\\)，得 \\(1.25/0.50=2.5\\)。"
+              "SVB倒閉的核心是資產負債期限錯配與利率風險：存款大量投入長期公債與MBS，聯準會快速升息使長債價格下跌，產生大量未實現損失；同時存款高度集中於科技與創投業，未受存保的存款比例高。",
+              "當客戶同時提款，銀行被迫賤賣資產實現損失，引發擠兌。社群媒體加速擠兌速度，流動性迅速耗盡。",
+              "美國政府處理：FDIC接管並保障存款（系統性風險例外）、Fed推出BTFP讓銀行以公債面額抵押借貸、財政部與Fed協調流動性；股東與無擔保債權人承擔損失，避免納稅人直接救助。"
             ],
             "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
           }
@@ -4617,79 +1965,22 @@ window.CHAPTER_DATA["macro-05"] = {
     "year": 110,
     "label": "110 年",
     "sections": {
-      "macro-05::1": {
-        "focus": "貨幣乘數題，先寫公式 m＝(1＋c)/(rr＋e＋c)，再逐項判斷變動方向。通貨比率、法定準備率、超額準備率上升都會使乘數變小。",
-        "strategies": [
-          "貨幣乘數 m＝(1＋c)/(rr＋e＋c)，c＝通貨/活期存款，rr＝法定準備率，e＝超額準備/活期存款。",
-          "c 上升：分子分母都增加，但分母增加較多，m 下降。",
-          "rr 或 e 上升：分母增加，m 下降。",
-          "準備貨幣（強力貨幣）＝通貨＋銀行準備金；貨幣供給＝m×準備貨幣。"
-        ],
-        "examples": [
-          {
-            "questionId": "110Q1-macro-11",
-            "steps": [
-              "貨幣乘數＝貨幣供給/貨幣基數，數值大於1。",
-              "通貨比率、法定準備率、超額準備率上升，都會使貨幣乘數下降。",
-              "答案A。"
-            ],
-            "takeaway": "乘數分母是rr＋e＋c，任何一項上升都使乘數變小。",
-            "trap": "把乘數與貨幣基數記反。"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "year": 109,
-    "label": "109 年",
-    "sections": {
       "macro-05::3": {
-        "focus": "貨幣政策效果：寬鬆政策使貨幣供給增加、利率下降、投資與消費增加，AD 右移；短期產出與物價上升，長期只影響物價。",
+        "focus": "金融危機徵兆題從「資產價格、信用擴張、金融機構體質、外部失衡」四面向整理：先看泡沫與槓桿，再看擠兌與傳染。",
         "strategies": [
-          "寬鬆貨幣：貨幣供給↑→利率↓→投資↑→AD 右移。",
-          "短期：Y↑、P↑、就業↑；長期：Y 回到自然產出，P 同比例上升。",
-          "名目工資具僵固性時，短期實質工資下降、廠商增產；長期名目工資調整，實質工資回復。",
-          "凱因斯學派強調需求面與價格僵固，政策短期有效。"
+          "資產價格偏離基本面、股市與房市泡沫。",
+          "信用快速擴張、槓桿比率升高、放款標準放寬。",
+          "金融機構流動性不足、期限錯配、不良債權增加。",
+          "國際收支惡化、外匯存底流失、匯率貶值壓力。",
+          "傳染效果：一家機構倒閉引發系統性擠兌與市場凍結。"
         ],
         "examples": [
           {
-            "questionId": "109Q2-macro-written-3",
+            "questionId": "110Q3-macro-written-1",
             "steps": [
-              "寬鬆貨幣政策：LM右移、利率下降、所得上升；AD右移，短期物價上升、產出增加。",
-              "勞動市場：產出增加帶動勞動需求上升，就業增加、失業下降；名目工資短期僵固，實質工資下降。長期名目工資隨物價調整上升，SRAS左移，產出回到自然率、物價再上升。",
-              "綜合效果：短期Y↑、P↑、W僵固、N↑、r↓；長期Y回到自然率、P與W同比例上升、N回到自然率、r回到自然利率。若流動性陷阱，短期效果有限。"
-            ],
-            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
-          }
-        ]
-      },
-      "macro-05::1": {
-        "focus": "貨幣乘數題，先寫公式 m＝(1＋c)/(rr＋e＋c)，再逐項判斷變動方向。通貨比率、法定準備率、超額準備率上升都會使乘數變小。",
-        "strategies": [
-          "貨幣乘數 m＝(1＋c)/(rr＋e＋c)，c＝通貨/活期存款，rr＝法定準備率，e＝超額準備/活期存款。",
-          "c 上升：分子分母都增加，但分母增加較多，m 下降。",
-          "rr 或 e 上升：分母增加，m 下降。",
-          "準備貨幣（強力貨幣）＝通貨＋銀行準備金；貨幣供給＝m×準備貨幣。"
-        ],
-        "examples": [
-          {
-            "questionId": "109Q3-macro-written-1",
-            "steps": [
-              "法定準備：支票存款 \\(800\\times10\\%=80\\) 億；活期存款 \\(1{,}000\\times8\\%=80\\) 億；合計160億；超額準備5億；總準備165億。",
-              "(a) 貨幣基數＝通貨淨額400＋總準備165＝565億。(b) M1＝通貨400＋支票存款800＋活期存款1,000＝2,200億。(c) M1乘數＝2,200/565≈3.8938。",
-              "準備率各調高2碼（0.5個百分點）：支票10.5%、活期8.5%；法定準備 \\(800\\times10.5\\%+1{,}000\\times8.5\\%=84+85=169\\) 億；銀行僅能滿足法定準備，超額準備0。",
-              "(d) 貨幣基數＝400＋169＝569億。(e) M1乘數＝2,200/569≈3.8664。"
-            ],
-            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
-          },
-          {
-            "questionId": "109Q4-macro-written-1",
-            "steps": [
-              "通貨C=8,000，活期存款D=10,000，法定準備 \\(0.1\\times10{,}000=1{,}000\\)，超額準備200，總準備1,200。",
-              "(1) 貨幣乘數 \\(=(1+c)/(c+rr+e)\\)，其中 \\(c=8{,}000/10{,}000=0.8\\)、\\(rr=0.1\\)、\\(e=200/10{,}000=0.02\\)：\\((1.8)/(0.92)\\approx1.9565\\)。",
-              "(2) 貨幣基數 \\(=C+R=8{,}000+1{,}200=9{,}200\\)。",
-              "(3) 貨幣供給 \\(=C+D=8{,}000+10{,}000=18{,}000\\)。"
+              "金融危機的可能徵兆包括：資產價格泡沫（股市、房市漲幅遠超過基本面）、信用快速擴張與槓桿升高、家庭/企業債務比率上升、銀行資金來源短期化與流動性錯配、信用利差擴大、CDS/違約風險上升、殖利率曲線倒掛、房價與成交量轉弱、不良貸款與逾期放款增加、資本外流與匯率貶值壓力、金融機構互相傳染與信心崩跌。",
+              "制度面徵兆包括：影子銀行快速成長、監管套利、複雜證券化與衍生品透明度不足、風險集中於少數機構、壓力測試失效、政府隱性擔保與道德風險。",
+              "這些指標不必然同時出現，也不代表危機一定發生；應結合領先/同時指標、金融健全指標與壓力測試綜合判斷。"
             ],
             "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
           }
@@ -4701,81 +1992,23 @@ window.CHAPTER_DATA["macro-05"] = {
     "year": 108,
     "label": "108 年",
     "sections": {
-      "macro-05::1": {
-        "focus": "貨幣乘數題，先寫公式 m＝(1＋c)/(rr＋e＋c)，再逐項判斷變動方向。通貨比率、法定準備率、超額準備率上升都會使乘數變小。",
+      "macro-05::3": {
+        "focus": "金融危機徵兆題從「資產價格、信用擴張、金融機構體質、外部失衡」四面向整理：先看泡沫與槓桿，再看擠兌與傳染。",
         "strategies": [
-          "貨幣乘數 m＝(1＋c)/(rr＋e＋c)，c＝通貨/活期存款，rr＝法定準備率，e＝超額準備/活期存款。",
-          "c 上升：分子分母都增加，但分母增加較多，m 下降。",
-          "rr 或 e 上升：分母增加，m 下降。",
-          "準備貨幣（強力貨幣）＝通貨＋銀行準備金；貨幣供給＝m×準備貨幣。"
+          "資產價格偏離基本面、股市與房市泡沫。",
+          "信用快速擴張、槓桿比率升高、放款標準放寬。",
+          "金融機構流動性不足、期限錯配、不良債權增加。",
+          "國際收支惡化、外匯存底流失、匯率貶值壓力。",
+          "傳染效果：一家機構倒閉引發系統性擠兌與市場凍結。"
         ],
         "examples": [
           {
-            "questionId": "108Q2-macro-written-1",
+            "questionId": "108Q3-macro-written-1",
             "steps": [
-              "法定準備：支票存款 \\(400\\times10\\%=40\\)；定期存款 \\(700\\times3\\%=21\\)；合計61；實際準備100。",
-              "(1) 超額準備 \\(=100-61=39\\) 億元。",
-              "(2) 打銷呆帳50億元：放款減少50、資本減少50。資產：準備100、放款850、證券200＝1,150；負債：支票400、定存700、資本50＝1,150。",
-              "(3) 新法定準備 \\(400\\times20\\%+700\\times5\\%=80+35=115\\)，實際準備100，不足15。解決方法：賣證券15（準備115、證券185）、同業拆借15（準備115、負債增加15）、或收回放款15（準備115、放款835）。T字帳需保持資產負債相等。"
+              "金融危機徵兆：資產價格泡沫、信用與槓桿快速擴張、家庭/企業債務上升、銀行流動性錯配、信用利差與CDS上升、殖利率曲線倒掛、房價與成交量轉弱、不良貸款增加、資本外流與匯率貶值、金融機構傳染與信心崩跌。",
+              "制度面：影子銀行、監管套利、複雜證券化、風險集中、壓力測試失效、隱性擔保與道德風險。這些指標需綜合判讀，不能單一指標斷定危機。"
             ],
             "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
-          },
-          {
-            "questionId": "108Q4-macro-written-1",
-            "steps": [
-              "追蹤存款與現金：A存入1,000，準備+1,000、存款+1,000。銀行貸B900→B存款+900；B付C800、留100。C提現100→通貨+100、C存款700。銀行貸D600→D存款+600；D付E500、留100。E提現100→通貨+100、E存款400。銀行貸F300→F存款+300；F消費300未存入→通貨+300。",
-              "(1) 新增通貨＝100+100+300=500。",
-              "(2) 新增準備＝1,000－提現500=500。",
-              "(3) 新增存款＝A1,000+B100+C700+D100+E400=2,300；貨幣供給＝通貨500＋存款2,300=2,800。",
-              "(4) 新增商業交易活動＝B投資900＋C供應800＋D投資600＋E供應500＋F消費300=3,100（若只計最終支出，則為B900+D600+F300=1,800；本題以交易總額列示）。"
-            ],
-            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
-          },
-          {
-            "questionId": "108Q1-macro-06",
-            "steps": [
-              "貨幣乘數 m＝(1＋c)/(rr＋e＋c)＝(1＋0.15)/(0.10＋0.15＋0.15)＝1.15/0.40＝2.875。",
-              "央行買入100萬元債券→貨幣基數增加100萬元→貨幣供給增加約287.5萬元。",
-              "答案B。"
-            ],
-            "takeaway": "貨幣乘數分母是法定準備率、超額準備率與通貨比率之和。",
-            "trap": "忘記把通貨比率放進分母。"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "year": 107,
-    "label": "107 年",
-    "sections": {
-      "macro-05::1": {
-        "focus": "貨幣乘數題，先寫公式 m＝(1＋c)/(rr＋e＋c)，再逐項判斷變動方向。通貨比率、法定準備率、超額準備率上升都會使乘數變小。",
-        "strategies": [
-          "貨幣乘數 m＝(1＋c)/(rr＋e＋c)，c＝通貨/活期存款，rr＝法定準備率，e＝超額準備/活期存款。",
-          "c 上升：分子分母都增加，但分母增加較多，m 下降。",
-          "rr 或 e 上升：分母增加，m 下降。",
-          "準備貨幣（強力貨幣）＝通貨＋銀行準備金；貨幣供給＝m×準備貨幣。"
-        ],
-        "examples": [
-          {
-            "questionId": "107Q1-macro-written-2",
-            "steps": [
-              "法定準備 \\(1{,}500\\times20\\%=300\\) 億；超額準備20億；銀行準備金 320億。",
-              "通貨淨額＝通貨發行額200－庫存現金20＝180億；準備貨幣 \\(180+320=500\\) 億。",
-              "貨幣供給 \\(180+1{,}500=1{,}680\\) 億；貨幣乘數 \\(1{,}680/500=3.36\\)。"
-            ],
-            "takeaway": "先畫圖或列方程式，再區分短期與長期；最後用政策效果檢查結論。"
-          },
-          {
-            "questionId": "107Q2-macro-13",
-            "steps": [
-              "法定準備率上升→貨幣乘數分母變大→貨幣乘數下降。",
-              "貨幣供給減少，利率上升。",
-              "答案C。"
-            ],
-            "takeaway": "準備率與貨幣乘數反向。",
-            "trap": "以為提高準備率會增加貨幣供給。"
           }
         ]
       }

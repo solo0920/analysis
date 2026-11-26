@@ -3,7 +3,7 @@
 window.MACRO_DIAGRAMS = window.MACRO_DIAGRAMS || {};
 
 Object.assign(window.MACRO_DIAGRAMS, {
-  "macro-09#2": {
+  "macro-10#2": {
     sectionTitle: "第3節 菲利浦曲線",
     title: "菲利浦曲線：短期取捨、預期上移與長期垂直",
     kicker: "學派模型 · 貨幣學派",
@@ -106,7 +106,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "圖為線性模型示意，不是離散資料插值；實際 SRPC 可能凸向原點，斜率也會隨制度與期間改變。圖中數值僅為教學示例。"
   },
 
-  "macro-10#1": {
+  "macro-11#1": {
     sectionTitle: "第2節 匯率之決定",
     title: "外匯供需與均衡匯率",
     formula: String.raw`D(e)=S(e)`,
@@ -156,7 +156,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "直接報價下，e 上升代表本國貨幣貶值、外幣升值；e 下降代表本國貨幣升值。遠期匯率另受兩國利差與預期影響。本圖只畫供給右移以隔離單一效果；實務上外資流入、出口與利率變動常同時影響供需兩條曲線。"
   },
 
-  "macro-10#3": {
+  "macro-11#3": {
     sectionTitle: "第4節 匯率制度與央行外匯干預政策",
     title: "央行買匯干預：外匯需求右移",
     formula: String.raw`\text{固定匯率}+\text{資本自由移動}+\text{獨立貨幣政策}\le2`,
@@ -205,7 +205,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "央行干預通常用於平滑短期波動或累積外匯存底，但難以長期對抗市場趨勢；未沖銷干預會與貨幣政策目標衝突。本圖只畫央行買匯造成的需求右移；實際干預時，民間外匯供給與需求可能同時變動，圖為教學上的單一衝擊。"
   },
 
-  "macro-11#0": {
+  "macro-12#0": {
     sectionTitle: "第1節 金融體系",
     title: "金融體系的資金流向：直接金融與間接金融",
     formula: String.raw`\text{剩餘單位}\to\text{金融市場或中介}\to\text{不足單位}`,
@@ -253,7 +253,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     note: "直接金融與間接金融不是互斥，而是互補；同一筆資金可能同時經過市場與中介。"
   }
 ,
-  "macro-09#2-2": {
+  "macro-10#2-2": {
     sectionTitle: "第3節 菲利浦曲線",
     kicker: "學派模型 · 新凱因斯",
     title: "新凱因斯模型：NKPC 與 Taylor 規則",
@@ -399,7 +399,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     ],
     note: "圖為線性模型示意，不是離散資料插值；NKPC 圖設 β=1 以簡化截距，實際 β<1 時截距為 βEπ。NKPC 的斜率與 Taylor 規則係數會隨模型設定與期間改變；實際央行也會考慮金融穩定、匯率與不確定性。"
   },
-  "macro-10#1-2": {
+  "macro-11#1-2": {
     sectionTitle: "第2節 匯率之決定",
     kicker: "學派模型 · 開放經濟",
     title: "Mundell-Fleming：IS-LM-BP 與資本移動",

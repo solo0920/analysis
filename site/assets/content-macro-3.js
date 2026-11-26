@@ -16,7 +16,7 @@ window.MACRO_SUBJECT.chapters.forEach(function (chapter) {
 
 window.MACRO_SUBJECT.chapters.push(
   {
-    id: "macro-11",
+    id: "macro-12",
     number: 12,
     part: 2,
     partTitle: "金融市場",
@@ -106,7 +106,7 @@ window.MACRO_SUBJECT.chapters.push(
     ]
   },
   {
-    id: "macro-12",
+    id: "macro-13",
     number: 13,
     part: 2,
     partTitle: "金融市場",
@@ -236,7 +236,7 @@ window.MACRO_SUBJECT.chapters.push(
     ]
   },
   {
-    id: "macro-13",
+    id: "macro-14",
     number: 14,
     part: 2,
     partTitle: "金融市場",
