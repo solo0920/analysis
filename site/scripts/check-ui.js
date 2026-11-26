@@ -79,9 +79,25 @@ function urlFor(base, route) {
 
 const ROUTES = [
   { name: "home", path: "/#/", selector: ".hero", expect: null },
+  { name: "subject", path: "/#/subject/macro", selector: ".subject-hero", expect: null },
   { name: "chapter", path: "/#/chapter/macro-09?section=3", selector: "#section-3 .model-diagram", expect: 2 },
+  { name: "past-exams", path: "/#/past-exams", selector: ".past-exam-hero", expect: null },
   { name: "past-exam", path: "/#/past-exams?question=108Q2-macro-11", selector: "[data-practice-option]", expect: 4 },
-  { name: "review", path: "/#/review", selector: ".review-hero", expect: null }
+  { name: "written-exams", path: "/#/past-exams/written", selector: ".written-page", expect: null },
+  { name: "written-exam", path: "/#/past-exams/written?question=107Q3-accounting-written-5", selector: "#written-107Q3-accounting-written-5", expect: 1 },
+  { name: "review", path: "/#/review", selector: ".review-hero", expect: null },
+  { name: "exam-forecast", path: "/#/exam-forecast?subject=accounting", selector: ".forecast-page", expect: null },
+  { name: "nobel", path: "/#/nobel?group=nobel-17", selector: "#nobel-module-nobel-17", expect: 1 },
+  { name: "models-macro", path: "/#/models/macro?chapter=macro-09", selector: "#models-macro-09", expect: 1 },
+  { name: "macro-current", path: "/#/macro-current?event=fed-2025", selector: "#macro-event-fed-2025", expect: 1 }
+];
+
+const CONTENT_CHECKS = [
+  { name: "nobel-2026-nkpc", path: "/#/nobel?group=nobel-17", selector: "#nobel-module-nobel-17", contains: "產出缺口 ỹ" },
+  { name: "accounting-107Q3", path: "/#/past-exams/written?question=107Q3-accounting-written-5", selector: "#written-107Q3-accounting-written-5", contains: "1,059,600" },
+  { name: "accounting-109Q3", path: "/#/past-exams/written?question=109Q3-accounting-written-1", selector: "#written-109Q3-accounting-written-1", contains: "11,067,062" },
+  { name: "accounting-109Q1", path: "/#/past-exams/written?question=109Q1-accounting-written-1", selector: "#written-109Q1-accounting-written-1", contains: "97,000" },
+  { name: "accounting-115Q1", path: "/#/chapter/accounting-02?section=5", selector: "#section-5 .section-solutions", contains: "51,000" }
 ];
 
 function checkPage(send, events, route, selector, expectedCount) {
@@ -123,7 +139,7 @@ async function main() {
         { width: 390, height: 900, mobile: true, theme: "light" },
         { width: 390, height: 900, mobile: true, theme: "dark" }
       ];
-  const routes = args.quick ? ROUTES.slice(0, 2) : ROUTES;
+  const routes = ROUTES;
   const results = [];
   let failed = 0;
 
@@ -165,6 +181,26 @@ async function main() {
         (problems.length ? " — " + problems.join("; ") : "")
       );
     }
+  }
+
+  // Content assertions for recently audited formulas and accounting examples.
+  await send("Emulation.setDeviceMetricsOverride", { width: 1280, height: 1000, deviceScaleFactor: 1, mobile: false });
+  for (const check of CONTENT_CHECKS) {
+    events.length = 0;
+    await send("Page.navigate", { url: urlFor(args.base, check.path) });
+    const ready = await waitFor(send, `document.readyState === "complete" && Boolean(document.querySelector(${JSON.stringify(check.selector)}))`);
+    const state = await evaluate(send, `({
+      contains: document.body.textContent.includes(${JSON.stringify(check.contains)}),
+      katexErrors: document.querySelectorAll(".katex-error").length,
+      overflow: document.documentElement.scrollWidth - window.innerWidth
+    })`);
+    const problems = [];
+    if (!ready) problems.push("selector missing");
+    if (!state.contains) problems.push("text missing: " + check.contains);
+    if (state.katexErrors) problems.push("katex errors " + state.katexErrors);
+    if (state.overflow > 1) problems.push("overflow " + state.overflow);
+    if (problems.length) failed += 1;
+    console.log((problems.length ? "FAIL" : "ok  ") + " content " + check.name + (problems.length ? " — " + problems.join("; ") : ""));
   }
 
   // Search overlay smoke check at desktop light.

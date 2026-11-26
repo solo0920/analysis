@@ -27,7 +27,7 @@
 | 首頁、導覽、搜尋與來源頁已加入會計學與證券法規 | ☑ 通過 | 首頁 4 張科目卡；導覽 6 個連結；搜尋索引與 26 個來源 |
 | 證券交易相關法規與實務 | ☑ 通過 | 依 `ExamScope.md` 與 `documents/securities_law_contents.md` 建檔 21 章、52 節；14 頁官方全文（15 部法規、1,507 條），7 頁自律規範／其他法令連結摘要 |
 | 測驗範圍補充 | ☑ 通過 | 總體 Ch8 景氣訊號燈；投資 Ch7 利率期限結構、Ch8 交易制度、Ch16 客戶風險態度與稅負；會計 Ch19 外匯風險 |
-| 會計學公式與分錄 | 通過（代表項目） | A1–A12 公式均已核對（A1、A3–A5、A7、A8、A12 依 IFRS 官方；A2、A6、A9–A11 依公開教材）；代表性分錄與報表勾稽已檢查（review 2.1）；各章例題逐題重算仍待 |
+| 會計學公式與分錄 | 通過（代表項目） | A1–A12 公式均已核對（A1、A3–A5、A7、A8、A12 依 IFRS 官方；A2、A6、A9–A11 依公開教材）；代表性分錄與報表勾稽已檢查（review 2.1）；會計例題算術覆核與答案交叉檢查已完成（review 2.3）；與原始試卷逐題全文比對仍待 |
 | `node site/scripts/validate-content.js` 通過 | ☑ 通過 | 失敗數應為 0 |
 | 總體經濟學模型圖掛在正確的章節與節次 | ☑ 通過 | 28 張（含 1 張教學流程圖、1 張 NFIA 觀念圖與 5 張學派模型）；`chapterId#sectionIndex` 與 `sectionTitle` 一致 |
 | 每張模型圖與教學流程圖都有變數表、參數表與示意提醒 | ☑ 通過 | `variables`、`parameters` 皆為 `[符號, 名稱, 說明]` |
@@ -109,7 +109,7 @@
 | A11 | 會計 Ch21 | NPV 與營業現金流 | `NPV = −CF₀ + Σ CFₜ ÷（1 + r）ᵗ；營業現金流 =（收入 − 現金費用）×（1 − T）+ 折舊 × T` | [OpenStax《Principles of Finance》16.2 NPV](https://openstax.org/books/principles-finance/pages/16-2-net-present-value-npv-method)；[Ole Miss FIN 331 Ch9](http://faculty.bus.olemiss.edu/rvanness/Courses/Fin%20331/Chapter%209.pdf) | 通過 | 教材核對：NPV＝現金流入現值−現金流出現值；OCF 稅盾法＝(Sales−Costs)(1−T)+D×T；沉沒成本不相關 |
 | A12 | 會計 Ch23 | 基本每股盈餘 | `（淨利 − 特別股股利）÷ 加權平均流通在外普通股股數` | [IAS 33 官方摘要](https://www.ifrs.org/issued-standards/list-of-standards/ias-33-earnings-per-share/) | 通過 | 官方摘要確認分子為歸屬普通股權益持有人、分母為加權平均股數 |
 
-> 小結：A1–A12 已於 2026-10-20 完成公式核對。A1、A3、A4、A5、A7、A8、A12 依 IFRS 官方摘要／準則本文；A2、A6、A9–A11 依公開教材（三民輔考、OpenStax《Principles of Finance》、Ole Miss FIN 331）。A10 為無特別股版本；A2、A6 的期間與付息頻率需依題目調整。代表性分錄與報表勾稽已檢查（review 2.1）；各章例題逐題重算仍待。
+> 小結：A1–A12 已於 2026-10-20 完成公式核對。A1、A3、A4、A5、A7、A8、A12 依 IFRS 官方摘要／準則本文；A2、A6、A9–A11 依公開教材（三民輔考、OpenStax《Principles of Finance》、Ole Miss FIN 331）。A10 為無特別股版本；A2、A6 的期間與付息頻率需依題目調整。代表性分錄與報表勾稽已檢查（review 2.1）；會計例題算術覆核與答案交叉檢查已完成（review 2.3）；與原始試卷逐題全文比對仍待。
 
 ### 會計分錄與報表勾稽（2026-10-20）
 
@@ -117,7 +117,7 @@
 - 代表性數字：公司債面額 100,000、票面 5%、市場 4%、3 年，發行價 102,775.09；現金流量表 CFO 58、投資 −15、籌資 ＋10，現金淨增 53，期末現金 153 與資產負債表一致。
 - 修正：存貨錯誤的跨期保留盈餘說明、股票股利的股本／資本公積說明、公司債有效利率、Ch20 EPS／WACC 與 Ch23 保留盈餘的簡化條件。
 - 外部教材：OpenStax《Principles of Accounting, Volume 1》（未計入網站 26 個來源）；完整紀錄見 `documents/reviews/2026-10-20-official-verification.md` 第 2.1 節。
-- 限制：各章例題尚未逐題重算；OpenStax 為美國 GAAP 教材，股票股利與公司債表達在 IFRS／臺灣實務可能有差異。
+- 限制：會計例題已完成算術覆核與答案交叉檢查（review 2.3），但與原始試卷逐題全文比對仍待；OpenStax 為美國 GAAP 教材，股票股利與公司債表達在 IFRS／臺灣實務可能有差異。
 
 ### 會計進階分錄與勾稽（2026-10-20）
 
@@ -165,7 +165,7 @@
 | 20 | 總體 Ch12 | 存續期間與凸性 | 價格與殖利率反向；切線近似、凸性修正 | [MIT 15.401 Lec. 4](https://ocw.mit.edu/courses/15-401-finance-theory-i-fall-2008/df418b972d36cd53ae5c375b8af61e53_MIT15_401F08_lec04.pdf)；[MIT 15.415 Lec. 5](https://web.mit.edu/15.415e/www/lecture05.pdf) | 同意 | 同意 | 同意 | 通過（教材） | 價格與殖利率反向、切線為存續期間近似、凸性修正非線性誤差一致；ΔP/P ≈ −D*Δy + ½×凸性×(Δy)² 與講義方向相符。 |
 | 21 | 總體 Ch13 | 選擇權到期價值 | 買權與賣權分段、履約價 K、權利金 | [MIT 15.401 Rec. 5](https://ocw.mit.edu/courses/15-401-finance-theory-i-fall-2008/d0734e7fec7b333f1255a6dc3dff389c_MIT15_401F08_rec05.pdf) | 同意 | 不同意：期貨理論價非選擇權到期價值圖參數，波動率亦不影響到期價值。 | 同意 | 通過（教材） | 買權 max(S_T − K, 0)、賣權 max(K − S_T, 0) 的到期分段一致；已保留權利金與到期內在價值的區分。 |
 
-> 小結：21/21 張模型圖已完成公開教材核對，全部判定「通過（教材）」；B15 另獲 CBC 官方外匯頁輔助，B12 的臺灣景氣指標另以國發會頁面輔助。B1、B2、B4、B5、B8、B9、B10、B13、B14、B15、B16、B17、B21 已依核對結果修正文字或圖形（B4、B10、B15、B21 為前輪修正，其餘為本輪）。「通過（教材）」不是官方對本站全部內容的認證；諾貝爾其他屆與會計各章例題逐題重算仍待。
+> 小結：21/21 張模型圖已完成公開教材核對，全部判定「通過（教材）」；B15 另獲 CBC 官方外匯頁輔助，B12 的臺灣景氣指標另以國發會頁面輔助。B1、B2、B4、B5、B8、B9、B10、B13、B14、B15、B16、B17、B21 已依核對結果修正文字或圖形（B4、B10、B15、B21 為前輪修正，其餘為本輪）。「通過（教材）」不是官方對本站全部內容的認證；諾貝爾其他屆與會計例題原始試卷逐題全文比對仍待；會計例題算術覆核已完成（review 2.3）。
 
 ### 會計學教學流程圖（2026-10-22）
 
@@ -253,6 +253,7 @@
 | 日期 | 科目／章 | 模型與版本 | 主要爭點 | 官方來源結論 | 後續動作 |
 | --- | --- | --- | --- | --- | --- |
 | 2026-11-26 | 108Q2-macro-17 改為計算解析 | Chrome CDP＋`file://`＋390px／1280px | 原 summary 只有一行乘數結果；改為已知條件、簡單支出乘數、平衡預算乘數、定額稅乘數與速記觀念，公式全部以 KaTeX 呈現 | 390px／1280px、`file://`：summary 顯示 7 個換行、`k_G=4`、`k_T=-3`、`k_B=1`、0 `.katex-error`、0 水平溢出；選項 C 與答案不變 | 通過；公式與使用者提供的計算解析一致 |
+| 2026-11-26 | 會計例題算術覆核與動態路由檢查 | Python `Decimal` 等式解析＋參考解答數字交叉比對＋Chrome CDP 12 路由×4 viewport/theme＋5 個內容斷言 | 153 個會計解題例題、390 條等式鏈；無等式例題人工抽查；動態 hash 路由涵蓋 subject／chapter／past-exams／past-exams/written／review／exam-forecast／nobel／models/macro／macro-current | 390 條等式鏈算術通過；6 條省略運算元的敘述經人工確認非錯誤；修正 `107Q3-accounting-written-5`（1,059,600）、`109Q3-accounting-written-1`（＋267,432）、`109Q1-accounting-written-1`（帳面97,000）、`115Q1-accounting-17`（51,000）；2026 NKPC 改為 `κ\tilde{y}_t`；`check-ui.js` 48 組路由＋5 個內容斷言＋搜尋通過 | 通過（算術與站內一致性）；與原始試卷逐題全文比對仍待 |
 | 2026-11-26 | 精簡部署資產與安全 headers | 本機 `verify.sh`＋`check-ui.js`＋Cloudflare header 檢查 | `.assetsignore` 排除只供建置的 `content-*.js` 與 solutions（約 2.7MB）；`_headers` 加 Referrer-Policy／Permissions-Policy／X-Frame-Options／nosniff；`katex.min.css` 7 天；`check-links.js` 擴充 `srcset` 與 CSS `url()` | `verify.sh` 約 2.4 秒、內容 195,435、SEO 605、連結 2,774 條 0 斷鏈；`/assets/content-macro.js` 與 solutions 404、core bundle 200；安全 headers 與 KaTeX CSS 7 天已確認；`check-ui.js` 與 `check-live.sh` 通過 | 通過 |
 | 2026-11-26 | JS content hash＋長快取 | 本機 `verify.sh`＋`check-ui.js`＋`file://`＋Cloudflare header 檢查 | 新增 `build-asset-manifest.js`（157 JS、12 字元 SHA-256）；bootstrap 以 `?v=` 載入；`/assets/*.js` 設 `immutable`；bootstrap／manifest 例外 revalidate；CSS 維持 revalidate；`file://` 不附加 query | 157 個 JS hash；`app.js`／`content-core-bundle.js`／`katex.min.js`／`vendor/minisearch.min.js` 長快取；bootstrap／manifest revalidate；`check-ui.js` 16 組＋搜尋＋404、`file://`、`check-live.sh` 通過；正式站版本與 main 一致 | 通過；CSS 長快取為可選後續 |
 | 2026-11-26 | 開發／部署優化 P1–P3（可執行項目） | 本機 `verify.sh`＋`check-ui.js`＋`check-live.sh`＋Cloudflare 部署 | 固定 esbuild；新增 `_headers`／`.assetsignore`；sitemap 使用 commit 日期；新增連結與 UI 檢查；擴充 check-live；404 改根路徑且不自動導回；og-cover 轉 JPEG；關閉 workers.dev 與預覽 URL | `verify.sh` 約 2.4 秒、內容 195,435、SEO 605、連結 2,714 條 0 斷鏈；`check-ui.js` 16 組 viewport/theme＋搜尋＋404 通過；axe 0 violations（首頁、章節、考古題、複習題、404；1280 light／390 dark）；Lighthouse mobile 98/100/100/100（LCP 1.5s、CLS 0、TBT 140ms）、desktop 99/100/100/100（LCP 0.6s）；`check-live.sh` 通過；`/scripts/*` 404、`/version.json` no-store、KaTeX 字型 7 天；正式站版本與 main 一致 | 通過；JS content-hash 已完成（見上一列）；核心 bundle 分科、搜尋索引拆分列入 `documents/performance-backlog.md` |
@@ -304,7 +305,7 @@
 | 2026-10-20 | 諾貝爾 2021–2024 公式與概念 | 2021–2024 科學背景 PDF | LATE、Diamond–Dybvig、Goldin、Acemoglu–Johnson–Robinson | 2021 LATE 公式逐式一致；2022–2024 官方式與網站概念式方向一致；代表論文書目已核對 | 2021 通過；2022–2024 概念方向通過；全文待查 |
 | 2026-10-20 | 諾貝爾 2019–2026 代表原始論文書目 | 官方科學背景 PDF References＋JSTOR | 作者、篇名、期刊、卷期、頁碼 | 8 屆代表論文書目一致；2021 官方 PDF 誤植為 61:467–476，已依期刊書目更正為 62(2):467–475 | 通過（書目）；2019–2026 每年至少一篇另完成全文抽查 |
 | 2026-10-20 | 諾貝爾 2019–2026 每年代表論文全文抽查 | 公開論文 PDF | Banerjee 微型貸款、Milgrom–Weber 勝者魔咒、LATE、DD 資源限制、Goldin 勞動參與、Acemoglu 制度、Aghion–Howitt 成長、Hall 隨機漫步 | 微型貸款消費效果不顯著；勝者魔咒概念一致；LATE 逐式一致；DD 資源限制 \(t c_1+(1-t)c_2/R=1\)；Goldin 以長工時／時間彈性說明薪資差距；Acemoglu 以殖民死亡率作工具變數；Aghion–Howitt \(AGR=Aq(n)\ln\gamma\)；Hall 原文為 with trend | 通過（抽查）；網站已補 Hall 趨勢、Aghion 到達率與 Goldin 後續用語 |
-| 2026-10-20 | Woodford (2003) NKPC 交叉核對 | Woodford 相關論文 PDF | 書中 chap. 3／5 的 NKPC 與網站三方程式 | 論文式 (4.3) \(\pi_t=\kappa\tilde{Y}_t+\beta E_t\pi_{t+1}\) 與網站 \(\pi_t=\beta E_t\pi_{t+1}+\kappa x_t\) 逐式一致 | 通過（論文交叉）；專書全文仍待 |
+| 2026-10-20 | Woodford (2003) NKPC 交叉核對 | Woodford 相關論文 PDF | 書中 chap. 3／5 的 NKPC 與網站三方程式 | 論文式 (4.3) \(\pi_t=\kappa\tilde{Y}_t+\beta E_t\pi_{t+1}\) 與網站 \(\pi_t=\beta E_t\pi_{t+1}+\kappa\tilde{y}_t\) 逐式一致；網站原 \(\kappa x_t\) 已修正 | 通過（論文交叉）；專書全文仍待 |
 | 2026-10-20 | 諾貝爾 2019／2022／2023／2025／2026 文字修正頁面 | Chrome CDP＋1280px／390px | Hall 趨勢、Aghion λ、Goldin 後續用語、Bernanke 分工、微型貸款效果 | 五項文字均顯示；58 張 SVG；0 水平溢出、0 console errors | 通過 |
 | 2026-10-20 | 諾貝爾跨頁資料綁定 | Chrome CDP 記憶體修改測試 | `#/nobel` 與 `#/models/macro` 是否共用同一份 `NOBEL_DIAGRAMS` | 修改 `nobel-17` 的記憶體標題與圖說後，兩個路由皆顯示新內容 | 通過；檔案仍以 `diagrams-nobel.js` 為唯一來源 |
 | 2026-10-20 | 諾貝爾年表與模型圖整合 | Chrome CDP 實際瀏覽器＋DOM 稽核 | 58 列是否逐年雙欄、每列是否顯示對應 SVG、重複圖組的 ID 與跳轉 | 58 列／58 張 SVG／17 組首屆錨點；重複列出現在 41 列；內部 ID 229 個全部唯一；390px 頁面無水平溢出 | 通過；其他屆公式與原始文獻仍待查 |
@@ -324,7 +325,7 @@
 | 2026-10-20 | 會計進階分錄與勾稽 | IFRS 16／15／12／10／3 官方摘要＋OpenStax Finance 16.2 | 租賃現值、收入分攤、遞延所得稅、合併商譽、資本預算 | 租賃負債 272,324.80、使用權資產 287,324.80；收入分攤 60,000／40,000；當期稅 16,000＋DTL 4,000；商譽 60；OCF 44、NPV 66.79 | 通過（代表項目） |
 | 2026-10-20 | 會計 A5／A7 公式頁與來源頁 | Chrome CDP＋390px／1280px | 公式更新、水平溢出、console、來源頁 26 項 | A5 顯示「期初總帳面金額…信用減損」；A7 顯示「復原成本估計」；390px 頁寬 390、無水平溢出；0 console errors；來源頁 26 項且進度公告為 A1–A12 | 通過 |
 | 2026-10-20 | 投資／總體公式頁 | Chrome CDP＋1280px／390px／`file://` | 公式文字、期間單位與假設、水平溢出、console、來源與模型頁 | macro-02／05／06／09／10／12／13 與 investment-03／07／09／10／17 的公式文字一致；來源頁 26 項且核對進度含 29 條公式；模型總覽 14 組／38 張 SVG；諾貝爾頁 58 列／58 張 SVG；390px 頁面無水平溢出；0 console errors；`file://` 的 macro-13、investment-10、sources、models/macro、nobel 可讀，mobile macro-13 無水平溢出 | 通過 |
-| 2026-10-20 | 會計學 23 章 | 驗證腳本＋Chrome CDP | 章節界線、41 節＋23 個學習重點、章號印刷註記、來源引用、繁中守門 | 23 章、64 單元、375 張名詞卡；驗證器 4,992 項、失敗 0；四個科目沒有互相混入 | 通過；公式已核對，代表性分錄與報表勾稽已檢查，例題逐題重算仍待 |
+| 2026-10-20 | 會計學 23 章 | 驗證腳本＋Chrome CDP | 章節界線、41 節＋23 個學習重點、章號印刷註記、來源引用、繁中守門 | 23 章、64 單元、375 張名詞卡；驗證器 4,992 項、失敗 0；四個科目沒有互相混入 | 通過；公式已核對，代表性分錄與報表勾稽已檢查，例題算術覆核已完成（review 2.3），原始試卷逐題全文比對仍待 |
 | 2026-10-20 | 首頁科目卡與導覽 | Chrome CDP 實際瀏覽器 | 首頁科目卡、導覽、搜尋、來源頁與會計章節 | 首頁 4 張科目卡（總體／投資／會計／證券法規）；導覽 6 個連結；搜尋「存貨」可找到會計章節與名詞；來源頁 26 項含「會計準則與監理」 | 通過 |
 | 2026-10-20 | 會計章節頁 | Chrome CDP 實際瀏覽器 | 來源節次與補充單元的標示、章節頁顯示 | 第 1 章 6 節顯示「第 01–06 節」；第 8 章顯示「學習重點 01–02」並有單元說明；第 23 章顯示頁碼 P. 339 與原書章號註記 | 通過 |
 | 2026-10-20 | 會計學 390px 與 `file://` | Chrome CDP＋本機 HTML | 四科目版面、會計章節、離線閱讀 | 390px 寬度下科目卡改為單欄、頁面無水平溢出；`file://…/index.html#/subject/accounting` 可顯示 23 章 | 通過 |

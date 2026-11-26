@@ -693,7 +693,7 @@ Object.assign(window.NOBEL_DIAGRAMS, {
   <text class="dg-label-sm" x="205" y="170">永久所得</text>
   <line class="dg-axis" x1="350" y1="290" x2="610" y2="290"></line>
   <line class="dg-axis" x1="350" y1="290" x2="350" y2="55"></line>
-  <text class="dg-label-sm" x="560" y="316">產出缺口 x</text>
+  <text class="dg-label-sm" x="560" y="316">產出缺口 ỹ</text>
   <text class="dg-label-sm" x="358" y="44">通膨 π</text>
   <path class="dg-curve" d="M 370 105 L 590 245"></path>
   <path class="dg-curve-alt" d="M 370 255 C 445 225 515 155 590 85"></path>
@@ -708,13 +708,13 @@ Object.assign(window.NOBEL_DIAGRAMS, {
       ["C_t", "第 t 期消費", "家計在當期的消費水準"],
       ["ε_t", "未預期衝擊", "使消費隨機漫步的新訊息"],
       ["π_t", "通膨率", "新凱因斯菲利浦曲線的物價變動"],
-      ["x_t", "產出缺口", "實際產出偏離潛在產出的程度"]
+      ["ỹ_t", "產出缺口", "實際產出偏離潛在產出的程度"]
     ],
     parameters: [
       ["β", "跨期折現因子", "未來效用或通膨預期的權重"],
       ["κ", "菲利浦曲線斜率", "產出缺口對通膨的影響"],
       ["政策規則", "利率反應", "央行對通膨與產出缺口調整利率的強度"]
     ],
-    note: "2026 年屆別依提供表格納入；Hall 與 Woodford 的完整模型假設不同，圖為概念整合，官方公告與原始論文仍待核對。"
+    note: "2026 年屆別依官方公告與科學背景 PDF 納入；Hall 與 Woodford 的完整模型假設不同，圖為概念整合；NKPC 符號已對照官方科學背景。"
   }
 });

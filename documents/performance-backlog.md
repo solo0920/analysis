@@ -53,3 +53,13 @@
 - 建置用原始檔與 solutions 已由 `.assetsignore` 排除（約 2.7MB）。
 - 安全 headers：Referrer-Policy、Permissions-Policy、X-Frame-Options、nosniff。
 - 連結檢查擴充 `srcset` 與 CSS `url()`（2,774 條、0 斷鏈）。
+- `check-ui.js` 擴充為 12 條動態 hash 路由 × 4 viewport/theme（48 組），另加 5 個內容斷言、搜尋與遠端 404。
+- 2026 諾貝爾 NKPC 符號改為官方 `κ\tilde{y}_t`；會計例題完成 153 題算術覆核（390 條等式鏈），修正 4 個例題。
+
+## 6. P3 現況（2026-11-26）
+
+| 項目 | 狀態 | 已完成 | 剩餘限制 |
+| --- | --- | --- | --- |
+| 連結檢查延伸 | 已完成主要範圍 | `check-links.js` 檢查 HTML `href`／`src`、`srcset`、CSS `url()`，2,774 條、0 斷鏈；`check-ui.js` 以 Chrome runtime 檢查 12 條動態 hash 路由（含 `subject`、`chapter`、`past-exams`、`past-exams/written`、`review`、`exam-forecast`、`nobel`、`models/macro`、`macro-current`）在 390／1280 與深淺主題下的 DOM、KaTeX、溢出與 console | 未逐一自動爬取所有由 JS 產生的 hash 連結；以代表性路由、深連結目標與內容斷言涵蓋，新增路由時需同步加入 `check-ui.js` |
+| 內容 QA backlog | 已完成算術與站內一致性 | 2026 諾貝爾公式對照官方科學背景，NKPC 改為 `κ\tilde{y}_t`，圖說與變數同步；153 個會計解題例題以 `Decimal` 重算 390 條等式鏈，另與參考解答數字交叉比對，修正 `107Q3-accounting-written-5`、`109Q3-accounting-written-1`、`109Q1-accounting-written-1`、`115Q1-accounting-17` | 尚未與原始試卷／官方解答逐題全文比對；諾貝爾其他屆原始論文與模型圖仍待逐條核對；概念型或省略中間步驟的例題仍需人工閱讀 |
+

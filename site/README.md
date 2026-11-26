@@ -353,7 +353,7 @@ bash site/scripts/verify.sh             # 建置＋JS 語法／內容平行檢�
 node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份與得主
 ```
 
-`verify.sh` 以 `site/scripts/check-js-syntax.js` 在單一 Node 進程檢查 168 個 `.js`，`.mjs` 另以 `node --check` 檢查，並與內容驗證平行執行；本機完整流程約 2.4 秒。`check-links.js` 會檢查 83 頁靜態 HTML 的站內 `href`／`src`（目前 2,774 條、0 斷鏈）。若只想檢查個別項目，可直接執行 `validate-content.js`、`check-js-syntax.js`、`check-links.js`、`validate-seo.js` 或 `node --check <file>`。
+`verify.sh` 以 `site/scripts/check-js-syntax.js` 在單一 Node 進程檢查 168 個 `.js`，`.mjs` 另以 `node --check` 檢查，並與內容驗證平行執行；本機完整流程約 2.4 秒。`check-links.js` 會檢查 83 頁靜態 HTML 的站內 `href`／`src`／`srcset` 與 CSS `url()`（目前 2,774 條、0 斷鏈）。若只想檢查個別項目，可直接執行 `validate-content.js`、`check-js-syntax.js`、`check-links.js`、`validate-seo.js` 或 `node --check <file>`。
 
 `validate-seo.js` 會確認首頁、83 個靜態頁、Sitemap、robots.txt、llms.txt 與 JSON-LD 都使用正式網域 `https://analysis.ragdemo.win`，每個靜態頁的 canonical／og:url 指向自身，Sitemap URL 與實際頁面完全一致，且沒有殘留 GitHub Pages 網域。Cloudflare Build 的 `verify.sh` 會在部署前執行 JavaScript 語法檢查、`validate-content.js` 與 `validate-seo.js`，任一失敗即停止部署。
 
@@ -368,7 +368,7 @@ node site/scripts/check-ui.js
 node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 ```
 
-`check-ui.js` 會檢查首頁、`macro-09` 章節、`108Q2-macro-11` 題目、複習題與搜尋在 390／1280、深淺主題下的 `.katex-error`、水平溢出與 console errors；`--base` 指向正式站時另檢查 404 頁。`check-ui.js` 不在 `verify.sh` 內（Cloudflare build 不保證有 Chrome），屬部署前手動檢查；部署後改用 `check-live.sh`。
+`check-ui.js` 會檢查 12 條路由（首頁、科目、章節、考古題、計算／申論題、複習題、考前猜題、諾貝爾、模型總覽、總經時事）在 390／1280、深淺主題下的 selector、`.katex-error`、水平溢出與 console errors，並以 5 個內容斷言核對 2026 NKPC 與已修正的會計例題；`--base` 指向正式站時另檢查 404 頁。`check-ui.js` 不在 `verify.sh` 內（Cloudflare build 不保證有 Chrome），屬部署前手動檢查；部署後改用 `check-live.sh`。
 
 `validate-content.js` 會比對三份來源目錄的章號、章名、Part、順序、節次與頁碼，並檢查：
 
@@ -402,7 +402,7 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 
 諾貝爾年表的年份與得主另以 `site/scripts/verify-nobel-api.js` 對照官方 API；2026-10-20 執行結果為 58 屆、0 筆不一致。此檢查需要網路，不列入離線驗證；2025、2026 屆公式已對照官方科學背景，2019–2020 屆公式與學說方向、2021 LATE 公式與 2022–2024 學說方向亦已核對（2019、2020 網站公式為概念式），2019–2026 代表原始論文書目已核對；2019–2026 每年至少一篇代表論文完成全文抽查（2026 為 Hall；Woodford 2003 專書未逐條）；其餘屆公式、全文、學說摘述與模型圖仍待原始文獻逐條核對。
 
-會計公式 A1–A12 已於 2026-10-20 完成核對：A1、A3、A4、A8、A12 對照 IFRS 官方摘要（IAS 7、IAS 2、IAS 16／36、IAS 12、IAS 33）；A5、A7 對照 IFRS 9.5.4.1 與 IFRS 16.24 準則本文（A7 補入復原成本估計）；A2、A6、A9–A11 對照公開教材。代表性分錄與報表勾稽已於 review 第 2.1 節檢查，另於第 2.2 節抽查租賃、收入分攤、遞延所得稅、合併商譽與資本預算；各章例題逐題重算仍待。完整紀錄見 `documents/reviews/2026-10-20-official-verification.md`。
+會計公式 A1–A12 已於 2026-10-20 完成核對：A1、A3、A4、A8、A12 對照 IFRS 官方摘要（IAS 7、IAS 2、IAS 16／36、IAS 12、IAS 33）；A5、A7 對照 IFRS 9.5.4.1 與 IFRS 16.24 準則本文（A7 補入復原成本估計）；A2、A6、A9–A11 對照公開教材。代表性分錄與報表勾稽已於 review 第 2.1 節檢查，另於第 2.2 節抽查租賃、收入分攤、遞延所得稅、合併商譽與資本預算；會計例題算術覆核與答案交叉檢查已於第 2.3 節完成，與原始試卷逐題全文比對仍待。完整紀錄見 `documents/reviews/2026-10-20-official-verification.md`。
 
 投資學與總體經濟學 29 條公式亦已於 2026-10-20 完成公開教材逐條核對，全部記為「通過（教材）」；#27 另以 BIS 官方 CIP 定義、#28 另以 SEC Investor.gov 官方 NAV 定義交叉核對。網站 `formula` 欄已補上期間單位與適用假設，例如簡單乘數與貨幣乘數的模型條件、債券票息與殖利率的同週期單位、高登模型的 `r>g`、賣權買權平價的歐式／無股利條件、期貨的連續複利、避險的目標 β、存續期間的付息頻率，以及選擇權到期內在價值與權利金的區分。21 張既有總體模型圖亦已完成公開教材逐條核對，全部「通過（教材）」；B15 另以 CBC 官方外匯頁交叉核對，B12 的臺灣景氣指標以國發會頁面輔助。另新增的 2 張國民所得教學圖（`macro-01#2` 國民所得會計帳流程圖與 `macro-01#0-2` NFIA 觀念圖）、投資學 13 張教學圖與會計學 7 張教學圖（含 1 張 MMD 推導圖）同為依教材概念繪製的教學示意，已通過結構、章節綁定與 SVG ID 驗證，尚未逐條對照公開教材。
 
@@ -564,6 +564,8 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 
 2026-11-26 部署流程簡化為 Cloudflare Worker：移除 `.github/workflows/pages.yml` 與 GitHub Pages 鏡像，新增根目錄 `wrangler.toml`（`analysis`、`assets.directory = "./site"`、`not_found_handling = "404-page"`）；Cloudflare Workers Builds 的 Build command 已設為 `bash site/scripts/verify.sh`，Deploy command 維持 `npx wrangler deploy`。新增 `site/scripts/write-version.js`、`check-live.sh` 與 `check-js-syntax.js`；`verify.sh` 在通過內容／SEO 驗證後產生 `site/version.json`，`site/version.json` 加入 `.gitignore`。JS 語法檢查由 170 次 `node --check` 改為單一 Node 進程，`verify.sh` 由約 6.3 秒降至約 2.4 秒。正式站建置後以 `bash site/scripts/check-live.sh` 比對 commit；`version.json` 回傳 `main` 與目前 commit，GitHub 只保留 push，不再部署 Pages；GitHub Pages 已停用（Pages API 回 404）。
 
+2026-11-26 完成 P3 連結與內容稽核：`check-links.js` 已涵蓋 HTML `href`／`src`、`srcset` 與 CSS `url()`（2,774 條、0 斷鏈）；`check-ui.js` 擴充為 12 條動態 hash 路由 × 4 viewport/theme（48 組），另加 5 個內容斷言、搜尋與遠端 404。2026 諾貝爾 NKPC 依官方科學背景改為 `π_t = βE_tπ_{t+1} + κ\tilde{y}_t`，圖說與變數同步改為 `ỹ`。會計例題完成 153 題算術覆核（390 條等式鏈）與參考解答數字交叉比對，修正 `107Q3-accounting-written-5`、`109Q3-accounting-written-1`、`109Q1-accounting-written-1`、`115Q1-accounting-17` 四處例題；`build-chapter-data-bundles.js` 已重建受影響章節分包。尚未完成與原始試卷逐題全文比對，其他屆諾貝爾原始論文與模型圖仍待逐條核對。
+
 > 2026-11-26 起部署改為 Cloudflare Worker；以下 2026-11-26 之前的 GitHub Pages／pages.yml 紀錄為歷史，不再代表目前流程。
 
 2026-10-26 修正法規考古題章節歸屬並加入條號指定：新增 `sourceRefs[].articleNo`，`lawQuestionArticleRefs()` 會優先採用明確條號，不再只靠題幹中的「第 N 條」推斷。修正 7 題選擇題：`107Q2-law-08` 移至 law-03 第 5 條；`108Q2-law-07`、`114Q1-law-23` 移至 law-03 第 17 條；`114Q3-law-18` 移至 law-03 第 66 條；`108Q4-law-15`、`109Q2-law-12`、`111Q3-law-16` 移至 law-02 第 22-1 條。另修正 17 題計算／申論題的章節歸屬，移除 law-21、law-05、law-06、law-17、law-08、law-11、law-12 等與題意無關的交叉掛載，並把單純考證交法的題目移至 law-01；相關解題範例同步移轉。修正後 law-01 為 196 題選擇＋37 題申論（233）、law-02 228＋49（277）、law-03 168＋3（171）、law-21 0＋0（0）；法規總數仍為 910 題選擇＋87 題申論。21 個法規章節在 390px／1280px、深淺主題 axe 0 violations、0 水平溢出；law-01 第 139 條已無題目，law-03 第 5／17／66 條與 law-02 第 22-1 條顯示正確題目；`file://` 正常；驗證器 157,243 項、失敗 0。非 法規 2,800 題以章節關鍵詞與題幹相似度掃描，未發現像本例這樣明確的錯置；高分候選多為跨章節應用。
@@ -650,7 +652,7 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 4. 用瀏覽器檢查首頁、四個科目頁（含每章「選擇題 N 題 · 頻率 X%」與「申論題 N 題 · 頻率 X%」；總體含第 11–13 章與學派演進圖）、至少一個含模型圖的總體章、`#/models/macro`、`#/models/macro?model=<anchor>` 的模型卡跳轉與高亮、`#/macro/evolution`（舊網址 `#/subject/macro?evolution=1` 仍可開啟）、`#/nobel`、`?group=`／`?year=`／`?table=`／`?models=` 跳轉、搜尋入口（含會計名詞）、`#/sources`、`#/past-exams` 的年度／科目／次別篩選與作答、`#/past-exams/written` 的年度／科目／次別篩選、`#/investment/formulas` 的公式總表、`#/investment/technical` 的技術分析 50 指標、`#/chapter/investment-14` 的綁定公式，會計第 14、15、23 章，以及證券法規章節；章節頁另檢查選擇題展開解答後在原選項顯示正解與說明。
 5. 若修改模型圖，確認總覽頁與原章節顯示相同內容；可暫時修改記憶體中的 `MACRO_DIAGRAMS`、`INVESTMENT_DIAGRAMS`、`ACCOUNTING_DIAGRAMS` 或 `NOBEL_DIAGRAMS`，切換路由檢查資料綁定。諾貝爾頁是 `NOBEL_DATA`／`NOBEL_DIAGRAMS` 的唯一呈現頁；模型總覽不重複列諾貝爾模型。
 6. 在桌機與 390px 寬度檢查頁面沒有水平溢出；諾貝爾頁為 17 組模型，每組在桌機左右 1:1、900px 以下為單欄，模型圖可在圖表區內滑動；年份下拉可切換所屬模型並捲動，屆別晶片只切換屆別資料；並以 `file://` 開啟確認可閱讀。
-7. 若修改公式或模型圖，依 `SOURCES.md` 與 `documents/content_review_checklist.md` 記錄校對結果；29 條投資／總體公式與 21 張既有總體模型圖已完成公開教材核對；新增國民所得會計帳流程圖、NFIA 觀念圖、投資學 19 張教學圖（含 4 張 MMD 推導圖）與會計學 9 張教學圖（含 1 張 MMD 推導圖）為教學示意，尚未逐條教材核對；其他屆諾貝爾原始文獻與會計各章例題未逐題重算前保持「待查」。
+7. 若修改公式或模型圖，依 `SOURCES.md` 與 `documents/content_review_checklist.md` 記錄校對結果；29 條投資／總體公式與 21 張既有總體模型圖已完成公開教材核對；新增國民所得會計帳流程圖、NFIA 觀念圖、投資學 19 張教學圖（含 4 張 MMD 推導圖）與會計學 9 張教學圖（含 1 張 MMD 推導圖）為教學示意，尚未逐條教材核對；其他屆諾貝爾原始文獻與會計例題原始試卷逐題全文比對前保持「待查」；會計例題算術覆核已完成（review 2.3）。
 8. 若修改首頁 head、路由 title／description 或 SEO 資產，檢查 canonical、Open Graph／Twitter Card、JSON-LD 是否為合法 JSON、`robots.txt`／`sitemap.xml`／`llms.txt` 是否回傳 200，以及關閉 JavaScript 時 `<main>` 的靜態摘要是否仍可讀；sitemap 不列 hash fragment URL。
 9. 若修改科目、章節、考古題、考前猜題、時事或諾貝爾資料，先依序執行 `node site/scripts/build-practice-year-bundles.js`、`node site/scripts/build-chapter-data-bundles.js`、`node site/scripts/build-past-search-index.js`、`node site/scripts/build-core-bundle.js`、`node site/scripts/build-static-landing-pages.js`，重新產生年度分包、章節分包、搜尋索引、核心 bundle、82 個靜態頁與 `sitemap.xml`；若移動計算／申論題，另同步 `content-exam-solutions-*.js` 的解題範例並重跑章節分包。再抽查 `/subjects/macro/`、`/chapters/`、`/chapters/macro-06/`、`/past-exams/`、`/exam-forecast/`、`/macro-current/`、`/nobel/` 的 title、canonical、JSON-LD 與連回互動版的按鈕。
 

@@ -558,7 +558,7 @@ window.NOBEL_DATA = {
       "year": 2026,
       "laureates": "Robert E. Hall, Michael Woodford",
       "field": "總體經濟穩定政策的微觀基礎 (Microeconomic Foundations of Macroeconomic Stabilisation)",
-      "formula": "$C_{t+1} = C_t + \\epsilon_{t+1} \\ \\mid \\ \\pi_t = \\beta E_t \\pi_{t+1} + \\kappa x_t$ (新凱因斯框架)",
+      "formula": "$C_{t+1} = C_t + \\epsilon_{t+1} \\ \\mid \\ \\pi_t = \\beta E_t \\pi_{t+1} + \\kappa \\tilde{y}_t$ (新凱因斯框架)",
       "conclusion": "提出消費隨機漫步假說（Hall；隨機漫步式為無趨勢簡化，原文允許趨勢）；建立新凱因斯動態總體模型，證明央行預期管理與前瞻指引在價格僵固下對穩定景氣具決定性作用（Woodford）。",
       "group": "nobel-17"
     }
