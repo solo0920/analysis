@@ -97,7 +97,8 @@ const CONTENT_CHECKS = [
   { name: "accounting-107Q3", path: "/#/past-exams/written?question=107Q3-accounting-written-5", selector: "#written-107Q3-accounting-written-5", contains: "1,059,600" },
   { name: "accounting-109Q3", path: "/#/past-exams/written?question=109Q3-accounting-written-1", selector: "#written-109Q3-accounting-written-1", contains: "11,067,062" },
   { name: "accounting-109Q1", path: "/#/past-exams/written?question=109Q1-accounting-written-1", selector: "#written-109Q1-accounting-written-1", contains: "97,000" },
-  { name: "accounting-115Q1", path: "/#/chapter/accounting-02?section=5", selector: "#section-5 .section-solutions", contains: "51,000" }
+  { name: "accounting-115Q1", path: "/#/chapter/accounting-02?section=5", selector: "#section-5 .section-solutions", contains: "51,000" },
+  { name: "macro-05-taylor", path: "/#/chapter/macro-05?section=5", selector: "#section-5 .section-subsections", contains: "泰勒法則參數", minKatex: 20 }
 ];
 
 function checkPage(send, events, route, selector, expectedCount) {
@@ -191,12 +192,14 @@ async function main() {
     const ready = await waitFor(send, `document.readyState === "complete" && Boolean(document.querySelector(${JSON.stringify(check.selector)}))`);
     const state = await evaluate(send, `({
       contains: document.body.textContent.includes(${JSON.stringify(check.contains)}),
+      katex: document.querySelectorAll(".katex").length,
       katexErrors: document.querySelectorAll(".katex-error").length,
       overflow: document.documentElement.scrollWidth - window.innerWidth
     })`);
     const problems = [];
     if (!ready) problems.push("selector missing");
     if (!state.contains) problems.push("text missing: " + check.contains);
+    if (check.minKatex && state.katex < check.minKatex) problems.push("katex count " + state.katex + " < " + check.minKatex);
     if (state.katexErrors) problems.push("katex errors " + state.katexErrors);
     if (state.overflow > 1) problems.push("overflow " + state.overflow);
     if (problems.length) failed += 1;

@@ -195,6 +195,9 @@ function latexToPlain(value) {
     return " " + latexToPlain(inner) + " ";
   });
   text = expandLatexGroups(text);
+  text = text.replace(/\\tilde\{([^{}]*)\}/g, function (match, inner) {
+    return expandLatexGroups(inner) + "\u0303";
+  });
   text = text.replace(/\\([A-Za-z]+)/g, function (match, command) {
     return Object.prototype.hasOwnProperty.call(LATEX_SYMBOLS, command) ? LATEX_SYMBOLS[command] : "";
   });
