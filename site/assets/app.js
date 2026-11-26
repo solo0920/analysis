@@ -1006,15 +1006,51 @@
   }
 
   function updateReviewSelection(selectedKey) {
-    document.querySelectorAll("[data-review-select]").forEach(function (button) {
+    const buttons = Array.from(document.querySelectorAll("[data-review-select]"));
+    const hasActive = buttons.some(function (button) {
+      return button.dataset.reviewSelect === selectedKey;
+    });
+    buttons.forEach(function (button, index) {
       const active = button.dataset.reviewSelect === selectedKey;
+      const tabbable = active || (!hasActive && index === 0);
       button.classList.toggle("is-active", active);
+      button.tabIndex = tabbable ? 0 : -1;
       if (active) {
         button.setAttribute("aria-current", "true");
       } else {
         button.removeAttribute("aria-current");
       }
     });
+  }
+
+  function moveReviewSelection(delta) {
+    if (!isReviewRoute() || !reviewLoaded) {
+      return false;
+    }
+    const items = reviewFilteredItems();
+    if (!items.length) {
+      return false;
+    }
+    let index = items.findIndex(function (item) {
+      return item.key === reviewState.selectedKey;
+    });
+    if (index < 0) {
+      index = 0;
+    }
+    const nextIndex = (index + delta + items.length) % items.length;
+    const next = items[nextIndex];
+    if (!next) {
+      return false;
+    }
+    selectReviewItem(next.key);
+    const buttons = Array.from(document.querySelectorAll("[data-review-select]"));
+    const button = buttons[nextIndex];
+    if (button) {
+      updateReviewSelection(next.key);
+      button.focus({ preventScroll: true });
+      button.scrollIntoView({ block: "nearest" });
+    }
+    return true;
   }
 
   function selectReviewItem(key) {
@@ -1238,15 +1274,17 @@
 
   function renderReviewSidebar(selectedKey, items) {
     const list = Array.isArray(items) ? items : reviewItems;
+    const selectedIndex = list.findIndex(function (item) { return item.key === selectedKey; });
     return [
       '<nav class="review-sidebar" aria-label="複習題清單">',
       '  <div class="review-sidebar-head"><h2>題號</h2><span>' + list.length + " 題</span></div>",
       list.length
-        ? '  <ul class="review-list">' + list.map(function (item) {
+        ? '  <ul class="review-list">' + list.map(function (item, index) {
           const active = item.key === selectedKey;
+          const tabbable = active || (selectedIndex < 0 && index === 0);
           return [
             '<li class="review-list-row">',
-            '  <button class="review-list-item' + (active ? " is-active" : "") + '" type="button" data-review-select="' + escapeHtml(item.key) + '"' + (active ? ' aria-current="true"' : "") + ' title="' + escapeHtml(item.title || item.listLabel) + '">',
+            '  <button class="review-list-item' + (active ? " is-active" : "") + '" type="button" data-review-select="' + escapeHtml(item.key) + '" tabindex="' + (tabbable ? "0" : "-1") + '"' + (active ? ' aria-current="true"' : "") + ' title="' + escapeHtml(item.title || item.listLabel) + '">',
             '    <span class="review-list-type">' + (item.type === "choice" ? "選" : item.type === "written" ? "申" : "猜") + "</span>",
             '    <span class="review-list-label">' + escapeHtml(item.listLabel || item.title || "題目") + "</span>",
             "  </button>",
@@ -1265,7 +1303,7 @@
       '  <div class="review-hero-copy">',
       '    <p class="eyebrow">個人複習清單 · 只存在此瀏覽器</p>',
       "    <h1>複習題</h1>",
-      '    <p class="lede">從全站選擇題、計算／申論題與考前猜題按「加入複習題」，在這裡集中複習。左側列出已記錄的題號，點選後在右側查看題目、選項與參考解答。</p>',
+      '    <p class="lede">從全站選擇題、計算／申論題與考前猜題按「加入複習題」，在這裡集中複習。左側列出已記錄的題號，點選或用 ↑／↓ 鍵切換，右側查看題目、選項與參考解答。</p>',
       "  </div>",
       '  <div class="review-hero-side">',
       '    <div class="review-stat"><strong>' + reviewItems.length + "</strong><span>題</span></div>",
@@ -7769,6 +7807,14 @@
           closeMobileMenu();
         }
         return;
+      }
+
+      if (!typing && !isSearchOpen && !event.metaKey && !event.ctrlKey && !event.altKey && isReviewRoute() &&
+        (event.key === "ArrowDown" || event.key === "ArrowUp")) {
+        if (moveReviewSelection(event.key === "ArrowDown" ? 1 : -1)) {
+          event.preventDefault();
+          return;
+        }
       }
 
       if (!typing && (event.key === "/" || ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k"))) {
