@@ -44,9 +44,10 @@ not_found_handling = "404-page"
 3. 平行檢查 JavaScript 語法與內容
 4. 驗證 SEO
 5. 檢查站內連結
-6. 產生 `site/version.json`
+6. 產生 `site/assets/asset-manifest.js`（157 個 JS 的 content hash）
+7. 產生 `site/version.json`
 
-目前基準：內容 195,435 項、SEO 605 項、站內連結 2,713 條、完整流程約 2.4 秒。
+目前基準：內容 195,435 項、SEO 605 項、站內連結 2,714 條、完整流程約 2.4 秒。
 
 ## 自動與手動檢查
 
@@ -83,7 +84,9 @@ bash site/scripts/check-live.sh
 
 `site/_headers`：
 
-- HTML／JS：`public, max-age=0, must-revalidate`
+- HTML／CSS：`public, max-age=0, must-revalidate`
+- `/assets/*.js`：`public, max-age=31536000, immutable`（bootstrap 以 `?v=<hash>` 載入）
+- `bootstrap.js`／`asset-manifest.js`：例外 revalidate
 - `/version.json`：`no-store`
 - KaTeX 字型：7 天
 - `og-cover.jpg`：1 天
