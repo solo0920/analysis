@@ -36,8 +36,8 @@
 
 ## 5. Lighthouse 效能預算
 
-**現況**：上次 mobile Lighthouse 88、LCP 3.6s（遷移前）。  
-**建議**：建立 mobile／desktop baseline，設定 LCP、CLS、TBT 預算；每次大幅改版重跑。  
+**現況**：2026-11-26 量測 mobile 98／desktop 99，accessibility／best-practices／SEO 皆 100；mobile LCP 1.5s、CLS 0、TBT 140ms，desktop LCP 0.6s。  
+**建議**：以目前數值為 baseline，設定 LCP ≤2.0s、CLS ≤0.1、TBT ≤200ms 預算；每次大幅改版重跑。  
 **工作量**：1 小時（每次量測）。  
 **風險**：低。
 

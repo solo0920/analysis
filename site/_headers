@@ -2,10 +2,13 @@
   Cache-Control: public, max-age=0, must-revalidate
 
 /version.json
+  ! Cache-Control
   Cache-Control: no-store
 
 /assets/katex/fonts/*
+  ! Cache-Control
   Cache-Control: public, max-age=604800
 
-/assets/og-cover.png
+/assets/og-cover.jpg
+  ! Cache-Control
   Cache-Control: public, max-age=86400
