@@ -353,7 +353,7 @@ bash site/scripts/verify.sh             # 建置＋JS 語法／內容平行檢�
 node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份與得主
 ```
 
-`verify.sh` 以 `site/scripts/check-js-syntax.js` 在單一 Node 進程檢查 168 個 `.js`，`.mjs` 另以 `node --check` 檢查，並與內容驗證平行執行；本機完整流程約 2.4 秒。`check-links.js` 會檢查 83 頁靜態 HTML 的站內 `href`／`src`／`srcset` 與 CSS `url()`（目前 2,774 條、0 斷鏈）。若只想檢查個別項目，可直接執行 `validate-content.js`、`check-js-syntax.js`、`check-links.js`、`validate-seo.js` 或 `node --check <file>`。
+`verify.sh` 以 `site/scripts/check-js-syntax.js` 在單一 Node 進程檢查 173 個 `.js`，另以 `node --check` 檢查 3 個 `.mjs`（共 176 個 JS），並與內容驗證平行執行；本機完整流程約 2.4 秒。`check-links.js` 會檢查 83 頁靜態 HTML 的站內 `href`／`src`／`srcset` 與 CSS `url()`（目前 2,774 條、0 斷鏈）。若只想檢查個別項目，可直接執行 `validate-content.js`、`check-js-syntax.js`、`check-links.js`、`validate-seo.js` 或 `node --check <file>`。
 
 `validate-seo.js` 會確認首頁、83 個靜態頁、Sitemap、robots.txt、llms.txt 與 JSON-LD 都使用正式網域 `https://analysis.ragdemo.win`，每個靜態頁的 canonical／og:url 指向自身，Sitemap URL 與實際頁面完全一致，且沒有殘留 GitHub Pages 網域。Cloudflare Build 的 `verify.sh` 會在部署前執行 JavaScript 語法檢查、`validate-content.js` 與 `validate-seo.js`，任一失敗即停止部署。
 
@@ -398,7 +398,7 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 - 全站中文以臺灣繁體中文為準；英文只保留得主姓名、專有名詞、公式符號、縮寫與技術名稱。內容異動後以 `s2t` 字元掃描或人工複查確認沒有新增簡體字。
 - 跨模型初審結果記錄在 `documents/content_review_checklist.md` 與 `documents/reviews/`；模型只作輔助，官方公告與正式教材仍是最終依據。
 
-目前 `validate-content.js` 執行 195,435 項檢查，失敗數為 0（含四個科目章節界線、網站內容不得再出現「第 X 篇」、投資學比例公式綁定、66 條投資學核心公式與 50 種技術分析指標的欄位、優先級、章節連結與 KaTeX 實編譯、119 個 KaTeX 公式綁定與 3,405 個行內公式／204 個區塊公式實編譯、效率市場比較表欄列結構、32 張總體既有章節圖、15 張投資學既有教學圖、8 張會計學教學圖與 6 張 Mermaid 推導圖、學派演進圖的模型／諾貝爾綁定、法規全文資料綁定、3,710 題選擇題與逐選項解析、348 題計算／申論題與題意檢核、107–115 年章節解題（343 節次、601 例題）、15 個總經時事（12 個主題含 26 條公式；20 則 TOP 20 摘要整合、8 大主題、5 題申論）與參考資料、97 題組／118 個部分單一題庫（74 個題組對應主題公式）、21 組多部分題組、38 條整合公式、2 組敏感度分析、13 個章節進階補給、14 個法規深度補給與 15 張法規速讀卡、73 章出處分布與繁體中文守門檢查）。
+目前 `validate-content.js` 執行 195,435 項檢查，失敗數為 0（含四個科目章節界線、網站內容不得再出現「第 X 篇」、投資學比例公式綁定、66 條投資學核心公式與 50 種技術分析指標的欄位、優先級、章節連結與 KaTeX 實編譯、119 個 KaTeX 公式綁定與 3,434 個行內公式／204 個區塊公式實編譯、效率市場比較表欄列結構、32 張總體既有章節圖、15 張投資學既有教學圖、8 張會計學教學圖與 6 張 Mermaid 推導圖、學派演進圖的模型／諾貝爾綁定、法規全文資料綁定、3,710 題選擇題與逐選項解析、348 題計算／申論題與題意檢核、107–115 年章節解題（343 節次、601 例題）、15 個總經時事（12 個主題含 26 條公式；20 則 TOP 20 摘要整合、8 大主題、5 題申論）與參考資料、97 題組／118 個部分單一題庫（74 個題組對應主題公式）、21 組多部分題組、38 條整合公式、2 組敏感度分析、13 個章節進階補給、14 個法規深度補給與 15 張法規速讀卡、73 章出處分布與繁體中文守門檢查）。
 
 諾貝爾年表的年份與得主另以 `site/scripts/verify-nobel-api.js` 對照官方 API；2026-10-20 執行結果為 58 屆、0 筆不一致。此檢查需要網路，不列入離線驗證；2025、2026 屆公式已對照官方科學背景，2019–2020 屆公式與學說方向、2021 LATE 公式與 2022–2024 學說方向亦已核對（2019、2020 網站公式為概念式），2019–2026 代表原始論文書目已核對；2019–2026 每年至少一篇代表論文完成全文抽查（2026 為 Hall；Woodford 2003 專書未逐條）；其餘屆公式、全文、學說摘述與模型圖仍待原始文獻逐條核對。
 
