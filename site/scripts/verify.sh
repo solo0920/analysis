@@ -26,4 +26,7 @@ fi
 echo "== Validate SEO =="
 node site/scripts/validate-seo.js
 
+echo "== Write version.json =="
+node site/scripts/write-version.js
+
 echo "All checks passed."
