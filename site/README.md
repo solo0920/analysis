@@ -564,6 +564,8 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 
 2026-11-26 部署流程簡化為 Cloudflare Worker：移除 `.github/workflows/pages.yml` 與 GitHub Pages 鏡像，新增根目錄 `wrangler.toml`（`analysis`、`assets.directory = "./site"`、`not_found_handling = "404-page"`）；Cloudflare Workers Builds 的 Build command 已設為 `bash site/scripts/verify.sh`，Deploy command 維持 `npx wrangler deploy`。新增 `site/scripts/write-version.js`、`check-live.sh` 與 `check-js-syntax.js`；`verify.sh` 在通過內容／SEO 驗證後產生 `site/version.json`，`site/version.json` 加入 `.gitignore`。JS 語法檢查由 170 次 `node --check` 改為單一 Node 進程，`verify.sh` 由約 6.3 秒降至約 2.4 秒。正式站建置後以 `bash site/scripts/check-live.sh` 比對 commit；`version.json` 回傳 `main` 與目前 commit，GitHub 只保留 push，不再部署 Pages；GitHub Pages 已停用（Pages API 回 404）。
 
+2026-11-26 修正搜尋結果的 LaTeX 顯示：搜尋「有關」時，`109Q1-macro-07` 題幹中的 `\(M_{1A}\)`／`\(M_2\)` 原本以原始 LaTeX 顯示；新增 `renderSearchText()`，只解析明確的 `\(...\)`／`\[...\]` 並將其餘文字轉義，搜尋結果改以 KaTeX 呈現。390px／1280px 與 `file://` 實測顯示 2 個 KaTeX、0 `.katex-error`、0 水平溢出；`check-ui.js` 新增搜尋 KaTeX 回歸檢查；`verify.sh` 195,435 項、0 失敗。
+
 2026-11-26 修正 `113Q3-macro-34` 跨期消費答案：原答案 A、解析只說存款者利息收入減少使本期消費減少；改為以替代效果（SE）與所得效果（IE）拆解，答案改 C「未來消費一定減少」。本期消費因兩效果方向相反而不一定增減（A、B 錯），未來消費因兩效果同向減少而一定減少（C 正確、D 錯）。`file://` 390px／1280px 顯示完整解析、0 `.katex-error`、0 水平溢出；`verify.sh` 195,435 項、0 失敗。
 
 2026-11-26 補齊 `111Q2-macro-02` 的歐豬五國解析：summary 改為 PIIGS 全稱、2008–2010 年代歐洲主權債務危機背景，並列出 Portugal／Italy／Ireland／Greece／Spain 五國；Ireland 另註明原「PIGS」四國後加入。`file://` 390px／1280px 展開解析顯示完整清單、0 `.katex-error`、0 水平溢出；`verify.sh` 195,435 項、0 失敗，選項分析與答案不變。

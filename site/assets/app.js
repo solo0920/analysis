@@ -4560,6 +4560,29 @@
     return renderWrittenAnswer(text).replace(/class="written-answer-math/g, 'class="inline-math');
   }
 
+  // 搜尋結果只解析明確的 \(...\)／\[...\]，其餘文字一律轉義，
+  // 避免把題幹中的一般符號誤判成數學式。
+  function renderSearchText(text) {
+    const source = String(text == null ? "" : text);
+    const parts = [];
+    const pattern = /\\\[([\s\S]+?)\\\]|\\\(([\s\S]+?)\\\)/g;
+    let last = 0;
+    let match;
+    while ((match = pattern.exec(source))) {
+      if (match.index > last) {
+        parts.push(escapeHtml(source.slice(last, match.index)));
+      }
+      const display = match[1] !== undefined;
+      const tex = display ? match[1] : match[2];
+      parts.push('<span class="inline-math' + (display ? " is-display" : "") + '">' + renderKatex(tex, display) + "</span>");
+      last = pattern.lastIndex;
+    }
+    if (last < source.length) {
+      parts.push(escapeHtml(source.slice(last)));
+    }
+    return parts.join("");
+  }
+
   function splitWrittenStemParagraphs(text) {
     let source = String(text == null ? "" : text).replace(/\r\n?/g, "\n").trim();
     if (!source) {
@@ -7375,7 +7398,7 @@
       return [
         '<a class="search-result' + active + '" href="' + searchHref(result) + '">',
         '  <span class="result-type ' + escapeHtml(result.typeClass) + '">' + escapeHtml(result.type) + "</span>",
-        "  <span><strong>" + escapeHtml(result.title) + "</strong><small>" + escapeHtml(result.sub) + "</small></span>",
+        "  <span><strong>" + renderSearchText(result.title) + "</strong><small>" + renderSearchText(result.sub) + "</small></span>",
         '  <span class="result-arrow" aria-hidden="true">→</span>',
         "</a>"
       ].join("");

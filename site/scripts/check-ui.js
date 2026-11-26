@@ -221,6 +221,29 @@ async function main() {
   if (!searchReady || searchCount === 0) failed += 1;
   console.log((searchReady && searchCount ? "ok  " : "FAIL") + " search results " + searchCount);
 
+  // Regression: past-exam stems with \(...\) must render as KaTeX inside search results.
+  await evaluate(send, `(() => {
+    const input = document.querySelector("#search-input");
+    const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set;
+    setter.call(input, "有關");
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+  })()`);
+  const mathReady = await waitFor(send, `Array.from(document.querySelectorAll("#search-results .search-result")).some((el) => el.textContent.includes("M") && el.textContent.includes("敘述"))`, 10000);
+  await sleep(300);
+  const mathState = await evaluate(send, `(() => {
+    const result = Array.from(document.querySelectorAll("#search-results .search-result")).find((el) => el.textContent.includes("M") && el.textContent.includes("敘述"));
+    return result ? {
+      katex: result.querySelectorAll(".katex").length,
+      errors: result.querySelectorAll(".katex-error").length
+    } : { katex: 0, errors: 0 };
+  })()`);
+  const mathProblems = [];
+  if (!mathReady) mathProblems.push("result missing");
+  if (mathState.katex < 2) mathProblems.push("katex count " + mathState.katex);
+  if (mathState.errors) mathProblems.push("katex errors " + mathState.errors);
+  if (mathProblems.length) failed += 1;
+  console.log((mathProblems.length ? "FAIL" : "ok  ") + " search katex " + mathState.katex + (mathProblems.length ? " — " + mathProblems.join("; ") : ""));
+
   // 404 page only when testing a remote origin (local Python server has its own 404).
   if (args.remote) {
     events.length = 0;
