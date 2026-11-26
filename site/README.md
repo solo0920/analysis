@@ -70,7 +70,7 @@ site/
 │   ├── check-ui.js            # Chrome CDP runtime 檢查（390／1280、深淺主題）
 │   ├── verify.sh              # 建置、內容／SEO 驗證與 version.json
 │   ├── write-version.js       # 產生 site/version.json
-│   ├── check-live.sh          # 比對正式站 version.json 與目前 commit
+│   ├── check-live.sh          # 正式站狀態與 version.json 比對
 │   └── verify-nobel-api.js     # 諾貝爾官方 API 年份與得主比對（需網路）
 └── assets/
     ├── app.js                  # hash routing、搜尋、進度、主題、考古題練習與列印
