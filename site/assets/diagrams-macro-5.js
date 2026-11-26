@@ -1,4 +1,4 @@
-/* 總體經濟學 — 模型圖（第 12 章利率、第 13 章金融工具） */
+/* 總體經濟學 — 模型圖（第 13 章利率、第 14 章金融工具） */
 
 window.MACRO_DIAGRAMS = window.MACRO_DIAGRAMS || {};
 

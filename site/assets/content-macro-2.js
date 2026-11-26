@@ -1,10 +1,10 @@
-/* 總體經濟學 — 章節內容（第 6–10 章）
+/* 總體經濟學 — 章節內容（第 7–11 章）
    接續 content-macro.js，保持相同資料結構。 */
 
 window.MACRO_SUBJECT.chapters.push(
   {
     id: "macro-06",
-    number: 6,
+    number: 7,
     title: "投資儲蓄-流動性偏好貨幣供給 IS-LM模型",
     page: "P. 133",
     summary: "以投資儲蓄（IS）與流動性偏好貨幣供給（LM）兩條曲線連結商品市場與貨幣市場，分析財政政策、貨幣政策與排擠效果。",
@@ -77,7 +77,7 @@ window.MACRO_SUBJECT.chapters.push(
   },
   {
     id: "macro-07",
-    number: 7,
+    number: 8,
     title: "總合供需AD-AS模型",
     page: "P. 145",
     summary: "以總合需求與總合供給共同決定物價與產出，並比較古典、凱因斯與供給面學派的主張。",
@@ -152,7 +152,7 @@ window.MACRO_SUBJECT.chapters.push(
   },
   {
     id: "macro-08",
-    number: 8,
+    number: 9,
     title: "經濟成長與景氣循環",
     page: "P. 167",
     summary: "理解長期經濟成長的來源、Solow 模型與收斂概念，以及短期景氣循環的階段與指標。",
@@ -231,7 +231,7 @@ window.MACRO_SUBJECT.chapters.push(
   },
   {
     id: "macro-09",
-    number: 9,
+    number: 10,
     title: "失業與通貨膨脹",
     page: "P. 185",
     summary: "分析勞動市場與失業類型、通貨膨脹成因與成本，以及菲利浦曲線的短期與長期關係。",
@@ -307,7 +307,7 @@ window.MACRO_SUBJECT.chapters.push(
   },
   {
     id: "macro-10",
-    number: 10,
+    number: 11,
     title: "開放經濟（國際經濟學精華）",
     page: "P. 207",
     summary: "分析外匯與匯率決定、國際收支、匯率制度與央行干預，並連結開放經濟的所得決定與金融危機。",

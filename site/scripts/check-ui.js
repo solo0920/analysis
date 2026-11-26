@@ -98,7 +98,8 @@ const CONTENT_CHECKS = [
   { name: "accounting-109Q3", path: "/#/past-exams/written?question=109Q3-accounting-written-1", selector: "#written-109Q3-accounting-written-1", contains: "11,067,062" },
   { name: "accounting-109Q1", path: "/#/past-exams/written?question=109Q1-accounting-written-1", selector: "#written-109Q1-accounting-written-1", contains: "97,000" },
   { name: "accounting-115Q1", path: "/#/chapter/accounting-02?section=5", selector: "#section-5 .section-solutions", contains: "51,000" },
-  { name: "macro-05-taylor", path: "/#/chapter/macro-05?section=5", selector: "#section-5 .section-subsections", contains: "泰勒法則參數", minKatex: 20 }
+  { name: "macro-05-taylor", path: "/#/chapter/macro-05?section=5", selector: "#section-5 .section-subsections", contains: "泰勒法則參數", minKatex: 20 },
+  { name: "macro-classical", path: "/#/chapter/macro-classical", selector: "#section-5", contains: "古典模型", minKatex: 20 }
 ];
 
 function checkPage(send, events, route, selector, expectedCount) {

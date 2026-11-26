@@ -311,8 +311,8 @@ const lawSections = law.chapters.reduce(function (sum, chapter) { return sum + c
 
 check(macro.parts.length === macroSource.parts.length, "總體經濟學 Part 數應與來源一致（" + macroSource.parts.length + "）");
 check(macro.chapters.length === macroSource.chapters.length, "總體經濟學章數應與來源一致（" + macroSource.chapters.length + "）");
-check(macro.chapters.length === 13, "總體經濟學應為 Parts 1–2 的 13 章");
-check(macroSections === 56, "總體經濟學應為 56 節（含 6 個進階補給）");
+check(macro.chapters.length === 14, "總體經濟學應為 Parts 1–2 的 14 章");
+check(macroSections === 61, "總體經濟學應為 61 節（含 6 個進階補給）");
 
 macroSource.parts.forEach(function (expected, index) {
   const actual = macro.parts[index];
@@ -647,8 +647,8 @@ content.subjects.forEach(function (subject) {
 const formulaTexKeys = Object.keys(formulaTex);
 const formulaTexKeySet = new Set(formulaTexKeys);
 const formulaSectionKeySet = new Set(formulaSections.map(function (entry) { return entry.key; }));
-check(formulaSections.length === 119, "全站應有 119 個含公式的學習單元（目前 " + formulaSections.length + " 個）");
-check(formulaTexKeys.length === 119, "KaTeX 公式資料應有 119 筆（目前 " + formulaTexKeys.length + " 筆）");
+check(formulaSections.length === 124, "全站應有 124 個含公式的學習單元（目前 " + formulaSections.length + " 個）");
+check(formulaTexKeys.length === 124, "KaTeX 公式資料應有 124 筆（目前 " + formulaTexKeys.length + " 筆）");
 check(formulaSections.every(function (entry) { return formulaTexKeySet.has(entry.key); }), "每個含公式的學習單元都應有 KaTeX 公式");
 check(formulaTexKeys.every(function (key) { return formulaSectionKeySet.has(key); }), "KaTeX 公式資料不得有對應不到學習單元的項目");
 check(formulaTexKeys.every(function (key) {
@@ -2005,7 +2005,7 @@ Object.keys(lazyPastStats.practice.years || {}).forEach(function (year) {
   check(yearData.questions.length === lazyPastStats.practice.years[year].count, "考古題年度分包題數與統計不一致：" + year);
   check(yearData.questions.every(function (question) { return question.year === Number(year); }), "考古題年度分包混入其他年度：" + year);
 });
-check(Object.keys(lazyPastStats.practice.chapters || {}).length === 73, "延遲載入用考古題統計應涵蓋 73 章");
+check(Object.keys(lazyPastStats.practice.chapters || {}).length === 73, "延遲載入用考古題統計應涵蓋 73 個有出處章節");
 check(Object.keys(lazyPastStats.written.chapters || {}).length === 55, "延遲載入用考古題統計應涵蓋 55 個申論章節");
 ["macro", "investment", "accounting", "law"].forEach(function (subject) {
   check(lazyPastStats.practice.subjects[subject] === { macro: 994, investment: 924, accounting: 882, law: 910 }[subject], "延遲載入用考古題統計科目數錯誤：" + subject);
@@ -2324,4 +2324,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log("驗證通過：總體經濟學（13 章、56 節）、投資學（16 章、58 個重點）、會計學（23 章、65 個單元）、證券法規（21 章、52 節、1,507 條官方全文）、" + totalChapterDiagrams + " 張章節教學圖（總體 " + totalMacroDiagrams + "、投資 " + totalInvestmentDiagrams + "、會計 " + totalAccountingDiagrams + "；含 " + mermaidNewEntries.length + " 張 Mermaid 新推導圖）、119 個 KaTeX 公式、諾貝爾年表（1969–2026）與 107–115 年 3,710 題考古題練習庫結構一致。");
+console.log("驗證通過：總體經濟學（14 章、61 節）、投資學（16 章、58 個重點）、會計學（23 章、65 個單元）、證券法規（21 章、52 節、1,507 條官方全文）、" + totalChapterDiagrams + " 張章節教學圖（總體 " + totalMacroDiagrams + "、投資 " + totalInvestmentDiagrams + "、會計 " + totalAccountingDiagrams + "；含 " + mermaidNewEntries.length + " 張 Mermaid 新推導圖）、124 個 KaTeX 公式、諾貝爾年表（1969–2026）與 107–115 年 3,710 題考古題練習庫結構一致。");

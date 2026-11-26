@@ -1,4 +1,4 @@
-/* 總體經濟學 — 章節內容（第 11–13 章）
+/* 總體經濟學 — 章節內容（第 12–14 章）
    依 documents/gross_economics_contents.md 的後段章節（第 11–13 章）。
    接續 content-macro-2.js，保持相同資料結構；載入順序必須在 content.js 之前。 */
 
@@ -17,7 +17,7 @@ window.MACRO_SUBJECT.chapters.forEach(function (chapter) {
 window.MACRO_SUBJECT.chapters.push(
   {
     id: "macro-11",
-    number: 11,
+    number: 12,
     part: 2,
     partTitle: "金融市場",
     title: "金融體系",
@@ -107,7 +107,7 @@ window.MACRO_SUBJECT.chapters.push(
   },
   {
     id: "macro-12",
-    number: 12,
+    number: 13,
     part: 2,
     partTitle: "金融市場",
     title: "利率",
@@ -237,7 +237,7 @@ window.MACRO_SUBJECT.chapters.push(
   },
   {
     id: "macro-13",
-    number: 13,
+    number: 14,
     part: 2,
     partTitle: "金融市場",
     title: "金融工具介紹",

@@ -28,7 +28,8 @@ window.MACRO_EVOLUTION = {
           modelAnchors: ["model-macro-12-1"],
           nobelYears: [],
           chapterRefs: [
-            { chapterId: "macro-07", sectionIndex: 2, label: "第七章 學派說明" }
+            { chapterId: "macro-classical", sectionIndex: 4, label: "第二章 古典模型" },
+            { chapterId: "macro-07", sectionIndex: 2, label: "第八章 學派說明" }
           ]
         }
       ]

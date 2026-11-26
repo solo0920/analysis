@@ -25,6 +25,11 @@ PDI &= PI - T_p = C + S
   "macro-05::第1節 存款貨幣的創造與貨幣供給": { tex: String.raw`M = m \times B,\qquad m = \frac{1}{rr}`, note: "無超額準備、無現金流失；B 為準備貨幣。" },
   "macro-05::第2節 貨幣需求理論": { tex: String.raw`\begin{gathered}MV=PY\\V=\frac{PY}{M}=\frac{\text{名目GDP}}{\text{貨幣供給}}\end{gathered}`, note: "V 為貨幣流通速度；數量方程式為恆等式。" },
 
+  "macro-classical::第1節 勞動市場與生產函數": { tex: String.raw`\begin{gathered}L_d(w/P)=L_s(w/P)=L_F\\Y=F(K,L),\quad F_L>0,\quad F_{LL}<0\end{gathered}`, note: "L_d、L_s 分別為勞動需求與供給；w/P 為實質工資；L_F 為充分就業；K 固定，F_L 為勞動邊際產量。" },
+  "macro-classical::第2節 商品市場的供給面": { tex: String.raw`Y=Y_F=F(K,L_F)`, note: "Y_F 為充分就業產出；古典總供給垂直，價格變動不改變 Y_F。" },
+  "macro-classical::第3節 商品市場與賽伊法則": { tex: String.raw`\begin{gathered}Y=C+S=C+I\\S(r)=I(r)\end{gathered}`, note: "S(r) 為儲蓄供給、I(r) 為投資需求；利率調整使兩者相等。" },
+  "macro-classical::第4節 古典學派的貨幣理論": { tex: String.raw`\begin{gathered}MV=PY\\M^d/P=kY\\P=\frac{MV}{Y}\end{gathered}`, note: "M 貨幣供給、V 流通速度、P 物價、Y 實質產出、k 劍橋 k≈1/V；貨幣中立性需長期 V、Y 穩定。" },
+  "macro-classical::第5節 古典模型": { tex: String.raw`\begin{gathered}L_d=L_s,\quad Y=F(K,L)\\S(r)=I(r),\quad MV=PY\end{gathered}`, note: "古典模型四條結清條件；實質變數由實質面決定，名目變數由貨幣面決定。" },
   "macro-06::第1節 IS曲線與LM曲線": { tex: String.raw`\begin{gathered}IS:\quad Y = C(Y-T)+I(i)+G\\LM:\quad \frac{M}{P}=L(Y,i)\end{gathered}`, note: "封閉經濟、物價固定；i 為利率。" },
   "macro-06::第2節 總體經濟政策與IS-LM曲線": { tex: String.raw`\begin{gathered}\text{擴張財政：}IS \to \text{右}\\\text{擴張貨幣：}LM \to \text{右}\end{gathered}`, note: "IS 右移代表商品市場需求增加；LM 右移代表貨幣供給增加。移動方向為比較靜態，實際效果取決於曲線斜率與利率反應。" },
   "macro-06::第3節 IS-LM模型與總體經濟政策有效性": { tex: String.raw`\text{流動性陷阱：}LM \text{ 近乎水平}`, note: "貨幣政策效果有限。" },

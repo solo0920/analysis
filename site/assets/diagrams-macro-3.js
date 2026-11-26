@@ -1,4 +1,4 @@
-/* 總體經濟學 — 模型圖（第 7 章總合供需AD-AS、第 8 章成長與景氣循環） */
+/* 總體經濟學 — 模型圖（第 8 章總合供需AD-AS、第 9 章成長與景氣循環） */
 
 window.MACRO_DIAGRAMS = window.MACRO_DIAGRAMS || {};
 

@@ -1,4 +1,4 @@
-/* 總體經濟學 — 模型圖（第 5 章貨幣需求、第 6 章 IS-LM） */
+/* 總體經濟學 — 模型圖（第 6 章貨幣需求、第 7 章 IS-LM） */
 
 window.MACRO_DIAGRAMS = window.MACRO_DIAGRAMS || {};
 
