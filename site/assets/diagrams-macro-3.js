@@ -1,13 +1,13 @@
-/* 總體經濟學 — 模型圖（第 7 章總供需、第 8 章成長與景氣循環） */
+/* 總體經濟學 — 模型圖（第 7 章總合供需AD-AS、第 8 章成長與景氣循環） */
 
 window.MACRO_DIAGRAMS = window.MACRO_DIAGRAMS || {};
 
 Object.assign(window.MACRO_DIAGRAMS, {
   "macro-07#0": {
-    sectionTitle: "第1節 總供需曲線",
-    title: "AD-AS 模型：短期均衡與長期調整",
+    sectionTitle: "第1節 總合供需曲線",
+    title: "總合供需 AD-AS 模型：短期均衡與長期調整",
     formula: String.raw`AD:\ Y=C+I+G+NX,\qquad LRAS:\ Y=Y^*`,
-    caption: "AD 為總需求，SRAS₀ 為初始短期總供給，LRAS 為長期總供給（垂直於自然產出 Yn）。AD 右移後，短期均衡由 E₀ 移到 E₁，物價與產出同時上升；隨著名目工資與價格調整，SRAS 左移到 SRAS₁，產出回到 Yn，物價停在更高的水準（E_LR）。",
+    caption: "AD 為總合需求，SRAS₀ 為初始短期總合供給，LRAS 為長期總合供給（垂直於自然產出 Yn）。AD 右移後，短期均衡由 E₀ 移到 E₁，物價與產出同時上升；隨著名目工資與價格調整，SRAS 左移到 SRAS₁，產出回到 Yn，物價停在更高的水準（E_LR）。",
     svg: `
 <svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-adas-title" xmlns="http://www.w3.org/2000/svg">
   <title id="dg-adas-title">AD-AS模型短期均衡與長期調整圖</title>
@@ -48,27 +48,27 @@ Object.assign(window.MACRO_DIAGRAMS, {
     variables: [
       ["Y", "實質產出", "橫軸；短期可能偏離自然產出 Yn。"],
       ["P", "物價水準", "縱軸；由 AD 與 SRAS 共同決定。"],
-      ["AD", "總需求", "物價越低、實質財富與利率效果使需求越大，斜率向下。"],
-      ["SRAS", "短期總供給", "預期物價固定下，物價越高、供給越多，斜率向上。"],
-      ["LRAS", "長期總供給", "垂直於自然產出 Yn；長期產出由技術與要素決定。"]
+      ["AD", "總合需求", "物價越低、實質財富與利率效果使需求越大，斜率向下。"],
+      ["SRAS", "短期總合供給", "預期物價固定下，物價越高、供給越多，斜率向上。"],
+      ["LRAS", "長期總合供給", "垂直於自然產出 Yn；長期產出由技術與要素決定。"]
     ],
     parameters: [
       ["Yn", "自然產出", "充分就業下的產出水準，由生產函數與勞動市場決定。"],
       ["SRAS 斜率", "供給僵固程度", "名目工資與價格僵固越強，SRAS 越平坦。"],
-      ["AD 移動", "需求衝擊", "G↑、M↑、消費與投資信心上升都會使 AD 右移。"],
+      ["AD 移動", "總合需求衝擊", "G↑、M↑、消費與投資信心上升都會使 AD 右移。"],
       ["工資與價格調整", "長期調整機制", "名目工資與價格調整使 SRAS 左移，經濟回到 Yn；預期物價是背後因素之一。"]
     ],
-    note: "短期均衡不一定在 Yn；長期調整靠預期、工資與價格的調整完成。需求管理政策只影響短期產出，長期主要影響物價。"
+    note: "短期均衡不一定在 Yn；長期調整靠預期、工資與價格的調整完成。總合需求管理政策只影響短期產出，長期主要影響物價。"
   },
 
   "macro-07#1": {
-    sectionTitle: "第2節 總供需均衡分析",
-    title: "需求衝擊與供給衝擊的比較",
+    sectionTitle: "第2節 總合供需均衡分析",
+    title: "總合需求衝擊與總合供給衝擊的比較",
     formula: String.raw`\text{產出缺口}=\frac{Y-Y^*}{Y^*}\times100\%`,
-    caption: "左圖：AD 右移的需求拉動，短期物價與產出同升。右圖：SRAS 左移的供給衝擊（如油價上漲），物價上升但產出下降，形成停滯性通膨。兩者的政策含意不同：需求衝擊可用緊縮政策降溫，供給衝擊則面臨通膨與失業的兩難。",
+    caption: "左圖：AD 右移的總合需求拉動，短期物價與產出同升。右圖：SRAS 左移的總合供給衝擊（如油價上漲），物價上升但產出下降，形成停滯性通膨。兩者的政策含意不同：總合需求衝擊可用緊縮政策降溫，總合供給衝擊則面臨通膨與失業的兩難。",
     svg: `
 <svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-shock-title" xmlns="http://www.w3.org/2000/svg">
-  <title id="dg-shock-title">需求衝擊與供給衝擊比較圖</title>
+  <title id="dg-shock-title">總合需求衝擊與總合供給衝擊比較圖</title>
   <defs>
     <marker id="dg-shock-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path class="dg-arrow-head" d="M0,0 L10,5 L0,10 z"></path>
@@ -76,8 +76,8 @@ Object.assign(window.MACRO_DIAGRAMS, {
   </defs>
   <rect class="dg-panel" x="20" y="20" width="286" height="316" rx="14"></rect>
   <rect class="dg-panel" x="334" y="20" width="286" height="316" rx="14"></rect>
-  <text class="dg-label" x="163" y="48" text-anchor="middle">需求衝擊：AD 右移</text>
-  <text class="dg-label" x="477" y="48" text-anchor="middle">供給衝擊：SRAS 左移</text>
+  <text class="dg-label" x="163" y="48" text-anchor="middle">總合需求衝擊：AD 右移</text>
+  <text class="dg-label" x="477" y="48" text-anchor="middle">總合供給衝擊：SRAS 左移</text>
   <line class="dg-axis" x1="56" y1="290" x2="284" y2="290"></line>
   <line class="dg-axis" x1="56" y1="290" x2="56" y2="70"></line>
   <line class="dg-axis" x1="370" y1="290" x2="598" y2="290"></line>
@@ -118,15 +118,15 @@ Object.assign(window.MACRO_DIAGRAMS, {
     variables: [
       ["Y", "產出", "需求衝擊使 Y 上升；供給衝擊使 Y 下降。"],
       ["P", "物價", "兩種衝擊都會推升物價。"],
-      ["AD", "總需求", "需求拉動型通膨的來源。"],
-      ["SRAS", "短期總供給", "成本推動型通膨的來源。"]
+      ["AD", "總合需求", "需求拉動型通膨的來源。"],
+      ["SRAS", "短期總合供給", "成本推動型通膨的來源。"]
     ],
     parameters: [
-      ["AD 衝擊", "需求面變動", "G↑、M↑、投資信心上升。"],
-      ["供給衝擊", "成本面變動", "油價、工資、原物料上漲或供給鏈中斷。"],
-      ["SRAS 斜率", "調整速度", "供給衝擊下，SRAS 越平坦，產出下降越多；越陡則物價上升較多、產出下降較少。"]
+      ["AD 衝擊", "總合需求面變動", "G↑、M↑、投資信心上升。"],
+      ["總合供給衝擊", "成本面變動", "油價、工資、原物料上漲或供給鏈中斷。"],
+      ["SRAS 斜率", "調整速度", "總合供給衝擊下，SRAS 越平坦，產出下降越多；越陡則物價上升較多、產出下降較少。"]
     ],
-    note: "供給衝擊造成的物價上升與產出下降同時出現，稱為停滯性通膨（stagflation）。"
+    note: "總合供給衝擊造成的物價上升與產出下降同時出現，稱為停滯性通膨（stagflation）。"
   },
 
   "macro-08#0": {

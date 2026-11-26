@@ -29,8 +29,8 @@ PDI &= PI - T_p = C + S
   "macro-06::第2節 總體經濟政策與IS-LM曲線": { tex: String.raw`\begin{gathered}\text{擴張財政：}IS \to \text{右}\\\text{擴張貨幣：}LM \to \text{右}\end{gathered}`, note: "IS 右移代表商品市場需求增加；LM 右移代表貨幣供給增加。移動方向為比較靜態，實際效果取決於曲線斜率與利率反應。" },
   "macro-06::第3節 IS-LM模型與總體經濟政策有效性": { tex: String.raw`\text{流動性陷阱：}LM \text{ 近乎水平}`, note: "貨幣政策效果有限。" },
 
-  "macro-07::第1節 總供需曲線": { tex: String.raw`\begin{gathered}AD:\quad Y=C+I+G+NX\\LRAS:\quad Y=Y^*\end{gathered}`, note: "AD 為總需求，LRAS 為長期總供給；Y* 為潛在產出。短期 SRAS 向上，長期 LRAS 垂直。" },
-  "macro-07::第2節 總供需均衡分析": { tex: String.raw`\text{產出缺口} = \frac{\text{實際產出}-\text{潛在產出}}{\text{潛在產出}} \times 100\%`, note: "實際產出為當期實質 GDP；潛在產出為充分就業下的產出。缺口為正代表景氣過熱，負代表資源閒置。" },
+  "macro-07::第1節 總合供需曲線": { tex: String.raw`\begin{gathered}AD:\quad Y=C+I+G+NX\\LRAS:\quad Y=Y^*\end{gathered}`, note: "AD 為總合需求，LRAS 為長期總合供給；Y* 為潛在產出。短期 SRAS 向上，長期 LRAS 垂直。" },
+  "macro-07::第2節 總合供需均衡分析": { tex: String.raw`\text{產出缺口} = \frac{\text{實際產出}-\text{潛在產出}}{\text{潛在產出}} \times 100\%`, note: "實際產出為當期實質 GDP；潛在產出為充分就業下的產出。缺口為正代表景氣過熱，負代表資源閒置。" },
   "macro-08::第1節 經濟成長理論": { tex: String.raw`Y = A \times F(K,L)`, note: "A 為全要素生產力（TFP）；K 為資本、L 為勞動。F 為生產函數，規模報酬與技術假設需另確認。" },
 
   "macro-09::第1節 勞動市場與失業": { tex: String.raw`\text{失業率} = \frac{\text{失業人口}}{\text{勞動力}} \times 100\%`, note: "失業人口為 15 歲以上、沒有工作、正在尋找工作且可立即工作的人；勞動力＝就業＋失業。" },
