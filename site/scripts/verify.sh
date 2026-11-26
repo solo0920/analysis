@@ -14,6 +14,9 @@ fi
 echo "== Build static landing pages =="
 node site/scripts/build-static-landing-pages.js
 
+echo "== Build asset manifest =="
+node site/scripts/build-asset-manifest.js
+
 echo "== Check JavaScript syntax and content in parallel =="
 node site/scripts/check-js-syntax.js &
 js_pid=$!

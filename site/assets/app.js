@@ -6921,7 +6921,8 @@
     }
     miniSearchPromise = new Promise(function (resolve, reject) {
       const script = document.createElement("script");
-      script.src = (window.__ASSET_BASE__ || "assets/") + "vendor/minisearch.min.js";
+      const miniSearchFile = "vendor/minisearch.min.js";
+      script.src = window.__assetUrl__ ? window.__assetUrl__(miniSearchFile) : (window.__ASSET_BASE__ || "assets/") + miniSearchFile;
       script.async = true;
       script.onload = function () {
         if (window.MiniSearch) {

@@ -43,6 +43,15 @@
   })();
   window.__ASSET_BASE__ = basePath;
 
+  const manifest = window.__ASSET_MANIFEST__ || {};
+  function versioned(file) {
+    const version = manifest[file];
+    return version && location.protocol !== "file:" ? file + "?v=" + version : file;
+  }
+  window.__assetUrl__ = function (file) {
+    return basePath + versioned(file);
+  };
+
   function routeParts() {
     return (location.hash || "").replace(/^#/, "").split("?")[0].split("/").filter(Boolean);
   }
@@ -132,7 +141,7 @@
       let settled = false;
       files.forEach(function (file) {
         const script = document.createElement("script");
-        script.src = basePath + file;
+        script.src = basePath + versioned(file);
         // async=false：瀏覽器可平行下載，但依插入順序執行，保留 content.js／app.js 的依賴順序。
         script.async = false;
         script.onload = function () {
