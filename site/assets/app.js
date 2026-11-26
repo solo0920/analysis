@@ -4490,7 +4490,7 @@
 
   function autoMathProseToHtml(text) {
     const source = String(text == null ? "" : text);
-    const mathIndicator = /[＝＋−×÷≈≤≥≠√^_]|[αβγδεθλμπρστφωΔΣΠΩ]|\d+\s*%|[A-Za-z0-9)]\s*[=+\-*/]\s*[0-9A-Za-z(]|[A-Za-z]\s*[+\-*/]\s*[A-Za-z0-9(]/;
+    const mathIndicator = /[＝＋−×÷≈≤≥≠√^_]|[αβγδεθλμπρστφωΔΣΠΩ]|\d+\s*%|[A-Za-z0-9)]\s*[=+*/]\s*[0-9A-Za-z(]/;
     return source.split(/([；。！？，])/).map(function (part) {
       if (!part) {
         return "";

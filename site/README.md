@@ -564,6 +564,8 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 
 2026-11-26 部署流程簡化為 Cloudflare Worker：移除 `.github/workflows/pages.yml` 與 GitHub Pages 鏡像，新增根目錄 `wrangler.toml`（`analysis`、`assets.directory = "./site"`、`not_found_handling = "404-page"`）；Cloudflare Workers Builds 的 Build command 已設為 `bash site/scripts/verify.sh`，Deploy command 維持 `npx wrangler deploy`。新增 `site/scripts/write-version.js`、`check-live.sh` 與 `check-js-syntax.js`；`verify.sh` 在通過內容／SEO 驗證後產生 `site/version.json`，`site/version.json` 加入 `.gitignore`。JS 語法檢查由 170 次 `node --check` 改為單一 Node 進程，`verify.sh` 由約 6.3 秒降至約 2.4 秒。正式站建置後以 `bash site/scripts/check-live.sh` 比對 commit；`version.json` 回傳 `main` 與目前 commit，GitHub 只保留 push，不再部署 Pages；GitHub Pages 已停用（Pages API 回 404）。
 
+2026-11-27 補完整 `114Q2-macro-26` 的 CIPS 解析：summary 增加 `Cross-Border Interbank Payment System` 與「人民幣跨境支付系統」全稱；同時修正 `autoMathProseToHtml` 把英文連字號（如 `Cross-Border`）誤判為減號的問題，自動數學改為只由 `=`、`+`、`*`、`/` 等運算符觸發，避免整段英文被包成 KaTeX。390px／1280px 與 `file://` 實測正常，0 `.katex-error`、0 水平溢出。
+
 2026-11-26 補完整 `112Q2-macro-02` 的布列敦森林解析：summary 改為「固定匯率→擴張性貨幣政策→幣值高估→資本外流→國際收支赤字→央行買入本國貨幣→貨幣供給減少」的完整傳導，並保留 Bretton Woods 英文全名。390px／1280px 與 `file://` 實測解析完整，0 `.katex-error`、0 水平溢出。
 
 2026-11-26 新增第 2 章「古典學派的總體經濟理論」（`macro-02`），排在「國民所得與經濟福祉」之後；原第 2–13 章的章號與 ID 全部加 1（`macro-02`–`macro-13` → `macro-03`–`macro-14`），總體經濟學成為 14 章、61 節。新章含 5 節：勞動市場與生產函數、商品市場的供給面、商品市場與賽伊法則、古典學派的貨幣理論、古典模型；每節都有名詞、考試重點、記憶卡、公式盒、參數表或比較表。同步更新考古題 `sourceRefs`／`sourceIds`、`FORMULA_TEX`、圖表與 Mermaid 鍵值、解題分包、章節資料分包與靜態頁路徑；學派演進圖的古典節點改連到新章第 5 節。`verify.sh` 196,482 項、0 失敗；靜態頁 84 頁、連結 2,810 條、KaTeX 公式 124 筆。

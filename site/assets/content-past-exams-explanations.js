@@ -29837,7 +29837,7 @@ window.PAST_EXAM_EXPLANATIONS = {
     }
   },
   "114Q2-macro-26": {
-    "summary": "中國人民銀行開發的跨境人民幣支付系統是 CIPS，故正解為 C。",
+    "summary": "中國人民銀行開發的跨境人民幣支付系統是 CIPS，故正解為 C。\n• 英文全稱：Cross-Border Interbank Payment System\n• 中文全稱：人民幣跨境支付系統",
     "options": {
       "A": "SUR 不是該支付系統。",
       "B": "INTEX 不是該支付系統。",
