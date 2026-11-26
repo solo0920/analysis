@@ -48,6 +48,8 @@ site/
 ├── macro-current/              # 近二年總經時事靜態落地頁
 ├── nobel/                      # 諾貝爾經濟學獎模型靜態落地頁
 ├── diagrams/mermaid/           # Mermaid 母檔、manifest、靜態 SVG 與圖表說明
+├── _headers                    # Cloudflare 快取與 version.json no-store 設定
+├── .assetsignore               # 不上傳 scripts/、README、SOURCES 等開發檔
 ├── README.md
 ├── SOURCES.md                  # 來源清單與校對原則
 ├── scripts/
@@ -64,6 +66,8 @@ site/
 │   ├── build-minisearch-bundle.mjs # 重建 MiniSearch 瀏覽器 bundle（需 npm）
 │   ├── build-pele-bundle.mjs   # 重建樹搖後的 Pele flowchart vendor bundle（需 npm）
 │   ├── check-js-syntax.js     # 單一 Node 進程檢查 JS 語法；.mjs 交給 node --check
+│   ├── check-links.js         # 檢查靜態 HTML 的站內 href/src
+│   ├── check-ui.js            # Chrome CDP runtime 檢查（390／1280、深淺主題）
 │   ├── verify.sh              # 建置、內容／SEO 驗證與 version.json
 │   ├── write-version.js       # 產生 site/version.json
 │   ├── check-live.sh          # 比對正式站 version.json 與目前 commit
@@ -174,9 +178,11 @@ directory = "./site"
 not_found_handling = "404-page"
 ```
 
-`verify.sh` 依序建置核心 bundle、靜態頁，檢查 JavaScript 語法、內容與 SEO，最後產生 `site/version.json`。驗證失敗時 Cloudflare build 會停止，舊版繼續留在線上。部署成功後可用 `bash site/scripts/check-live.sh` 比對正式站版本。
+`verify.sh` 依序建置核心 bundle、靜態頁，檢查 JavaScript 語法、內容、SEO 與站內連結，最後產生 `site/version.json`。驗證失敗時 Cloudflare build 會停止，舊版繼續留在線上。部署成功後可用 `bash site/scripts/check-live.sh` 比對正式站版本、首頁、robots、sitemap、核心 bundle 與 404。
 
-`site/404.html` 會將未知路徑導回站點根目錄；Worker 以 `not_found_handling = "404-page"` 提供 404 頁面。所有資產使用相對路徑。
+`site/_headers` 將 HTML／JS 設為 `max-age=0, must-revalidate`，`/version.json` 設為 `no-store`，KaTeX 字型快取 7 天；`site/.assetsignore` 排除 `scripts/`、`README.md`、`SOURCES.md`，避免開發檔被當成 static assets 上傳。
+
+`site/404.html` 使用站點根路徑載入樣式與回首頁連結；Worker 以 `not_found_handling = "404-page"` 提供 404 頁面。所有資產使用相對路徑。GitHub Pages 已停用，`analysis.solo4study.workers.dev` 與預覽 URL 也已關閉，只保留自訂網域。
 
 ## 路由
 
@@ -345,9 +351,22 @@ bash site/scripts/verify.sh             # 建置＋JS 語法／內容平行檢�
 node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份與得主
 ```
 
-`verify.sh` 以 `site/scripts/check-js-syntax.js` 在單一 Node 進程檢查 168 個 `.js`，`.mjs` 另以 `node --check` 檢查，並與內容驗證平行執行；本機完整流程約 2.4 秒。若只想檢查個別項目，可直接執行 `validate-content.js`、`check-js-syntax.js`、`validate-seo.js` 或 `node --check <file>`。
+`verify.sh` 以 `site/scripts/check-js-syntax.js` 在單一 Node 進程檢查 168 個 `.js`，`.mjs` 另以 `node --check` 檢查，並與內容驗證平行執行；本機完整流程約 2.4 秒。`check-links.js` 會檢查 83 頁靜態 HTML 的站內 `href`／`src`（目前 2,713 條、0 斷鏈）。若只想檢查個別項目，可直接執行 `validate-content.js`、`check-js-syntax.js`、`check-links.js`、`validate-seo.js` 或 `node --check <file>`。
 
 `validate-seo.js` 會確認首頁、83 個靜態頁、Sitemap、robots.txt、llms.txt 與 JSON-LD 都使用正式網域 `https://analysis.ragdemo.win`，每個靜態頁的 canonical／og:url 指向自身，Sitemap URL 與實際頁面完全一致，且沒有殘留 GitHub Pages 網域。Cloudflare Build 的 `verify.sh` 會在部署前執行 JavaScript 語法檢查、`validate-content.js` 與 `validate-seo.js`，任一失敗即停止部署。
+
+需要 runtime 檢查時，先啟動本機伺服器與 Chrome，再執行：
+
+```bash
+python3 -m http.server 8765 --directory site
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --headless=new --remote-debugging-port=9223 \
+  --user-data-dir=/tmp/analysis-chrome about:blank
+node site/scripts/check-ui.js
+node site/scripts/check-ui.js --base https://analysis.ragdemo.win
+```
+
+`check-ui.js` 會檢查首頁、`macro-09` 章節、`108Q2-macro-11` 題目、複習題與搜尋在 390／1280、深淺主題下的 `.katex-error`、水平溢出與 console errors；`--base` 指向正式站時另檢查 404 頁。
 
 `validate-content.js` 會比對三份來源目錄的章號、章名、Part、順序、節次與頁碼，並檢查：
 
@@ -533,7 +552,11 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 
 2026-10-26 補回四個科目首頁的每章考古題統計，並把選擇題解答改為原位標示：`build-static-landing-pages.js` 新增 `percentText()`，四個靜態科目頁的每章卡加入「選擇題 N 題 · 頻率 X%」與「申論題 N 題 · 頻率 X%」，頻率以該科選擇題／申論題總數為分母；互動版科目頁原有的 `.chapter-exam-stat` 維持不變。選擇題展開「完整參考解答」後，`annotateLawChoiceOptions()` 直接在原 `li[data-law-option]` 顯示 `.law-option-feedback`，正確選項加 `.is-correct`，解答 summary 改為官方答案，不再建立 `.law-answer-body` 或 `.past-exam-analysis` 選項列表；申論／計算題仍以 `.law-answer-body` 顯示完整參考解答。靜態科目頁四頁共 13／16／23／21 章、26／32／46／42 組統計，390px 淺色與 1280px 深色 axe 0 violations、0 水平溢出；互動版四科統計亦為 26／32／46／42 組。選擇題原位解析實測 law-01、macro-01、macro-10、investment-09、accounting-01 與 21 個法規章節、52 個非法規章節：初始 0 個選項說明、0 個解答 body，展開後 summary 顯示官方答案、1 個以上正解高亮、4 項原位說明、0 個重複選項列表；多答案題 CD／BD／BC 與 A–D 均給分共 6 題正常；`file://` 正常；390px／1280px、深淺主題 axe 0 violations；20 種風格 × 深淺主題的選擇題解答元素（正解標籤、選項字母、說明、提示、解答 summary）對比皆 ≥ 4.5:1、axe 0 violations；`.law-question-hint`／`.law-answer-note` 改以 `--ink-soft` 顯示；驗證器 157,260 項、失敗 0。
 
+2026-11-26 完成 P1／P2／P3 可執行項目：固定 `esbuild@0.28.2`；Cloudflare build 以 `WORKERS_CI_COMMIT_SHA` 設定 `SITE_UPDATED`，讓 sitemap lastmod 使用 commit 日期；新增 `site/_headers`（HTML／JS revalidate、`/version.json` no-store、KaTeX 字型 7 天）與 `site/.assetsignore`（排除 `scripts/`、README、SOURCES）；新增 `check-links.js`（2,713 條站內連結 0 斷鏈）與 `check-ui.js`（Chrome CDP，支援 390／1280、深淺主題、首頁／章節／考古題／複習題／搜尋／404）；`check-live.sh` 擴充首頁、robots、sitemap、核心 bundle、404 與版本檢查；`site/404.html` 改為根路徑資產與不自動導回；`og-cover` 由 294KB PNG 改為 163KB JPEG；關閉 `analysis.solo4study.workers.dev` 與預覽 URL。`verify.sh` 目前約 2.4 秒、內容 195,435 項、SEO 605 項、連結 2,713 條。大型效能項目（content-hash 長快取、核心 bundle 分科、搜尋索引拆分）記於 `documents/performance-backlog.md`。
+
 2026-11-26 部署流程簡化為 Cloudflare Worker：移除 `.github/workflows/pages.yml` 與 GitHub Pages 鏡像，新增根目錄 `wrangler.toml`（`analysis`、`assets.directory = "./site"`、`not_found_handling = "404-page"`）；Cloudflare Workers Builds 的 Build command 已設為 `bash site/scripts/verify.sh`，Deploy command 維持 `npx wrangler deploy`。新增 `site/scripts/write-version.js`、`check-live.sh` 與 `check-js-syntax.js`；`verify.sh` 在通過內容／SEO 驗證後產生 `site/version.json`，`site/version.json` 加入 `.gitignore`。JS 語法檢查由 170 次 `node --check` 改為單一 Node 進程，`verify.sh` 由約 6.3 秒降至約 2.4 秒。正式站建置後以 `bash site/scripts/check-live.sh` 比對 commit；`version.json` 回傳 `main` 與目前 commit，GitHub 只保留 push，不再部署 Pages；GitHub Pages 已停用（Pages API 回 404）。
+
+> 2026-11-26 起部署改為 Cloudflare Worker；以下 2026-11-26 之前的 GitHub Pages／pages.yml 紀錄為歷史，不再代表目前流程。
 
 2026-10-26 修正法規考古題章節歸屬並加入條號指定：新增 `sourceRefs[].articleNo`，`lawQuestionArticleRefs()` 會優先採用明確條號，不再只靠題幹中的「第 N 條」推斷。修正 7 題選擇題：`107Q2-law-08` 移至 law-03 第 5 條；`108Q2-law-07`、`114Q1-law-23` 移至 law-03 第 17 條；`114Q3-law-18` 移至 law-03 第 66 條；`108Q4-law-15`、`109Q2-law-12`、`111Q3-law-16` 移至 law-02 第 22-1 條。另修正 17 題計算／申論題的章節歸屬，移除 law-21、law-05、law-06、law-17、law-08、law-11、law-12 等與題意無關的交叉掛載，並把單純考證交法的題目移至 law-01；相關解題範例同步移轉。修正後 law-01 為 196 題選擇＋37 題申論（233）、law-02 228＋49（277）、law-03 168＋3（171）、law-21 0＋0（0）；法規總數仍為 910 題選擇＋87 題申論。21 個法規章節在 390px／1280px、深淺主題 axe 0 violations、0 水平溢出；law-01 第 139 條已無題目，law-03 第 5／17／66 條與 law-02 第 22-1 條顯示正確題目；`file://` 正常；驗證器 157,243 項、失敗 0。非 法規 2,800 題以章節關鍵詞與題幹相似度掃描，未發現像本例這樣明確的錯置；高分候選多為跨章節應用。
 

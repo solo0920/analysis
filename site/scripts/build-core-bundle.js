@@ -21,7 +21,7 @@ const source = files.map(function (file) {
 const temp = path.join(assetsDir, ".core-bundle.source.js");
 fs.writeFileSync(temp, source);
 const out = path.join(assetsDir, "content-core-bundle.js");
-const result = spawnSync("npx", ["--yes", "esbuild", temp, "--minify", "--charset=utf8", "--outfile=" + out], { stdio: "inherit" });
+const result = spawnSync("npx", ["--yes", "esbuild@0.28.2", temp, "--minify", "--charset=utf8", "--outfile=" + out], { stdio: "inherit" });
 if (result.status !== 0) {
   fs.writeFileSync(out, "// 由 build-core-bundle.js 產生（未 minify）\n" + source);
 }

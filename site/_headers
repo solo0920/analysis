@@ -1,0 +1,11 @@
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/version.json
+  Cache-Control: no-store
+
+/assets/katex/fonts/*
+  Cache-Control: public, max-age=604800
+
+/assets/og-cover.png
+  Cache-Control: public, max-age=86400

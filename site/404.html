@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>找不到頁面｜分析師備考站</title>
   <meta name="robots" content="noindex">
-  <link rel="stylesheet" href="assets/styles.css">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <script>
     (function () {
       try {
@@ -16,15 +16,9 @@
       } catch (error) {
         document.documentElement.dataset.theme = "light";
       }
-
-      var path = location.pathname;
-      var root = "/";
-      if (/^https?:$/.test(location.protocol) && path !== root && path !== root.replace(/\/$/, "")) {
-        location.replace(root + location.hash);
-      }
     })();
   </script>
-  <noscript><meta http-equiv="refresh" content="0; url=./"></noscript>
+  <noscript><meta http-equiv="refresh" content="0; url=/"></noscript>
 </head>
 <body>
   <main id="main" class="page">
@@ -33,7 +27,7 @@
         <p class="eyebrow">404</p>
         <h1>找不到這個頁面</h1>
         <p class="lede">網址可能已經改變。本站使用 hash 路由，請回首頁重新選擇科目或章節。</p>
-        <p><a class="btn btn-primary" href="./">回到首頁</a></p>
+        <p><a class="btn btn-primary" href="/">回到首頁</a></p>
       </div>
     </section>
   </main>

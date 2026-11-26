@@ -6,6 +6,11 @@ cd "$(dirname "$0")/../.."
 echo "== Build core bundle =="
 node site/scripts/build-core-bundle.js
 
+if [ -n "${WORKERS_CI_COMMIT_SHA:-}" ] && [ -z "${SITE_UPDATED:-}" ]; then
+  SITE_UPDATED="$(git log -1 --format=%cs -- site 2>/dev/null || true)"
+  export SITE_UPDATED
+fi
+
 echo "== Build static landing pages =="
 node site/scripts/build-static-landing-pages.js
 
@@ -25,6 +30,9 @@ fi
 
 echo "== Validate SEO =="
 node site/scripts/validate-seo.js
+
+echo "== Check internal links =="
+node site/scripts/check-links.js
 
 echo "== Write version.json =="
 node site/scripts/write-version.js

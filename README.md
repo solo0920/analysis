@@ -48,6 +48,7 @@ python3 -m http.server 8765 --directory site
 ```bash
 node site/scripts/validate-content.js
 node site/scripts/check-js-syntax.js
+node site/scripts/check-links.js
 ```
 
 commit 前跑完整流程：
@@ -56,7 +57,19 @@ commit 前跑完整流程：
 bash site/scripts/verify.sh
 ```
 
-`verify.sh` 會依序完成核心 bundle、靜態落地頁、JavaScript 語法、內容、SEO 驗證，最後產生 `site/version.json`。目前內容驗證為 195,435 項、失敗 0。
+`verify.sh` 會依序完成核心 bundle、靜態落地頁、JavaScript 語法、內容、SEO、站內連結驗證，最後產生 `site/version.json`。目前內容驗證為 195,435 項、失敗 0，站內連結 2,713 條、失敗 0。
+
+需要瀏覽器 runtime 檢查時，先啟動本機伺服器與 Chrome，再執行：
+
+```bash
+python3 -m http.server 8765 --directory site
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --headless=new --remote-debugging-port=9223 \
+  --user-data-dir=/tmp/analysis-chrome about:blank
+node site/scripts/check-ui.js
+```
+
+`check-ui.js` 會檢查首頁、章節、考古題、複習題與搜尋在 390／1280、深淺主題下的 `.katex-error`、水平溢出與 console errors。
 
 ## 部署流程
 

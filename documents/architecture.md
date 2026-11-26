@@ -240,6 +240,8 @@ flowchart LR
 
 ## 7. Cloudflare Worker 部署
 
+完整設定與 rollback／快取說明見 [`cloudflare-deployment.md`](cloudflare-deployment.md)；大型效能項目見 [`performance-backlog.md`](performance-backlog.md)。
+
 ```mermaid
 flowchart LR
   Dev["push main"] --> Build["Cloudflare Workers Builds<br/>bash site/scripts/verify.sh"]
