@@ -57,7 +57,7 @@ commit 前跑完整流程：
 bash site/scripts/verify.sh
 ```
 
-`verify.sh` 會依序完成核心 bundle、靜態落地頁、JavaScript 語法、內容、SEO、站內連結驗證，最後產生 `site/version.json`。目前內容驗證為 195,435 項、失敗 0，站內連結 2,714 條、失敗 0。
+`verify.sh` 會依序完成核心 bundle、靜態落地頁、JavaScript 語法、內容、SEO、站內連結驗證，最後產生 `site/version.json`。目前內容驗證為 195,435 項、失敗 0，站內連結 2,774 條、失敗 0。
 
 需要瀏覽器 runtime 檢查時，先啟動本機伺服器與 Chrome，再執行：
 

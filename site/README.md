@@ -182,7 +182,7 @@ not_found_handling = "404-page"
 
 `verify.sh` 依序建置核心 bundle、靜態頁，檢查 JavaScript 語法、內容、SEO 與站內連結，最後產生 `site/version.json`。驗證失敗時 Cloudflare build 會停止，舊版繼續留在線上。部署成功後可用 `bash site/scripts/check-live.sh` 比對正式站版本、首頁、robots、sitemap、核心 bundle 與 404。
 
-`site/_headers` 將 HTML／CSS 設為 `max-age=0, must-revalidate`，`/assets/*.js` 設為 `max-age=31536000, immutable`；`bootstrap.js` 與 `asset-manifest.js` 例外 revalidate；`/version.json` 為 `no-store`，KaTeX 字型 7 天；`site/.assetsignore` 排除 `scripts/`、`README.md`、`SOURCES.md`，避免開發檔被當成 static assets 上傳。
+`site/_headers` 將 HTML／CSS 設為 `max-age=0, must-revalidate`，`/assets/*.js` 設為 `max-age=31536000, immutable`；`bootstrap.js` 與 `asset-manifest.js` 例外 revalidate；`/version.json` 為 `no-store`，KaTeX CSS／字型 7 天；並加上 `Referrer-Policy`、`Permissions-Policy`、`X-Frame-Options` 與 `X-Content-Type-Options`；`site/.assetsignore` 排除 `scripts/`、README／SOURCES，以及只供建置使用的 `content-*.js` 原始檔與 `content-exam-solutions-*.js`（約 2.7MB），避免開發檔被當成 static assets 上傳；runtime bundle 不受影響。
 
 `site/404.html` 使用站點根路徑載入樣式與回首頁連結；Worker 以 `not_found_handling = "404-page"` 提供 404 頁面。所有資產使用相對路徑。GitHub Pages 已停用，`analysis.solo4study.workers.dev` 與預覽 URL 也已關閉，只保留自訂網域。
 
@@ -353,7 +353,7 @@ bash site/scripts/verify.sh             # 建置＋JS 語法／內容平行檢�
 node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份與得主
 ```
 
-`verify.sh` 以 `site/scripts/check-js-syntax.js` 在單一 Node 進程檢查 168 個 `.js`，`.mjs` 另以 `node --check` 檢查，並與內容驗證平行執行；本機完整流程約 2.4 秒。`check-links.js` 會檢查 83 頁靜態 HTML 的站內 `href`／`src`（目前 2,714 條、0 斷鏈）。若只想檢查個別項目，可直接執行 `validate-content.js`、`check-js-syntax.js`、`check-links.js`、`validate-seo.js` 或 `node --check <file>`。
+`verify.sh` 以 `site/scripts/check-js-syntax.js` 在單一 Node 進程檢查 168 個 `.js`，`.mjs` 另以 `node --check` 檢查，並與內容驗證平行執行；本機完整流程約 2.4 秒。`check-links.js` 會檢查 83 頁靜態 HTML 的站內 `href`／`src`（目前 2,774 條、0 斷鏈）。若只想檢查個別項目，可直接執行 `validate-content.js`、`check-js-syntax.js`、`check-links.js`、`validate-seo.js` 或 `node --check <file>`。
 
 `validate-seo.js` 會確認首頁、83 個靜態頁、Sitemap、robots.txt、llms.txt 與 JSON-LD 都使用正式網域 `https://analysis.ragdemo.win`，每個靜態頁的 canonical／og:url 指向自身，Sitemap URL 與實際頁面完全一致，且沒有殘留 GitHub Pages 網域。Cloudflare Build 的 `verify.sh` 會在部署前執行 JavaScript 語法檢查、`validate-content.js` 與 `validate-seo.js`，任一失敗即停止部署。
 
@@ -554,11 +554,13 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 
 2026-10-26 補回四個科目首頁的每章考古題統計，並把選擇題解答改為原位標示：`build-static-landing-pages.js` 新增 `percentText()`，四個靜態科目頁的每章卡加入「選擇題 N 題 · 頻率 X%」與「申論題 N 題 · 頻率 X%」，頻率以該科選擇題／申論題總數為分母；互動版科目頁原有的 `.chapter-exam-stat` 維持不變。選擇題展開「完整參考解答」後，`annotateLawChoiceOptions()` 直接在原 `li[data-law-option]` 顯示 `.law-option-feedback`，正確選項加 `.is-correct`，解答 summary 改為官方答案，不再建立 `.law-answer-body` 或 `.past-exam-analysis` 選項列表；申論／計算題仍以 `.law-answer-body` 顯示完整參考解答。靜態科目頁四頁共 13／16／23／21 章、26／32／46／42 組統計，390px 淺色與 1280px 深色 axe 0 violations、0 水平溢出；互動版四科統計亦為 26／32／46／42 組。選擇題原位解析實測 law-01、macro-01、macro-10、investment-09、accounting-01 與 21 個法規章節、52 個非法規章節：初始 0 個選項說明、0 個解答 body，展開後 summary 顯示官方答案、1 個以上正解高亮、4 項原位說明、0 個重複選項列表；多答案題 CD／BD／BC 與 A–D 均給分共 6 題正常；`file://` 正常；390px／1280px、深淺主題 axe 0 violations；20 種風格 × 深淺主題的選擇題解答元素（正解標籤、選項字母、說明、提示、解答 summary）對比皆 ≥ 4.5:1、axe 0 violations；`.law-question-hint`／`.law-answer-note` 改以 `--ink-soft` 顯示；驗證器 157,260 項、失敗 0。
 
+2026-11-26 精簡部署資產與安全 headers：`.assetsignore` 再排除只供建置的 `content-*.js` 原始檔與 `content-exam-solutions-*.js`（約 2.7MB；runtime bundle 不受影響）；`_headers` 加上 `Referrer-Policy: strict-origin-when-cross-origin`、`Permissions-Policy`、`X-Frame-Options: SAMEORIGIN`、`X-Content-Type-Options: nosniff`，並將 `katex.min.css` 設為 7 天；`check-links.js` 擴充 `srcset` 與 CSS `url()`，目前 2,774 條、0 斷鏈。`verify.sh` 仍約 2.4 秒。
+
 2026-11-26 修正 `108Q2-macro-17` 解析：將 summary 改為計算解析，依 `MPC=0.75`、`t=m=0` 以 KaTeX 呈現 `k_G=1/(1-MPC)=4`、`k_T=-MPC/(1-MPC)=-3`、`k_B=k_G+k_T=1`，並補上速記觀念；390px／1280px 與 `file://` 顯示 7 個換行、0 `.katex-error`、0 水平溢出。
 
 2026-11-26 加入 JS content hash＋長快取：新增 `site/scripts/build-asset-manifest.js`，為 157 個 assets JS 產生 12 字元 SHA-256 manifest；`bootstrap.js` 以 `?v=<hash>` 載入 bundle，`app.js` 的 MiniSearch vendor 同步使用；`_headers` 對 `/assets/*.js` 設 `max-age=31536000, immutable`，`bootstrap.js`／`asset-manifest.js` 保持 revalidate，CSS 仍 revalidate。`file://` 不附加 query，維持可直接開啟；`check-ui.js` 16 組＋搜尋＋404 通過。`verify.sh` 仍約 2.4 秒、內容 195,435、SEO 605、連結 2,714。
 
-2026-11-26 完成 P1／P2／P3 可執行項目：固定 `esbuild@0.28.2`；Cloudflare build 以 `WORKERS_CI_COMMIT_SHA` 設定 `SITE_UPDATED`，讓 sitemap lastmod 使用 commit 日期；新增 `site/_headers`（HTML／JS revalidate、`/version.json` no-store、KaTeX 字型 7 天）與 `site/.assetsignore`（排除 `scripts/`、README、SOURCES）；新增 `check-links.js`（2,714 條站內連結 0 斷鏈）與 `check-ui.js`（Chrome CDP，支援 390／1280、深淺主題、首頁／章節／考古題／複習題／搜尋／404）；`check-live.sh` 擴充首頁、robots、sitemap、核心 bundle、404 與版本檢查；`site/404.html` 改為根路徑資產與不自動導回；`og-cover` 由 294KB PNG 改為 163KB JPEG；關閉 `analysis.solo4study.workers.dev` 與預覽 URL。`verify.sh` 目前約 2.4 秒、內容 195,435 項、SEO 605 項、連結 2,714 條；axe 0 violations；Lighthouse mobile 98／desktop 99，accessibility／best-practices／SEO 皆 100。JS content-hash 已完成；核心 bundle 分科、搜尋索引拆分記於 `documents/performance-backlog.md`。
+2026-11-26 完成 P1／P2／P3 可執行項目：固定 `esbuild@0.28.2`；Cloudflare build 以 `WORKERS_CI_COMMIT_SHA` 設定 `SITE_UPDATED`，讓 sitemap lastmod 使用 commit 日期；新增 `site/_headers`（HTML／JS revalidate、`/version.json` no-store、KaTeX 字型 7 天）與 `site/.assetsignore`（排除 `scripts/`、README、SOURCES）；新增 `check-links.js`（2,714 條站內連結 0 斷鏈）與 `check-ui.js`（Chrome CDP，支援 390／1280、深淺主題、首頁／章節／考古題／複習題／搜尋／404）；`check-live.sh` 擴充首頁、robots、sitemap、核心 bundle、404 與版本檢查；`site/404.html` 改為根路徑資產與不自動導回；`og-cover` 由 294KB PNG 改為 163KB JPEG；關閉 `analysis.solo4study.workers.dev` 與預覽 URL。`verify.sh` 目前約 2.4 秒、內容 195,435 項、SEO 605 項、連結 2,774 條；axe 0 violations；Lighthouse mobile 98／desktop 99，accessibility／best-practices／SEO 皆 100。JS content-hash 已完成；核心 bundle 分科、搜尋索引拆分記於 `documents/performance-backlog.md`。
 
 2026-11-26 部署流程簡化為 Cloudflare Worker：移除 `.github/workflows/pages.yml` 與 GitHub Pages 鏡像，新增根目錄 `wrangler.toml`（`analysis`、`assets.directory = "./site"`、`not_found_handling = "404-page"`）；Cloudflare Workers Builds 的 Build command 已設為 `bash site/scripts/verify.sh`，Deploy command 維持 `npx wrangler deploy`。新增 `site/scripts/write-version.js`、`check-live.sh` 與 `check-js-syntax.js`；`verify.sh` 在通過內容／SEO 驗證後產生 `site/version.json`，`site/version.json` 加入 `.gitignore`。JS 語法檢查由 170 次 `node --check` 改為單一 Node 進程，`verify.sh` 由約 6.3 秒降至約 2.4 秒。正式站建置後以 `bash site/scripts/check-live.sh` 比對 commit；`version.json` 回傳 `main` 與目前 commit，GitHub 只保留 push，不再部署 Pages；GitHub Pages 已停用（Pages API 回 404）。
 

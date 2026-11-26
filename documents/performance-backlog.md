@@ -48,5 +48,8 @@
 - KaTeX 字型快取 7 天。
 - `/version.json` no-store。
 - JS 語法檢查改單一 Node 進程，`verify.sh` 約 2.4 秒。
-- 站內連結檢查 2,714 條、0 斷鏈。
+- 站內連結檢查 2,774 條、0 斷鏈。
 - JS content hash：157 個檔案，`/assets/*.js` 長快取；bootstrap／manifest 例外。
+- 建置用原始檔與 solutions 已由 `.assetsignore` 排除（約 2.7MB）。
+- 安全 headers：Referrer-Policy、Permissions-Policy、X-Frame-Options、nosniff。
+- 連結檢查擴充 `srcset` 與 CSS `url()`（2,774 條、0 斷鏈）。

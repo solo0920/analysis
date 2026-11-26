@@ -47,7 +47,7 @@ not_found_handling = "404-page"
 6. 產生 `site/assets/asset-manifest.js`（157 個 JS 的 content hash）
 7. 產生 `site/version.json`
 
-目前基準：內容 195,435 項、SEO 605 項、站內連結 2,714 條、完整流程約 2.4 秒。
+目前基準：內容 195,435 項、SEO 605 項、站內連結 2,774 條、完整流程約 2.4 秒。
 
 ## 自動與手動檢查
 
@@ -101,9 +101,24 @@ Cloudflare 會把同一個 header 的多條規則合併；若 `/*` 已經設定 
 scripts/
 README.md
 SOURCES.md
+content-*.js（僅建置用原始檔）
+content-exam-solutions-*.js
 ```
 
-避免驗證腳本與文件被當成 static assets 上傳。
+避免驗證腳本、文件與只供建置的原始檔被當成 static assets 上傳（約 2.7MB）；runtime bundle 仍保留。
+
+## 安全 headers
+
+`site/_headers` 的 `/*` 規則包含：
+
+```text
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+X-Frame-Options: SAMEORIGIN
+X-Content-Type-Options: nosniff
+```
+
+HSTS 由 Cloudflare 維護；CSP 因為站內有 inline script／style，暫不啟用嚴格政策。
 
 ## 404
 
