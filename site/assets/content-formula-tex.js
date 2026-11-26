@@ -20,33 +20,33 @@ PDI &= PI - T_p = C + S
   "macro-02::第2節 政府收支與反景氣循環之財政政策": { tex: String.raw`\begin{gathered}\text{政府支出乘數} = \frac{1}{1-c}\\\text{定額稅乘數} = -\frac{c}{1-c}\end{gathered}`, note: "" },
   "macro-02::第3節 節儉的矛盾": { tex: String.raw`\begin{gathered}\text{兩部門：}Y^*=\frac{I_a-S_a}{1-c-e},\quad S^*=\frac{(1-c)I_a-eS_a}{1-c-e}\\\text{定額稅 }Y=\frac{A_a}{1-c},\quad \text{累進稅 }Y=\frac{A_a}{1-c(1-t)}\\ES=S-I,\quad es=\frac{S-I}{Y}\times100\%\end{gathered}`, note: "S=S_a+(1-c)Y，S_a=-C_a，I=I_a+eY；e>0 時節儉使總儲蓄下降；e=0 時 ΔS*=0、總儲蓄不變。A_a=C_a-cT_a+cTR_a+I_a+G_a+NX_a。" },
 
-  "macro-03::第2節 貨幣供給定義與貨幣數量": { tex: String.raw`M_2=M_{1B}+\text{準貨幣}`, note: "" },
-  "macro-04::第2節 銀行業之業務與經營": { tex: String.raw`\text{利差} \approx \text{放款利率} - \text{存款利率}`, note: "" },
+  "macro-03::第2節 貨幣供給定義與貨幣數量": { tex: String.raw`M_2=M_{1B}+\text{準貨幣}`, note: "M1B 為通貨淨額＋活期存款＋活期儲蓄存款；準貨幣包括定期存款、定期儲蓄存款、外匯存款與其他近似流動資產。" },
+  "macro-04::第2節 銀行業之業務與經營": { tex: String.raw`\text{利差} \approx \text{放款利率} - \text{存款利率}`, note: "利差 ≈ 放款利率 − 存款利率；實際利差還受放款組合、存款結構、手續費與信用成本影響。" },
   "macro-05::第1節 存款貨幣的創造與貨幣供給": { tex: String.raw`M = m \times B,\qquad m = \frac{1}{rr}`, note: "無超額準備、無現金流失；B 為準備貨幣。" },
   "macro-05::第2節 貨幣需求理論": { tex: String.raw`\begin{gathered}MV=PY\\V=\frac{PY}{M}=\frac{\text{名目GDP}}{\text{貨幣供給}}\end{gathered}`, note: "V 為貨幣流通速度；數量方程式為恆等式。" },
 
   "macro-06::第1節 IS曲線與LM曲線": { tex: String.raw`\begin{gathered}IS:\quad Y = C(Y-T)+I(i)+G\\LM:\quad \frac{M}{P}=L(Y,i)\end{gathered}`, note: "封閉經濟、物價固定；i 為利率。" },
-  "macro-06::第2節 總體經濟政策與IS-LM曲線": { tex: String.raw`\begin{gathered}\text{擴張財政：}IS \to \text{右}\\\text{擴張貨幣：}LM \to \text{右}\end{gathered}`, note: "" },
+  "macro-06::第2節 總體經濟政策與IS-LM曲線": { tex: String.raw`\begin{gathered}\text{擴張財政：}IS \to \text{右}\\\text{擴張貨幣：}LM \to \text{右}\end{gathered}`, note: "IS 右移代表商品市場需求增加；LM 右移代表貨幣供給增加。移動方向為比較靜態，實際效果取決於曲線斜率與利率反應。" },
   "macro-06::第3節 IS-LM模型與總體經濟政策有效性": { tex: String.raw`\text{流動性陷阱：}LM \text{ 近乎水平}`, note: "貨幣政策效果有限。" },
 
-  "macro-07::第1節 總供需曲線": { tex: String.raw`\begin{gathered}AD:\quad Y=C+I+G+NX\\LRAS:\quad Y=Y^*\end{gathered}`, note: "" },
-  "macro-07::第2節 總供需均衡分析": { tex: String.raw`\text{產出缺口} = \frac{\text{實際產出}-\text{潛在產出}}{\text{潛在產出}} \times 100\%`, note: "" },
-  "macro-08::第1節 經濟成長理論": { tex: String.raw`Y = A \times F(K,L)`, note: "" },
+  "macro-07::第1節 總供需曲線": { tex: String.raw`\begin{gathered}AD:\quad Y=C+I+G+NX\\LRAS:\quad Y=Y^*\end{gathered}`, note: "AD 為總需求，LRAS 為長期總供給；Y* 為潛在產出。短期 SRAS 向上，長期 LRAS 垂直。" },
+  "macro-07::第2節 總供需均衡分析": { tex: String.raw`\text{產出缺口} = \frac{\text{實際產出}-\text{潛在產出}}{\text{潛在產出}} \times 100\%`, note: "實際產出為當期實質 GDP；潛在產出為充分就業下的產出。缺口為正代表景氣過熱，負代表資源閒置。" },
+  "macro-08::第1節 經濟成長理論": { tex: String.raw`Y = A \times F(K,L)`, note: "A 為全要素生產力（TFP）；K 為資本、L 為勞動。F 為生產函數，規模報酬與技術假設需另確認。" },
 
-  "macro-09::第1節 勞動市場與失業": { tex: String.raw`\text{失業率} = \frac{\text{失業人口}}{\text{勞動力}} \times 100\%`, note: "" },
+  "macro-09::第1節 勞動市場與失業": { tex: String.raw`\text{失業率} = \frac{\text{失業人口}}{\text{勞動力}} \times 100\%`, note: "失業人口為 15 歲以上、沒有工作、正在尋找工作且可立即工作的人；勞動力＝就業＋失業。" },
   "macro-09::第2節 通貨膨脹": { tex: String.raw`\text{實質利率} \approx \text{名目利率} - \text{通膨率}`, note: "事後實現；事前決策以預期通膨率取代。" },
-  "macro-09::第3節 菲利浦曲線": { tex: String.raw`\pi = \pi^e - \beta(u-u_n)+\epsilon`, note: "" },
+  "macro-09::第3節 菲利浦曲線": { tex: String.raw`\pi = \pi^e - \beta(u-u_n)+\epsilon`, note: "π 為實際通膨、π^e 為預期通膨、u 為失業率、u_n 為自然失業率、β 為通膨對失業缺口的敏感度、ε 為供給衝擊。" },
 
-  "macro-10::第1節 外匯與匯率": { tex: String.raw`\text{實質匯率} = \frac{\text{名目匯率} \times P^*}{P}`, note: "" },
+  "macro-10::第1節 外匯與匯率": { tex: String.raw`\text{實質匯率} = \frac{\text{名目匯率} \times P^*}{P}`, note: "名目匯率採直接報價（本國貨幣／外國貨幣）；P* 為外國物價、P 為本國物價。實質匯率上升代表本國產品相對便宜。" },
   "macro-10::第2節 匯率之決定": { tex: String.raw`i - i^* \approx \text{預期貶值率}`, note: "利率平價。" },
-  "macro-10::第3節 國際收支帳": { tex: String.raw`\text{經常帳}+\text{資本帳}+\text{金融帳}+\text{誤差}=0`, note: "" },
-  "macro-10::第4節 匯率制度與央行外匯干預政策": { tex: String.raw`\begin{gathered}\text{不可能三角：固定匯率、資本自由移動、獨立貨幣政策，}\\ \text{最多只能同時達成兩項}\end{gathered}`, note: "" },
+  "macro-10::第3節 國際收支帳": { tex: String.raw`\text{經常帳}+\text{資本帳}+\text{金融帳}+\text{誤差}=0`, note: "經常帳、資本帳、金融帳與誤差項共同構成國際收支；實務上金融帳變動常是主要調整項。" },
+  "macro-10::第4節 匯率制度與央行外匯干預政策": { tex: String.raw`\begin{gathered}\text{不可能三角：固定匯率、資本自由移動、獨立貨幣政策，}\\ \text{最多只能同時達成兩項}\end{gathered}`, note: "固定匯率、資本自由移動、獨立貨幣政策三者最多同時達成兩項；取捨取決於資本管制與匯率制度。" },
   "macro-10::第5節 開放經濟之國民所得": { tex: String.raw`\text{開放經濟乘數} = \frac{1}{1-MPC+MPM}`, note: "實質匯率正規化為 1、無稅的簡化式；MPM 為邊際進口傾向。" },
 
-  "macro-11::第1節 金融體系": { tex: String.raw`\text{資金剩餘單位} \to \text{金融市場／金融中介} \to \text{資金不足單位}`, note: "" },
-  "macro-12::第1節 利率基本概念與利率類型": { tex: String.raw`\begin{gathered}\text{實質利率} \approx \text{名目利率} - \text{預期通膨率}\\1+\text{名目利率}=(1+\text{實質利率})(1+\text{預期通膨率})\end{gathered}`, note: "" },
-  "macro-12::第2節 利率決定理論": { tex: String.raw`\text{可貸資金供給} = \text{可貸資金需求}`, note: "" },
-  "macro-12::第3節 利率之風險結構": { tex: String.raw`\text{債券殖利率} \approx \text{無風險利率}+\text{違約風險溢酬}+\text{流動性溢酬}+\text{其他溢酬}`, note: "" },
+  "macro-11::第1節 金融體系": { tex: String.raw`\text{資金剩餘單位} \to \text{金融市場／金融中介} \to \text{資金不足單位}`, note: "資金剩餘單位透過金融市場或金融中介流向資金不足單位；直接金融與間接金融的差異在是否經過中介。" },
+  "macro-12::第1節 利率基本概念與利率類型": { tex: String.raw`\begin{gathered}\text{實質利率} \approx \text{名目利率} - \text{預期通膨率}\\1+\text{名目利率}=(1+\text{實質利率})(1+\text{預期通膨率})\end{gathered}`, note: "名目利率為市場觀察利率；實質利率調整預期通膨。費雪方程式為近似式，精確式為 (1+i)=(1+r)(1+π^e)。" },
+  "macro-12::第2節 利率決定理論": { tex: String.raw`\text{可貸資金供給} = \text{可貸資金需求}`, note: "可貸資金供給來自儲蓄與國外資金；需求來自投資、政府赤字與借貸。均衡利率使供需相等。" },
+  "macro-12::第3節 利率之風險結構": { tex: String.raw`\text{債券殖利率} \approx \text{無風險利率}+\text{違約風險溢酬}+\text{流動性溢酬}+\text{其他溢酬}`, note: "債券殖利率 ≈ 無風險利率＋違約、流動性、租稅與其他溢酬；各溢酬方向與景氣、信用評等有關。" },
   "macro-12::第4節 利率之期限結構理論": { tex: String.raw`(1+y_n)^n = (1+y_1)(1+f_2)\cdots(1+f_n)`, note: "y_n 為 n 期即期年化利率；f_t 為第 t 期一年期隱含遠期利率；相同複利與期間單位，無套利。" },
   "macro-12::第5節 利率風險管理": { tex: String.raw`\begin{gathered}D^* = \frac{D}{1+y/k}\\\text{價格變動率} \approx -D^*\Delta y + \frac{1}{2}\times\text{凸性}\times(\Delta y)^2\end{gathered}`, note: "D 為 Macaulay 存續期間（年）、y 為年化殖利率、k 為每年付息次數；Δy 與凸性採相同週期，Δy 用小數。" },
 
@@ -56,25 +56,25 @@ PDI &= PI - T_p = C + S
   "macro-13::第6節 共同基金": { tex: String.raw`NAV = \frac{\text{基金資產總值}-\text{負債}}{\text{受益權單位數}}`, note: "資產與負債按同一評價時點的市價計算。" },
   "macro-13::第7節 衍生性金融商品": { tex: String.raw`\begin{gathered}\text{買權到期內在價值}=\max(S_T-K,0)\\\text{賣權到期內在價值}=\max(K-S_T,0)\\F_0=S_0 e^{(r-q)T}\end{gathered}`, note: "未扣權利金；期貨理論價採連續複利；r 為無風險利率（持有成本）、q 為契約期間平均收益率（連續複利）。" },
 
-  "investment-01::學習重點 1：金融體系與資金流動": { tex: String.raw`\text{資金剩餘單位} \to \text{金融市場／金融中介} \to \text{資金不足單位}`, note: "" },
+  "investment-01::學習重點 1：金融體系與資金流動": { tex: String.raw`\text{資金剩餘單位} \to \text{金融市場／金融中介} \to \text{資金不足單位}`, note: "直接金融是資金剩餘單位直接購買證券；間接金融是透過銀行等中介機構。" },
   "investment-03::學習重點 1：報酬率的衡量": { tex: String.raw`HPR = \frac{P_1-P_0+D_1}{P_0}`, note: "D₁ 為期間現金收益；未計稅費。" },
-  "investment-03::學習重點 2：風險的種類與衡量": { tex: String.raw`\sigma^2 = \sum p_i [R_i-E(R)]^2`, note: "" },
-  "investment-03::學習重點 3：風險溢酬與風險趨避": { tex: String.raw`\text{風險溢酬} = \text{預期報酬} - \text{無風險利率}`, note: "" },
-  "investment-04::學習重點 1：分散投資與投資組合報酬": { tex: String.raw`\begin{gathered}E(R_p)=w_1E(R_1)+w_2E(R_2)\\\sigma_p^2=w_1^2\sigma_1^2+w_2^2\sigma_2^2+2w_1w_2\rho_{12}\sigma_1\sigma_2\end{gathered}`, note: "" },
+  "investment-03::學習重點 2：風險的種類與衡量": { tex: String.raw`\sigma^2 = \sum p_i [R_i-E(R)]^2`, note: "σ² 為報酬變異數；p_i 為情境機率、R_i 為情境報酬、E(R) 為期望報酬。標準差 σ 為變異數平方根。" },
+  "investment-03::學習重點 3：風險溢酬與風險趨避": { tex: String.raw`\text{風險溢酬} = \text{預期報酬} - \text{無風險利率}`, note: "風險溢酬為預期報酬超過無風險利率的部分；風險趨避程度越高，要求的溢酬越大。" },
+  "investment-04::學習重點 1：分散投資與投資組合報酬": { tex: String.raw`\begin{gathered}E(R_p)=w_1E(R_1)+w_2E(R_2)\\\sigma_p^2=w_1^2\sigma_1^2+w_2^2\sigma_2^2+2w_1w_2\rho_{12}\sigma_1\sigma_2\end{gathered}`, note: "w 為資產權重、ρ12 為相關係數；兩資產變異數含共變異數項，相關係數越低分散效果越大。" },
 
-  "investment-05::學習重點 1：CAPM 的假設與市場投資組合": { tex: String.raw`E(R_i)=R_f+\beta_i[E(R_m)-R_f]`, note: "" },
-  "investment-05::學習重點 2：證券市場線與必要報酬率": { tex: String.raw`\begin{gathered}\beta_i=\frac{\operatorname{Cov}(R_i,R_m)}{\operatorname{Var}(R_m)}\\\alpha=\text{實際報酬}-\text{CAPM 必要報酬}\end{gathered}`, note: "" },
+  "investment-05::學習重點 1：CAPM 的假設與市場投資組合": { tex: String.raw`E(R_i)=R_f+\beta_i[E(R_m)-R_f]`, note: "R_f 為無風險利率、E(R_m) 為市場期望報酬、β_i 為系統風險；CAPM 假設投資人可自由借貸且市場無摩擦。" },
+  "investment-05::學習重點 2：證券市場線與必要報酬率": { tex: String.raw`\begin{gathered}\beta_i=\frac{\operatorname{Cov}(R_i,R_m)}{\operatorname{Var}(R_m)}\\\alpha=\text{實際報酬}-\text{CAPM 必要報酬}\end{gathered}`, note: "β_i=Cov(R_i,R_m)/Var(R_m)；α 為實際報酬減 CAPM 必要報酬，正 α 代表風險調整後超額報酬。" },
   "investment-05::學習重點 4：套利定價理論與股價變動因素": { tex: String.raw`E(R_i)=R_f+\beta_{i1}\lambda_1+\beta_{i2}\lambda_2+\cdots+\beta_{ik}\lambda_k`, note: "β 為因子敏感度、λ 為因子風險溢酬；k 為因子數。" },
 
   "investment-07::學習重點 1：債券價格與現金流": { tex: String.raw`P = \sum_{t=1}^{n}\frac{C}{(1+y)^t}+\frac{F}{(1+y)^n}`, note: "C 為每期票息、F 為面額、y 為每期殖利率、n 為期數。" },
-  "investment-07::學習重點 2：債券收益率衡量": { tex: String.raw`\text{當期收益率}=\frac{\text{每年票面利息}}{\text{目前價格}}`, note: "" },
+  "investment-07::學習重點 2：債券收益率衡量": { tex: String.raw`\text{當期收益率}=\frac{\text{每年票面利息}}{\text{目前價格}}`, note: "當期收益率只考慮票息，不考慮資本利得；YTM 為持有至到期的內部報酬率，假設票息按 YTM 再投資。" },
   "investment-07::學習重點 3：存續期間與利率風險": { tex: String.raw`\begin{gathered}\text{價格變動率}\approx -D^*\Delta y+\frac{1}{2}\times\text{凸性}\times(\Delta y)^2\\D^*=\frac{D}{1+y/k}\end{gathered}`, note: "D 為 Macaulay 存續期間（年）、y 為年化殖利率、k 為每年付息次數；Δy 與凸性採相同週期，Δy 用小數，1 個百分點 = 0.01。" },
   "investment-07::學習重點 4：利率期限結構": { tex: String.raw`(1+y_n)^n=(1+y_1)(1+f_2)\cdots(1+f_n)`, note: "y_n 為 n 期即期利率、f_t 為隱含遠期利率；無套利、相同複利單位。" },
   "investment-07::學習重點 5：利率水準的決定": { tex: String.raw`i\approx r+\pi^e`, note: "費雪方程式；i 為名目利率、r 為實質利率、πᵉ 為預期通膨率。" },
   "investment-07::學習重點 6：債券投資組合管理": { tex: String.raw`\begin{gathered}BPV=\text{修正存續期間}\times\text{市場價值}\times0.0001\\\text{免疫條件：資產 }BPV\approx\text{負債 }BPV\end{gathered}`, note: "BPV 為基準點價值；多個負債另需資產現值不低於負債及凸性條件。" },
 
   "investment-08::學習重點 2：股票評價": { tex: String.raw`P_0 = \frac{D_1}{r-g}`, note: "D₁ 為下一期股利；r > g；股利固定成長。" },
-  "investment-08::學習重點 3：股票報酬與風險": { tex: String.raw`\text{股票報酬率}=\text{股利收益率}+\text{資本利得率}`, note: "" },
+  "investment-08::學習重點 3：股票報酬與風險": { tex: String.raw`\text{股票報酬率}=\text{股利收益率}+\text{資本利得率}`, note: "股票報酬率＝股利收益率＋資本利得率；股利收益率＝D/P，資本利得率＝(P1−P0)/P0。" },
   "investment-09::學習重點 2：到期價值與損益": { tex: String.raw`\begin{gathered}\text{買權到期內在價值}=\max(S_T-K,0)\\\text{賣權到期內在價值}=\max(K-S_T,0)\end{gathered}`, note: "未扣權利金；損益 = 到期內在價值 − 權利金。" },
   "investment-09::學習重點 3：二項式選擇權定價": { tex: String.raw`\begin{gathered}
 \boxed{q=\frac{e^{r\Delta t}-d}{u-d}}\\
@@ -92,10 +92,10 @@ C-P=S_0-Ke^{-rT}
 
   "investment-10::學習重點 2：期貨價格與基差": { tex: String.raw`F_0=S_0 e^{(r-q)T}`, note: "連續複利；r 為無風險利率（持有成本）；q 為契約期間平均收益率（連續複利）；不另計儲存成本與便利收益。" },
   "investment-10::學習重點 3：避險與交易策略": { tex: String.raw`\text{避險契約數}\approx \frac{(\beta_{\text{目標}}-\beta_{\text{現貨}})\times\text{現貨部位價值}}{\text{每口期貨契約價值}}`, note: "負值代表賣出期貨；全數避險至 β目標 = 0、期貨 β ≈ 1 時，賣出契約數為 β現貨 × 現貨部位價值 ÷ 每口期貨契約價值。" },
-  "investment-11::學習重點 1：交換契約": { tex: String.raw`\text{利率交換淨現金流}\approx(\text{浮動利率}-\text{固定利率})\times\text{名目本金}`, note: "" },
+  "investment-11::學習重點 1：交換契約": { tex: String.raw`\text{利率交換淨現金流}\approx(\text{浮動利率}-\text{固定利率})\times\text{名目本金}`, note: "利率交換以名目本金計算利差現金流；浮動利率與固定利率的差額為淨收付，實際結算另有計息期間與天數慣例。" },
 
-  "investment-15::學習重點 2：常用技術指標": { tex: String.raw`\begin{gathered}MA_n=\frac{P_t+P_{t-1}+\cdots+P_{t-n+1}}{n}\\RSI=100-\frac{100}{1+RS},\quad RS=\frac{\text{平均漲幅}}{\text{平均跌幅}}\end{gathered}`, note: "" },
-  "investment-17::學習重點 1：報酬率與績效衡量": { tex: String.raw`\text{超額報酬}=\text{投資組合報酬}-\text{基準報酬}`, note: "" },
+  "investment-15::學習重點 2：常用技術指標": { tex: String.raw`\begin{gathered}MA_n=\frac{P_t+P_{t-1}+\cdots+P_{t-n+1}}{n}\\RSI=100-\frac{100}{1+RS},\quad RS=\frac{\text{平均漲幅}}{\text{平均跌幅}}\end{gathered}`, note: "MA_n 為 n 期簡單移動平均；RSI 以平均漲幅與平均跌幅計算，常用 14 期，數值介於 0–100。" },
+  "investment-17::學習重點 1：報酬率與績效衡量": { tex: String.raw`\text{超額報酬}=\text{投資組合報酬}-\text{基準報酬}`, note: "超額報酬為投資組合報酬減基準報酬；基準可為無風險利率、市場組合或自訂績效指標。" },
 
   "accounting-01::第1節 現金與約當現金": { tex: String.raw`\text{約當現金}: \text{到期日} \le 3 \text{ 個月}`, note: "自取得日起算，且價值變動風險很小。" },
   "accounting-01::第2節 零用金制度": { tex: String.raw`\text{零用金基金定額}=\text{未撥補單據}+\text{現金盤點數}+\text{現金短溢}`, note: "" },
