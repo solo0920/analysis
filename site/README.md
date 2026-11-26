@@ -76,7 +76,7 @@ site/
     ├── app.js                  # hash routing、搜尋、進度、主題、考古題練習與列印
     ├── styles.css              # 響應式與明暗主題樣式
     ├── favicon.svg
-    ├── og-cover.png            # 1200×630 社群分享圖
+    ├── og-cover.jpg            # 1200×630 社群分享圖
     ├── content.js              # 考試資訊、29 個來源、四科目聚合
     ├── content-macro.js        # 總體經濟學第 1–5 章（Part 1）
     ├── content-macro-2.js      # 總體經濟學第 6–10 章（Part 1）
@@ -128,7 +128,7 @@ site/
 
 ## SEO 與 AI 搜尋
 
-- 首頁 `index.html` 使用唯一的 `<title>`、精簡 meta description、canonical、`robots`、Open Graph 與 Twitter Card；社群分享圖為 `assets/og-cover.png`（1200×630）。
+- 首頁 `index.html` 使用唯一的 `<title>`、精簡 meta description、canonical、`robots`、Open Graph 與 Twitter Card；社群分享圖為 `assets/og-cover.jpg`（1200×630）。
 - 首頁 `head` 內含 `WebSite`、`EducationalOrganization`、四科 `ItemList`（`LearningResource`）與 `FAQPage` JSON-LD；FAQ 內容與首頁「常見問題」同步。
 - `robots.txt` 允許一般搜尋與主要 AI 爬蟲（GPTBot、ClaudeBot、Google-Extended、CCBot），並指向 `sitemap.xml`。
 - `sitemap.xml` 列出站點入口、4 個科目頁、章節索引、73 個章節頁與考古題、考前猜題、總經時事、諾貝爾等頁面，共 83 個實體 URL；`llms.txt` 提供 AI 搜尋／LLM 可讀的站點摘要、主要入口、內容範圍與資料界線。
@@ -137,7 +137,7 @@ site/
 - `index.html` 的 `<main>` 內建無 JavaScript 的靜態摘要與連結；啟用 JavaScript 後由 app 取代，兼顧無 JS 使用者與不執行 JavaScript 的爬蟲。
 - `render()` 會依路由更新 `document.title`、meta description、og:title／og:description 與 twitter:title／twitter:description；章節頁會帶入章名與科目。
 - 限制：本站互動頁使用 hash routing，`#/...` 不會變成獨立的實體 URL；搜尋引擎主要索引站點入口、4 個科目頁、`/chapters/` 索引與 73 個章節頁。`sitemap.xml` 只列實體路徑，不列 fragment URL，避免產生不存在的頁面。
-- 內容更新後可用 `curl` 檢查 `robots.txt`、`sitemap.xml`、`llms.txt` 與 `og-cover.png` 均回傳 200；JSON-LD 需保持合法 JSON。
+- 內容更新後可用 `curl` 檢查 `robots.txt`、`sitemap.xml`、`llms.txt` 與 `og-cover.jpg` 均回傳 200；JSON-LD 需保持合法 JSON。
 
 ## 本機預覽
 
@@ -366,7 +366,7 @@ node site/scripts/check-ui.js
 node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 ```
 
-`check-ui.js` 會檢查首頁、`macro-09` 章節、`108Q2-macro-11` 題目、複習題與搜尋在 390／1280、深淺主題下的 `.katex-error`、水平溢出與 console errors；`--base` 指向正式站時另檢查 404 頁。
+`check-ui.js` 會檢查首頁、`macro-09` 章節、`108Q2-macro-11` 題目、複習題與搜尋在 390／1280、深淺主題下的 `.katex-error`、水平溢出與 console errors；`--base` 指向正式站時另檢查 404 頁。`check-ui.js` 不在 `verify.sh` 內（Cloudflare build 不保證有 Chrome），屬部署前手動檢查；部署後改用 `check-live.sh`。
 
 `validate-content.js` 會比對三份來源目錄的章號、章名、Part、順序、節次與頁碼，並檢查：
 
