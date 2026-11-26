@@ -11657,7 +11657,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["113"] = {
         "未來消費一定增加"
       ],
       "answer": [
-        "A"
+        "C"
       ],
       "sourceIds": [
         "macro-02"

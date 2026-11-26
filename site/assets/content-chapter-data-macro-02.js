@@ -1826,7 +1826,7 @@ window.CHAPTER_DATA["macro-02"] = {
         "未來消費一定增加"
       ],
       "answer": [
-        "A"
+        "C"
       ],
       "sourceIds": [
         "macro-02"
