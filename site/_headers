@@ -1,5 +1,9 @@
 /*
   Cache-Control: public, max-age=0, must-revalidate
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
 
 /assets/*.js
   ! Cache-Control
@@ -16,6 +20,10 @@
 /version.json
   ! Cache-Control
   Cache-Control: no-store
+
+/assets/katex/katex.min.css
+  ! Cache-Control
+  Cache-Control: public, max-age=604800
 
 /assets/katex/fonts/*
   ! Cache-Control
