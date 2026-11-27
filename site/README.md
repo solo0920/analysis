@@ -564,6 +564,8 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 
 2026-11-26 部署流程簡化為 Cloudflare Worker：移除 `.github/workflows/pages.yml` 與 GitHub Pages 鏡像，新增根目錄 `wrangler.toml`（`analysis`、`assets.directory = "./site"`、`not_found_handling = "404-page"`）；Cloudflare Workers Builds 的 Build command 已設為 `bash site/scripts/verify.sh`，Deploy command 維持 `npx wrangler deploy`。新增 `site/scripts/write-version.js`、`check-live.sh` 與 `check-js-syntax.js`；`verify.sh` 在通過內容／SEO 驗證後產生 `site/version.json`，`site/version.json` 加入 `.gitignore`。JS 語法檢查由 170 次 `node --check` 改為單一 Node 進程，`verify.sh` 由約 6.3 秒降至約 2.4 秒。正式站建置後以 `bash site/scripts/check-live.sh` 比對 commit；`version.json` 回傳 `main` 與目前 commit，GitHub 只保留 push，不再部署 Pages；GitHub Pages 已停用（Pages API 回 404）。
 
+2026-11-28 補充 `107Q3-macro-written-7` 的期限貼水解答：明確定義 E2／E3／E4 分別為 1、2、3 年後開始的 1 年期預期利率，並把 2／3／4 年期的計算拆成「方程式→兩邊減期限貼水→求解」步驟；移除未渲染的 `**` 粗體。E2=2.5%、E3=2.8%、E4=3.7%，收益曲線結論不變。390px／1280px、深淺主題與 `file://` 正常。
+
 2026-11-28 補齊 `110Q2-macro-24` IS-LM 政府支出乘數題幹：原題缺貨幣市場方程式與參數，依原圖補上 `M/P_0=l(r)+k(y)` 及 `c'`、`t'`、`i'`、`k'`、`l'`；解析改為完整推導 `dy/dg=1/[1-c'(1-t')+i'k'/l']=1/0.44=2.2727≈2.273`，最接近選項 A（2.275），並說明利率上升的排擠效果使乘數小於簡單乘數 2.5。答案維持 A；390px／1280px、深淺主題與 `file://` 正常，搜尋索引同步。
 
 2026-11-27 修正 `110Q1-macro-07` 古典免疫答案（C→D）：原解析把「容易使用」當成錯誤，但古典免疫的關鍵特徵是存續期間等於目標持有期間，抵銷價格風險與再投資風險，管理的是利率風險而非信用風險。已重寫 A–D 選項分析，並同步題庫、搜尋索引、110 年分包與 `macro-13` 章節分包；390px／1280px、深淺主題與 `file://` 顯示正常。
