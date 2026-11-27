@@ -272,49 +272,53 @@ Object.assign(window.MACRO_DIAGRAMS, {
     sectionTitle: "進階專題：泰勒法則、QTM 與準備金走廊",
     kicker: "題庫導向圖解",
     title: "準備金走廊與 QT：供給左移使短期利率向 IORB 靠攏",
-    formula: String.raw`i_{ONRRP}\le i_{EFFR}\le i_{IORB}`,
-    caption: "縱軸為政策利率，橫軸為準備金。準備金需求 D 向下；供給原為 S0，QT 使供給左移到 S1，均衡由 E0 移到 E1，短期利率上升。ON RRP 形成下限、IORB 形成銀行準備金報酬的參考上限；準備金充裕時，利率主要由走廊引導。",
+    formula: String.raw`i_{ONRRP}\le i_{EFFR}\le i_{IORB},\qquad i_{IORB}<i_{DW}`,
+    caption: "縱軸為政策利率，橫軸為準備金。準備金需求 D 向下；供給原為 S0，QT 使供給左移到 S1，均衡由 E0 移到 E1，短期利率上升並向 IORB 靠攏。ON RRP 是走廊下限、貼現窗口是上限；IORB 是銀行準備金報酬，EFFR 通常略低於 IORB。",
     svg: `
 <svg viewBox="0 0 640 380" role="img" aria-labelledby="dg-rescorr-title dg-rescorr-desc" xmlns="http://www.w3.org/2000/svg">
-  <title id="dg-rescorr-title">準備金走廊與 QT：供給左移使短期利率上升</title>
-  <desc id="dg-rescorr-desc">準備金需求向下，供給由 S0 左移到 S1，均衡利率由 i0 上升到 i1；ON RRP 是下限，IORB 是銀行準備金報酬參考。</desc>
+  <title id="dg-rescorr-title">準備金走廊與 QT：供給左移使短期利率上升並向 IORB 靠攏</title>
+  <desc id="dg-rescorr-desc">準備金需求向下，供給由 S0 左移到 S1，均衡由 E0 移到 E1，短期利率上升並向 IORB 靠攏；ON RRP 是走廊下限，貼現窗口是上限，IORB 是準備金報酬。</desc>
   <line class="dg-axis" x1="70" y1="330" x2="610" y2="330"></line>
   <line class="dg-axis" x1="70" y1="330" x2="70" y2="40"></line>
   <text class="dg-label-sm" x="610" y="352" text-anchor="end">準備金 R</text>
   <text class="dg-label-sm" x="62" y="34" text-anchor="end">政策利率 i</text>
-  <path class="dg-curve" d="M130 105 L560 280"></path>
-  <line class="dg-curve-alt" x1="360" y1="95" x2="360" y2="320"></line>
-  <line class="dg-curve-soft" x1="250" y1="95" x2="250" y2="320"></line>
+  <path class="dg-curve" d="M130 100 L500 300 L610 300"></path>
+  <line class="dg-curve-alt" x1="390" y1="90" x2="390" y2="320"></line>
+  <line class="dg-curve-soft" x1="290" y1="90" x2="290" y2="320"></line>
   <line class="dg-guide" x1="70" y1="300" x2="610" y2="300"></line>
-  <line class="dg-guide" x1="70" y1="130" x2="610" y2="130"></line>
-  <circle class="dg-point" cx="360" cy="205" r="5"></circle>
-  <circle class="dg-point" cx="250" cy="174" r="5"></circle>
-  <line class="dg-guide" x1="70" y1="205" x2="360" y2="205"></line>
-  <line class="dg-guide" x1="70" y1="174" x2="250" y2="174"></line>
-  <text class="dg-label-sm" x="360" y="222" text-anchor="middle">E0</text>
-  <text class="dg-label-sm" x="238" y="166" text-anchor="end">E1</text>
-  <text class="dg-label-sm" x="368" y="89">S0</text>
-  <text class="dg-label-sm" x="258" y="89">S1（QT）</text>
+  <line class="dg-guide" x1="70" y1="165" x2="610" y2="165"></line>
+  <line class="dg-guide" x1="70" y1="80" x2="610" y2="80" stroke-dasharray="7 6"></line>
+  <circle class="dg-point" cx="390" cy="240" r="5"></circle>
+  <circle class="dg-point" cx="290" cy="186" r="5"></circle>
+  <line class="dg-guide" x1="70" y1="240" x2="390" y2="240"></line>
+  <line class="dg-guide" x1="70" y1="186" x2="290" y2="186"></line>
+  <text class="dg-label-sm" x="400" y="252">E0</text>
+  <text class="dg-label-sm" x="278" y="178" text-anchor="end">E1</text>
+  <text class="dg-label-sm" x="398" y="112">S0</text>
+  <text class="dg-label-sm" x="298" y="112">S1（QT）</text>
   <text class="dg-label-sm" x="540" y="292" text-anchor="end">ON RRP 下限</text>
-  <text class="dg-label-sm" x="540" y="122" text-anchor="end">IORB 參考</text>
-  <text class="dg-label-sm" x="64" y="209" text-anchor="end">i0</text>
-  <text class="dg-label-sm" x="64" y="178" text-anchor="end">i1</text>
-  <text class="dg-label-xs" x="320" y="26" text-anchor="middle">QT：準備金供給左移 → 短期利率上升 → 向走廊上限靠攏</text>
-  <text class="dg-label-xs" x="80" y="366">準備金充裕時，利率由 IORB／ON RRP 走廊引導；供給數量不是唯一指標。</text>
+  <text class="dg-label-sm" x="540" y="157" text-anchor="end">IORB（準備金報酬）</text>
+  <text class="dg-label-sm" x="540" y="72" text-anchor="end">貼現窗口上限</text>
+  <text class="dg-label-sm" x="64" y="244" text-anchor="end">i0</text>
+  <text class="dg-label-sm" x="64" y="190" text-anchor="end">i1</text>
+  <text class="dg-label-xs" x="320" y="26" text-anchor="middle">QT：準備金供給左移 → 短期利率上升 → 向 IORB 靠攏</text>
+  <text class="dg-label-xs" x="80" y="366">走廊下限為 ON RRP、上限為貼現窗口；IORB 是準備金報酬，EFFR 通常略低於 IORB。</text>
 </svg>`,
     variables: [
       ["i", "短期政策利率", "縱軸；有效聯邦資金利率或同業拆借利率。"],
       ["R", "準備金數量", "橫軸；銀行體系準備金。"],
       ["D", "準備金需求", "向下；準備金愈多，邊際流動性價值愈低。"],
       ["S", "準備金供給", "由央行資產與 QT 決定。"],
+      ["EFFR", "有效聯邦資金利率", "銀行間隔夜借貸的實際交易利率；通常介於 ON RRP 與 IORB 之間。"],
       ["E", "均衡點", "準備金供需交點，決定短期利率。"]
     ],
     parameters: [
-      ["IORB", "準備金報酬", "銀行保留準備金的機會成本參考。"],
-      ["ON RRP", "隔夜逆回購利率", "貨幣市場資金的下限。"],
+      ["IORB", "準備金報酬", "銀行保留準備金的利率；EFFR 通常略低於 IORB。"],
+      ["ON RRP", "隔夜逆回購利率", "貨幣市場資金的下限，構成走廊下限。"],
+      ["貼現窗口", "走廊上限", "銀行向央行融通的利率，構成短期利率上限。"],
       ["QT", "量化緊縮", "縮減央行資產負債表，供給左移。"]
     ],
-    note: "本圖為概念示意；走廊上下限的相對位置、EFFR 與 SOFR 的實際交易區間，會隨制度、準備金豐裕程度與回購市場摩擦變動。"
+    note: "本圖為概念示意；走廊下限為 ON RRP、上限為貼現窗口，IORB 是準備金報酬而非硬上限。實際 EFFR、SOFR 與各利率的相對位置，會隨制度、準備金豐裕程度與回購市場摩擦變動。"
   },
 
   "macro-11#6": {

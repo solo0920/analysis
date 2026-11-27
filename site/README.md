@@ -564,6 +564,8 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 
 2026-11-26 部署流程簡化為 Cloudflare Worker：移除 `.github/workflows/pages.yml` 與 GitHub Pages 鏡像，新增根目錄 `wrangler.toml`（`analysis`、`assets.directory = "./site"`、`not_found_handling = "404-page"`）；Cloudflare Workers Builds 的 Build command 已設為 `bash site/scripts/verify.sh`，Deploy command 維持 `npx wrangler deploy`。新增 `site/scripts/write-version.js`、`check-live.sh` 與 `check-js-syntax.js`；`verify.sh` 在通過內容／SEO 驗證後產生 `site/version.json`，`site/version.json` 加入 `.gitignore`。JS 語法檢查由 170 次 `node --check` 改為單一 Node 進程，`verify.sh` 由約 6.3 秒降至約 2.4 秒。正式站建置後以 `bash site/scripts/check-live.sh` 比對 commit；`version.json` 回傳 `main` 與目前 commit，GitHub 只保留 push，不再部署 Pages；GitHub Pages 已停用（Pages API 回 404）。
 
+2026-11-27 修正 `macro-06#4` 準備金走廊 SVG：原圖把 IORB 誤標為走廊上限，且標題寫「向走廊上限靠攏」。改為 ON RRP 為下限、貼現窗口為上限、IORB 為準備金報酬；需求曲線在 ON RRP 附近平坦化，QT 使供給由 S0 左移到 S1，均衡由 E0 移到 E1，利率上升並向 IORB 靠攏。圖說、公式、variables／parameters 同步更新；390px／1280px 與 `file://` 顯示正常，0 `.katex-error`、0 水平溢出。
+
 2026-11-27 補完整 `114Q2-macro-26` 的 CIPS 解析：summary 增加 `Cross-Border Interbank Payment System` 與「人民幣跨境支付系統」全稱；同時修正 `autoMathProseToHtml` 把英文連字號（如 `Cross-Border`）誤判為減號的問題，自動數學改為只由 `=`、`+`、`*`、`/` 等運算符觸發，避免整段英文被包成 KaTeX。390px／1280px 與 `file://` 實測正常，0 `.katex-error`、0 水平溢出。
 
 2026-11-26 補完整 `112Q2-macro-02` 的布列敦森林解析：summary 改為「固定匯率→擴張性貨幣政策→幣值高估→資本外流→國際收支赤字→央行買入本國貨幣→貨幣供給減少」的完整傳導，並保留 Bretton Woods 英文全名。390px／1280px 與 `file://` 實測解析完整，0 `.katex-error`、0 水平溢出。

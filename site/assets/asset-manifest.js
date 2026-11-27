@@ -149,7 +149,7 @@ window.__ASSET_MANIFEST__ = {
   "diagrams-macro-2.js": "6b484650258f",
   "diagrams-macro-3.js": "81506702febc",
   "diagrams-macro-4.js": "46e1f9df86d5",
-  "diagrams-macro-5.js": "b8908395acd5",
+  "diagrams-macro-5.js": "15fc322085a5",
   "diagrams-macro.js": "7615ed1cf941",
   "diagrams-mermaid-static.js": "d96b5f5c61ea",
   "diagrams-mermaid.js": "6e4652a8ec71",
