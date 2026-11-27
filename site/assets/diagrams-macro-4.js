@@ -367,19 +367,19 @@ Object.assign(window.MACRO_DIAGRAMS, {
   <text class="dg-label-xs" x="388" y="98" text-anchor="end">7</text>
   <text class="dg-label-xs" x="388" y="68" text-anchor="end">8</text>
 
-  <line class="dg-curve-soft" x1="396" y1="244" x2="636" y2="154"></line>
-  <line class="dg-curve" x1="428" y1="304" x2="556" y2="64"></line>
+  <line class="dg-curve-soft" x1="396" y1="248" x2="636" y2="158"></line>
+  <line class="dg-curve" x1="430" y1="304" x2="556" y2="68"></line>
   <line class="dg-curve" x1="404" y1="82" x2="430" y2="82"></line>
   <text class="dg-label-sm" x="438" y="86">φπ=1.5</text>
   <line class="dg-curve-soft" x1="404" y1="106" x2="430" y2="106"></line>
   <text class="dg-label-sm" x="438" y="110">φπ=−0.5</text>
 
-  <line class="dg-guide" x1="476" y1="214" x2="476" y2="304"></line>
-  <line class="dg-guide" x1="396" y1="214" x2="476" y2="214"></line>
-  <circle class="dg-point" cx="476" cy="214" r="4.5"></circle>
-  <text class="dg-label-sm" x="484" y="230">E*</text>
+  <line class="dg-guide" x1="476" y1="218" x2="476" y2="304"></line>
+  <line class="dg-guide" x1="396" y1="218" x2="476" y2="218"></line>
+  <circle class="dg-point" cx="476" cy="218" r="4.5"></circle>
+  <text class="dg-label-sm" x="484" y="234">E*</text>
   <text class="dg-label-sm" x="484" y="292">π*=2%</text>
-  <text class="dg-label-sm" x="404" y="208">i*=3%</text>
+  <text class="dg-label-sm" x="404" y="212">i*=3%</text>
 
   <text class="dg-label-xs" x="396" y="368">r*=1%、π*=2%、y=0</text>
 </svg>`,
@@ -414,16 +414,16 @@ Object.assign(window.MACRO_DIAGRAMS, {
   <text class="dg-label" x="78" y="24">利率 i</text>
   <line class="dg-curve" x1="112" y1="92" x2="560" y2="252"></line>
   <line class="dg-curve-alt" x1="112" y1="252" x2="560" y2="92"></line>
-  <line class="dg-curve-soft" x1="86" y1="170" x2="590" y2="170"></line>
+  <line class="dg-curve-soft" x1="86" y1="172" x2="590" y2="172"></line>
   <text class="dg-label-sm" x="526" y="274">IS*</text>
   <text class="dg-label-sm" x="526" y="78">LM*</text>
-  <text class="dg-label-sm" x="508" y="162">BP：i=i*</text>
-  <line class="dg-guide" x1="336" y1="170" x2="336" y2="300"></line>
-  <line class="dg-guide" x1="70" y1="170" x2="336" y2="170"></line>
-  <circle class="dg-point" cx="336" cy="170" r="4.5"></circle>
-  <text class="dg-label-sm" x="344" y="164">E</text>
+  <text class="dg-label-sm" x="508" y="164">BP：i=i*</text>
+  <line class="dg-guide" x1="336" y1="172" x2="336" y2="300"></line>
+  <line class="dg-guide" x1="70" y1="172" x2="336" y2="172"></line>
+  <circle class="dg-point" cx="336" cy="172" r="4.5"></circle>
+  <text class="dg-label-sm" x="344" y="166">E</text>
   <text class="dg-label-sm" x="324" y="320">Y*</text>
-  <text class="dg-label-sm" x="44" y="176">i*</text>
+  <text class="dg-label-sm" x="44" y="178">i*</text>
   <text class="dg-label-sm" x="84" y="54">資本完全移動</text>
 </svg>`,
     variables: [

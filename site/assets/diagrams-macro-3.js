@@ -300,7 +300,7 @@ Object.assign(window.MACRO_DIAGRAMS, {
     sectionTitle: "第2節 景氣循環",
     kicker: "學派模型 · 新古典 RBC",
     title: "實質景氣循環（RBC）：技術衝擊與勞動市場",
-    caption: "實質景氣循環（RBC）把景氣波動主要歸因於實質技術衝擊。技術水準 A 上升使勞動邊際生產力提高，勞動需求由 LD₀ 右移到 LD₁；在勞動供給向上下，就業、實質工資與產出增加。RBC 假設價格與工資具彈性、市場結清，貨幣在短期亦偏向中立；這與新凱因斯學派以價格黏性和需求衝擊解釋短期波動不同。",
+    caption: "實質景氣循環（RBC）把景氣波動主要歸因於實質技術衝擊。技術水準 A 上升使勞動邊際生產力提高，勞動需求由 LD₀ 右移到 LD₁；在勞動供給曲線向上傾斜下，就業、實質工資與產出增加。RBC 假設價格與工資具彈性、市場結清，貨幣在短期亦偏向中立；這與新凱因斯學派以價格黏性和需求衝擊解釋短期波動不同。",
     formula: String.raw`Y_t=A_tK_t^\alpha L_t^{1-\alpha},\qquad \ln A_t=\rho\ln A_{t-1}+\varepsilon_t`,
     svg: `
 <svg viewBox="0 0 640 360" role="img" aria-labelledby="dg-rbc-title" xmlns="http://www.w3.org/2000/svg">
@@ -319,14 +319,14 @@ Object.assign(window.MACRO_DIAGRAMS, {
   <text class="dg-label-sm" x="264" y="76">LS</text>
   <text class="dg-label-sm" x="258" y="264">LD₀</text>
   <text class="dg-label-sm" x="278" y="230">LD₁</text>
-  <circle class="dg-point" cx="171" cy="179" r="4"></circle>
-  <circle class="dg-point" cx="198" cy="163" r="4"></circle>
+  <circle class="dg-point" cx="172.37" cy="173.94" r="4"></circle>
+  <circle class="dg-point" cx="187.6" cy="160.7" r="4"></circle>
   <text class="dg-label-sm" x="150" y="170">E₀</text>
-  <text class="dg-label-sm" x="205" y="154">E₁</text>
-  <text class="dg-label-sm" x="160" y="310">L₀</text>
-  <text class="dg-label-sm" x="204" y="310">L₁</text>
-  <line class="dg-guide" x1="171" y1="179" x2="171" y2="290"></line>
-  <line class="dg-guide" x1="198" y1="163" x2="198" y2="290"></line>
+  <text class="dg-label-sm" x="196" y="154">E₁</text>
+  <text class="dg-label-sm" x="172.37" y="310" text-anchor="middle">L₀</text>
+  <text class="dg-label-sm" x="187.6" y="310" text-anchor="middle">L₁</text>
+  <line class="dg-guide" x1="172.37" y1="173.94" x2="172.37" y2="290"></line>
+  <line class="dg-guide" x1="187.6" y1="160.7" x2="187.6" y2="290"></line>
   <line class="dg-axis" x1="370" y1="290" x2="598" y2="290"></line>
   <line class="dg-axis" x1="370" y1="290" x2="370" y2="70"></line>
   <text class="dg-label-sm" x="584" y="310">就業 L</text>
@@ -335,10 +335,14 @@ Object.assign(window.MACRO_DIAGRAMS, {
   <path class="dg-curve-alt" d="M380,242 Q460,174 556,70"></path>
   <text class="dg-label-sm" x="390" y="238">Y=A₀F(K,L)</text>
   <text class="dg-label-sm" x="390" y="132">Y=A₁F(K,L)</text>
-  <circle class="dg-point" cx="470" cy="208" r="4"></circle>
-  <circle class="dg-point" cx="470" cy="176" r="4"></circle>
-  <text class="dg-label-sm" x="480" y="222">E₀</text>
-  <text class="dg-label-sm" x="480" y="170">E₁</text>
+  <circle class="dg-point" cx="440" cy="229" r="4"></circle>
+  <circle class="dg-point" cx="490" cy="142.9" r="4"></circle>
+  <text class="dg-label-sm" x="450" y="243">E₀</text>
+  <text class="dg-label-sm" x="500" y="157">E₁</text>
+  <text class="dg-label-sm" x="440" y="310" text-anchor="middle">L₀</text>
+  <text class="dg-label-sm" x="490" y="310" text-anchor="middle">L₁</text>
+  <line class="dg-guide" x1="440" y1="229" x2="440" y2="290"></line>
+  <line class="dg-guide" x1="490" y1="142.9" x2="490" y2="290"></line>
   <line class="dg-arrow" x1="398" y1="86" x2="450" y2="86"></line>
   <text class="dg-label-sm" x="456" y="90">A↑</text>
 </svg>`,
@@ -361,6 +365,6 @@ Object.assign(window.MACRO_DIAGRAMS, {
       ["市場結清", "價格與工資彈性", "RBC 假設市場迅速調整。"],
       ["勞動供給彈性", "就業反應", "影響技術衝擊對就業的傳導。"]
     ],
-    note: "RBC 的「實質」指技術與供給面衝擊，不是貨幣或金融衝擊；天空不是模型的一部分。與新凱因斯模型相比，RBC 較不強調價格黏性與需求管理。"
+    note: "RBC 的「實質」指技術與供給面衝擊，不是貨幣或金融衝擊；模型假設價格與工資具彈性、市場結清。與新凱因斯模型相比，RBC 較不強調價格黏性與需求管理。"
   }
 });
