@@ -3227,7 +3227,7 @@ window.CHAPTER_DATA["macro-13"] = {
         "是一種管理信用風險的策略"
       ],
       "answer": [
-        "C"
+        "D"
       ],
       "sourceIds": [
         "macro-13"

@@ -564,6 +564,8 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 
 2026-11-26 部署流程簡化為 Cloudflare Worker：移除 `.github/workflows/pages.yml` 與 GitHub Pages 鏡像，新增根目錄 `wrangler.toml`（`analysis`、`assets.directory = "./site"`、`not_found_handling = "404-page"`）；Cloudflare Workers Builds 的 Build command 已設為 `bash site/scripts/verify.sh`，Deploy command 維持 `npx wrangler deploy`。新增 `site/scripts/write-version.js`、`check-live.sh` 與 `check-js-syntax.js`；`verify.sh` 在通過內容／SEO 驗證後產生 `site/version.json`，`site/version.json` 加入 `.gitignore`。JS 語法檢查由 170 次 `node --check` 改為單一 Node 進程，`verify.sh` 由約 6.3 秒降至約 2.4 秒。正式站建置後以 `bash site/scripts/check-live.sh` 比對 commit；`version.json` 回傳 `main` 與目前 commit，GitHub 只保留 push，不再部署 Pages；GitHub Pages 已停用（Pages API 回 404）。
 
+2026-11-27 修正 `110Q1-macro-07` 古典免疫答案（C→D）：原解析把「容易使用」當成錯誤，但古典免疫的關鍵特徵是存續期間等於目標持有期間，抵銷價格風險與再投資風險，管理的是利率風險而非信用風險。已重寫 A–D 選項分析，並同步題庫、搜尋索引、110 年分包與 `macro-13` 章節分包；390px／1280px、深淺主題與 `file://` 顯示正常。
+
 2026-11-27 重新設計 `macro-06#5` 泰勒法則：移除原有兩個子區塊，改為「公式與參數」「直覺、例子與限制」，補 John B. Taylor（1993）、TFFR／ERFFR 全稱、泰勒原則、`i_t=6%` 例子與優點／限制表。主公式改為單行 boxed，計算式與兩個方向式分列；390px 下三個區塊公式皆 `clientWidth=scrollWidth=332`、0 水平溢出；深淺主題與 1280px 正常。QTM／QT 與準備金走廊子區塊維持不變。
 
 2026-11-27 全面稽核總體模型 SVG（37 張）：以瀏覽器截圖與座標驗算檢查交點、曲線方向與標籤，修正 RBC 勞動市場 E0／E1 與生產函數 L0／L1 位置及圖說、NKPC/Taylor 的 E* 與 i=3 對齊、Mundell-Fleming 的 BP／E 交點；確保各點落在對應曲線或均衡線上。其餘直線／交點圖未發現明顯錯位；金融工具地圖等概念圖仍維持示意、不按數值比例。390px／1280px 與正式站檢查正常。

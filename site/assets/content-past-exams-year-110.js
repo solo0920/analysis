@@ -3386,7 +3386,7 @@ window.PAST_EXAMS_YEAR_BUNDLES["110"] = {
         "是一種管理信用風險的策略"
       ],
       "answer": [
-        "C"
+        "D"
       ],
       "sourceIds": [
         "macro-13"
