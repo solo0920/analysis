@@ -3811,11 +3811,10 @@
     ].filter(Boolean).join(" · ");
     const active = question.id === currentId;
     return [
-      '<button class="past-exam-search-result' + (active ? " is-active" : "") + '" type="button" data-past-open="' + escapeHtml(question.id) + '"' + (active ? ' aria-current="true"' : "") + '>',
+      '<button class="past-exam-search-result' + (active ? " is-active" : "") + '" type="button" data-past-open="' + escapeHtml(question.id) + '" title="' + escapeHtml(meta) + '"' + (active ? ' aria-current="true"' : "") + '>',
       '  <span class="past-exam-search-badge">選擇</span>',
       '  <span class="past-exam-search-result-body">',
       "    <strong>" + renderSearchText(question.stem) + "</strong>",
-      "    <small>" + escapeHtml(meta) + "</small>",
       "  </span>",
       '  <span class="past-exam-search-arrow" aria-hidden="true">→</span>',
       "</button>"
@@ -5371,11 +5370,10 @@
     ].filter(Boolean).join(" · ");
     const active = question.id === selectedId;
     return [
-      '<button class="past-exam-search-result' + (active ? " is-active" : "") + '" type="button" data-written-open="' + escapeHtml(question.id) + '"' + (active ? ' aria-current="true"' : "") + '>',
+      '<button class="past-exam-search-result' + (active ? " is-active" : "") + '" type="button" data-written-open="' + escapeHtml(question.id) + '" title="' + escapeHtml(meta) + '"' + (active ? ' aria-current="true"' : "") + '>',
       '  <span class="past-exam-search-badge">' + (question.kind === "計算題" ? "計算" : "申論") + "</span>",
       '  <span class="past-exam-search-result-body">',
       "    <strong>" + renderSearchText(question.stem) + "</strong>",
-      "    <small>" + escapeHtml(meta) + "</small>",
       "  </span>",
       '  <span class="past-exam-search-arrow" aria-hidden="true">→</span>',
       "</button>"
@@ -5567,7 +5565,7 @@
     writtenRefreshSearch(true);
   }
 
-  function writtenSelectQuestion(questionId) {
+  function writtenSelectQuestion(questionId, options) {
     ensureWrittenState();
     const question = writtenQuestions.find(function (item) {
       return item.id === questionId;
@@ -5592,10 +5590,38 @@
     }
     detail.innerHTML = renderWrittenCard(question);
     refreshReviewButtons(detail);
-    if (window.matchMedia("(max-width: 900px)").matches) {
+    if ((!options || options.scroll !== false) && window.matchMedia("(max-width: 900px)").matches) {
       const card = document.getElementById("written-" + question.id);
       (card || detail).scrollIntoView({ behavior: "smooth", block: "start" });
     }
+  }
+
+  function writtenMoveSelection(delta) {
+    const buttons = Array.from(document.querySelectorAll("#written-search-results [data-written-open]"));
+    if (!buttons.length) {
+      return false;
+    }
+    const focused = document.activeElement && document.activeElement.closest
+      ? document.activeElement.closest("[data-written-open]")
+      : null;
+    let index = focused ? buttons.indexOf(focused) : -1;
+    if (index < 0) {
+      index = buttons.findIndex(function (button) {
+        return button.dataset.writtenOpen === writtenFuzzyState.selectedId;
+      });
+    }
+    if (index < 0) {
+      index = 0;
+    }
+    const nextIndex = (index + delta + buttons.length) % buttons.length;
+    const next = buttons[nextIndex];
+    if (!next) {
+      return false;
+    }
+    writtenSelectQuestion(next.dataset.writtenOpen, { scroll: false });
+    next.focus({ preventScroll: true });
+    next.scrollIntoView({ block: "nearest" });
+    return true;
   }
 
   function restoreWrittenFuzzySearch() {
@@ -9476,6 +9502,17 @@
         writtenFuzzyState.generation += 1;
         renderWrittenSidebar();
         input.focus();
+      }
+    });
+
+    main.addEventListener("keydown", function (event) {
+      const button = event.target.closest("[data-written-open]");
+      if (!button) {
+        return;
+      }
+      if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+        event.preventDefault();
+        writtenMoveSelection(event.key === "ArrowDown" ? 1 : -1);
       }
     });
 

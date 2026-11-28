@@ -153,6 +153,8 @@
 - **FR-024**: `#/past-exams` 的「下一題／上一題」切換必須同步更新 sidebar active 題目，不重建整個 sidebar。
 - **FR-025**: 390px 時 `#/past-exams` sidebar 與右側面板必須上下堆疊，sidebar 保持可捲動高度；點選題目後必須將右側面板捲入視窗。
 - **FR-026**: `#/past-exams` 年度一覽必須保留在 sidebar／detail 版面下方；選擇年度卡片後 sidebar 與右側面板更新，年度一覽不消失。
+- **FR-027**: `#/past-exams/written` 與 `#/past-exams` 的 sidebar 題目卡不得顯示 `<small>` metadata 行；年度／科目／次別／章節資訊改放在按鈕 `title` 屬性，讓每題高度維持約兩行題幹。
+- **FR-028**: 當焦點在 sidebar 題目按鈕時，`ArrowDown`／`ArrowUp` 必須切換上一題／下一題，右側題卡即時更新、active 與焦點同步移動，抵達清單兩端時環繞；不得讓頁面捲動。`#/past-exams/written` 由 `writtenMoveSelection()` 實作，`#/past-exams` 保留滑鼠與「下一題／上一題」操作。
 
 ### Key Entities
 
@@ -176,6 +178,7 @@
 - **SC-008**: 目標式檢查 `check-ui.js --only written-exams` 涵蓋 390／1280、深淺主題、未搜尋 348 題 sidebar、搜尋 sidebar、點選切換、預設展開參考解答與清除恢復；`file://` 與正式站同路由通過，0 `.katex-error`、0 水平溢出。
 - **SC-009**: `#/past-exams` 未搜尋時 sidebar 顯示目前篩選題目（115 年第 2 次為 126 題）、右側顯示第一題；點第二題後右側題幹與 active 同步；搜尋「存續期間」sidebar 顯示符合結果，點結果可載入右側面板；清除搜尋恢復目前篩選題目。
 - **SC-010**: `check-ui.js --only past-exams` 涵蓋 390／1280、深淺主題、sidebar 題目列表、搜尋 sidebar、點選切換、清除恢復與年度一覽保留；`file://` 與正式站同路由通過，0 `.katex-error`、0 水平溢出。
+- **SC-011**: `#/past-exams/written` sidebar 的 `<small>` 數量為 0，題目卡高度約 70px（1280px、348 題清單）；焦點在題目卡時 `ArrowDown` 選下一題、`ArrowUp` 選上一題，右側題卡與 active 同步，兩端可環繞，頁面不因方向鍵捲動。
 
 ## Testing Scope
 

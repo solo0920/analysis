@@ -214,6 +214,7 @@ async function checkPracticeSidebar(send, events, args) {
         activeId: active[0] ? active[0].dataset.pastOpen : "",
         panelQuestion: Boolean(panel && panel.querySelector(".past-exam-stem")),
         panelStem: panel && panel.querySelector(".past-exam-stem") ? panel.querySelector(".past-exam-stem").textContent : "",
+        smallCount: document.querySelectorAll("#past-exam-search-results small").length,
         sidebarLeft: sidebarRect ? sidebarRect.left : -1,
         panelLeft: panelRect ? panelRect.left : -1,
         sidebarTop: sidebarRect ? sidebarRect.top : -1,
@@ -231,6 +232,7 @@ async function checkPracticeSidebar(send, events, args) {
     if (!initial.resultCount) problems.push("question list empty");
     if (initial.activeCount !== 1) problems.push("active question count " + initial.activeCount);
     if (!initial.panelQuestion) problems.push("practice panel missing");
+    if (initial.smallCount) problems.push("sidebar metadata count " + initial.smallCount);
     if (viewport.width > 900) {
       if (!(initial.sidebarLeft < initial.panelLeft)) problems.push("sidebar is not left of panel");
     } else if (!(initial.sidebarTop < initial.panelTop)) {
@@ -341,6 +343,7 @@ async function checkWrittenSearchSidebar(send, events, args) {
         detailCard: Boolean(detail && detail.querySelector(".written-card")),
         answerVisible: Boolean(detail && detail.querySelector(".written-answer")),
         toggleLabel: detail && detail.querySelector("[data-written-toggle]") ? detail.querySelector("[data-written-toggle]").textContent.trim() : "",
+        smallCount: document.querySelectorAll("#written-search-results small").length,
         resultCount: results.length,
         activeCount: active.length,
         activeId: active[0] ? active[0].dataset.writtenOpen : "",
@@ -364,6 +367,7 @@ async function checkWrittenSearchSidebar(send, events, args) {
     if (!initial.detailCard) problems.push("detail card missing");
     if (!initial.answerVisible) problems.push("default answer hidden");
     if (initial.toggleLabel !== "收起解答") problems.push("default answer toggle " + initial.toggleLabel);
+    if (initial.smallCount) problems.push("sidebar metadata count " + initial.smallCount);
     if (initial.resultCount < 300) problems.push("question count " + initial.resultCount);
     if (initial.activeCount !== 1) problems.push("active question count " + initial.activeCount);
     if (initial.title !== "題目列表") problems.push("sidebar title " + initial.title);
@@ -376,13 +380,25 @@ async function checkWrittenSearchSidebar(send, events, args) {
     if (initial.overflow > 1) problems.push("overflow " + initial.overflow);
     if (initial.katexErrors) problems.push("katex errors " + initial.katexErrors);
 
-    const initialSecondId = await evaluate(send, `(() => {
+    const initialIds = await evaluate(send, `(() => {
       const buttons = document.querySelectorAll("#written-search-results [data-written-open]");
-      return buttons[1] ? buttons[1].dataset.writtenOpen : "";
+      return {
+        first: buttons[0] ? buttons[0].dataset.writtenOpen : "",
+        second: buttons[1] ? buttons[1].dataset.writtenOpen : ""
+      };
     })()`);
-    if (!initialSecondId) {
-      problems.push("second question missing");
+    const initialSecondId = initialIds.second;
+    if (!initialIds.first || !initialSecondId) {
+      problems.push("question ids missing");
     } else {
+      await evaluate(send, `document.querySelectorAll("#written-search-results [data-written-open]")[0].focus()`);
+      await evaluate(send, `document.activeElement.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true, cancelable: true }))`);
+      const movedDown = await waitFor(send, `document.querySelector("#written-search-results .past-exam-search-result.is-active") && document.querySelector("#written-search-results .past-exam-search-result.is-active").dataset.writtenOpen === ${JSON.stringify(initialSecondId)} && document.querySelector("#written-search-detail .written-card") && document.querySelector("#written-search-detail .written-card").id === ${JSON.stringify("written-" + initialSecondId)}`, 5000);
+      await evaluate(send, `document.activeElement.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true, cancelable: true }))`);
+      const movedUp = await waitFor(send, `document.querySelector("#written-search-results .past-exam-search-result.is-active") && document.querySelector("#written-search-results .past-exam-search-result.is-active").dataset.writtenOpen === ${JSON.stringify(initialIds.first)} && document.querySelector("#written-search-detail .written-card") && document.querySelector("#written-search-detail .written-card").id === ${JSON.stringify("written-" + initialIds.first)}`, 5000);
+      if (!movedDown) problems.push("ArrowDown did not select next");
+      if (!movedUp) problems.push("ArrowUp did not select previous");
+
       await evaluate(send, `document.querySelectorAll("#written-search-results [data-written-open]")[1].click()`);
       const selected = await waitFor(send, `document.querySelector("#written-search-detail .written-card") && document.querySelector("#written-search-detail .written-card").id === ${JSON.stringify("written-" + initialSecondId)}`, 5000);
       const after = await evaluate(send, `(() => {

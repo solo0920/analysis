@@ -44,6 +44,8 @@
 - [x] 預設選取第一筆；點選其他題目會更新右側題卡、`is-active` 與 `aria-current`。
 - [x] 頁面載入、搜尋結果出現、切換題目與切換篩選後，右側題卡預設展開參考解答；可用「收合解答」收合。
 - [x] 點選題目會展開該題參考解答；搜尋字串保留。
+- [x] sidebar 題目卡不顯示 `<small>` metadata；年度／科目／次別／章節改放在 `title`，每題高度約 70px。
+- [x] 焦點在 sidebar 題目卡時，`ArrowDown`／`ArrowUp` 切換下一題／上一題，右側題卡與 active 同步，兩端環繞且不捲動頁面。
 - [x] 1280px sidebar 在左、390px 上下堆疊且 sidebar 可捲動；390px 點選後捲到題卡。
 - [x] sidebar 與右側題卡不會同時產生重複的 `written-<id>`。
 
@@ -61,7 +63,7 @@
 
 - [x] 390px／1280px、深淺主題與 `file://` 實測通過。
 - [x] 0 `.katex-error`、0 水平溢出。
-- [x] 目標式檢查 `check-ui.js --only written-exams` 通過（含預設參考解答、sidebar 互動）。
+- [x] 目標式檢查 `check-ui.js --only written-exams` 通過（含預設參考解答、sidebar 互動、無 `<small>`、鍵盤上下切換）。
 - [x] 目標式檢查 `check-ui.js --only past-exams` 通過（含選擇題 sidebar、搜尋、點選與清除恢復）。
 - [x] 完整 `check-ui.js` 56 組路由／viewport／theme 檢查通過。
 - [x] 完整檢查只在需要全站 smoke test 時執行；本次 sidebar 變更的預設範圍為 `--only written-exams` 與 `--only past-exams`。
