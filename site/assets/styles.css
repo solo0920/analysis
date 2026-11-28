@@ -6229,6 +6229,61 @@ a.landing-item:hover {
   font-size: 0.76rem;
 }
 
+.past-exam-hero.past-exam-hero-compact {
+  display: block;
+  padding: 10px 0 20px;
+}
+
+.past-exam-hero-compact .past-exam-hero-copy {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "eyebrow stats"
+    "title stats"
+    "actions actions";
+  align-items: center;
+  gap: 2px 28px;
+}
+
+.past-exam-hero-compact .eyebrow {
+  grid-area: eyebrow;
+  margin: 0;
+}
+
+.past-exam-hero-compact .past-exam-hero-copy h1 {
+  grid-area: title;
+  margin: 0;
+  font-size: clamp(2.2rem, 4vw, 3.3rem);
+  line-height: 1.05;
+}
+
+.past-exam-hero-compact .past-exam-stats {
+  grid-area: stats;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(72px, 1fr));
+  gap: 8px;
+  width: min(100%, 560px);
+}
+
+.past-exam-hero-compact .past-exam-stat {
+  padding: 10px 12px;
+}
+
+.past-exam-hero-compact .past-exam-stat strong {
+  font-size: 1.3rem;
+}
+
+.past-exam-hero-compact .past-exam-stat span {
+  margin-top: 2px;
+  font-size: 0.68rem;
+}
+
+.past-exam-hero-compact .past-exam-hero-actions {
+  grid-area: actions;
+  margin-top: 10px;
+  gap: 10px;
+}
+
 .past-exam-search-shell {
   padding-bottom: 16px;
   border-bottom: 1px solid var(--line);
@@ -7276,6 +7331,21 @@ a.landing-item:hover {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
+  .past-exam-hero-compact .past-exam-hero-copy {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "eyebrow"
+      "title"
+      "stats"
+      "actions";
+    gap: 6px;
+  }
+
+  .past-exam-hero-compact .past-exam-stats {
+    width: 100%;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
   .past-exam-home-cta {
     flex-direction: column;
     align-items: flex-start;
@@ -7356,8 +7426,40 @@ a.landing-item:hover {
     padding-top: 8px;
   }
 
+  .past-exam-hero.past-exam-hero-compact {
+    padding: 6px 0 16px;
+  }
+
   .past-exam-hero-copy h1 {
     font-size: 2.5rem;
+  }
+
+  .past-exam-hero-compact .past-exam-hero-copy h1 {
+    font-size: 2.2rem;
+  }
+
+  .past-exam-hero-compact .past-exam-stat {
+    padding: 8px 6px;
+    text-align: center;
+  }
+
+  .past-exam-hero-compact .past-exam-stat strong {
+    font-size: clamp(0.95rem, 3.8vw, 1.2rem);
+  }
+
+  .past-exam-hero-compact .past-exam-stat span {
+    font-size: 0.62rem;
+  }
+
+  .past-exam-hero-compact .past-exam-hero-actions {
+    margin-top: 8px;
+    gap: 8px;
+  }
+
+  .past-exam-hero-compact .past-exam-hero-actions .btn {
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 0.84rem;
   }
 
   .past-exam-search-input {
