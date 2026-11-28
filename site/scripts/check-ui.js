@@ -241,14 +241,26 @@ async function checkPracticeSidebar(send, events, args) {
     if (initial.overflow > 1) problems.push("overflow " + initial.overflow);
     if (initial.katexErrors) problems.push("katex errors " + initial.katexErrors);
 
-    const secondId = await evaluate(send, `(() => {
+    const questionIds = await evaluate(send, `(() => {
       const buttons = document.querySelectorAll("#past-exam-search-results [data-past-open]");
-      return buttons[1] ? buttons[1].dataset.pastOpen : "";
+      return {
+        first: buttons[0] ? buttons[0].dataset.pastOpen : "",
+        second: buttons[1] ? buttons[1].dataset.pastOpen : ""
+      };
     })()`);
-    if (!secondId) {
-      problems.push("second question missing");
+    const secondId = questionIds.second;
+    if (!questionIds.first || !secondId) {
+      problems.push("question ids missing");
     } else {
       const beforeStem = initial.panelStem;
+      await evaluate(send, `document.querySelectorAll("#past-exam-search-results [data-past-open]")[0].focus()`);
+      await evaluate(send, `document.activeElement.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true, cancelable: true }))`);
+      const movedDown = await waitFor(send, `document.querySelector("#past-exam-search-results .past-exam-search-result.is-active") && document.querySelector("#past-exam-search-results .past-exam-search-result.is-active").dataset.pastOpen === ${JSON.stringify(secondId)} && document.querySelector("#past-exam-panel .past-exam-stem") && document.querySelector("#past-exam-panel .past-exam-stem").textContent !== ${JSON.stringify(beforeStem)}`, 5000);
+      await evaluate(send, `document.activeElement.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true, cancelable: true }))`);
+      const movedUp = await waitFor(send, `document.querySelector("#past-exam-search-results .past-exam-search-result.is-active") && document.querySelector("#past-exam-search-results .past-exam-search-result.is-active").dataset.pastOpen === ${JSON.stringify(questionIds.first)} && document.querySelector("#past-exam-panel .past-exam-stem") && document.querySelector("#past-exam-panel .past-exam-stem").textContent === ${JSON.stringify(beforeStem)}`, 5000);
+      if (!movedDown) problems.push("ArrowDown did not select next");
+      if (!movedUp) problems.push("ArrowUp did not select previous");
+
       await evaluate(send, `document.querySelectorAll("#past-exam-search-results [data-past-open]")[1].click()`);
       const selected = await waitFor(send, `document.querySelector("#past-exam-search-results .past-exam-search-result.is-active") && document.querySelector("#past-exam-search-results .past-exam-search-result.is-active").dataset.pastOpen === ${JSON.stringify(secondId)} && document.querySelector("#past-exam-panel .past-exam-stem") && document.querySelector("#past-exam-panel .past-exam-stem").textContent !== ${JSON.stringify(beforeStem)}`, 5000);
       if (!selected) problems.push("question did not open");

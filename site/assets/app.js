@@ -3973,7 +3973,7 @@
     });
   }
 
-  function practiceSelectQuestion(questionId) {
+  function practiceSelectQuestion(questionId, options) {
     if (!practiceState || !questionId) {
       return;
     }
@@ -4012,9 +4012,43 @@
       practiceLoadCurrent(questions);
     }
     practiceRefreshPanel();
-    if (window.matchMedia("(max-width: 900px)").matches) {
+    if ((!options || options.scroll !== false) && window.matchMedia("(max-width: 900px)").matches) {
       practiceScrollToPanel();
     }
+  }
+
+  function practiceMoveSelection(delta) {
+    const buttons = Array.from(document.querySelectorAll("#past-exam-search-results [data-past-open]"));
+    if (!buttons.length) {
+      return false;
+    }
+    const focused = document.activeElement && document.activeElement.closest
+      ? document.activeElement.closest("[data-past-open]")
+      : null;
+    let index = focused ? buttons.indexOf(focused) : -1;
+    if (index < 0) {
+      const questions = practiceFilteredQuestions();
+      const current = questions[practiceState.index];
+      index = current ? buttons.findIndex(function (button) {
+        return button.dataset.pastOpen === current.id;
+      }) : -1;
+    }
+    if (index < 0) {
+      index = 0;
+    }
+    const nextIndex = (index + delta + buttons.length) % buttons.length;
+    const next = buttons[nextIndex];
+    if (!next) {
+      return false;
+    }
+    const nextId = next.dataset.pastOpen;
+    practiceSelectQuestion(nextId, { scroll: false });
+    const target = Array.from(document.querySelectorAll("#past-exam-search-results [data-past-open]")).find(function (button) {
+      return button.dataset.pastOpen === nextId;
+    }) || next;
+    target.focus({ preventScroll: true });
+    target.scrollIntoView({ block: "nearest" });
+    return true;
   }
 
   function restorePastFuzzySearch() {
@@ -9477,6 +9511,17 @@
         pastFuzzyState.generation += 1;
         renderPracticeSidebar();
         input.focus();
+      }
+    });
+
+    main.addEventListener("keydown", function (event) {
+      const button = event.target.closest("[data-past-open]");
+      if (!button) {
+        return;
+      }
+      if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+        event.preventDefault();
+        practiceMoveSelection(event.key === "ArrowDown" ? 1 : -1);
       }
     });
 
