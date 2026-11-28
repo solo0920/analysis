@@ -195,32 +195,27 @@ async function checkWrittenSearchSidebar(send, events, args) {
     await send("Page.navigate", { url: urlFor(args.base, "/#/past-exams/written") });
     const inputReady = await waitFor(send, `document.readyState === "complete" && Boolean(document.querySelector("#written-search-input"))`);
     await evaluate(send, `document.documentElement.setAttribute("data-theme", ${JSON.stringify(viewport.theme)})`);
-    await evaluate(send, `(() => {
-      const input = document.querySelector("#written-search-input");
-      const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set;
-      setter.call(input, "存續期間");
-      input.dispatchEvent(new Event("input", { bubbles: true }));
-    })()`);
-    const resultsReady = await waitFor(send, `document.querySelectorAll("#written-search-results [data-written-search-open]").length > 1`, 10000);
+    const allReady = await waitFor(send, `document.querySelectorAll("#written-search-results [data-written-open]").length >= 300`, 10000);
     await sleep(300);
-    const state = await evaluate(send, `(() => {
+    const initial = await evaluate(send, `(() => {
       const layout = document.querySelector("#written-search-layout");
       const sidebar = document.querySelector("#written-search-results-panel");
       const detail = document.querySelector("#written-search-detail");
-      const list = document.querySelector("#written-list");
-      const results = document.querySelectorAll("#written-search-results [data-written-search-open]");
+      const results = document.querySelectorAll("#written-search-results [data-written-open]");
       const active = document.querySelectorAll("#written-search-results .past-exam-search-result.is-active");
       const sidebarRect = sidebar ? sidebar.getBoundingClientRect() : null;
       const detailRect = detail ? detail.getBoundingClientRect() : null;
       return {
         layoutVisible: Boolean(layout && !layout.hidden && getComputedStyle(layout).display !== "none"),
         sidebarInside: Boolean(sidebar && sidebar.contains(document.querySelector("#written-search-results"))),
-        listHidden: Boolean(list && (list.hidden || getComputedStyle(list).display === "none")),
+        listExists: Boolean(document.querySelector("#written-list")),
         detailCard: Boolean(detail && detail.querySelector(".written-card")),
         resultCount: results.length,
         activeCount: active.length,
-        activeId: active[0] ? active[0].dataset.writtenSearchOpen : "",
+        activeId: active[0] ? active[0].dataset.writtenOpen : "",
         detailId: detail && detail.querySelector(".written-card") ? detail.querySelector(".written-card").id : "",
+        title: document.querySelector("#written-sidebar-title") ? document.querySelector("#written-sidebar-title").textContent.trim() : "",
+        status: document.querySelector("#written-search-status") ? document.querySelector("#written-search-status").textContent.trim() : "",
         sidebarLeft: sidebarRect ? sidebarRect.left : -1,
         detailLeft: detailRect ? detailRect.left : -1,
         sidebarTop: sidebarRect ? sidebarRect.top : -1,
@@ -231,50 +226,102 @@ async function checkWrittenSearchSidebar(send, events, args) {
     })()`);
     const problems = [];
     if (!inputReady) problems.push("search input missing");
-    if (!resultsReady) problems.push("search results missing");
-    if (!state.layoutVisible) problems.push("layout hidden");
-    if (!state.sidebarInside) problems.push("sidebar does not contain results");
-    if (!state.listHidden) problems.push("written list still visible");
-    if (!state.detailCard) problems.push("detail card missing");
-    if (state.activeCount !== 1) problems.push("active result count " + state.activeCount);
+    if (!allReady) problems.push("all questions missing");
+    if (!initial.layoutVisible) problems.push("layout hidden");
+    if (!initial.sidebarInside) problems.push("sidebar does not contain questions");
+    if (initial.listExists) problems.push("legacy written list exists");
+    if (!initial.detailCard) problems.push("detail card missing");
+    if (initial.resultCount < 300) problems.push("question count " + initial.resultCount);
+    if (initial.activeCount !== 1) problems.push("active question count " + initial.activeCount);
+    if (initial.title !== "題目列表") problems.push("sidebar title " + initial.title);
+    if (!initial.status.includes("共")) problems.push("sidebar status " + initial.status);
     if (viewport.width > 900) {
-      if (!(state.sidebarLeft < state.detailLeft)) problems.push("sidebar is not left of detail");
-    } else if (!(state.sidebarTop < state.detailTop)) {
+      if (!(initial.sidebarLeft < initial.detailLeft)) problems.push("sidebar is not left of detail");
+    } else if (!(initial.sidebarTop < initial.detailTop)) {
       problems.push("sidebar is not above detail");
     }
-    if (state.overflow > 1) problems.push("overflow " + state.overflow);
-    if (state.katexErrors) problems.push("katex errors " + state.katexErrors);
-    const secondId = await evaluate(send, `(() => {
-      const buttons = document.querySelectorAll("#written-search-results [data-written-search-open]");
-      return buttons[1] ? buttons[1].dataset.writtenSearchOpen : "";
+    if (initial.overflow > 1) problems.push("overflow " + initial.overflow);
+    if (initial.katexErrors) problems.push("katex errors " + initial.katexErrors);
+
+    const initialSecondId = await evaluate(send, `(() => {
+      const buttons = document.querySelectorAll("#written-search-results [data-written-open]");
+      return buttons[1] ? buttons[1].dataset.writtenOpen : "";
     })()`);
-    if (!secondId) {
-      problems.push("second result missing");
+    if (!initialSecondId) {
+      problems.push("second question missing");
     } else {
-      await evaluate(send, `document.querySelectorAll("#written-search-results [data-written-search-open]")[1].click()`);
-      const selected = await waitFor(send, `document.querySelector("#written-search-detail .written-card") && document.querySelector("#written-search-detail .written-card").id === ${JSON.stringify("written-" + secondId)}`, 5000);
+      await evaluate(send, `document.querySelectorAll("#written-search-results [data-written-open]")[1].click()`);
+      const selected = await waitFor(send, `document.querySelector("#written-search-detail .written-card") && document.querySelector("#written-search-detail .written-card").id === ${JSON.stringify("written-" + initialSecondId)}`, 5000);
       const after = await evaluate(send, `(() => {
         const active = document.querySelector("#written-search-results .past-exam-search-result.is-active");
         return {
           activeCount: document.querySelectorAll("#written-search-results .past-exam-search-result.is-active").length,
-          activeId: active ? active.dataset.writtenSearchOpen : "",
+          activeId: active ? active.dataset.writtenOpen : "",
           detailId: document.querySelector("#written-search-detail .written-card") ? document.querySelector("#written-search-detail .written-card").id : ""
         };
       })()`);
       if (!selected) problems.push("selected detail missing");
       if (after.activeCount !== 1) problems.push("active after click " + after.activeCount);
-      if (after.activeId !== secondId) problems.push("active id after click " + after.activeId);
-      if (after.detailId !== "written-" + secondId) problems.push("detail id after click " + after.detailId);
+      if (after.activeId !== initialSecondId) problems.push("active id after click " + after.activeId);
+      if (after.detailId !== "written-" + initialSecondId) problems.push("detail id after click " + after.detailId);
     }
+
+    await evaluate(send, `(() => {
+      const input = document.querySelector("#written-search-input");
+      const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set;
+      setter.call(input, "存續期間");
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+    })()`);
+    const resultsReady = await waitFor(send, `document.querySelectorAll("#written-search-results [data-written-open]").length > 1`, 10000);
+    await sleep(300);
+    const search = await evaluate(send, `(() => {
+      const results = document.querySelectorAll("#written-search-results [data-written-open]");
+      const active = document.querySelectorAll("#written-search-results .past-exam-search-result.is-active");
+      return {
+        resultCount: results.length,
+        activeCount: active.length,
+        detailCard: Boolean(document.querySelector("#written-search-detail .written-card")),
+        title: document.querySelector("#written-sidebar-title") ? document.querySelector("#written-sidebar-title").textContent.trim() : "",
+        overflow: document.documentElement.scrollWidth - window.innerWidth,
+        katexErrors: document.querySelectorAll(".katex-error").length
+      };
+    })()`);
+    if (!resultsReady) problems.push("search results missing");
+    if (search.resultCount < 2) problems.push("search result count " + search.resultCount);
+    if (search.activeCount !== 1) problems.push("search active count " + search.activeCount);
+    if (!search.detailCard) problems.push("search detail missing");
+    if (search.title !== "搜尋結果") problems.push("search title " + search.title);
+    if (search.overflow > 1) problems.push("search overflow " + search.overflow);
+    if (search.katexErrors) problems.push("search katex errors " + search.katexErrors);
+
+    const searchSecondId = await evaluate(send, `(() => {
+      const buttons = document.querySelectorAll("#written-search-results [data-written-open]");
+      return buttons[1] ? buttons[1].dataset.writtenOpen : "";
+    })()`);
+    if (!searchSecondId) {
+      problems.push("second search result missing");
+    } else {
+      await evaluate(send, `document.querySelectorAll("#written-search-results [data-written-open]")[1].click()`);
+      const selected = await waitFor(send, `document.querySelector("#written-search-detail .written-card") && document.querySelector("#written-search-detail .written-card").id === ${JSON.stringify("written-" + searchSecondId)}`, 5000);
+      if (!selected) problems.push("selected search detail missing");
+    }
+
     await evaluate(send, `document.querySelector("[data-written-search-clear]").click()`);
-    const restored = await waitFor(send, `document.querySelector("#written-search-layout").hidden && !document.querySelector("#written-list").hidden && document.querySelectorAll("#written-list .written-card").length > 0`, 5000);
+    const restored = await waitFor(send, `document.querySelectorAll("#written-search-results [data-written-open]").length >= 300`, 5000);
     const afterClear = await evaluate(send, `({
       inputValue: document.querySelector("#written-search-input").value,
-      detailCards: document.querySelectorAll("#written-search-detail .written-card").length
+      title: document.querySelector("#written-sidebar-title") ? document.querySelector("#written-sidebar-title").textContent.trim() : "",
+      activeCount: document.querySelectorAll("#written-search-results .past-exam-search-result.is-active").length,
+      detailCards: document.querySelectorAll("#written-search-detail .written-card").length,
+      overflow: document.documentElement.scrollWidth - window.innerWidth
     })`);
-    if (!restored) problems.push("search clear did not restore list");
+    if (!restored) problems.push("search clear did not restore all questions");
     if (afterClear.inputValue) problems.push("search input not cleared");
-    if (afterClear.detailCards) problems.push("detail not cleared");
+    if (afterClear.title !== "題目列表") problems.push("clear title " + afterClear.title);
+    if (afterClear.activeCount !== 1) problems.push("clear active count " + afterClear.activeCount);
+    if (afterClear.detailCards !== 1) problems.push("clear detail count " + afterClear.detailCards);
+    if (afterClear.overflow > 1) problems.push("clear overflow " + afterClear.overflow);
+
     if (problems.length) failures += 1;
     console.log((problems.length ? "FAIL" : "ok  ") + " written search sidebar " + viewport.width + "px " + viewport.theme +
       (problems.length ? " — " + problems.join("; ") : ""));
@@ -520,9 +567,9 @@ async function main() {
     setter.call(input, "存續期間");
     input.dispatchEvent(new Event("input", { bubbles: true }));
   })()`);
-  const writtenSearchReady = await waitFor(send, `document.querySelectorAll("#written-search-results [data-written-search-open]").length > 0`, 10000);
+  const writtenSearchReady = await waitFor(send, `document.querySelectorAll("#written-search-results [data-written-open]").length > 0`, 10000);
   const writtenSearchState = await evaluate(send, `({
-    count: document.querySelectorAll("#written-search-results [data-written-search-open]").length,
+    count: document.querySelectorAll("#written-search-results [data-written-open]").length,
     sections: document.querySelectorAll(".written-page > .past-exam-filter-shell").length,
     merged: Boolean(document.querySelector("#written-filters #written-search-input")) &&
       Boolean(document.querySelector("#written-filters #written-filter-rows")),
@@ -542,7 +589,8 @@ async function main() {
       kids: Array.from(main.children),
       search: document.querySelector("#written-search-input"),
       rows: document.querySelector("#written-filter-rows"),
-      list: document.querySelector("#written-list")
+      results: document.querySelector("#written-search-results"),
+      detail: document.querySelector("#written-search-detail")
     };
     window.__writtenFlicker = { routing: false, loader: false, mainMutations: 0 };
     new MutationObserver(() => {
@@ -568,12 +616,13 @@ async function main() {
         Array.from(main.children).every((element, index) => element === window.__writtenRefs.kids[index]),
       sameSearch: document.querySelector("#written-search-input") === window.__writtenRefs.search,
       sameRows: document.querySelector("#written-filter-rows") === window.__writtenRefs.rows,
-      sameList: document.querySelector("#written-list") === window.__writtenRefs.list,
+      sameResults: document.querySelector("#written-search-results") === window.__writtenRefs.results,
+      sameDetail: document.querySelector("#written-search-detail") === window.__writtenRefs.detail,
       flicker: window.__writtenFlicker
     };
   })()`);
   if (!writtenFilterReady) writtenProblems.push("written filter not ready");
-  if (!writtenFlickerAfter.sameKids || !writtenFlickerAfter.sameSearch || !writtenFlickerAfter.sameRows || !writtenFlickerAfter.sameList) writtenProblems.push("written DOM was replaced");
+  if (!writtenFlickerAfter.sameKids || !writtenFlickerAfter.sameSearch || !writtenFlickerAfter.sameRows || !writtenFlickerAfter.sameResults || !writtenFlickerAfter.sameDetail) writtenProblems.push("written DOM was replaced");
   if (writtenFlickerAfter.flicker.routing) writtenProblems.push("written route loader class");
   if (writtenFlickerAfter.flicker.loader) writtenProblems.push("written route loader visible");
   if (writtenFlickerAfter.flicker.mainMutations) writtenProblems.push("written main children mutated " + writtenFlickerAfter.flicker.mainMutations);

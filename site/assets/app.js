@@ -373,7 +373,6 @@
   };
   let writtenState = null;
   let writtenFuzzyQuery = "";
-  let writtenKeywordTimer = 0;
   const writtenFuzzyState = {
     index: null,
     source: null,
@@ -5328,111 +5327,107 @@
     }
   }
 
-  function renderWrittenFuzzyResults() {
+  function renderWrittenSidebarButton(question, selectedId) {
+    const subject = writtenSubjectEntry(question.subject);
+    const session = writtenSessionEntry(question);
+    const sourceId = Array.isArray(question.sourceIds) && question.sourceIds.length
+      ? question.sourceIds[0]
+      : question.sourceId;
+    const chapter = sourceId ? getChapter(sourceId) : null;
+    const meta = [
+      session.label || (question.year + " 年第 " + question.session + " 次"),
+      subject.short || subject.name || question.subject,
+      "第 " + question.number + " 題",
+      question.kind || "計算／申論",
+      chapter ? chapterLabel(chapter) + " " + chapter.title : ""
+    ].filter(Boolean).join(" · ");
+    const active = question.id === selectedId;
+    return [
+      '<button class="past-exam-search-result' + (active ? " is-active" : "") + '" type="button" data-written-open="' + escapeHtml(question.id) + '"' + (active ? ' aria-current="true"' : "") + '>',
+      '  <span class="past-exam-search-badge">' + (question.kind === "計算題" ? "計算" : "申論") + "</span>",
+      '  <span class="past-exam-search-result-body">',
+      "    <strong>" + renderSearchText(question.stem) + "</strong>",
+      "    <small>" + escapeHtml(meta) + "</small>",
+      "  </span>",
+      '  <span class="past-exam-search-arrow" aria-hidden="true">→</span>',
+      "</button>"
+    ].join("");
+  }
+
+  function renderWrittenSidebar() {
     const layout = document.getElementById("written-search-layout");
     const panel = document.getElementById("written-search-results-panel");
     const container = document.getElementById("written-search-results");
     const detail = document.getElementById("written-search-detail");
     const status = document.getElementById("written-search-status");
+    const title = document.getElementById("written-sidebar-title");
     const clear = document.querySelector("[data-written-search-clear]");
     if (clear) {
       clear.hidden = !writtenFuzzyQuery;
     }
     if (!container) {
-      if (layout) layout.hidden = true;
-      if (panel) panel.hidden = true;
-      if (detail) detail.hidden = true;
       return;
     }
     const query = writtenFuzzyQuery.trim();
-    const active = Boolean(query);
-    if (layout) layout.hidden = !active;
-    if (panel) panel.hidden = !active;
-    if (detail) detail.hidden = !active;
-    const list = document.getElementById("written-list");
-    if (list) list.hidden = active;
-    if (!active) {
-      container.hidden = true;
-      container.innerHTML = "";
-      if (status) {
-        status.textContent = "";
-      }
-      if (detail) {
-        detail.innerHTML = "";
-      }
-      writtenFuzzyState.selectedId = null;
-      writtenRefreshList();
-      return;
+    const searching = Boolean(query);
+    if (layout) {
+      layout.hidden = false;
     }
-    container.hidden = false;
-    const results = writtenFuzzyState.results || [];
-    const total = writtenFuzzyState.total || 0;
+    if (panel) {
+      panel.hidden = false;
+    }
+    if (detail) {
+      detail.hidden = false;
+    }
+    if (title) {
+      title.textContent = searching ? "搜尋結果" : "題目列表";
+    }
+    let questions;
+    let total;
+    if (searching) {
+      questions = (writtenFuzzyState.results || []).map(function (result) {
+        return result.question;
+      });
+      total = writtenFuzzyState.total || 0;
+    } else {
+      questions = writtenFilteredQuestions();
+      total = questions.length;
+    }
     if (status) {
-      if (writtenFuzzyState.pending) {
+      if (searching && writtenFuzzyState.pending) {
         status.textContent = "正在比對題庫…";
-      } else if (!results.length) {
+      } else if (!questions.length) {
         status.textContent = "沒有符合的題目";
       } else {
-        status.textContent = "共 " + total + " 筆" +
-          (total > results.length ? "，顯示前 " + results.length + " 筆" : "");
+        status.textContent = searching
+          ? "共 " + total + " 筆" + (total > questions.length ? "，顯示前 " + questions.length + " 筆" : "")
+          : "共 " + total + " 題";
       }
     }
-    if (!results.length) {
-      const emptyHtml = writtenFuzzyState.pending
-        ? [
-          '<div class="past-exam-search-empty">',
-          "  <strong>正在比對題庫…</strong>",
-          "  <p>同時套用目前的年度、科目與次別篩選。</p>",
-          "</div>"
-        ].join("")
-        : [
-          '<div class="past-exam-search-empty">',
-          "  <strong>找不到「" + escapeHtml(query) + "」</strong>",
-          "  <p>試試較短的關鍵字，或放寬年度、科目與次別篩選。</p>",
-          "</div>"
-        ].join("");
-      container.innerHTML = emptyHtml;
+    if (!questions.length) {
+      const label = searching ? "找不到「" + escapeHtml(query) + "」" : "目前沒有符合的題目";
+      const hint = searching
+        ? "試試較短的關鍵字，或放寬年度、科目與次別篩選。"
+        : "換一個年度、科目或次別再試。";
+      container.innerHTML = [
+        '<div class="past-exam-search-empty">',
+        "  <strong>" + label + "</strong>",
+        "  <p>" + hint + "</p>",
+        "</div>"
+      ].join("");
       if (detail) {
-        detail.innerHTML = writtenFuzzyState.pending
-          ? '<div class="written-search-placeholder"><strong>正在比對題庫…</strong><p>同時套用目前的年度、科目與次別篩選。</p></div>'
-          : '<div class="written-search-placeholder"><strong>找不到「' + escapeHtml(query) + '」</strong><p>試試較短的關鍵字，或放寬年度、科目與次別篩選。</p></div>';
+        detail.innerHTML = '<div class="written-search-placeholder"><strong>' + label + "</strong><p>" + hint + "</p></div>";
       }
+      writtenFuzzyState.selectedId = null;
       return;
     }
     let selectedId = writtenFuzzyState.selectedId;
-    const selectedResult = results.find(function (result) {
-      return result.question.id === selectedId;
-    });
-    if (!selectedResult) {
-      selectedId = results[0].question.id;
+    if (!selectedId || !questions.some(function (question) { return question.id === selectedId; })) {
+      selectedId = questions[0].id;
       writtenFuzzyState.selectedId = selectedId;
     }
-    container.innerHTML = results.map(function (result) {
-      const question = result.question;
-      const subject = writtenSubjectEntry(question.subject);
-      const session = writtenSessionEntry(question);
-      const sourceId = Array.isArray(question.sourceIds) && question.sourceIds.length
-        ? question.sourceIds[0]
-        : question.sourceId;
-      const chapter = sourceId ? getChapter(sourceId) : null;
-      const meta = [
-        session.label || (question.year + " 年第 " + question.session + " 次"),
-        subject.short || subject.name || question.subject,
-        "第 " + question.number + " 題",
-        question.kind || "計算／申論",
-        chapter ? chapterLabel(chapter) + " " + chapter.title : ""
-      ].filter(Boolean).join(" · ");
-      const activeResult = question.id === selectedId;
-      return [
-        '<button class="past-exam-search-result' + (activeResult ? " is-active" : "") + '" type="button" data-written-search-open="' + escapeHtml(question.id) + '"' + (activeResult ? ' aria-current="true"' : "") + '>',
-        '  <span class="past-exam-search-badge">' + (question.kind === "計算題" ? "計算" : "申論") + "</span>",
-        '  <span class="past-exam-search-result-body">',
-        "    <strong>" + renderSearchText(question.stem) + "</strong>",
-        "    <small>" + escapeHtml(meta) + "</small>",
-        "  </span>",
-        '  <span class="past-exam-search-arrow" aria-hidden="true">→</span>',
-        "</button>"
-      ].join("");
+    container.innerHTML = questions.map(function (question) {
+      return renderWrittenSidebarButton(question, selectedId);
     }).join("");
     if (detail) {
       const selectedQuestion = writtenQuestions.find(function (question) {
@@ -5485,26 +5480,6 @@
     select.value = writtenState.session;
   }
 
-  function writtenRefreshList() {
-    const target = document.getElementById("written-list");
-    if (!target) {
-      return;
-    }
-    if (writtenFuzzyQuery.trim()) {
-      target.hidden = true;
-      target.innerHTML = "";
-      return;
-    }
-    target.hidden = false;
-    const questions = writtenFilteredQuestions();
-    const scrollY = window.scrollY;
-    target.innerHTML = questions.length
-      ? questions.map(renderWrittenCard).join("")
-      : '<div class="past-exam-empty"><h2>目前沒有符合的題目</h2><p>換一個年度、科目或次別，或清除關鍵字再試。</p></div>';
-    refreshReviewButtons(target);
-    window.scrollTo({ top: scrollY, behavior: "auto" });
-  }
-
   function writtenRefreshSearch(immediate) {
     if (writtenFuzzyState.timer) {
       window.clearTimeout(writtenFuzzyState.timer);
@@ -5515,14 +5490,14 @@
       writtenFuzzyState.results = [];
       writtenFuzzyState.total = 0;
       writtenFuzzyState.generation += 1;
-      renderWrittenFuzzyResults();
+      renderWrittenSidebar();
       return;
     }
     const run = function () {
       writtenFuzzyState.timer = 0;
       const query = writtenFuzzyQuery.trim();
       if (!query) {
-        renderWrittenFuzzyResults();
+        renderWrittenSidebar();
         return;
       }
       const generation = writtenFuzzyState.generation + 1;
@@ -5531,7 +5506,7 @@
       const payload = performWrittenFuzzySearch(query, WRITTEN_FUZZY_LIMIT);
       writtenFuzzyState.results = payload.results;
       writtenFuzzyState.total = payload.total;
-      renderWrittenFuzzyResults();
+      renderWrittenSidebar();
       if (writtenFuzzyState.index && writtenFuzzyState.source === writtenQuestions) {
         return;
       }
@@ -5542,7 +5517,7 @@
         const next = performWrittenFuzzySearch(query, WRITTEN_FUZZY_LIMIT);
         writtenFuzzyState.results = next.results;
         writtenFuzzyState.total = next.total;
-        renderWrittenFuzzyResults();
+        renderWrittenSidebar();
       });
     };
     if (immediate) {
@@ -5553,20 +5528,15 @@
   }
 
   function writtenApplyFilterState() {
-    if (writtenKeywordTimer) {
-      window.clearTimeout(writtenKeywordTimer);
-      writtenKeywordTimer = 0;
-    }
     writtenSyncSession();
     writtenRefreshSessionOptions();
     writtenSyncFilterChips();
-    writtenRefreshList();
     writtenRefreshSummary();
     writtenRefreshSearchScope();
     writtenRefreshSearch(true);
   }
 
-  function writtenOpenSearchResult(questionId) {
+  function writtenSelectQuestion(questionId) {
     ensureWrittenState();
     const question = writtenQuestions.find(function (item) {
       return item.id === questionId;
@@ -5576,8 +5546,8 @@
     }
     writtenState.open.add(question.id);
     writtenFuzzyState.selectedId = question.id;
-    document.querySelectorAll("[data-written-search-open]").forEach(function (button) {
-      const active = button.dataset.writtenSearchOpen === question.id;
+    document.querySelectorAll("[data-written-open]").forEach(function (button) {
+      const active = button.dataset.writtenOpen === question.id;
       button.classList.toggle("is-active", active);
       if (active) {
         button.setAttribute("aria-current", "true");
@@ -5612,7 +5582,7 @@
       writtenFuzzyState.pending = false;
       writtenFuzzyState.results = [];
       writtenFuzzyState.total = 0;
-      renderWrittenFuzzyResults();
+      renderWrittenSidebar();
     }
   }
 
@@ -6060,9 +6030,8 @@
       writtenFuzzyState.results = [];
       writtenFuzzyState.total = 0;
       writtenFuzzyState.generation += 1;
-      writtenFuzzyState.selectedId = null;
+      writtenFuzzyState.selectedId = questionId;
     }
-    const questions = writtenFilteredQuestions();
     const years = Array.from(new Set(writtenQuestions.map(function (q) { return q.year; }))).sort(function (a, b) { return a - b; });
     return [
       '<div class="page written-page">',
@@ -6086,20 +6055,19 @@
       '    <div class="past-exam-search-jumpbar-slot" id="written-filter-jumpbar">' + renderWrittenJumpbar() + "</div>",
       '    <div class="past-exam-filter-rows" id="written-filter-rows">' + renderWrittenFilters() + "</div>",
       "  </section>",
-      '  <div class="written-search-layout" id="written-search-layout" hidden>',
-      '    <aside class="past-exam-search-results-panel written-search-sidebar" id="written-search-results-panel" role="region" aria-label="申論題搜尋結果" hidden>',
+      '  <div class="written-search-layout" id="written-search-layout">',
+      '    <aside class="past-exam-search-results-panel written-search-sidebar" id="written-search-results-panel" role="region" aria-label="申論題題目列表">',
       '      <div class="past-exam-search-results-head">',
-      '        <p class="eyebrow">搜尋結果</p>',
+      '        <p class="eyebrow" id="written-sidebar-title">題目列表</p>',
       '        <div class="past-exam-search-results-meta">',
       '          <span id="written-search-status" role="status" aria-live="polite"></span>',
       '          <button class="past-exam-search-jump" type="button" data-written-search-filter-jump>調整篩選 ↑</button>',
       "        </div>",
       "      </div>",
-      '      <div class="past-exam-search-results" id="written-search-results" aria-live="polite"></div>',
+      '      <div class="past-exam-search-results" id="written-search-results"></div>',
       "    </aside>",
       '    <div class="written-search-detail" id="written-search-detail" aria-live="polite"></div>',
       "  </div>",
-      '<div class="written-list" id="written-list">' + (questions.length ? questions.map(renderWrittenCard).join("") : '<div class="past-exam-empty"><h2>目前沒有符合的題目</h2><p>換一個年度、科目或次別，或清除關鍵字再試。</p></div>') + '</div>',
       '  <div class="notice"><strong>解答說明：</strong>申論與計算題沒有官方公告解答；題卡均標示「參考解答」，107–115 年 348 題均已提供完整參考解答；若與補習班、教材或官方答案不同，請以官方與正式教材為準。</div>',
       '</div>'
     ].join("");
@@ -6210,7 +6178,7 @@
   }
 
   function handleWrittenClick(event) {
-    if (!document.getElementById("written-list")) {
+    if (!document.getElementById("written-search-layout")) {
       return false;
     }
     const searchClear = event.target.closest("[data-written-search-clear]");
@@ -6227,14 +6195,14 @@
       writtenFuzzyState.results = [];
       writtenFuzzyState.total = 0;
       writtenFuzzyState.generation += 1;
-      renderWrittenFuzzyResults();
+      renderWrittenSidebar();
       return true;
     }
 
-    const searchOpen = event.target.closest("[data-written-search-open]");
-    if (searchOpen) {
+    const questionOpen = event.target.closest("[data-written-open]");
+    if (questionOpen) {
       event.preventDefault();
-      writtenOpenSearchResult(searchOpen.dataset.writtenSearchOpen);
+      writtenSelectQuestion(questionOpen.dataset.writtenOpen);
       return true;
     }
 
@@ -6294,7 +6262,6 @@
       const question = writtenQuestions.find(function (item) { return item.id === id; });
       if (card && question) {
         card.outerHTML = renderWrittenCard(question);
-        refreshReviewButtons(document.getElementById("written-list"));
         refreshReviewButtons(document.getElementById("written-search-detail"));
       }
       return true;
@@ -6668,7 +6635,7 @@
   }
 
   function handleWrittenChange(event) {
-    if (!document.getElementById("written-list")) {
+    if (!document.getElementById("written-search-layout")) {
       return false;
     }
     const select = event.target.closest("[data-written-session]");
@@ -6682,7 +6649,7 @@
   }
 
   function handleWrittenSearchInput(event) {
-    if (!document.getElementById("written-list")) {
+    if (!document.getElementById("written-search-layout")) {
       return false;
     }
     const input = event.target.closest("[data-written-search-input]");
@@ -6701,7 +6668,7 @@
     writtenFuzzyState.pending = Boolean(writtenFuzzyQuery.trim());
     writtenFuzzyState.results = [];
     writtenFuzzyState.total = 0;
-    renderWrittenFuzzyResults();
+    renderWrittenSidebar();
     if (writtenFuzzyQuery.trim()) {
       writtenRefreshSearch(false);
     }
@@ -6720,13 +6687,6 @@
     writtenRefreshSummary();
     writtenRefreshSearchScope();
     writtenRefreshSearch(true);
-    if (writtenKeywordTimer) {
-      window.clearTimeout(writtenKeywordTimer);
-    }
-    writtenKeywordTimer = window.setTimeout(function () {
-      writtenKeywordTimer = 0;
-      writtenRefreshList();
-    }, 140);
     return true;
   }
 
@@ -9466,7 +9426,7 @@
       }
       if (event.key === "Enter") {
         event.preventDefault();
-        const first = document.querySelector("[data-written-search-open]");
+        const first = document.querySelector("[data-written-open]");
         if (first) {
           first.click();
         }
@@ -9479,7 +9439,7 @@
         writtenFuzzyState.results = [];
         writtenFuzzyState.total = 0;
         writtenFuzzyState.generation += 1;
-        renderWrittenFuzzyResults();
+        renderWrittenSidebar();
         input.focus();
       }
     });

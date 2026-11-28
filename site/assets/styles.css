@@ -8932,12 +8932,6 @@ a.landing-item:hover {
   font-size: 0.84rem;
 }
 
-.written-list {
-  display: grid;
-  gap: 16px;
-  margin-top: 20px;
-}
-
 .written-search-layout {
   display: grid;
   grid-template-columns: minmax(250px, 340px) minmax(0, 1fr);
@@ -8947,8 +8941,7 @@ a.landing-item:hover {
 }
 
 .written-search-layout[hidden],
-.written-search-detail[hidden],
-.written-list[hidden] {
+.written-search-detail[hidden] {
   display: none;
 }
 
@@ -9245,9 +9238,9 @@ a.landing-item:hover {
 
   .written-search-sidebar {
     position: static;
-    max-height: none;
-    padding-right: 0;
-    overflow: visible;
+    max-height: 60vh;
+    padding-right: 4px;
+    overflow-y: auto;
   }
 
   .written-search-detail {

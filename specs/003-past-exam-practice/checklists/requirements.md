@@ -38,11 +38,12 @@
 
 ## 計算／申論題 Sidebar
 
-- [x] 搜尋結果顯示在左側 `#written-search-results-panel`，右側 `#written-search-detail` 顯示題卡。
-- [x] 搜尋後 `#written-search-layout` 顯示、`#written-list` 隱藏；清除搜尋後恢復完整列表。
-- [x] 預設選取第一筆；點選其他結果會更新右側題卡、`is-active` 與 `aria-current`。
-- [x] 點選結果會展開該題參考解答；搜尋字串保留。
-- [x] 1280px sidebar 在左、390px 上下堆疊；390px 點選後捲到題卡。
+- [x] 未搜尋時左側 `#written-search-results-panel` 顯示目前篩選的 348 題，右側 `#written-search-detail` 顯示第一題題卡。
+- [x] 搜尋後 sidebar 改顯示搜尋結果；清除搜尋後恢復目前的完整題目清單。
+- [x] 不再有 `#written-list` 長列表；題目與題卡固定使用 sidebar／detail 版面。
+- [x] 預設選取第一筆；點選其他題目會更新右側題卡、`is-active` 與 `aria-current`。
+- [x] 點選題目會展開該題參考解答；搜尋字串保留。
+- [x] 1280px sidebar 在左、390px 上下堆疊且 sidebar 可捲動；390px 點選後捲到題卡。
 - [x] sidebar 與右側題卡不會同時產生重複的 `written-<id>`。
 
 ## 驗證
