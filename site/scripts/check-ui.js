@@ -264,12 +264,16 @@ async function main() {
     count: document.querySelectorAll("#past-exam-search-results [data-past-search-open]").length,
     status: document.querySelector("#past-exam-search-status").textContent,
     scope: document.querySelector("#past-exam-search-scope").textContent,
+    sections: document.querySelectorAll(".past-exam-page > .past-exam-filter-shell").length,
+    merged: Boolean(document.querySelector("#past-exam-filters #past-exam-search-input")) &&
+      Boolean(document.querySelector("#past-exam-filters #past-exam-filter-rows")),
     katexErrors: document.querySelectorAll(".katex-error").length,
     overflow: document.documentElement.scrollWidth - window.innerWidth
   })`);
   const pastSearchProblems = [];
   if (!pastSearchInputReady) pastSearchProblems.push("input missing");
   if (!pastSearchReady) pastSearchProblems.push("results missing");
+  if (pastSearchState.sections !== 1 || !pastSearchState.merged) pastSearchProblems.push("search/filter sections not merged");
   if (pastSearchState.katexErrors) pastSearchProblems.push("katex errors " + pastSearchState.katexErrors);
   if (pastSearchState.overflow > 1) pastSearchProblems.push("overflow " + pastSearchState.overflow);
   if (pastSearchProblems.length) failed += 1;

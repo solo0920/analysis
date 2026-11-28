@@ -3316,15 +3316,14 @@
   }
 
   function practiceRefreshFilters() {
-    const target = document.getElementById("past-exam-filters");
+    const target = document.getElementById("past-exam-filter-rows");
     if (target) {
       target.innerHTML = renderPracticeFilters();
     }
   }
 
   function practiceSummaryHtml() {
-    return practiceSummaryText() +
-      (pastFuzzyQuery.trim() ? ' <button class="past-exam-search-jump" type="button" data-past-search-results-jump>回到搜尋結果 ↑</button>' : "");
+    return practiceSummaryText();
   }
 
   function practiceRefreshSummary() {
@@ -3787,7 +3786,7 @@
     })).join("");
 
     const searchJumpBar = pastFuzzyQuery.trim()
-      ? '<div class="past-exam-filter-jumpbar"><span>搜尋套用目前範圍</span><button class="past-exam-search-jump" type="button" data-past-search-results-jump>回到搜尋結果 ↑</button></div>'
+      ? '<div class="past-exam-filter-jumpbar"><span>搜尋套用目前範圍</span><button class="past-exam-search-jump" type="button" data-past-search-results-jump>查看搜尋結果 ↓</button></div>'
       : "";
 
     return [
@@ -5348,18 +5347,20 @@
       stat(yearRange, "收錄年度"),
       "    </aside>",
       "  </section>",
-      '  <section class="past-exam-search-shell" id="past-exam-search" aria-label="題庫模糊搜尋">' + renderPastExamSearchBox() + "</section>",
-      '  <section class="past-exam-search-results-panel" id="past-exam-search-results-panel" aria-label="題庫搜尋結果" hidden>',
+      '  <section class="past-exam-filter-shell" id="past-exam-filters" aria-label="題庫搜尋與篩選">',
+      '    <div class="past-exam-search-shell" id="past-exam-search" role="search" aria-label="題庫模糊搜尋">' + renderPastExamSearchBox() + "</div>",
+      '    <div class="past-exam-filter-rows" id="past-exam-filter-rows">' + renderPracticeFilters() + "</div>",
+      "  </section>",
+      '  <div class="past-exam-search-results-panel" id="past-exam-search-results-panel" role="region" aria-label="題庫搜尋結果" hidden>',
       '    <div class="past-exam-search-results-head">',
       '      <p class="eyebrow">搜尋結果</p>',
       '      <div class="past-exam-search-results-meta">',
       '        <span id="past-exam-search-status" role="status" aria-live="polite"></span>',
-      '        <button class="past-exam-search-jump" type="button" data-past-search-filter-jump>調整篩選 ↓</button>',
+      '        <button class="past-exam-search-jump" type="button" data-past-search-filter-jump>調整篩選 ↑</button>',
       "      </div>",
       "    </div>",
       '    <div class="past-exam-search-results" id="past-exam-search-results" aria-live="polite"></div>',
-      "  </section>",
-      '  <section class="past-exam-filter-shell" id="past-exam-filters">' + renderPracticeFilters() + "</section>",
+      "  </div>",
       '  <section class="past-exam-panel" id="past-exam-panel">' + renderPracticePanel() + "</section>",
       '  <section class="past-exam-overview">',
       '    <div class="section-heading">',
@@ -5451,7 +5452,7 @@
     const filterJump = event.target.closest("[data-past-search-filter-jump]");
     if (filterJump) {
       event.preventDefault();
-      const target = document.getElementById("past-exam-filters");
+      const target = document.getElementById("past-exam-filter-rows");
       if (target) {
         target.scrollIntoView({ behavior: "smooth", block: "start" });
       }

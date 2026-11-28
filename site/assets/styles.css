@@ -6230,12 +6230,8 @@ a.landing-item:hover {
 }
 
 .past-exam-search-shell {
-  margin-top: 28px;
-  padding: 18px 20px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
 }
 
 .past-exam-search-field {
@@ -6465,10 +6461,6 @@ a.landing-item:hover {
   margin: 0;
 }
 
-.past-exam-search-shell + .past-exam-filter-shell {
-  margin-top: 14px;
-}
-
 .past-exam-filter-shell {
   margin-top: 28px;
   padding: 20px 22px;
@@ -6476,6 +6468,10 @@ a.landing-item:hover {
   border-radius: var(--radius);
   background: var(--surface);
   box-shadow: var(--shadow-sm);
+}
+
+.past-exam-filter-rows {
+  padding-top: 16px;
 }
 
 .past-exam-filter-row {
@@ -7275,10 +7271,6 @@ a.landing-item:hover {
 }
 
 @media (max-width: 780px) {
-  .past-exam-search-shell {
-    padding: 16px;
-  }
-
   .past-exam-search-input {
     min-height: 50px;
     font-size: 0.95rem;
@@ -7350,10 +7342,6 @@ a.landing-item:hover {
 
   .past-exam-hero-copy h1 {
     font-size: 2.5rem;
-  }
-
-  .past-exam-search-shell {
-    padding: 14px;
   }
 
   .past-exam-search-input {
