@@ -63,6 +63,8 @@ not_found_handling = "404-page"
 
 目前基準：內容 196,603 項、SEO 612 項、站內連結 2,810 條、完整流程約 1.6 秒（本機，已安裝 `node_modules`）。
 
+2026-11-28 首次 GitHub Actions 部署實測：run 26 秒（job 23 秒），第二次 20 秒（job 17 秒）；其中 `npm ci` 5–6 秒、`verify.sh` 2 秒、`wrangler deploy` 5 秒。此次 push 僅出現 GitHub Actions check run，未再觸發 Cloudflare Build。
+
 `package.json`／`package-lock.json` 固定 `wrangler@4.169.0` 與 `esbuild@0.28.2`。`build-core-bundle.js` 優先使用本地 `node_modules/.bin/esbuild`；找不到時才退回 `npx`，並加上 120 秒 timeout，失敗即停止，不再靜默產生未 minify 的 bundle。
 
 ## 自動與手動檢查

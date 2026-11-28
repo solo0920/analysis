@@ -101,7 +101,9 @@ GitHub Actions 設定：
 
 `CLOUDFLARE_API_TOKEN` 使用 Cloudflare「Edit Cloudflare Workers」範本，至少需要 `Workers Scripts:Edit` 與 `Account Settings:Read`。Cloudflare Workers Builds 的 Git 自動部署應停用，避免同一個 push 重複建置與部署。
 
-`package.json` / `package-lock.json` 固定 `wrangler@4.169.0` 與 `esbuild@0.28.2`；`build-core-bundle.js` 優先使用本地 `node_modules/.bin/esbuild`，避免每次建置透過 `npx` 重新下載。GitHub Repository Settings → Pages 已停用（Pages API 回 404），避免又回到 GitHub Pages 鏡像。
+`package.json` / `package-lock.json` 固定 `wrangler@4.169.0` 與 `esbuild@0.28.2`；`build-core-bundle.js` 優先使用本地 `node_modules/.bin/esbuild`，避免每次建置透過 `npx` 重新下載。
+
+2026-11-28 實測：第一次 GitHub Actions 部署 26 秒（job 23 秒），第二次 20 秒（job 17 秒）；其中 `npm ci` 約 5–6 秒、`verify.sh` 約 2 秒、`wrangler deploy` 約 5 秒。GitHub Repository Settings → Pages 已停用（Pages API 回 404），避免又回到 GitHub Pages 鏡像。
 
 ## 授權
 
