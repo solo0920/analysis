@@ -82,6 +82,7 @@ const ROUTES = [
   { name: "subject", path: "/#/subject/macro", selector: ".subject-hero", expect: null },
   { name: "chapter", path: "/#/chapter/macro-10?section=3", selector: "#section-3 .model-diagram", expect: 2 },
   { name: "past-exams", path: "/#/past-exams", selector: ".past-exam-hero", expect: null },
+  { name: "past-search", path: "/#/past-exams?year=all", selector: "#past-exam-search-input", expect: 1 },
   { name: "past-exam", path: "/#/past-exams?question=108Q2-macro-11", selector: "[data-practice-option]", expect: 4 },
   { name: "written-exams", path: "/#/past-exams/written", selector: ".written-page", expect: null },
   { name: "written-exam", path: "/#/past-exams/written?question=107Q3-accounting-written-5", selector: "#written-107Q3-accounting-written-5", expect: 1 },
@@ -247,6 +248,33 @@ async function main() {
   if (mathState.errors) mathProblems.push("katex errors " + mathState.errors);
   if (mathProblems.length) failed += 1;
   console.log((mathProblems.length ? "FAIL" : "ok  ") + " search katex " + mathState.katex + (mathProblems.length ? " — " + mathProblems.join("; ") : ""));
+
+  // Past-exam fuzzy search: question-bank-only results must respect the filter scope.
+  events.length = 0;
+  await send("Page.navigate", { url: urlFor(args.base, "/#/past-exams?year=all") });
+  const pastSearchInputReady = await waitFor(send, `document.readyState === "complete" && Boolean(document.querySelector("#past-exam-search-input"))`);
+  await evaluate(send, `(() => {
+    const input = document.querySelector("#past-exam-search-input");
+    const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set;
+    setter.call(input, "存續期間");
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+  })()`);
+  const pastSearchReady = await waitFor(send, `document.querySelectorAll("#past-exam-search-results [data-past-search-open]").length > 0`, 10000);
+  const pastSearchState = await evaluate(send, `({
+    count: document.querySelectorAll("#past-exam-search-results [data-past-search-open]").length,
+    status: document.querySelector("#past-exam-search-status").textContent,
+    scope: document.querySelector("#past-exam-search-scope").textContent,
+    katexErrors: document.querySelectorAll(".katex-error").length,
+    overflow: document.documentElement.scrollWidth - window.innerWidth
+  })`);
+  const pastSearchProblems = [];
+  if (!pastSearchInputReady) pastSearchProblems.push("input missing");
+  if (!pastSearchReady) pastSearchProblems.push("results missing");
+  if (pastSearchState.katexErrors) pastSearchProblems.push("katex errors " + pastSearchState.katexErrors);
+  if (pastSearchState.overflow > 1) pastSearchProblems.push("overflow " + pastSearchState.overflow);
+  if (pastSearchProblems.length) failed += 1;
+  console.log((pastSearchProblems.length ? "FAIL" : "ok  ") + " past search results " + pastSearchState.count +
+    (pastSearchProblems.length ? " — " + pastSearchProblems.join("; ") : ""));
 
   // 404 page only when testing a remote origin (local Python server has its own 404).
   if (args.remote) {
