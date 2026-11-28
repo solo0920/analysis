@@ -570,6 +570,8 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 
 2026-11-28 把 `#/past-exams` 的題庫模糊搜尋與年度／科目／次別整合在同一張篩選卡（單一 section）：沿用右上角搜尋的精確子字串、MiniSearch 前綴／錯字容忍與中文字元 bigram 補位，只索引目前已載入的選擇題題庫（全部年度時 3,710 題）；年度、科目、次別與原有「範圍內精確篩選」都會套用為 filter，結果列在卡片下方並依相關度排序，點選可直接載入練習面板，Enter 開第一筆、Esc 清除。切換篩選改為原地更新：不觸發 hash 路由、不呼叫 `render()`、不替換 `#main`、不顯示 `#route-loader`，年度分包以 `window.__loadPastYear()` 背景載入並保留搜尋字串、DOM 節點與捲動位置；年度切換保留科目、重設次別、清除精確關鍵字，`history.replaceState()` 同步 `?year=`。390px／1280px、深淺主題與 `file://` 實測「存續期間」在 115 年 3 筆、全部年度 58 筆，「存續其間」5 筆；切換 113 年時 `#main` 子節點 0 次變更、route loader 0 次、scrollY 不變，單一 section、0 `.katex-error`、0 水平溢出；`check-ui.js` 增為 14 條路由、56 組檢查並加入題庫搜尋與無閃爍 smoke test；互動規格見 `specs/003-past-exam-practice/spec.md`。
 
+2026-11-28 調整考古題瀏覽模式的答案插入位置：答案與選項分析改為插入 `.past-exam-browse-actions` 之後，按鈕、複習題與原始試題連結不再被新內容往下推；顯示／收起答案時按鈕的頁面座標與捲動位置保持不變。改為只更新單一題卡，不重建整個列表；390px／1280px、深淺主題與 `file://` 實測按鈕 `top`／`left`／`scrollY` 前後一致，0 `.katex-error`、0 水平溢出。
+
 2026-11-28 擴充 `115Q2-investment-06` 解析：將原本一句「兩資產獨立且期望報酬、標準差相同…」改為完整推導，定義 \(\mu\)、\(\sigma\)、\(w\)，依序計算期望報酬不變、變異數與標準差、對 \(w\) 微分求極小 \(w=0.5\)，以及最低標準差 \(\frac{\sqrt{2}}{2}\sigma\approx0.7071\sigma\)，結論為甲、乙各 50%，答案 B。解析共 14 個 KaTeX、12 個換行；390px／1280px、深淺主題與 `file://` 顯示正常，0 `.katex-error`、0 水平溢出。
 
 2026-11-28 將 `#/past-exams/written` hero 比照選擇題頁精簡：移除「收錄 107–115 年四個專業科目的計算題與申論題…」lede 與 `written-hero` 卡片樣式，四個統計格移入 `past-exam-hero-copy`，與「計算題與申論題」同列為橫向四格；「回選擇題練習」維持第二列。1280px hero 高度 165px、390px 約 206px，390／320px 四格統計與按鈕均無水平溢出，篩選卡隨之上移。

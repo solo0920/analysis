@@ -4184,6 +4184,14 @@
     ].join("");
   }
 
+  function renderPracticeBrowseAnswer(question, revealed) {
+    if (!revealed) {
+      return "";
+    }
+    return '<div class="past-exam-browse-answer"><strong>' + escapeHtml(practiceAnswerText(question.answer)) + "</strong>" +
+      (question.answer.length > 1 ? '<span>' + (question.answer.length >= 4 ? "官方公告 A–D 均給分。" : "官方接受多個答案。") + "</span>" : "") + "</div>";
+  }
+
   function renderPracticeBrowseCard(question) {
     const session = practiceSessionMap.get(question.sessionId) || {};
     const subject = practiceSubjectMap.get(question.subject) || { short: question.subject, colorClass: "" };
@@ -4193,10 +4201,7 @@
       const correct = revealed && question.answer.indexOf(letter) !== -1;
       return '<li' + (correct ? ' class="is-correct"' : "") + '><span class="past-exam-option-letter">' + letter + "</span><span>" + renderInlineMath(text) + "</span></li>";
     }).join("");
-    const answer = revealed
-      ? '<div class="past-exam-browse-answer"><strong>' + escapeHtml(practiceAnswerText(question.answer)) + "</strong>" +
-        (question.answer.length > 1 ? '<span>' + (question.answer.length >= 4 ? "官方公告 A–D 均給分。" : "官方接受多個答案。") + "</span>" : "") + "</div>"
-      : "";
+    const answer = renderPracticeBrowseAnswer(question, revealed);
     return [
       '<article class="past-exam-browse-card" id="past-exam-' + escapeHtml(question.id) + '">',
       '  <div class="past-exam-card-head">',
@@ -4206,15 +4211,48 @@
       '  <h3 class="past-exam-browse-stem">' + renderInlineMath(question.stem) + "</h3>",
       renderPracticeQuestionOrigin(question, session),
       '  <ol class="past-exam-browse-options">' + options + "</ol>",
-      answer,
-      revealed ? renderPastExamAnalysis(question) : "",
       '  <div class="past-exam-browse-actions">',
       '    <button class="btn btn-small" type="button" data-practice-reveal="' + escapeHtml(question.id) + '">' + (revealed ? "收起答案" : "顯示答案") + "</button>",
       reviewButtonHtml(reviewQuestionKey(question)),
       renderPracticeSourceLinks(session, true),
       "  </div>",
+      answer,
+      revealed ? renderPastExamAnalysis(question) : "",
       "</article>"
     ].join("");
+  }
+
+  function practiceRefreshBrowseCard(questionId) {
+    const card = document.getElementById("past-exam-" + questionId);
+    const question = practiceQuestions.find(function (item) {
+      return item.id === questionId;
+    });
+    if (!card || !question) {
+      practiceRefreshPanel(true);
+      return;
+    }
+    const actions = card.querySelector(".past-exam-browse-actions");
+    const revealButton = actions ? actions.querySelector("[data-practice-reveal]") : null;
+    if (!actions || !revealButton) {
+      practiceRefreshPanel(true);
+      return;
+    }
+    const revealed = practiceState.browseAll || practiceState.browseRevealed.has(question.id);
+    card.querySelectorAll(".past-exam-browse-answer, .past-exam-analysis").forEach(function (node) {
+      node.remove();
+    });
+    const optionItems = card.querySelectorAll(".past-exam-browse-options li");
+    optionItems.forEach(function (item, index) {
+      item.classList.toggle("is-correct", revealed && question.answer.indexOf("ABCD"[index]) !== -1);
+    });
+    revealButton.textContent = revealed ? "收起答案" : "顯示答案";
+    revealButton.disabled = false;
+    const extra = renderPracticeBrowseAnswer(question, revealed) +
+      (revealed ? renderPastExamAnalysis(question) : "");
+    if (extra) {
+      actions.insertAdjacentHTML("afterend", extra);
+    }
+    refreshReviewButtons(card);
   }
 
   function renderPracticeBrowse(questions) {
@@ -6394,11 +6432,11 @@
       const id = revealButton.dataset.practiceReveal;
       const reveal = function () {
         practiceState.browseRevealed.add(id);
-        practiceRefreshPanel(true);
+        practiceRefreshBrowseCard(id);
       };
       if (practiceState.browseRevealed.has(id)) {
         practiceState.browseRevealed.delete(id);
-        practiceRefreshPanel(true);
+        practiceRefreshBrowseCard(id);
       } else if (!window.PAST_EXAM_EXPLANATIONS) {
         revealButton.disabled = true;
         toast("解析載入中…");
