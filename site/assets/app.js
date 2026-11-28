@@ -4137,17 +4137,21 @@
     const nextDisabled = practiceState.index >= questions.length - 1;
     const progressPercent = Math.round(((practiceState.index + 1) / questions.length) * 100);
     const feedback = revealed ? [
-      '<div class="past-exam-feedback ' + (correct ? "is-correct" : "is-wrong") + '">',
+      '<div class="past-exam-feedback' + (selected ? (correct ? " is-correct" : " is-wrong") : "") + '">',
       "  <strong>" + (selected ? (correct ? "答對了。" : "答錯了。") : "已顯示答案。") + "</strong>",
       "  <span>" + escapeHtml(practiceAnswerText(question.answer)) + "</span>",
       question.answer.length > 1 ? '  <span class="past-exam-feedback-note">' + (question.answer.length >= 4 ? "本題官方公告 A–D 均給分。" : "本題官方接受多個答案；選到任一個都算答對。") + "</span>" : "",
       "</div>"
     ].join("") : "";
-    const primaryAction = revealed
+    const revealToggle = revealed
+      ? '<button class="btn" type="button" data-practice-collapse>收合答案</button>'
+      : '<button class="btn btn-primary" type="button" data-practice-submit>顯示答案</button>';
+    const nextAction = revealed
       ? '<button class="btn btn-primary" type="button" data-practice-next ' + (nextDisabled ? "disabled" : "") + ">" + (nextDisabled ? "已完成" : "下一題") + "</button>"
-      : '<button class="btn btn-primary" type="button" data-practice-submit>看答案</button>';
+      : "";
     const actions = [
-      primaryAction,
+      revealToggle,
+      nextAction,
       '<button class="btn" type="button" data-practice-prev ' + (practiceState.index === 0 ? "disabled" : "") + ">上一題</button>",
       revealed ? '<button class="btn btn-small" type="button" data-practice-retry>重新作答</button>' : "",
       revealed && nextDisabled ? '<button class="btn btn-small" type="button" data-practice-restart>回到第一題</button>' : "",
@@ -4176,9 +4180,9 @@
         return renderPracticeOption(question, "ABCD"[index], text, selected, revealed);
       }).join(""),
       "  </div>",
+      '  <div class="past-exam-actions">' + actions + "</div>",
       feedback,
       revealed ? renderPastExamAnalysis(question) : "",
-      '  <div class="past-exam-actions">' + actions + "</div>",
       renderPracticeSourceLinks(session, false),
       "</article>"
     ].join("");
@@ -6332,6 +6336,14 @@
         practiceState.selected = optionButton.dataset.practiceOption;
         practiceRefreshPanel();
       }
+      return true;
+    }
+
+    const collapseButton = event.target.closest("[data-practice-collapse]");
+    if (collapseButton) {
+      event.preventDefault();
+      practiceState.revealed = false;
+      practiceRefreshPanel(true);
       return true;
     }
 
