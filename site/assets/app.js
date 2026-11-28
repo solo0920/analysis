@@ -4145,7 +4145,7 @@
     ].join("") : "";
     const primaryAction = revealed
       ? '<button class="btn btn-primary" type="button" data-practice-next ' + (nextDisabled ? "disabled" : "") + ">" + (nextDisabled ? "已完成" : "下一題") + "</button>"
-      : '<button class="btn btn-primary" type="button" data-practice-submit ' + (selected ? "" : "disabled") + ">看答案</button>";
+      : '<button class="btn btn-primary" type="button" data-practice-submit>看答案</button>';
     const actions = [
       primaryAction,
       '<button class="btn" type="button" data-practice-prev ' + (practiceState.index === 0 ? "disabled" : "") + ">上一題</button>",
@@ -6338,16 +6338,15 @@
     const submitButton = event.target.closest("[data-practice-submit]");
     if (submitButton) {
       event.preventDefault();
-      if (!practiceState.selected) {
-        return true;
-      }
       const questions = practiceFilteredQuestions();
       const question = questions[practiceState.index];
       const reveal = function () {
         if (question) {
-          practiceState.answers.set(question.id, practiceState.selected);
+          if (practiceState.selected) {
+            practiceState.answers.set(question.id, practiceState.selected);
+            savePracticeAnswers();
+          }
           practiceState.revealed = true;
-          savePracticeAnswers();
           practiceRefreshPanel();
         }
       };
