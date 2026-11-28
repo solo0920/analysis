@@ -241,6 +241,39 @@ async function checkPracticeSidebar(send, events, args) {
     if (initial.overflow > 1) problems.push("overflow " + initial.overflow);
     if (initial.katexErrors) problems.push("katex errors " + initial.katexErrors);
 
+    if (viewport.width > 900) {
+      const hover = await evaluate(send, `(() => {
+        const buttons = Array.from(document.querySelectorAll("#past-exam-search-results [data-past-open]"));
+        const index = buttons.findIndex((button) => !button.classList.contains("is-active"));
+        if (index < 0) return null;
+        const button = buttons[index];
+        const rect = button.getBoundingClientRect();
+        const style = getComputedStyle(button);
+        return {
+          index,
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2,
+          border: style.borderTopColor,
+          outline: style.outlineStyle
+        };
+      })()`);
+      if (!hover) {
+        problems.push("hover target missing");
+      } else {
+        await send("Input.dispatchMouseEvent", { type: "mouseMoved", x: hover.x, y: hover.y, button: "none" });
+        await sleep(200);
+        const hovered = await evaluate(send, `(() => {
+          const button = document.querySelectorAll("#past-exam-search-results [data-past-open]")[${hover.index}];
+          const style = getComputedStyle(button);
+          return { border: style.borderTopColor, outline: style.outlineStyle, active: button.classList.contains("is-active") };
+        })()`);
+        if (hovered.border !== hover.border) problems.push("hover border " + hovered.border);
+        if (hovered.outline !== "none") problems.push("hover outline " + hovered.outline);
+        if (hovered.active) problems.push("hover marked active");
+        await send("Input.dispatchMouseEvent", { type: "mouseMoved", x: 1, y: 1, button: "none" });
+      }
+    }
+
     const questionIds = await evaluate(send, `(() => {
       const buttons = document.querySelectorAll("#past-exam-search-results [data-past-open]");
       return {
@@ -391,6 +424,39 @@ async function checkWrittenSearchSidebar(send, events, args) {
     }
     if (initial.overflow > 1) problems.push("overflow " + initial.overflow);
     if (initial.katexErrors) problems.push("katex errors " + initial.katexErrors);
+
+    if (viewport.width > 900) {
+      const hover = await evaluate(send, `(() => {
+        const buttons = Array.from(document.querySelectorAll("#written-search-results [data-written-open]"));
+        const index = buttons.findIndex((button) => !button.classList.contains("is-active"));
+        if (index < 0) return null;
+        const button = buttons[index];
+        const rect = button.getBoundingClientRect();
+        const style = getComputedStyle(button);
+        return {
+          index,
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2,
+          border: style.borderTopColor,
+          outline: style.outlineStyle
+        };
+      })()`);
+      if (!hover) {
+        problems.push("hover target missing");
+      } else {
+        await send("Input.dispatchMouseEvent", { type: "mouseMoved", x: hover.x, y: hover.y, button: "none" });
+        await sleep(200);
+        const hovered = await evaluate(send, `(() => {
+          const button = document.querySelectorAll("#written-search-results [data-written-open]")[${hover.index}];
+          const style = getComputedStyle(button);
+          return { border: style.borderTopColor, outline: style.outlineStyle, active: button.classList.contains("is-active") };
+        })()`);
+        if (hovered.border !== hover.border) problems.push("hover border " + hovered.border);
+        if (hovered.outline !== "none") problems.push("hover outline " + hovered.outline);
+        if (hovered.active) problems.push("hover marked active");
+        await send("Input.dispatchMouseEvent", { type: "mouseMoved", x: 1, y: 1, button: "none" });
+      }
+    }
 
     const initialIds = await evaluate(send, `(() => {
       const buttons = document.querySelectorAll("#written-search-results [data-written-open]");

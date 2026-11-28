@@ -155,6 +155,7 @@
 - **FR-026**: `#/past-exams` 年度一覽必須保留在 sidebar／detail 版面下方；選擇年度卡片後 sidebar 與右側面板更新，年度一覽不消失。
 - **FR-027**: `#/past-exams/written` 與 `#/past-exams` 的 sidebar 題目卡不得顯示 `<small>` metadata 行；年度／科目／次別／章節資訊改放在按鈕 `title` 屬性，讓每題高度維持約兩行題幹。
 - **FR-028**: 當焦點在 sidebar 題目按鈕時，`ArrowDown`／`ArrowUp` 必須切換上一題／下一題，右側題卡／練習面板即時更新、active 與焦點同步移動，抵達清單兩端時環繞；不得讓頁面捲動。`#/past-exams/written` 由 `writtenMoveSelection()` 實作，`#/past-exams` 由 `practiceMoveSelection()` 實作。
+- **FR-029**: sidebar 題目按鈕的 hover 不得把邊框改成 accent 色；只有 `.is-active`（點選或上下鍵選取）才顯示 accent 外框。非選取項目的鍵盤 focus 使用中性 `--line-strong` outline，避免與「目前選取題目」混淆；`#/past-exams` 與 `#/past-exams/written` 共用同一規則。
 
 ### Key Entities
 
@@ -179,6 +180,7 @@
 - **SC-009**: `#/past-exams` 未搜尋時 sidebar 顯示目前篩選題目（115 年第 2 次為 126 題）、右側顯示第一題；點第二題後右側題幹與 active 同步；搜尋「存續期間」sidebar 顯示符合結果，點結果可載入右側面板；清除搜尋恢復目前篩選題目。
 - **SC-010**: `check-ui.js --only past-exams` 涵蓋 390／1280、深淺主題、sidebar 題目列表、搜尋 sidebar、點選切換、清除恢復與年度一覽保留；`file://` 與正式站同路由通過，0 `.katex-error`、0 水平溢出。
 - **SC-011**: `#/past-exams/written` 與 `#/past-exams` sidebar 的 `<small>` 數量為 0，題目卡高度約 70px（1280px、348 題清單）；焦點在題目卡時 `ArrowDown` 選下一題、`ArrowUp` 選上一題，右側題卡／練習面板與 active 同步，兩端可環繞，頁面不因方向鍵捲動。
+- **SC-012**: hover 非選取題目時 computed border color 與預設相同（不變 accent），outline 為 none；點選或上下鍵選取後才出現 accent border，`is-active` 與右側內容同步；兩個考古題頁面皆一致。
 
 ## Testing Scope
 

@@ -600,7 +600,7 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 
 2026-11-28 選擇題頁比照計算／申論題改為 sidebar／detail：`#/past-exams` 未搜尋時左側顯示目前篩選題目、搜尋時顯示搜尋結果，右側保留練習／瀏覽面板；點選 sidebar 題目直接切換 `practiceState.index`，下一題／上一題同步更新 active；390px 上下堆疊、sidebar 可捲動並在點選後捲到面板；年度一覽保留在下方。`#/past-exams/written` 的右側題卡改為預設展開參考解答，仍可用「收合解答」收合。`check-ui.js --only past-exams` 新增選擇題 sidebar 檢查（本機 4.1 秒），`--only written-exams` 新增預設解答檢查；完整本機 56 組通過（30.2 秒），未跑正式站全站 smoke test。
 
-2026-11-28 精簡 sidebar 題目卡並加入鍵盤切換：`#/past-exams/written` 與 `#/past-exams` 的 sidebar 移除 `<small>` metadata 行，年度／科目／次別／章節改放在按鈕 `title`；每題高度約 70px。焦點在 sidebar 題目按鈕時，`ArrowDown`／`ArrowUp` 切換下一題／上一題，右側題卡／練習面板與 active 即時更新，兩端環繞且不捲動頁面；兩頁分別由 `writtenMoveSelection()`、`practiceMoveSelection()` 實作。`check-ui.js --only written-exams` 與 `--only past-exams` 都新增無 `<small>` 與鍵盤切換檢查（本機 5.9 秒／4.1 秒）。
+2026-11-28 精簡 sidebar 題目卡並加入鍵盤切換：`#/past-exams/written` 與 `#/past-exams` 的 sidebar 移除 `<small>` metadata 行，年度／科目／次別／章節改放在按鈕 `title`；每題高度約 70px。焦點在 sidebar 題目按鈕時，`ArrowDown`／`ArrowUp` 切換下一題／上一題，右側題卡／練習面板與 active 即時更新，兩端環繞且不捲動頁面；兩頁分別由 `writtenMoveSelection()`、`practiceMoveSelection()` 實作。sidebar hover 不再顯示 accent 綠框，只有 `.is-active`（點選或上下鍵選取）才顯示 accent border；非選取項目的鍵盤 focus 使用中性 `--line-strong` outline。`check-ui.js --only written-exams` 與 `--only past-exams` 都新增無 `<small>`、鍵盤切換與 hover computed style 檢查（本機 5.9 秒／4.1 秒）。
 
 2026-11-27 修正 `110Q1-macro-07` 古典免疫答案（C→D）：原解析把「容易使用」當成錯誤，但古典免疫的關鍵特徵是存續期間等於目標持有期間，抵銷價格風險與再投資風險，管理的是利率風險而非信用風險。已重寫 A–D 選項分析，並同步題庫、搜尋索引、110 年分包與 `macro-13` 章節分包；390px／1280px、深淺主題與 `file://` 顯示正常。
 

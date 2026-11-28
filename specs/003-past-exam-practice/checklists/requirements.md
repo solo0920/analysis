@@ -47,6 +47,7 @@
 - [x] sidebar 題目卡不顯示 `<small>` metadata；年度／科目／次別／章節改放在 `title`，每題高度約 70px。
 - [x] 焦點在 sidebar 題目卡時，`ArrowDown`／`ArrowUp` 切換下一題／上一題，右側題卡與 active 同步，兩端環繞且不捲動頁面。
 - [x] `#/past-exams` 的 sidebar 同樣支援 `ArrowDown`／`ArrowUp`，右側練習面板與 active 同步。
+- [x] hover 非選取題目不顯示 accent 外框；只有點選或上下鍵選取後才顯示 accent border，非選取項目的鍵盤 focus 使用中性 outline。
 - [x] 1280px sidebar 在左、390px 上下堆疊且 sidebar 可捲動；390px 點選後捲到題卡。
 - [x] sidebar 與右側題卡不會同時產生重複的 `written-<id>`。
 

@@ -6448,8 +6448,15 @@ a.landing-item:hover {
   transition: border-color 150ms ease, background 150ms ease;
 }
 
-.past-exam-search-result:hover,
-.past-exam-search-result:focus-visible,
+.past-exam-search-result:hover {
+  background: var(--surface);
+}
+
+.past-exam-search-result:focus-visible:not(.is-active) {
+  outline: 2px solid var(--line-strong);
+  outline-offset: 2px;
+}
+
 .past-exam-search-result.is-active {
   border-color: var(--accent);
   background: var(--surface);
