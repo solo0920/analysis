@@ -215,6 +215,7 @@ async function checkPracticeSidebar(send, events, args) {
         panelQuestion: Boolean(panel && panel.querySelector(".past-exam-stem")),
         panelStem: panel && panel.querySelector(".past-exam-stem") ? panel.querySelector(".past-exam-stem").textContent : "",
         smallCount: document.querySelectorAll("#past-exam-search-results small").length,
+        cardHeight: Math.max(...Array.from(results).slice(0, 20).map((button) => button.getBoundingClientRect().height)),
         sidebarLeft: sidebarRect ? sidebarRect.left : -1,
         panelLeft: panelRect ? panelRect.left : -1,
         sidebarTop: sidebarRect ? sidebarRect.top : -1,
@@ -233,6 +234,7 @@ async function checkPracticeSidebar(send, events, args) {
     if (initial.activeCount !== 1) problems.push("active question count " + initial.activeCount);
     if (!initial.panelQuestion) problems.push("practice panel missing");
     if (initial.smallCount) problems.push("sidebar metadata count " + initial.smallCount);
+    if (viewport.width > 900 && initial.cardHeight > 58) problems.push("sidebar card height " + initial.cardHeight);
     if (viewport.width > 900) {
       if (!(initial.sidebarLeft < initial.panelLeft)) problems.push("sidebar is not left of panel");
     } else if (!(initial.sidebarTop < initial.panelTop)) {
@@ -389,6 +391,7 @@ async function checkWrittenSearchSidebar(send, events, args) {
         answerVisible: Boolean(detail && detail.querySelector(".written-answer")),
         toggleLabel: detail && detail.querySelector("[data-written-toggle]") ? detail.querySelector("[data-written-toggle]").textContent.trim() : "",
         smallCount: document.querySelectorAll("#written-search-results small").length,
+        cardHeight: Math.max(...Array.from(results).slice(0, 20).map((button) => button.getBoundingClientRect().height)),
         resultCount: results.length,
         activeCount: active.length,
         activeId: active[0] ? active[0].dataset.writtenOpen : "",
@@ -413,6 +416,7 @@ async function checkWrittenSearchSidebar(send, events, args) {
     if (!initial.answerVisible) problems.push("default answer hidden");
     if (initial.toggleLabel !== "收起解答") problems.push("default answer toggle " + initial.toggleLabel);
     if (initial.smallCount) problems.push("sidebar metadata count " + initial.smallCount);
+    if (viewport.width > 900 && initial.cardHeight > 58) problems.push("sidebar card height " + initial.cardHeight);
     if (initial.resultCount < 300) problems.push("question count " + initial.resultCount);
     if (initial.activeCount !== 1) problems.push("active question count " + initial.activeCount);
     if (initial.title !== "題目列表") problems.push("sidebar title " + initial.title);

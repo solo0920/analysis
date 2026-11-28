@@ -44,7 +44,8 @@
 - [x] 預設選取第一筆；點選其他題目會更新右側題卡、`is-active` 與 `aria-current`。
 - [x] 頁面載入、搜尋結果出現、切換題目與切換篩選後，右側題卡預設展開參考解答；可用「收合解答」收合。
 - [x] 點選題目會展開該題參考解答；搜尋字串保留。
-- [x] sidebar 題目卡不顯示 `<small>` metadata；年度／科目／次別／章節改放在 `title`，每題高度約 70px。
+- [x] sidebar 題目卡不顯示 `<small>` metadata；年度／科目／次別／章節改放在 `title`，每題高度約 55px。
+- [x] 兩個考古題 sidebar 題目卡 padding 為 `4px`（原 `12px 13px` 的三分之一），1280px 前 20 題高度不超過 58px，且不產生水平溢出。
 - [x] 焦點在 sidebar 題目卡時，`ArrowDown`／`ArrowUp` 切換下一題／上一題，右側題卡與 active 同步，兩端環繞且不捲動頁面。
 - [x] `#/past-exams` 的 sidebar 同樣支援 `ArrowDown`／`ArrowUp`，右側練習面板與 active 同步。
 - [x] hover 非選取題目不顯示 accent 外框；只有點選或上下鍵選取後才顯示 accent border，非選取項目的鍵盤 focus 使用中性 outline。

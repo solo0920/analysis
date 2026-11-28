@@ -6437,7 +6437,7 @@ a.landing-item:hover {
   gap: 12px;
   align-items: center;
   width: 100%;
-  padding: 12px 13px;
+  padding: 4px;
   border: 1px solid var(--line);
   border-radius: 12px;
   background: var(--surface-2);
