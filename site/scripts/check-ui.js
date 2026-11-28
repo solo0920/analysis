@@ -6,12 +6,17 @@
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function parseArgs(argv) {
-  const args = { base: "http://127.0.0.1:8765", cdp: "http://127.0.0.1:9223", quick: false, remote: false };
+  const args = { base: "http://127.0.0.1:8765", cdp: "http://127.0.0.1:9223", quick: false, remote: false, only: null };
   for (let i = 0; i < argv.length; i += 1) {
     if (argv[i] === "--base") args.base = argv[++i];
     else if (argv[i] === "--cdp") args.cdp = argv[++i];
     else if (argv[i] === "--quick") args.quick = true;
     else if (argv[i] === "--remote") args.remote = true;
+    else if (argv[i] === "--only") {
+      args.only = String(argv[++i] || "").split(",").map(function (name) {
+        return name.trim();
+      }).filter(Boolean);
+    }
   }
   args.base = args.base.replace(/\/$/, "");
   args.remote = args.remote || args.base.startsWith("https://");
@@ -143,9 +148,16 @@ async function main() {
         { width: 390, height: 900, mobile: true, theme: "light" },
         { width: 390, height: 900, mobile: true, theme: "dark" }
       ];
-  const routes = ROUTES;
+  const routes = args.only
+    ? ROUTES.filter(function (route) { return args.only.indexOf(route.name) !== -1; })
+    : ROUTES;
   const results = [];
   let failed = 0;
+
+  if (!routes.length) {
+    console.error("No routes matched --only: " + args.only.join(","));
+    process.exit(1);
+  }
 
   for (const viewport of viewports) {
     await send("Emulation.setDeviceMetricsOverride", {
