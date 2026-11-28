@@ -570,6 +570,8 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 
 2026-11-28 把 `#/past-exams` 的題庫模糊搜尋與年度／科目／次別整合在同一張篩選卡（單一 section）：沿用右上角搜尋的精確子字串、MiniSearch 前綴／錯字容忍與中文字元 bigram 補位，只索引目前已載入的選擇題題庫（全部年度時 3,710 題）；年度、科目、次別與原有「範圍內精確篩選」都會套用為 filter，結果列在卡片下方並依相關度排序，點選可直接載入練習面板，Enter 開第一筆、Esc 清除。切換篩選改為原地更新：不觸發 hash 路由、不呼叫 `render()`、不替換 `#main`、不顯示 `#route-loader`，年度分包以 `window.__loadPastYear()` 背景載入並保留搜尋字串、DOM 節點與捲動位置；年度切換保留科目、重設次別、清除精確關鍵字，`history.replaceState()` 同步 `?year=`。390px／1280px、深淺主題與 `file://` 實測「存續期間」在 115 年 3 筆、全部年度 58 筆，「存續其間」5 筆；切換 113 年時 `#main` 子節點 0 次變更、route loader 0 次、scrollY 不變，單一 section、0 `.katex-error`、0 水平溢出；`check-ui.js` 增為 14 條路由、56 組檢查並加入題庫搜尋與無閃爍 smoke test；互動規格見 `specs/003-past-exam-practice/spec.md`。
 
+2026-11-28 將 `#/past-exams/written` hero 比照選擇題頁精簡：移除「收錄 107–115 年四個專業科目的計算題與申論題…」lede 與 `written-hero` 卡片樣式，四個統計格移入 `past-exam-hero-copy`，與「計算題與申論題」同列為橫向四格；「回選擇題練習」維持第二列。1280px hero 高度 165px、390px 約 206px，390／320px 四格統計與按鈕均無水平溢出，篩選卡隨之上移。
+
 2026-11-28 精簡 `#/past-exams` hero：移除「收錄 107–115 年共 29 次筆試…」說明文字，將四個統計格移入 `past-exam-hero-copy`，與「考古題練習庫」同列並改為橫向四格；開始練習／計算／申論題／證基會下載維持第二列。hero 高度由約 506px 降至 165px（1280px），390px 約 206px，篩選卡隨之上移；四格統計在 390px 與 320px 均無水平溢出。
 
 2026-11-28 將同一套題庫搜尋套用到 `#/past-exams/written`：計算／申論題頁改為與選擇題頁一致的單一篩選卡，含模糊搜尋、搜尋範圍、年度／科目／次別、範圍內精確篩選與卡片下方的相關度排序結果；只索引 348 題計算／申論題庫。搜尋結果可點選開啟對應題卡並捲動到該題；年度／科目／次別切換改為原地更新，不呼叫 `render()`、不替換 `#main`、不顯示 route loader，搜尋字串與精確關鍵字在科目／次別切換時保留、年度切換清除精確關鍵字。390px／1280px 與 `file://` 實測「存續期間」7 筆、「股東會」13 筆，0 `.katex-error`、0 水平溢出；`check-ui.js` 新增申論題搜尋與無閃爍 smoke test。

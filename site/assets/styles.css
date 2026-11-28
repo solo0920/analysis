@@ -7418,7 +7418,8 @@ a.landing-item:hover {
 }
 
 @media (max-width: 520px) {
-  .past-exam-page {
+  .past-exam-page,
+  .written-page {
     padding-top: 24px;
   }
 
@@ -7574,13 +7575,15 @@ a.landing-item:hover {
 }
 
 /* ----------------------------- current events / written exams ----------------------------- */
-.macro-current-page,
-.written-page {
+.macro-current-page {
   padding-top: 34px;
 }
 
-.macro-current-hero,
-.written-hero {
+.written-page {
+  padding-top: 36px;
+}
+
+.macro-current-hero {
   padding: 32px 34px;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
@@ -7588,8 +7591,7 @@ a.landing-item:hover {
   box-shadow: var(--shadow-sm);
 }
 
-.macro-current-hero h1,
-.written-hero h1 {
+.macro-current-hero h1 {
   margin: 4px 0 10px;
   font-size: clamp(2rem, 4vw, 3.1rem);
 }
@@ -9174,8 +9176,7 @@ a.landing-item:hover {
 }
 
 @media (max-width: 680px) {
-  .macro-current-hero,
-  .written-hero {
+  .macro-current-hero {
     padding: 22px;
   }
 
