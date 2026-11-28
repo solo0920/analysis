@@ -40,6 +40,8 @@
 
 - [x] 390px／1280px、深淺主題與 `file://` 實測通過。
 - [x] 0 `.katex-error`、0 水平溢出。
-- [x] `check-ui.js` 52 組路由／viewport／theme 檢查通過。
-- [x] `check-ui.js` 無閃爍 smoke test 通過。
+- [x] `check-ui.js` 56 組路由／viewport／theme 檢查通過。
+- [x] `check-ui.js` 選擇題與計算／申論題無閃爍 smoke test 通過。
+- [x] 計算／申論題頁使用同一張搜尋／篩選卡，結果列在卡片下方。
+- [x] 計算／申論題搜尋結果可展開題卡並捲動到該題。
 - [x] 規格與 `documents/architecture.md` 已同步。

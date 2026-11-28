@@ -85,6 +85,7 @@ const ROUTES = [
   { name: "past-search", path: "/#/past-exams?year=all", selector: "#past-exam-search-input", expect: 1 },
   { name: "past-exam", path: "/#/past-exams?question=108Q2-macro-11", selector: "[data-practice-option]", expect: 4 },
   { name: "written-exams", path: "/#/past-exams/written", selector: ".written-page", expect: null },
+  { name: "written-search", path: "/#/past-exams/written", selector: "#written-search-input", expect: 1 },
   { name: "written-exam", path: "/#/past-exams/written?question=107Q3-accounting-written-5", selector: "#written-107Q3-accounting-written-5", expect: 1 },
   { name: "review", path: "/#/review", selector: ".review-hero", expect: null },
   { name: "exam-forecast", path: "/#/exam-forecast?subject=accounting", selector: ".forecast-page", expect: null },
@@ -328,6 +329,77 @@ async function main() {
   if (filterProblems.length) failed += 1;
   console.log((filterProblems.length ? "FAIL" : "ok  ") + " past search no-flicker" +
     (filterProblems.length ? " — " + filterProblems.join("; ") : ""));
+
+  // Written-exam fuzzy search and in-place filters.
+  events.length = 0;
+  await send("Page.navigate", { url: urlFor(args.base, "/#/past-exams/written") });
+  const writtenSearchInputReady = await waitFor(send, `document.readyState === "complete" && Boolean(document.querySelector("#written-search-input"))`);
+  await evaluate(send, `(() => {
+    const input = document.querySelector("#written-search-input");
+    const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set;
+    setter.call(input, "存續期間");
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+  })()`);
+  const writtenSearchReady = await waitFor(send, `document.querySelectorAll("#written-search-results [data-written-search-open]").length > 0`, 10000);
+  const writtenSearchState = await evaluate(send, `({
+    count: document.querySelectorAll("#written-search-results [data-written-search-open]").length,
+    sections: document.querySelectorAll(".written-page > .past-exam-filter-shell").length,
+    merged: Boolean(document.querySelector("#written-filters #written-search-input")) &&
+      Boolean(document.querySelector("#written-filters #written-filter-rows")),
+    katexErrors: document.querySelectorAll(".katex-error").length,
+    overflow: document.documentElement.scrollWidth - window.innerWidth
+  })`);
+  const writtenProblems = [];
+  if (!writtenSearchInputReady) writtenProblems.push("input missing");
+  if (!writtenSearchReady) writtenProblems.push("results missing");
+  if (writtenSearchState.sections !== 1 || !writtenSearchState.merged) writtenProblems.push("search/filter sections not merged");
+  if (writtenSearchState.katexErrors) writtenProblems.push("katex errors " + writtenSearchState.katexErrors);
+  if (writtenSearchState.overflow > 1) writtenProblems.push("overflow " + writtenSearchState.overflow);
+
+  const writtenFlickerBefore = await evaluate(send, `(() => {
+    const main = document.querySelector("#main");
+    window.__writtenRefs = {
+      kids: Array.from(main.children),
+      search: document.querySelector("#written-search-input"),
+      rows: document.querySelector("#written-filter-rows"),
+      list: document.querySelector("#written-list")
+    };
+    window.__writtenFlicker = { routing: false, loader: false, mainMutations: 0 };
+    new MutationObserver(() => {
+      if (document.documentElement.classList.contains("is-routing")) window.__writtenFlicker.routing = true;
+      const loader = document.getElementById("route-loader");
+      if (loader && !loader.hidden) window.__writtenFlicker.loader = true;
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ["class"], childList: true, subtree: true });
+    new MutationObserver((records) => {
+      records.forEach((record) => {
+        if (Array.from(record.addedNodes).concat(Array.from(record.removedNodes)).some((node) => node.nodeType === 1)) {
+          window.__writtenFlicker.mainMutations += 1;
+        }
+      });
+    }).observe(main, { childList: true });
+    return true;
+  })()`);
+  await evaluate(send, `document.querySelector('[data-written-subject="investment"]').click()`);
+  const writtenFilterReady = await waitFor(send, `document.querySelector('[data-written-subject="investment"]').classList.contains("is-active") && document.querySelector("#written-filter-summary").textContent.includes("投資學")`, 10000);
+  const writtenFlickerAfter = await evaluate(send, `(() => {
+    const main = document.querySelector("#main");
+    return {
+      sameKids: main.children.length === window.__writtenRefs.kids.length &&
+        Array.from(main.children).every((element, index) => element === window.__writtenRefs.kids[index]),
+      sameSearch: document.querySelector("#written-search-input") === window.__writtenRefs.search,
+      sameRows: document.querySelector("#written-filter-rows") === window.__writtenRefs.rows,
+      sameList: document.querySelector("#written-list") === window.__writtenRefs.list,
+      flicker: window.__writtenFlicker
+    };
+  })()`);
+  if (!writtenFilterReady) writtenProblems.push("written filter not ready");
+  if (!writtenFlickerAfter.sameKids || !writtenFlickerAfter.sameSearch || !writtenFlickerAfter.sameRows || !writtenFlickerAfter.sameList) writtenProblems.push("written DOM was replaced");
+  if (writtenFlickerAfter.flicker.routing) writtenProblems.push("written route loader class");
+  if (writtenFlickerAfter.flicker.loader) writtenProblems.push("written route loader visible");
+  if (writtenFlickerAfter.flicker.mainMutations) writtenProblems.push("written main children mutated " + writtenFlickerAfter.flicker.mainMutations);
+  if (writtenProblems.length) failed += 1;
+  console.log((writtenProblems.length ? "FAIL" : "ok  ") + " written search no-flicker " + writtenSearchState.count +
+    (writtenProblems.length ? " — " + writtenProblems.join("; ") : ""));
 
   // 404 page only when testing a remote origin (local Python server has its own 404).
   if (args.remote) {

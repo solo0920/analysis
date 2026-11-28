@@ -141,6 +141,8 @@ sequenceDiagram
 
 年度／科目／次別只更新現有按鈕的 `is-active`／`aria-pressed` 與選單選項，不重建整個篩選列；搜尋提示列獨立於 `#past-exam-filter-rows`，因此輸入或清除搜尋字串也不會重建篩選列。`check-ui.js` 會比對切換前後的 `#main` 子節點、搜尋框、篩選列、面板節點與 `scrollY`，並確認沒有 route loader。
 
+同一套搜尋／篩選卡也用於 `#/past-exams/written`：只索引 348 題計算／申論題，結果點選會展開 `.written-card` 並捲動到該題；年度／科目／次別切換更新 `#written-list`、摘要與搜尋結果，不呼叫 `render()` 或替換 `#main`。計算／申論題年度切換清除精確關鍵字，科目／次別切換保留。
+
 ## 4. 路由與視圖
 
 | Hash route | 渲染函式 | 主要資料來源 |
