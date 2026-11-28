@@ -2,6 +2,8 @@
 
 更新：2026-11-28
 
+正式規範：[`specs/004-targeted-testing/spec.md`](../specs/004-targeted-testing/spec.md)。
+
 目標：小改動不要每次都跑完整 56 組 `check-ui.js`。先用 `verify.sh` 把內容與建置錯誤擋掉，再依變更範圍選擇瀏覽器檢查。
 
 ## 分級

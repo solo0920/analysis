@@ -36,12 +36,21 @@
 - [x] 年度切換保留搜尋字串與搜尋結果查詢。
 - [x] 重新整理年度 deep link 可載入對應年度。
 
+## 計算／申論題 Sidebar
+
+- [x] 搜尋結果顯示在左側 `#written-search-results-panel`，右側 `#written-search-detail` 顯示題卡。
+- [x] 搜尋後 `#written-search-layout` 顯示、`#written-list` 隱藏；清除搜尋後恢復完整列表。
+- [x] 預設選取第一筆；點選其他結果會更新右側題卡、`is-active` 與 `aria-current`。
+- [x] 點選結果會展開該題參考解答；搜尋字串保留。
+- [x] 1280px sidebar 在左、390px 上下堆疊；390px 點選後捲到題卡。
+- [x] sidebar 與右側題卡不會同時產生重複的 `written-<id>`。
+
 ## 驗證
 
 - [x] 390px／1280px、深淺主題與 `file://` 實測通過。
 - [x] 0 `.katex-error`、0 水平溢出。
-- [x] `check-ui.js` 56 組路由／viewport／theme 檢查通過。
-- [x] `check-ui.js` 選擇題與計算／申論題無閃爍 smoke test 通過。
-- [x] 計算／申論題頁使用同一張搜尋／篩選卡，結果列在卡片下方。
-- [x] 計算／申論題搜尋結果可展開題卡並捲動到該題。
+- [x] 目標式檢查 `check-ui.js --only written-exams` 通過（含 sidebar 互動）。
+- [x] 完整 `check-ui.js` 56 組路由／viewport／theme 檢查通過。
+- [x] 完整檢查只在需要全站 smoke test 時執行；本次 sidebar 變更的預設範圍為 `--only written-exams`。
 - [x] 規格與 `documents/architecture.md` 已同步。
+- [x] 測試範圍規範見 `specs/004-targeted-testing/spec.md`。

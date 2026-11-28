@@ -372,7 +372,7 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 
 `check-ui.js` 會檢查 14 條路由（首頁、科目、章節、考古題、題庫模糊搜尋、計算／申論題、申論題模糊搜尋、複習題、考前猜題、諾貝爾、模型總覽、總經時事）在 390／1280、深淺主題下的 selector、`.katex-error`、水平溢出與 console errors，並以 7 個內容斷言核對 2026 NKPC、已修正的會計例題、泰勒法則與古典學派新章；另以題庫模糊搜尋實測「存續期間」可得到 12 筆結果，並檢查選擇題與計算／申論題切換年度／科目／次別時 `#main` 子節點、搜尋框、篩選列與列表節點不變、沒有 route loader；練習模式另檢查「顯示答案／下一題／上一題」按鈕順序與下一題前進；計算／申論題搜尋另檢查左側 sidebar、右側題卡、點選切換與清除後恢復列表。
 
-可用 `--only <route>` 只跑指定路由與其互動檢查，例如 `node site/scripts/check-ui.js --only written-exams`；其他路由的內容、搜尋、申論題 smoke test 不會執行。完整 56 組只在路由／全域版面變更時跑。分級與指令見 [`documents/qa-playbook.md`](../documents/qa-playbook.md)。`--base` 指向正式站時另檢查 404 頁。`check-ui.js` 不在 `verify.sh` 內（GitHub Actions runner 不保證有 Chrome），屬部署前手動檢查；部署後改用 `check-live.sh`。
+可用 `--only <route>` 只跑指定路由與其互動檢查，例如 `node site/scripts/check-ui.js --only written-exams`；其他路由的內容、搜尋、申論題 smoke test 不會執行。完整 56 組只在路由／全域版面變更時跑。分級與指令見 [`documents/qa-playbook.md`](../documents/qa-playbook.md)；測試範圍規範見 [`specs/004-targeted-testing/spec.md`](../specs/004-targeted-testing/spec.md)。`--base` 指向正式站時另檢查 404 頁。`check-ui.js` 不在 `verify.sh` 內（GitHub Actions runner 不保證有 Chrome），屬部署前手動檢查；部署後改用 `check-live.sh`。
 
 `validate-content.js` 會比對三份來源目錄的章號、章名、Part、順序、節次與頁碼，並檢查：
 

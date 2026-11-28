@@ -79,18 +79,19 @@
 
 ### User Story 5 - 計算／申論題頁使用同一套搜尋與篩選格式 (Priority: P2)
 
-考生進入 `#/past-exams/written` 時，需要看到與選擇題頁一致的單一搜尋／篩選卡，能模糊搜尋 348 題計算／申論題，並用年度、科目、次別與精確關鍵字縮小範圍；點選結果可直接開啟該題卡。
+考生進入 `#/past-exams/written` 時，需要看到與選擇題頁一致的單一搜尋／篩選卡，能模糊搜尋 348 題計算／申論題，並用年度、科目、次別與精確關鍵字縮小範圍；搜尋結果顯示在左側 sidebar，點選後在右側顯示該題卡。
 
-**Why this priority**: 兩頁都是考古題練習入口；若格式與操作不同，使用者必須重新學習一次，也容易誤以為申論題沒有搜尋。
+**Why this priority**: 兩頁都是考古題練習入口；若格式與操作不同，使用者必須重新學習一次，也容易誤以為申論題沒有搜尋。搜尋結果與題卡分離，能讓考生在結果之間快速切換，不必每次回到長列表尋找。
 
-**Independent Test**: 開啟 `#/past-exams/written`，確認只有一個 `.past-exam-filter-shell`，同時包含 `#written-search-input` 與 `#written-filter-rows`；輸入「存續期間」出現結果，點選第一筆後對應 `.written-card` 展開並捲動到該題。
+**Independent Test**: 開啟 `#/past-exams/written`，確認只有一個 `.past-exam-filter-shell`，同時包含 `#written-search-input` 與 `#written-filter-rows`；輸入「存續期間」後，左側 `#written-search-results-panel` 出現結果，右側 `#written-search-detail` 預設顯示第一筆題卡；點選第二筆後右側題卡與 active 狀態同步更新。
 
 **Acceptance Scenarios**:
 
-1. **Given** 使用者位於 `#/past-exams/written`, **When** 頁面載入, **Then** 搜尋框、搜尋範圍、年度、科目、次別與精確篩選都位於同一個 `section` 內，結果列在卡片下方。
-2. **Given** 使用者輸入「存續期間」, **When** 結果出現, **Then** 只顯示計算／申論題庫的題目，並套用目前年度／科目／次別與精確關鍵字。
-3. **Given** 使用者點選搜尋結果, **When** 題卡載入, **Then** 該題展開參考解答並捲動到題卡，搜尋字串保留。
-4. **Given** 使用者切換年度／科目／次別, **When** 條件改變, **Then** 篩選列、摘要、題卡列表與搜尋結果原地更新，不整頁重繪。
+1. **Given** 使用者位於 `#/past-exams/written`, **When** 頁面載入, **Then** 搜尋框、搜尋範圍、年度、科目、次別與精確篩選都位於同一個 `section` 內；尚未搜尋時顯示完整題卡列表。
+2. **Given** 使用者輸入「存續期間」, **When** 結果出現, **Then** 只顯示計算／申論題庫的題目，並套用目前年度／科目／次別與精確關鍵字；結果列在左側 sidebar，右側顯示目前選取題卡。
+3. **Given** 使用者點選 sidebar 的其他結果, **When** 題卡更新, **Then** 右側顯示該題、該結果取得 `is-active`／`aria-current="true"`、參考解答展開，搜尋字串保留。
+4. **Given** 使用者切換年度／科目／次別, **When** 條件改變, **Then** 篩選列、摘要、sidebar 結果與右側題卡原地更新，不整頁重繪。
+5. **Given** 使用者在 390px 點選 sidebar 結果, **When** 右側題卡更新, **Then** sidebar 與題卡改為上下堆疊，畫面捲動到該題卡。
 
 ---
 
@@ -121,10 +122,13 @@
 - **FR-010**: 載入失敗時必須回復切換前的年度、科目、次別、精確關鍵字、索引與捲動位置，並顯示錯誤提示。
 - **FR-011**: 搜尋字串在第一個字元輸入或清除時，只能更新搜尋提示列與結果，不得重建整個篩選列。
 - **FR-012**: `check-ui.js` 必須包含無閃爍回歸檢查：切換年度後 `#main` 子節點、搜尋框、篩選列、面板節點不變，且沒有 route loader、`scrollY` 誤差 ≤ 1px。
-- **FR-013**: `#/past-exams/written` 必須只有一個 `.past-exam-filter-shell`，同時包含 `#written-search-input` 與 `#written-filter-rows`；搜尋結果列在卡片下方。
+- **FR-013**: `#/past-exams/written` 必須只有一個 `.past-exam-filter-shell`，同時包含 `#written-search-input` 與 `#written-filter-rows`；搜尋結果必須顯示在左側 `#written-search-results-panel` sidebar，右側 `#written-search-detail` 顯示目前題卡。
 - **FR-014**: 計算／申論題搜尋只索引 348 題計算／申論題庫，支援精確子字串、MiniSearch 前綴／錯字容忍與中文字元 bigram，並套用年度／科目／次別與精確關鍵字。
-- **FR-015**: 點選計算／申論題搜尋結果必須展開對應 `.written-card`、保留搜尋字串並捲動到該題卡。
-- **FR-016**: 計算／申論題的年度／科目／次別切換必須原地更新 `#written-list`、摘要與搜尋結果，不呼叫 `render()`、不替換 `#main`、不顯示 route loader；年度切換清除精確關鍵字，科目／次別切換保留。
+- **FR-015**: 點選 sidebar 搜尋結果必須更新右側 `.written-card`、保留搜尋字串、同步 `is-active`／`aria-current`，並展開該題參考解答；不得改為捲動長列表。
+- **FR-016**: 計算／申論題的年度／科目／次別切換必須原地更新 `#written-search-results`、`#written-search-detail`、摘要與 `#written-list`，不呼叫 `render()`、不替換 `#main`、不顯示 route loader；年度切換清除精確關鍵字，科目／次別切換保留。
+- **FR-017**: 搜尋結果出現時，sidebar 必須預設選取第一筆並在右側顯示該題卡；若目前選取題目不在新結果中，必須自動改選第一筆。
+- **FR-018**: 390px 時 sidebar 與右側題卡必須上下堆疊；點選 sidebar 結果後必須將該題卡捲入視窗。
+- **FR-019**: 清除搜尋後必須隱藏 sidebar 與右側題卡，恢復 `#written-list` 的完整篩選結果；不得留下空白列表或重複的題卡 ID。
 
 ### Key Entities
 
@@ -144,7 +148,17 @@
 - **SC-004**: 從預設 115 年切換到 113 年時，年度晶片立即更新，載入完成後摘要顯示 113 年題數；整個過程沒有全頁空白。
 - **SC-005**: 「存續期間」在 115 年為 3 筆、全部年度為 58 筆；搜尋字串在年度切換後保留。
 - **SC-006**: `check-ui.js` 現有 56 組路由／viewport／theme 檢查與新增無閃爍檢查全數通過。
-- **SC-007**: `#/past-exams/written` 的搜尋結果「存續期間」7 筆、「股東會」13 筆；切換科目時 `#main`、搜尋框、篩選列與 `#written-list` 容器不變，route loader 顯示次數為 0。
+- **SC-007**: `#/past-exams/written` 的搜尋結果「存續期間」7 筆、「股東會」13 筆；1280px 時 sidebar 在左、題卡在右，390px 時上下堆疊；預設第一筆、點第二筆後右側題卡與 active 同步；清除搜尋恢復 348 題列表。
+- **SC-008**: 目標式檢查 `check-ui.js --only written-exams` 涵蓋 390／1280、深淺主題、sidebar 配置、點選切換與清除恢復；`file://` 與正式站同路由通過，0 `.katex-error`、0 水平溢出。
+
+## Testing Scope
+
+依 [`specs/004-targeted-testing/spec.md`](../004-targeted-testing/spec.md)：
+
+- **預設範圍**：本次修改的檔案＋直接受影響的路由與互動。計算／申論題 sidebar 變更只跑 `bash site/scripts/verify.sh` 與 `node site/scripts/check-ui.js --only written-exams`。
+- **相關互動**：`written-exams`／`written-search` 必須加跑 sidebar 配置、點選切換與清除恢復；`past-exam` 必須加跑練習模式下一題檢查。
+- **全站 smoke test**：只在修改 router、全站 CSS／design token、跨頁共用元件、搜尋索引、`check-ui.js` 本身，或使用者明確要求時執行完整 56 組。
+- **未執行全站 smoke test 時**：changelog／`documents/content_review_checklist.md` 必須明確記錄已測路由、viewport／theme、`file://`、正式站結果與「未執行全站 smoke test」，不得寫成「全站通過」。
 
 ## Out of Scope
 
