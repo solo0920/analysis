@@ -22,8 +22,8 @@
 
 **Acceptance Scenarios**:
 
-1. **Given** 使用者位於 `#/past-exams`, **When** 頁面載入完成, **Then** 題庫搜尋框、搜尋範圍、年度、科目與精確篩選都位於同一個 `section` 內。
-2. **Given** 使用者輸入題庫關鍵字, **When** 結果出現, **Then** 只顯示選擇題題庫的題目，並套用目前年度／科目與「範圍內精確篩選」。
+1. **Given** 使用者位於 `#/past-exams`, **When** 頁面載入完成, **Then** 題庫搜尋框、搜尋範圍、年度與科目都位於同一個 `section` 內。
+2. **Given** 使用者輸入題庫關鍵字, **When** 結果出現, **Then** 只顯示選擇題題庫的題目，並套用目前年度／科目。
 3. **Given** 使用者切換年度／科目, **When** 篩選狀態改變, **Then** 搜尋字串保留，結果與摘要依新範圍更新。
 
 ---
@@ -79,7 +79,7 @@
 
 ### User Story 5 - 計算／申論題頁使用同一套搜尋與篩選格式 (Priority: P2)
 
-考生進入 `#/past-exams/written` 時，需要看到與選擇題頁一致的單一搜尋／篩選卡，能模糊搜尋 348 題計算／申論題，並用年度、科目與精確關鍵字縮小範圍；未搜尋時左側 sidebar 顯示目前篩選的全部題目，搜尋時改顯示搜尋結果，右側永遠顯示選取題卡。
+考生進入 `#/past-exams/written` 時，需要看到與選擇題頁一致的單一搜尋／篩選卡，能模糊搜尋 348 題計算／申論題，並用年度、科目縮小範圍；未搜尋時左側 sidebar 顯示目前篩選的全部題目，搜尋時改顯示搜尋結果，右側永遠顯示選取題卡。
 
 **Why this priority**: 兩頁都是考古題練習入口；若格式與操作不同，使用者必須重新學習一次，也容易誤以為申論題沒有搜尋。題目清單與題卡分離，能讓考生在 348 題之間快速切換，不必每次回到長列表尋找。
 
@@ -87,8 +87,8 @@
 
 **Acceptance Scenarios**:
 
-1. **Given** 使用者位於 `#/past-exams/written`, **When** 頁面載入, **Then** 搜尋框、搜尋範圍、年度、科目與精確篩選都位於同一個 `section` 內；左側 sidebar 顯示目前篩選的全部題目，右側顯示第一題題卡，且參考解答預設展開。
-2. **Given** 使用者輸入「存續期間」, **When** 結果出現, **Then** 只顯示計算／申論題庫的題目，並套用目前年度／科目與精確關鍵字；sidebar 改顯示搜尋結果，右側顯示目前選取題卡與已展開的參考解答。
+1. **Given** 使用者位於 `#/past-exams/written`, **When** 頁面載入, **Then** 搜尋框、搜尋範圍、年度與科目都位於同一個 `section` 內；左側 sidebar 顯示目前篩選的全部題目，右側顯示第一題題卡，且參考解答預設展開。
+2. **Given** 使用者輸入「存續期間」, **When** 結果出現, **Then** 只顯示計算／申論題庫的題目，並套用目前年度／科目；sidebar 改顯示搜尋結果，右側顯示目前選取題卡與已展開的參考解答。
 3. **Given** 使用者點選 sidebar 的其他題目, **When** 題卡更新, **Then** 右側顯示該題、該結果取得 `is-active`／`aria-current="true"`、參考解答展開，搜尋字串保留。
 4. **Given** 使用者切換年度／科目, **When** 條件改變, **Then** 篩選列、摘要、sidebar 題目清單與右側題卡原地更新，不整頁重繪；若目前題目不在新範圍內，改選第一題並展開參考解答。
 5. **Given** 使用者在 390px 點選 sidebar 題目, **When** 右側題卡更新, **Then** sidebar 與題卡改為上下堆疊，sidebar 保持可捲動高度，畫面捲動到該題卡。
@@ -97,7 +97,7 @@
 
 ### User Story 6 - 選擇題頁使用 sidebar＋右側練習面板 (Priority: P1)
 
-考生進入 `#/past-exams` 時，左側 sidebar 顯示目前年度／科目／精確關鍵字篩選的題目；輸入搜尋時 sidebar 改顯示搜尋結果；右側顯示目前題目的練習或瀏覽面板。點選 sidebar 題目可直接切換右側題目，不必在長列表中尋找。
+考生進入 `#/past-exams` 時，左側 sidebar 顯示目前年度／科目篩選的題目；輸入搜尋時 sidebar 改顯示搜尋結果；右側顯示目前題目的練習或瀏覽面板。點選 sidebar 題目可直接切換右側題目，不必在長列表中尋找。
 
 **Why this priority**: 選擇題與計算／申論題都是考古題入口；兩頁使用相同的 sidebar／detail 格式，能讓考生一致地在題目之間切換，也讓搜尋結果與目前題目保持分離。
 
@@ -105,7 +105,7 @@
 
 **Acceptance Scenarios**:
 
-1. **Given** 使用者位於 `#/past-exams`, **When** 頁面載入, **Then** 左側 sidebar 顯示目前年度／科目／精確關鍵字篩選後的全部題目，右側顯示第一題的練習面板。
+1. **Given** 使用者位於 `#/past-exams`, **When** 頁面載入, **Then** 左側 sidebar 顯示目前年度／科目篩選後的全部題目，右側顯示第一題的練習面板。
 2. **Given** 使用者輸入題庫關鍵字, **When** 搜尋結果出現, **Then** sidebar 標題改為「搜尋結果」、只顯示符合題目；點選結果會載入右側練習面板並同步 active。
 3. **Given** 使用者切換年度／科目, **When** 條件改變, **Then** sidebar 題目清單、摘要與右側練習面板原地更新；若目前題目不在新範圍內，改選第一題。
 4. **Given** 使用者按「下一題」或「上一題」, **When** 右側題目改變, **Then** sidebar 的 active 題目同步更新，且不重建整個 sidebar。
@@ -116,7 +116,7 @@
 
 - 目標年度分包已載入時，切換必須同步完成，不顯示載入文字。
 - 目標年度分包正在載入時，重複點擊不得重複載入或回到舊年度。
-- 搜尋字串只在年度／科目切換時保留；年度切換會清除「範圍內精確篩選」與其輸入值。
+- 搜尋字串只在年度／科目切換時保留。
 - 科目在年度切換時保留。
 - `history.replaceState()` 在 `file://` 或受限環境失敗時，畫面仍必須完成切換，不得退回整頁重新載入。
 - 載入失敗時，搜尋結果、摘要與練習面板必須回到切換前狀態。
@@ -130,25 +130,25 @@
 - **FR-001**: `#/past-exams` 必須只有一個 `.past-exam-filter-shell`，且同時包含題庫搜尋與年度／科目篩選。
 - **FR-002**: 搜尋結果必須列在篩選卡之外、卡片下方；結果點選後載入練習面板。
 - **FR-003**: 搜尋只索引目前已載入的選擇題題庫；全部年度時為 3,710 題。不得搜尋章節、名詞或申論題。
-- **FR-004**: 搜尋必須套用年度、科目與「範圍內精確篩選」。
+- **FR-004**: 搜尋必須套用年度與科目。
 - **FR-005**: 年度／科目切換必須以原地狀態更新完成，不得呼叫 `render()`、替換 `#main` 子節點、顯示 `#route-loader` 或加上 `is-routing`。
 - **FR-006**: 年度／科目切換必須保留搜尋輸入框節點與搜尋字串、篩選列容器節點、練習面板容器節點與捲動位置。
 - **FR-007**: 年度切換必須以 `history.replaceState()` 同步 `?year=`，不得使用會觸發 hashchange 的 `location.hash` 導覽。
 - **FR-008**: 年度分包必須透過 `window.__loadPastYear()` 載入；載入期間在現有摘要顯示載入文字，並以 `aria-busy` 標記篩選列。
-- **FR-009**: 年度切換不得清除科目；「範圍內精確篩選」與其輸入值必須清除。
-- **FR-010**: 載入失敗時必須回復切換前的年度、科目、精確關鍵字、索引與捲動位置，並顯示錯誤提示。
+- **FR-009**: 年度切換不得清除科目。
+- **FR-010**: 載入失敗時必須回復切換前的年度、科目、索引與捲動位置，並顯示錯誤提示。
 - **FR-011**: 搜尋字串在第一個字元輸入或清除時，只能更新搜尋提示列與結果，不得重建整個篩選列。
 - **FR-012**: `check-ui.js` 必須包含無閃爍回歸檢查：切換年度後 `#main` 子節點、搜尋框、篩選列、面板節點不變，且沒有 route loader、`scrollY` 誤差 ≤ 1px。
 - **FR-013**: `#/past-exams/written` 必須只有一個 `.past-exam-filter-shell`，同時包含 `#written-search-input` 與 `#written-filter-rows`；未搜尋時左側 `#written-search-results-panel` sidebar 顯示目前篩選的全部題目，搜尋時顯示搜尋結果；右側 `#written-search-detail` 永遠顯示目前題卡。
-- **FR-014**: 計算／申論題搜尋只索引 348 題計算／申論題庫，支援精確子字串、MiniSearch 前綴／錯字容忍與中文字元 bigram，並套用年度／科目與精確關鍵字。
+- **FR-014**: 計算／申論題搜尋只索引 348 題計算／申論題庫，支援精確子字串、MiniSearch 前綴／錯字容忍與中文字元 bigram，並套用年度／科目。
 - **FR-015**: 點選 sidebar 搜尋結果必須更新右側 `.written-card`、保留搜尋字串、同步 `is-active`／`aria-current`，並展開該題參考解答；不得改為捲動長列表。
-- **FR-016**: 計算／申論題的年度／科目切換必須原地更新 `#written-search-results`、`#written-search-detail`、摘要與 `#written-list`，不呼叫 `render()`、不替換 `#main`、不顯示 route loader；年度切換清除精確關鍵字，科目切換保留。
-- **FR-017**: 未搜尋時 sidebar 必須顯示目前年度／科目／精確關鍵字篩選後的全部題目（預設 348 題），並預設選取第一筆；搜尋結果出現時同樣預設選取第一筆。若目前選取題目不在新清單中，必須自動改選第一筆。
+- **FR-016**: 計算／申論題的年度／科目切換必須原地更新 `#written-search-results`、`#written-search-detail`、摘要與 `#written-list`，不呼叫 `render()`、不替換 `#main`、不顯示 route loader；年度／科目切換保留搜尋字串。
+- **FR-017**: 未搜尋時 sidebar 必須顯示目前年度／科目篩選後的全部題目（預設 348 題），並預設選取第一筆；搜尋結果出現時同樣預設選取第一筆。若目前選取題目不在新清單中，必須自動改選第一筆。
 - **FR-018**: 390px 時 sidebar 與右側題卡必須上下堆疊，sidebar 必須保持可捲動高度（不展開 348 題撐高頁面）；點選 sidebar 題目後必須將該題卡捲入視窗。
 - **FR-019**: 清除搜尋後 sidebar 必須恢復目前篩選的全部題目，右側保留或改選有效題卡；不得留下空白列表、舊搜尋結果或重複的題卡 ID。
 - **FR-020**: `#/past-exams/written` 的右側題卡在頁面載入、搜尋結果出現、切換題目與年度／科目切換後，預設必須展開參考解答；使用者仍可用「收合解答」按鈕收合。
 - **FR-021**: `#/past-exams` 必須與 `#/past-exams/written` 使用相同的 sidebar／detail 版面：左側 `#past-exam-search-results-panel` 顯示題目，右側 `#past-exam-panel` 顯示練習或瀏覽面板；不得再使用獨立的全寬搜尋結果區塊。
-- **FR-022**: `#/past-exams` 未搜尋時 sidebar 標題為「題目列表」，顯示目前年度／科目／精確關鍵字篩選後的全部題目與題數；搜尋時標題改為「搜尋結果」，顯示搜尋結果與筆數。
+- **FR-022**: `#/past-exams` 未搜尋時 sidebar 標題為「題目列表」，顯示目前年度／科目篩選後的全部題目與題數；搜尋時標題改為「搜尋結果」，顯示搜尋結果與筆數。
 - **FR-023**: 點選 `#/past-exams` sidebar 題目必須設定 `practiceState.index`、切換為練習模式、更新右側 `#past-exam-panel`、同步 `is-active`／`aria-current`，不得整頁重繪。
 - **FR-024**: `#/past-exams` 的「下一題／上一題」切換必須同步更新 sidebar active 題目，不重建整個 sidebar。
 - **FR-025**: 390px 時 `#/past-exams` sidebar 與右側面板必須上下堆疊，sidebar 保持可捲動高度；點選題目後必須將右側面板捲入視窗。
@@ -157,14 +157,14 @@
 - **FR-028**: 當焦點在 sidebar 題目按鈕時，`ArrowDown`／`ArrowUp` 必須切換上一題／下一題，右側題卡／練習面板即時更新、active 與焦點同步移動，抵達清單兩端時環繞；不得讓頁面捲動。`#/past-exams/written` 由 `writtenMoveSelection()` 實作，`#/past-exams` 由 `practiceMoveSelection()` 實作。
 - **FR-029**: sidebar 題目按鈕的 hover 不得把邊框改成 accent 色；只有 `.is-active`（點選或上下鍵選取）才顯示 accent 外框。非選取項目的鍵盤 focus 使用中性 `--line-strong` outline，避免與「目前選取題目」混淆；`#/past-exams` 與 `#/past-exams/written` 共用同一規則。
 - **FR-030**: `#/past-exams` 與 `#/past-exams/written` 的 sidebar 題目卡 padding 必須約為原 `12px 13px` 的三分之一（`4px`），讓 1280px 下題目卡高度約 55px、同一 sidebar 可顯示更多題目；兩個頁面共用 `.past-exam-search-result` 規則。
-- **FR-031**: 兩個考古題頁面的篩選列不得出現「次別」標籤、次別下拉選單或 `data-practice-session`／`data-written-session`；原本與次別同列的「範圍內精確篩選」保留，並改放在「搜尋」列。選擇年度時必須包含該年度全部次別（115 年為 252 題），不得預設只顯示最新一次考試；`?session=` 參數不得再影響結果。
+- **FR-031**: 兩個考古題頁面的篩選列只能有「年度」與「科目」兩列，不得出現「次別」標籤、次別下拉選單、`data-practice-session`／`data-written-session`，也不得有「範圍內精確篩選」列或 `data-practice-search`／`data-written-keyword`；搜尋統一使用上方模糊搜尋框。選擇年度時必須包含該年度全部次別（115 年為 252 題），不得預設只顯示最新一次考試；`?session=` 參數不得再影響結果。
 
 ### Key Entities
 
-- **practiceState**: 目前年度、科目、精確關鍵字、模式、索引與作答狀態。
+- **practiceState**: 目前年度、科目、模式、索引與作答狀態。
 - **PAST_EXAMS_YEAR_BUNDLES**: 以年度為鍵的分包資料；`__loadPastYear()` 按需載入。
 - **PAST_EXAMS_FULL**: 全部年度題庫；載入後可跳過後續年度分包。
-- **filter rows**: `#past-exam-filter-rows`，年度／科目／精確篩選與摘要的容器。
+- **filter rows**: `#past-exam-filter-rows`，年度／科目與摘要的容器。
 - **search jumpbar**: 搜尋提示列，獨立於篩選列，避免搜尋字串變動時重建篩選列。
 
 ## Success Criteria *(mandatory)*
@@ -184,7 +184,7 @@
 - **SC-011**: `#/past-exams/written` 與 `#/past-exams` sidebar 的 `<small>` 數量為 0，題目卡高度約 55px（1280px、348 題清單）；焦點在題目卡時 `ArrowDown` 選下一題、`ArrowUp` 選上一題，右側題卡／練習面板與 active 同步，兩端可環繞，頁面不因方向鍵捲動。
 - **SC-012**: hover 非選取題目時 computed border color 與預設相同（不變 accent），outline 為 none；點選或上下鍵選取後才出現 accent border，`is-active` 與右側內容同步；兩個考古題頁面皆一致。
 - **SC-013**: 兩個考古題 sidebar 題目卡的 computed padding 為 `4px`，1280px 下前 20 題最大高度不超過 58px（實測 54.66px），且不產生水平溢出。
-- **SC-014**: 兩個考古題頁面的篩選列標籤為「年度／科目／搜尋」，次別 select 數量為 0、`次別` 篩選標籤數量為 0；精確篩選輸入仍存在；`#/past-exams` 預設 115 年顯示 252 題（兩個次別合計），`?session=115Q2` 不改變題數。
+- **SC-014**: 兩個考古題頁面的篩選列標籤只有「年度／科目」，次別 select 數量為 0、`次別` 篩選標籤數量為 0、`data-practice-search`／`data-written-keyword` 數量為 0；`#/past-exams` 預設 115 年顯示 252 題（兩個次別合計），`?session=115Q2` 不改變題數。
 
 ## Testing Scope
 

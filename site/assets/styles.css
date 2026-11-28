@@ -6548,8 +6548,7 @@ a.landing-item:hover {
   cursor: progress;
 }
 
-.past-exam-filter-rows.is-loading .past-exam-chip,
-.past-exam-filter-rows.is-loading .past-exam-search {
+.past-exam-filter-rows.is-loading .past-exam-chip {
   pointer-events: none;
 }
 
@@ -6622,34 +6621,6 @@ a.landing-item:hover {
   border-color: var(--accent);
   background: var(--accent);
   color: var(--on-accent);
-}
-
-.past-exam-filter-tools {
-  display: flex;
-  flex: 1;
-  flex-wrap: wrap;
-  gap: 10px;
-  min-width: 0;
-}
-
-.past-exam-search {
-  min-height: 38px;
-  padding: 0 12px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--surface-2);
-  color: var(--ink);
-  font: inherit;
-  font-size: 0.84rem;
-}
-
-.past-exam-search-wrap {
-  flex: 1;
-  min-width: 190px;
-}
-
-.past-exam-search {
-  width: 100%;
 }
 
 .past-exam-filter-summary {
@@ -7384,15 +7355,6 @@ a.landing-item:hover {
   .past-exam-filter-label {
     flex-basis: auto;
     padding-top: 0;
-  }
-
-  .past-exam-filter-tools {
-    width: 100%;
-  }
-
-  .past-exam-search-wrap {
-    width: 100%;
-    min-width: 0;
   }
 
   .past-exam-card {

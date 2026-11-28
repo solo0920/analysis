@@ -218,7 +218,7 @@ async function checkPracticeSidebar(send, events, args) {
         cardHeight: Math.max(...Array.from(results).slice(0, 20).map((button) => button.getBoundingClientRect().height)),
         sessionControls: document.querySelectorAll("[data-practice-session]").length,
         filterLabels: Array.from(document.querySelectorAll("#past-exam-filter-rows .past-exam-filter-label")).map((label) => label.textContent.trim()).join("|"),
-        exactSearch: Boolean(document.querySelector("[data-practice-search]")),
+        exactSearch: document.querySelectorAll("[data-practice-search]").length,
         sidebarLeft: sidebarRect ? sidebarRect.left : -1,
         panelLeft: panelRect ? panelRect.left : -1,
         sidebarTop: sidebarRect ? sidebarRect.top : -1,
@@ -240,8 +240,8 @@ async function checkPracticeSidebar(send, events, args) {
     if (initial.smallCount) problems.push("sidebar metadata count " + initial.smallCount);
     if (viewport.width > 900 && initial.cardHeight > 58) problems.push("sidebar card height " + initial.cardHeight);
     if (initial.sessionControls) problems.push("session controls " + initial.sessionControls);
-    if (initial.filterLabels.indexOf("次別") !== -1) problems.push("session filter label " + initial.filterLabels);
-    if (!initial.exactSearch) problems.push("exact search missing");
+    if (initial.filterLabels !== "年度|科目") problems.push("filter labels " + initial.filterLabels);
+    if (initial.exactSearch) problems.push("exact search controls " + initial.exactSearch);
     if (viewport.width > 900) {
       if (!(initial.sidebarLeft < initial.panelLeft)) problems.push("sidebar is not left of panel");
     } else if (!(initial.sidebarTop < initial.panelTop)) {
@@ -401,7 +401,7 @@ async function checkWrittenSearchSidebar(send, events, args) {
         cardHeight: Math.max(...Array.from(results).slice(0, 20).map((button) => button.getBoundingClientRect().height)),
         sessionControls: document.querySelectorAll("[data-written-session]").length,
         filterLabels: Array.from(document.querySelectorAll("#written-filter-rows .past-exam-filter-label")).map((label) => label.textContent.trim()).join("|"),
-        exactSearch: Boolean(document.querySelector("[data-written-keyword]")),
+        exactSearch: document.querySelectorAll("[data-written-keyword]").length,
         resultCount: results.length,
         activeCount: active.length,
         activeId: active[0] ? active[0].dataset.writtenOpen : "",
@@ -428,8 +428,8 @@ async function checkWrittenSearchSidebar(send, events, args) {
     if (initial.smallCount) problems.push("sidebar metadata count " + initial.smallCount);
     if (viewport.width > 900 && initial.cardHeight > 58) problems.push("sidebar card height " + initial.cardHeight);
     if (initial.sessionControls) problems.push("session controls " + initial.sessionControls);
-    if (initial.filterLabels.indexOf("次別") !== -1) problems.push("session filter label " + initial.filterLabels);
-    if (!initial.exactSearch) problems.push("exact search missing");
+    if (initial.filterLabels !== "年度|科目") problems.push("filter labels " + initial.filterLabels);
+    if (initial.exactSearch) problems.push("exact search controls " + initial.exactSearch);
     if (initial.resultCount < 300) problems.push("question count " + initial.resultCount);
     if (initial.activeCount !== 1) problems.push("active question count " + initial.activeCount);
     if (initial.title !== "題目列表") problems.push("sidebar title " + initial.title);

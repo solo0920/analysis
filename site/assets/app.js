@@ -3105,7 +3105,6 @@
     practiceState = {
       year: requestedYear === "all" ? "all" : (targetYear || latestYear),
       subject: "all",
-      keyword: "",
       fuzzyQuery: pastFuzzyQuery,
       mode: "practice",
       index: 0,
@@ -3129,7 +3128,6 @@
     }
     practiceState.year = question.year;
     practiceState.subject = question.subject;
-    practiceState.keyword = "";
     pastFuzzyQuery = "";
     practiceState.fuzzyQuery = "";
     practiceState.mode = "practice";
@@ -3144,19 +3142,12 @@
     if (!practiceState) {
       return [];
     }
-    const keyword = String(practiceState.keyword || "").replace(/\s+/g, "").toLowerCase();
     return practiceQuestions.filter(function (question) {
       if (practiceState.year !== "all" && question.year !== practiceState.year) {
         return false;
       }
       if (practiceState.subject !== "all" && question.subject !== practiceState.subject) {
         return false;
-      }
-      if (keyword) {
-        const haystack = (question.stem + " " + question.options.join(" ")).replace(/\s+/g, "").toLowerCase();
-        if (haystack.indexOf(keyword) === -1) {
-          return false;
-        }
       }
       return true;
     });
@@ -3336,9 +3327,8 @@
     const yearLabel = practiceState.year === "all" ? "全部年度" : practiceState.year + " 年";
     const subject = practiceState.subject === "all" ? null : practiceSubjectMap.get(practiceState.subject);
     const subjectLabel = subject ? (subject.short || subject.name) : "全部科目";
-    const keywordLabel = practiceState.keyword ? " · 關鍵字「" + escapeHtml(practiceState.keyword) + "」" : "";
     return "<strong>" + questions.length + "</strong> 題 · " + sessionCount + " 次考試 · " +
-      escapeHtml(yearLabel) + " · " + escapeHtml(subjectLabel) + keywordLabel;
+      escapeHtml(yearLabel) + " · " + escapeHtml(subjectLabel);
   }
 
   function practiceSummaryHtml() {
@@ -3433,7 +3423,6 @@
     const previous = {
       year: practiceState.year,
       subject: practiceState.subject,
-      keyword: practiceState.keyword,
       index: practiceState.index,
       browsePage: practiceState.browsePage
     };
@@ -3443,13 +3432,8 @@
       /* file:// 或舊瀏覽器可能不允許 replaceState；不影響本次篩選。 */
     }
     practiceState.year = target;
-    practiceState.keyword = "";
     practiceState.index = 0;
     practiceState.browsePage = 0;
-    const exactInput = document.querySelector("[data-practice-search]");
-    if (exactInput) {
-      exactInput.value = "";
-    }
     practiceSyncFilterChips();
     practiceRefreshSearchScope();
     if (pastFuzzyQuery.trim()) {
@@ -3491,14 +3475,9 @@
       }
       practiceState.year = previous.year;
       practiceState.subject = previous.subject;
-      practiceState.keyword = previous.keyword;
       practiceState.index = previous.index;
       practiceState.browsePage = previous.browsePage;
       practiceLoadCurrent(practiceFilteredQuestions());
-      const exactInput = document.querySelector("[data-practice-search]");
-      if (exactInput) {
-        exactInput.value = practiceState.keyword;
-      }
       practiceSyncFilterChips();
       practiceRefreshSearchScope();
       practiceRefreshPastSearch(true);
@@ -3535,16 +3514,7 @@
     const yearLabel = practiceState.year === "all" ? "全部年度" : practiceState.year + " 年";
     const subject = practiceState.subject === "all" ? null : practiceSubjectMap.get(practiceState.subject);
     const subjectLabel = subject ? (subject.short || subject.name) : "全部科目";
-    const keywordLabel = practiceState.keyword ? " · 精確「" + practiceState.keyword + "」" : "";
-    return yearLabel + " · " + subjectLabel + keywordLabel;
-  }
-
-  function pastFuzzyMatchesKeyword(question) {
-    const keyword = normalize(practiceState && practiceState.keyword ? practiceState.keyword : "");
-    if (!keyword) {
-      return true;
-    }
-    return normalize(question.stem + " " + (question.options || []).join(" ")).indexOf(keyword) !== -1;
+    return yearLabel + " · " + subjectLabel;
   }
 
   function pastFuzzyMatchesFilters(question) {
@@ -3625,7 +3595,7 @@
     const matches = new Map();
 
     practiceQuestions.forEach(function (question) {
-      if (!pastFuzzyMatchesFilters(question) || !pastFuzzyMatchesKeyword(question)) {
+      if (!pastFuzzyMatchesFilters(question)) {
         return;
       }
       const stemText = normalize(question.stem);
@@ -3655,7 +3625,7 @@
           return;
         }
         const question = examQuestionMap.get(result.id);
-        if (!question || !Array.isArray(question.options) || !pastFuzzyMatchesKeyword(question)) {
+        if (!question || !Array.isArray(question.options)) {
           return;
         }
         matches.set(result.id, {
@@ -3669,7 +3639,7 @@
     if (normalizedQuery.length >= 3 && matches.size < max) {
       const queryGrams = characterBigrams(normalizedQuery);
       practiceQuestions.forEach(function (question) {
-        if (matches.has(question.id) || !pastFuzzyMatchesFilters(question) || !pastFuzzyMatchesKeyword(question)) {
+        if (matches.has(question.id) || !pastFuzzyMatchesFilters(question)) {
           return;
         }
         const titleScore = characterFuzzyScore(queryGrams, normalize(question.stem));
@@ -3913,7 +3883,6 @@
       }
       practiceState.year = question.year;
       practiceState.subject = question.subject;
-      practiceState.keyword = "";
       const filtered = practiceFilteredQuestions();
       index = filtered.findIndex(function (item) {
         return item.id === questionId;
@@ -3921,10 +3890,6 @@
       practiceState.index = index >= 0 ? index : 0;
       practiceState.mode = "practice";
       practiceLoadCurrent(filtered);
-      const exactInput = document.querySelector("[data-practice-search]");
-      if (exactInput) {
-        exactInput.value = "";
-      }
       practiceSyncFilterChips();
       practiceRefreshSummary();
       practiceRefreshPastSearch(true);
@@ -4038,15 +4003,6 @@
       '<div class="past-exam-filter-row">',
       '  <span class="past-exam-filter-label">科目</span>',
       '  <div class="past-exam-chips">' + subjectButtons + "</div>",
-      "</div>",
-      '<div class="past-exam-filter-row">',
-      '  <span class="past-exam-filter-label">搜尋</span>',
-      '  <div class="past-exam-filter-tools">',
-      '    <label class="past-exam-search-wrap">',
-      '      <span class="sr-only">在目前範圍內精確篩選題幹或選項</span>',
-      '      <input class="past-exam-search" type="search" data-practice-search value="' + escapeHtml(practiceState.keyword) + '" placeholder="範圍內精確篩選…" autocomplete="off">',
-      "    </label>",
-      "  </div>",
       "</div>",
       '<div class="past-exam-filter-summary" id="past-exam-filter-summary">' + practiceSummaryHtml() + "</div>"
     ].join("");
@@ -4962,7 +4918,6 @@
     writtenState = {
       year: "all",
       subject: "all",
-      keyword: "",
       open: new Set()
     };
   }
@@ -5020,19 +4975,12 @@
 
   function writtenFilteredQuestions() {
     ensureWrittenState();
-    const keyword = normalize(writtenState.keyword || "");
     return writtenQuestions.filter(function (question) {
       if (writtenState.year !== "all" && question.year !== writtenState.year) {
         return false;
       }
       if (writtenState.subject !== "all" && question.subject !== writtenState.subject) {
         return false;
-      }
-      if (keyword) {
-        const haystack = normalize(question.stem + " " + (question.kind || ""));
-        if (haystack.indexOf(keyword) === -1) {
-          return false;
-        }
       }
       return true;
     });
@@ -5046,9 +4994,8 @@
     const yearLabel = writtenState.year === "all" ? "全部年度" : writtenState.year + " 年";
     const subject = writtenState.subject === "all" ? null : writtenSubjectEntry(writtenState.subject);
     const subjectLabel = subject ? (subject.short || subject.name) : "全部科目";
-    const keywordLabel = writtenState.keyword ? " · 關鍵字「" + escapeHtml(writtenState.keyword) + "」" : "";
     return "<strong>" + questions.length + "</strong> 題 · " + sessionCount + " 次考試 · " +
-      escapeHtml(yearLabel) + " · " + escapeHtml(subjectLabel) + keywordLabel + " · 完整參考解答";
+      escapeHtml(yearLabel) + " · " + escapeHtml(subjectLabel) + " · 完整參考解答";
   }
 
   const WRITTEN_FUZZY_LIMIT = 12;
@@ -5058,16 +5005,7 @@
     const yearLabel = writtenState.year === "all" ? "全部年度" : writtenState.year + " 年";
     const subject = writtenState.subject === "all" ? null : writtenSubjectEntry(writtenState.subject);
     const subjectLabel = subject ? (subject.short || subject.name) : "全部科目";
-    const keywordLabel = writtenState.keyword ? " · 精確「" + writtenState.keyword + "」" : "";
-    return yearLabel + " · " + subjectLabel + keywordLabel;
-  }
-
-  function writtenMatchesKeyword(question) {
-    const keyword = normalize(writtenState && writtenState.keyword ? writtenState.keyword : "");
-    if (!keyword) {
-      return true;
-    }
-    return normalize(question.stem + " " + (question.kind || "")).indexOf(keyword) !== -1;
+    return yearLabel + " · " + subjectLabel;
   }
 
   function writtenMatchesMetadata(question) {
@@ -5084,7 +5022,7 @@
   }
 
   function writtenMatchesFilters(question) {
-    return writtenMatchesMetadata(question) && writtenMatchesKeyword(question);
+    return writtenMatchesMetadata(question);
   }
 
   function ensureWrittenFuzzyIndex() {
@@ -5185,7 +5123,7 @@
           return;
         }
         const question = byId.get(result.id);
-        if (!question || !writtenMatchesKeyword(question)) {
+        if (!question) {
           return;
         }
         matches.set(result.id, {
@@ -5543,14 +5481,6 @@
       subjects.map(function (subject) {
         return '<button class="past-exam-chip' + (writtenState.subject === subject.id ? " is-active" : "") + '" type="button" data-written-subject="' + escapeHtml(subject.id) + '" aria-pressed="' + (writtenState.subject === subject.id) + '">' + escapeHtml(subject.short || subject.name) + '</button>';
       }).join(""),
-      '    </div>',
-      '  </div>',
-      '  <div class="past-exam-filter-row"><span class="past-exam-filter-label">搜尋</span>',
-      '    <div class="past-exam-filter-tools">',
-      '      <label class="past-exam-search-wrap">',
-      '        <span class="sr-only">在目前範圍內精確篩選題幹或題型</span>',
-      '        <input class="past-exam-search" type="search" data-written-keyword value="' + escapeHtml(writtenState.keyword) + '" placeholder="範圍內精確篩選…" autocomplete="off">',
-      '      </label>',
       '    </div>',
       '  </div>',
       '  <div class="past-exam-filter-summary" id="written-filter-summary">' + writtenSummaryText() + '</div>'
@@ -5951,7 +5881,6 @@
     if (questionId) {
       writtenState.year = "all";
       writtenState.subject = "all";
-      writtenState.keyword = "";
       writtenState.open.add(questionId);
       writtenFuzzyQuery = "";
       writtenFuzzyState.pending = false;
@@ -6163,11 +6092,6 @@
       event.preventDefault();
       ensureWrittenState();
       writtenState.year = year.dataset.writtenYear === "all" ? "all" : Number(year.dataset.writtenYear);
-      writtenState.keyword = "";
-      const exactInput = document.querySelector("[data-written-keyword]");
-      if (exactInput) {
-        exactInput.value = "";
-      }
       writtenApplyFilterState();
       return true;
     }
@@ -6257,11 +6181,6 @@
       if (String(practiceState.year) !== targetYear) {
         practiceSetYear(targetYear, { scrollToPanel: true });
         return true;
-      }
-      practiceState.keyword = "";
-      const exactInput = document.querySelector("[data-practice-search]");
-      if (exactInput) {
-        exactInput.value = "";
       }
       practiceResetCursor(practiceFilteredQuestions());
       practiceSyncFilterChips();
@@ -6503,11 +6422,6 @@
     if (clearButton) {
       event.preventDefault();
       practiceState.subject = "all";
-      practiceState.keyword = "";
-      const exactInput = document.querySelector("[data-practice-search]");
-      if (exactInput) {
-        exactInput.value = "";
-      }
       pastFuzzyQuery = "";
       practiceState.fuzzyQuery = "";
       practiceRefreshJumpbar();
@@ -6517,7 +6431,7 @@
       pastFuzzyState.generation += 1;
       renderPracticeSidebar();
       if (practiceState.year !== "all") {
-        practiceSetYear("all", { clearKeyword: true });
+        practiceSetYear("all");
       } else {
         practiceResetCursor(practiceFilteredQuestions());
         practiceSyncFilterChips();
@@ -6558,21 +6472,6 @@
     return true;
   }
 
-  function handleWrittenKeywordInput(event) {
-    if (!writtenState) {
-      return false;
-    }
-    const input = event.target.closest("[data-written-keyword]");
-    if (!input) {
-      return false;
-    }
-    writtenState.keyword = input.value;
-    writtenRefreshSummary();
-    writtenRefreshSearchScope();
-    writtenRefreshSearch(true);
-    return true;
-  }
-
   function handlePastSearchInput(event) {
     if (!practiceState) {
       return false;
@@ -6600,24 +6499,6 @@
     if (pastFuzzyQuery.trim()) {
       schedulePastFuzzySearch(false);
     }
-    return true;
-  }
-
-  function handlePracticeInput(event) {
-    if (!practiceState) {
-      return false;
-    }
-    const input = event.target.closest("[data-practice-search]");
-    if (!input) {
-      return false;
-    }
-    practiceState.keyword = input.value;
-    practiceState.index = 0;
-    practiceState.browsePage = 0;
-    practiceLoadCurrent(practiceFilteredQuestions());
-    practiceRefreshSummary();
-    practiceRefreshPastSearch(true);
-    practiceRefreshPanel(true);
     return true;
   }
 
@@ -9253,9 +9134,7 @@
 
     main.addEventListener("input", function (event) {
       handlePastSearchInput(event);
-      handlePracticeInput(event);
       handleWrittenSearchInput(event);
-      handleWrittenKeywordInput(event);
       if (event.target.closest("[data-forecast-filter-bar]")) applyForecastFilters();
     });
 

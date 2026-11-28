@@ -7,7 +7,7 @@
 ## 結構
 
 - [x] 頁面只有一個 `.past-exam-filter-shell`，同時包含 `#past-exam-search-input` 與 `#past-exam-filter-rows`。
-- [x] 兩個考古題頁面的篩選列標籤為「年度／科目／搜尋」，沒有次別標籤、次別 select 或 `data-practice-session`／`data-written-session`；精確篩選保留在「搜尋」列。
+- [x] 兩個考古題頁面的篩選列只有「年度／科目」兩列，沒有次別標籤、次別 select、`data-practice-session`／`data-written-session`，也沒有精確篩選列或 `data-practice-search`／`data-written-keyword`；搜尋統一使用上方模糊搜尋框。
 - [x] `#/past-exams` 搜尋結果顯示在左側 `#past-exam-search-results-panel` sidebar，不使用獨立全寬結果區塊。
 - [x] 搜尋提示列獨立於 `#past-exam-filter-rows`，輸入或清除搜尋字串不重建篩選列。
 
@@ -33,7 +33,7 @@
 - [x] 年度切換以 `history.replaceState()` 同步 `?year=`。
 - [x] 年度切換不觸發 hashchange 路由重繪。
 - [x] 年度切換保留科目。
-- [x] 年度切換清除「範圍內精確篩選」與其輸入值。
+- [x] 年度切換保留科目與上方搜尋字串。
 - [x] 年度切換保留搜尋字串與搜尋結果查詢。
 - [x] 重新整理年度 deep link 可載入對應年度。
 
