@@ -383,7 +383,8 @@
     generation: 0,
     pending: false,
     results: [],
-    total: 0
+    total: 0,
+    selectedId: null
   };
   let reviewItems = [];
   let reviewKeys = new Set();
@@ -5328,29 +5329,39 @@
   }
 
   function renderWrittenFuzzyResults() {
+    const layout = document.getElementById("written-search-layout");
     const panel = document.getElementById("written-search-results-panel");
     const container = document.getElementById("written-search-results");
+    const detail = document.getElementById("written-search-detail");
     const status = document.getElementById("written-search-status");
     const clear = document.querySelector("[data-written-search-clear]");
     if (clear) {
       clear.hidden = !writtenFuzzyQuery;
     }
     if (!container) {
-      if (panel) {
-        panel.hidden = true;
-      }
+      if (layout) layout.hidden = true;
+      if (panel) panel.hidden = true;
+      if (detail) detail.hidden = true;
       return;
     }
     const query = writtenFuzzyQuery.trim();
-    if (panel) {
-      panel.hidden = !query;
-    }
-    if (!query) {
+    const active = Boolean(query);
+    if (layout) layout.hidden = !active;
+    if (panel) panel.hidden = !active;
+    if (detail) detail.hidden = !active;
+    const list = document.getElementById("written-list");
+    if (list) list.hidden = active;
+    if (!active) {
       container.hidden = true;
       container.innerHTML = "";
       if (status) {
         status.textContent = "";
       }
+      if (detail) {
+        detail.innerHTML = "";
+      }
+      writtenFuzzyState.selectedId = null;
+      writtenRefreshList();
       return;
     }
     container.hidden = false;
@@ -5367,7 +5378,7 @@
       }
     }
     if (!results.length) {
-      container.innerHTML = writtenFuzzyState.pending
+      const emptyHtml = writtenFuzzyState.pending
         ? [
           '<div class="past-exam-search-empty">',
           "  <strong>正在比對題庫…</strong>",
@@ -5380,7 +5391,21 @@
           "  <p>試試較短的關鍵字，或放寬年度、科目與次別篩選。</p>",
           "</div>"
         ].join("");
+      container.innerHTML = emptyHtml;
+      if (detail) {
+        detail.innerHTML = writtenFuzzyState.pending
+          ? '<div class="written-search-placeholder"><strong>正在比對題庫…</strong><p>同時套用目前的年度、科目與次別篩選。</p></div>'
+          : '<div class="written-search-placeholder"><strong>找不到「' + escapeHtml(query) + '」</strong><p>試試較短的關鍵字，或放寬年度、科目與次別篩選。</p></div>';
+      }
       return;
+    }
+    let selectedId = writtenFuzzyState.selectedId;
+    const selectedResult = results.find(function (result) {
+      return result.question.id === selectedId;
+    });
+    if (!selectedResult) {
+      selectedId = results[0].question.id;
+      writtenFuzzyState.selectedId = selectedId;
     }
     container.innerHTML = results.map(function (result) {
       const question = result.question;
@@ -5397,8 +5422,9 @@
         question.kind || "計算／申論",
         chapter ? chapterLabel(chapter) + " " + chapter.title : ""
       ].filter(Boolean).join(" · ");
+      const activeResult = question.id === selectedId;
       return [
-        '<button class="past-exam-search-result" type="button" data-written-search-open="' + escapeHtml(question.id) + '">',
+        '<button class="past-exam-search-result' + (activeResult ? " is-active" : "") + '" type="button" data-written-search-open="' + escapeHtml(question.id) + '"' + (activeResult ? ' aria-current="true"' : "") + '>',
         '  <span class="past-exam-search-badge">' + (question.kind === "計算題" ? "計算" : "申論") + "</span>",
         '  <span class="past-exam-search-result-body">',
         "    <strong>" + renderSearchText(question.stem) + "</strong>",
@@ -5408,6 +5434,13 @@
         "</button>"
       ].join("");
     }).join("");
+    if (detail) {
+      const selectedQuestion = writtenQuestions.find(function (question) {
+        return question.id === selectedId;
+      });
+      detail.innerHTML = selectedQuestion ? renderWrittenCard(selectedQuestion) : "";
+      refreshReviewButtons(detail);
+    }
   }
 
   function writtenRefreshSearchScope() {
@@ -5457,6 +5490,12 @@
     if (!target) {
       return;
     }
+    if (writtenFuzzyQuery.trim()) {
+      target.hidden = true;
+      target.innerHTML = "";
+      return;
+    }
+    target.hidden = false;
     const questions = writtenFilteredQuestions();
     const scrollY = window.scrollY;
     target.innerHTML = questions.length
@@ -5528,6 +5567,7 @@
   }
 
   function writtenOpenSearchResult(questionId) {
+    ensureWrittenState();
     const question = writtenQuestions.find(function (item) {
       return item.id === questionId;
     });
@@ -5535,20 +5575,25 @@
       return;
     }
     writtenState.open.add(question.id);
-    const card = document.getElementById("written-" + question.id);
-    if (card) {
-      card.outerHTML = renderWrittenCard(question);
-      refreshReviewButtons(document.getElementById("written-list"));
-    } else {
-      if (writtenKeywordTimer) {
-        window.clearTimeout(writtenKeywordTimer);
-        writtenKeywordTimer = 0;
+    writtenFuzzyState.selectedId = question.id;
+    document.querySelectorAll("[data-written-search-open]").forEach(function (button) {
+      const active = button.dataset.writtenSearchOpen === question.id;
+      button.classList.toggle("is-active", active);
+      if (active) {
+        button.setAttribute("aria-current", "true");
+      } else {
+        button.removeAttribute("aria-current");
       }
-      writtenRefreshList();
+    });
+    const detail = document.getElementById("written-search-detail");
+    if (!detail) {
+      return;
     }
-    const target = document.getElementById("written-" + question.id);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    detail.innerHTML = renderWrittenCard(question);
+    refreshReviewButtons(detail);
+    if (window.matchMedia("(max-width: 900px)").matches) {
+      const card = document.getElementById("written-" + question.id);
+      (card || detail).scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }
 
@@ -6015,6 +6060,7 @@
       writtenFuzzyState.results = [];
       writtenFuzzyState.total = 0;
       writtenFuzzyState.generation += 1;
+      writtenFuzzyState.selectedId = null;
     }
     const questions = writtenFilteredQuestions();
     const years = Array.from(new Set(writtenQuestions.map(function (q) { return q.year; }))).sort(function (a, b) { return a - b; });
@@ -6040,15 +6086,18 @@
       '    <div class="past-exam-search-jumpbar-slot" id="written-filter-jumpbar">' + renderWrittenJumpbar() + "</div>",
       '    <div class="past-exam-filter-rows" id="written-filter-rows">' + renderWrittenFilters() + "</div>",
       "  </section>",
-      '  <div class="past-exam-search-results-panel" id="written-search-results-panel" role="region" aria-label="申論題搜尋結果" hidden>',
-      '    <div class="past-exam-search-results-head">',
-      '      <p class="eyebrow">搜尋結果</p>',
-      '      <div class="past-exam-search-results-meta">',
-      '        <span id="written-search-status" role="status" aria-live="polite"></span>',
-      '        <button class="past-exam-search-jump" type="button" data-written-search-filter-jump>調整篩選 ↑</button>',
+      '  <div class="written-search-layout" id="written-search-layout" hidden>',
+      '    <aside class="past-exam-search-results-panel written-search-sidebar" id="written-search-results-panel" role="region" aria-label="申論題搜尋結果" hidden>',
+      '      <div class="past-exam-search-results-head">',
+      '        <p class="eyebrow">搜尋結果</p>',
+      '        <div class="past-exam-search-results-meta">',
+      '          <span id="written-search-status" role="status" aria-live="polite"></span>',
+      '          <button class="past-exam-search-jump" type="button" data-written-search-filter-jump>調整篩選 ↑</button>',
+      "        </div>",
       "      </div>",
-      "    </div>",
-      '    <div class="past-exam-search-results" id="written-search-results" aria-live="polite"></div>',
+      '      <div class="past-exam-search-results" id="written-search-results" aria-live="polite"></div>',
+      "    </aside>",
+      '    <div class="written-search-detail" id="written-search-detail" aria-live="polite"></div>',
       "  </div>",
       '<div class="written-list" id="written-list">' + (questions.length ? questions.map(renderWrittenCard).join("") : '<div class="past-exam-empty"><h2>目前沒有符合的題目</h2><p>換一個年度、科目或次別，或清除關鍵字再試。</p></div>') + '</div>',
       '  <div class="notice"><strong>解答說明：</strong>申論與計算題沒有官方公告解答；題卡均標示「參考解答」，107–115 年 348 題均已提供完整參考解答；若與補習班、教材或官方答案不同，請以官方與正式教材為準。</div>',
@@ -6246,6 +6295,7 @@
       if (card && question) {
         card.outerHTML = renderWrittenCard(question);
         refreshReviewButtons(document.getElementById("written-list"));
+        refreshReviewButtons(document.getElementById("written-search-detail"));
       }
       return true;
     }

@@ -128,6 +128,160 @@ function checkPage(send, events, route, selector, expectedCount) {
   return Promise.resolve(state).then((value) => ({ ...value, errors, expectedCount }));
 }
 
+async function checkPracticeNext(send, events, args) {
+  let failures = 0;
+  for (const viewport of [
+    { width: 1280, height: 1000, mobile: false, theme: "light" },
+    { width: 390, height: 900, mobile: true, theme: "dark" }
+  ]) {
+    await send("Emulation.setDeviceMetricsOverride", {
+      width: viewport.width,
+      height: viewport.height,
+      deviceScaleFactor: 1,
+      mobile: viewport.mobile
+    });
+    events.length = 0;
+    await send("Page.navigate", { url: urlFor(args.base, "/#/past-exams?question=108Q2-macro-11") });
+    const ready = await waitFor(send, `document.readyState === "complete" && Boolean(document.querySelector(".past-exam-actions [data-practice-next]"))`);
+    await evaluate(send, `document.documentElement.setAttribute("data-theme", ${JSON.stringify(viewport.theme)})`);
+    await sleep(200);
+    const order = await evaluate(send, `(() => {
+      const actions = document.querySelector(".past-exam-actions");
+      const buttons = actions ? Array.from(actions.querySelectorAll(":scope > button")) : [];
+      const submit = actions && actions.querySelector("[data-practice-submit]");
+      const next = actions && actions.querySelector("[data-practice-next]");
+      const prev = actions && actions.querySelector("[data-practice-prev]");
+      return {
+        submitIndex: buttons.indexOf(submit),
+        nextIndex: buttons.indexOf(next),
+        prevIndex: buttons.indexOf(prev),
+        nextDisabled: Boolean(next && next.disabled),
+        overflow: document.documentElement.scrollWidth - window.innerWidth
+      };
+    })()`);
+    const problems = [];
+    if (!ready) problems.push("actions missing");
+    if (order.submitIndex < 0) problems.push("submit missing");
+    if (order.nextIndex !== order.submitIndex + 1) problems.push("next not after submit");
+    if (order.prevIndex !== order.nextIndex + 1) problems.push("prev not after next");
+    if (order.nextDisabled) problems.push("next disabled");
+    if (order.overflow > 1) problems.push("overflow " + order.overflow);
+    const beforeStem = await evaluate(send, `document.querySelector(".past-exam-stem") ? document.querySelector(".past-exam-stem").textContent : ""`);
+    await evaluate(send, `document.querySelector("[data-practice-next]").click()`);
+    const advanced = await waitFor(send, `document.querySelector(".past-exam-stem") && document.querySelector(".past-exam-stem").textContent !== ${JSON.stringify(beforeStem)}`);
+    if (!advanced) problems.push("next did not advance");
+    if (problems.length) failures += 1;
+    console.log((problems.length ? "FAIL" : "ok  ") + " practice next order " + viewport.width + "px " + viewport.theme +
+      (problems.length ? " — " + problems.join("; ") : ""));
+  }
+  return failures;
+}
+
+async function checkWrittenSearchSidebar(send, events, args) {
+  let failures = 0;
+  for (const viewport of [
+    { width: 1280, height: 1000, mobile: false, theme: "light" },
+    { width: 1280, height: 1000, mobile: false, theme: "dark" },
+    { width: 390, height: 900, mobile: true, theme: "light" },
+    { width: 390, height: 900, mobile: true, theme: "dark" }
+  ]) {
+    await send("Emulation.setDeviceMetricsOverride", {
+      width: viewport.width,
+      height: viewport.height,
+      deviceScaleFactor: 1,
+      mobile: viewport.mobile
+    });
+    events.length = 0;
+    await send("Page.navigate", { url: urlFor(args.base, "/#/past-exams/written") });
+    const inputReady = await waitFor(send, `document.readyState === "complete" && Boolean(document.querySelector("#written-search-input"))`);
+    await evaluate(send, `document.documentElement.setAttribute("data-theme", ${JSON.stringify(viewport.theme)})`);
+    await evaluate(send, `(() => {
+      const input = document.querySelector("#written-search-input");
+      const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set;
+      setter.call(input, "存續期間");
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+    })()`);
+    const resultsReady = await waitFor(send, `document.querySelectorAll("#written-search-results [data-written-search-open]").length > 1`, 10000);
+    await sleep(300);
+    const state = await evaluate(send, `(() => {
+      const layout = document.querySelector("#written-search-layout");
+      const sidebar = document.querySelector("#written-search-results-panel");
+      const detail = document.querySelector("#written-search-detail");
+      const list = document.querySelector("#written-list");
+      const results = document.querySelectorAll("#written-search-results [data-written-search-open]");
+      const active = document.querySelectorAll("#written-search-results .past-exam-search-result.is-active");
+      const sidebarRect = sidebar ? sidebar.getBoundingClientRect() : null;
+      const detailRect = detail ? detail.getBoundingClientRect() : null;
+      return {
+        layoutVisible: Boolean(layout && !layout.hidden && getComputedStyle(layout).display !== "none"),
+        sidebarInside: Boolean(sidebar && sidebar.contains(document.querySelector("#written-search-results"))),
+        listHidden: Boolean(list && (list.hidden || getComputedStyle(list).display === "none")),
+        detailCard: Boolean(detail && detail.querySelector(".written-card")),
+        resultCount: results.length,
+        activeCount: active.length,
+        activeId: active[0] ? active[0].dataset.writtenSearchOpen : "",
+        detailId: detail && detail.querySelector(".written-card") ? detail.querySelector(".written-card").id : "",
+        sidebarLeft: sidebarRect ? sidebarRect.left : -1,
+        detailLeft: detailRect ? detailRect.left : -1,
+        sidebarTop: sidebarRect ? sidebarRect.top : -1,
+        detailTop: detailRect ? detailRect.top : -1,
+        overflow: document.documentElement.scrollWidth - window.innerWidth,
+        katexErrors: document.querySelectorAll(".katex-error").length
+      };
+    })()`);
+    const problems = [];
+    if (!inputReady) problems.push("search input missing");
+    if (!resultsReady) problems.push("search results missing");
+    if (!state.layoutVisible) problems.push("layout hidden");
+    if (!state.sidebarInside) problems.push("sidebar does not contain results");
+    if (!state.listHidden) problems.push("written list still visible");
+    if (!state.detailCard) problems.push("detail card missing");
+    if (state.activeCount !== 1) problems.push("active result count " + state.activeCount);
+    if (viewport.width > 900) {
+      if (!(state.sidebarLeft < state.detailLeft)) problems.push("sidebar is not left of detail");
+    } else if (!(state.sidebarTop < state.detailTop)) {
+      problems.push("sidebar is not above detail");
+    }
+    if (state.overflow > 1) problems.push("overflow " + state.overflow);
+    if (state.katexErrors) problems.push("katex errors " + state.katexErrors);
+    const secondId = await evaluate(send, `(() => {
+      const buttons = document.querySelectorAll("#written-search-results [data-written-search-open]");
+      return buttons[1] ? buttons[1].dataset.writtenSearchOpen : "";
+    })()`);
+    if (!secondId) {
+      problems.push("second result missing");
+    } else {
+      await evaluate(send, `document.querySelectorAll("#written-search-results [data-written-search-open]")[1].click()`);
+      const selected = await waitFor(send, `document.querySelector("#written-search-detail .written-card") && document.querySelector("#written-search-detail .written-card").id === ${JSON.stringify("written-" + secondId)}`, 5000);
+      const after = await evaluate(send, `(() => {
+        const active = document.querySelector("#written-search-results .past-exam-search-result.is-active");
+        return {
+          activeCount: document.querySelectorAll("#written-search-results .past-exam-search-result.is-active").length,
+          activeId: active ? active.dataset.writtenSearchOpen : "",
+          detailId: document.querySelector("#written-search-detail .written-card") ? document.querySelector("#written-search-detail .written-card").id : ""
+        };
+      })()`);
+      if (!selected) problems.push("selected detail missing");
+      if (after.activeCount !== 1) problems.push("active after click " + after.activeCount);
+      if (after.activeId !== secondId) problems.push("active id after click " + after.activeId);
+      if (after.detailId !== "written-" + secondId) problems.push("detail id after click " + after.detailId);
+    }
+    await evaluate(send, `document.querySelector("[data-written-search-clear]").click()`);
+    const restored = await waitFor(send, `document.querySelector("#written-search-layout").hidden && !document.querySelector("#written-list").hidden && document.querySelectorAll("#written-list .written-card").length > 0`, 5000);
+    const afterClear = await evaluate(send, `({
+      inputValue: document.querySelector("#written-search-input").value,
+      detailCards: document.querySelectorAll("#written-search-detail .written-card").length
+    })`);
+    if (!restored) problems.push("search clear did not restore list");
+    if (afterClear.inputValue) problems.push("search input not cleared");
+    if (afterClear.detailCards) problems.push("detail not cleared");
+    if (problems.length) failures += 1;
+    console.log((problems.length ? "FAIL" : "ok  ") + " written search sidebar " + viewport.width + "px " + viewport.theme +
+      (problems.length ? " — " + problems.join("; ") : ""));
+  }
+  return failures;
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const connection = await connect(args.cdp);
@@ -136,9 +290,7 @@ async function main() {
   await send("Runtime.enable");
   await send("Log.enable");
   await send("Network.enable");
-  if (args.remote) {
-    await send("Network.setCacheDisabled", { cacheDisabled: true });
-  }
+  await send("Network.setCacheDisabled", { cacheDisabled: true });
 
   const viewports = args.quick
     ? [{ width: 1280, height: 1000, mobile: false, theme: "light" }]
@@ -197,6 +349,22 @@ async function main() {
         (problems.length ? " — " + problems.join("; ") : "")
       );
     }
+  }
+
+  if (args.only) {
+    if (args.only.indexOf("written-exams") !== -1 || args.only.indexOf("written-search") !== -1) {
+      failed += await checkWrittenSearchSidebar(send, events, args);
+    }
+    if (args.only.indexOf("past-exam") !== -1) {
+      failed += await checkPracticeNext(send, events, args);
+    }
+    ws.close();
+    if (failed) {
+      console.error("UI checks failed: " + failed);
+      process.exit(1);
+    }
+    console.log("UI checks passed: " + results.length + " route/viewport/theme checks");
+    return;
   }
 
   // Content assertions for recently audited formulas and accounting examples.
@@ -413,51 +581,8 @@ async function main() {
   console.log((writtenProblems.length ? "FAIL" : "ok  ") + " written search no-flicker " + writtenSearchState.count +
     (writtenProblems.length ? " — " + writtenProblems.join("; ") : ""));
 
-  // Practice mode: next question must sit between reveal/collapse and previous.
-  for (const viewport of [
-    { width: 1280, height: 1000, mobile: false, theme: "light" },
-    { width: 390, height: 900, mobile: true, theme: "dark" }
-  ]) {
-    await send("Emulation.setDeviceMetricsOverride", {
-      width: viewport.width,
-      height: viewport.height,
-      deviceScaleFactor: 1,
-      mobile: viewport.mobile
-    });
-    events.length = 0;
-    await send("Page.navigate", { url: urlFor(args.base, "/#/past-exams?question=108Q2-macro-11") });
-    const ready = await waitFor(send, `document.readyState === "complete" && Boolean(document.querySelector(".past-exam-actions [data-practice-next]"))`);
-    await evaluate(send, `document.documentElement.setAttribute("data-theme", ${JSON.stringify(viewport.theme)})`);
-    await sleep(200);
-    const order = await evaluate(send, `(() => {
-      const actions = document.querySelector(".past-exam-actions");
-      const buttons = actions ? Array.from(actions.querySelectorAll(":scope > button")) : [];
-      const submit = actions && actions.querySelector("[data-practice-submit]");
-      const next = actions && actions.querySelector("[data-practice-next]");
-      const prev = actions && actions.querySelector("[data-practice-prev]");
-      return {
-        submitIndex: buttons.indexOf(submit),
-        nextIndex: buttons.indexOf(next),
-        prevIndex: buttons.indexOf(prev),
-        nextDisabled: Boolean(next && next.disabled),
-        overflow: document.documentElement.scrollWidth - window.innerWidth
-      };
-    })()`);
-    const problems = [];
-    if (!ready) problems.push("actions missing");
-    if (order.submitIndex < 0) problems.push("submit missing");
-    if (order.nextIndex !== order.submitIndex + 1) problems.push("next not after submit");
-    if (order.prevIndex !== order.nextIndex + 1) problems.push("prev not after next");
-    if (order.nextDisabled) problems.push("next disabled");
-    if (order.overflow > 1) problems.push("overflow " + order.overflow);
-    const beforeStem = await evaluate(send, `document.querySelector(".past-exam-stem") ? document.querySelector(".past-exam-stem").textContent : ""`);
-    await evaluate(send, `document.querySelector("[data-practice-next]").click()`);
-    const advanced = await waitFor(send, `document.querySelector(".past-exam-stem") && document.querySelector(".past-exam-stem").textContent !== ${JSON.stringify(beforeStem)}`);
-    if (!advanced) problems.push("next did not advance");
-    if (problems.length) failed += 1;
-    console.log((problems.length ? "FAIL" : "ok  ") + " practice next order " + viewport.width + "px " + viewport.theme +
-      (problems.length ? " — " + problems.join("; ") : ""));
-  }
+  failed += await checkWrittenSearchSidebar(send, events, args);
+  failed += await checkPracticeNext(send, events, args);
 
   // 404 page only when testing a remote origin (local Python server has its own 404).
   if (args.remote) {
