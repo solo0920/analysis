@@ -157,17 +157,19 @@ python3 -m http.server 8765 --directory site
 
 線上網站：<https://analysis.ragdemo.win/>
 
-GitHub 只作為原始碼托管與 push 觸發；推送 `main` 後由 Cloudflare Workers Builds 自動部署，不部署 GitHub Pages，也不做鏡像。
+GitHub 托管原始碼並執行 GitHub Actions 建置；推送 `main` 後由 `.github/workflows/deploy.yml` 驗證與部署。Cloudflare 只托管 Worker 與 static assets，Workers Builds 的 Git 自動部署已停用，不部署 GitHub Pages，也不做鏡像。
 
-Cloudflare Build 設定：
+GitHub Actions 設定：
 
 | 設定 | 值 |
 | --- | --- |
-| Production branch | `main` |
-| Root directory | `/` |
-| Build command | `bash site/scripts/verify.sh` |
+| Workflow | `.github/workflows/deploy.yml` |
+| Trigger | push `main`、`workflow_dispatch` |
+| Node version | 22（`actions/setup-node`，npm cache） |
+| Build command | `npm ci && bash site/scripts/verify.sh` |
 | Deploy command | `npx wrangler deploy` |
-| Node version | `NODE_VERSION=22` |
+| Secret | `CLOUDFLARE_API_TOKEN` |
+| Variable | `CLOUDFLARE_ACCOUNT_ID` |
 
 根目錄 `wrangler.toml` 定義 Worker `analysis` 與 static assets：
 
@@ -180,7 +182,7 @@ directory = "./site"
 not_found_handling = "404-page"
 ```
 
-`verify.sh` 依序建置核心 bundle、靜態頁，檢查 JavaScript 語法、內容、SEO 與站內連結，最後產生 `site/version.json`。驗證失敗時 Cloudflare build 會停止，舊版繼續留在線上。部署成功後可用 `bash site/scripts/check-live.sh` 比對正式站版本、首頁、robots、sitemap、核心 bundle 與 404。
+`verify.sh` 依序建置核心 bundle、靜態頁，檢查 JavaScript 語法、內容、SEO 與站內連結，最後產生 `site/version.json`。驗證失敗時 GitHub Actions 會停止，舊版繼續留在線上。部署成功後可用 `bash site/scripts/check-live.sh` 比對正式站版本、首頁、robots、sitemap、核心 bundle 與 404。
 
 `site/_headers` 將 HTML／CSS 設為 `max-age=0, must-revalidate`，`/assets/*.js` 設為 `max-age=31536000, immutable`；`bootstrap.js` 與 `asset-manifest.js` 例外 revalidate；`/version.json` 為 `no-store`，KaTeX CSS／字型 7 天；並加上 `Referrer-Policy`、`Permissions-Policy`、`X-Frame-Options` 與 `X-Content-Type-Options`；`site/.assetsignore` 排除 `scripts/`、README／SOURCES，以及只供建置使用的 `content-*.js` 原始檔與 `content-exam-solutions-*.js`（約 2.7MB），避免開發檔被當成 static assets 上傳；runtime bundle 不受影響。
 
@@ -355,7 +357,7 @@ node site/scripts/verify-nobel-api.js   # 需網路；比對官方 API 的年份
 
 `verify.sh` 以 `site/scripts/check-js-syntax.js` 在單一 Node 進程檢查 173 個 `.js`，另以 `node --check` 檢查 3 個 `.mjs`（共 176 個 JS），並與內容驗證平行執行；本機完整流程約 2.4 秒。`check-links.js` 會檢查 84 頁靜態 HTML 的站內 `href`／`src`／`srcset` 與 CSS `url()`（目前 2,810 條、0 斷鏈）。若只想檢查個別項目，可直接執行 `validate-content.js`、`check-js-syntax.js`、`check-links.js`、`validate-seo.js` 或 `node --check <file>`。
 
-`validate-seo.js` 會確認首頁、84 個靜態頁、Sitemap、robots.txt、llms.txt 與 JSON-LD 都使用正式網域 `https://analysis.ragdemo.win`，每個靜態頁的 canonical／og:url 指向自身，Sitemap URL 與實際頁面完全一致，且沒有殘留 GitHub Pages 網域。Cloudflare Build 的 `verify.sh` 會在部署前執行 JavaScript 語法檢查、`validate-content.js` 與 `validate-seo.js`，任一失敗即停止部署。
+`validate-seo.js` 會確認首頁、84 個靜態頁、Sitemap、robots.txt、llms.txt 與 JSON-LD 都使用正式網域 `https://analysis.ragdemo.win`，每個靜態頁的 canonical／og:url 指向自身，Sitemap URL 與實際頁面完全一致，且沒有殘留 GitHub Pages 網域。GitHub Actions 的 `verify.sh` 會在部署前執行 JavaScript 語法檢查、`validate-content.js` 與 `validate-seo.js`，任一失敗即停止部署。
 
 需要 runtime 檢查時，先啟動本機伺服器與 Chrome，再執行：
 
@@ -368,7 +370,7 @@ node site/scripts/check-ui.js
 node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 ```
 
-`check-ui.js` 會檢查 14 條路由（首頁、科目、章節、考古題、題庫模糊搜尋、計算／申論題、申論題模糊搜尋、複習題、考前猜題、諾貝爾、模型總覽、總經時事）在 390／1280、深淺主題下的 selector、`.katex-error`、水平溢出與 console errors，並以 7 個內容斷言核對 2026 NKPC、已修正的會計例題、泰勒法則與古典學派新章；另以題庫模糊搜尋實測「存續期間」可得到 12 筆結果，並檢查選擇題與計算／申論題切換年度／科目／次別時 `#main` 子節點、搜尋框、篩選列與列表節點不變、沒有 route loader。`--base` 指向正式站時另檢查 404 頁。`check-ui.js` 不在 `verify.sh` 內（Cloudflare build 不保證有 Chrome），屬部署前手動檢查；部署後改用 `check-live.sh`。
+`check-ui.js` 會檢查 14 條路由（首頁、科目、章節、考古題、題庫模糊搜尋、計算／申論題、申論題模糊搜尋、複習題、考前猜題、諾貝爾、模型總覽、總經時事）在 390／1280、深淺主題下的 selector、`.katex-error`、水平溢出與 console errors，並以 7 個內容斷言核對 2026 NKPC、已修正的會計例題、泰勒法則與古典學派新章；另以題庫模糊搜尋實測「存續期間」可得到 12 筆結果，並檢查選擇題與計算／申論題切換年度／科目／次別時 `#main` 子節點、搜尋框、篩選列與列表節點不變、沒有 route loader。`--base` 指向正式站時另檢查 404 頁。`check-ui.js` 不在 `verify.sh` 內（GitHub Actions runner 不保證有 Chrome），屬部署前手動檢查；部署後改用 `check-live.sh`。
 
 `validate-content.js` 會比對三份來源目錄的章號、章名、Part、順序、節次與頁碼，並檢查：
 
@@ -586,6 +588,8 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 
 2026-11-28 將同一套題庫搜尋套用到 `#/past-exams/written`：計算／申論題頁改為與選擇題頁一致的單一篩選卡，含模糊搜尋、搜尋範圍、年度／科目／次別、範圍內精確篩選與卡片下方的相關度排序結果；只索引 348 題計算／申論題庫。搜尋結果可點選開啟對應題卡並捲動到該題；年度／科目／次別切換改為原地更新，不呼叫 `render()`、不替換 `#main`、不顯示 route loader，搜尋字串與精確關鍵字在科目／次別切換時保留、年度切換清除精確關鍵字。390px／1280px 與 `file://` 實測「存續期間」7 筆、「股東會」13 筆，0 `.katex-error`、0 水平溢出；`check-ui.js` 新增申論題搜尋與無閃爍 smoke test。
 
+2026-11-28 部署改為 GitHub Actions 建置＋Cloudflare Workers 部署：新增 `package.json`／`package-lock.json` 固定 `wrangler@4.169.0`、`esbuild@0.28.2`，`.github/workflows/deploy.yml` 在 push `main` 後執行 `npm ci`、`verify.sh` 與 `wrangler deploy`；`build-core-bundle.js` 優先使用本地 esbuild，找不到時才以 `npx` 並加上 120 秒 timeout，失敗即停止。`verify.sh` 本機實測 1.58 秒；Cloudflare Workers Builds 的 Git 自動部署停用，避免重複建置。
+
 2026-11-27 修正 `110Q1-macro-07` 古典免疫答案（C→D）：原解析把「容易使用」當成錯誤，但古典免疫的關鍵特徵是存續期間等於目標持有期間，抵銷價格風險與再投資風險，管理的是利率風險而非信用風險。已重寫 A–D 選項分析，並同步題庫、搜尋索引、110 年分包與 `macro-13` 章節分包；390px／1280px、深淺主題與 `file://` 顯示正常。
 
 2026-11-27 重新設計 `macro-06#5` 泰勒法則：移除原有兩個子區塊，改為「公式與參數」「直覺、例子與限制」，補 John B. Taylor（1993）、TFFR／ERFFR 全稱、泰勒原則、`i_t=6%` 例子與優點／限制表。主公式改為單行 boxed，計算式與兩個方向式分列；390px 下三個區塊公式皆 `clientWidth=scrollWidth=332`、0 水平溢出；深淺主題與 1280px 正常。QTM／QT 與準備金走廊子區塊維持不變。
@@ -700,7 +704,7 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 
 1. 先更新 `documents/` 下的來源目錄。
 2. 修改對應的 `site/assets/content-*.js`；不要用另一個科目的章節補洞。模型圖變更則修改 `site/assets/diagrams-macro*.js`、`diagrams-investment.js` 或 `diagrams-accounting.js`，確認 `sectionTitle` 仍與節次相符。學派演進圖修改 `content-macro-evolution.js`；模型名稱與諾貝爾資料仍分別以 `diagrams-macro*.js`、`content-nobel.js` 為單一來源。諾貝爾年表修改 `content-nobel.js`，圖組修改 `diagrams-nobel.js`，維持 58 屆資料與 17 組模型的對應。
-3. 執行 `bash site/scripts/verify.sh`，一次完成核心 bundle／靜態頁建置、JavaScript 語法與內容平行檢查、SEO 驗證與 `site/version.json`；確認內容與網址差異都已被處理。通過後 commit、push `main`，Cloudflare Workers Builds 會自動部署；可用 `bash site/scripts/check-live.sh` 比對正式站版本。
+3. 執行 `npm ci` 安裝固定版本工具，再執行 `bash site/scripts/verify.sh`，一次完成核心 bundle／靜態頁建置、JavaScript 語法與內容平行檢查、SEO 驗證與 `site/version.json`；確認內容與網址差異都已被處理。通過後 commit、push `main`，GitHub Actions 會自動部署；可用 `bash site/scripts/check-live.sh` 比對正式站版本。
 4. 用瀏覽器檢查首頁、四個科目頁（含每章「選擇題 N 題 · 頻率 X%」與「申論題 N 題 · 頻率 X%」；總體含第 12–14 章與學派演進圖）、至少一個含模型圖的總體章、`#/models/macro`、`#/models/macro?model=<anchor>` 的模型卡跳轉與高亮、`#/macro/evolution`（舊網址 `#/subject/macro?evolution=1` 仍可開啟）、`#/nobel`、`?group=`／`?year=`／`?table=`／`?models=` 跳轉、搜尋入口（含會計名詞）、`#/sources`、`#/past-exams` 的年度／科目／次別篩選與作答、`#/past-exams/written` 的年度／科目／次別篩選、`#/investment/formulas` 的公式總表、`#/investment/technical` 的技術分析 50 指標、`#/chapter/investment-14` 的綁定公式，會計第 14、15、23 章，以及證券法規章節；章節頁另檢查選擇題展開解答後在原選項顯示正解與說明。
 5. 若修改模型圖，確認總覽頁與原章節顯示相同內容；可暫時修改記憶體中的 `MACRO_DIAGRAMS`、`INVESTMENT_DIAGRAMS`、`ACCOUNTING_DIAGRAMS` 或 `NOBEL_DIAGRAMS`，切換路由檢查資料綁定。諾貝爾頁是 `NOBEL_DATA`／`NOBEL_DIAGRAMS` 的唯一呈現頁；模型總覽不重複列諾貝爾模型。
 6. 在桌機與 390px 寬度檢查頁面沒有水平溢出；諾貝爾頁為 17 組模型，每組在桌機左右 1:1、900px 以下為單欄，模型圖可在圖表區內滑動；年份下拉可切換所屬模型並捲動，屆別晶片只切換屆別資料；並以 `file://` 開啟確認可閱讀。
@@ -710,7 +714,7 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 
 ## 設計限制
 
-- 靜態網站；建置與驗證由 Node 腳本執行，部署由 Cloudflare Workers Builds 完成；瀏覽器執行時不載入外部套件。
+- 靜態網站；建置與驗證由 Node 腳本執行，部署由 GitHub Actions 完成；瀏覽器執行時不載入外部套件。
 - 模型圖是概念示意，用於理解曲線方向與移動，不提供互動拖曳、數值模擬或實證估計。
 - 模型總覽頁是唯讀聚合視圖，不是另一份內容或線上編輯器；更新來源仍是 `diagrams-macro*.js`，變更後重新載入即可在章節頁與總覽頁看到同步結果。
 - 窄螢幕下模型圖保留最小寬度，可在圖表區塊內水平滑動，並顯示「圖表較寬」提示；頁面本身不會水平溢出。

@@ -1,3 +1,5 @@
 documents/pdfs/
 .DS_Store
+node_modules/
+.wrangler/
 site/version.json

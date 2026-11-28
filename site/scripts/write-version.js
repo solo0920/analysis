@@ -22,10 +22,11 @@ function gitSha() {
 }
 
 const sha = process.env.WORKERS_CI_COMMIT_SHA
+  || process.env.GITHUB_SHA
   || process.env.CF_PAGES_COMMIT_SHA
   || gitSha()
   || "dev";
-const branch = process.env.WORKERS_CI_BRANCH || process.env.CF_PAGES_BRANCH || "";
+const branch = process.env.WORKERS_CI_BRANCH || process.env.GITHUB_REF_NAME || process.env.CF_PAGES_BRANCH || "";
 const builtAt = new Date().toISOString();
 
 fs.writeFileSync(out, JSON.stringify({ sha, branch, builtAt }, null, 2) + "\n");

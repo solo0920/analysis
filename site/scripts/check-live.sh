@@ -54,5 +54,5 @@ for attempt in $(seq 1 "$retries"); do
 done
 
 echo "timeout: live version did not match $expected" >&2
-echo "確認 Cloudflare Build command 已設為 bash site/scripts/verify.sh，且部署已完成。" >&2
+echo "確認 GitHub Actions 的 Deploy workflow 已成功，且 Cloudflare 部署已完成。" >&2
 exit 1

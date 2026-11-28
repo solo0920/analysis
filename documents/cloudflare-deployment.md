@@ -4,25 +4,39 @@
 
 ```text
 git push origin main
-  → Cloudflare Workers Builds
+  → GitHub Actions（.github/workflows/deploy.yml）
+  → npm ci
   → bash site/scripts/verify.sh
   → npx wrangler deploy
   → Worker static assets（site/）
   → https://analysis.ragdemo.win
 ```
 
-GitHub 只作為原始碼托管與 push 觸發；不部署 GitHub Pages，也不做鏡像。GitHub Pages 已停用。
+GitHub 托管原始碼並執行建置與驗證；Cloudflare 只托管 Worker 與 static assets。Cloudflare Workers Builds 的 Git 自動部署已停用，避免同一個 push 重複建置與部署。不部署 GitHub Pages，也不做鏡像；GitHub Pages 已停用。
 
-## Cloudflare Build 設定
+## GitHub Actions 設定
 
 | 設定 | 值 |
 | --- | --- |
-| Production branch | `main` |
-| Root directory | `/` |
-| Build command | `bash site/scripts/verify.sh` |
+| Workflow | `.github/workflows/deploy.yml` |
+| Trigger | push `main`、`workflow_dispatch` |
+| Runner | `ubuntu-latest` |
+| Node version | 22（`actions/setup-node`，npm cache） |
+| Build command | `npm ci && bash site/scripts/verify.sh` |
 | Deploy command | `npx wrangler deploy` |
-| Variables and secrets | `NODE_VERSION=22` |
-| Build watch paths | 目前 `*`；可縮小為 `site/**`、`wrangler.toml`、`site/scripts/**` |
+| Secret | `CLOUDFLARE_API_TOKEN` |
+| Variable | `CLOUDFLARE_ACCOUNT_ID` |
+
+`CLOUDFLARE_API_TOKEN` 使用 Cloudflare「Edit Cloudflare Workers」範本，至少需要 `Workers Scripts:Edit` 與 `Account Settings:Read`，範圍限定 `analysis` Worker 所在帳號。
+
+首次設定：
+
+```bash
+gh variable set CLOUDFLARE_ACCOUNT_ID --body <account-id>
+gh secret set CLOUDFLARE_API_TOKEN
+```
+
+設定完成後，在 Cloudflare Dashboard → Workers & Pages → `analysis` → Settings → Build 停用 Git 自動部署（Disconnect Git repository 或關閉 automatic deployments）。Worker、網域、`wrangler.toml` 與 static assets 設定不變。
 
 ## `wrangler.toml`
 
@@ -40,25 +54,27 @@ not_found_handling = "404-page"
 `verify.sh` 會：
 
 1. 建置 `content-core-bundle.js`
-2. 產生 82 個靜態落地頁與 `sitemap.xml`
+2. 產生 83 個靜態落地頁與 `sitemap.xml`
 3. 平行檢查 JavaScript 語法與內容
 4. 驗證 SEO
 5. 檢查站內連結
-6. 產生 `site/assets/asset-manifest.js`（157 個 JS 的 content hash）
+6. 產生 `site/assets/asset-manifest.js`（158 個 JS 的 content hash）
 7. 產生 `site/version.json`
 
-目前基準：內容 195,435 項、SEO 605 項、站內連結 2,774 條、完整流程約 2.4 秒。
+目前基準：內容 196,603 項、SEO 612 項、站內連結 2,810 條、完整流程約 1.6 秒（本機，已安裝 `node_modules`）。
+
+`package.json`／`package-lock.json` 固定 `wrangler@4.169.0` 與 `esbuild@0.28.2`。`build-core-bundle.js` 優先使用本地 `node_modules/.bin/esbuild`；找不到時才退回 `npx`，並加上 120 秒 timeout，失敗即停止，不再靜默產生未 minify 的 bundle。
 
 ## 自動與手動檢查
 
 | 檢查 | 執行時機 | 內容 |
 | --- | --- | --- |
-| `bash site/scripts/verify.sh` | Cloudflare build 自動 | JS 語法、內容、SEO、站內連結、`version.json` |
+| `bash site/scripts/verify.sh` | GitHub Actions 自動 | JS 語法、內容、SEO、站內連結、`version.json` |
 | `node site/scripts/check-ui.js` | 部署前手動 | Chrome CDP：390／1280、深淺主題、首頁／章節／考古題／複習題／搜尋／404、console errors、水平溢出 |
 | `bash site/scripts/check-live.sh` | 部署後手動 | 正式站狀態、404、`version.json` 與 commit 比對 |
 | axe／Lighthouse | 大幅改版手動 | 無障礙與效能 baseline |
 
-Cloudflare build 環境不保證有 Chrome，因此 `check-ui.js` 沒有接入 `verify.sh`；UI 回歸仍需要在部署前手動跑，不能假設 CI 會把關。
+GitHub Actions runner 不保證有 Chrome，因此 `check-ui.js` 沒有接入 `verify.sh`；UI 回歸仍需要在部署前手動跑，不能假設 CI 會把關。
 
 ## 社群預覽
 
@@ -66,8 +82,8 @@ Cloudflare build 環境不保證有 Chrome，因此 `check-ui.js` 沒有接入 `
 
 ## 建議執行順序
 
-1. Cloudflare 部署失敗通知（風險覆蓋最大）
-2. 縮小 Build watch paths
+1. GitHub Actions 失敗通知（GitHub 通知設定 → Actions）
+2. 確認 Cloudflare Workers Builds 的 Git 自動部署已停用
 3. Rollback drill（維護窗口執行）
 4. Content hash＋長快取
 5. 核心 bundle 分科、搜尋索引拆分
@@ -135,6 +151,8 @@ HSTS 由 Cloudflare 維護；CSP 因為站內有 inline script／style，暫不�
 Cloudflare → Workers & Pages → `analysis` → Deployments → 選擇前一個成功版本 → Rollback。  
 Rollback 後執行 `bash site/scripts/check-live.sh` 確認版本。
 
+也可以從 GitHub Actions 重新執行舊 commit 的 `Deploy` workflow，或對 `main` 執行 `gh workflow run Deploy` 重新部署目前版本。
+
 ### Rollback drill
 
 建議在維護窗口做一次，不要在內容編輯中途進行：
@@ -142,25 +160,30 @@ Rollback 後執行 `bash site/scripts/check-live.sh` 確認版本。
 1. 記錄目前 `version.json` 的 SHA。
 2. 在 Cloudflare Deployments 選前一個成功版本 Rollback。
 3. 確認 `version.json` 變成舊 SHA，首頁與章節頁仍回 200。
-4. 重新部署目前 `main`（New deployment 或 push 一個小 commit）。
+4. 重新部署目前 `main`（`gh workflow run Deploy` 或 push 一個小 commit）。
 5. 再跑 `check-live.sh`，確認版本回到最新。
 
 ## 手動維運項目
 
-以下設定目前只能在 Cloudflare dashboard 調整：
-
-- Build watch paths 縮小：Settings → Build → Include paths 設為 `site/**`、`wrangler.toml`、`site/scripts/**`；Exclude 保留 `node_modules/**`、`.git/`
-- 部署成功／失敗通知：Cloudflare Notifications → Add → Workers Builds → 選擇 `analysis`，至少啟用失敗通知（Email／Webhook）
+- GitHub Actions secret／variable：`CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_ACCOUNT_ID`
+- Cloudflare Workers Builds：停用 Git 自動部署，避免與 GitHub Actions 重複建置
+- GitHub Actions 失敗通知：Settings → Notifications 或 repository watch 設定
 - Cache Rules（若需要更細的快取策略）
-- Workers Builds 的 API token 權限（目前 Wrangler OAuth 沒有 Builds Configuration Edit）
+- Cloudflare 部署成功／失敗通知：Notifications → Add → Workers → 選擇 `analysis`
 
 ## 常見問題
 
 **`/version.json` 404**  
-確認 Build command 是 `bash site/scripts/verify.sh`，且部署已完成。
+確認 GitHub Actions 的 `Deploy` workflow 已成功，且 `wrangler deploy` 已上傳 `site/version.json`。
 
 **正式站是舊版**  
-先看 Cloudflare Deployments 是否成功；再用 `check-live.sh` 比對版本。必要時 purge cache 或確認 `_headers` 是否生效。
+先看 GitHub Actions 與 Cloudflare Deployments 是否成功；再用 `check-live.sh` 比對版本。必要時 purge cache 或確認 `_headers` 是否生效。
+
+**GitHub Actions 部署失敗**  
+確認 repository secret `CLOUDFLARE_API_TOKEN` 與 variable `CLOUDFLARE_ACCOUNT_ID` 已設定，token 具備 `Workers Scripts:Edit` 與 `Account Settings:Read`。
+
+**GitHub Actions 一直排隊**  
+Actions 的 `created_at` 與 `run_started_at` 可看出排隊時間。這個 repo 2026-11-25 的舊 Pages workflow 正常約 29–39 秒完成；曾有一次在 GitHub 端排隊 27 分鐘，但 runner 內只跑 24 秒。若遇到長時間排隊，可 Cancel 後 Re-run，或在本機執行 `npm ci && bash site/scripts/verify.sh && npx wrangler deploy` 直接部署。Workflow 已設 `concurrency: cancel-in-progress` 與 15 分鐘 timeout。
 
 **`workers.dev` 仍可開啟**  
 在 Cloudflare Worker 的 Domains & Routes 關閉 workers.dev，或使用 API 將 subdomain `enabled` 設為 false。

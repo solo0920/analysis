@@ -248,24 +248,25 @@ flowchart LR
 - `verify-nobel-api.js`：需要網路，只比對諾貝爾年表的年份與得主，不檢查公式或模型圖。
 - 這兩個腳本只在開發／驗證時執行，不會被 `index.html` 載入，也不會增加瀏覽器執行時負擔。
 
-## 7. Cloudflare Worker 部署
+## 7. GitHub Actions 與 Cloudflare Worker 部署
 
 完整設定與 rollback／快取說明見 [`cloudflare-deployment.md`](cloudflare-deployment.md)；大型效能項目見 [`performance-backlog.md`](performance-backlog.md)。
 
 ```mermaid
 flowchart LR
-  Dev["push main"] --> Build["Cloudflare Workers Builds<br/>bash site/scripts/verify.sh"]
-  Build --> Verify["JS 語法／內容／SEO<br/>site/version.json"]
+  Dev["push main"] --> Actions["GitHub Actions<br/>npm ci + verify.sh"]
+  Actions --> Verify["JS 語法／內容／SEO<br/>site/version.json"]
   Verify --> Deploy["npx wrangler deploy"]
   Deploy --> Assets["Worker static assets<br/>directory: site/"]
   Assets --> Live["https://analysis.ragdemo.win"]
 ```
 
-- GitHub 只作為原始碼托管與 push 觸發；不部署 GitHub Pages，也不做鏡像；GitHub Pages 已停用（Pages API 回 404）。
+- GitHub 托管原始碼並執行 GitHub Actions；Cloudflare 只托管 Worker 與 static assets，Workers Builds 的 Git 自動部署已停用，避免同一個 push 重複建置。不部署 GitHub Pages，也不做鏡像；GitHub Pages 已停用（Pages API 回 404）。
 - 根目錄 `wrangler.toml` 定義 Worker `analysis`、`[assets] directory = "./site"` 與 `not_found_handling = "404-page"`。
-- Cloudflare Build command 為 `bash site/scripts/verify.sh`，Deploy command 為 `npx wrangler deploy`，Production branch 為 `main`，Node 版本為 22。
+- `.github/workflows/deploy.yml` 在 push `main` 後執行 `npm ci`、`bash site/scripts/verify.sh` 與 `npx wrangler deploy`；Runner 為 `ubuntu-latest`、Node 22、npm cache。`CLOUDFLARE_API_TOKEN` 放在 GitHub Actions secret，`CLOUDFLARE_ACCOUNT_ID` 放在 repository variable。
+- `package.json`／`package-lock.json` 固定 `wrangler@4.169.0` 與 `esbuild@0.28.2`；`build-core-bundle.js` 優先使用本地 `node_modules/.bin/esbuild`。
 - `verify.sh` 會建置核心 bundle、靜態頁，檢查 JavaScript 語法、內容與 SEO，最後產生 `site/version.json`；驗證失敗即停止部署，舊版繼續留在線上。
-- `site/404.html` 將未知路徑導回站點根目錄；Worker 以 `not_found_handling = "404-page"` 提供 404 頁面。
+- `site/404.html` 使用站點根路徑載入樣式與回首頁連結；Worker 以 `not_found_handling = "404-page"` 提供 404 頁面。
 - 部署完成後可用 `bash site/scripts/check-live.sh` 比對 `https://analysis.ragdemo.win/version.json` 與目前 commit；需要回復舊版時，在 Cloudflare Deployments 選擇前一個版本 Rollback。
 - 所有 CSS、JavaScript、SVG 與 KaTeX 字型都使用相對路徑，因此可直接在 `file://` 或任何靜態主機閱讀。
 

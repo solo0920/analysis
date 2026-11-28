@@ -1,0 +1,17 @@
+{
+  "name": "analysis-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "證券投資分析人員考試備考站靜態網站",
+  "scripts": {
+    "verify": "bash site/scripts/verify.sh",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "wrangler": "4.169.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
