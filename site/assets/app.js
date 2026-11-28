@@ -389,6 +389,7 @@
   let reviewKeys = new Set();
   let reviewReady = Promise.resolve();
   let reviewLoaded = false;
+  let reviewExplanationsPromise = null;
   let reviewStorageMode = "idb";
   let reviewDbPromise = null;
   const reviewState = { selectedKey: "", subject: "all" };
@@ -1195,6 +1196,20 @@
     ].join("");
   }
 
+  function reviewAnalysisFor(item) {
+    if (!item || item.type !== "choice") {
+      return null;
+    }
+    const live = window.PAST_EXAM_EXPLANATIONS && window.PAST_EXAM_EXPLANATIONS[item.questionId];
+    if (live && live.options) {
+      return {
+        summary: live.summary || "",
+        options: live.options || {}
+      };
+    }
+    return item.analysis || null;
+  }
+
   function renderReviewDetail(item) {
     if (!item) {
       return '<div class="review-detail-empty"><p>從左側選擇一個題號，右側會顯示題目內容。</p></div>';
@@ -1219,9 +1234,10 @@
         ].join("");
       }).join("") + "</ol>");
       body.push('<div class="review-answer-box"><span>官方答案</span><strong>' + escapeHtml(item.answerText || "—") + "</strong></div>");
-      if (item.analysis) {
+      const analysis = reviewAnalysisFor(item);
+      if (analysis) {
         const optionAnalysis = (item.options || []).map(function (option) {
-          const text = item.analysis.options ? item.analysis.options[option.letter] : "";
+          const text = analysis.options ? analysis.options[option.letter] : "";
           if (!text) {
             return "";
           }
@@ -1230,7 +1246,7 @@
         body.push([
           '<section class="review-analysis">',
           "  <h3>選項分析</h3>",
-          item.analysis.summary ? "  <p>" + renderInlineMath(item.analysis.summary) + "</p>" : "",
+          analysis.summary ? "  <p>" + renderInlineMath(analysis.summary) + "</p>" : "",
           optionAnalysis ? '  <ul>' + optionAnalysis + "</ul>" : "",
           "</section>"
         ].join(""));
@@ -1343,6 +1359,38 @@
     return '<p class="review-storage-note">' + (reviewStorageMode === "local"
       ? "此瀏覽器未提供可用的 IndexedDB，複習題暫存在 localStorage，仍只留在本機。"
       : "複習題儲存在此瀏覽器的 IndexedDB（" + REVIEW_DB_NAME + "），不會上傳；清除瀏覽器資料會一併清除。") + "</p>";
+  }
+
+  function refreshReviewDetailFromExplanations() {
+    if (!window.PAST_EXAM_EXPLANATIONS || !isReviewRoute()) {
+      return;
+    }
+    const item = reviewSelectedItem();
+    const detail = document.getElementById("review-detail");
+    if (detail && item) {
+      detail.innerHTML = renderReviewDetail(item);
+    }
+  }
+
+  function ensureReviewExplanations() {
+    if (!reviewItems.some(function (item) { return item.type === "choice"; })) {
+      return;
+    }
+    if (window.PAST_EXAM_EXPLANATIONS || typeof window.__loadExplanations !== "function") {
+      refreshReviewDetailFromExplanations();
+      return;
+    }
+    if (!reviewExplanationsPromise) {
+      reviewExplanationsPromise = ensurePastExamExplanations();
+    }
+    reviewExplanationsPromise.then(function () {
+      refreshReviewDetailFromExplanations();
+    }).catch(function (error) {
+      reviewExplanationsPromise = null;
+      if (window.console && typeof console.warn === "function") {
+        console.warn("複習題解析載入失敗：", error);
+      }
+    });
   }
 
   function renderReviewPage() {
@@ -8256,6 +8304,8 @@
       restorePastFuzzySearch();
     } else if (route.parts[0] === "past-exams" && route.parts[1] === "written") {
       restoreWrittenFuzzySearch();
+    } else if (route.parts[0] === "review") {
+      ensureReviewExplanations();
     }
 
     if (route.parts[0] === "lab" && route.parts[1] === "mermaid" && route.query.get("diagram")) {
