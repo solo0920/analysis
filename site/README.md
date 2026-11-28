@@ -10,7 +10,7 @@
 | 投資學 | `documents/investment_contents.md` | Parts 1–5，共 16 個列出的章（第 1–11 章、第 13–17 章） | Part、章號與章名依來源；章內「學習重點」是本站複習單元 |
 | 會計學 | `documents/accounting_toc.md` | 第 1–23 章，共 41 個具名節次 | 有列節名的章節照原節名呈現；未列節名的章節以「學習重點」標示。財務分析圖表內容另參考 `documents/accounting_contents.md` |
 | 證券交易相關法規與實務 | `documents/ExamScope.md`、`documents/securities_law_contents.md`、全國法規資料庫 Open API | 21 章、52 節 | 14 頁提供官方逐條全文（15 部法規、1,507 條）；7 頁以自律規範或主管機關連結與摘要呈現 |
-| 歷屆考古題練習庫 | 證基會歷屆試題下載、公開題庫鏡像 | 107–115 年、29 次考試、3,710 題選擇題＋107–115 年 348 題計算／申論題 | 選擇題可依年度／科目／次別篩選，並可用上方題庫模糊搜尋（前綴、錯字容忍、相關度排序）；每題在公布答案後顯示逐選項參考解析；計算／申論題可依年度／科目／次別篩選，並使用相同格式的題庫模糊搜尋；附完整參考解答並完成題意檢核；每題標示章節出處與考試次別，科目頁顯示各章出題次數與頻率；解題過程另整合進各科對應章節。 |
+| 歷屆考古題練習庫 | 證基會歷屆試題下載、公開題庫鏡像 | 107–115 年、29 次考試、3,710 題選擇題＋107–115 年 348 題計算／申論題 | 選擇題可依年度／科目篩選，並可用上方題庫模糊搜尋（前綴、錯字容忍、相關度排序）；每題在公布答案後顯示逐選項參考解析；計算／申論題可依年度／科目篩選，並使用相同格式的題庫模糊搜尋；附完整參考解答並完成題意檢核；每題標示章節出處與考試次別，科目頁顯示各章出題次數與頻率；解題過程另整合進各科對應章節。 |
 | 複習題清單 | 使用者在本機加入的題目 | 全站選擇題、計算／申論題、考前猜題與章節題目卡 | 每題旁有「加入複習題」按鈕；`#/review` 以「全部／總體經濟學／投資學／會計學／證券法規」科目 tabs 篩選，左側以一行一題列出該科目題號，每列右側 hover／鍵盤 focus 顯示刪除按鈕，右側顯示題目、選項、答案與參考解答；清單存於瀏覽器 IndexedDB（`analyst-review-db`），不送到後端。 |
 | 近二年總經時事 | 公開官方資料與 114–115 年試題 | 15 個國際金融與臺灣政策主題 | 美國對等關稅、Fed FOMC 與利率、全球物價、公債市場穩定、黃金、安倍三箭、加密貨幣監理、美元穩定幣、CBDC、AI、歐債、臺灣貨幣政策；12 個主題另附 KaTeX 公式與官方參考資料。20 則美國重大經濟新聞 TOP 20 摘要已整合至對應主題卡，另有 8 大優先主題與 5 題綜合申論。 |
 | 2026 年 12 月考前猜題 | 官方資料、歷屆命題邏輯與時事 | 總體 34、投資 33、會計 15、法規 15；97 題組／118 個部分；6 組整合 | 依 2026-10-23 資訊整理的單一題庫模擬猜題；同主題重複題已整併為 21 組多部分題組；含 118 個部分完整參考解答、38 條整合公式、2 組敏感度分析、8 項時事指標與準備順序；非官方題目。 |
@@ -209,7 +209,7 @@ not_found_handling = "404-page"
 - `#/investment/technical`：技術分析 50 指標（5 類；舊網址 `#/investment/technical-indicators` 也可開啟）
 - `#/subject/accounting`：會計學第 1–23 章章節地圖
 - `#/past-exams`：歷屆考古題練習庫（107–115 年、29 次、3,710 題選擇題）；左側 sidebar 未搜尋時顯示目前篩選題目、搜尋後顯示結果，右側顯示練習／瀏覽面板
-- `#/past-exams/written`：107–115 年計算／申論題（348 題；可依年度／科目／次別篩選；全部完整參考解答）；左側 sidebar 未搜尋時顯示全部題目、搜尋後顯示結果，右側顯示選取題卡並預設展開參考解答
+- `#/past-exams/written`：107–115 年計算／申論題（348 題；可依年度／科目篩選；全部完整參考解答）；左側 sidebar 未搜尋時顯示全部題目、搜尋後顯示結果，右側顯示選取題卡並預設展開參考解答
 - `#/macro-current`：近二年重要國際金融時事與臺灣總經政策（15 個主題；12 個主題含 KaTeX 公式；20 則美國重大經濟新聞摘要已整合至主題卡，另有 8 大主題與 5 題綜合申論；入口與麵包屑皆在考前猜題下）
 - `#/exam-forecast`：2026 年 12 月四科單一題庫（97 題組／118 個部分、74 個題組含「本題公式」、21 組多部分題組、6 組整合、38 條整合公式、2 組敏感度；分頁只有全部／總體／投資／會計／法規；標題下方有「近二年時事 · 總經政策」入口卡片）
 - `#/review`：複習題（IndexedDB；全部／總體／投資／會計／法規 tabs；左側一行一題的題號清單、右側題目與參考解答；`?question=` 可直接選題）
@@ -324,7 +324,7 @@ ExamSolutionData[] {
 
 - 考古題資料集中於 `site/assets/content-past-exams.js` 的 `window.PAST_EXAMS`；年度分包另註冊 `window.PAST_EXAMS_YEAR_BUNDLES`，章節分包註冊 `window.CHAPTER_DATA`，切換年度或章節時由 `app.js` 重新 hydrate，不整頁重新載入；`answer` 是官方可接受答案的字母陣列，例如 `["B", "C"]` 代表 B、C 均給分，`["A", "B", "C", "D"]` 代表 A–D 均給分。練習時選到任一個官方可接受答案都算答對。逐選項解析另存於 `content-past-exams-explanations.js` 的 `window.PAST_EXAM_EXPLANATIONS`，以題目 id 為鍵；練習模式按「看答案」、瀏覽模式按「顯示答案」後顯示，官方答案仍以 `PAST_EXAMS.answer` 為準。解析由官方答案、題幹與章節內容整理，部分批次以自動化工具輔助產生並經結構與抽樣檢核，屬本站參考解析，不是官方公告。
 - 章節解題資料集中於 `site/assets/content-exam-solutions-107.js`–`-115.js` 的 `window.EXAM_SOLUTIONS`，依年度載入（115→107）；章節頁再由 `CHAPTER_DATA` 取得當前章節的解題，避免切換章節後被其他章節覆寫；`app.js` 以 `chapterId::sectionIndex` 聚合各年資料，`strategies` 去重、`focus` 保留第一筆；`examples` 只存 `questionId`、解題步驟、學習重點與常見錯誤（`trap`），題幹與答案仍由既有題庫提供。計算／申論例題標示「本站參考解答（非官方）」，代表選擇題則連結官方答案。
-- 考古題練習進度存在 `localStorage` 的 `analyst-past-exam-progress-v1`，只記錄每題最後一次選擇的字母；不記錄個資、不送到後端。切換年度、科目、次別或搜尋時，練習與瀏覽模式會保留，按「開始練習」才切回練習模式並跳到目前範圍第一題未作答的題目。
+- 考古題練習進度存在 `localStorage` 的 `analyst-past-exam-progress-v1`，只記錄每題最後一次選擇的字母；不記錄個資、不送到後端。切換年度、科目或搜尋時，練習與瀏覽模式會保留，按「開始練習」才切回練習模式並跳到目前範圍第一題未作答的題目。
 - 複習題存在瀏覽器 IndexedDB 的 `analyst-review-db` 資料庫、`questions` 物件倉庫，以題目 key（`exam::<id>`、`forecast::<題組>::<部分>`、`integrated::<id>`）為主鍵，存題幹、選項、答案、參考解答與來源；只留在本機、不送到後端。IndexedDB 不可用時才退回 `localStorage` 的 `analyst-review-questions-v1`。<code>#/review</code> 左側只列題號（CSS `white-space: nowrap`＋ellipsis，一行一題），右側顯示完整題目內容。
 - `terms` 是 `[名詞, 定義]` 陣列。
 - `table` 可省略；有值時為 `{ title, columns, rows, note }`，在正文後渲染為比較表。桌面版保留表格，390px 改為卡片堆疊；`columns` 與每一列的長度必須一致，表格標題與內容也會併入搜尋索引。
@@ -370,7 +370,7 @@ node site/scripts/check-ui.js
 node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 ```
 
-`check-ui.js` 會檢查 14 條路由（首頁、科目、章節、考古題、題庫模糊搜尋、計算／申論題、申論題模糊搜尋、複習題、考前猜題、諾貝爾、模型總覽、總經時事）在 390／1280、深淺主題下的 selector、`.katex-error`、水平溢出與 console errors，並以 7 個內容斷言核對 2026 NKPC、已修正的會計例題、泰勒法則與古典學派新章；另以題庫模糊搜尋實測「存續期間」可得到 12 筆結果，並檢查選擇題與計算／申論題切換年度／科目／次別時 `#main` 子節點、搜尋框、篩選列與列表節點不變、沒有 route loader；練習模式另檢查「顯示答案／下一題／上一題」按鈕順序與下一題前進；選擇題另檢查 sidebar 題目列表、搜尋、無 `<small>` metadata、鍵盤 ArrowUp／ArrowDown 切換、點選切換與清除恢復；計算／申論題另檢查未搜尋 348 題 sidebar、搜尋結果 sidebar、右側題卡、預設展開參考解答、無 `<small>` metadata、鍵盤 ArrowUp／ArrowDown 切換、點選切換與清除後恢復。
+`check-ui.js` 會檢查 14 條路由（首頁、科目、章節、考古題、題庫模糊搜尋、計算／申論題、申論題模糊搜尋、複習題、考前猜題、諾貝爾、模型總覽、總經時事）在 390／1280、深淺主題下的 selector、`.katex-error`、水平溢出與 console errors，並以 7 個內容斷言核對 2026 NKPC、已修正的會計例題、泰勒法則與古典學派新章；另以題庫模糊搜尋實測「存續期間」可得到 12 筆結果，並檢查選擇題與計算／申論題切換年度／科目時 `#main` 子節點、搜尋框、篩選列與列表節點不變、沒有 route loader；練習模式另檢查「顯示答案／下一題／上一題」按鈕順序與下一題前進；選擇題另檢查 sidebar 題目列表、搜尋、無 `<small>` metadata、鍵盤 ArrowUp／ArrowDown 切換、點選切換、無次別篩選與 115 年 252 題；計算／申論題另檢查未搜尋 348 題 sidebar、搜尋結果 sidebar、右側題卡、預設展開參考解答、無 `<small>` metadata、鍵盤 ArrowUp／ArrowDown 切換、點選切換與清除後恢復、無次別篩選。
 
 可用 `--only <route>` 只跑指定路由與其互動檢查，例如 `node site/scripts/check-ui.js --only written-exams`；其他路由的內容、搜尋、申論題 smoke test 不會執行。完整 56 組只在路由／全域版面變更時跑。分級與指令見 [`documents/qa-playbook.md`](../documents/qa-playbook.md)；測試範圍規範見 [`specs/004-targeted-testing/spec.md`](../specs/004-targeted-testing/spec.md)。`--base` 指向正式站時另檢查 404 頁。`check-ui.js` 不在 `verify.sh` 內（GitHub Actions runner 不保證有 Chrome），屬部署前手動檢查；部署後改用 `check-live.sh`。
 
@@ -602,6 +602,8 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 
 2026-11-28 精簡 sidebar 題目卡並加入鍵盤切換：`#/past-exams/written` 與 `#/past-exams` 的 sidebar 移除 `<small>` metadata 行，年度／科目／次別／章節改放在按鈕 `title`；題目卡 padding 由 `12px 13px` 降為 `4px`（約三分之一），每題高度約 55px。焦點在 sidebar 題目按鈕時，`ArrowDown`／`ArrowUp` 切換下一題／上一題，右側題卡／練習面板與 active 即時更新，兩端環繞且不捲動頁面；兩頁分別由 `writtenMoveSelection()`、`practiceMoveSelection()` 實作。sidebar hover 不再顯示 accent 綠框，只有 `.is-active`（點選或上下鍵選取）才顯示 accent border；非選取項目的鍵盤 focus 使用中性 `--line-strong` outline。`check-ui.js --only written-exams` 與 `--only past-exams` 都新增無 `<small>`、題目卡高度、鍵盤切換與 hover computed style 檢查（本機 5.9 秒／4.1 秒）。
 
+2026-11-28 移除選擇題與計算／申論題的「次別」篩選：`#/past-exams` 與 `#/past-exams/written` 的篩選列不再顯示次別下拉選單，改為「年度／科目／搜尋」三列；原本與次別同列的「範圍內精確篩選」保留並移到「搜尋」列。選擇年度時包含該年度全部次別，`#/past-exams` 預設 115 年由 126 題改為 252 題（115Q1＋115Q2），`?session=` 不再影響結果； written 仍為 348 題，摘要不再顯示「全部次別」。移除 `practiceState.session`／`writtenState.session` 與相關 select、同步、篩選程式，但題目卡的 `title`、出處與題卡內「115 年第 N 次」來源標示保留。`check-ui.js --only past-exams` 與 `--only written-exams` 新增無次別控制、精確搜尋存在、115 年 252 題檢查；本機全站 56 組通過。
+
 2026-11-27 修正 `110Q1-macro-07` 古典免疫答案（C→D）：原解析把「容易使用」當成錯誤，但古典免疫的關鍵特徵是存續期間等於目標持有期間，抵銷價格風險與再投資風險，管理的是利率風險而非信用風險。已重寫 A–D 選項分析，並同步題庫、搜尋索引、110 年分包與 `macro-13` 章節分包；390px／1280px、深淺主題與 `file://` 顯示正常。
 
 2026-11-27 重新設計 `macro-06#5` 泰勒法則：移除原有兩個子區塊，改為「公式與參數」「直覺、例子與限制」，補 John B. Taylor（1993）、TFFR／ERFFR 全稱、泰勒原則、`i_t=6%` 例子與優點／限制表。主公式改為單行 boxed，計算式與兩個方向式分列；390px 下三個區塊公式皆 `clientWidth=scrollWidth=332`、0 水平溢出；深淺主題與 1280px 正常。QTM／QT 與準備金走廊子區塊維持不變。
@@ -717,7 +719,7 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 1. 先更新 `documents/` 下的來源目錄。
 2. 修改對應的 `site/assets/content-*.js`；不要用另一個科目的章節補洞。模型圖變更則修改 `site/assets/diagrams-macro*.js`、`diagrams-investment.js` 或 `diagrams-accounting.js`，確認 `sectionTitle` 仍與節次相符。學派演進圖修改 `content-macro-evolution.js`；模型名稱與諾貝爾資料仍分別以 `diagrams-macro*.js`、`content-nobel.js` 為單一來源。諾貝爾年表修改 `content-nobel.js`，圖組修改 `diagrams-nobel.js`，維持 58 屆資料與 17 組模型的對應。
 3. 執行 `npm ci` 安裝固定版本工具，再執行 `bash site/scripts/verify.sh`，一次完成核心 bundle／靜態頁建置、JavaScript 語法與內容平行檢查、SEO 驗證與 `site/version.json`；確認內容與網址差異都已被處理。通過後 commit、push `main`，GitHub Actions 會自動部署；可用 `bash site/scripts/check-live.sh` 比對正式站版本。
-4. 用瀏覽器檢查首頁、四個科目頁（含每章「選擇題 N 題 · 頻率 X%」與「申論題 N 題 · 頻率 X%」；總體含第 12–14 章與學派演進圖）、至少一個含模型圖的總體章、`#/models/macro`、`#/models/macro?model=<anchor>` 的模型卡跳轉與高亮、`#/macro/evolution`（舊網址 `#/subject/macro?evolution=1` 仍可開啟）、`#/nobel`、`?group=`／`?year=`／`?table=`／`?models=` 跳轉、搜尋入口（含會計名詞）、`#/sources`、`#/past-exams` 的年度／科目／次別篩選與作答、`#/past-exams/written` 的年度／科目／次別篩選、`#/investment/formulas` 的公式總表、`#/investment/technical` 的技術分析 50 指標、`#/chapter/investment-14` 的綁定公式，會計第 14、15、23 章，以及證券法規章節；章節頁另檢查選擇題展開解答後在原選項顯示正解與說明。
+4. 用瀏覽器檢查首頁、四個科目頁（含每章「選擇題 N 題 · 頻率 X%」與「申論題 N 題 · 頻率 X%」；總體含第 12–14 章與學派演進圖）、至少一個含模型圖的總體章、`#/models/macro`、`#/models/macro?model=<anchor>` 的模型卡跳轉與高亮、`#/macro/evolution`（舊網址 `#/subject/macro?evolution=1` 仍可開啟）、`#/nobel`、`?group=`／`?year=`／`?table=`／`?models=` 跳轉、搜尋入口（含會計名詞）、`#/sources`、`#/past-exams` 的年度／科目篩選與作答、`#/past-exams/written` 的年度／科目篩選、`#/investment/formulas` 的公式總表、`#/investment/technical` 的技術分析 50 指標、`#/chapter/investment-14` 的綁定公式，會計第 14、15、23 章，以及證券法規章節；章節頁另檢查選擇題展開解答後在原選項顯示正解與說明。
 5. 若修改模型圖，確認總覽頁與原章節顯示相同內容；可暫時修改記憶體中的 `MACRO_DIAGRAMS`、`INVESTMENT_DIAGRAMS`、`ACCOUNTING_DIAGRAMS` 或 `NOBEL_DIAGRAMS`，切換路由檢查資料綁定。諾貝爾頁是 `NOBEL_DATA`／`NOBEL_DIAGRAMS` 的唯一呈現頁；模型總覽不重複列諾貝爾模型。
 6. 在桌機與 390px 寬度檢查頁面沒有水平溢出；諾貝爾頁為 17 組模型，每組在桌機左右 1:1、900px 以下為單欄，模型圖可在圖表區內滑動；年份下拉可切換所屬模型並捲動，屆別晶片只切換屆別資料；並以 `file://` 開啟確認可閱讀。
 7. 若修改公式或模型圖，依 `SOURCES.md` 與 `documents/content_review_checklist.md` 記錄校對結果；29 條投資／總體公式與 21 張既有總體模型圖已完成公開教材核對；新增國民所得會計帳流程圖、NFIA 觀念圖、投資學 19 張教學圖（含 4 張 MMD 推導圖）與會計學 9 張教學圖（含 1 張 MMD 推導圖）為教學示意，尚未逐條教材核對；其他屆諾貝爾原始文獻與會計例題原始試卷逐題全文比對前保持「待查」；會計例題算術覆核已完成（review 2.3）。

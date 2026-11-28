@@ -6549,7 +6549,6 @@ a.landing-item:hover {
 }
 
 .past-exam-filter-rows.is-loading .past-exam-chip,
-.past-exam-filter-rows.is-loading .past-exam-select,
 .past-exam-filter-rows.is-loading .past-exam-search {
   pointer-events: none;
 }
@@ -6625,7 +6624,7 @@ a.landing-item:hover {
   color: var(--on-accent);
 }
 
-.past-exam-session-tools {
+.past-exam-filter-tools {
   display: flex;
   flex: 1;
   flex-wrap: wrap;
@@ -6633,7 +6632,6 @@ a.landing-item:hover {
   min-width: 0;
 }
 
-.past-exam-select,
 .past-exam-search {
   min-height: 38px;
   padding: 0 12px;
@@ -6643,10 +6641,6 @@ a.landing-item:hover {
   color: var(--ink);
   font: inherit;
   font-size: 0.84rem;
-}
-
-.past-exam-select {
-  min-width: 190px;
 }
 
 .past-exam-search-wrap {
@@ -7392,11 +7386,10 @@ a.landing-item:hover {
     padding-top: 0;
   }
 
-  .past-exam-session-tools {
+  .past-exam-filter-tools {
     width: 100%;
   }
 
-  .past-exam-select,
   .past-exam-search-wrap {
     width: 100%;
     min-width: 0;

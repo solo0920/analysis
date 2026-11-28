@@ -3048,10 +3048,6 @@
 
   /* ----------------------------- past exam practice ----------------------------- */
 
-  function comparePracticeSessions(a, b) {
-    return (a.year - b.year) || (a.session - b.session);
-  }
-
   function comparePracticeSessionsDesc(a, b) {
     return (b.year - a.year) || (b.session - a.session);
   }
@@ -3096,22 +3092,18 @@
     }
     const route = parseRoute();
     const requestedYear = route.query.get("year");
-    const requestedSession = route.query.get("session");
     const questionId = route.query.get("question") || "";
     let targetYear = /^\d{3}$/.test(requestedYear || "") ? Number(requestedYear) : null;
     if (!targetYear && requestedYear !== "all") {
       const match = questionId.match(/^(\d{3})/);
       if (match) targetYear = Number(match[1]);
     }
-    const allSessions = practiceSessions.slice().sort(comparePracticeSessions);
-    const yearSessions = targetYear
-      ? allSessions.filter(function (session) { return session.year === targetYear; })
-      : allSessions;
-    const latest = yearSessions.length ? yearSessions[yearSessions.length - 1] : allSessions[allSessions.length - 1];
-    const validSession = requestedSession && (requestedSession === "all" || yearSessions.some(function (session) { return session.id === requestedSession; }));
+    const years = Array.from(new Set(practiceSessions.map(function (session) {
+      return session.year;
+    }))).sort(function (a, b) { return b - a; });
+    const latestYear = years.length ? years[0] : "all";
     practiceState = {
-      year: requestedYear === "all" ? "all" : (targetYear || (latest ? latest.year : "all")),
-      session: requestedYear === "all" ? "all" : (validSession ? requestedSession : (latest ? latest.id : "all")),
+      year: requestedYear === "all" ? "all" : (targetYear || latestYear),
       subject: "all",
       keyword: "",
       fuzzyQuery: pastFuzzyQuery,
@@ -3136,7 +3128,6 @@
       return;
     }
     practiceState.year = question.year;
-    practiceState.session = question.sessionId;
     practiceState.subject = question.subject;
     practiceState.keyword = "";
     pastFuzzyQuery = "";
@@ -3149,28 +3140,6 @@
     practiceLoadCurrent(questions);
   }
 
-  function practiceSessionsForYear() {
-    if (!practiceState) {
-      return [];
-    }
-    return practiceSessions.filter(function (session) {
-      return practiceState.year === "all" || session.year === practiceState.year;
-    }).sort(comparePracticeSessionsDesc);
-  }
-
-  function practiceSyncSession() {
-    if (!practiceState) {
-      return;
-    }
-    const sessions = practiceSessionsForYear();
-    const exists = sessions.some(function (session) {
-      return session.id === practiceState.session;
-    });
-    if (practiceState.session !== "all" && !exists) {
-      practiceState.session = "all";
-    }
-  }
-
   function practiceFilteredQuestions() {
     if (!practiceState) {
       return [];
@@ -3181,9 +3150,6 @@
         return false;
       }
       if (practiceState.subject !== "all" && question.subject !== practiceState.subject) {
-        return false;
-      }
-      if (practiceState.session !== "all" && question.sessionId !== practiceState.session) {
         return false;
       }
       if (keyword) {
@@ -3370,11 +3336,9 @@
     const yearLabel = practiceState.year === "all" ? "全部年度" : practiceState.year + " 年";
     const subject = practiceState.subject === "all" ? null : practiceSubjectMap.get(practiceState.subject);
     const subjectLabel = subject ? (subject.short || subject.name) : "全部科目";
-    const session = practiceState.session === "all" ? null : practiceSessionMap.get(practiceState.session);
-    const sessionLabel = session ? session.label : "全部次別";
     const keywordLabel = practiceState.keyword ? " · 關鍵字「" + escapeHtml(practiceState.keyword) + "」" : "";
     return "<strong>" + questions.length + "</strong> 題 · " + sessionCount + " 次考試 · " +
-      escapeHtml(yearLabel) + " · " + escapeHtml(subjectLabel) + " · " + escapeHtml(sessionLabel) + keywordLabel;
+      escapeHtml(yearLabel) + " · " + escapeHtml(subjectLabel) + keywordLabel;
   }
 
   function practiceSummaryHtml() {
@@ -3421,20 +3385,6 @@
     });
   }
 
-  function practiceRefreshSessionOptions() {
-    const select = document.querySelector("[data-practice-session]");
-    if (!select) {
-      return;
-    }
-    const sessions = practiceSessionsForYear();
-    select.innerHTML = [
-      '<option value="all"' + (practiceState.session === "all" ? " selected" : "") + ">全部次別</option>"
-    ].concat(sessions.map(function (session) {
-      return '<option value="' + escapeHtml(session.id) + '"' + (practiceState.session === session.id ? " selected" : "") + ">" + escapeHtml(session.label) + "</option>";
-    })).join("");
-    select.value = practiceState.session;
-  }
-
   function practiceRefreshSearchScope() {
     const scope = document.getElementById("past-exam-search-scope");
     if (scope) {
@@ -3456,8 +3406,6 @@
   }
 
   function practiceApplyYearState() {
-    practiceSyncSession();
-    practiceRefreshSessionOptions();
     practiceSyncFilterChips();
     practiceResetCursor(practiceFilteredQuestions());
     practiceRefreshPastSearch(true);
@@ -3472,13 +3420,7 @@
     const target = targetYear === "all" ? "all" : Number(targetYear);
     const sameYear = String(practiceState.year) === String(target);
     if (sameYear) {
-      practiceState.session = "all";
       practiceResetCursor(practiceFilteredQuestions());
-      practiceSyncSession();
-      const sessionSelect = document.querySelector("[data-practice-session]");
-      if (sessionSelect) {
-        sessionSelect.value = "all";
-      }
       practiceSyncFilterChips();
       practiceRefreshPastSearch(true);
       practiceRefreshSummary();
@@ -3490,7 +3432,6 @@
     }
     const previous = {
       year: practiceState.year,
-      session: practiceState.session,
       subject: practiceState.subject,
       keyword: practiceState.keyword,
       index: practiceState.index,
@@ -3502,17 +3443,12 @@
       /* file:// 或舊瀏覽器可能不允許 replaceState；不影響本次篩選。 */
     }
     practiceState.year = target;
-    practiceState.session = "all";
     practiceState.keyword = "";
     practiceState.index = 0;
     practiceState.browsePage = 0;
     const exactInput = document.querySelector("[data-practice-search]");
     if (exactInput) {
       exactInput.value = "";
-    }
-    const sessionSelect = document.querySelector("[data-practice-session]");
-    if (sessionSelect) {
-      sessionSelect.value = "all";
     }
     practiceSyncFilterChips();
     practiceRefreshSearchScope();
@@ -3554,7 +3490,6 @@
         return;
       }
       practiceState.year = previous.year;
-      practiceState.session = previous.session;
       practiceState.subject = previous.subject;
       practiceState.keyword = previous.keyword;
       practiceState.index = previous.index;
@@ -3565,11 +3500,6 @@
         exactInput.value = practiceState.keyword;
       }
       practiceSyncFilterChips();
-      practiceSyncSession();
-      const sessionSelect = document.querySelector("[data-practice-session]");
-      if (sessionSelect) {
-        sessionSelect.value = practiceState.session;
-      }
       practiceRefreshSearchScope();
       practiceRefreshPastSearch(true);
       practiceRefreshSummary();
@@ -3600,15 +3530,13 @@
 
   function pastFuzzyScopeText() {
     if (!practiceState) {
-      return "全部年度 · 全部科目 · 全部次別";
+      return "全部年度 · 全部科目";
     }
     const yearLabel = practiceState.year === "all" ? "全部年度" : practiceState.year + " 年";
     const subject = practiceState.subject === "all" ? null : practiceSubjectMap.get(practiceState.subject);
     const subjectLabel = subject ? (subject.short || subject.name) : "全部科目";
-    const session = practiceState.session === "all" ? null : practiceSessionMap.get(practiceState.session);
-    const sessionLabel = session ? session.label : "全部次別";
     const keywordLabel = practiceState.keyword ? " · 精確「" + practiceState.keyword + "」" : "";
-    return yearLabel + " · " + subjectLabel + " · " + sessionLabel + keywordLabel;
+    return yearLabel + " · " + subjectLabel + keywordLabel;
   }
 
   function pastFuzzyMatchesKeyword(question) {
@@ -3627,9 +3555,6 @@
       return false;
     }
     if (practiceState.subject !== "all" && question.subject !== practiceState.subject) {
-      return false;
-    }
-    if (practiceState.session !== "all" && question.sessionId !== practiceState.session) {
       return false;
     }
     return true;
@@ -3792,7 +3717,7 @@
       '<div class="past-exam-search-meta">',
       '  <span id="past-exam-search-scope">搜尋範圍：' + escapeHtml(pastFuzzyScopeText()) + "</span>",
       "</div>",
-      '<p class="past-exam-search-hint" id="past-exam-search-hint">與右上角搜尋相同的模糊比對；只搜目前已載入的選擇題題庫，並套用下方年度、科目與次別篩選。按 Enter 開啟第一筆，Esc 清除。</p>'
+      '<p class="past-exam-search-hint" id="past-exam-search-hint">與右上角搜尋相同的模糊比對；只搜目前已載入的選擇題題庫，並套用下方年度與科目篩選。按 Enter 開啟第一筆，Esc 清除。</p>'
     ].join("");
   }
 
@@ -3870,8 +3795,8 @@
     if (!questions.length) {
       const label = searching ? "找不到「" + escapeHtml(query) + "」" : "目前沒有符合的題目";
       const hint = searching
-        ? "試試較短的關鍵字，或放寬年度、科目與次別篩選。"
-        : "換一個年度、科目或次別再試。";
+        ? "試試較短的關鍵字，或放寬年度與科目篩選。"
+        : "換一個年度或科目再試。";
       container.innerHTML = [
         '<div class="past-exam-search-empty">',
         "  <strong>" + label + "</strong>",
@@ -3987,7 +3912,6 @@
         return;
       }
       practiceState.year = question.year;
-      practiceState.session = question.sessionId;
       practiceState.subject = question.subject;
       practiceState.keyword = "";
       const filtered = practiceFilteredQuestions();
@@ -4002,8 +3926,6 @@
         exactInput.value = "";
       }
       practiceSyncFilterChips();
-      practiceSyncSession();
-      practiceRefreshSessionOptions();
       practiceRefreshSummary();
       practiceRefreshPastSearch(true);
     } else {
@@ -4094,11 +4016,9 @@
 
   function renderPracticeFilters() {
     ensurePracticeState();
-    practiceSyncSession();
     const years = Array.from(new Set(practiceSessions.map(function (session) {
       return session.year;
     }))).sort(function (a, b) { return b - a; });
-    const sessions = practiceSessionsForYear();
     const yearButtons = [
       '<button class="past-exam-chip' + (practiceState.year === "all" ? " is-active" : "") + '" type="button" data-practice-year="all" aria-pressed="' + (practiceState.year === "all") + '">全部年度</button>'
     ].concat(years.map(function (year) {
@@ -4108,11 +4028,6 @@
       '<button class="past-exam-chip' + (practiceState.subject === "all" ? " is-active" : "") + '" type="button" data-practice-subject="all" aria-pressed="' + (practiceState.subject === "all") + '">全部科目</button>'
     ].concat(practiceSubjects.map(function (subject) {
       return '<button class="past-exam-chip' + (practiceState.subject === subject.id ? " is-active" : "") + '" type="button" data-practice-subject="' + escapeHtml(subject.id) + '" aria-pressed="' + (practiceState.subject === subject.id) + '">' + escapeHtml(subject.short || subject.name) + "</button>";
-    })).join("");
-    const sessionOptions = [
-      '<option value="all"' + (practiceState.session === "all" ? " selected" : "") + ">全部次別</option>"
-    ].concat(sessions.map(function (session) {
-      return '<option value="' + escapeHtml(session.id) + '"' + (practiceState.session === session.id ? " selected" : "") + ">" + escapeHtml(session.label) + "</option>";
     })).join("");
 
     return [
@@ -4124,10 +4039,9 @@
       '  <span class="past-exam-filter-label">科目</span>',
       '  <div class="past-exam-chips">' + subjectButtons + "</div>",
       "</div>",
-      '<div class="past-exam-filter-row past-exam-filter-row-session">',
-      '  <span class="past-exam-filter-label">次別</span>',
-      '  <div class="past-exam-session-tools">',
-      '    <select class="past-exam-select" data-practice-session aria-label="選擇考試次別">' + sessionOptions + "</select>",
+      '<div class="past-exam-filter-row">',
+      '  <span class="past-exam-filter-label">搜尋</span>',
+      '  <div class="past-exam-filter-tools">',
       '    <label class="past-exam-search-wrap">',
       '      <span class="sr-only">在目前範圍內精確篩選題幹或選項</span>',
       '      <input class="past-exam-search" type="search" data-practice-search value="' + escapeHtml(practiceState.keyword) + '" placeholder="範圍內精確篩選…" autocomplete="off">',
@@ -4404,7 +4318,7 @@
     return [
       '<div class="past-exam-empty">',
       "  <h2>目前篩選沒有題目</h2>",
-      "  <p>換一個年度、科目或次別，或清除搜尋關鍵字再試一次。</p>",
+      "  <p>換一個年度或科目，或清除搜尋關鍵字再試一次。</p>",
       '  <button class="btn btn-primary" type="button" data-practice-clear>清除篩選</button>',
       "</div>"
     ].join("");
@@ -5048,7 +4962,6 @@
     writtenState = {
       year: "all",
       subject: "all",
-      session: "all",
       keyword: "",
       open: new Set()
     };
@@ -5072,30 +4985,6 @@
       session: question.session,
       label: question.year + " 年第 " + question.session + " 次"
     };
-  }
-
-  function writtenSessionList() {
-    const seen = new Set();
-    const sessions = [];
-    writtenQuestions.forEach(function (question) {
-      if (seen.has(question.sessionId)) {
-        return;
-      }
-      seen.add(question.sessionId);
-      sessions.push(writtenSessionEntry(question));
-    });
-    return sessions.sort(comparePracticeSessionsDesc);
-  }
-
-  function writtenSessionLabel(sessionId) {
-    const known = practiceSessionMap.get(sessionId);
-    if (known) {
-      return known.label;
-    }
-    const question = writtenQuestions.find(function (item) {
-      return item.sessionId === sessionId;
-    });
-    return question ? question.year + " 年第 " + question.session + " 次" : sessionId;
   }
 
   function writtenSubjectEntry(subjectId) {
@@ -5129,24 +5018,6 @@
     }).map(writtenSubjectEntry);
   }
 
-  function writtenSessionsForYear() {
-    ensureWrittenState();
-    return writtenSessionList().filter(function (session) {
-      return writtenState.year === "all" || session.year === writtenState.year;
-    });
-  }
-
-  function writtenSyncSession() {
-    ensureWrittenState();
-    const sessions = writtenSessionsForYear();
-    const exists = sessions.some(function (session) {
-      return session.id === writtenState.session;
-    });
-    if (writtenState.session !== "all" && !exists) {
-      writtenState.session = "all";
-    }
-  }
-
   function writtenFilteredQuestions() {
     ensureWrittenState();
     const keyword = normalize(writtenState.keyword || "");
@@ -5155,9 +5026,6 @@
         return false;
       }
       if (writtenState.subject !== "all" && question.subject !== writtenState.subject) {
-        return false;
-      }
-      if (writtenState.session !== "all" && question.sessionId !== writtenState.session) {
         return false;
       }
       if (keyword) {
@@ -5178,10 +5046,9 @@
     const yearLabel = writtenState.year === "all" ? "全部年度" : writtenState.year + " 年";
     const subject = writtenState.subject === "all" ? null : writtenSubjectEntry(writtenState.subject);
     const subjectLabel = subject ? (subject.short || subject.name) : "全部科目";
-    const sessionLabel = writtenState.session === "all" ? "全部次別" : writtenSessionLabel(writtenState.session);
     const keywordLabel = writtenState.keyword ? " · 關鍵字「" + escapeHtml(writtenState.keyword) + "」" : "";
     return "<strong>" + questions.length + "</strong> 題 · " + sessionCount + " 次考試 · " +
-      escapeHtml(yearLabel) + " · " + escapeHtml(subjectLabel) + " · " + escapeHtml(sessionLabel) + keywordLabel + " · 完整參考解答";
+      escapeHtml(yearLabel) + " · " + escapeHtml(subjectLabel) + keywordLabel + " · 完整參考解答";
   }
 
   const WRITTEN_FUZZY_LIMIT = 12;
@@ -5191,9 +5058,8 @@
     const yearLabel = writtenState.year === "all" ? "全部年度" : writtenState.year + " 年";
     const subject = writtenState.subject === "all" ? null : writtenSubjectEntry(writtenState.subject);
     const subjectLabel = subject ? (subject.short || subject.name) : "全部科目";
-    const sessionLabel = writtenState.session === "all" ? "全部次別" : writtenSessionLabel(writtenState.session);
     const keywordLabel = writtenState.keyword ? " · 精確「" + writtenState.keyword + "」" : "";
-    return yearLabel + " · " + subjectLabel + " · " + sessionLabel + keywordLabel;
+    return yearLabel + " · " + subjectLabel + keywordLabel;
   }
 
   function writtenMatchesKeyword(question) {
@@ -5212,9 +5078,6 @@
       return false;
     }
     if (writtenState.subject !== "all" && question.subject !== writtenState.subject) {
-      return false;
-    }
-    if (writtenState.session !== "all" && question.sessionId !== writtenState.session) {
       return false;
     }
     return true;
@@ -5371,7 +5234,7 @@
       '<div class="past-exam-search-meta">',
       '  <span id="written-search-scope">搜尋範圍：' + escapeHtml(writtenFuzzyScopeText()) + "</span>",
       "</div>",
-      '<p class="past-exam-search-hint" id="written-search-hint">與右上角搜尋相同的模糊比對；只搜計算／申論題庫，並套用下方年度、科目與次別篩選。按 Enter 開啟第一筆，Esc 清除。</p>'
+      '<p class="past-exam-search-hint" id="written-search-hint">與右上角搜尋相同的模糊比對；只搜計算／申論題庫，並套用下方年度與科目篩選。按 Enter 開啟第一筆，Esc 清除。</p>'
     ].join("");
   }
 
@@ -5467,8 +5330,8 @@
     if (!questions.length) {
       const label = searching ? "找不到「" + escapeHtml(query) + "」" : "目前沒有符合的題目";
       const hint = searching
-        ? "試試較短的關鍵字，或放寬年度、科目與次別篩選。"
-        : "換一個年度、科目或次別再試。";
+        ? "試試較短的關鍵字，或放寬年度與科目篩選。"
+        : "換一個年度或科目再試。";
       container.innerHTML = [
         '<div class="past-exam-search-empty">',
         "  <strong>" + label + "</strong>",
@@ -5529,20 +5392,6 @@
     });
   }
 
-  function writtenRefreshSessionOptions() {
-    const select = document.querySelector("[data-written-session]");
-    if (!select) {
-      return;
-    }
-    const sessions = writtenSessionsForYear();
-    select.innerHTML = [
-      '<option value="all"' + (writtenState.session === "all" ? " selected" : "") + ">全部次別</option>"
-    ].concat(sessions.map(function (session) {
-      return '<option value="' + escapeHtml(session.id) + '"' + (writtenState.session === session.id ? " selected" : "") + ">" + escapeHtml(session.label) + "</option>";
-    })).join("");
-    select.value = writtenState.session;
-  }
-
   function writtenRefreshSearch(immediate) {
     if (writtenFuzzyState.timer) {
       window.clearTimeout(writtenFuzzyState.timer);
@@ -5591,8 +5440,6 @@
   }
 
   function writtenApplyFilterState() {
-    writtenSyncSession();
-    writtenRefreshSessionOptions();
     writtenSyncFilterChips();
     writtenRefreshSummary();
     writtenRefreshSearchScope();
@@ -5679,15 +5526,8 @@
 
   function renderWrittenFilters() {
     ensureWrittenState();
-    writtenSyncSession();
     const years = Array.from(new Set(writtenQuestions.map(function (question) { return question.year; }))).sort(function (a, b) { return b - a; });
     const subjects = writtenSubjectList();
-    const sessions = writtenSessionsForYear();
-    const sessionOptions = [
-      '<option value="all"' + (writtenState.session === "all" ? " selected" : "") + ">全部次別</option>"
-    ].concat(sessions.map(function (session) {
-      return '<option value="' + escapeHtml(session.id) + '"' + (writtenState.session === session.id ? " selected" : "") + ">" + escapeHtml(session.label) + "</option>";
-    })).join("");
     return [
       '  <div class="past-exam-filter-row"><span class="past-exam-filter-label">年度</span>',
       '    <div class="past-exam-chips">',
@@ -5705,10 +5545,8 @@
       }).join(""),
       '    </div>',
       '  </div>',
-      '  <div class="past-exam-filter-row past-exam-filter-row-session">',
-      '    <span class="past-exam-filter-label">次別</span>',
-      '    <div class="past-exam-session-tools">',
-      '      <select class="past-exam-select" data-written-session aria-label="選擇考試次別">' + sessionOptions + '</select>',
+      '  <div class="past-exam-filter-row"><span class="past-exam-filter-label">搜尋</span>',
+      '    <div class="past-exam-filter-tools">',
       '      <label class="past-exam-search-wrap">',
       '        <span class="sr-only">在目前範圍內精確篩選題幹或題型</span>',
       '        <input class="past-exam-search" type="search" data-written-keyword value="' + escapeHtml(writtenState.keyword) + '" placeholder="範圍內精確篩選…" autocomplete="off">',
@@ -6113,7 +5951,6 @@
     if (questionId) {
       writtenState.year = "all";
       writtenState.subject = "all";
-      writtenState.session = "all";
       writtenState.keyword = "";
       writtenState.open.add(questionId);
       writtenFuzzyQuery = "";
@@ -6261,7 +6098,7 @@
       "      <div>",
       '        <p class="eyebrow">年度一覽</p>',
       "        <h2>依考試年份挑選</h2>",
-      "        <p>先選年度，再縮小到科目或單一次別；練習紀錄只存在你的瀏覽器。</p>",
+      "        <p>先選年度，再縮小到科目；練習紀錄只存在你的瀏覽器。</p>",
       "      </div>",
       "    </div>",
       renderPastExamYearOverview(),
@@ -6331,7 +6168,6 @@
       if (exactInput) {
         exactInput.value = "";
       }
-      writtenSyncSession();
       writtenApplyFilterState();
       return true;
     }
@@ -6422,7 +6258,6 @@
         practiceSetYear(targetYear, { scrollToPanel: true });
         return true;
       }
-      practiceState.session = "all";
       practiceState.keyword = "";
       const exactInput = document.querySelector("[data-practice-search]");
       if (exactInput) {
@@ -6430,11 +6265,6 @@
       }
       practiceResetCursor(practiceFilteredQuestions());
       practiceSyncFilterChips();
-      practiceSyncSession();
-      const sessionSelect = document.querySelector("[data-practice-session]");
-      if (sessionSelect) {
-        sessionSelect.value = "all";
-      }
       practiceRefreshPastSearch(true);
       practiceRefreshSummary();
       practiceRefreshPanel(true);
@@ -6450,13 +6280,7 @@
         practiceSetYear(targetYear);
         return true;
       }
-      practiceState.session = "all";
       practiceResetCursor(practiceFilteredQuestions());
-      practiceSyncSession();
-      const sessionSelect = document.querySelector("[data-practice-session]");
-      if (sessionSelect) {
-        sessionSelect.value = "all";
-      }
       practiceSyncFilterChips();
       practiceRefreshPastSearch(true);
       practiceRefreshSummary();
@@ -6679,7 +6503,6 @@
     if (clearButton) {
       event.preventDefault();
       practiceState.subject = "all";
-      practiceState.session = "all";
       practiceState.keyword = "";
       const exactInput = document.querySelector("[data-practice-search]");
       if (exactInput) {
@@ -6698,11 +6521,6 @@
       } else {
         practiceResetCursor(practiceFilteredQuestions());
         practiceSyncFilterChips();
-        practiceSyncSession();
-        const sessionSelect = document.querySelector("[data-practice-session]");
-        if (sessionSelect) {
-          sessionSelect.value = "all";
-        }
         practiceRefreshPastSearch(true);
         practiceRefreshSummary();
         practiceRefreshPanel(true);
@@ -6711,36 +6529,6 @@
     }
 
     return false;
-  }
-
-  function handlePracticeChange(event) {
-    if (!practiceState) {
-      return false;
-    }
-    const select = event.target.closest("[data-practice-session]");
-    if (!select) {
-      return false;
-    }
-    practiceState.session = select.value;
-    practiceResetCursor(practiceFilteredQuestions());
-    practiceRefreshPastSearch(true);
-    practiceRefreshSummary();
-    practiceRefreshPanel(true);
-    return true;
-  }
-
-  function handleWrittenChange(event) {
-    if (!document.getElementById("written-search-layout")) {
-      return false;
-    }
-    const select = event.target.closest("[data-written-session]");
-    if (!select) {
-      return false;
-    }
-    ensureWrittenState();
-    writtenState.session = select.value;
-    writtenApplyFilterState();
-    return true;
   }
 
   function handleWrittenSearchInput(event) {
@@ -6916,7 +6704,7 @@
       '        <div>',
       '          <p class="eyebrow">歷屆試題</p>',
       '          <strong>用考古題練習庫檢查吸收程度</strong>',
-      "          <span>收錄 107–115 年共 29 次、3,710 題選擇題；可依年度、科目與考試次別篩選，先作答再看答案，練習紀錄只存在你的瀏覽器。</span>",
+      "          <span>收錄 107–115 年共 29 次、3,710 題選擇題；可依年度與科目篩選，先作答再看答案，練習紀錄只存在你的瀏覽器。</span>",
       '          <span class="subject-written-cta-note">4 科 · 9 個年度 · 29 次考試</span>',
       "        </div>",
       '        <span class="subject-written-cta-arrow">開始練考古題 →</span>',
@@ -7924,7 +7712,7 @@
       "      <li>四個科目的來源目錄不同：總體經濟學使用 <code>gross_economics_contents.md</code>（第 11–13 章為金融市場）；投資學使用 <code>investment_contents.md</code>；會計學章節使用 <code>accounting_toc.md</code>、財務分析圖表使用 <code>accounting_contents.md</code>；證券法規使用 <code>securities_law_contents.md</code>；不以其中一科的章節補另一科。</li>",
       "      <li>依投資學來源目錄，章號由第十一章直接跳到第十三章；本站保留原始編號，不自行補章。</li>",
       "      <li>總體經濟學另設「模型總覽」（#/models/macro），依 13 章集中 33 張章節圖（含 1 張國民所得流程圖、1 張 NFIA 觀念圖、1 張 MMD 總體模型地圖、5 張學派模型補充與 4 張題庫導向圖）；「歷年諾貝爾經濟學獎」（#/nobel）則以 17 張模型模組呈現 58 屆資料，每組左右 1:1 排列屆別資料、模型圖與變數／參數，兩頁共用同一份模型資料。</li>",
-      "      <li>「考古題練習庫」（#/past-exams）收錄 107–115 年共 29 次、3,710 題選擇題；可依年度、科目與次別篩選，先作答再看答案。練習紀錄只存在瀏覽器，換裝置不會同步；申論題與計算題請點原始試題連結。</li>",
+      "      <li>「考古題練習庫」（#/past-exams）收錄 107–115 年共 29 次、3,710 題選擇題；可依年度與科目篩選，先作答再看答案。練習紀錄只存在瀏覽器，換裝置不會同步；申論題與計算題請點原始試題連結。</li>",
       "      <li>名詞與公式以臺灣官方網站（主計總處、中央銀行、金管會、證交所、期交所等）與繁體中文公開資料交叉核對。</li>",
       "      <li>同一公式若在不同來源有不同符號定義，應先確認假設與適用條件，再以官方或正式教材為準。</li>",
       "      <li>可將同一節內容交給 ChatGPT、Gemini 或 Claude 做獨立比較，特別檢查定義、公式符號、適用條件與數值例子；跨模型一致不代表一定正確，仍要回到原始來源。</li>",
@@ -8078,7 +7866,7 @@
       return "107–115 年 348 題計算／申論題，附完整參考解答、章節出處與題意檢核。";
     }
     if (parts[0] === "past-exams") {
-      return "107–115 年 29 次、3,710 題選擇題，逐選項解析與年度／科目／次別篩選。";
+      return "107–115 年 29 次、3,710 題選擇題，逐選項解析與年度／科目篩選。";
     }
     if (parts[0] === "macro-current") {
       return "15 個近二年總經時事、20 則美國重大經濟新聞摘要、KaTeX 公式與考試框架。";
@@ -9460,13 +9248,7 @@
     });
 
     main.addEventListener("change", function (event) {
-      if (handleNobelChange(event)) {
-        return;
-      }
-      if (handleWrittenChange(event)) {
-        return;
-      }
-      handlePracticeChange(event);
+      handleNobelChange(event);
     });
 
     main.addEventListener("input", function (event) {

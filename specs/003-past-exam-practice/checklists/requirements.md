@@ -7,17 +7,18 @@
 ## 結構
 
 - [x] 頁面只有一個 `.past-exam-filter-shell`，同時包含 `#past-exam-search-input` 與 `#past-exam-filter-rows`。
+- [x] 兩個考古題頁面的篩選列標籤為「年度／科目／搜尋」，沒有次別標籤、次別 select 或 `data-practice-session`／`data-written-session`；精確篩選保留在「搜尋」列。
 - [x] `#/past-exams` 搜尋結果顯示在左側 `#past-exam-search-results-panel` sidebar，不使用獨立全寬結果區塊。
 - [x] 搜尋提示列獨立於 `#past-exam-filter-rows`，輸入或清除搜尋字串不重建篩選列。
 
 ## 無閃爍切換
 
-- [x] 年度／科目／次別切換不呼叫 `render()`。
+- [x] 年度／科目切換不呼叫 `render()`。
 - [x] 切換時 `#main` 直接子節點不變。
 - [x] 切換時 `#past-exam-search-input`、`#past-exam-filter-rows`、`#past-exam-panel` 的 DOM 身分不變。
 - [x] 切換時不出現 `#route-loader` 或 `documentElement.is-routing`。
 - [x] 切換前後 `scrollY` 差異 ≤ 1px。
-- [x] 年度／科目／次別只更新現有按鈕的 `is-active`／`aria-pressed` 與選單選項。
+- [x] 年度／科目只更新現有按鈕的 `is-active`／`aria-pressed`。
 
 ## 年度分包
 
@@ -31,7 +32,7 @@
 
 - [x] 年度切換以 `history.replaceState()` 同步 `?year=`。
 - [x] 年度切換不觸發 hashchange 路由重繪。
-- [x] 年度切換保留科目，次別重設為「全部次別」。
+- [x] 年度切換保留科目。
 - [x] 年度切換清除「範圍內精確篩選」與其輸入值。
 - [x] 年度切換保留搜尋字串與搜尋結果查詢。
 - [x] 重新整理年度 deep link 可載入對應年度。
@@ -58,7 +59,7 @@
 - [x] 未搜尋時 sidebar 標題為「題目列表」，顯示目前篩選的全部題目；搜尋時標題改為「搜尋結果」。
 - [x] 點選 sidebar 題目會更新 `practiceState.index`、右側題幹、`is-active` 與 `aria-current`，不整頁重繪。
 - [x] 「下一題／上一題」切換後 sidebar active 題目同步更新。
-- [x] 年度／科目／次別切換後 sidebar 與右側面板原地更新；目前題目不在新範圍時改選第一題。
+- [x] 年度／科目切換後 sidebar 與右側面板原地更新；目前題目不在新範圍時改選第一題。
 - [x] 390px sidebar 與右側面板上下堆疊，sidebar 保持可捲動高度，點選後捲到面板。
 - [x] 年度一覽保留在 sidebar／detail 版面下方。
 
@@ -66,8 +67,8 @@
 
 - [x] 390px／1280px、深淺主題與 `file://` 實測通過。
 - [x] 0 `.katex-error`、0 水平溢出。
-- [x] 目標式檢查 `check-ui.js --only written-exams` 通過（含預設參考解答、sidebar 互動、無 `<small>`、鍵盤上下切換）。
-- [x] 目標式檢查 `check-ui.js --only past-exams` 通過（含選擇題 sidebar、搜尋、點選與清除恢復）。
+- [x] 目標式檢查 `check-ui.js --only past-exams` 通過（含選擇題 sidebar、搜尋、點選與清除恢復、無次別篩選、115 年 252 題）。
+- [x] 目標式檢查 `check-ui.js --only written-exams` 通過（含預設參考解答、sidebar 互動、無 `<small>`、鍵盤上下切換、無次別篩選）。
 - [x] 完整 `check-ui.js` 56 組路由／viewport／theme 檢查通過。
 - [x] 完整檢查只在需要全站 smoke test 時執行；本次 sidebar 變更的預設範圍為 `--only written-exams` 與 `--only past-exams`。
 - [x] 規格與 `documents/architecture.md` 已同步。
