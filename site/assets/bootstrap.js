@@ -249,6 +249,10 @@
     return loadBundle("pastSearch");
   };
 
+  window.__loadPastYear = function (year) {
+    return loadBundle(year === "all" ? "pastAll" : "pastYear:" + year);
+  };
+
   const prefetched = new Set();
   function prefetchHref(href) {
     if (!href || href.indexOf("#/") !== 0) return;

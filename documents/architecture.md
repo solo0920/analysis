@@ -1,6 +1,6 @@
 # 分析師備考站 — 系統架構
 
-更新：2026-10-24
+更新：2026-11-28
 
 本專案是**純靜態單頁網站**。`site/index.html` 只提供固定外殼，所有頁面由 `site/assets/app.js` 依 hash route 渲染到 `#main`。內容以 `window.*` 全域物件在瀏覽器載入，沒有後端、資料庫或執行時 API 請求；效能分包檔由 Node 建置腳本事先產生，瀏覽器端不需要建置。
 
@@ -132,6 +132,14 @@ sequenceDiagram
 ```
 
 跨 bundle 導覽不再 `location.reload()`；bootstrap 以 `stopImmediatePropagation()` 暫停 app 對舊資料的 render，待缺少 bundle 載入後呼叫 `window.__softRefreshApp()`。章節資料註冊於 `window.CHAPTER_DATA`、年度資料註冊於 `window.PAST_EXAMS_YEAR_BUNDLES`，因此切回已載入的章節或年度仍能取得正確資料。載入失敗時保留重試與最後的整頁重新載入 fallback。
+
+### 3.1 考古題搜尋與篩選的原地更新
+
+`#/past-exams` 的題庫模糊搜尋與年度／科目／次別整合在同一個 `.past-exam-filter-shell`；搜尋結果列在卡片下方。切換篩選條件時**不走 hash 路由**：`practiceSetYear()` 直接更新 `practiceState`、年度晶片、搜尋範圍與摘要，並以 `history.replaceState()` 同步 `?year=`，因此不會觸發 `hashchange`、`render()`、`#route-loader` 或 `#main` 替換。
+
+尚未載入的年度分包由 bootstrap 暴露的 `window.__loadPastYear(year)` 直接載入（`pastAll` 或 `pastYear:<year>`），不使用全螢幕 loader；載入期間在現有摘要顯示「正在載入…」，篩選列加上 `aria-busy` 與 `is-loading`，完成後才 `hydrateData()` 並更新摘要、面板與搜尋結果。科目在年度切換時保留、次別重設為全部次別、精確關鍵字清除；搜尋字串、搜尋框節點、篩選列容器與捲動位置保留。載入失敗會回復切換前狀態並顯示提示。
+
+年度／科目／次別只更新現有按鈕的 `is-active`／`aria-pressed` 與選單選項，不重建整個篩選列；搜尋提示列獨立於 `#past-exam-filter-rows`，因此輸入或清除搜尋字串也不會重建篩選列。`check-ui.js` 會比對切換前後的 `#main` 子節點、搜尋框、篩選列、面板節點與 `scrollY`，並確認沒有 route loader。
 
 ## 4. 路由與視圖
 

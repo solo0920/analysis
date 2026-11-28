@@ -6470,8 +6470,26 @@ a.landing-item:hover {
   box-shadow: var(--shadow-sm);
 }
 
+.past-exam-search-jumpbar-slot {
+  padding-top: 16px;
+}
+
+.past-exam-search-jumpbar-slot:empty {
+  display: none;
+}
+
 .past-exam-filter-rows {
   padding-top: 16px;
+}
+
+.past-exam-filter-rows.is-loading {
+  cursor: progress;
+}
+
+.past-exam-filter-rows.is-loading .past-exam-chip,
+.past-exam-filter-rows.is-loading .past-exam-select,
+.past-exam-filter-rows.is-loading .past-exam-search {
+  pointer-events: none;
 }
 
 .past-exam-filter-row {
@@ -6482,8 +6500,7 @@ a.landing-item:hover {
   border-top: 1px solid var(--line);
 }
 
-.past-exam-filter-row:first-child,
-.past-exam-filter-jumpbar + .past-exam-filter-row {
+.past-exam-filter-row:first-child {
   padding-top: 0;
   border-top: 0;
 }
@@ -6494,7 +6511,6 @@ a.landing-item:hover {
   align-items: center;
   justify-content: space-between;
   gap: 6px 14px;
-  margin-bottom: 12px;
   padding: 8px 10px;
   border-radius: 8px;
   background: var(--accent-soft);

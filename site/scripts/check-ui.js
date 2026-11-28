@@ -280,6 +280,55 @@ async function main() {
   console.log((pastSearchProblems.length ? "FAIL" : "ok  ") + " past search results " + pastSearchState.count +
     (pastSearchProblems.length ? " — " + pastSearchProblems.join("; ") : ""));
 
+  // Filter changes must mutate in place: no route loader, no #main replacement, no scroll jump.
+  const filterBefore = await evaluate(send, `(() => {
+    const main = document.querySelector("#main");
+    window.__filterRefs = {
+      kids: Array.from(main.children),
+      search: document.querySelector("#past-exam-search-input"),
+      rows: document.querySelector("#past-exam-filter-rows"),
+      panel: document.querySelector("#past-exam-panel")
+    };
+    window.__filterFlicker = { routing: false, loader: false, mainMutations: 0 };
+    new MutationObserver(() => {
+      if (document.documentElement.classList.contains("is-routing")) window.__filterFlicker.routing = true;
+      const loader = document.getElementById("route-loader");
+      if (loader && !loader.hidden) window.__filterFlicker.loader = true;
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ["class"], childList: true, subtree: true });
+    new MutationObserver((records) => {
+      records.forEach((record) => {
+        if (Array.from(record.addedNodes).concat(Array.from(record.removedNodes)).some((node) => node.nodeType === 1)) {
+          window.__filterFlicker.mainMutations += 1;
+        }
+      });
+    }).observe(main, { childList: true });
+    return { scrollY: window.scrollY };
+  })()`);
+  await evaluate(send, `document.querySelector('[data-practice-year="113"]').click()`);
+  const filterReady = await waitFor(send, `document.querySelector('[data-practice-year="113"]').classList.contains("is-active") && !document.querySelector("#past-exam-filter-rows").classList.contains("is-loading")`, 10000);
+  const filterAfter = await evaluate(send, `(() => {
+    const main = document.querySelector("#main");
+    return {
+      sameKids: main.children.length === window.__filterRefs.kids.length &&
+        Array.from(main.children).every((element, index) => element === window.__filterRefs.kids[index]),
+      sameSearch: document.querySelector("#past-exam-search-input") === window.__filterRefs.search,
+      sameRows: document.querySelector("#past-exam-filter-rows") === window.__filterRefs.rows,
+      samePanel: document.querySelector("#past-exam-panel") === window.__filterRefs.panel,
+      scrollY: window.scrollY,
+      flicker: window.__filterFlicker
+    };
+  })()`);
+  const filterProblems = [];
+  if (!filterReady) filterProblems.push("year filter not ready");
+  if (!filterAfter.sameKids || !filterAfter.sameSearch || !filterAfter.sameRows || !filterAfter.samePanel) filterProblems.push("DOM was replaced");
+  if (filterAfter.flicker.routing) filterProblems.push("route loader class");
+  if (filterAfter.flicker.loader) filterProblems.push("route loader visible");
+  if (filterAfter.flicker.mainMutations) filterProblems.push("main children mutated " + filterAfter.flicker.mainMutations);
+  if (Math.abs(filterAfter.scrollY - filterBefore.scrollY) > 1) filterProblems.push("scroll jump " + filterBefore.scrollY + "→" + filterAfter.scrollY);
+  if (filterProblems.length) failed += 1;
+  console.log((filterProblems.length ? "FAIL" : "ok  ") + " past search no-flicker" +
+    (filterProblems.length ? " — " + filterProblems.join("; ") : ""));
+
   // 404 page only when testing a remote origin (local Python server has its own 404).
   if (args.remote) {
     events.length = 0;

@@ -358,6 +358,7 @@
   let sectionObserver = null;
   let toastTimer = null;
   let practiceState = null;
+  let practiceYearLoading = false;
   let pastFuzzyQuery = "";
   const pastFuzzyState = {
     index: null,
@@ -3315,22 +3316,210 @@
       escapeHtml(yearLabel) + " · " + escapeHtml(subjectLabel) + " · " + escapeHtml(sessionLabel) + keywordLabel;
   }
 
-  function practiceRefreshFilters() {
-    const target = document.getElementById("past-exam-filter-rows");
-    if (target) {
-      target.innerHTML = renderPracticeFilters();
-    }
-  }
-
   function practiceSummaryHtml() {
     return practiceSummaryText();
   }
 
   function practiceRefreshSummary() {
+    if (practiceYearLoading) {
+      return;
+    }
     const target = document.getElementById("past-exam-filter-summary");
     if (target) {
       target.innerHTML = practiceSummaryHtml();
     }
+  }
+
+  function practiceYearDataReady(year) {
+    if (window.PAST_EXAMS_FULL) {
+      return true;
+    }
+    if (window.PAST_EXAMS && Array.isArray(window.PAST_EXAMS.questions) && window.PAST_EXAMS.questions.length > 1000) {
+      return true;
+    }
+    const bundles = window.PAST_EXAMS_YEAR_BUNDLES || {};
+    if (year === "all") {
+      return ["107", "108", "109", "110", "111", "112", "113", "114", "115"].every(function (item) {
+        return Boolean(bundles[item]);
+      });
+    }
+    return Boolean(bundles[String(year)]);
+  }
+
+  function practiceSyncFilterChips() {
+    document.querySelectorAll("[data-practice-year]").forEach(function (button) {
+      const value = button.dataset.practiceYear;
+      const active = value === "all" ? practiceState.year === "all" : String(practiceState.year) === value;
+      button.classList.toggle("is-active", active);
+      button.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+    document.querySelectorAll("[data-practice-subject]").forEach(function (button) {
+      const active = button.dataset.practiceSubject === practiceState.subject;
+      button.classList.toggle("is-active", active);
+      button.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+  }
+
+  function practiceRefreshSessionOptions() {
+    const select = document.querySelector("[data-practice-session]");
+    if (!select) {
+      return;
+    }
+    const sessions = practiceSessionsForYear();
+    select.innerHTML = [
+      '<option value="all"' + (practiceState.session === "all" ? " selected" : "") + ">全部次別</option>"
+    ].concat(sessions.map(function (session) {
+      return '<option value="' + escapeHtml(session.id) + '"' + (practiceState.session === session.id ? " selected" : "") + ">" + escapeHtml(session.label) + "</option>";
+    })).join("");
+    select.value = practiceState.session;
+  }
+
+  function practiceRefreshSearchScope() {
+    const scope = document.getElementById("past-exam-search-scope");
+    if (scope) {
+      scope.textContent = "搜尋範圍：" + pastFuzzyScopeText();
+    }
+  }
+
+  function practiceSetYearBusy(busy) {
+    const rows = document.getElementById("past-exam-filter-rows");
+    if (!rows) {
+      return;
+    }
+    rows.classList.toggle("is-loading", busy);
+    if (busy) {
+      rows.setAttribute("aria-busy", "true");
+    } else {
+      rows.removeAttribute("aria-busy");
+    }
+  }
+
+  function practiceApplyYearState() {
+    practiceSyncSession();
+    practiceRefreshSessionOptions();
+    practiceSyncFilterChips();
+    practiceResetCursor(practiceFilteredQuestions());
+    practiceRefreshPastSearch(true);
+    practiceRefreshSummary();
+    practiceRefreshPanel(true);
+  }
+
+  function practiceSetYear(targetYear, options) {
+    if (!practiceState || practiceYearLoading) {
+      return;
+    }
+    const target = targetYear === "all" ? "all" : Number(targetYear);
+    const sameYear = String(practiceState.year) === String(target);
+    if (sameYear) {
+      practiceState.session = "all";
+      practiceResetCursor(practiceFilteredQuestions());
+      practiceSyncSession();
+      const sessionSelect = document.querySelector("[data-practice-session]");
+      if (sessionSelect) {
+        sessionSelect.value = "all";
+      }
+      practiceSyncFilterChips();
+      practiceRefreshPastSearch(true);
+      practiceRefreshSummary();
+      practiceRefreshPanel(true);
+      if (options && options.scrollToPanel) {
+        practiceScrollToPanel();
+      }
+      return;
+    }
+    const previous = {
+      year: practiceState.year,
+      session: practiceState.session,
+      subject: practiceState.subject,
+      keyword: practiceState.keyword,
+      index: practiceState.index,
+      browsePage: practiceState.browsePage
+    };
+    try {
+      window.history.replaceState(null, "", "#/past-exams?year=" + target);
+    } catch (error) {
+      /* file:// 或舊瀏覽器可能不允許 replaceState；不影響本次篩選。 */
+    }
+    practiceState.year = target;
+    practiceState.session = "all";
+    practiceState.keyword = "";
+    practiceState.index = 0;
+    practiceState.browsePage = 0;
+    const exactInput = document.querySelector("[data-practice-search]");
+    if (exactInput) {
+      exactInput.value = "";
+    }
+    const sessionSelect = document.querySelector("[data-practice-session]");
+    if (sessionSelect) {
+      sessionSelect.value = "all";
+    }
+    practiceSyncFilterChips();
+    practiceRefreshSearchScope();
+    if (pastFuzzyQuery.trim()) {
+      pastFuzzyState.pending = true;
+      pastFuzzyState.results = [];
+      pastFuzzyState.total = 0;
+      renderPastFuzzyResults();
+    }
+    const complete = function () {
+      if (!practiceState) {
+        return;
+      }
+      hydrateData();
+      practiceApplyYearState();
+      if (options && options.scrollToPanel) {
+        practiceScrollToPanel();
+      }
+    };
+    if (practiceYearDataReady(target)) {
+      complete();
+      return;
+    }
+    practiceYearLoading = true;
+    practiceSetYearBusy(true);
+    const loadingSummary = document.getElementById("past-exam-filter-summary");
+    if (loadingSummary) {
+      loadingSummary.textContent = "正在載入 " + (target === "all" ? "全部年度" : target + " 年") + "題庫…";
+    }
+    const load = typeof window.__loadPastYear === "function"
+      ? window.__loadPastYear(target)
+      : Promise.reject(new Error("缺少年度題庫載入器"));
+    load.then(function () {
+      practiceYearLoading = false;
+      complete();
+    }).catch(function (error) {
+      practiceYearLoading = false;
+      if (!practiceState) {
+        return;
+      }
+      practiceState.year = previous.year;
+      practiceState.session = previous.session;
+      practiceState.subject = previous.subject;
+      practiceState.keyword = previous.keyword;
+      practiceState.index = previous.index;
+      practiceState.browsePage = previous.browsePage;
+      practiceLoadCurrent(practiceFilteredQuestions());
+      const exactInput = document.querySelector("[data-practice-search]");
+      if (exactInput) {
+        exactInput.value = practiceState.keyword;
+      }
+      practiceSyncFilterChips();
+      practiceSyncSession();
+      const sessionSelect = document.querySelector("[data-practice-session]");
+      if (sessionSelect) {
+        sessionSelect.value = practiceState.session;
+      }
+      practiceRefreshSearchScope();
+      practiceRefreshPastSearch(true);
+      practiceRefreshSummary();
+      practiceRefreshPanel(true);
+      toast("年度題庫載入失敗，請稍後再試。");
+      if (window.console && typeof console.warn === "function") {
+        console.warn("年度題庫載入失敗：", error);
+      }
+    }).then(function () {
+      practiceSetYearBusy(false);
+    });
   }
 
   function practiceRefreshPanel(preserveScroll) {
@@ -3516,6 +3705,19 @@
     return { results: results.slice(0, max), total: results.length };
   }
 
+  function renderPastExamJumpbar() {
+    return pastFuzzyQuery.trim()
+      ? '<div class="past-exam-filter-jumpbar"><span>搜尋套用目前範圍</span><button class="past-exam-search-jump" type="button" data-past-search-results-jump>查看搜尋結果 ↓</button></div>'
+      : "";
+  }
+
+  function practiceRefreshJumpbar() {
+    const target = document.getElementById("past-exam-filter-jumpbar");
+    if (target) {
+      target.innerHTML = renderPastExamJumpbar();
+    }
+  }
+
   function renderPastExamSearchBox() {
     const query = pastFuzzyQuery || "";
     return [
@@ -3654,7 +3856,7 @@
   }
 
   function runPastFuzzySearch() {
-    if (!practiceState) {
+    if (!practiceState || practiceYearLoading) {
       return;
     }
     const query = pastFuzzyQuery.trim();
@@ -3708,7 +3910,13 @@
       practiceState.index = index >= 0 ? index : 0;
       practiceState.mode = "practice";
       practiceLoadCurrent(filtered);
-      practiceRefreshFilters();
+      const exactInput = document.querySelector("[data-practice-search]");
+      if (exactInput) {
+        exactInput.value = "";
+      }
+      practiceSyncFilterChips();
+      practiceSyncSession();
+      practiceRefreshSessionOptions();
       practiceRefreshSummary();
       practiceRefreshPastSearch(true);
     } else {
@@ -3785,12 +3993,7 @@
       return '<option value="' + escapeHtml(session.id) + '"' + (practiceState.session === session.id ? " selected" : "") + ">" + escapeHtml(session.label) + "</option>";
     })).join("");
 
-    const searchJumpBar = pastFuzzyQuery.trim()
-      ? '<div class="past-exam-filter-jumpbar"><span>搜尋套用目前範圍</span><button class="past-exam-search-jump" type="button" data-past-search-results-jump>查看搜尋結果 ↓</button></div>'
-      : "";
-
     return [
-      searchJumpBar,
       '<div class="past-exam-filter-row">',
       '  <span class="past-exam-filter-label">年度</span>',
       '  <div class="past-exam-chips">' + yearButtons + "</div>",
@@ -5349,6 +5552,7 @@
       "  </section>",
       '  <section class="past-exam-filter-shell" id="past-exam-filters" aria-label="題庫搜尋與篩選">',
       '    <div class="past-exam-search-shell" id="past-exam-search" role="search" aria-label="題庫模糊搜尋">' + renderPastExamSearchBox() + "</div>",
+      '    <div class="past-exam-search-jumpbar-slot" id="past-exam-filter-jumpbar">' + renderPastExamJumpbar() + "</div>",
       '    <div class="past-exam-filter-rows" id="past-exam-filter-rows">' + renderPracticeFilters() + "</div>",
       "  </section>",
       '  <div class="past-exam-search-results-panel" id="past-exam-search-results-panel" role="region" aria-label="題庫搜尋結果" hidden>',
@@ -5433,7 +5637,7 @@
         input.value = "";
         input.focus();
       }
-      practiceRefreshFilters();
+      practiceRefreshJumpbar();
       pastFuzzyState.pending = false;
       pastFuzzyState.results = [];
       pastFuzzyState.total = 0;
@@ -5474,16 +5678,25 @@
       event.preventDefault();
       const targetYear = String(yearJump.dataset.practiceYearJump);
       if (String(practiceState.year) !== targetYear) {
-        window.location.hash = "#/past-exams?year=" + targetYear;
+        practiceSetYear(targetYear, { scrollToPanel: true });
         return true;
       }
       practiceState.session = "all";
-      practiceState.subject = "all";
       practiceState.keyword = "";
+      const exactInput = document.querySelector("[data-practice-search]");
+      if (exactInput) {
+        exactInput.value = "";
+      }
       practiceResetCursor(practiceFilteredQuestions());
-      practiceRefreshFilters();
+      practiceSyncFilterChips();
+      practiceSyncSession();
+      const sessionSelect = document.querySelector("[data-practice-session]");
+      if (sessionSelect) {
+        sessionSelect.value = "all";
+      }
       practiceRefreshPastSearch(true);
-      practiceRefreshPanel();
+      practiceRefreshSummary();
+      practiceRefreshPanel(true);
       practiceScrollToPanel();
       return true;
     }
@@ -5493,14 +5706,20 @@
       event.preventDefault();
       const targetYear = yearButton.dataset.practiceYear === "all" ? "all" : String(yearButton.dataset.practiceYear);
       if (String(practiceState.year) !== targetYear) {
-        window.location.hash = "#/past-exams?year=" + targetYear;
+        practiceSetYear(targetYear);
         return true;
       }
       practiceState.session = "all";
       practiceResetCursor(practiceFilteredQuestions());
-      practiceRefreshFilters();
+      practiceSyncSession();
+      const sessionSelect = document.querySelector("[data-practice-session]");
+      if (sessionSelect) {
+        sessionSelect.value = "all";
+      }
+      practiceSyncFilterChips();
       practiceRefreshPastSearch(true);
-      practiceRefreshPanel();
+      practiceRefreshSummary();
+      practiceRefreshPanel(true);
       return true;
     }
 
@@ -5509,9 +5728,10 @@
       event.preventDefault();
       practiceState.subject = subjectButton.dataset.practiceSubject;
       practiceResetCursor(practiceFilteredQuestions());
-      practiceRefreshFilters();
+      practiceSyncFilterChips();
       practiceRefreshPastSearch(true);
-      practiceRefreshPanel();
+      practiceRefreshSummary();
+      practiceRefreshPanel(true);
       return true;
     }
 
@@ -5710,16 +5930,35 @@
     const clearButton = event.target.closest("[data-practice-clear]");
     if (clearButton) {
       event.preventDefault();
-      practiceState.year = "all";
       practiceState.subject = "all";
       practiceState.session = "all";
       practiceState.keyword = "";
+      const exactInput = document.querySelector("[data-practice-search]");
+      if (exactInput) {
+        exactInput.value = "";
+      }
       pastFuzzyQuery = "";
       practiceState.fuzzyQuery = "";
-      practiceResetCursor(practiceFilteredQuestions());
-      practiceRefreshFilters();
-      practiceRefreshPastSearch(true);
-      practiceRefreshPanel();
+      practiceRefreshJumpbar();
+      pastFuzzyState.pending = false;
+      pastFuzzyState.results = [];
+      pastFuzzyState.total = 0;
+      pastFuzzyState.generation += 1;
+      renderPastFuzzyResults();
+      if (practiceState.year !== "all") {
+        practiceSetYear("all", { clearKeyword: true });
+      } else {
+        practiceResetCursor(practiceFilteredQuestions());
+        practiceSyncFilterChips();
+        practiceSyncSession();
+        const sessionSelect = document.querySelector("[data-practice-session]");
+        if (sessionSelect) {
+          sessionSelect.value = "all";
+        }
+        practiceRefreshPastSearch(true);
+        practiceRefreshSummary();
+        practiceRefreshPanel(true);
+      }
       return true;
     }
 
@@ -5737,8 +5976,8 @@
     practiceState.session = select.value;
     practiceResetCursor(practiceFilteredQuestions());
     practiceRefreshPastSearch(true);
-    practiceRefreshPanel();
     practiceRefreshSummary();
+    practiceRefreshPanel(true);
     return true;
   }
 
@@ -5772,7 +6011,7 @@
       clear.hidden = !pastFuzzyQuery;
     }
     if (hadQuery !== Boolean(pastFuzzyQuery.trim())) {
-      practiceRefreshFilters();
+      practiceRefreshJumpbar();
     } else {
       practiceRefreshSummary();
     }
@@ -5800,7 +6039,7 @@
     practiceLoadCurrent(practiceFilteredQuestions());
     practiceRefreshSummary();
     practiceRefreshPastSearch(true);
-    practiceRefreshPanel();
+    practiceRefreshPanel(true);
     return true;
   }
 
@@ -8463,7 +8702,7 @@
           practiceState.fuzzyQuery = "";
         }
         input.value = "";
-        practiceRefreshFilters();
+        practiceRefreshJumpbar();
         pastFuzzyState.pending = false;
         pastFuzzyState.results = [];
         pastFuzzyState.total = 0;

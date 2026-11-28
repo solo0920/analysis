@@ -368,7 +368,7 @@ node site/scripts/check-ui.js
 node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 ```
 
-`check-ui.js` 會檢查 13 條路由（首頁、科目、章節、考古題、題庫模糊搜尋、計算／申論題、複習題、考前猜題、諾貝爾、模型總覽、總經時事）在 390／1280、深淺主題下的 selector、`.katex-error`、水平溢出與 console errors，並以 7 個內容斷言核對 2026 NKPC、已修正的會計例題、泰勒法則與古典學派新章；另以題庫模糊搜尋實測「存續期間」可得到 12 筆結果。`--base` 指向正式站時另檢查 404 頁。`check-ui.js` 不在 `verify.sh` 內（Cloudflare build 不保證有 Chrome），屬部署前手動檢查；部署後改用 `check-live.sh`。
+`check-ui.js` 會檢查 13 條路由（首頁、科目、章節、考古題、題庫模糊搜尋、計算／申論題、複習題、考前猜題、諾貝爾、模型總覽、總經時事）在 390／1280、深淺主題下的 selector、`.katex-error`、水平溢出與 console errors，並以 7 個內容斷言核對 2026 NKPC、已修正的會計例題、泰勒法則與古典學派新章；另以題庫模糊搜尋實測「存續期間」可得到 12 筆結果，並檢查切換年度時 `#main` 子節點、搜尋框、篩選列與面板節點不變、沒有 route loader、`scrollY` 不跳動。`--base` 指向正式站時另檢查 404 頁。`check-ui.js` 不在 `verify.sh` 內（Cloudflare build 不保證有 Chrome），屬部署前手動檢查；部署後改用 `check-live.sh`。
 
 `validate-content.js` 會比對三份來源目錄的章號、章名、Part、順序、節次與頁碼，並檢查：
 
@@ -568,7 +568,7 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 
 2026-11-28 補齊 `110Q2-macro-24` IS-LM 政府支出乘數題幹：原題缺貨幣市場方程式與參數，依原圖補上 `M/P_0=l(r)+k(y)` 及 `c'`、`t'`、`i'`、`k'`、`l'`；解析改為完整推導 `dy/dg=1/[1-c'(1-t')+i'k'/l']=1/0.44=2.2727≈2.273`，最接近選項 A（2.275），並說明利率上升的排擠效果使乘數小於簡單乘數 2.5。答案維持 A；390px／1280px、深淺主題與 `file://` 正常，搜尋索引同步。
 
-2026-11-28 把 `#/past-exams` 的題庫模糊搜尋與年度／科目／次別整合在同一張篩選卡（單一 section）：沿用右上角搜尋的精確子字串、MiniSearch 前綴／錯字容忍與中文字元 bigram 補位，只索引目前已載入的選擇題題庫（全部年度時 3,710 題）；年度、科目、次別與原有「範圍內精確篩選」都會套用為 filter，結果列在卡片下方並依相關度排序，點選可直接載入練習面板，Enter 開第一筆、Esc 清除。搜尋查詢在切換年度時保留；390px／1280px、深淺主題與 `file://` 實測「存續期間」在 115 年 3 筆、全部年度 58 筆，「存續其間」5 筆，單一 section、0 `.katex-error`、0 水平溢出；`check-ui.js` 增為 13 條路由、52 組檢查並加入題庫搜尋 smoke test。
+2026-11-28 把 `#/past-exams` 的題庫模糊搜尋與年度／科目／次別整合在同一張篩選卡（單一 section）：沿用右上角搜尋的精確子字串、MiniSearch 前綴／錯字容忍與中文字元 bigram 補位，只索引目前已載入的選擇題題庫（全部年度時 3,710 題）；年度、科目、次別與原有「範圍內精確篩選」都會套用為 filter，結果列在卡片下方並依相關度排序，點選可直接載入練習面板，Enter 開第一筆、Esc 清除。切換篩選改為原地更新：不觸發 hash 路由、不呼叫 `render()`、不替換 `#main`、不顯示 `#route-loader`，年度分包以 `window.__loadPastYear()` 背景載入並保留搜尋字串、DOM 節點與捲動位置；年度切換保留科目、重設次別、清除精確關鍵字，`history.replaceState()` 同步 `?year=`。390px／1280px、深淺主題與 `file://` 實測「存續期間」在 115 年 3 筆、全部年度 58 筆，「存續其間」5 筆；切換 113 年時 `#main` 子節點 0 次變更、route loader 0 次、scrollY 不變，單一 section、0 `.katex-error`、0 水平溢出；`check-ui.js` 增為 13 條路由、52 組檢查並加入題庫搜尋與無閃爍 smoke test；互動規格見 `specs/003-past-exam-practice/spec.md`。
 
 2026-11-27 修正 `110Q1-macro-07` 古典免疫答案（C→D）：原解析把「容易使用」當成錯誤，但古典免疫的關鍵特徵是存續期間等於目標持有期間，抵銷價格風險與再投資風險，管理的是利率風險而非信用風險。已重寫 A–D 選項分析，並同步題庫、搜尋索引、110 年分包與 `macro-13` 章節分包；390px／1280px、深淺主題與 `file://` 顯示正常。
 
