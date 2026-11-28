@@ -8932,7 +8932,7 @@ a.landing-item:hover {
   font-size: 0.84rem;
 }
 
-.written-search-layout {
+.exam-search-layout {
   display: grid;
   grid-template-columns: minmax(250px, 340px) minmax(0, 1fr);
   gap: 20px;
@@ -8940,12 +8940,12 @@ a.landing-item:hover {
   margin-top: 20px;
 }
 
-.written-search-layout[hidden],
-.written-search-detail[hidden] {
+.exam-search-layout[hidden],
+.exam-search-detail[hidden] {
   display: none;
 }
 
-.written-search-sidebar {
+.exam-search-sidebar {
   position: sticky;
   top: calc(var(--header-h) + 16px);
   max-height: calc(100vh - var(--header-h) - 32px);
@@ -8955,23 +8955,24 @@ a.landing-item:hover {
   overscroll-behavior: contain;
 }
 
-.written-search-sidebar .past-exam-search-results-head {
+.exam-search-sidebar .past-exam-search-results-head {
   margin-bottom: 10px;
 }
 
-.written-search-sidebar .past-exam-search-results {
+.exam-search-sidebar .past-exam-search-results {
   padding-bottom: 6px;
 }
 
-.written-search-detail {
+.exam-search-detail {
   min-width: 0;
 }
 
-.written-search-detail .written-card {
+.exam-search-detail .written-card,
+.exam-search-detail .past-exam-panel {
   margin-top: 0;
 }
 
-.written-search-placeholder {
+.exam-search-placeholder {
   padding: 28px 22px;
   border: 1px dashed var(--line-strong);
   border-radius: var(--radius);
@@ -8980,14 +8981,14 @@ a.landing-item:hover {
   text-align: center;
 }
 
-.written-search-placeholder strong {
+.exam-search-placeholder strong {
   display: block;
   margin-bottom: 6px;
   color: var(--ink);
   font-size: 1rem;
 }
 
-.written-search-placeholder p {
+.exam-search-placeholder p {
   margin: 0;
   font-size: 0.86rem;
   line-height: 1.7;
@@ -9231,19 +9232,19 @@ a.landing-item:hover {
 }
 
 @media (max-width: 900px) {
-  .written-search-layout {
+  .exam-search-layout {
     grid-template-columns: minmax(0, 1fr);
     gap: 16px;
   }
 
-  .written-search-sidebar {
+  .exam-search-sidebar {
     position: static;
     max-height: 60vh;
     padding-right: 4px;
     overflow-y: auto;
   }
 
-  .written-search-detail {
+  .exam-search-detail {
     scroll-margin-top: calc(var(--header-h) + 16px);
   }
 }

@@ -3520,7 +3520,7 @@
       pastFuzzyState.pending = true;
       pastFuzzyState.results = [];
       pastFuzzyState.total = 0;
-      renderPastFuzzyResults();
+      renderPracticeSidebar();
     }
     const complete = function () {
       if (!practiceState) {
@@ -3590,6 +3590,7 @@
     }
     const scrollY = window.scrollY;
     target.innerHTML = renderPracticePanel();
+    practiceRefreshSidebarActive();
     if (preserveScroll) {
       window.scrollTo({ top: scrollY, behavior: "auto" });
     }
@@ -3795,89 +3796,115 @@
     ].join("");
   }
 
-  function renderPastFuzzyResults() {
+  function renderPracticeSidebarButton(question, currentId) {
+    const subject = practiceSubjectMap.get(question.subject) || { short: question.subject };
+    const session = practiceSessionMap.get(question.sessionId);
+    const sourceId = Array.isArray(question.sourceIds) && question.sourceIds.length
+      ? question.sourceIds[0]
+      : question.sourceId;
+    const chapter = sourceId ? getChapter(sourceId) : null;
+    const meta = [
+      session ? session.label : (question.year + " 年第 " + question.session + " 次"),
+      subject.short || subject.name || question.subject,
+      "第 " + question.number + " 題",
+      chapter ? chapterLabel(chapter) + " " + chapter.title : ""
+    ].filter(Boolean).join(" · ");
+    const active = question.id === currentId;
+    return [
+      '<button class="past-exam-search-result' + (active ? " is-active" : "") + '" type="button" data-past-open="' + escapeHtml(question.id) + '"' + (active ? ' aria-current="true"' : "") + '>',
+      '  <span class="past-exam-search-badge">選擇</span>',
+      '  <span class="past-exam-search-result-body">',
+      "    <strong>" + renderSearchText(question.stem) + "</strong>",
+      "    <small>" + escapeHtml(meta) + "</small>",
+      "  </span>",
+      '  <span class="past-exam-search-arrow" aria-hidden="true">→</span>',
+      "</button>"
+    ].join("");
+  }
+
+  function renderPracticeSidebar() {
+    const layout = document.getElementById("past-exam-search-layout");
     const panel = document.getElementById("past-exam-search-results-panel");
     const container = document.getElementById("past-exam-search-results");
     const status = document.getElementById("past-exam-search-status");
+    const title = document.getElementById("past-exam-sidebar-title");
     const clear = document.querySelector("[data-past-search-clear]");
     if (clear) {
       clear.hidden = !pastFuzzyQuery;
     }
     if (!container) {
-      if (panel) {
-        panel.hidden = true;
-      }
       return;
     }
     const query = pastFuzzyQuery.trim();
+    const searching = Boolean(query);
+    if (layout) {
+      layout.hidden = false;
+    }
     if (panel) {
-      panel.hidden = !query;
+      panel.hidden = false;
     }
-    if (!query) {
-      container.hidden = true;
-      container.innerHTML = "";
-      if (status) {
-        status.textContent = "";
-      }
-      return;
+    if (title) {
+      title.textContent = searching ? "搜尋結果" : "題目列表";
     }
-    container.hidden = false;
-    const results = pastFuzzyState.results || [];
-    const total = pastFuzzyState.total || 0;
+    let questions;
+    let total;
+    if (searching) {
+      questions = (pastFuzzyState.results || []).map(function (result) {
+        return result.question;
+      });
+      total = pastFuzzyState.total || 0;
+    } else {
+      questions = practiceState ? practiceFilteredQuestions() : [];
+      total = questions.length;
+    }
     if (status) {
-      if (pastFuzzyState.pending) {
+      if (searching && pastFuzzyState.pending) {
         status.textContent = "正在比對題庫…";
-      } else if (!results.length) {
+      } else if (!questions.length) {
         status.textContent = "沒有符合的題目";
       } else {
-        status.textContent = "共 " + total + " 筆" +
-          (total > results.length ? "，顯示前 " + results.length + " 筆" : "");
+        status.textContent = searching
+          ? "共 " + total + " 筆" + (total > questions.length ? "，顯示前 " + questions.length + " 筆" : "")
+          : "共 " + total + " 題";
       }
     }
-    if (!results.length) {
-      container.innerHTML = pastFuzzyState.pending
-        ? [
-          '<div class="past-exam-search-empty">',
-          "  <strong>正在比對題庫…</strong>",
-          "  <p>同時套用目前的年度、科目與次別篩選。</p>",
-          "</div>"
-        ].join("")
-        : [
-          '<div class="past-exam-search-empty">',
-          "  <strong>找不到「" + escapeHtml(query) + "」</strong>",
-          "  <p>試試較短的關鍵字，或放寬年度、科目與次別篩選。</p>",
-          "</div>"
-        ].join("");
+    if (!questions.length) {
+      const label = searching ? "找不到「" + escapeHtml(query) + "」" : "目前沒有符合的題目";
+      const hint = searching
+        ? "試試較短的關鍵字，或放寬年度、科目與次別篩選。"
+        : "換一個年度、科目或次別再試。";
+      container.innerHTML = [
+        '<div class="past-exam-search-empty">',
+        "  <strong>" + label + "</strong>",
+        "  <p>" + hint + "</p>",
+        "</div>"
+      ].join("");
       return;
     }
     const currentQuestions = practiceState ? practiceFilteredQuestions() : [];
     const currentQuestion = practiceState ? currentQuestions[practiceState.index] : null;
-    container.innerHTML = results.map(function (result) {
-      const question = result.question;
-      const subject = practiceSubjectMap.get(question.subject) || { short: question.subject };
-      const session = practiceSessionMap.get(question.sessionId);
-      const sourceId = Array.isArray(question.sourceIds) && question.sourceIds.length
-        ? question.sourceIds[0]
-        : question.sourceId;
-      const chapter = sourceId ? getChapter(sourceId) : null;
-      const meta = [
-        session ? session.label : (question.year + " 年第 " + question.session + " 次"),
-        subject.short || subject.name || question.subject,
-        "第 " + question.number + " 題",
-        chapter ? chapterLabel(chapter) + " " + chapter.title : ""
-      ].filter(Boolean).join(" · ");
-      const active = currentQuestion && currentQuestion.id === question.id ? " is-active" : "";
-      return [
-        '<button class="past-exam-search-result' + active + '" type="button" data-past-search-open="' + escapeHtml(question.id) + '">',
-        '  <span class="past-exam-search-badge">考古</span>',
-        '  <span class="past-exam-search-result-body">',
-        "    <strong>" + renderSearchText(question.stem) + "</strong>",
-        "    <small>" + escapeHtml(meta) + "</small>",
-        "  </span>",
-        '  <span class="past-exam-search-arrow" aria-hidden="true">→</span>',
-        "</button>"
-      ].join("");
+    const currentId = currentQuestion ? currentQuestion.id : "";
+    container.innerHTML = questions.map(function (question) {
+      return renderPracticeSidebarButton(question, currentId);
     }).join("");
+  }
+
+  function practiceRefreshSidebarActive() {
+    if (!practiceState) {
+      return;
+    }
+    const questions = practiceFilteredQuestions();
+    const current = questions[practiceState.index];
+    const currentId = current ? current.id : "";
+    document.querySelectorAll("[data-past-open]").forEach(function (button) {
+      const active = button.dataset.pastOpen === currentId;
+      button.classList.toggle("is-active", active);
+      if (active) {
+        button.setAttribute("aria-current", "true");
+      } else {
+        button.removeAttribute("aria-current");
+      }
+    });
   }
 
   function practiceRefreshPastSearch(immediate) {
@@ -3895,7 +3922,7 @@
       pastFuzzyState.results = [];
       pastFuzzyState.total = 0;
       pastFuzzyState.generation += 1;
-      renderPastFuzzyResults();
+      renderPracticeSidebar();
       return;
     }
     schedulePastFuzzySearch(immediate);
@@ -3923,7 +3950,7 @@
     const query = pastFuzzyQuery.trim();
     if (!query) {
       pastFuzzyState.pending = false;
-      renderPastFuzzyResults();
+      renderPracticeSidebar();
       return;
     }
     const generation = pastFuzzyState.generation + 1;
@@ -3932,7 +3959,7 @@
     const payload = performPastFuzzySearch(query, PAST_FUZZY_LIMIT);
     pastFuzzyState.results = payload.results;
     pastFuzzyState.total = payload.total;
-    renderPastFuzzyResults();
+    renderPracticeSidebar();
     if (pastFuzzyState.index && pastFuzzyState.source === practiceQuestions) {
       return;
     }
@@ -3943,11 +3970,11 @@
       const next = performPastFuzzySearch(query, PAST_FUZZY_LIMIT);
       pastFuzzyState.results = next.results;
       pastFuzzyState.total = next.total;
-      renderPastFuzzyResults();
+      renderPracticeSidebar();
     });
   }
 
-  function practiceOpenSearchResult(questionId) {
+  function practiceSelectQuestion(questionId) {
     if (!practiceState || !questionId) {
       return;
     }
@@ -3986,8 +4013,9 @@
       practiceLoadCurrent(questions);
     }
     practiceRefreshPanel();
-    renderPastFuzzyResults();
-    practiceScrollToPanel();
+    if (window.matchMedia("(max-width: 900px)").matches) {
+      practiceScrollToPanel();
+    }
   }
 
   function restorePastFuzzySearch() {
@@ -4011,7 +4039,7 @@
       pastFuzzyState.pending = false;
       pastFuzzyState.results = [];
       pastFuzzyState.total = 0;
-      renderPastFuzzyResults();
+      renderPracticeSidebar();
     }
   }
 
@@ -5416,7 +5444,7 @@
         "</div>"
       ].join("");
       if (detail) {
-        detail.innerHTML = '<div class="written-search-placeholder"><strong>' + label + "</strong><p>" + hint + "</p></div>";
+        detail.innerHTML = '<div class="exam-search-placeholder"><strong>' + label + "</strong><p>" + hint + "</p></div>";
       }
       writtenFuzzyState.selectedId = null;
       return;
@@ -5425,6 +5453,9 @@
     if (!selectedId || !questions.some(function (question) { return question.id === selectedId; })) {
       selectedId = questions[0].id;
       writtenFuzzyState.selectedId = selectedId;
+      if (writtenState) {
+        writtenState.open.add(selectedId);
+      }
     }
     container.innerHTML = questions.map(function (question) {
       return renderWrittenSidebarButton(question, selectedId);
@@ -6055,8 +6086,8 @@
       '    <div class="past-exam-search-jumpbar-slot" id="written-filter-jumpbar">' + renderWrittenJumpbar() + "</div>",
       '    <div class="past-exam-filter-rows" id="written-filter-rows">' + renderWrittenFilters() + "</div>",
       "  </section>",
-      '  <div class="written-search-layout" id="written-search-layout">',
-      '    <aside class="past-exam-search-results-panel written-search-sidebar" id="written-search-results-panel" role="region" aria-label="申論題題目列表">',
+      '  <div class="exam-search-layout" id="written-search-layout">',
+      '    <aside class="past-exam-search-results-panel exam-search-sidebar" id="written-search-results-panel" role="region" aria-label="申論題題目列表">',
       '      <div class="past-exam-search-results-head">',
       '        <p class="eyebrow" id="written-sidebar-title">題目列表</p>',
       '        <div class="past-exam-search-results-meta">',
@@ -6066,7 +6097,7 @@
       "      </div>",
       '      <div class="past-exam-search-results" id="written-search-results"></div>',
       "    </aside>",
-      '    <div class="written-search-detail" id="written-search-detail" aria-live="polite"></div>',
+      '    <div class="exam-search-detail" id="written-search-detail" aria-live="polite"></div>',
       "  </div>",
       '  <div class="notice"><strong>解答說明：</strong>申論與計算題沒有官方公告解答；題卡均標示「參考解答」，107–115 年 348 題均已提供完整參考解答；若與補習班、教材或官方答案不同，請以官方與正式教材為準。</div>',
       '</div>'
@@ -6150,17 +6181,21 @@
       '    <div class="past-exam-search-jumpbar-slot" id="past-exam-filter-jumpbar">' + renderPastExamJumpbar() + "</div>",
       '    <div class="past-exam-filter-rows" id="past-exam-filter-rows">' + renderPracticeFilters() + "</div>",
       "  </section>",
-      '  <div class="past-exam-search-results-panel" id="past-exam-search-results-panel" role="region" aria-label="題庫搜尋結果" hidden>',
-      '    <div class="past-exam-search-results-head">',
-      '      <p class="eyebrow">搜尋結果</p>',
-      '      <div class="past-exam-search-results-meta">',
-      '        <span id="past-exam-search-status" role="status" aria-live="polite"></span>',
-      '        <button class="past-exam-search-jump" type="button" data-past-search-filter-jump>調整篩選 ↑</button>',
+      '  <div class="exam-search-layout" id="past-exam-search-layout">',
+      '    <aside class="past-exam-search-results-panel exam-search-sidebar" id="past-exam-search-results-panel" role="region" aria-label="選擇題題目列表">',
+      '      <div class="past-exam-search-results-head">',
+      '        <p class="eyebrow" id="past-exam-sidebar-title">題目列表</p>',
+      '        <div class="past-exam-search-results-meta">',
+      '          <span id="past-exam-search-status" role="status" aria-live="polite"></span>',
+      '          <button class="past-exam-search-jump" type="button" data-past-search-filter-jump>調整篩選 ↑</button>',
+      "        </div>",
       "      </div>",
+      '      <div class="past-exam-search-results" id="past-exam-search-results"></div>',
+      "    </aside>",
+      '    <div class="exam-search-detail">',
+      '      <section class="past-exam-panel" id="past-exam-panel">' + renderPracticePanel() + "</section>",
       "    </div>",
-      '    <div class="past-exam-search-results" id="past-exam-search-results" aria-live="polite"></div>',
       "  </div>",
-      '  <section class="past-exam-panel" id="past-exam-panel">' + renderPracticePanel() + "</section>",
       '  <section class="past-exam-overview">',
       '    <div class="section-heading">',
       "      <div>",
@@ -6288,14 +6323,14 @@
       pastFuzzyState.results = [];
       pastFuzzyState.total = 0;
       pastFuzzyState.generation += 1;
-      renderPastFuzzyResults();
+      renderPracticeSidebar();
       return true;
     }
 
-    const searchOpen = event.target.closest("[data-past-search-open]");
-    if (searchOpen) {
+    const questionOpen = event.target.closest("[data-past-open]");
+    if (questionOpen) {
       event.preventDefault();
-      practiceOpenSearchResult(searchOpen.dataset.pastSearchOpen);
+      practiceSelectQuestion(questionOpen.dataset.pastOpen);
       return true;
     }
 
@@ -6597,7 +6632,7 @@
       pastFuzzyState.results = [];
       pastFuzzyState.total = 0;
       pastFuzzyState.generation += 1;
-      renderPastFuzzyResults();
+      renderPracticeSidebar();
       if (practiceState.year !== "all") {
         practiceSetYear("all", { clearKeyword: true });
       } else {
@@ -6713,7 +6748,7 @@
     pastFuzzyState.pending = Boolean(pastFuzzyQuery.trim());
     pastFuzzyState.results = [];
     pastFuzzyState.total = 0;
-    renderPastFuzzyResults();
+    renderPracticeSidebar();
     if (pastFuzzyQuery.trim()) {
       schedulePastFuzzySearch(false);
     }
@@ -9398,7 +9433,7 @@
       }
       if (event.key === "Enter") {
         event.preventDefault();
-        const first = document.querySelector("[data-past-search-open]");
+        const first = document.querySelector("[data-past-open]");
         if (first) {
           first.click();
         }
@@ -9414,7 +9449,7 @@
         pastFuzzyState.results = [];
         pastFuzzyState.total = 0;
         pastFuzzyState.generation += 1;
-        renderPastFuzzyResults();
+        renderPracticeSidebar();
         input.focus();
       }
     });

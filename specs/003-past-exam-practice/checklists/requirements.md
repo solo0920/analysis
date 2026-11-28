@@ -7,7 +7,7 @@
 ## 結構
 
 - [x] 頁面只有一個 `.past-exam-filter-shell`，同時包含 `#past-exam-search-input` 與 `#past-exam-filter-rows`。
-- [x] 搜尋結果列在篩選卡下方，不插入搜尋框與篩選列之間。
+- [x] `#/past-exams` 搜尋結果顯示在左側 `#past-exam-search-results-panel` sidebar，不使用獨立全寬結果區塊。
 - [x] 搜尋提示列獨立於 `#past-exam-filter-rows`，輸入或清除搜尋字串不重建篩選列。
 
 ## 無閃爍切換
@@ -42,16 +42,28 @@
 - [x] 搜尋後 sidebar 改顯示搜尋結果；清除搜尋後恢復目前的完整題目清單。
 - [x] 不再有 `#written-list` 長列表；題目與題卡固定使用 sidebar／detail 版面。
 - [x] 預設選取第一筆；點選其他題目會更新右側題卡、`is-active` 與 `aria-current`。
+- [x] 頁面載入、搜尋結果出現、切換題目與切換篩選後，右側題卡預設展開參考解答；可用「收合解答」收合。
 - [x] 點選題目會展開該題參考解答；搜尋字串保留。
 - [x] 1280px sidebar 在左、390px 上下堆疊且 sidebar 可捲動；390px 點選後捲到題卡。
 - [x] sidebar 與右側題卡不會同時產生重複的 `written-<id>`。
+
+## 選擇題 Sidebar
+
+- [x] `#/past-exams` 使用與計算／申論題相同的 `exam-search-layout`：左側 `#past-exam-search-results-panel`、右側 `#past-exam-panel`。
+- [x] 未搜尋時 sidebar 標題為「題目列表」，顯示目前篩選的全部題目；搜尋時標題改為「搜尋結果」。
+- [x] 點選 sidebar 題目會更新 `practiceState.index`、右側題幹、`is-active` 與 `aria-current`，不整頁重繪。
+- [x] 「下一題／上一題」切換後 sidebar active 題目同步更新。
+- [x] 年度／科目／次別切換後 sidebar 與右側面板原地更新；目前題目不在新範圍時改選第一題。
+- [x] 390px sidebar 與右側面板上下堆疊，sidebar 保持可捲動高度，點選後捲到面板。
+- [x] 年度一覽保留在 sidebar／detail 版面下方。
 
 ## 驗證
 
 - [x] 390px／1280px、深淺主題與 `file://` 實測通過。
 - [x] 0 `.katex-error`、0 水平溢出。
-- [x] 目標式檢查 `check-ui.js --only written-exams` 通過（含 sidebar 互動）。
+- [x] 目標式檢查 `check-ui.js --only written-exams` 通過（含預設參考解答、sidebar 互動）。
+- [x] 目標式檢查 `check-ui.js --only past-exams` 通過（含選擇題 sidebar、搜尋、點選與清除恢復）。
 - [x] 完整 `check-ui.js` 56 組路由／viewport／theme 檢查通過。
-- [x] 完整檢查只在需要全站 smoke test 時執行；本次 sidebar 變更的預設範圍為 `--only written-exams`。
+- [x] 完整檢查只在需要全站 smoke test 時執行；本次 sidebar 變更的預設範圍為 `--only written-exams` 與 `--only past-exams`。
 - [x] 規格與 `documents/architecture.md` 已同步。
 - [x] 測試範圍規範見 `specs/004-targeted-testing/spec.md`。

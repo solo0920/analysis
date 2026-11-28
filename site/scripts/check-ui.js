@@ -177,6 +177,135 @@ async function checkPracticeNext(send, events, args) {
   return failures;
 }
 
+async function checkPracticeSidebar(send, events, args) {
+  let failures = 0;
+  for (const viewport of [
+    { width: 1280, height: 1000, mobile: false, theme: "light" },
+    { width: 1280, height: 1000, mobile: false, theme: "dark" },
+    { width: 390, height: 900, mobile: true, theme: "light" },
+    { width: 390, height: 900, mobile: true, theme: "dark" }
+  ]) {
+    await send("Emulation.setDeviceMetricsOverride", {
+      width: viewport.width,
+      height: viewport.height,
+      deviceScaleFactor: 1,
+      mobile: viewport.mobile
+    });
+    events.length = 0;
+    await send("Page.navigate", { url: urlFor(args.base, "/#/past-exams") });
+    const ready = await waitFor(send, `document.readyState === "complete" && document.querySelectorAll("#past-exam-search-results [data-past-open]").length > 0 && Boolean(document.querySelector("#past-exam-panel .past-exam-actions"))`);
+    await evaluate(send, `document.documentElement.setAttribute("data-theme", ${JSON.stringify(viewport.theme)})`);
+    await sleep(300);
+    const initial = await evaluate(send, `(() => {
+      const layout = document.querySelector("#past-exam-search-layout");
+      const sidebar = document.querySelector("#past-exam-search-results-panel");
+      const panel = document.querySelector("#past-exam-panel");
+      const results = document.querySelectorAll("#past-exam-search-results [data-past-open]");
+      const active = document.querySelectorAll("#past-exam-search-results .past-exam-search-result.is-active");
+      const sidebarRect = sidebar ? sidebar.getBoundingClientRect() : null;
+      const panelRect = panel ? panel.getBoundingClientRect() : null;
+      return {
+        layoutVisible: Boolean(layout && !layout.hidden && getComputedStyle(layout).display !== "none"),
+        sidebarInside: Boolean(sidebar && sidebar.contains(document.querySelector("#past-exam-search-results"))),
+        title: document.querySelector("#past-exam-sidebar-title") ? document.querySelector("#past-exam-sidebar-title").textContent.trim() : "",
+        status: document.querySelector("#past-exam-search-status") ? document.querySelector("#past-exam-search-status").textContent.trim() : "",
+        resultCount: results.length,
+        activeCount: active.length,
+        activeId: active[0] ? active[0].dataset.pastOpen : "",
+        panelQuestion: Boolean(panel && panel.querySelector(".past-exam-stem")),
+        panelStem: panel && panel.querySelector(".past-exam-stem") ? panel.querySelector(".past-exam-stem").textContent : "",
+        sidebarLeft: sidebarRect ? sidebarRect.left : -1,
+        panelLeft: panelRect ? panelRect.left : -1,
+        sidebarTop: sidebarRect ? sidebarRect.top : -1,
+        panelTop: panelRect ? panelRect.top : -1,
+        overflow: document.documentElement.scrollWidth - window.innerWidth,
+        katexErrors: document.querySelectorAll(".katex-error").length
+      };
+    })()`);
+    const problems = [];
+    if (!ready) problems.push("page not ready");
+    if (!initial.layoutVisible) problems.push("layout hidden");
+    if (!initial.sidebarInside) problems.push("sidebar does not contain questions");
+    if (initial.title !== "題目列表") problems.push("sidebar title " + initial.title);
+    if (!initial.status.includes("共")) problems.push("sidebar status " + initial.status);
+    if (!initial.resultCount) problems.push("question list empty");
+    if (initial.activeCount !== 1) problems.push("active question count " + initial.activeCount);
+    if (!initial.panelQuestion) problems.push("practice panel missing");
+    if (viewport.width > 900) {
+      if (!(initial.sidebarLeft < initial.panelLeft)) problems.push("sidebar is not left of panel");
+    } else if (!(initial.sidebarTop < initial.panelTop)) {
+      problems.push("sidebar is not above panel");
+    }
+    if (initial.overflow > 1) problems.push("overflow " + initial.overflow);
+    if (initial.katexErrors) problems.push("katex errors " + initial.katexErrors);
+
+    const secondId = await evaluate(send, `(() => {
+      const buttons = document.querySelectorAll("#past-exam-search-results [data-past-open]");
+      return buttons[1] ? buttons[1].dataset.pastOpen : "";
+    })()`);
+    if (!secondId) {
+      problems.push("second question missing");
+    } else {
+      const beforeStem = initial.panelStem;
+      await evaluate(send, `document.querySelectorAll("#past-exam-search-results [data-past-open]")[1].click()`);
+      const selected = await waitFor(send, `document.querySelector("#past-exam-search-results .past-exam-search-result.is-active") && document.querySelector("#past-exam-search-results .past-exam-search-result.is-active").dataset.pastOpen === ${JSON.stringify(secondId)} && document.querySelector("#past-exam-panel .past-exam-stem") && document.querySelector("#past-exam-panel .past-exam-stem").textContent !== ${JSON.stringify(beforeStem)}`, 5000);
+      if (!selected) problems.push("question did not open");
+    }
+
+    await evaluate(send, `(() => {
+      const input = document.querySelector("#past-exam-search-input");
+      const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set;
+      setter.call(input, "存續期間");
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+    })()`);
+    const searchReady = await waitFor(send, `document.querySelectorAll("#past-exam-search-results [data-past-open]").length > 0`, 10000);
+    const search = await evaluate(send, `({
+      title: document.querySelector("#past-exam-sidebar-title") ? document.querySelector("#past-exam-sidebar-title").textContent.trim() : "",
+      count: document.querySelectorAll("#past-exam-search-results [data-past-open]").length,
+      panelQuestion: Boolean(document.querySelector("#past-exam-panel .past-exam-stem")),
+      overflow: document.documentElement.scrollWidth - window.innerWidth,
+      katexErrors: document.querySelectorAll(".katex-error").length
+    })`);
+    if (!searchReady) problems.push("search results missing");
+    if (search.title !== "搜尋結果") problems.push("search title " + search.title);
+    if (!search.count) problems.push("search count 0");
+    if (!search.panelQuestion) problems.push("search practice panel missing");
+    if (search.overflow > 1) problems.push("search overflow " + search.overflow);
+    if (search.katexErrors) problems.push("search katex errors " + search.katexErrors);
+
+    const searchFirstId = await evaluate(send, `(() => {
+      const button = document.querySelector("#past-exam-search-results [data-past-open]");
+      return button ? button.dataset.pastOpen : "";
+    })()`);
+    if (!searchFirstId) {
+      problems.push("search result missing");
+    } else {
+      await evaluate(send, `document.querySelector("#past-exam-search-results [data-past-open]").click()`);
+      const selected = await waitFor(send, `document.querySelector("#past-exam-search-results .past-exam-search-result.is-active") && document.querySelector("#past-exam-search-results .past-exam-search-result.is-active").dataset.pastOpen === ${JSON.stringify(searchFirstId)}`, 5000);
+      if (!selected) problems.push("search result did not open");
+    }
+
+    await evaluate(send, `document.querySelector("[data-past-search-clear]").click()`);
+    const restored = await waitFor(send, `document.querySelector("#past-exam-sidebar-title") && document.querySelector("#past-exam-sidebar-title").textContent.trim() === "題目列表" && document.querySelectorAll("#past-exam-search-results [data-past-open]").length > 0`, 5000);
+    const afterClear = await evaluate(send, `({
+      inputValue: document.querySelector("#past-exam-search-input").value,
+      activeCount: document.querySelectorAll("#past-exam-search-results .past-exam-search-result.is-active").length,
+      panelQuestion: Boolean(document.querySelector("#past-exam-panel .past-exam-stem")),
+      overflow: document.documentElement.scrollWidth - window.innerWidth
+    })`);
+    if (!restored) problems.push("search clear did not restore list");
+    if (afterClear.inputValue) problems.push("search input not cleared");
+    if (afterClear.activeCount !== 1) problems.push("clear active count " + afterClear.activeCount);
+    if (!afterClear.panelQuestion) problems.push("clear practice panel missing");
+    if (afterClear.overflow > 1) problems.push("clear overflow " + afterClear.overflow);
+
+    if (problems.length) failures += 1;
+    console.log((problems.length ? "FAIL" : "ok  ") + " practice sidebar " + viewport.width + "px " + viewport.theme +
+      (problems.length ? " — " + problems.join("; ") : ""));
+  }
+  return failures;
+}
+
 async function checkWrittenSearchSidebar(send, events, args) {
   let failures = 0;
   for (const viewport of [
@@ -210,6 +339,8 @@ async function checkWrittenSearchSidebar(send, events, args) {
         sidebarInside: Boolean(sidebar && sidebar.contains(document.querySelector("#written-search-results"))),
         listExists: Boolean(document.querySelector("#written-list")),
         detailCard: Boolean(detail && detail.querySelector(".written-card")),
+        answerVisible: Boolean(detail && detail.querySelector(".written-answer")),
+        toggleLabel: detail && detail.querySelector("[data-written-toggle]") ? detail.querySelector("[data-written-toggle]").textContent.trim() : "",
         resultCount: results.length,
         activeCount: active.length,
         activeId: active[0] ? active[0].dataset.writtenOpen : "",
@@ -231,6 +362,8 @@ async function checkWrittenSearchSidebar(send, events, args) {
     if (!initial.sidebarInside) problems.push("sidebar does not contain questions");
     if (initial.listExists) problems.push("legacy written list exists");
     if (!initial.detailCard) problems.push("detail card missing");
+    if (!initial.answerVisible) problems.push("default answer hidden");
+    if (initial.toggleLabel !== "收起解答") problems.push("default answer toggle " + initial.toggleLabel);
     if (initial.resultCount < 300) problems.push("question count " + initial.resultCount);
     if (initial.activeCount !== 1) problems.push("active question count " + initial.activeCount);
     if (initial.title !== "題目列表") problems.push("sidebar title " + initial.title);
@@ -281,6 +414,7 @@ async function checkWrittenSearchSidebar(send, events, args) {
         resultCount: results.length,
         activeCount: active.length,
         detailCard: Boolean(document.querySelector("#written-search-detail .written-card")),
+        answerVisible: Boolean(document.querySelector("#written-search-detail .written-answer")),
         title: document.querySelector("#written-sidebar-title") ? document.querySelector("#written-sidebar-title").textContent.trim() : "",
         overflow: document.documentElement.scrollWidth - window.innerWidth,
         katexErrors: document.querySelectorAll(".katex-error").length
@@ -290,6 +424,7 @@ async function checkWrittenSearchSidebar(send, events, args) {
     if (search.resultCount < 2) problems.push("search result count " + search.resultCount);
     if (search.activeCount !== 1) problems.push("search active count " + search.activeCount);
     if (!search.detailCard) problems.push("search detail missing");
+    if (!search.answerVisible) problems.push("search default answer hidden");
     if (search.title !== "搜尋結果") problems.push("search title " + search.title);
     if (search.overflow > 1) problems.push("search overflow " + search.overflow);
     if (search.katexErrors) problems.push("search katex errors " + search.katexErrors);
@@ -313,6 +448,7 @@ async function checkWrittenSearchSidebar(send, events, args) {
       title: document.querySelector("#written-sidebar-title") ? document.querySelector("#written-sidebar-title").textContent.trim() : "",
       activeCount: document.querySelectorAll("#written-search-results .past-exam-search-result.is-active").length,
       detailCards: document.querySelectorAll("#written-search-detail .written-card").length,
+      answerVisible: Boolean(document.querySelector("#written-search-detail .written-answer")),
       overflow: document.documentElement.scrollWidth - window.innerWidth
     })`);
     if (!restored) problems.push("search clear did not restore all questions");
@@ -320,6 +456,7 @@ async function checkWrittenSearchSidebar(send, events, args) {
     if (afterClear.title !== "題目列表") problems.push("clear title " + afterClear.title);
     if (afterClear.activeCount !== 1) problems.push("clear active count " + afterClear.activeCount);
     if (afterClear.detailCards !== 1) problems.push("clear detail count " + afterClear.detailCards);
+    if (!afterClear.answerVisible) problems.push("clear default answer hidden");
     if (afterClear.overflow > 1) problems.push("clear overflow " + afterClear.overflow);
 
     if (problems.length) failures += 1;
@@ -401,6 +538,9 @@ async function main() {
   if (args.only) {
     if (args.only.indexOf("written-exams") !== -1 || args.only.indexOf("written-search") !== -1) {
       failed += await checkWrittenSearchSidebar(send, events, args);
+    }
+    if (args.only.indexOf("past-exams") !== -1 || args.only.indexOf("past-search") !== -1 || args.only.indexOf("past-exam") !== -1) {
+      failed += await checkPracticeSidebar(send, events, args);
     }
     if (args.only.indexOf("past-exam") !== -1) {
       failed += await checkPracticeNext(send, events, args);
@@ -487,9 +627,9 @@ async function main() {
     setter.call(input, "存續期間");
     input.dispatchEvent(new Event("input", { bubbles: true }));
   })()`);
-  const pastSearchReady = await waitFor(send, `document.querySelectorAll("#past-exam-search-results [data-past-search-open]").length > 0`, 10000);
+  const pastSearchReady = await waitFor(send, `document.querySelectorAll("#past-exam-search-results [data-past-open]").length > 0`, 10000);
   const pastSearchState = await evaluate(send, `({
-    count: document.querySelectorAll("#past-exam-search-results [data-past-search-open]").length,
+    count: document.querySelectorAll("#past-exam-search-results [data-past-open]").length,
     status: document.querySelector("#past-exam-search-status").textContent,
     scope: document.querySelector("#past-exam-search-scope").textContent,
     sections: document.querySelectorAll(".past-exam-page > .past-exam-filter-shell").length,
@@ -515,6 +655,7 @@ async function main() {
       kids: Array.from(main.children),
       search: document.querySelector("#past-exam-search-input"),
       rows: document.querySelector("#past-exam-filter-rows"),
+      sidebar: document.querySelector("#past-exam-search-results"),
       panel: document.querySelector("#past-exam-panel")
     };
     window.__filterFlicker = { routing: false, loader: false, mainMutations: 0 };
@@ -541,6 +682,7 @@ async function main() {
         Array.from(main.children).every((element, index) => element === window.__filterRefs.kids[index]),
       sameSearch: document.querySelector("#past-exam-search-input") === window.__filterRefs.search,
       sameRows: document.querySelector("#past-exam-filter-rows") === window.__filterRefs.rows,
+      sameSidebar: document.querySelector("#past-exam-search-results") === window.__filterRefs.sidebar,
       samePanel: document.querySelector("#past-exam-panel") === window.__filterRefs.panel,
       scrollY: window.scrollY,
       flicker: window.__filterFlicker
@@ -548,7 +690,7 @@ async function main() {
   })()`);
   const filterProblems = [];
   if (!filterReady) filterProblems.push("year filter not ready");
-  if (!filterAfter.sameKids || !filterAfter.sameSearch || !filterAfter.sameRows || !filterAfter.samePanel) filterProblems.push("DOM was replaced");
+  if (!filterAfter.sameKids || !filterAfter.sameSearch || !filterAfter.sameRows || !filterAfter.sameSidebar || !filterAfter.samePanel) filterProblems.push("DOM was replaced");
   if (filterAfter.flicker.routing) filterProblems.push("route loader class");
   if (filterAfter.flicker.loader) filterProblems.push("route loader visible");
   if (filterAfter.flicker.mainMutations) filterProblems.push("main children mutated " + filterAfter.flicker.mainMutations);
@@ -556,6 +698,8 @@ async function main() {
   if (filterProblems.length) failed += 1;
   console.log((filterProblems.length ? "FAIL" : "ok  ") + " past search no-flicker" +
     (filterProblems.length ? " — " + filterProblems.join("; ") : ""));
+
+  failed += await checkPracticeSidebar(send, events, args);
 
   // Written-exam fuzzy search and in-place filters.
   events.length = 0;

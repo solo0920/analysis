@@ -208,8 +208,8 @@ not_found_handling = "404-page"
 - `#/investment/formulas`：投資學公式總表（比例分析 32 條、核心公式 66 條、選擇權評價優先順序 7 項）
 - `#/investment/technical`：技術分析 50 指標（5 類；舊網址 `#/investment/technical-indicators` 也可開啟）
 - `#/subject/accounting`：會計學第 1–23 章章節地圖
-- `#/past-exams`：歷屆考古題練習庫（107–115 年、29 次、3,710 題選擇題）
-- `#/past-exams/written`：107–115 年計算／申論題（348 題；可依年度／科目／次別篩選；全部完整參考解答）；左側 sidebar 未搜尋時顯示全部題目、搜尋後顯示結果，右側顯示選取題卡
+- `#/past-exams`：歷屆考古題練習庫（107–115 年、29 次、3,710 題選擇題）；左側 sidebar 未搜尋時顯示目前篩選題目、搜尋後顯示結果，右側顯示練習／瀏覽面板
+- `#/past-exams/written`：107–115 年計算／申論題（348 題；可依年度／科目／次別篩選；全部完整參考解答）；左側 sidebar 未搜尋時顯示全部題目、搜尋後顯示結果，右側顯示選取題卡並預設展開參考解答
 - `#/macro-current`：近二年重要國際金融時事與臺灣總經政策（15 個主題；12 個主題含 KaTeX 公式；20 則美國重大經濟新聞摘要已整合至主題卡，另有 8 大主題與 5 題綜合申論；入口與麵包屑皆在考前猜題下）
 - `#/exam-forecast`：2026 年 12 月四科單一題庫（97 題組／118 個部分、74 個題組含「本題公式」、21 組多部分題組、6 組整合、38 條整合公式、2 組敏感度；分頁只有全部／總體／投資／會計／法規；標題下方有「近二年時事 · 總經政策」入口卡片）
 - `#/review`：複習題（IndexedDB；全部／總體／投資／會計／法規 tabs；左側一行一題的題號清單、右側題目與參考解答；`?question=` 可直接選題）
@@ -370,7 +370,7 @@ node site/scripts/check-ui.js
 node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 ```
 
-`check-ui.js` 會檢查 14 條路由（首頁、科目、章節、考古題、題庫模糊搜尋、計算／申論題、申論題模糊搜尋、複習題、考前猜題、諾貝爾、模型總覽、總經時事）在 390／1280、深淺主題下的 selector、`.katex-error`、水平溢出與 console errors，並以 7 個內容斷言核對 2026 NKPC、已修正的會計例題、泰勒法則與古典學派新章；另以題庫模糊搜尋實測「存續期間」可得到 12 筆結果，並檢查選擇題與計算／申論題切換年度／科目／次別時 `#main` 子節點、搜尋框、篩選列與列表節點不變、沒有 route loader；練習模式另檢查「顯示答案／下一題／上一題」按鈕順序與下一題前進；計算／申論題另檢查未搜尋 348 題 sidebar、搜尋結果 sidebar、右側題卡、點選切換與清除後恢復。
+`check-ui.js` 會檢查 14 條路由（首頁、科目、章節、考古題、題庫模糊搜尋、計算／申論題、申論題模糊搜尋、複習題、考前猜題、諾貝爾、模型總覽、總經時事）在 390／1280、深淺主題下的 selector、`.katex-error`、水平溢出與 console errors，並以 7 個內容斷言核對 2026 NKPC、已修正的會計例題、泰勒法則與古典學派新章；另以題庫模糊搜尋實測「存續期間」可得到 12 筆結果，並檢查選擇題與計算／申論題切換年度／科目／次別時 `#main` 子節點、搜尋框、篩選列與列表節點不變、沒有 route loader；練習模式另檢查「顯示答案／下一題／上一題」按鈕順序與下一題前進；選擇題另檢查 sidebar 題目列表、搜尋、點選切換與清除恢復；計算／申論題另檢查未搜尋 348 題 sidebar、搜尋結果 sidebar、右側題卡、預設展開參考解答、點選切換與清除後恢復。
 
 可用 `--only <route>` 只跑指定路由與其互動檢查，例如 `node site/scripts/check-ui.js --only written-exams`；其他路由的內容、搜尋、申論題 smoke test 不會執行。完整 56 組只在路由／全域版面變更時跑。分級與指令見 [`documents/qa-playbook.md`](../documents/qa-playbook.md)；測試範圍規範見 [`specs/004-targeted-testing/spec.md`](../specs/004-targeted-testing/spec.md)。`--base` 指向正式站時另檢查 404 頁。`check-ui.js` 不在 `verify.sh` 內（GitHub Actions runner 不保證有 Chrome），屬部署前手動檢查；部署後改用 `check-live.sh`。
 
@@ -597,6 +597,8 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 2026-11-28 新增 `check-ui.js --only <route>` 快速模式與 [`documents/qa-playbook.md`](documents/qa-playbook.md) QA 分級：小改動只跑受影響路由，完整 56 組留給路由／全域版面變更。實測 `--only past-exam` 本機 5.2 秒、正式站 30.6 秒；完整 `check-ui.js` 本機 25.3 秒、正式站 92.4 秒。此次「下一題」修改總耗時 5 分 37 秒，其中正式站完整 `check-ui` 92.4 秒、本機完整 `check-ui` 25.3 秒、GitHub Actions 部署等待 16.4 秒；改用 `--only` 可先省下約 80 秒。
 
 2026-11-28 計算／申論題搜尋改為左側 sidebar＋右側題卡：未搜尋時 sidebar 顯示目前篩選的全部 348 題，右側顯示第一題；搜尋時 sidebar 改顯示搜尋結果，點選其他題目會更新右側題卡與 active 狀態；390px 自動改為上下堆疊、sidebar 保持可捲動高度並在點選後捲到題卡；清除搜尋恢復 348 題 sidebar 清單。`check-ui.js --only written-exams` 新增未搜尋 348 題、搜尋結果、點選切換、清除恢復與 390／1280、深淺主題檢查（本機 5.9 秒）；`--only` 只跑指定路由，不再執行其他路由的內容／搜尋／申論題 smoke test。
+
+2026-11-28 選擇題頁比照計算／申論題改為 sidebar／detail：`#/past-exams` 未搜尋時左側顯示目前篩選題目、搜尋時顯示搜尋結果，右側保留練習／瀏覽面板；點選 sidebar 題目直接切換 `practiceState.index`，下一題／上一題同步更新 active；390px 上下堆疊、sidebar 可捲動並在點選後捲到面板；年度一覽保留在下方。`#/past-exams/written` 的右側題卡改為預設展開參考解答，仍可用「收合解答」收合。`check-ui.js --only past-exams` 新增選擇題 sidebar 檢查（本機 4.1 秒），`--only written-exams` 新增預設解答檢查；完整本機 56 組通過（30.2 秒），未跑正式站全站 smoke test。
 
 2026-11-27 修正 `110Q1-macro-07` 古典免疫答案（C→D）：原解析把「容易使用」當成錯誤，但古典免疫的關鍵特徵是存續期間等於目標持有期間，抵銷價格風險與再投資風險，管理的是利率風險而非信用風險。已重寫 A–D 選項分析，並同步題庫、搜尋索引、110 年分包與 `macro-13` 章節分包；390px／1280px、深淺主題與 `file://` 顯示正常。
 
