@@ -401,6 +401,52 @@ async function main() {
   console.log((writtenProblems.length ? "FAIL" : "ok  ") + " written search no-flicker " + writtenSearchState.count +
     (writtenProblems.length ? " — " + writtenProblems.join("; ") : ""));
 
+  // Practice mode: next question must sit between reveal/collapse and previous.
+  for (const viewport of [
+    { width: 1280, height: 1000, mobile: false, theme: "light" },
+    { width: 390, height: 900, mobile: true, theme: "dark" }
+  ]) {
+    await send("Emulation.setDeviceMetricsOverride", {
+      width: viewport.width,
+      height: viewport.height,
+      deviceScaleFactor: 1,
+      mobile: viewport.mobile
+    });
+    events.length = 0;
+    await send("Page.navigate", { url: urlFor(args.base, "/#/past-exams?question=108Q2-macro-11") });
+    const ready = await waitFor(send, `document.readyState === "complete" && Boolean(document.querySelector(".past-exam-actions [data-practice-next]"))`);
+    await evaluate(send, `document.documentElement.setAttribute("data-theme", ${JSON.stringify(viewport.theme)})`);
+    await sleep(200);
+    const order = await evaluate(send, `(() => {
+      const actions = document.querySelector(".past-exam-actions");
+      const buttons = actions ? Array.from(actions.querySelectorAll(":scope > button")) : [];
+      const submit = actions && actions.querySelector("[data-practice-submit]");
+      const next = actions && actions.querySelector("[data-practice-next]");
+      const prev = actions && actions.querySelector("[data-practice-prev]");
+      return {
+        submitIndex: buttons.indexOf(submit),
+        nextIndex: buttons.indexOf(next),
+        prevIndex: buttons.indexOf(prev),
+        nextDisabled: Boolean(next && next.disabled),
+        overflow: document.documentElement.scrollWidth - window.innerWidth
+      };
+    })()`);
+    const problems = [];
+    if (!ready) problems.push("actions missing");
+    if (order.submitIndex < 0) problems.push("submit missing");
+    if (order.nextIndex !== order.submitIndex + 1) problems.push("next not after submit");
+    if (order.prevIndex !== order.nextIndex + 1) problems.push("prev not after next");
+    if (order.nextDisabled) problems.push("next disabled");
+    if (order.overflow > 1) problems.push("overflow " + order.overflow);
+    const beforeStem = await evaluate(send, `document.querySelector(".past-exam-stem") ? document.querySelector(".past-exam-stem").textContent : ""`);
+    await evaluate(send, `document.querySelector("[data-practice-next]").click()`);
+    const advanced = await waitFor(send, `document.querySelector(".past-exam-stem") && document.querySelector(".past-exam-stem").textContent !== ${JSON.stringify(beforeStem)}`);
+    if (!advanced) problems.push("next did not advance");
+    if (problems.length) failed += 1;
+    console.log((problems.length ? "FAIL" : "ok  ") + " practice next order " + viewport.width + "px " + viewport.theme +
+      (problems.length ? " — " + problems.join("; ") : ""));
+  }
+
   // 404 page only when testing a remote origin (local Python server has its own 404).
   if (args.remote) {
     events.length = 0;

@@ -370,7 +370,7 @@ node site/scripts/check-ui.js
 node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 ```
 
-`check-ui.js` 會檢查 14 條路由（首頁、科目、章節、考古題、題庫模糊搜尋、計算／申論題、申論題模糊搜尋、複習題、考前猜題、諾貝爾、模型總覽、總經時事）在 390／1280、深淺主題下的 selector、`.katex-error`、水平溢出與 console errors，並以 7 個內容斷言核對 2026 NKPC、已修正的會計例題、泰勒法則與古典學派新章；另以題庫模糊搜尋實測「存續期間」可得到 12 筆結果，並檢查選擇題與計算／申論題切換年度／科目／次別時 `#main` 子節點、搜尋框、篩選列與列表節點不變、沒有 route loader。`--base` 指向正式站時另檢查 404 頁。`check-ui.js` 不在 `verify.sh` 內（GitHub Actions runner 不保證有 Chrome），屬部署前手動檢查；部署後改用 `check-live.sh`。
+`check-ui.js` 會檢查 14 條路由（首頁、科目、章節、考古題、題庫模糊搜尋、計算／申論題、申論題模糊搜尋、複習題、考前猜題、諾貝爾、模型總覽、總經時事）在 390／1280、深淺主題下的 selector、`.katex-error`、水平溢出與 console errors，並以 7 個內容斷言核對 2026 NKPC、已修正的會計例題、泰勒法則與古典學派新章；另以題庫模糊搜尋實測「存續期間」可得到 12 筆結果，並檢查選擇題與計算／申論題切換年度／科目／次別時 `#main` 子節點、搜尋框、篩選列與列表節點不變、沒有 route loader；練習模式另檢查「顯示答案／下一題／上一題」按鈕順序與下一題前進。`--base` 指向正式站時另檢查 404 頁。`check-ui.js` 不在 `verify.sh` 內（GitHub Actions runner 不保證有 Chrome），屬部署前手動檢查；部署後改用 `check-live.sh`。
 
 `validate-content.js` 會比對三份來源目錄的章號、章名、Part、順序、節次與頁碼，並檢查：
 
@@ -589,6 +589,8 @@ node site/scripts/check-ui.js --base https://analysis.ragdemo.win
 2026-11-28 將同一套題庫搜尋套用到 `#/past-exams/written`：計算／申論題頁改為與選擇題頁一致的單一篩選卡，含模糊搜尋、搜尋範圍、年度／科目／次別、範圍內精確篩選與卡片下方的相關度排序結果；只索引 348 題計算／申論題庫。搜尋結果可點選開啟對應題卡並捲動到該題；年度／科目／次別切換改為原地更新，不呼叫 `render()`、不替換 `#main`、不顯示 route loader，搜尋字串與精確關鍵字在科目／次別切換時保留、年度切換清除精確關鍵字。390px／1280px 與 `file://` 實測「存續期間」7 筆、「股東會」13 筆，0 `.katex-error`、0 水平溢出；`check-ui.js` 新增申論題搜尋與無閃爍 smoke test。
 
 2026-11-28 部署改為 GitHub Actions 建置＋Cloudflare Workers 部署：新增 `package.json`／`package-lock.json` 固定 `wrangler@4.169.0`、`esbuild@0.28.2`，`.github/workflows/deploy.yml` 在 push `main` 後執行 `npm ci`、`verify.sh` 與 `wrangler deploy`；`build-core-bundle.js` 優先使用本地 esbuild，找不到時才以 `npx` 並加上 120 秒 timeout，失敗即停止。`verify.sh` 本機實測 1.58 秒；GitHub Actions 首次部署 26 秒（job 23 秒）、第二次 20 秒（job 17 秒），`npm ci` 5–6 秒、verify 2 秒、`wrangler deploy` 5 秒；正式站 `version.json` 與 commit 一致。Cloudflare Workers Builds 的 Git 自動部署停用，避免重複建置。
+
+2026-11-28 考古題練習模式的「下一題」改為永遠顯示，位置固定在「顯示答案／收合答案」與「上一題」之間；未顯示答案時可直接跳到下一題，顯示答案後同一位置切換為主要按鈕；最後一題顯示「已完成」並停用。390px／1280px、深淺主題與 `file://` 實測順序為「顯示答案 | 下一題 | 上一題 | ＋ 加入複習題 | 清除本範圍紀錄」，點擊下一題可正常前進，0 `.katex-error`、0 水平溢出；`check-ui.js` 新增 practice next order 檢查（1280 light／390 dark）。
 
 2026-11-27 修正 `110Q1-macro-07` 古典免疫答案（C→D）：原解析把「容易使用」當成錯誤，但古典免疫的關鍵特徵是存續期間等於目標持有期間，抵銷價格風險與再投資風險，管理的是利率風險而非信用風險。已重寫 A–D 選項分析，並同步題庫、搜尋索引、110 年分包與 `macro-13` 章節分包；390px／1280px、深淺主題與 `file://` 顯示正常。
 

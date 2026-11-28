@@ -4194,9 +4194,7 @@
     const revealToggle = revealed
       ? '<button class="btn" type="button" data-practice-collapse>收合答案</button>'
       : '<button class="btn btn-primary" type="button" data-practice-submit>顯示答案</button>';
-    const nextAction = revealed
-      ? '<button class="btn btn-primary" type="button" data-practice-next ' + (nextDisabled ? "disabled" : "") + ">" + (nextDisabled ? "已完成" : "下一題") + "</button>"
-      : "";
+    const nextAction = '<button class="btn' + (revealed ? " btn-primary" : "") + '" type="button" data-practice-next ' + (nextDisabled ? "disabled" : "") + ">" + (nextDisabled ? "已完成" : "下一題") + "</button>";
     const actions = [
       revealToggle,
       nextAction,
